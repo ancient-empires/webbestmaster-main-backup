@@ -1,0 +1,140 @@
+.notification-wrapper {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.5em;
+}
+
+.notification-container {
+	padding: 0.5em 0.6em;
+	border-width: 0.2em;
+	border-style: solid;
+	background-color: #000;
+}
+
+.n-text {
+	font-size: 0.66em;
+	line-height: 1.35em;
+	text-indent: 2em;
+}
+
+.n-text .unit {
+	position: static;
+	width: 2em;
+	height: 2em;
+	/*margin-right: 0.6em;*/
+}
+
+.n-turn .n-text {
+	text-indent: 0;
+	font-size: 1.2em;
+	line-height: 2em;
+	text-align: center;
+}
+
+.n-image {
+	padding-right: 1.2em;
+	height: 7em;
+	margin-top: -2.2em;
+}
+
+.n-anim-show-from-left,
+.n-anim-show-from-right {
+	-webkit-animation-duration: 0.6s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-fill-mode: forwards;
+
+	animation-duration: 0.6s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+.n-anim-show-from-left {
+	-webkit-animation-name: n-anim-show-from-left;
+	animation-name: n-anim-show-from-left;
+}
+
+.n-anim-show-from-right {
+	-webkit-animation-name: n-anim-show-from-right;
+	animation-name: n-anim-show-from-right;
+}
+
+@-webkit-keyframes n-anim-show-from-left {
+	0% {
+		-webkit-transform: translate3d(-100%, 0, 0);
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes n-anim-show-from-left {
+	0% {
+		transform: translate3d(-100%, 0, 0);
+	}
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@-webkit-keyframes n-anim-show-from-right {
+	0% {
+		-webkit-transform: translate3d(100%, 0, 0);
+	}
+	100% {
+		-webkit-transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes n-anim-show-from-right {
+	0% {
+		transform: translate3d(100%, 0, 0);
+	}
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.n-anim-hide {
+	-webkit-animation-name: n-anim-hide;
+	-webkit-animation-duration: 0.6s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-fill-mode: forwards;
+
+	animation-name: n-anim-hide;
+	animation-duration: 0.6s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+
+}
+
+@-webkit-keyframes n-anim-hide {
+	0% {
+		-webkit-transform: translate3d(0, 0, 0);
+	}
+	100% {
+		-webkit-transform: translate3d(0, 150%, 0);
+	}
+}
+
+@keyframes n-anim-hide {
+	0% {
+		transform: translate3d(0, 0, 0);
+	}
+	100% {
+		transform: translate3d(0, 150%, 0);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
