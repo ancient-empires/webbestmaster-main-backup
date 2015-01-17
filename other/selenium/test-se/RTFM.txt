@@ -1,0 +1,25 @@
+1 - cd sdk/sdk/platform-tools/
+2 - $./adb forward tcp:8080 tcp:8080
+2 - $./adb shell am start -a android.intent.action.MAIN -n org.openqa.selenium.android
+
+./adb -s <serialId> -e install -r  android-server-2.38.0.apk
+
+./adb devices
+
+
+$./adb -s <serialId> shell am start -a android.intent.action.MAIN -n org.openqa.selenium.android.app/.MainActivity
+$./adb -s <serialId> forward tcp:8080 tcp:8080
+
+$./adb shell am start -a android.intent.action.MAIN -n org.openqa.selenium.android.app/.MainActivity
+$./adb forward tcp:8080 tcp:8080
+
+//remove node
+sudo rm -rf /usr/local/{bin/{node,npm},lib/node_modules/npm,lib/node,share/man/*/node.*}
+
+
+node <test-name>.js can get the parameters
+
+cfg // cfg=<config-name.js> from cfg folder
+isMobile // isMobile | isMobile=<not false> -> run test on mobile
+testList // testList=<singleTestName.js> | testList=<singleTestName.js>,<singleTestName.js>,<singleTestName.js> -> run test from test list
+sendMail // after test send e-mail see Reporter.sendMail

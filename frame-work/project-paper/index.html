@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>FW</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reset.css" />
+	<link rel="stylesheet" href="css/fw-styles.css" />
+	<link rel="stylesheet" href="css/style.css" />
+
+	<!-- services -->
+	<script src="js/services/info.js" type="text/javascript"></script>
+	<script src="js/services/bro.js" type="text/javascript"></script>
+	<script src="js/services/player.js" type="text/javascript"></script>
+	<script src="js/services/sound-list.js" type="text/javascript"></script>
+	<script src="js/services/viewer.js" type="text/javascript"></script>
+	<script src="js/services/status-bar.js" type="text/javascript"></script>
+	<script src="js/services/ui.js" type="text/javascript"></script>
+	<script src="js/services/myMvc.js" type="text/javascript"></script>
+
+	<!-- langs -->
+	<script src="js/lang/lang-ar.js" type="text/javascript"></script>
+	<script src="js/lang/lang-de.js" type="text/javascript"></script>
+	<script src="js/lang/lang-en.js" type="text/javascript"></script>
+	<script src="js/lang/lang-es.js" type="text/javascript"></script>
+	<script src="js/lang/lang-ru.js" type="text/javascript"></script>
+	<script src="js/lang/lang-it.js" type="text/javascript"></script>
+	<script src="js/lang/lang-zh.js" type="text/javascript"></script>
+
+	<!-- main js -->
+	<script src="js/main.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<!-- status bar -->
+<div class="js-status-bar status-bar">
+	<div class="js-back status-bar-back" onclick="viewer.back();player.play(soundList.click);"><span></span></div>
+	<div class="js-more status-bar-more" onclick="viewer.show('more-page');player.play(soundList.click);"><span></span></div>
+	<div class="js-play-again status-bar-play-again" onclick="player.playQuestionAgain();"><span></span></div>
+	<div class="js-score status-bar-score"><span text="score">score</span><span>:</span>&nbsp;<span class="js-score-field">0</span></div>
+</div>
+<!-- status bar -->
+
+<div id="wrapper">
+
+</div>
+
+<div id="wrapper-for-transition" class="to-right">
+
+</div>
+
+<div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);">
+
+	<div class="page">
+
+		<h1>select magazine</h1>
+
+		<h2>first</h2>
+		<h2>second</h2>
+
+
+
+
+	</div>
+
+</div>
+
+<div class="js-template hidden" template-id="more-page" onshow="statusBar.show([]);main.setMorePage();ui.fn.setBodyScroll(false);">
+
+	<div class="page more-page">
+		<div class="table more-wrapper">
+			<div class="table-row">
+				<div class="table-cell">
+					<h2 class="more-header custom-select-header">{{= lang[info.lang].language }}:</h2>
+					<div class="select-wrapper clear-fix">
+						<div>{{= lang[info.lang].languageName }}</div>
+						<select class="js-language-select">
+							{{ for (var key in lang) { }}
+								{{ if (key === info.lang) { }}
+									<option value="{{= key }}" selected>{{= lang[key].languageName }}</option>
+								{{ } else { }}
+									<option value="{{= key }}">{{= lang[key].languageName }}</option>
+								{{ }; }}
+							{{ }; }}
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="table-row sharing-table-row">
+				<div class="table-cell sharing-cell">
+					<div class="share-link-container clear-fix">
+						<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstatlex.com%2F" class="share-link facebook" target="_blank">Facebook</a>
+						<a href="https://twitter.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link twitter" target="_blank">Twitter</a>
+						<a href="https://plus.google.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link google" target="_blank">Google+</a>
+						<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fstatlex.com%2F" class="share-link linkedin" target="_blank">LinkedIn</a>
+						<a href="http://vk.com/share.php?url=http%3A%2F%2Fstatlex.com%2F" class="share-link vk" target="_blank">vk</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="table-row center-text">
+				<div class="table-cell">
+					<p class="thanks-header">{{= lang[info.lang].thanks }}:</p>
+					<p class="thanks-paragraph"><a href="#">{{= lang[info.lang].designerName }} - {{= lang[info.lang].designer }}</a></p>
+				</div>
+			</div>
+
+			<div class="table-row">
+				<div class="table-cell">
+					<p class="main-site-link">&copy;&nbsp;<a href="http://statlex.com" target="_blank">statlex.com</a></p>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="js-template hidden" template-id="404">
+
+	<h1>404 ):</h1>
+
+</div>
+
+<div class="js-splash-screen splash-screen">
+	<div class="js-good-answer good-answer"></div>
+	<div class="js-bad-answer bad-answer"></div>
+</div>
+
+<div class="js-alert alert-wrapper table hidden">
+	<div class="table-row">
+		<div class="table-cell">
+			<div class="alert-form">
+				<div class="js-alert-message alert-message"></div>
+				<div class="js-alert-button alert-ok-button"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="js-confirm custom-confirm alert-wrapper table hidden">
+	<div class="table-row">
+		<div class="table-cell">
+			<div class="alert-form">
+				<div class="js-confirm-message alert-message"></div>
+				<div class="js-confirm-button-ok alert-ok-button"></div>
+				<div class="js-confirm-button-cancel alert-ok-button alert-cancel-button"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="js-logger logger-wrapper"><div class="js-logger-inner-block logger-inner-block">Logger:<br></div></div>
+
+</body>
+</html>

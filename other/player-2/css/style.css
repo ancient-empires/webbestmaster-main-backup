@@ -1,0 +1,26 @@
+.song-container {
+	padding: 40px;
+	background-color: #91cc69;
+}
+
+.progress-bar-wrapper {
+	width: 300px;
+	height: 10px;
+	background-color: #ff7837;
+}
+
+.progress-bar {
+	height: 100%;
+	width: 0%;
+	background-color: #4f66ff;
+}
+
+.song-block {
+	padding: 10px;
+}
+
+.current-playing {
+	background-color: #ff6d4a;
+}
+
+
