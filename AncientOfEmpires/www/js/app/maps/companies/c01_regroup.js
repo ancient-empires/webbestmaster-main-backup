@@ -11,7 +11,38 @@
 		isDone: false,
 		check: function (controller) {
 
+			// knight have to across a bridge
 
+			var human = controller.players[0],
+				humanId = human.id,
+				units = controller.units,
+				humanUnits = [],
+				knight,
+				key, unit;
+
+			for (key in units) {
+				if (units.hasOwnProperty(key)) {
+					unit = units[key];
+					if (unit.playerId === humanId) {
+						humanUnits.push(unit);
+					}
+				}
+			}
+
+			humanUnits.every(function (unit) {
+				if (unit.type === 'Knight') {
+					knight = unit;
+					return false;
+				}
+				return true;
+			});
+
+			// if knight is dead
+			if (!knight) {
+				return false;
+			}
+
+			return knight.y > 5;
 
 		},
 		run: function (controller) {
@@ -21,6 +52,17 @@
 			}
 
 			this.isDone = true;
+
+			// append unit
+			var newUnit = controller.appendUnit({
+				color: "red",
+				playerId: 1,
+				type: "Soldier",
+				x: 8,
+				y: 8
+			}); // to controller
+
+			controller.view.appendUnit(newUnit); // and view
 
 		}
 

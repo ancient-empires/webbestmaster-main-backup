@@ -77,6 +77,8 @@
 
 				unit.color = player.color;
 
+				//debugger
+
 				newUnit = this.appendUnit(unit); // to controller
 
 				this.view.appendUnit(newUnit); // and view
@@ -695,9 +697,10 @@
 
 			var steps = this.map.steps || [];
 
+			var controller = this;
+
 			steps.every(function (step) {
 
-				var controller = this;
 
 				if (step.isDone) {
 					return true;
@@ -709,7 +712,7 @@
 
 				return false;
 
-			}, this);
+			});
 
 		},
 

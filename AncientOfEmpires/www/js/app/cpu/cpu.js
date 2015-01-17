@@ -152,7 +152,7 @@
 
 		execute: function (unit, controller, cpu) {
 
-			if (controller.gameOverDetect()) {
+			if (controller.gameOverDetect(controller)) {
 				return;
 			}
 
@@ -340,7 +340,7 @@
 
 				controller.view.goToXY(unit);
 
-				if (controller.gameOverDetect()) {
+				if (controller.gameOverDetect(controller)) {
 					return;
 				}
 
