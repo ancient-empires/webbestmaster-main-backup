@@ -14,9 +14,11 @@
 			'click .js-quit-mission': 'quitMission'
 		},
 
-		init: function () {
+		init: function (data) {
 
-			this.$el = $(this.tmpl['battle-menu']());
+			data.objective = (data.jsMapName && win.langs[win.info.lang].missions[data.jsMapName]) ? win.langs[win.info.lang].missions[data.jsMapName].objective : 'Occupy all buildings.';
+
+			this.$el = $(this.tmpl['battle-menu'](data));
 
 			this.$wrapper = $('.js-wrapper');
 			this.$wrapper.find('.js-battle-menu-wrapper').remove();

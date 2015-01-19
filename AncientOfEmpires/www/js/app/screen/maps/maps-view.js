@@ -13,7 +13,7 @@
 		},
 		init: function (data) {
 
-			APP.NotificationView.prototype.hideExtraWindows();
+			APP.notificationView.hideExtraWindows();
 
 			util.clearTimeouts();
 

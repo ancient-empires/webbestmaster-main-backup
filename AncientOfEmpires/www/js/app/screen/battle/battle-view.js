@@ -89,6 +89,7 @@
 
 			for (key in maps) {
 				if (maps.hasOwnProperty(key)) {
+					maps[key].wasNotification = false;
 					(maps[key].steps || []).forEach(isDoneToFalse);
 				}
 			}
@@ -297,7 +298,9 @@
 		},
 
 		showBattleMenu: function () {
-			new APP.BattleMenuView();
+			new APP.BattleMenuView({
+				jsMapName: this.map.jsName
+			});
 			APP.router.navigate('battle-menu', {trigger: true});
 		},
 

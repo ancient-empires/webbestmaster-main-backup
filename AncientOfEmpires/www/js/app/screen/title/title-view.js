@@ -20,7 +20,7 @@
 
 		init: function() {
 
-			APP.NotificationView.prototype.hideExtraWindows();
+			APP.notificationView.hideExtraWindows();
 
 			this.$el = $(this.tmpl.title());
 

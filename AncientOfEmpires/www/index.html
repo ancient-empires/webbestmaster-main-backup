@@ -594,7 +594,7 @@
 
 						<div class="battle-menu-item-button" data-show="objective"><span class="js-hidden-data-state hidden-data-state">[+]</span>objective</div>
 						<div class="battle-menu-added-data hidden" data-block="objective">
-							<p>Get all available buildings</p>
+							<p><%= objective %></p>
 						</div>
 
 						<div class="battle-menu-item-button" data-show="settings"><span class="js-hidden-data-state hidden-data-state">[+]</span>settings</div>
@@ -683,8 +683,11 @@
 	<div class="notification-banner">
 
 		<div class="n-text clear-fix">
-			<% if (obj.image) { %>
+			<% if ( obj.image ) { %>
 			<img src="<%= obj.image.url %>" class="n-image <%= obj.image.cssClass || 'left' %>" alt=""/>
+			<% }; %>
+			<% if ( obj.header ) { %>
+			<h3 class="notification-banner-header"> <%= obj.header %> </h3>
 			<% }; %>
 			<div><%= text %></div>
 		</div>
@@ -712,12 +715,25 @@
 <script type="text/x-template" data-name="notification-wrapper">
 
 	<div class="notification-wrapper js-notification-wrapper js-no-scroll clear-fix">
-
-		<div class="notification-container js-notification-container">
-
-		</div>
-
+		<div class="notification-container js-notification-container"></div>
 	</div>
+
+</script>
+
+<script type="text/x-template" data-name="notification-alert-wrapper">
+
+	<div class="table notification-alert-wrapper-table js-notification-wrapper js-no-scroll clear-fix">
+		<div class="table-row">
+			<div class="table-cell">
+
+				<div class="notification-alert-wrapper ">
+					<div class="notification-container js-notification-container"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
 
 </script>
 

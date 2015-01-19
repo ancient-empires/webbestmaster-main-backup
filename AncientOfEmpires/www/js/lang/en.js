@@ -8,6 +8,7 @@
 	win.langs.en = {
 		language: 'language',
 		languageName: 'english',
+		objective: 'Objective!',
 		units: {
 			archer: {
 				name: 'en archer',
@@ -72,7 +73,19 @@
 			'Wizards have the power to summon skeleton warriors from the graves of fallen soldiers. After a unit has been defeated, a tombstone appears for 1 turn. Move a wizard next to a tombstone and select \'raise\' icon.',
 			'Use wisps to provide nearby friendly units with an aura that augments their attack points.',
 			'Keep your wyverns away from enemy archers, as they are vulnerable to arrows!'
-		]
+		],
+		missions: {
+			c01_regroup: {
+				A1: 'The Kingdom of Thorin is divided. Betrayed by his own twin brother Valadorn, King Galamar has fled into the borderlands of the east. Only the Blue guard, Galamar\'s personal troops, have remained loyal and stand ready to reclaim the land...',
+				H1: 'Sire, your troops are weary after last night\'s battle. It would be wise to regroup at the abandoned castle.',
+				G1: 'Sound advice, captain. Ready the troops - we should not let the enemy catch us unprepared.',
+				H2: 'Valadorn\'s army should be easy to spot with their red uniforms.',
+				T1: 'King Galamar must occupy castle, keep all troops alive.',
+				H3: 'Spies!! Valadorn and his Red legion must know where we are! Quickly, protect the King!',
+				objective: 'King Galamar must occupy castle, keep all troops alive.'
+			}
+
+		}
 
 	};
 

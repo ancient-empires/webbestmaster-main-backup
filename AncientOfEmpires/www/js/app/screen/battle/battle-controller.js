@@ -317,6 +317,10 @@
 
 		onClick: function(coordinates) {
 
+			APP.notificationView.hideNotification();
+
+			this.checkParts();
+
 			var cssClassWasDeleteXY = this.view.hideGoToStore();
 
 			var units, unit, x, y, unitAction;
@@ -735,11 +739,21 @@
 
 				this.runCpu();
 
-				APP.NotificationView.prototype.showNotification({
-					color: this.activePlayer.color,
-					text: this.activePlayer.color,
-					tmpl: 'n-turn'
-				});
+				if ( this.map.type === 'mission' ) {
+					APP.notificationView.show({
+						color: this.activePlayer.color,
+						text: this.activePlayer.color,
+						tmpl: 'n-turn',
+						onHide: APP.maps[this.map.jsName].notification
+					});
+				} else {
+					APP.notificationView.show({
+						color: this.activePlayer.color,
+						text: this.activePlayer.color,
+						tmpl: 'n-turn'
+					});
+				}
+
 
 			}
 

@@ -58,16 +58,21 @@
 				color: "red",
 				playerId: 1,
 				type: "Soldier",
-				x: 8,
-				y: 8
+				x: 2,
+				y: 2
 			}); // to controller
 
 			controller.view.appendUnit(newUnit); // and view
 
+			var words = window.langs[window.info.lang].missions.c01_regroup;
+
+			APP.notificationView.show({
+				text: words.H3, tmpl: 'n-banner', image: { url: 'img/face/helper-1.png' }
+			});
+
 		}
 
 	};
-
 
 	APP.maps.c01_regroup = {
 		"missionNumber": 1,
@@ -108,6 +113,52 @@
 			}
 
 			return result.isEnd;
+
+		},
+		notification: function () {
+
+			if (APP.maps.c01_regroup.wasNotification) {
+				return;
+			}
+
+			APP.maps.c01_regroup.wasNotification = true;
+
+			var words = window.langs[window.info.lang].missions.c01_regroup;
+
+			APP.notificationView.show({
+				type: 'alert', text: words.A1, tmpl: 'n-banner',
+				onHide: function () {
+
+					APP.notificationView.show({
+						text: words.H1, tmpl: 'n-banner', image: { url: 'img/face/helper-1.png' },
+						onHide: function () {
+
+							APP.notificationView.show({
+								text: words.G1, tmpl: 'n-banner', image: { url: 'img/face/galamar-2.png', cssClass: 'right' }, from: 'right',
+								onHide: function () {
+
+									APP.notificationView.show({
+										text: words.H2, tmpl: 'n-banner', image: { url: 'img/face/helper-1.png' },
+										onHide: function () {
+
+											APP.notificationView.show({
+												type: 'alert', text: words.T1, header: window.langs[window.info.lang].objective, tmpl: 'n-banner'
+											})
+										}
+
+									})
+
+								}
+
+							})
+
+						}
+
+					});
+
+				}
+			});
+
 
 		}
 	};
