@@ -23,6 +23,7 @@
 			data.unitInfo = APP.units.info;
 			data.gold = player.gold;
 			data.color = player.color;
+			data.map = args.controller.map;
 
 			this.$el = $(this.tmpl.store(data));
 

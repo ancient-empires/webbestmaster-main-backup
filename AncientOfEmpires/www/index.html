@@ -478,6 +478,20 @@
 				<div class="unit-card-header"><%= unitInfo[name].info.name %></div>
 				<span class="js-count-buy-unit count-buy-unit"></span>
 
+				<% if ( map.type === 'mission' && (map.availableUnits || []).indexOf(name) === -1 ) { %>
+
+				<div data-name="<%= name %>" class="buy-unit">
+					<div class="store-unit-icon unit-color-<%= color %> unit-<%= name %>">&nbsp;</div>
+
+					<div class="store-unit-short-info">
+						atk: <%= unitInfo[name].atk %><br>
+						def: <%= unitInfo[name].def %><br>
+						mov: <%= unitInfo[name].mov %>
+					</div>
+					<div class="buy-unit-cost opacity5">BUY<br><%= unitInfo[name].cost %></div>
+				</div>
+
+				<% } else { %>
 
 				<div data-name="<%= name %>" class="buy-unit js-buy-unit<%= gold >= unitInfo[name].cost ? ' active' : '' %>">
 					<div class="store-unit-icon unit-color-<%= color %> unit-<%= name %>">&nbsp;</div>
@@ -487,9 +501,10 @@
 						def: <%= unitInfo[name].def %><br>
 						mov: <%= unitInfo[name].mov %>
 					</div>
-					<div class="buy-unit-cost">
-						BUY<br><%= unitInfo[name].cost %></div>
-					</div>
+					<div class="buy-unit-cost">BUY<br><%= unitInfo[name].cost %></div>
+				</div>
+
+				<% }; %>
 
 				<div data-name="<%= name %>" class="js-get-unit-info store-get-unit-info">[i]</div>
 				<div class="clear"></div>

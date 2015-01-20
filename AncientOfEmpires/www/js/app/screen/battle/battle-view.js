@@ -907,9 +907,9 @@
 				message = result.winner.color + ' win!';
 			} else {
 				if (result.winner.type === 'human') {
-					message = 'you win';
+					message = result.message || 'you win';
 				} else {
-					message = 'you defeat';
+					message = result.message || 'you defeat';
 				}
 			}
 

@@ -66,7 +66,7 @@
 				maxY = controller.map.size.height,
 				pathFinder = new util.PathFinder({
 					map: controller.map,
-					mov: this.mov,
+					mov: this.mov - 1,
 					x: this.x,
 					y: this.y,
 					relativeTypeSpace: true
