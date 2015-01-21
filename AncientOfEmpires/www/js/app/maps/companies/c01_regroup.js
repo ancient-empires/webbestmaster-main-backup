@@ -156,6 +156,7 @@
 
 				util.clearTimeouts();
 				result.winner = controller.players[1];
+				result.message = '<span class="color-red">X ' + window.langs[window.info.lang].missions.c01_regroup['Keep all troops alive'] + '</span>';
 				this.showEndGame(result);
 
 				return true;

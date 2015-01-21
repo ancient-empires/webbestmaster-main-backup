@@ -83,7 +83,8 @@
 				H2: 'Valadorn\'s army should be easy to spot with their red uniforms.',
 				T1: '[] King Galamar must occupy castle %%%%[] Keep all troops alive.',
 				H3: 'Spies!! Valadorn and his Red legion must know where we are! Quickly, protect the King!',
-				objective: '[] King Galamar must occupy castle%%%%[] Keep all troops alive.'
+				objective: '[] King Galamar must occupy castle%%%%[] Keep all troops alive.',
+				'Keep all troops alive': 'Keep all troops alive'
 			}
 
 		}
