@@ -137,29 +137,6 @@
 
 </script>
 
-
-<!--
-<script type="text/x-template" data-name="companies">
-
-	<div class="companies-screen">
-
-		<div class="js-back">back</div>
-
-		<h1>companies</h1>
-
-		<div>company</div>
-		<div>company 1</div>
-		<div>company 2</div>
-		<div>company 3</div>
-		<div>company 4</div>
-		<div>company 5</div>
-		<div>company 6</div>
-
-	</div>
-
-</script>
--->
-
 <script type="text/x-template" data-name="instruction">
 
 	<div class="instruction-screen fixed">
@@ -609,7 +586,9 @@
 
 						<div class="battle-menu-item-button" data-show="objective"><span class="js-hidden-data-state hidden-data-state">[+]</span>objective</div>
 						<div class="battle-menu-added-data hidden" data-block="objective">
-							<p><%= objective %></p>
+							<% objective.split('%%%%').forEach(function(part){ %>
+							<div class="text-part text-indent-with-margin-3"><%= part %></div>
+							<% }); %>
 						</div>
 
 						<div class="battle-menu-item-button" data-show="settings"><span class="js-hidden-data-state hidden-data-state">[+]</span>settings</div>
@@ -702,9 +681,11 @@
 			<img src="<%= obj.image.url %>" class="n-image <%= obj.image.cssClass || 'left' %>" alt=""/>
 			<% }; %>
 			<% if ( obj.header ) { %>
-			<h3 class="notification-banner-header"> <%= obj.header %> </h3>
+			<h3 class="notification-banner-header <%= obj.headerCssClass || '' %>"> <%= obj.header %> </h3>
 			<% }; %>
-			<div><%= text %></div>
+			<% text.split('%%%%').forEach(function(part){ %>
+				<div class="text-part <%= obj.textCssClass || '' %>"><%= part %></div>
+			<% }); %>
 		</div>
 
 	</div>

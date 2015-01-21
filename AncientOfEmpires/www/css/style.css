@@ -732,6 +732,19 @@
 	opacity: 0.5;
 }
 
+.text-indent-0 {
+	text-indent: 0;
+}
 
+.text-indent-with-margin-3 {
+	text-indent: -3em;
+	margin-left: 3em;
+}
 
+.text-align-left {
+	text-align: left;
+}
 
+.text-part {
+	padding: 0.4em 0;
+}

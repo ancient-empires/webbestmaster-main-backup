@@ -175,7 +175,7 @@
 			var words = window.langs[window.info.lang].missions.c01_regroup;
 
 			APP.notificationView.show({
-				type: 'alert', text: words.A1, tmpl: 'n-banner',
+				type: 'alert', text: words.A1, tmpl: 'n-banner', header: words.A1Header,
 				onHide: function () {
 
 					APP.notificationView.show({
@@ -191,15 +191,20 @@
 										onHide: function () {
 
 											APP.notificationView.show({
-												type: 'alert', text: words.T1, header: window.langs[window.info.lang].objective, tmpl: 'n-banner'
-											})
+												type: 'alert',
+												text: words.T1,
+												textCssClass: 'text-indent-with-margin-3',
+												header: window.langs[window.info.lang].objective,
+												headerCssClass: 'text-align-left',
+												tmpl: 'n-banner'
+											});
 										}
 
-									})
+									});
 
 								}
 
-							})
+							});
 
 						}
 

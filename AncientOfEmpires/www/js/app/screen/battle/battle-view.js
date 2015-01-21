@@ -18,7 +18,7 @@
 		squareSize: 36,
 		maxSquareSize: 100,
 		minSquareSize: 6,
-		scaleStep: 10,
+		scaleStep: 3,
 		cssSelector: '.square, .unit, .build, .attack-animation-block ',
 		styleTagSelector: '.js-battle-styles',
 		init: function (data) {
