@@ -82,12 +82,42 @@
 				H1: 'Sire, your troops are weary after last night\'s battle. It would be wise to regroup at the abandoned castle.',
 				G1: 'Sound advice, captain. Ready the troops - we should not let the enemy catch us unprepared.',
 				H2: 'Valadorn\'s army should be easy to spot with their red uniforms.',
-				T1: '[] King Galamar must occupy castle %%%%[] Keep all troops alive.',
+				T1: '[] King Galamar must occupy castle.%%%%[] Keep all troops alive.',
 				H3: 'Spies!! Valadorn and his Red legion must know where we are! Quickly, protect the King!',
-				objective: '[] King Galamar must occupy castle%%%%[] Keep all troops alive.',
+				objective: '[] King Galamar must occupy castle.%%%%[] Keep all troops alive.',
 				'Keep all troops alive': 'Keep all troops alive'
-			}
+			},
+			c02_friendsAndEnemies: {
+				A1Header: 'Chapter 2',
+				A1: 'King Galamar has survived Valadorn\'s attack. However, before Galamar can try to reclaim his kingdom he must first travel north to seek new allies.',
+				G1: 'Forward, troops. But first, occupy these two buildings. We can rest once we reach the next village.',
+				T1: '[] Keep the knight.%%%%[] Occupy the castle and at least one village.%%%%[] Produce at least one new unit of troops.',
 
+				H1: 'Sire, our scouts report that the lizard people of the north are under attack!',
+				G2: 'Then we must act quickly! The Lizard Chief is an old ally, and he will be sure to help us if we can save him.',
+
+				H2: 'Sire, these lizards bring news from their village. They are under attack from forest spiders!',
+
+				G3: 'Spiders? Then we will have to use the terrain to our advantage - rushing to attack would be foolish.',
+				H3: 'Be careful your majesty - the spiders attack is poisonous!',
+				objective: '[] Keep the knight.%%%%[] Occupy the castle and at least one village.%%%%[] Produce at least one new unit of troops.'
+
+			},
+			c03_escort: {
+
+			},
+			c04_reinforcements: {
+
+			},
+			c05_wyvernRescue: {
+
+			},
+			c06_siege: {
+
+			},
+			c07_finalAssault: {
+
+			}
 		}
 
 	};

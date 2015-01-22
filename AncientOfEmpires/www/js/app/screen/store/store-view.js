@@ -91,6 +91,8 @@
 				color: player.color
 			};
 
+			player.boughtList = player.boughtList || [];
+			player.boughtList.push(unitName.toLowerCase());
 
 			this.setNewUnitXY({
 				unit: unit,

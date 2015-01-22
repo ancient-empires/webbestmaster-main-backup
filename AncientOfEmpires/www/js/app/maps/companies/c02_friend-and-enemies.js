@@ -215,7 +215,102 @@
 			"x10y14": "green",
 			"x11y14": "forest",
 			"x12y14": "forest"
+		},
+		steps: [],
+		availableUnits: ['soldier', 'archer', 'lizard'],
+		gameOverDetect: function (controller) {
+
+			//var result = controller.isGameOver();
+
+			// check castle
+			// get castle
+			// get castle playerId
+			// if castle playerId === 0
+
+			//return false
+
+			// if knight is dead - defeat
+
+			// if farms is >= 2 &&
+			// if enemy troops is 0 &&
+			// if bought units is ['soldier', 'archer', 'lizard']
+			// player.boughtList
+			return false;
+
+			var castle = controller.buildings['x8y9'],
+				human = controller.players[0],
+				result = {};
+
+			if ( castle.playerId === human.id ) {
+
+				result.message = 'you win';
+
+				util.clearTimeouts();
+
+				// get winner player
+				result.winner = util.findBy(this.players, 'id', util.objToArray(controller.buildings)[0].value.playerId).item;
+
+				result.nextMissionNumber = controller.map.missionNumber + 1;
+
+				this.showEndGame(result);
+
+				return true;
+
+			}
+
+			// check human's warriors
+			// get human's warriors
+			// check count of warriors
+			if ( controller.getUnitByPlayer(human).length < 1 ) {
+
+				util.clearTimeouts();
+				result.winner = controller.players[1];
+				result.message = '<span class="color-red">X ' + window.langs[window.info.lang].missions.c01_regroup['Keep all troops alive'] + '</span>';
+				this.showEndGame(result);
+
+				return true;
+			}
+
+			return false;
+
+		},
+		notification: function () {
+
+			if (APP.maps.c01_regroup.wasNotification) {
+				return;
+			}
+
+			APP.maps.c01_regroup.wasNotification = true;
+
+			var words = window.langs[window.info.lang].missions.c02_friendsAndEnemies;
+
+			APP.notificationView.show({
+				type: 'alert', text: words.A1, tmpl: 'n-banner', header: words.A1Header,
+				onHide: function () {
+
+					APP.notificationView.show({
+						text: words.G1, tmpl: 'n-banner', image: { url: 'img/face/galamar-1.png' },
+						onHide: function () {
+
+							APP.notificationView.show({
+								type: 'alert',
+								text: words.T1,
+								textCssClass: 'text-indent-with-margin-3',
+								header: window.langs[window.info.lang].objective,
+								headerCssClass: 'text-align-left',
+								tmpl: 'n-banner',
+								bannerCssClass: 'target-alert'
+							});
+
+						}
+
+					});
+
+				}
+			});
+
 		}
+
 	};
 
 
