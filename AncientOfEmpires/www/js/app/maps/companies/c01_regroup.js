@@ -197,7 +197,8 @@
 												textCssClass: 'text-indent-with-margin-3',
 												header: window.langs[window.info.lang].objective,
 												headerCssClass: 'text-align-left',
-												tmpl: 'n-banner'
+												tmpl: 'n-banner',
+												bannerCssClass: 'target-alert'
 											});
 										}
 

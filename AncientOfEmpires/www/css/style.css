@@ -751,3 +751,11 @@
 .text-part {
 	padding: 0.4em 0;
 }
+
+.notification-alert-wrapper.target-alert {
+	padding: 2em;
+}
+
+.notification-container.target-alert {
+	box-shadow: 0.7em 0.7em 0 #000;
+}

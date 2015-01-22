@@ -73,11 +73,11 @@
 			switch ( data.type ) {
 
 				case 'notification' :
-					this.$el = $(this.tmpl['notification-wrapper']());
+					this.$el = $(this.tmpl['notification-wrapper'](data));
 					break;
 
 				case 'alert' :
-					this.$el = $(this.tmpl['notification-alert-wrapper']());
+					this.$el = $(this.tmpl['notification-alert-wrapper'](data));
 					break;
 
 			}
@@ -101,7 +101,6 @@
 			this.$wrapper.append(this.$el);
 
 			this.$el.addClass('n-anim-show-from-' + data.from);
-
 
 			this.disableScrollNodes();
 
