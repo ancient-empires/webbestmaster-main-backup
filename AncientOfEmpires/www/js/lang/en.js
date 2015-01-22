@@ -61,6 +61,7 @@
 			'Different types of terrain affect a unit\'s ability to move, attack and defend. For example, mountains add defence points but slow units down. When you tap to these terrain features appear at the bottom of the screen.',
 			'When a unit has completed a move, unit becomes translucent. This means that it cannot be moved again until your next turn.',
 			'You can move each unit only once each turn.',
+			'Use \'+\' and \'-\' buttons (bottom-right corner) to scale map',
 			'You can view the characteristics of any unit in store. Units get more powerful as they gain battle experience.',
 			'To attack an enemy unit, move your unit within range and select \'attack\' icon. If there is more than one enemy in range, select which unit to attack. The success of your attack is determined by unit characteristics and terrain.',
 			'Only a knight can occupy a castle. You can purchase new units with gold in castle.',
