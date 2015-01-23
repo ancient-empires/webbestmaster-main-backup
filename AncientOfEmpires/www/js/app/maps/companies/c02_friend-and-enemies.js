@@ -4,6 +4,163 @@
 	/*global window, document */
 	/*global APP */
 
+	var acrossBridge = {
+
+		isDone: false,
+		check: function (controller) {
+
+			// knight have to across a bridge
+
+			var human = controller.players[0],
+				humanId = human.id,
+				units = controller.units,
+				humanUnits = [],
+				knight,
+				key, unit;
+
+			for (key in units) {
+				if (units.hasOwnProperty(key)) {
+					unit = units[key];
+					if (unit.playerId === humanId) {
+						humanUnits.push(unit);
+					}
+				}
+			}
+
+			humanUnits.every(function (unit) {
+				if (unit.type === 'Knight') {
+					knight = unit;
+					return false;
+				}
+				return true;
+			});
+
+			// if knight is dead
+			if (!knight) {
+				return false;
+			}
+
+			return knight.y < 9;
+
+		},
+		run: function (controller) {
+
+			if (this.isDone) {
+				return;
+			}
+
+			this.isDone = true;
+
+			// append unit
+			var newUnit;
+			newUnit = controller.appendUnit({
+				color: "red",
+				playerId: 1,
+				type: "Spider",
+				x: 2,
+				y: 2
+			}); // to controller
+
+			controller.view.appendUnit(newUnit); // and view
+
+			newUnit = controller.appendUnit({
+				color: "red",
+				playerId: 1,
+				type: "Spider",
+				x: 4,
+				y: 2
+			}); // to controller
+
+			controller.view.appendUnit(newUnit); // and view
+
+			newUnit = controller.appendUnit({
+				color: "red",
+				playerId: 1,
+				type: "Spider",
+				x: 2,
+				y: 4
+			}); // to controller
+
+			controller.view.appendUnit(newUnit); // and view
+
+			newUnit = controller.appendUnit({
+				color: "red",
+				playerId: 1,
+				type: "Soldier",
+				x: 4,
+				y: 4
+			}); // to controller
+
+			controller.view.appendUnit(newUnit); // and view
+
+			newUnit = controller.appendUnit({
+				color: "red",
+				playerId: 1,
+				type: "Archer",
+				x: 3,
+				y: 3
+			}); // to controller
+
+			controller.view.appendUnit(newUnit); // and view
+
+
+
+			newUnit = controller.appendUnit({
+				color: "blue",
+				playerId: 0,
+				type: "Lizard",
+				x: 7,
+				y: 3
+			}); // to controller
+
+			controller.view.appendUnit(newUnit); // and view
+
+			newUnit = controller.appendUnit({
+				color: "blue",
+				playerId: 0,
+				type: "Lizard",
+				x: 5,
+				y: 3
+			}); // to controller
+
+			controller.view.appendUnit(newUnit); // and view
+
+			controller.view.goToXY({x: 5, y: 3}); // show new units
+
+			var words = window.langs[window.info.lang].missions.c02_friendsAndEnemies;
+
+			APP.notificationView.show({
+
+				text: words.H2, tmpl: 'n-banner', image: { url: 'img/face/helper-1.png' },
+
+				onHide: function () {
+
+					APP.notificationView.show({
+						text: words.G3, tmpl: 'n-banner', image: { url: 'img/face/galamar-1.png' }, from: 'right',
+
+						onHide: function () {
+
+							APP.notificationView.show({
+								text: words.H3, tmpl: 'n-banner', image: { url: 'img/face/helper-1.png' }
+							});
+
+						}
+
+					});
+
+				}
+
+
+			});
+
+		}
+
+	};
+
+
+
+
+
 	APP.maps = APP.maps || {};
 
 	APP.maps.c02_friendsAndEnemies = {
@@ -216,33 +373,58 @@
 			"x11y14": "forest",
 			"x12y14": "forest"
 		},
-		steps: [],
+		steps: [acrossBridge],
 		availableUnits: ['soldier', 'archer', 'lizard'],
 		gameOverDetect: function (controller) {
 
-			//var result = controller.isGameOver();
-
-			// check castle
-			// get castle
-			// get castle playerId
-			// if castle playerId === 0
-
-			//return false
+			var human = controller.players[0],
+				knight,
+				humanUnits = controller.getUnitByPlayer(human),
+				result = {};
 
 			// if knight is dead - defeat
+			humanUnits.every(function (unit) {
+				if (unit.type === 'Knight') {
+					knight = unit;
+					return false;
+				}
+				return true;
+			});
+
+			if (!knight) {
+				util.clearTimeouts();
+				result.winner = controller.players[1];
+				result.message = '<span class="color-red">X ' + window.langs[window.info.lang].missions.c02_friendsAndEnemies['Keep the knight'] + '</span>';
+				this.showEndGame(result);
+				return true;
+			}
+
 
 			// if farms is >= 2 &&
 			// if enemy troops is 0 &&
 			// if bought units is ['soldier', 'archer', 'lizard']
 			// player.boughtList
-			return false;
 
-			var castle = controller.buildings['x8y9'],
-				human = controller.players[0],
-				result = {};
+			var buildings = controller.buildings,
+				humanId = human.id,
+				enemy = controller.players[1],
+				enemyUnits = controller.getUnitByPlayer(enemy),
+				building,
+				key,
+				farms = [],
+				boughtList = human.boughtList || [];
 
-			if ( castle.playerId === human.id ) {
+			for (key in buildings) {
+				if (buildings.hasOwnProperty(key)) {
+					building = buildings[key];
+					if ( building.type === 'farm' && building.playerId === humanId ) {
+						farms.push(building);
+					}
+				}
+			}
 
+
+			if ( !enemyUnits.length && boughtList.length >= 3 && farms.length >= 2 ) {
 				result.message = 'you win';
 
 				util.clearTimeouts();
@@ -256,19 +438,6 @@
 
 				return true;
 
-			}
-
-			// check human's warriors
-			// get human's warriors
-			// check count of warriors
-			if ( controller.getUnitByPlayer(human).length < 1 ) {
-
-				util.clearTimeouts();
-				result.winner = controller.players[1];
-				result.message = '<span class="color-red">X ' + window.langs[window.info.lang].missions.c01_regroup['Keep all troops alive'] + '</span>';
-				this.showEndGame(result);
-
-				return true;
 			}
 
 			return false;

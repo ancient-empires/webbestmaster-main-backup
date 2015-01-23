@@ -91,7 +91,7 @@
 				A1Header: 'Chapter 2',
 				A1: 'King Galamar has survived Valadorn\'s attack. However, before Galamar can try to reclaim his kingdom he must first travel north to seek new allies.',
 				G1: 'Forward, troops. But first, occupy these two buildings. We can rest once we reach the next village.',
-				T1: '[] Keep the knight.%%%%[] Occupy the castle and at least one village.%%%%[] Produce at least one new unit of troops.',
+				T1: '[] Keep the knight.%%%%[] Occupy the castle and at least one village.%%%%[] Produce at least three new unit of troops.',
 
 				H1: 'Sire, our scouts report that the lizard people of the north are under attack!',
 				G2: 'Then we must act quickly! The Lizard Chief is an old ally, and he will be sure to help us if we can save him.',
@@ -100,8 +100,8 @@
 
 				G3: 'Spiders? Then we will have to use the terrain to our advantage - rushing to attack would be foolish.',
 				H3: 'Be careful your majesty - the spiders attack is poisonous!',
-				objective: '[] Keep the knight.%%%%[] Occupy the castle and at least one village.%%%%[] Produce at least one new unit of troops.'
-
+				objective: '[] Keep the knight.%%%%[] Occupy the castle and at least one village.%%%%[] Produce at least three new unit of troops.',
+				'Keep the knight': 'Keep the knight'
 			},
 			c03_escort: {
 
