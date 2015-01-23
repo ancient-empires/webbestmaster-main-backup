@@ -53,7 +53,7 @@
 			info: lang.units.knight,
 			atk: 6,
 			def: 2,
-			mov: 5,
+			mov: 4,
 			cost: 400,
 			attackRange: 1,
 			unitDefaultList: {
