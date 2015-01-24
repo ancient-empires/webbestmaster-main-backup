@@ -119,21 +119,44 @@
 				A1Header: 'Chapter 4',
 				A1: 'Having reached the Grey Tower the High Wizard agrees to help Galamar. However, Galamar\'s troops have no time to rest, as a message arrives from the nearby city of Var Telan, telling of a surprise attack by Valadorn\'s Red legion.',
 				H1: 'Your majesty, the Red legion! Watch out for their long range catapult!',
-				T1: '[] Keep the knight.%%%%[] Save the city: destroy all enemy units!%%%%[] Occupy the castle',
+				T1: '[] Keep the knight.%%%%[] Save the city: destroy all enemy units!%%%%[] Occupy the castle.',
 				H2: 'What is this treachery! The city has turned against us!',
 				V1: 'As predictable as ever, brother! I have you now!',
 				V2: 'Retreat!! Curse you Galamar! You won\'t be so lucky next time!',
-				objective: '[] Keep the knight.%%%%[] Save the city: destroy all enemy units!%%%%[] Occupy the castle',
+				objective: '[] Keep the knight.%%%%[] Save the city: destroy all enemy units!%%%%[] Occupy the castle.',
 				'Keep the knight': 'Keep the knight'
 			},
 			c05_wyvernRescue: {
-
+				A1Header: 'Chapter 5',
+				A1: 'As Galamar\'s forces settle into the city castle, a scout patrol discovers some flying serpents called wyverns being held captive at an enemy campsite nearby. Could the wyverns be used against Valadorn and his forces? To find out, Galamar will have to rescue them.',
+				H1: 'Sources indicate that the wyverns are being held in this castle.',
+				H2: 'Be careful, your Majesty, wyverns can be formidable enemies as well as powerful allies.',
+				T1: '[] Destroy all enemy units and free the wyverns.%%%%[] Keep the knight.',
+				H3: 'Look your Majesty, the wyverns have broken free! They are now under our command!',
+				objective: '[] Destroy all enemy units and free the wyverns.%%%%[] Keep the knight.',
+				'Keep the knight': 'Keep the knight'
 			},
 			c06_siege: {
-
+				A1Header: 'Chapter 6',
+				A1: 'With the powerful wyverns adding to his forces, Galamar is ready to fight back against Valadorn. He decides to mount a surprise attack on the main command outpost outside Thorin city.',
+				H1: 'The city is well defended, your Majesty.',
+				G1: 'So it seems. We may have to alter our battle plan.',
+				T1: '[] Destroy all enemy units and occupy the enemy castle.%%%%[] Keep the knight.',
+				objective: '[] Destroy all enemy units and occupy the enemy castle.%%%%[] Keep the knight.',
+				'Keep the knight': 'Keep the knight'
 			},
 			c07_finalAssault: {
-
+				A1Header: 'Chapter 7',
+				A1: 'Galamar is on the verge of recapturing the city when suddenly a huge explosion splits the ground.',
+				G1: 'Valadorn\'s troops appearing everywhere?! What kind of evil magic is this?',
+				V1: 'So, twin brother, it seems our positions are reversed! Submit now or be destroyed!',
+				G2: 'Never! Whatever dark power is controlling you, I will defeat it!',
+				T1: '[] Destroy all enemy units and save the kingdom!%%%%[] Keep the knight.',
+				V2: 'Galamar... what have I done?',
+				G3: 'The spell! It\'s broken!',
+				A2: 'With Galamar victorious, the spell controlling Valadorn is broken. The evil force is none other than Saeth, the shadow demon! His plan defeated, with a terrible roar he orders his dark army to attack Galamar. Will the newly united Kingdom of Thorin withstand this attack? Can Galamar and his brother banish the evil Saeth once and for all?',
+				objective: '[] Destroy all enemy units and save the kingdom!%%%%[] Keep the knight.',
+				'Keep the knight': 'Keep the knight'
 			}
 		}
 
