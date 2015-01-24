@@ -6,6 +6,81 @@
 
 	APP.maps = APP.maps || {};
 
+	var the4thStep = {
+
+		isDone: false,
+		check: function (controller) {
+
+			// first kill
+			// get groves
+			var ripsUnit = controller.unitsRIP,
+				rip,
+				key;
+
+			for (key in ripsUnit) {
+				if (ripsUnit.hasOwnProperty(key)) {
+					rip = ripsUnit[key];
+					if (rip.playerId === 0) {
+						return true;
+					}
+
+				}
+			}
+
+			return false;
+
+		},
+		run: function (controller) {
+
+			if (this.isDone) {
+				return;
+			}
+
+			this.isDone = true;
+
+			var newUnit;
+
+			newUnit = controller.appendUnit({ color: "red", playerId: 1, type: "Knight", x: 2, y: 0 }); // to controller
+			controller.view.appendUnit(newUnit); // and view
+
+			newUnit = controller.appendUnit({ color: "red", playerId: 1, type: "Spider", x: 1, y: 0 }); // to controller
+			controller.view.appendUnit(newUnit); // and view
+
+			newUnit = controller.appendUnit({ color: "red", playerId: 1, type: "Spider", x: 3, y: 0 }); // to controller
+			controller.view.appendUnit(newUnit); // and view
+
+			newUnit = controller.appendUnit({ color: "red", playerId: 1, type: "Spider", x: 2, y: 1 }); // to controller
+			controller.view.appendUnit(newUnit); // and view
+
+			var words = window.langs[window.info.lang].missions.c04_reinforcements;
+
+			setTimeout(function () {
+				APP.notificationView.hideNotification();
+
+				APP.notificationView.show({
+
+					text: words.H2, tmpl: 'n-banner', image: { url: 'img/face/helper-1.png' },
+
+					onHide: function () {
+
+						APP.notificationView.show({
+							text: words.V1, tmpl: 'n-banner', image: { url: 'img/face/valadorn-2.png', cssClass: 'right' }, from: 'right'
+						});
+
+					}
+
+				});
+
+			}, 2000);
+
+			return false;
+
+		}
+
+	};
+
+
+
 	APP.maps.c04_reinforcements = {
 		"missionNumber": 4,
 		"type": "mission",
@@ -27,17 +102,17 @@
 			{"type": "Wizard", "x": 14, "y": 14, playerId: 0}
 		],
 		"buildings": [
-			{"type": "farm", "x": 0, "y": 0},
+			{"type": "farm", "x": 0, "y": 0, playerId: 1},
 			{"type": "castle", "x": 2, "y": 0},
-			{"type": "farm", "x": 8, "y": 0},
+			{"type": "farm", "x": 8, "y": 0, playerId: 1},
 			{"type": "farm", "x": 13, "y": 1},
-			{"type": "farm", "x": 7, "y": 4},
+			{"type": "farm", "x": 7, "y": 4, playerId: 1},
 			{"type": "farm", "x": 12, "y": 4},
-			{"type": "farm", "x": 2, "y": 6},
+			{"type": "farm", "x": 2, "y": 6, playerId: 1},
 			{"type": "farm", "x": 11, "y": 8},
 			{"type": "farm", "x": 3, "y": 12, playerId: 1},
 			{"type": "castle", "x": 14, "y": 13, playerId: 0},
-			{"type": "farm", "x": 11, "y": 14}
+			{"type": "farm", "x": 11, "y": 14, playerId: 0}
 		],
 		"terrain": {
 			"x0y0": "green",
@@ -265,7 +340,116 @@
 			"x12y14": "road",
 			"x13y14": "road",
 			"x14y14": "road"
+		},
+		steps: [the4thStep],
+		availableUnits: ['soldier', 'archer', 'lizard', 'wizard', 'wisp', 'spider'],
+		gameOverDetect: function (controller) {
+
+			// if knight is dead -> end game
+			var castles = [],
+				buildings = controller.buildings,
+				key, building,
+				human = controller.players[0],
+				knight,
+				humanUnits = controller.getUnitByPlayer(human),
+				enemyUnits = controller.getUnitByPlayer(controller.players[1]),
+				result = {};
+
+			humanUnits.forEach(function (unit) {
+				if (unit.type === 'Knight') {
+					knight = unit;
+				}
+			});
+
+			// if knight is dead - defeat
+			if (!knight) {
+				util.clearTimeouts();
+				result.winner = controller.players[1];
+				result.message = '<span class="color-red">X ' + window.langs[window.info.lang].missions.c04_reinforcements['Keep the knight'] + '</span>';
+				this.showEndGame(result);
+				return true;
+			}
+
+
+			// enemy units is - 0 &&
+			// both castle belongs to player
+			for (key in buildings) {
+				if (buildings.hasOwnProperty(key)) {
+					building = buildings[key];
+					if (building.type === 'castle' && building.playerId === 0) {
+						castles.push(building);
+					}
+				}
+			}
+
+			if (castles.length === 2 && enemyUnits.length === 0) {
+
+				var words = window.langs[window.info.lang].missions.c04_reinforcements;
+
+				APP.notificationView.show({
+					text: words.V2, tmpl: 'n-banner', image: { url: 'img/face/valadorn-2.png', cssClass: 'right' }, from: 'right',
+					onHide: function () {
+
+						result.message = 'you win';
+
+						util.clearTimeouts();
+
+						// get winner player
+						result.winner = util.findBy(this.players, 'id', util.objToArray(controller.buildings)[0].value.playerId).item;
+
+						result.nextMissionNumber = controller.map.missionNumber + 1;
+
+						this.showEndGame(result);
+
+					}.bind(this)
+				});
+
+				return true;
+
+			}
+
+			return false;
+
+		},
+		notification: function () {
+
+			if (APP.maps.c04_reinforcements.wasNotification) {
+				return;
+			}
+
+			APP.maps.c04_reinforcements.wasNotification = true;
+
+			var words = window.langs[window.info.lang].missions.c04_reinforcements;
+
+			APP.notificationView.show({
+				type: 'alert', text: words.A1, tmpl: 'n-banner', header: words.A1Header,
+
+				onHide: function () {
+
+					APP.notificationView.show({
+						text: words.H1, tmpl: 'n-banner', image: { url: 'img/face/helper-1.png' },
+
+						onHide: function () {
+
+							APP.notificationView.show({
+								type: 'alert',
+								text: words.T1,
+								textCssClass: 'text-indent-with-margin-3',
+								header: window.langs[window.info.lang].objective,
+								headerCssClass: 'text-align-left',
+								tmpl: 'n-banner',
+								bannerCssClass: 'target-alert'
+							});
+
+						}
+
+					});
+
+				}
+			});
+
 		}
+
 	};
 
 }());

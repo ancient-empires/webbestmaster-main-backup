@@ -54,6 +54,9 @@
 			atk: 6,
 			def: 2,
 			mov: 4,
+			//atk: 16,
+			//def: 20,
+			//mov: 14,
 			cost: 400,
 			attackRange: 1,
 			unitDefaultList: {

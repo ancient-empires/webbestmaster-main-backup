@@ -116,7 +116,15 @@
 				'Keep the Lizard Chief': 'Keep the Lizard Chief'
 			},
 			c04_reinforcements: {
-
+				A1Header: 'Chapter 4',
+				A1: 'Having reached the Grey Tower the High Wizard agrees to help Galamar. However, Galamar\'s troops have no time to rest, as a message arrives from the nearby city of Var Telan, telling of a surprise attack by Valadorn\'s Red legion.',
+				H1: 'Your majesty, the Red legion! Watch out for their long range catapult!',
+				T1: '[] Keep the knight.%%%%[] Save the city: destroy all enemy units!%%%%[] Occupy the castle',
+				H2: 'What is this treachery! The city has turned against us!',
+				V1: 'As predictable as ever, brother! I have you now!',
+				V2: 'Retreat!! Curse you Galamar! You won\'t be so lucky next time!',
+				objective: '[] Keep the knight.%%%%[] Save the city: destroy all enemy units!%%%%[] Occupy the castle',
+				'Keep the knight': 'Keep the knight'
 			},
 			c05_wyvernRescue: {
 

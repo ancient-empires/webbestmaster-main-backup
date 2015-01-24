@@ -9,7 +9,7 @@ Your majesty, the Red legion! Watch out for their long range catapult!
 T:
 Save the city: destroy all enemy units!
 
-// after 4th step appear Valadorn and Spider
+// after first dead (4th step) appear Valadorn and Spider
 H:
 What is this treachery! The city has turned against us!
 V:

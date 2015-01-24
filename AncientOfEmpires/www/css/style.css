@@ -735,6 +735,10 @@
 	opacity: 0.5;
 }
 
+.opacity0 {
+	opacity: 0;
+}
+
 .text-indent-0 {
 	text-indent: 0;
 }

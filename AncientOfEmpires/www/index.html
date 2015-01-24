@@ -465,7 +465,7 @@
 						def: <%= unitInfo[name].def %><br>
 						mov: <%= unitInfo[name].mov %>
 					</div>
-					<div class="buy-unit-cost opacity5">BUY<br><%= unitInfo[name].cost %></div>
+					<div class="buy-unit-cost opacity0">BUY<br><%= unitInfo[name].cost %></div>
 				</div>
 
 				<% } else { %>
@@ -678,7 +678,7 @@
 
 		<div class="n-text clear-fix">
 			<% if ( obj.image ) { %>
-			<img src="<%= obj.image.url %>" class="n-image <%= obj.image.cssClass || 'left' %>" alt=""/>
+			<img src="<%= obj.image.url %>" class="n-image left <%= obj.image.cssClass || '' %>" alt=""/>
 			<% }; %>
 			<% if ( obj.header ) { %>
 			<h3 class="notification-banner-header <%= obj.headerCssClass || '' %>"> <%= obj.header %> </h3>
