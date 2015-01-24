@@ -445,11 +445,11 @@
 		},
 		notification: function () {
 
-			if (APP.maps.c01_regroup.wasNotification) {
+			if (APP.maps.c02_friendsAndEnemies.wasNotification) {
 				return;
 			}
 
-			APP.maps.c01_regroup.wasNotification = true;
+			APP.maps.c02_friendsAndEnemies.wasNotification = true;
 
 			var words = window.langs[window.info.lang].missions.c02_friendsAndEnemies;
 

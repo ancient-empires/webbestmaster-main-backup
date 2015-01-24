@@ -104,7 +104,16 @@
 				'Keep the knight': 'Keep the knight'
 			},
 			c03_escort: {
-
+				A1Header: 'Chapter 3',
+				A1: 'The Lizard Chief agrees to join Galamar\'s forces. Now Galamar\'s thoughts turn to the wizards of the Grey Tower. If the Lizard Chief can persuade them to help, their magic would be a great asset to his growing forces.',
+				H1: 'Sire, the bridge has been destroyed!',
+				G1: 'Valadorn must be expecting us - we must find another way across. This could be a trap.',
+				H2: 'Troops! Keep your eyes open and protect the Lizard Chief at all cost.',
+				//T1: 'Galamar and the Lizard Chief must reach the Grey Tower.',
+				T1: '[] Occupy the castle.%%%%[] Keep the knight.%%%%[] Keep the Lizard Chief.',
+				objective: '[] Occupy the castle.%%%%[] Keep the knight.%%%%[] Keep the Lizard Chief.',
+				'Keep the knight': 'Keep the knight',
+				'Keep the Lizard Chief': 'Keep the Lizard Chief'
 			},
 			c04_reinforcements: {
 

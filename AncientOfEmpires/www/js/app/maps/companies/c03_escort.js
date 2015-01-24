@@ -260,7 +260,122 @@
 			"x12y14": "green",
 			"x13y14": "green",
 			"x14y14": "green"
+		},
+		steps: [],
+		availableUnits: ['soldier', 'archer', 'lizard'],
+		gameOverDetect: function (controller) {
+
+			var castle = controller.buildings['x1y13'],
+				human = controller.players[0],
+				knight,
+				lizard,
+				humanUnits = controller.getUnitByPlayer(human),
+				result = {};
+
+			humanUnits.forEach(function (unit) {
+				if (unit.type === 'Knight') {
+					knight = unit;
+				}
+				if (unit.type === 'Lizard') {
+					lizard = unit;
+				}
+			});
+
+			// if knight is dead - defeat
+			if (!knight) {
+				util.clearTimeouts();
+				result.winner = controller.players[1];
+				result.message = '<span class="color-red">X ' + window.langs[window.info.lang].missions.c03_escort['Keep the knight'] + '</span>';
+				this.showEndGame(result);
+				return true;
+			}
+
+			// if lizard is dead - > end game
+			if (!lizard) {
+				util.clearTimeouts();
+				result.winner = controller.players[1];
+				result.message = '<span class="color-red">X ' + window.langs[window.info.lang].missions.c03_escort['Keep the Lizard Chief'] + '</span>';
+				this.showEndGame(result);
+				return true;
+			}
+
+			// if castle is occupy
+			if ( castle.playerId === human.id ) {
+
+				result.message = 'you win';
+
+				util.clearTimeouts();
+
+				// get winner player
+				result.winner = util.findBy(this.players, 'id', util.objToArray(controller.buildings)[0].value.playerId).item;
+
+				result.nextMissionNumber = controller.map.missionNumber + 1;
+
+				this.showEndGame(result);
+
+				return true;
+
+			}
+
+			return false;
+
+		},
+		notification: function () {
+
+			if (APP.maps.c03_escort.wasNotification) {
+				return;
+			}
+
+			APP.maps.c03_escort.wasNotification = true;
+
+			var words = window.langs[window.info.lang].missions.c03_escort;
+
+			APP.notificationView.show({
+				type: 'alert', text: words.A1, tmpl: 'n-banner', header: words.A1Header,
+
+				onHide: function () {
+
+					APP.notificationView.show({
+						text: words.H1, tmpl: 'n-banner', image: { url: 'img/face/helper-1.png' },
+
+						onHide: function () {
+
+							APP.notificationView.show({
+								text: words.G1, tmpl: 'n-banner', image: { url: 'img/face/galamar-1.png' }, from: 'right',
+
+								onHide: function () {
+									APP.notificationView.show({
+										text: words.H2, tmpl: 'n-banner', image: { url: 'img/face/helper-1.png' },
+
+										onHide: function () {
+
+											APP.notificationView.show({
+												type: 'alert',
+												text: words.T1,
+												textCssClass: 'text-indent-with-margin-3',
+												header: window.langs[window.info.lang].objective,
+												headerCssClass: 'text-align-left',
+												tmpl: 'n-banner',
+												bannerCssClass: 'target-alert'
+											});
+
+										}
+
+									});
+
+								}
+
+							});
+
+						}
+
+					});
+
+				}
+			});
+
 		}
+
 	};
 
 }());
