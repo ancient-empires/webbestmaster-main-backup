@@ -1,0 +1,11 @@
+{
+  "name": "viaden-autotests",
+  "version": "0.0.1",
+  "dependencies" : {
+    "nodemailer": "*",
+    "easy-zip": "*",
+    "open": "*",
+    "selenium-webdriver": "*"
+  }
+
+}
