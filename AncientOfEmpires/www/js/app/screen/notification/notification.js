@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window, document, setTimeout, clearTimeout */
-	/*global bingo, $, info, APP */
+	/*global bingo, $, info, APP, Backbone */
 
 	/*
 	 * setting
@@ -101,6 +101,12 @@
 			this.$wrapper.append(this.$el);
 
 			this.$el.addClass('n-anim-show-from-' + data.from);
+
+			this.$el.on('click', function () {
+				if (Backbone.history.fragment === 'store') {
+					APP.NotificationView.prototype.hideExtraWindows();
+				}
+			});
 
 			this.disableScrollNodes();
 
