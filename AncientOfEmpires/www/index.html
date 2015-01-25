@@ -343,7 +343,7 @@
 
 							<% var isDisabled = (map.type === 'mission' && info.get('openMissions').indexOf(map.jsName) === -1); %>
 
-							<div data-tag="label" class="radio-button-wrapper clear-fix <%= isDisabled ? 'disable' : '' %>">
+							<div data-tag="label" class="radio-button-wrapper clear-fix <%= isDisabled ? 'disable opacity5' : '' %>">
 								<% if ( !wasChecked ) { %>
 								<% wasChecked = true; %>
 								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name" checked="checked"/>
