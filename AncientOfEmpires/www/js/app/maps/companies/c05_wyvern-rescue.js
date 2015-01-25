@@ -27,18 +27,18 @@
 		],
 		"buildings": [
 			{"type": "farm", "x": 2, "y": 0, playerId: 1},
-			{"type": "farm", "x": 14, "y": 0},
+			{"type": "farm", "x": 14, "y": 0, playerId: 1},
 			{"type": "castle", "x": 2, "y": 2},
-			{"type": "farm", "x": 10, "y": 3},
+			{"type": "farm", "x": 10, "y": 3, playerId: 1},
 			{"type": "farm", "x": 0, "y": 5, playerId: 1},
 			{"type": "farm", "x": 6, "y": 5, playerId: 1},
 			{"type": "farm", "x": 9, "y": 5},
-			{"type": "farm", "x": 3, "y": 7},
+			{"type": "farm", "x": 3, "y": 7, playerId: 1},
 			{"type": "farm", "x": 6, "y": 7},
 			{"type": "farm", "x": 14, "y": 7},
 			{"type": "farm", "x": 7, "y": 9},
 			{"type": "farm", "x": 12, "y": 9, playerId: 0},
-			{"type": "farm", "x": 1, "y": 11},
+			{"type": "farm", "x": 1, "y": 11, playerId: 1},
 			{"type": "castle", "x": 13, "y": 11}
 		],
 		"terrain": {
@@ -249,6 +249,90 @@
 				return true;
 			}
 
+			var castles = [],
+				buildings = controller.buildings,
+				key, building,
+				enemyUnits = controller.getUnitByPlayer(controller.players[1]);
+
+			// enemy units is - 0 &&
+			// both castle belongs to player
+			for (key in buildings) {
+				if (buildings.hasOwnProperty(key)) {
+					building = buildings[key];
+					if (building.type === 'castle' && building.playerId === 0) {
+						castles.push(building);
+					}
+				}
+			}
+
+			if ( castles.length === 2 && enemyUnits.length === 0 ) {
+
+				var words = window.langs[window.info.lang].missions.c05_wyvernRescue;
+
+				controller.view.goToXY({ x: 2, y: 2 }); // show new units
+
+				// remove units by coordinates
+				var coordinates = [
+					{ x:1, y:2 },
+					{ x:3, y:2 }
+				];
+
+				coordinates.forEach(function (xy) {
+
+					var x = xy.x,
+						y = xy.y,
+						units = controller.units,
+						unit,
+						key;
+
+					for (key in units) {
+						if (units.hasOwnProperty(key)) {
+							unit = units[key];
+							if ( unit.x === x && unit.y === y ) {
+								unit.notCreateGrave = true;
+								controller.killUnit(unit);
+							}
+						}
+					}
+
+				});
+
+				coordinates.forEach(function (xy) {
+
+					var newUnit = controller.appendUnit({
+							color: "blue",
+							playerId: 0,
+							type: "Wyvern",
+							x: xy.x,
+							y: xy.y
+						}); // to controller
+
+					controller.view.appendUnit(newUnit); // and view
+
+				});
+
+				APP.notificationView.show({
+					text: words.H2, tmpl: 'n-banner', image: { url: 'img/face/helper-1.png' },
+					onHide: function () {
+
+						result.message = 'you win';
+
+						util.clearTimeouts();
+
+						// get winner player
+						result.winner = util.findBy(this.players, 'id', util.objToArray(controller.buildings)[0].value.playerId).item;
+
+						result.nextMissionNumber = controller.map.missionNumber + 1;
+
+						this.showEndGame(result);
+
+					}.bind(this)
+				});
+
+				return true;
+
+			}
+
 			return false;
 
 		},
@@ -302,13 +386,6 @@
 			});
 
 		}
-
-
-
-
-
-
-
 
 	};
 
