@@ -30,7 +30,7 @@
 
 		templates: ['notification-wrapper', 'notification-alert-wrapper', 'n-banner', 'n-turn'],
 
-		showTimeout: 7000e3,
+		showTimeout: 7e3,
 
 		events: {
 

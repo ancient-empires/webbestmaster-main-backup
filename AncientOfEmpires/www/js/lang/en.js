@@ -9,6 +9,7 @@
 		language: 'language',
 		languageName: 'english',
 		objective: 'Objective:',
+		thanks: 'Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Pavel Prylutski<br>Igor Kupreev',
 		units: {
 			archer: {
 				name: 'en archer',

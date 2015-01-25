@@ -318,14 +318,27 @@
 									type: 'alert',
 									text: words.A2,
 									//textCssClass: 'text-indent-with-margin-3',
-									header: window.langs[window.info.lang].objective,
+									//header: window.langs[window.info.lang].objective,
 									headerCssClass: 'text-align-left',
 									tmpl: 'n-banner',
 									bannerCssClass: 'target-alert',
 									onHide:	function () {
 
+										APP.notificationView.show({
+											type: 'alert',
+											text: window.langs[window.info.lang].thanks,
+											textCssClass: 'text-align-center',
+											//header: window.langs[window.info.lang].objective,
+											headerCssClass: 'text-align-left',
+											tmpl: 'n-banner',
+											bannerCssClass: 'target-alert',
 
-										APP.BattleMenuView.prototype.quitMission();
+											onHide:	function () {
+												APP.BattleMenuView.prototype.quitMission();
+
+											}
+
+										});
 
 									}
 								});
