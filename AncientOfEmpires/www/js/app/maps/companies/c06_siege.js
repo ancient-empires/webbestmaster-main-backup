@@ -25,21 +25,21 @@
 			{"type": "Wyvern", "x": 12, "y": 14, playerId: 1}
 		],
 		"buildings": [
-			{"type": "farm", "x": 13, "y": 0},
+			{"type": "farm", "x": 13, "y": 0, playerId: 1},
 			{"type": "castle", "x": 1, "y": 1, playerId: 0},
 			{"type": "farm", "x": 4, "y": 1, playerId: 0},
 			{"type": "farm", "x": 1, "y": 2, playerId: 0},
 			{"type": "farm", "x": 3, "y": 3},
-			{"type": "farm", "x": 8, "y": 5},
+			{"type": "farm", "x": 8, "y": 5, playerId: 1},
 			{"type": "farm", "x": 2, "y": 6},
 			{"type": "farm", "x": 5, "y": 8},
-			{"type": "farm", "x": 12, "y": 8},
-			{"type": "farm", "x": 1, "y": 12},
+			{"type": "farm", "x": 12, "y": 8, playerId: 1},
+			{"type": "farm", "x": 1, "y": 12, playerId: 1},
 			{"type": "farm", "x": 11, "y": 12, playerId: 1},
 			{"type": "farm", "x": 13, "y": 12, playerId: 1},
 			{"type": "farm", "x": 10, "y": 13, playerId: 1},
 			{"type": "castle", "x": 13, "y": 13, playerId: 1},
-			{"type": "farm", "x": 7, "y": 14}
+			{"type": "farm", "x": 7, "y": 14, playerId: 1}
 		],
 		"terrain": {
 			"x0y0": "forest",
@@ -252,7 +252,119 @@
 			"x11y14": "green",
 			"x12y14": "road",
 			"x13y14": "green"
+		},
+
+		steps: [],
+		availableUnits: ['soldier', 'archer', 'lizard', 'wizard', 'wisp', 'spider', 'golem', 'catapult', 'wyvern'],
+		gameOverDetect: function (controller) {
+
+			// if knight is dead -> end game
+			var human = controller.players[0],
+				knight,
+				humanUnits = controller.getUnitByPlayer(human),
+				result = {};
+
+			humanUnits.forEach(function (unit) {
+				if (unit.type === 'Knight') {
+					knight = unit;
+				}
+			});
+
+			// if knight is dead - defeat
+			if (!knight) {
+				util.clearTimeouts();
+				result.winner = controller.players[1];
+				result.message = '<span class="color-red">X ' + window.langs[window.info.lang].missions.c06_siege['Keep the knight'] + '</span>';
+				this.showEndGame(result);
+				return true;
+			}
+
+			var castles = [],
+				buildings = controller.buildings,
+				key, building,
+				enemyUnits = controller.getUnitByPlayer(controller.players[1]);
+
+			// enemy units is - 0 &&
+			// both castle belongs to player
+			for (key in buildings) {
+				if (buildings.hasOwnProperty(key)) {
+					building = buildings[key];
+					if (building.type === 'castle' && building.playerId === 0) {
+						castles.push(building);
+					}
+				}
+			}
+
+			if ( castles.length === 2 && enemyUnits.length === 0 ) {
+
+				result.message = 'you win';
+
+				util.clearTimeouts();
+
+				// get winner player
+				result.winner = util.findBy(this.players, 'id', util.objToArray(controller.buildings)[0].value.playerId).item;
+
+				result.nextMissionNumber = controller.map.missionNumber + 1;
+
+				this.showEndGame(result);
+
+				return true;
+
+			}
+
+			return false;
+
+		},
+		notification: function () {
+
+			if (APP.maps.c06_siege.wasNotification) {
+				return;
+			}
+
+			APP.maps.c06_siege.wasNotification = true;
+
+			var words = window.langs[window.info.lang].missions.c06_siege;
+
+			APP.notificationView.show({
+				type: 'alert', text: words.A1, tmpl: 'n-banner', header: words.A1Header,
+
+				onHide: function () {
+
+					APP.notificationView.show({
+
+						text: words.H1, tmpl: 'n-banner', image: { url: 'img/face/helper-1.png' },
+
+						onHide: function () {
+
+							APP.notificationView.show({
+
+								text: words.G1, tmpl: 'n-banner', image: { url: 'img/face/galamar-2.png', cssClass: 'right' }, from: 'right',
+
+								onHide: function () {
+
+									APP.notificationView.show({
+										type: 'alert',
+										text: words.T1,
+										textCssClass: 'text-indent-with-margin-3',
+										header: window.langs[window.info.lang].objective,
+										headerCssClass: 'text-align-left',
+										tmpl: 'n-banner',
+										bannerCssClass: 'target-alert'
+									});
+
+								}
+
+							});
+
+						}
+
+					});
+
+				}
+			});
+
 		}
+
 	};
 
 }());

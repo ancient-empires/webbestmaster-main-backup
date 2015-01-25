@@ -141,8 +141,8 @@
 				A1: 'With the powerful wyverns adding to his forces, Galamar is ready to fight back against Valadorn. He decides to mount a surprise attack on the main command outpost outside Thorin city.',
 				H1: 'The city is well defended, your Majesty.',
 				G1: 'So it seems. We may have to alter our battle plan.',
-				T1: '[] Destroy all enemy units and occupy the enemy castle.%%%%[] Keep the knight.',
-				objective: '[] Destroy all enemy units and occupy the enemy castle.%%%%[] Keep the knight.',
+				T1: '[] Destroy all enemy units.%%%%[] Occupy the enemy castle.%%%%[] Keep the knight.',
+				objective: '[] Destroy all enemy units.%%%%[] Occupy the enemy castle.%%%%[] Keep the knight.',
 				'Keep the knight': 'Keep the knight'
 			},
 			c07_finalAssault: {
