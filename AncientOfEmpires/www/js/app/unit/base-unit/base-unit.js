@@ -264,13 +264,13 @@
 				attackValue += this.bonesAttackBonus;
 			}
 
+			if (this.type === 'Archer' && enemyUnit.type === 'Wyvern') {
+				attackValue *= 1.3;
+			}
+
 			enemyUnit.damage.received += attackValue;
 
 			enemyUnit.health = enemyUnit.health - attackValue;
-
-			//todo: add case: archer vs wyvern
-			//archer +30% damage
-			//for example see bonesAttackBonus
 
 			this.setLevel();
 
