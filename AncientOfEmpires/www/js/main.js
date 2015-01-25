@@ -20,7 +20,8 @@
 			'create-map': 'createMap',
 			'companies': 'companies',
 			'setting': 'setting',
-			'instruction': 'instruction'
+			'instruction': 'instruction',
+			'credits': 'credits'
 		},
 
 		title: function () {
@@ -94,7 +95,9 @@
 		},
 		instruction: function () {
 			APP.instructionView = new APP.InstructionView();
-
+		},
+		credits: function () {
+			APP.creditsView = new APP.CreditsView();
 		}
 
 	});

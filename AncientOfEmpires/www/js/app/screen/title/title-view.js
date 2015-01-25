@@ -15,7 +15,8 @@
 			'click .js-create-map': 'goToCreateMap',
 			'click .js-go-to-companies': 'goToCompanies',
 			'click .js-go-to-settings': 'goToSetting',
-			'click .js-instruction': 'goToInstruction'
+			'click .js-instruction': 'goToInstruction',
+			'click .js-to-credits': 'goToCredits'
 		},
 
 		init: function() {
@@ -32,6 +33,10 @@
 
 			this.setSettings();
 
+		},
+
+		goToCredits: function () {
+			APP.router.navigate('credits', { trigger: true });
 		},
 
 		goToSelectMap: function() {

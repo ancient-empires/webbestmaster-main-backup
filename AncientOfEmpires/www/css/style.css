@@ -763,3 +763,8 @@
 .notification-container.target-alert {
 	box-shadow: 0.7em 0.7em 0 #000;
 }
+
+.credits-item {
+	line-height: 1.3em;
+}
+
