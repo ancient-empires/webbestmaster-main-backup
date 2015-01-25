@@ -41,7 +41,9 @@
 
 		quitMission: function () {
 
-			this.$el.addClass('hidden');
+			if (this && this.$el) {
+				this.$el.addClass('hidden');
+			}
 
 			var history = win.history;
 			history.back();

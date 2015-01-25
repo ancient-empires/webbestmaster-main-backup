@@ -64,6 +64,11 @@
 	margin-top: -2.2em;
 }
 
+.n-image.right {
+	padding-right: 0;
+	padding-left: 1.2em;
+}
+
 .n-anim-show-from-left,
 .n-anim-show-from-right {
 	-webkit-animation-duration: 0.6s;

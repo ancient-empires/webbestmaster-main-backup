@@ -27,21 +27,21 @@
 			{"type": "Wizard", "x": 11, "y": 14, playerId: 0}
 		],
 		"buildings": [
-			{"type": "farm", "x": 13, "y": 0},
+			{"type": "farm", "x": 13, "y": 0, playerId: 1},
 			{"type": "castle", "x": 1, "y": 1, playerId: 1},
 			{"type": "farm", "x": 4, "y": 1, playerId: 0},
 			{"type": "farm", "x": 1, "y": 2, playerId: 1},
 			{"type": "farm", "x": 3, "y": 3, playerId: 1},
 			{"type": "farm", "x": 8, "y": 5},
-			{"type": "farm", "x": 2, "y": 6},
+			{"type": "farm", "x": 2, "y": 6, playerId: 1},
 			{"type": "farm", "x": 5, "y": 8},
-			{"type": "farm", "x": 12, "y": 8},
+			{"type": "farm", "x": 12, "y": 8, playerId: 1},
 			{"type": "farm", "x": 1, "y": 12, playerId: 1},
 			{"type": "farm", "x": 11, "y": 12, playerId: 1},
 			{"type": "farm", "x": 13, "y": 12, playerId: 1},
 			{"type": "farm", "x": 10, "y": 13, playerId: 1},
 			{"type": "castle", "x": 13, "y": 13, playerId: 0},
-			{"type": "farm", "x": 7, "y": 14}
+			{"type": "farm", "x": 7, "y": 14, playerId: 1}
 		],
 		"terrain": {
 			"x0y0": "forest",
@@ -254,7 +254,157 @@
 			"x11y14": "green",
 			"x12y14": "road",
 			"x13y14": "green"
+		},
+		steps: [],
+		availableUnits: ['soldier', 'archer', 'lizard', 'wizard', 'wisp', 'spider', 'golem', 'catapult', 'wyvern'],
+		gameOverDetect: function (controller) {
+
+			// if knight is dead -> end game
+			var human = controller.players[0],
+				knight,
+				humanUnits = controller.getUnitByPlayer(human),
+				result = {};
+
+			humanUnits.forEach(function (unit) {
+				if (unit.type === 'Knight') {
+					knight = unit;
+				}
+			});
+
+			// if knight is dead - defeat
+			if (!knight) {
+				util.clearTimeouts();
+				result.winner = controller.players[1];
+				result.message = '<span class="color-red">X ' + window.langs[window.info.lang].missions.c07_finalAssault['Keep the knight'] + '</span>';
+				this.showEndGame(result);
+				return true;
+			}
+
+			var castles = [],
+				buildings = controller.buildings,
+				key, building,
+				enemyUnits = controller.getUnitByPlayer(controller.players[1]);
+
+			// enemy units is - 0 &&
+			// both castle belongs to player
+			for (key in buildings) {
+				if (buildings.hasOwnProperty(key)) {
+					building = buildings[key];
+					if (building.type === 'castle' && building.playerId === 0) {
+						castles.push(building);
+					}
+				}
+			}
+
+			if ( castles.length === 2 && enemyUnits.length === 0 ) {
+
+				util.clearTimeouts();
+
+				var words = window.langs[window.info.lang].missions.c07_finalAssault;
+
+				APP.notificationView.show({
+
+					text: words.V2, tmpl: 'n-banner', image: { url: 'img/face/valadorn-2.png', cssClass: 'right' }, from: 'right',
+
+					onHide: function () {
+
+						APP.notificationView.show({
+
+							text: words.G3, tmpl: 'n-banner', image: { url: 'img/face/galamar-1.png' },
+
+							onHide: function () {
+
+								APP.notificationView.show({
+									type: 'alert',
+									text: words.A2,
+									//textCssClass: 'text-indent-with-margin-3',
+									header: window.langs[window.info.lang].objective,
+									headerCssClass: 'text-align-left',
+									tmpl: 'n-banner',
+									bannerCssClass: 'target-alert',
+									onHide:	function () {
+
+
+										APP.BattleMenuView.prototype.quitMission();
+
+									}
+								});
+
+							}
+
+						});
+
+					}
+
+				});
+
+				return true;
+
+			}
+
+			return false;
+
+		},
+		notification: function () {
+
+			if (APP.maps.c07_finalAssault.wasNotification) {
+				return;
+			}
+
+			APP.maps.c07_finalAssault.wasNotification = true;
+
+			var words = window.langs[window.info.lang].missions.c07_finalAssault;
+
+			APP.notificationView.show({
+				type: 'alert', text: words.A1, tmpl: 'n-banner', header: words.A1Header,
+
+				onHide: function () {
+
+					APP.notificationView.show({
+
+						text: words.G1, tmpl: 'n-banner', image: { url: 'img/face/galamar-1.png' },
+
+						onHide: function () {
+
+							APP.notificationView.show({
+
+								text: words.V1, tmpl: 'n-banner', image: { url: 'img/face/valadorn-2.png', cssClass: 'right' }, from: 'right',
+
+								onHide: function () {
+
+									APP.notificationView.show({
+
+										text: words.G2, tmpl: 'n-banner', image: { url: 'img/face/galamar-1.png' },
+
+										onHide: function () {
+
+											APP.notificationView.show({
+												type: 'alert',
+												text: words.T1,
+												textCssClass: 'text-indent-with-margin-3',
+												header: window.langs[window.info.lang].objective,
+												headerCssClass: 'text-align-left',
+												tmpl: 'n-banner',
+												bannerCssClass: 'target-alert'
+											});
+
+										}
+
+									});
+
+								}
+
+							});
+
+						}
+
+					});
+
+				}
+			});
+
 		}
+
 	};
 
 }());
