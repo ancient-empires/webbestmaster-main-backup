@@ -297,6 +297,8 @@
 
 			if ( castles.length === 2 && enemyUnits.length === 0 ) {
 
+				window.info.pushNewMission('c07_finalAssault');
+
 				result.message = 'you win';
 
 				util.clearTimeouts();

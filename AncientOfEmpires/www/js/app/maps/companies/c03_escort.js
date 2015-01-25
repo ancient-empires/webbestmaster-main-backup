@@ -304,6 +304,8 @@
 
 				result.message = 'you win';
 
+				window.info.pushNewMission('c04_reinforcements');
+
 				util.clearTimeouts();
 
 				// get winner player

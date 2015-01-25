@@ -136,6 +136,8 @@
 
 				result.message = 'you win';
 
+				window.info.pushNewMission('c02_friendsAndEnemies');
+
 				util.clearTimeouts();
 
 				// get winner player

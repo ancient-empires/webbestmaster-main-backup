@@ -108,6 +108,12 @@
 			endTurnConfirm: false,
 			music: false,
 			gameSpeed: 3
+		},
+		openMissions: ['c01_regroup'],
+		pushNewMission: function (missionJsName) {
+			var arr = this.get('openMissions');
+			arr.push(missionJsName);
+			this.set('openMissions', arr, true);
 		}
 
 	};

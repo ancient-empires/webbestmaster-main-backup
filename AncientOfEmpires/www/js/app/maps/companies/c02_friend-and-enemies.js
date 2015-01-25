@@ -427,6 +427,8 @@
 			if ( !enemyUnits.length && boughtList.length >= 3 && farms.length >= 2 ) {
 				result.message = 'you win';
 
+				window.info.pushNewMission('c03_escort');
+
 				util.clearTimeouts();
 
 				// get winner player

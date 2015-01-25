@@ -267,6 +267,8 @@
 
 			if ( castles.length === 2 && enemyUnits.length === 0 ) {
 
+				window.info.pushNewMission('c06_siege');
+
 				var words = window.langs[window.info.lang].missions.c05_wyvernRescue;
 
 				controller.view.goToXY({ x: 2, y: 2 }); // show new units

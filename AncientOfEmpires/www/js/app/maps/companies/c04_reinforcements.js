@@ -386,6 +386,8 @@
 
 				var words = window.langs[window.info.lang].missions.c04_reinforcements;
 
+				window.info.pushNewMission('c05_wyvernRescue');
+
 				APP.notificationView.show({
 					text: words.V2, tmpl: 'n-banner', image: { url: 'img/face/valadorn-2.png', cssClass: 'right' }, from: 'right',
 					onHide: function () {
