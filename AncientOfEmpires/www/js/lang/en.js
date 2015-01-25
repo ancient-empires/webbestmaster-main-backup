@@ -129,10 +129,10 @@
 			c05_wyvernRescue: {
 				A1Header: 'Chapter 5',
 				A1: 'As Galamar\'s forces settle into the city castle, a scout patrol discovers some flying serpents called wyverns being held captive at an enemy campsite nearby. Could the wyverns be used against Valadorn and his forces? To find out, Galamar will have to rescue them.',
-				H1: 'Sources indicate that the wyverns are being held in this castle.',
-				H2: 'Be careful, your Majesty, wyverns can be formidable enemies as well as powerful allies.',
+				G1: 'Sources indicate that the wyverns are being held in this castle.',
+				H1: 'Be careful, your Majesty, wyverns can be formidable enemies as well as powerful allies.',
 				T1: '[] Destroy all enemy units and free the wyverns.%%%%[] Keep the knight.',
-				H3: 'Look your Majesty, the wyverns have broken free! They are now under our command!',
+				H2: 'Look your Majesty, the wyverns have broken free! They are now under our command!',
 				objective: '[] Destroy all enemy units and free the wyverns.%%%%[] Keep the knight.',
 				'Keep the knight': 'Keep the knight'
 			},

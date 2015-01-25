@@ -222,7 +222,94 @@
 			"x12y11": "green",
 			"x13y11": "green",
 			"x14y11": "green"
+		},
+
+		steps: [],
+		availableUnits: ['soldier', 'archer', 'lizard', 'wizard', 'wisp', 'spider', 'golem', 'catapult'],
+		gameOverDetect: function (controller) {
+
+			// if knight is dead -> end game
+			var human = controller.players[0],
+				knight,
+				humanUnits = controller.getUnitByPlayer(human),
+				result = {};
+
+			humanUnits.forEach(function (unit) {
+				if (unit.type === 'Knight') {
+					knight = unit;
+				}
+			});
+
+			// if knight is dead - defeat
+			if (!knight) {
+				util.clearTimeouts();
+				result.winner = controller.players[1];
+				result.message = '<span class="color-red">X ' + window.langs[window.info.lang].missions.c05_wyvernRescue['Keep the knight'] + '</span>';
+				this.showEndGame(result);
+				return true;
+			}
+
+			return false;
+
+		},
+		notification: function () {
+
+			if (APP.maps.c05_wyvernRescue.wasNotification) {
+				return;
+			}
+
+			APP.maps.c05_wyvernRescue.wasNotification = true;
+
+			var words = window.langs[window.info.lang].missions.c05_wyvernRescue;
+
+			APP.notificationView.show({
+				type: 'alert', text: words.A1, tmpl: 'n-banner', header: words.A1Header,
+
+				onHide: function () {
+
+					APP.notificationView.show({
+
+						text: words.G1, tmpl: 'n-banner', image: { url: 'img/face/galamar-1.png' },
+
+						onHide: function () {
+
+							APP.notificationView.show({
+
+								text: words.H1, tmpl: 'n-banner', image: { url: 'img/face/helper-2.png', cssClass: 'right' }, from: 'right',
+
+								onHide: function () {
+
+									APP.notificationView.show({
+										type: 'alert',
+										text: words.T1,
+										textCssClass: 'text-indent-with-margin-3',
+										header: window.langs[window.info.lang].objective,
+										headerCssClass: 'text-align-left',
+										tmpl: 'n-banner',
+										bannerCssClass: 'target-alert'
+									});
+
+								}
+
+							});
+
+
+						}
+
+					});
+
+				}
+			});
+
 		}
+
+
+
+
+
+
+
+
 	};
 
 }());
