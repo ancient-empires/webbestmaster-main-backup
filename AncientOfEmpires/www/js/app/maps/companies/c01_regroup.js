@@ -64,13 +64,13 @@
 						x: 2,
 						y: 2
 					},
-					{
-						color: "red",
-						playerId: 1,
-						type: "Soldier",
-						x: 1,
-						y: 2
-					},
+					//{
+					//	color: "red",
+					//	playerId: 1,
+					//	type: "Soldier",
+					//	x: 1,
+					//	y: 2
+					//},
 					{
 						color: "red",
 						playerId: 1,

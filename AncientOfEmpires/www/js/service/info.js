@@ -42,7 +42,7 @@
 		lang: 'en', // current language
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
 		availableLangs: ['en'],
-		saveItem: '-----APP-NAME-----',
+		saveItem: 'ancient-empires-ls-item',
 		isPhone: false,
 		isTouch: isTouch,
 		preCSS: pre.css,
