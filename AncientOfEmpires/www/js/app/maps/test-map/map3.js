@@ -6,11 +6,11 @@
 
 	APP.maps = APP.maps || {};
 
-	APP.maps.testMap3 = {
+	APP.maps.river = {
 
 		"type": "skirmish",
-		name: 'test map 3',
-		jsName: 'testMap3',
+		name: 'River',
+		jsName: 'river',
 
 		"size": {"width": 10, "height": 10},
 
