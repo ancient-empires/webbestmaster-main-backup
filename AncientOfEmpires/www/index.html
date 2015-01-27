@@ -356,7 +356,7 @@
 								<% } else { %>
 								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
 								<% }; %>
-								<span class="left relative-opacity ellipsis"><%= map.name %></span>
+								<span class="left relative-opacity ellipsis"><%= isDisabled ? map.name.replace(/\S/g, '?') : map.name %></span>
 							</div>
 
 							<% }); %>
