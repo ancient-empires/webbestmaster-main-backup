@@ -769,3 +769,10 @@
 	line-height: 1.3em;
 }
 
+.mail-wrapper {
+	font-size: 0.8em;
+	position: fixed;
+	width: 100%;
+	box-sizing: border-box;
+	bottom: 1em;
+}
