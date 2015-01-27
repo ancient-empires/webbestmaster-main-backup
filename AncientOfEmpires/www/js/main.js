@@ -55,7 +55,7 @@
 
 			if ( /^[\s\S]+?#battle$/.test(event.oldURL) && APP.battleView && !APP.battleView.doNotShowConfirm) {
 
-				if ( confirm('are you sure to leave mission?') ) {
+				if ( confirm('Are you sure to leave mission?') ) {
 					APP.mapsView = new APP.MapsView({ type: 'skirmish' });
 				} else {
 					history.forward();
@@ -78,7 +78,7 @@
 
 			if ( /^[\s\S]+?#battle$/.test(event.oldURL) && APP.battleView && !APP.battleView.doNotShowConfirm) {
 
-				if ( confirm('are you sure to leave mission?') ) {
+				if ( confirm('Are you sure to leave mission?') ) {
 					APP.mapsView = new APP.MapsView(data);
 				} else {
 					history.forward();
