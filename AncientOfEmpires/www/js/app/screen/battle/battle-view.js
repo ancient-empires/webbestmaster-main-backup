@@ -777,7 +777,14 @@
 				//.html(player.color)
 				.data('color', player.color);
 				//.css('color', player.color);
-			this.$statusBar.find('.status-bar-gold').html(player.gold);
+
+			var gold = String(player.gold);
+
+			if (player.type === 'cpu') {
+				gold = gold.replace(/\d/g, '?');
+			}
+
+			this.$statusBar.find('.status-bar-gold').html(gold);
 
 		},
 
