@@ -53,37 +53,89 @@
 
 			this.isDone = true;
 
-			// append unit
-			var newUnit;
-			newUnit = controller.appendUnit({
-				color: "red",
-				playerId: 1,
-				type: "Soldier",
-				x: 2,
-				y: 2
-			}); // to controller
+			var units = controller.units,
+				unitsArr = [],
+				key, unit,
+				enemyUnits = [
+					{
+						color: "red",
+						playerId: 1,
+						type: "Soldier",
+						x: 2,
+						y: 2
+					},
+					{
+						color: "red",
+						playerId: 1,
+						type: "Soldier",
+						x: 1,
+						y: 2
+					},
+					{
+						color: "red",
+						playerId: 1,
+						type: "Archer",
+						x: 3,
+						y: 2
+					}
+				];
 
-			controller.view.appendUnit(newUnit); // and view
+			for (key in units) {
+				if (units.hasOwnProperty(key)) {
+					unit = units[key];
+					unitsArr.push(unit);
+				}
+			}
 
-			newUnit = controller.appendUnit({
-				color: "red",
-				playerId: 1,
-				type: "Soldier",
-				x: 1,
-				y: 2
-			}); // to controller
+			enemyUnits.forEach(function (unitData) {
 
-			controller.view.appendUnit(newUnit); // and view
+				var x = unitData.x,
+					y = unitData.y,
+					newUnit,
+					wasAppend;
 
-			newUnit = controller.appendUnit({
-				color: "red",
-				playerId: 1,
-				type: "Archer",
-				x: 3,
-				y: 2
-			}); // to controller
+				function tryToAddUnit() {
+					if (wasAppend) {
+						return;
+					}
 
-			controller.view.appendUnit(newUnit); // and view
+					var isFreePlace = unitsArr.every(function (unit) {
+						return !(unit.y === unitData.y && unit.x === unitData.x);
+					});
+
+					if ( isFreePlace ) {
+						newUnit = controller.appendUnit(unitData); // to controller
+						controller.view.appendUnit(newUnit); // and view
+						unitsArr.push(newUnit);
+						wasAppend = true;
+					}
+
+				}
+
+				// 00
+				tryToAddUnit();
+
+				// 0-
+				unitData.x = x;
+				unitData.y = y - 1;
+				tryToAddUnit();
+
+				// -0
+				unitData.x = x - 1;
+				unitData.y = y;
+				tryToAddUnit();
+
+				// 0+
+				unitData.x = x;
+				unitData.y = y + 1;
+				tryToAddUnit();
+
+				// +0
+				unitData.x = x + 1;
+				unitData.y = y;
+				tryToAddUnit();
+
+			});
 
 			var words = window.langs[window.info.lang].missions.c01_regroup;
 
