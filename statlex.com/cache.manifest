@@ -1,0 +1,21 @@
+CACHE MANIFEST
+# v1.0.14
+
+CACHE:
+
+index.html
+
+css/style.css
+
+font/cour.otf
+
+img/app-store-button.svg
+img/kid-color-book-icon.png
+img/kid-game-icon.png
+img/kid-logic-icon.png
+img/kid-math-icon.png
+img/kid-shapes-icon.png
+img/kid-tangram-icon.png
+img/statlex-icon.png
+
+js/on-load.js
