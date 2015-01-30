@@ -9,7 +9,7 @@
 	APP.MapsView = APP.BaseView.extend({
 		templates: ['select-map'],
 		events: {
-			'click .js-go-to-battle': 'goToBattle',
+			//'click .js-go-to-battle': 'goToBattle',
 			'click .radio-button-wrapper': 'goToBattle'
 		},
 		init: function (data) {

@@ -112,7 +112,11 @@
 		openMissions: ['c01_regroup'],
 		pushNewMission: function (missionJsName) {
 			var arr = this.get('openMissions');
-			arr.push(missionJsName);
+
+			if (arr.indexOf(missionJsName) === -1) {
+				arr.push(missionJsName);
+			}
+
 			this.set('openMissions', arr, true);
 		}
 

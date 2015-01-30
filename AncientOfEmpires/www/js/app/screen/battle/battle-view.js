@@ -39,7 +39,13 @@
 			// set map to this view
 			this.setMap(util.createCopy(data.map));
 			// show draft map
-			this.$el = $(this.tmpl.battle(this.map));
+
+			if (!this.map) {
+				console.log('Map IS NOT defined');
+				return;
+			}
+
+			this.$el = $(this.tmpl.battle(this.map || {}));
 			this.setFieldSize();
 
 			this.$unitLayer = this.$el.find('.js-units-layer');
