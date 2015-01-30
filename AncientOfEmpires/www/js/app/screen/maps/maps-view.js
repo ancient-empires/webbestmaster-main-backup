@@ -10,7 +10,7 @@
 		templates: ['select-map'],
 		events: {
 			'click .js-go-to-battle': 'goToBattle',
-			'dblclick .radio-button-wrapper': 'goToBattle'
+			'click .radio-button-wrapper': 'goToBattle'
 		},
 		init: function (data) {
 
