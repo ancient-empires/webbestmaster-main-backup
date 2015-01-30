@@ -37,7 +37,7 @@
 			def: 2,
 			mov: 3,
 			cost: 700,
-			attackRange: 7
+			attackRange: 5
 		},
 		golem: {
 			info: lang.units.golem,

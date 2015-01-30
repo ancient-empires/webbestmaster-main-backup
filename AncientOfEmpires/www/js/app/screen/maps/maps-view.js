@@ -32,9 +32,16 @@
 
 
 		},
-		goToBattle: function() {
+		goToBattle: function(e) {
 
-			var data = this.createBattleControllerData();
+
+
+			var $input = $(e.currentTarget).find('input'),
+				data;
+
+			$input.prop('checked', 'checked');
+
+			data = this.createBattleControllerData();
 
 			data.map = this.getMap();
 
