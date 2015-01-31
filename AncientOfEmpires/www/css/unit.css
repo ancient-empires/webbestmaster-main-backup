@@ -130,10 +130,10 @@
 	content: '.';
 	color: transparent;
 	position: absolute;
-	width: 200%;
-	height: 200%;
-	left: -50%;
-	top: -50%;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
 	background-image: url(../img/unit/active-unit.gif);
 	background-repeat: no-repeat;
 	-webkit-background-size: 100% 100%;
