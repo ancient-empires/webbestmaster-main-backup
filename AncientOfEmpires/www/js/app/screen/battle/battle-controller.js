@@ -722,6 +722,10 @@
 
 		step: function() {
 
+			this.stepCount = this.stepCount || 0;
+
+			this.stepCount += 0.5;
+
 			this.view.activeButtons(true);
 
 			this.checkParts();

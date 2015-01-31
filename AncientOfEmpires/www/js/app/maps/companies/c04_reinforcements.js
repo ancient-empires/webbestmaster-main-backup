@@ -17,6 +17,10 @@
 				rip,
 				key;
 
+			if ( controller.stepCount >= 4.5 && controller.activePlayer.id === 0 ) {
+				return true;
+			}
+
 			for (key in ripsUnit) {
 				if (ripsUnit.hasOwnProperty(key)) {
 					rip = ripsUnit[key];
@@ -40,6 +44,8 @@
 
 			var newUnit;
 
+			controller.view.goToXY({ x: 2, y: 0 }); // show new units
+
 			newUnit = controller.appendUnit({ color: "red", playerId: 1, type: "Knight", x: 2, y: 0 }); // to controller
 			controller.view.appendUnit(newUnit); // and view
 
@@ -54,7 +60,6 @@
 
 			var words = window.langs[window.info.lang].missions.c04_reinforcements;
 
-			setTimeout(function () {
 				APP.notificationView.hideNotification();
 
 				APP.notificationView.show({
@@ -71,7 +76,6 @@
 
 				});
 
-			}, 2000);
 
 			return false;
 
