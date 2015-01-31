@@ -38,9 +38,6 @@
 
 			this.isDone = true;
 
-			// no money in enemy
-			controller.players[1].gold = 0;
-
 			var newUnit;
 
 			newUnit = controller.appendUnit({ color: "red", playerId: 1, type: "Knight", x: 2, y: 0 }); // to controller
