@@ -28,10 +28,6 @@
 
 			APP.titleView = new APP.TitleView({ currentView: APP.titleView });
 
-			if (info.isAndroid) {
-				$('.js-wrapper').addClass('js-isAndroid');
-			}
-
 		},
 
 		battle: function () {
