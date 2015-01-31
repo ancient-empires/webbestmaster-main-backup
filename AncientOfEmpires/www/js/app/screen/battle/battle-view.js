@@ -15,10 +15,10 @@
 			//'click .js-go-to-store': 'goToStore',
 			'click .js-scale-button': 'scale'
 		},
-		squareSize: 36,
+		squareSize: 26,
 		maxSquareSize: 100,
 		minSquareSize: 6,
-		scaleStep: 2,
+		scaleStep: 1,
 		cssSelector: '.square, .unit, .build, .attack-animation-block ',
 		styleTagSelector: '.js-battle-styles',
 		init: function (data) {
@@ -138,8 +138,8 @@
 
 		setSquareSize: function () {
 			// squareSize
-			this.squareSize = Math.round(parseInt(document.body.style.fontSize, 10) * 1.5) * 2;
-			this.scaleStep = Math.round(this.squareSize / 3);
+			this.squareSize = Math.round(parseInt(document.body.style.fontSize, 10) * 1.2) * 2;
+			this.scaleStep = Math.round(this.squareSize / 6);
 
 			this.maxSquareSize = this.squareSize * 4;
 			this.minSquareSize = Math.round(this.squareSize / 4);
