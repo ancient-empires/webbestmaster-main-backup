@@ -20,8 +20,7 @@
 		},
 
 		section: function (id) {
-			APP.bb.title = new APP.BB.TitleView();
-			console.log(id);
+			APP.bb.section = new APP.BB.SectionView({ id: id });
 		},
 
 		constructor: function () {
