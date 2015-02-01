@@ -22,8 +22,7 @@
 		section: function (id) {
 			APP.bb.title = new APP.BB.TitleView();
 			console.log(id);
-		}
-
+		},
 
 		constructor: function () {
 

@@ -1,8 +1,8 @@
 (function (win) {
 
 	"use strict";
-	/*global window, setTimeout, history, location*/
-	/*global APP, Backbone */
+	/*global window, document, setTimeout, history, location*/
+	/*global APP, Backbone, FastClick */
 
 	win.APP = win.APP || {};
 
@@ -10,11 +10,10 @@
 
 	function start() {
 
-
 		win.APP.util.setHTMLStyle();
 		APP.templateMaster.init();
 
-
+		FastClick.attach(document.body);
 
 		function back() {
 

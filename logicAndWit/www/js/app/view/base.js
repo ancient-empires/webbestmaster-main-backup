@@ -24,24 +24,7 @@
 
 		constructor: function() {
 
-			var proto = APP.BB.BaseView.prototype,
-				events = $.extend( {}, proto.events, this.events );
-
-			if ( APP.info.get('isTouch') ) {
-
-				$.each( events, function( key, value ) {
-					var newKey = key.replace(/^click(?=\s+)/i, 'vclick');
-
-					if (newKey !== key) {
-						delete events[key];
-						events[newKey] = value;
-					}
-
-				});
-
-			}
-
-			this.events = events;
+			this.events = $.extend( {}, proto.events, this.events );
 
 			return Backbone.View.prototype.constructor.apply(this, arguments);
 		},
