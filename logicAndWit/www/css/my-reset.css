@@ -107,6 +107,6 @@ output, progress, section, summary, time, video {
 }
 
 /* fix jquery mobile */
-.ui-loader-default {
+.ui-loader {
 	display: none !important;
 }

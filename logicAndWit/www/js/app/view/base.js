@@ -16,7 +16,7 @@
 			'click .js-external-link': 'toExternalLink'
 		},
 
-		//popupUrl: 'popup=true',
+		popupUrl: 'popup=true',
 
 		selectors: {
 			wrapper: '.js-wrapper'
@@ -71,7 +71,7 @@
 
 		render: function () {
 
-			this.$wrapper.append(this.$el);
+			this.$wrapper.empty().append(this.$el);
 
 		},
 
@@ -82,10 +82,14 @@
 		routeTo: function(e) {
 
 			var $this = $(e.target),
-				route = $this.data('route');
+				route = $this.attr('data-route');
 
 			this.navigate(route, true);
 
+		},
+
+		routeByUrl: function(route, options) {
+			this.navigate(route, options);
 		},
 
 		routeBack: function(e) {
@@ -98,11 +102,15 @@
 
 		},
 
-		//showPopup: function(data) {
-		//
-		//	APP.popUp = new APP.PopUpView(data);
-		//
-		//},
+		showPopup: function(data) {
+
+			APP.bb.popUp = new APP.BB.PopUpView(data);
+
+		},
+
+		hidePopup: function () {
+			console.log('HIDE POPUP');
+		},
 
 		stopEvent: function(e) {
 
@@ -128,5 +136,6 @@
 
 	var proto = APP.BB.BaseView.prototype;
 	proto.tmpl = win.APP.templateMaster.tmplFn;
+	proto.proto = proto;
 
 }(window));

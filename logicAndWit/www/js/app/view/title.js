@@ -1,4 +1,4 @@
-(function (win, doc) {
+(function (win) {
 
 	"use strict";
 	/*global window, Backbone, $, templateMaster, setTimeout, APP, history */
@@ -10,29 +10,20 @@
 	APP.BB.TitleView = APP.BB.BaseView.extend({
 
 		events: {
-			'click div': 'alert',
-			'click *': 'alert'
+
 		},
 
 		initialize: function () {
 
-			this.$el = $(this.tmpl.title({}));
-
 			APP.BB.BaseView.prototype.initialize.apply(this, arguments);
 
+			this.$el = $(this.tmpl.title({}));
 
 			this.render();
 
-		},
-		alert: function () {
-
-			console.log('//');
-
-			this.$wrapper.empty();
 		}
-
 
 
 	});
 
-}(window, document));
+}(window));

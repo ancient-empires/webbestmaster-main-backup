@@ -14,6 +14,8 @@
 		win.APP.util.setHTMLStyle();
 		APP.templateMaster.init();
 
+
+
 		function back() {
 
 			if ( location.hash ) {
@@ -21,7 +23,11 @@
 				setTimeout(back, 200);
 			} else {
 				win.APP.bb.router = new win.APP.BB.Router();
+				//Backbone.history.start({pushState: false});
 				Backbone.history.start();
+
+				//$('.ui-loader-default').remove();
+
 			}
 
 		}
