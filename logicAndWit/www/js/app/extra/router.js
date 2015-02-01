@@ -11,12 +11,19 @@
 	APP.BB.Router = Backbone.Router.extend({
 
 		routes: {
-			'': 'title'
+			'': 'title',
+			'section/:id': 'section'
 		},
 
 		title: function () {
 			APP.bb.title = new APP.BB.TitleView();
 		},
+
+		section: function (id) {
+			APP.bb.title = new APP.BB.TitleView();
+			console.log(id);
+		}
+
 
 		constructor: function () {
 

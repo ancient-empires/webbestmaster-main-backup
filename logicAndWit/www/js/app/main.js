@@ -23,11 +23,7 @@
 				setTimeout(back, 200);
 			} else {
 				win.APP.bb.router = new win.APP.BB.Router();
-				//Backbone.history.start({pushState: false});
 				Backbone.history.start();
-
-				//$('.ui-loader-default').remove();
-
 			}
 
 		}
