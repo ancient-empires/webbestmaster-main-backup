@@ -105,3 +105,8 @@ output, progress, section, summary, time, video {
 .ta-right {
 	text-align: right;
 }
+
+/* fix jquery mobile */
+.ui-loader-default {
+	display: none !important;
+}
