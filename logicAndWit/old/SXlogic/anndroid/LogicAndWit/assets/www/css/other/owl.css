@@ -1,0 +1,52 @@
+/*552 x 446*/
+.owl-node {
+	background-image: url(../../i/owl-1.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
+	width: 138px;
+	height: 223px;
+	position: fixed;
+	top: 100%;
+	left: 15px;
+}
+
+.owl-animation {
+	-webkit-animation-name: show-owl, eye-owl;
+	-webkit-animation-duration: 7s, 7s;
+	-webkit-animation-timing-function: ease, steps(10);
+	-webkit-animation-delay: 0, 0;
+	-webkit-animation-iteration-count: 1, 1;
+	-webkit-animation-direction: alternate, alternate;
+	-webkit-animation-play-state: forward, forward;
+	-webkit-animation-fill-mode: forwards, forwards;
+}
+
+@-webkit-keyframes eye-owl {
+
+	0%, 42.5%, 47.5%, 52.5%, 57.5%, 100% {
+		background-image: url(../../i/owl-1.png);
+	}
+
+	43%, 47%, 53%, 57% {
+		background-image: url(../../i/owl-2.png);
+	}
+
+}
+
+@-webkit-keyframes show-owl {
+
+	0%, 100% {
+		-webkit-transform: translate(0px, 0px);
+	}
+
+	35%, 65% {
+		-webkit-transform: translate(0px, -233px);
+	}
+
+	40%, 60% {
+		-webkit-transform: translate(0px, -223px);
+	}
+
+}

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Logic and Wit</title>
+
+	<!-- mobile device -->
+	<meta charset="UTF-8" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="apple-touch-fullscreen" content="yes" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
+	<!-- styles -->
+	<link rel="stylesheet" href="css/reset.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/rate-us.css"/>
+
+	<!-- themes -->
+	<link rel="stylesheet" href="css/themes/white.css"/>
+	<link rel="stylesheet" href="css/themes/black.css"/>
+
+	<!-- langs -->
+	<script src="js/lang/en.js" type="text/javascript"></script>
+	<script src="js/lang/ru.js" type="text/javascript"></script>
+
+	<!-- libs -->
+	<script src="js/lib/shim.js" type="text/javascript"></script>
+	<script src="js/lib/bro.js" type="text/javascript"></script>
+	<script src="js/lib/underscore.js" type="text/javascript"></script>
+	<script src="js/lib/backbone.js" type="text/javascript"></script>
+
+	<!-- services -->
+	<script src="js/service/info.js" type="text/javascript"></script>
+	<script src="js/service/lang.js" type="text/javascript"></script>
+	<script src="js/service/template-master.js" type="text/javascript"></script>
+	<script src="js/service/image-saver.js" type="text/javascript"></script>
+	<script src="js/service/util.js" type="text/javascript"></script>
+
+	<!-- views -->
+	<script src="js/object/main-view.js" type="text/javascript"></script>
+	<script src="js/object/title-view.js" type="text/javascript"></script>
+	<script src="js/object/section-view.js" type="text/javascript"></script>
+	<script src="js/object/question-view.js" type="text/javascript"></script>
+	<script src="js/object/settings-view.js" type="text/javascript"></script>
+	<script src="js/object/rate-us-view.js" type="text/javascript"></script>
+
+	<!-- ru sections -->
+	<script src="js/question/algorithms.js" type="text/javascript"></script>
+	<script src="js/question/sectionZagadkiSPodvohom.js" type="text/javascript"></script>
+	<script src="js/question/neStandartMysl.js" type="text/javascript"></script>
+	<script src="js/question/zabavhyeGolovolomki.js" type="text/javascript"></script>
+	<script src="js/question/zadachiPoKartinkam.js" type="text/javascript"></script>
+	<script src="js/question/vzveshivanieIPerelivanie.js" type="text/javascript"></script>
+	<script src="js/question/proVremya.js" type="text/javascript"></script>
+	<script src="js/question/starinnyyeISkazochnyyeGolovolomki.js" type="text/javascript"></script>
+	<script src="js/question/zadachiSoSpichkami.js" type="text/javascript"></script>
+	<script src="js/question/zadachiSoSlovami.js" type="text/javascript"></script>
+	<script src="js/question/veroyatnosty.js" type="text/javascript"></script>
+	<script src="js/question/geometriya.js" type="text/javascript"></script>
+	<script src="js/question/vychisleniya.js" type="text/javascript"></script>
+	<script src="js/question/kombinatorika.js" type="text/javascript"></script>
+	<script src="js/question/logikaIRassuzhdeniya.js" type="text/javascript"></script>
+	<script src="js/question/dirichletPrinciple.js" type="text/javascript"></script>
+	<script src="js/question/compliance.js" type="text/javascript"></script>
+	<script src="js/question/numericalPuzzles.js" type="text/javascript"></script>
+	<script src="js/question/frivolousPuzzles.js" type="text/javascript"></script>
+	<script src="js/question/physicalProblems.js" type="text/javascript"></script>
+	<script src="js/question/logicalTricksAndParadoxes.js" type="text/javascript"></script>
+
+	<!-- en sections -->
+	<script src="js/question/detectiveTeasers.js" type="text/javascript"></script>
+	<script src="js/question/logicPuzzles.js" type="text/javascript"></script>
+	<script src="js/question/matchstickPuzzles.js" type="text/javascript"></script>
+	<script src="js/question/mathematics.js" type="text/javascript"></script>
+	<script src="js/question/whatAmIQuestions.js" type="text/javascript"></script>
+	<script src="js/question/amazonInterviewQuestions.js" type="text/javascript"></script>
+	<script src="js/question/googleInterviewQuestions.js" type="text/javascript"></script>
+	<script src="js/question/microsoftInterviewQuestions.js" type="text/javascript"></script>
+	<script src="js/question/yahooInterviewQuestions.js" type="text/javascript"></script>
+	<script src="js/question/mysteryRiddles.js" type="text/javascript"></script>
+	<script src="js/question/pictureRiddles.js" type="text/javascript"></script>
+	<script src="js/question/funnyTeasers.js" type="text/javascript"></script>
+
+	<!-- main -->
+	<script src="js/main.js" type="text/javascript"></script>
+
+	<!-- other -->
+	<script src="js/lib/listEventListener.js" type="text/javascript"></script>
+	<script src="js/other/konami-code.js" type="text/javascript"></script>
+	<script src="js/other/owl.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="css/other/owl.css"/>
+
+</head>
+<body>
+
+<!--<div class="banner-ads-example"></div>-->
+
+<div class="js-wrapper wrapper">
+
+
+
+</div>
+
+
+<script type="text/x-template" data-name="title">
+
+	<h1 class="header"><%= lang.appName %></h1>
+
+	<div class="settings-button js-settings-button">&nbsp;</div>
+
+	<div class="list-wrapper">
+
+		<% for (var key in sections) { %>
+
+			<% if (sections[key].lang === info.lang) { %>
+			<div class="js-go-to-section list-item" data-section-name="<%= key %>">
+				<span class="section-progress"><%= util.getProgress(key) %></span>
+				<%= sections[key].name %>
+			</div>
+			<% }; %>
+
+		<% }; %>
+
+	</div>
+
+	<!--<a class="pay-pal-button" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PPZGUP7DJ43LJ"></a>-->
+
+	<% if ( !info.isIE ) { %>
+		<% if ( !info.isAdsFree ) { %>
+			<% if ( info.isAndroid ) { %>
+				<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="back">
+					<div class="ads-free-icon">&nbsp;</div>
+				</div>
+			<% }; %>
+		<% }; %>
+	<% }; %>
+
+
+</script>
+
+<script type="text/x-template" data-name="list">
+
+	<h1 class="header"><%= name %></h1>
+
+	<!--<div class="settings-button js-settings-button">&nbsp;</div>-->
+
+	<div class="list-wrapper">
+
+		<% questions.forEach(function(question, index){ %>
+
+			<% if ( info.sections && info.sections[info.currentSectionName] && info.sections[info.currentSectionName][index] ) { %>
+
+				<div class="js-question-item list-item question-was-done" data-number="<%= index %>"><%= question.title %></div>
+
+			<% } else { %>
+
+				<div class="js-question-item list-item" data-number="<%= index %>"><%= question.title %></div>
+
+			<% }; %>
+
+		<% }); %>
+
+	</div>
+
+	<div class="js-back back"><div class="back-icon"></div></div>
+	<!--<a class="pay-pal-button" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PPZGUP7DJ43LJ"></a>-->
+
+</script>
+
+<script type="text/x-template" data-name="question">
+
+	<h1 class="header"><%= title %></h1>
+
+	<!--<div class="settings-button js-settings-button">&nbsp;</div>-->
+
+	<div class="list-wrapper">
+
+		<%= templateMaster.createText(text) %>
+
+		<% if (obj.hint) { %>
+			<p class="question-paragraph button-wrapper"><span class="js-hint-button button"><%= lang.hint %></span></p>
+			<%= templateMaster.createText(hint, 'js-hint-text hidden') %>
+		<% }; %>
+
+		<div class="question-paragraph button-wrapper">
+
+			<div class="js-set-question navigation-button-wrapper-left" data-direction="-1"><div class="navigation-left"></div></div>
+			<div class="js-set-question navigation-button-wrapper-right" data-direction="1"><div class="navigation-right"></div></div>
+
+			<span class="js-answer-button button">
+				<!--<span class="button-progress">&nbsp;</span>-->
+				<%= lang.answer %>
+			</span>
+
+		</div>
+		<%= templateMaster.createText(answer, 'js-answer-text hidden') %>
+
+	</div>
+
+<!--
+	<div class="navigation-buttons-wrapper">
+		<div class="js-set-question navigation-button-wrapper-left" data-direction="-1"><div class="navigation-left"></div></div>
+		<div class="js-set-question navigation-button-wrapper-right" data-direction="1"><div class="navigation-right"></div></div>
+	</div>
+-->
+
+	<div class="js-back back"><div class="back-icon"></div></div>
+
+</script>
+
+<script type="text/x-template" data-name="rate-us">
+
+	<div class="rate-us-wrapper js-rate-us-wrapper">
+
+		<div class="rate-us-form js-rate-us-form">
+
+			<h3 class="rate-us-header"><%= lang.rateUs.pleaseRateUs %></h3>
+
+			<div class="stars-wrapper clear-fix">
+
+				<% [1, 2, 3, 4, 5].forEach(function(value){ %>
+
+				<div class="rate-us-star js-rate-us-star" data-value="<%= value %>" data-word="<%= lang.rateUs.stars[value] %>"></div>
+
+				<% }); %>
+
+			</div>
+
+			<h3 class="rate-us-header js-rate-by-star"><%= lang.rateUs.stillNotRated %></h3>
+
+			<div class="rate-us-send-feedback hidden js-rate-us-send-feedback">
+
+				<textarea class="rate-us-send-textarea js-rate-us-send-textarea" cols="30" rows="10" placeholder="<%= lang.rateUs.writeFeedBackHere %>"></textarea>
+
+				<span class="rate-us-send-button js-rate-us-send-button"><%= lang.rateUs.sendFeedback %></span>
+
+			</div>
+
+			<span class="rate-us-send-button js-rate-us-on-google-play hidden"><%= info.isAndroid ? lang.rateUs.rateUsOnGooglePlay : lang.rateUs.rateUsOnAppStore %></span>
+
+			<span class="rate-us-send-button js-not-now"><%= lang.rateUs.notNow %></span>
+
+		</div>
+
+		<div class="rate-us-fade js-rate-us-fade"></div>
+
+	</div>
+
+</script>
+
+
+<script type="text/x-template" data-name="settings">
+
+	<h1 class="header"><%= lang.settings %></h1>
+
+	<div class="list-wrapper">
+
+		<div class="data-wrapper">
+
+			<div class="list-item"><%= lang.theme %></div>
+
+			<div class="theme-items-list-wrapper clear-fix">
+
+				<% themes.forEach(function(theme){ %>
+
+					<% if (theme.title === 'standard') { %>
+						<div style="display: none;" class="theme-item-wrapper js-theme-item-wrapper" data-theme-name="<%= theme.title %>">
+							<img class="square-block with-theme-bg <%= theme.title %>-theme-bg" src="i/spacer.png" alt=""/>
+							<span class="list-item" style="display: none;"><%= theme.name %></span>
+						</div>
+					<% } else { %>
+						<div class="theme-item-wrapper js-theme-item-wrapper" data-theme-name="<%= theme.title %>">
+							<img class="square-block with-theme-bg <%= theme.title %>-theme-bg" src="i/spacer.png" alt=""/>
+							<span class="list-item" style="display: none;"><%= theme.name %></span>
+						</div>
+					<% }; %>
+
+				<% }); %>
+
+			</div>
+
+		</div>
+
+		<div class="data-wrapper">
+
+			<div class="list-item capitalize"><%= langs.en.language %> / <%= langs.ru.language %></div>
+
+			<div class="theme-items-list-wrapper">
+
+				<img data-lang="en" class="flag-block js-flag-block<%= info.lang === 'en' ? ' active' : '' %>" src="i/flag-en-us.svg" alt=""/>
+
+				<img data-lang="ru" class="flag-block js-flag-block<%= info.lang === 'ru' ? ' active' : '' %>" src="i/flag-ru.svg" alt=""/>
+
+			</div>
+
+		</div>
+
+		<% if ( !info.isIE ) { %>
+
+		<% if ( info.isAndroid ) { %>
+		<div class="data-wrapper">
+			<div class="list-item js-rate-us-button"><span class="underline"><%= lang.rateUs.rateUs %></span></div>
+		</div>
+		<% }; %>
+
+		<div class="data-wrapper">
+			<% if ( !info.isAdsFree ) { %>
+				<% if ( info.isAndroid ) { %>
+				<div data-external-link="<%= info.isAndroid ? info.adsFreeLinks.googlePlay : info.adsFreeLinks.appStore %>" class="list-item">
+					<span class="underline"><%= lang.noAds %></span>
+				</div>
+				<% }; %>
+			<% } else { %>
+				<div class="list-item"><%= lang.thanksForBuyProVersion %>.</div>
+			<% }; %>
+		</div>
+		<% }; %>
+
+	</div>
+
+	<div class="js-back back"><div class="back-icon"></div></div>
+
+</script>
+
+
+</body>
+</html>
