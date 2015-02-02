@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-
-<!-- sapogi!!!!!!!!!!!!!!!!!!!!!!!!! -->
-<!--141950-->
-
-
-
 <html>
 <head>
 	<meta charset="UTF-8">
@@ -116,7 +110,7 @@
 
 <script type="text/x-template" data-name="title">
 
-		<div class="js-title-wrapper">
+		<div>
 
 			<%= window.APP.templateMaster.tmplFn.header() %>
 
@@ -132,7 +126,7 @@
 
 <script type="text/x-template" data-name="section">
 
-	<div class="">
+	<div>
 
 		<%= window.APP.templateMaster.tmplFn.header({ header: name }) %>
 
@@ -141,7 +135,6 @@
 			<div class="list-item js-to-question" data-index="<%= index %>" ><%= question.title %></div>
 			<% }); %>
 		</div>
-
 
 	</div>
 
@@ -176,11 +169,15 @@
 <script type="text/x-template" data-name="question">
 
 	<div>
-		<div>
-			<div>
-				<%= text %>
-			</div>
+
+		<%= window.APP.templateMaster.tmplFn.header({ header: '' }) %>
+
+		<div class="content-wrapper js-content-wrapper">
+
+			<%= JSON.stringify(obj) %>
+
 		</div>
+
 	</div>
 
 </script>

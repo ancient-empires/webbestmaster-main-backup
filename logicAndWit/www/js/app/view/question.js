@@ -28,7 +28,6 @@
 
 			this.render();
 
-
 		},
 
 		render: function () {
