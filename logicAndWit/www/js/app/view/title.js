@@ -15,7 +15,7 @@
 
 		initialize: function () {
 
-			this.$el = $(this.tmpl.title({}));
+			this.$el = $(this.tmpl.title());
 
 			this.proto.initialize.apply(this, arguments);
 

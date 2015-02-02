@@ -10,7 +10,9 @@
 
 	APP.languages.ru = {
 		language: 'язык',
-		languageName: 'Русский'
+		languageName: 'Русский',
+		appName: 'Логика и смекалка'
+
 	};
 
 }(window));

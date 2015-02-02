@@ -10,7 +10,8 @@
 
 	APP.languages.en = {
 		language: 'language',
-		languageName: 'English'
+		languageName: 'English',
+		appName: 'Logic and Wit'
 	};
 
 }(window));
