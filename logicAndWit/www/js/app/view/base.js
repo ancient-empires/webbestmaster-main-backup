@@ -8,6 +8,8 @@
 
 	win.APP.BB = win.APP.BB || {};
 
+	var proto;
+
 	APP.BB.BaseView = Backbone.View.extend({
 
 		events: {
@@ -25,6 +27,8 @@
 		constructor: function() {
 
 			this.events = $.extend( {}, proto.events, this.events );
+
+			this.attr = {};
 
 			return Backbone.View.prototype.constructor.apply(this, arguments);
 		},
@@ -113,11 +117,18 @@
 
 			win.open(url);
 
+		},
+		set: function (key, value) {
+			return this.attr[key] = value;
+		},
+		get: function (key) {
+			return this.attr[key];
 		}
 
 	});
 
-	var proto = APP.BB.BaseView.prototype;
+	proto = APP.BB.BaseView.prototype;
+
 	proto.tmpl = win.APP.templateMaster.tmplFn;
 	proto.proto = proto;
 

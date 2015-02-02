@@ -17,7 +17,7 @@
 
 			this.$el = $(this.tmpl.title({}));
 
-			APP.BB.BaseView.prototype.initialize.apply(this, arguments);
+			this.proto.initialize.apply(this, arguments);
 
 			this.render();
 
