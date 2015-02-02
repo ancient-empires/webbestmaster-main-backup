@@ -408,7 +408,6 @@
 			var buildings = controller.buildings,
 				humanId = human.id,
 				enemy = controller.players[1],
-				enemyUnits = controller.getUnitByPlayer(enemy),
 				building,
 				key,
 				farms = [],
@@ -424,7 +423,7 @@
 			}
 
 
-			if ( !enemyUnits.length && boughtList.length >= 3 && farms.length >= 2 ) {
+			if ( boughtList.length >= 3 && farms.length >= 2 ) {
 				result.message = 'you win';
 
 				window.info.pushNewMission('c03_escort');
