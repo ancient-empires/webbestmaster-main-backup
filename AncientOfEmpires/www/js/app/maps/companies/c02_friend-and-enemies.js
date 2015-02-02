@@ -407,7 +407,6 @@
 
 			var buildings = controller.buildings,
 				humanId = human.id,
-				enemy = controller.players[1],
 				building,
 				key,
 				farms = [],
