@@ -104,7 +104,7 @@
 
 	<div class="js-header-wrapper header-wrapper">
 
-		<h1 class="header-title"><%= (obj && obj.header) || window.APP.lang.get('appName') %></h1>
+		<h1 class="js-header-title header-title"><%= (obj && obj.header) || window.APP.lang.get('appName') %></h1>
 
 		<% if (window.location.hash) { %>
 			<div class="js-back back">< -</div>
@@ -120,7 +120,7 @@
 
 			<%= window.APP.templateMaster.tmplFn.header() %>
 
-			<div class="content-wrapper">
+			<div class="content-wrapper js-content-wrapper">
 				<% $.each(window.sections, function(key, value) { %>
 				<div class="list-item" data-route="section/<%= key %>"> <%= value.name %> </div>
 				<% }); %>
@@ -136,7 +136,7 @@
 
 		<%= window.APP.templateMaster.tmplFn.header({ header: name }) %>
 
-		<div class="content-wrapper">
+		<div class="content-wrapper js-content-wrapper">
 			<% _.each(questions, function(question, index){ %>
 			<div class="list-item js-to-question" data-index="<%= index %>" ><%= question.title %></div>
 			<% }); %>

@@ -1,4 +1,4 @@
-(function (win) {
+(function (win, doc) {
 
 	"use strict";
 	/*global window, location */
@@ -58,7 +58,10 @@
 
 		render: function () {
 
-			this.$wrapper.empty().append(this.$el);
+			this.$wrapper.empty();
+			this.util.toTop();
+			this.$wrapper.append(this.$el);
+			this.util.setSizes();
 
 		},
 
@@ -119,7 +122,8 @@
 
 		},
 		set: function (key, value) {
-			return this.attr[key] = value;
+			this.attr[key] = value;
+			return value;
 		},
 		get: function (key) {
 			return this.attr[key];
@@ -132,4 +136,25 @@
 	proto.tmpl = win.APP.templateMaster.tmplFn;
 	proto.proto = proto;
 
-}(window));
+	proto.util = {
+		toTop: function () {
+			win.scrollTo(0, 0);
+		},
+		setSizes: function () {
+			var header = doc.querySelector('.js-header-title'),
+				content = doc.querySelector('.js-content-wrapper'),
+				headerHeight = header.clientHeight;
+			content.style.paddingTop = headerHeight + 'px';
+
+		},
+		onResize: function () {
+			this.setSizes();
+		},
+		init: function () {
+			win.addEventListener('resize', this.onResize.bind(this), false);
+		}
+	};
+
+	proto.util.init();
+
+}(window, document));
