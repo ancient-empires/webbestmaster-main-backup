@@ -64,6 +64,7 @@
 			var lang = this.get('language') || navigator.language || navigator.userLanguage || this.defaultLanguage;
 			lang = lang.split('-')[0].toLocaleLowerCase();
 			lang = (this.availableLanguages.indexOf(lang) === -1) ? this.defaultLanguage : lang;
+			lang = lang.toLowerCase();
 			this.set('language', lang);
 
 		},

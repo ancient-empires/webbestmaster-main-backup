@@ -9,7 +9,7 @@
 	APP.languages = APP.languages || {};
 
 	APP.languages.en = {
-		language: 'language',
+		language: 'Language',
 		languageName: 'English',
 		appName: 'Logic and Wit',
 		settings: 'Settings',

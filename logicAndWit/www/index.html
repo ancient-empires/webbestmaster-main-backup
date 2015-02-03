@@ -232,8 +232,13 @@
 
 		<div class="content-wrapper js-content-wrapper">
 
-			<div>theme</div>
-			<div>language</div>
+			<p class="text ta-center"><%= APP.languages.en.language %> / <%= APP.languages.ru.language %></p>
+
+			<div class="clear-fix ta-center">
+				<img class="js-set-lang flag <%= (window.APP.info.get('language') === 'en') ? 'active-flag' : '' %>" data-lang="en" src="i/flag-en-us.svg" alt=""/>
+				<img class="js-set-lang flag <%= (window.APP.info.get('language') === 'ru') ? 'active-flag' : '' %>" data-lang="ru" src="i/flag-ru.svg" alt=""/>
+
+			</div>
 
 		</div>
 

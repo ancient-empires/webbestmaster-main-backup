@@ -9,7 +9,7 @@
 	APP.languages = APP.languages || {};
 
 	APP.languages.ru = {
-		language: 'язык',
+		language: 'Язык',
 		languageName: 'Русский',
 		appName: 'Логика и смекалка',
 		settings: 'Настройки',

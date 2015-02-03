@@ -70,8 +70,12 @@ body {
 	padding-bottom: 0.8rem;
 }
 
+.text,
 .question-text {
 	padding-bottom: 0.8rem;
+}
+
+.question-text {
 	text-indent: 1rem;
 }
 
@@ -118,11 +122,17 @@ body {
 	padding-left: 0.5rem;
 }
 
+.flag {
+	width: 35%;
+	display: inline-block;
+	border-radius: 0.3rem;
+	margin: 0 0.4rem;
+	opacity: 0.4;
+	box-shadow: 1px 1px 0 #4A3A2D, -1px 1px 0 #4A3A2D, 1px -1px 0 #4A3A2D, -1px -1px 0 #4A3A2D;
+}
 
-
-
-
-
-
+.active-flag {
+	opacity: 0.8;
+}
 
 

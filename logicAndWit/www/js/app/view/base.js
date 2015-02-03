@@ -30,6 +30,8 @@
 
 			this.attr = {};
 
+			this.info = win.APP.info;
+
 			return Backbone.View.prototype.constructor.apply(this, arguments);
 		},
 
@@ -120,6 +122,9 @@
 
 			win.open(url);
 
+		},
+		loadUrl: function () {
+			Backbone.history.loadUrl();
 		},
 		set: function (key, value) {
 			this.attr[key] = value;
