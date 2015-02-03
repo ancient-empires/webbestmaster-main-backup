@@ -97,7 +97,26 @@ body {
 	background-color: #dfdfdf;
 }
 
+.navigate-button-left,
+.navigate-button-right {
+	font-size: 2.3rem;
+	padding: 0.2rem 0 0.6rem;
+}
 
+.navigate-button-left:active,
+.navigate-button-right:active {
+	opacity: 0.5;
+}
+
+.navigate-button-left {
+	float: left;
+	padding-right: 0.5rem;
+}
+
+.navigate-button-right {
+	float: right;
+	padding-left: 0.5rem;
+}
 
 
 
