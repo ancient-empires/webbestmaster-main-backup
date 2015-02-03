@@ -11,7 +11,8 @@
 
 		events: {
 			'click .js-show-block': 'showBlock',
-			'click .js-navigate-button': 'nextQuestion'
+			'click .js-navigate-button': 'nextQuestion',
+			'click .js-save-answer-state': 'saveSectionState'
 		},
 
 		initialize: function (data) {
@@ -103,6 +104,21 @@
 				sectionName: this.get('sectionName'),
 				questionIndex: questionIndex
 			});
+
+		},
+
+		saveSectionState: function () {
+
+			var sectionName = this.get('sectionName'),
+				questionIndex = String(this.get('questionIndex')),
+				sections = this.info.get('sections') || {};
+
+			sections[sectionName] = sections[sectionName] || {};
+
+			sections[sectionName][questionIndex] = 1;
+
+			this.info.set('sections', sections);
+
 
 		}
 

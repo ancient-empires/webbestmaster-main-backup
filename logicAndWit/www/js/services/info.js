@@ -41,7 +41,7 @@
 
 	info = {
 		ls: win.localStorage,
-		saveItem: '-----APP-NAME-----',
+		saveItem: 'zaggadki',
 		attr: {},
 		defaultLanguage: 'en',
 		availableLanguages: ['ru', 'en'],
@@ -68,13 +68,11 @@
 			this.set('language', lang);
 
 		},
-		set: function (key, value, toLS) {
+		set: function (key, value) {
 
 			this.attr[key] = value;
 
-			if (toLS) {
-				this.ls.setItem(this.saveItem, JSON.stringify(this.attr));
-			}
+			this.ls.setItem(this.saveItem, JSON.stringify(this.attr));
 
 			return true;
 

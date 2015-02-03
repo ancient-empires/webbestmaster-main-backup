@@ -30,7 +30,7 @@ body {
 	display: block;
 	background-color: #EEE5DC;
 	margin-bottom: 0.9rem;
-	padding: 0.6rem;
+	padding: 0.6rem 1.8rem;
 	font-size: 1rem;
 	text-align: center;
 }
@@ -134,5 +134,15 @@ body {
 .active-flag {
 	opacity: 0.8;
 }
+
+.questions-done {
+	background-image: url(../i/white/corner.svg);
+	background-repeat: no-repeat;
+	background-position: top right;
+	-webkit-background-size: auto 1.1rem;
+	background-size: auto 1.1rem;
+}
+
+
 
 

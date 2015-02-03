@@ -17,9 +17,11 @@
 
 			this.proto.initialize.apply(this, arguments);
 
-			var sectionName = data.id;
+			var sectionName = data.id,
+				sections = this.info.get('sections') || {},
+				questionsDone = sections[sectionName] || {};
 
-			this.$el = $(this.tmpl.section( win.sections[sectionName] ));
+			this.$el = $(this.tmpl.section( { section: win.sections[sectionName], questionsDone: questionsDone}  ));
 
 			this.render();
 
