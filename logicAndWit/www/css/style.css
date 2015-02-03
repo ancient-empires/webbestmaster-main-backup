@@ -33,10 +33,20 @@ body {
 	padding: 0.6rem 1.8rem;
 	font-size: 1rem;
 	text-align: center;
+	position: relative;
 }
 
 .list-item:active {
 	opacity: 0.5;
+}
+
+.list-item-progress {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background-color: #A48A75;
+	height: 0.15rem;
+	width: 0;
 }
 
 .back,

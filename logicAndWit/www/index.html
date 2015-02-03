@@ -123,7 +123,10 @@
 			<% var lang = window.APP.info.get('language').toLowerCase(); %>
 			<% $.each(window.sections, function(key, value) { %>
 				<% if ( value.lang === lang ) { %>
-				<div class="list-item" data-route="section/<%= key %>"> <%= value.name %> </div>
+				<div class="list-item" data-route="section/<%= key %>">
+					<%= value.name %>
+					<div class="list-item-progress" style="width: <%= getProgressBySection(key, value) %>%;"></div>
+				</div>
 				<% }; %>
 			<% }); %>
 		</div>
