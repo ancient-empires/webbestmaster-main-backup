@@ -10,11 +10,7 @@
 	APP.BB.QuestionView = APP.BB.BaseView.extend({
 
 		events: {
-			'click div': 'test'
-		},
-
-		test: function () {
-			console.log('asdsad');
+			'click .js-show-block': 'showBlock'
 		},
 
 		initialize: function (data) {
@@ -38,7 +34,7 @@
 				return chunk.trim();
 			});
 
-			question.hint = question.hint.trim();
+			question.hint = (question.hint ||'' ).trim();
 			if ( question.hint ) {
 				question.hint = question.hint.split('_!_').map(function (chunk) {
 					return chunk.trim();
@@ -71,6 +67,16 @@
 			}
 
 			return this.tmpl.questionText({ text: chunk });
+
+		},
+
+		showBlock: function (e) {
+
+			var $this = $(e.target),
+				selector = $this.attr('data-show-button'),
+				$hiddenBlock = this.$el.find('[data-hidden-block="' + selector + '"]');
+
+			$hiddenBlock.removeClass('hidden');
 
 		}
 

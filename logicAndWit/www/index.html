@@ -194,23 +194,26 @@
 
 			<% if ( hint.length ) { %>
 			<div>
-				<h1>hint button is here</h1>
+				<div class="js-show-block" data-show-button="js-hint">hint</div>
 			</div>
-			<div>
+			<div class="hidden" data-hidden-block="js-hint">
 				<% _.each(hint, function(chunk){ %>
 				<%= parseChunk(chunk) %>
 				<% }); %>
 			</div>
 			<% }; %>
 
-			<div> answer button <br>left<br>right</div>
-
 			<div>
+				<div class="js-show-block" data-show-button="js-answer">answer</div>
+				<div class="js-navigate-button" data-navigate="next">left</div>
+				<div class="js-navigate-button" data-navigate="prev">right</div>
+			</div>
+
+			<div class="hidden" data-hidden-block="js-answer">
 				<% _.each(answer, function(chunk){ %>
 				<%= parseChunk(chunk) %>
 				<% }); %>
 			</div>
-
 
 		</div>
 

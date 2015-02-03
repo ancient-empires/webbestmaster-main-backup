@@ -59,9 +59,9 @@
 		render: function () {
 
 			this.$wrapper.empty();
-			this.util.toTop();
 			this.$wrapper.append(this.$el);
 			this.util.setSizes();
+			this.util.toTop();
 
 		},
 
