@@ -43,16 +43,25 @@ body {
 .setting {
 	position: absolute;
 	top: 0;
-	padding: 1rem;
-	background-color: #ccc;
+	overflow: hidden;
+	height: 2.5rem;
+	width: 2.5rem;
+	z-index: 1;
+	background-repeat: no-repeat;
+	background-position: center center;
+	opacity: 0.9;
 }
 
 .back {
 	left: 0;
+	background-image: url('../i/white/back.svg');
+	background-size: 75% auto;
 }
 
 .setting {
+	background-image: url('../i/white/setting.svg');
 	right: 0;
+	background-size: 60% auto;
 }
 
 .question-image {
@@ -82,7 +91,11 @@ body {
 	margin-bottom: 0.8rem;
 }
 
-
+.button:active {
+	background: -webkit-linear-gradient(top, #dfdfdf, #ededed);
+	background: linear-gradient(top, #dfdfdf, #ededed);
+	background-color: #dfdfdf;
+}
 
 
 

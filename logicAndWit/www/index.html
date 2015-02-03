@@ -102,11 +102,11 @@
 		<h1 class="js-header-title header-title"><%= (obj && obj.header) || window.APP.lang.get('appName') %></h1>
 
 		<% if ( window.location.hash ) { %>
-			<div class="js-back back">< -</div>
+			<div class="js-back back">&nbsp;</div>
 		<% }; %>
 
 		<% if ( obj && obj.showSetting ) { %>
-			<div class="setting" data-route="setting">**</div>
+			<div class="setting" data-route="setting">&nbsp;</div>
 		<% }; %>
 
 	</div>
