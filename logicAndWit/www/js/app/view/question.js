@@ -10,7 +10,8 @@
 	APP.BB.QuestionView = APP.BB.BaseView.extend({
 
 		events: {
-			'click .js-show-block': 'showBlock'
+			'click .js-show-block': 'showBlock',
+			'click .js-navigate-button': 'nextQuestion'
 		},
 
 		initialize: function (data) {
@@ -78,8 +79,32 @@
 
 			$hiddenBlock.removeClass('hidden');
 
-		}
+		},
 
+		nextQuestion: function (e) {
+
+			var $this = $(e.target),
+				direction = $this.attr('data-navigate'),
+				sectionName = this.get('sectionName'),
+				questionIndex = this.get('questionIndex'),
+				questionsLength = win.sections[sectionName].questions.length;
+
+			questionIndex += (direction === 'next') ? 1 : -1;
+
+			if (questionIndex < 0) {
+				questionIndex = questionsLength - 1;
+			}
+
+			if (questionIndex >= questionsLength) {
+				questionIndex = 0;
+			}
+
+			APP.bb.questionView = new APP.BB.QuestionView({
+				sectionName: this.get('sectionName'),
+				questionIndex: questionIndex
+			});
+
+		}
 
 	});
 
