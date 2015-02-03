@@ -11,7 +11,8 @@
 	APP.languages.ru = {
 		language: 'язык',
 		languageName: 'Русский',
-		appName: 'Логика и смекалка'
+		appName: 'Логика и смекалка',
+		settings: 'Настройки'
 
 	};
 

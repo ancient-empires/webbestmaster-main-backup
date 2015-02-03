@@ -12,7 +12,8 @@
 
 		routes: {
 			'': 'title',
-			'section/:id': 'section'
+			'section/:id': 'section',
+			'setting': 'setting'
 		},
 
 		title: function () {
@@ -21,6 +22,10 @@
 
 		section: function (id) {
 			APP.bb.section = new APP.BB.SectionView({ id: id });
+		},
+
+		setting: function () {
+			APP.bb.setting = new APP.BB.SettingView();
 		},
 
 		constructor: function () {

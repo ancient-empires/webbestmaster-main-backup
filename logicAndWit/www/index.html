@@ -81,6 +81,7 @@
 	<script src="js/app/view/popup.js" type="text/javascript"></script>
 	<script src="js/app/view/section.js" type="text/javascript"></script>
 	<script src="js/app/view/question.js" type="text/javascript"></script>
+	<script src="js/app/view/setting.js" type="text/javascript"></script>
 
 	<!-- start app -->
 	<script src="js/app/main.js" type="text/javascript"></script>
@@ -100,8 +101,12 @@
 
 		<h1 class="js-header-title header-title"><%= (obj && obj.header) || window.APP.lang.get('appName') %></h1>
 
-		<% if (window.location.hash) { %>
+		<% if ( window.location.hash ) { %>
 			<div class="js-back back">< -</div>
+		<% }; %>
+
+		<% if ( obj && obj.showSetting ) { %>
+			<div data-route="setting">* setting *</div>
 		<% }; %>
 
 	</div>
@@ -112,7 +117,7 @@
 
 		<div>
 
-			<%= window.APP.templateMaster.tmplFn.header() %>
+			<%= window.APP.templateMaster.tmplFn.header({ showSetting: true }) %>
 
 			<div class="content-wrapper js-content-wrapper">
 				<% $.each(window.sections, function(key, value) { %>
@@ -198,7 +203,6 @@
 			</div>
 			<% }; %>
 
-
 			<div> answer button <br>left<br>right</div>
 
 			<div>
@@ -211,6 +215,24 @@
 		</div>
 
 	</div>
+
+</script>
+
+<script type="text/x-template" data-name="setting">
+
+	<div>
+
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('settings') }) %>
+
+		<div class="content-wrapper js-content-wrapper">
+
+			<div>theme</div>
+			<div>language</div>
+
+		</div>
+
+	</div>
+
 
 </script>
 

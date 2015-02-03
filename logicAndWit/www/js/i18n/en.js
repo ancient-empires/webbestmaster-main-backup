@@ -11,7 +11,9 @@
 	APP.languages.en = {
 		language: 'language',
 		languageName: 'English',
-		appName: 'Logic and Wit'
+		appName: 'Logic and Wit',
+		settings: 'Settings'
+
 	};
 
 }(window));
