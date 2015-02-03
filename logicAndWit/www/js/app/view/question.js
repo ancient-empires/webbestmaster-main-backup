@@ -38,9 +38,39 @@
 				return chunk.trim();
 			});
 
+			question.hint = question.hint.trim();
+			if ( question.hint ) {
+				question.hint = question.hint.split('_!_').map(function (chunk) {
+					return chunk.trim();
+				});
+			} else {
+				question.hint = [];
+			}
+
+			question.answer = question.answer.split('_!_').map(function (chunk) {
+				return chunk.trim();
+			});
+
+			question.parseChunk = this.parseChunk.bind(this);
+
 			this.$el = $(this.tmpl.question(question));
 
 			this.proto.render.call(this);
+
+		},
+		parseChunk: function (chunk) {
+
+			if ( !chunk ) {
+				return '';
+			}
+
+			// detect image
+			if ( /^http/gi.test(chunk) ) {
+				chunk = 'image/' + chunk.split('/').pop();
+				return this.tmpl.questionImage({ src: chunk });
+			}
+
+			return this.tmpl.questionText({ text: chunk });
 
 		}
 

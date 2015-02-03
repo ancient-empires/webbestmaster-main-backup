@@ -32,6 +32,8 @@
 			var $this = $(e.target),
 				index = parseInt($this.attr('data-index'), 10);
 
+			this.navigate('question', true);
+
 			APP.bb.questionView = new APP.BB.QuestionView({
 				sectionName: this.get('sectionName'),
 				questionIndex: index

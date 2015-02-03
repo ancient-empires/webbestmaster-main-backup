@@ -165,6 +165,13 @@
 
 </script>
 
+<script type="text/x-template" data-name="questionImage">
+	<img class="question-image" src="<%= src %>" alt=""/>
+</script>
+
+<script type="text/x-template" data-name="questionText">
+	<p class="question-text"><%= text %></p>
+</script>
 
 <script type="text/x-template" data-name="question">
 
@@ -174,16 +181,32 @@
 
 		<div class="content-wrapper js-content-wrapper">
 
-			<% _.each(text, function(chunk){ %>
+			<div>
+				<% _.each(text, function(chunk){ %>
+				<%= parseChunk(chunk) %>
+				<% }); %>
+			</div>
 
-				<div><%= chunk %></div>
-				<br/>
-				<br/>
-				<br/>
-			<% }); %>
+			<% if ( hint.length ) { %>
+			<div>
+				<h1>hint button is here</h1>
+			</div>
+			<div>
+				<% _.each(hint, function(chunk){ %>
+				<%= parseChunk(chunk) %>
+				<% }); %>
+			</div>
+			<% }; %>
 
 
-			<%= JSON.stringify(obj) %>
+			<div> answer button <br>left<br>right</div>
+
+			<div>
+				<% _.each(answer, function(chunk){ %>
+				<%= parseChunk(chunk) %>
+				<% }); %>
+			</div>
+
 
 		</div>
 
