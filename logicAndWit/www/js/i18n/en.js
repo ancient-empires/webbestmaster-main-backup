@@ -12,7 +12,9 @@
 		language: 'language',
 		languageName: 'English',
 		appName: 'Logic and Wit',
-		settings: 'Settings'
+		settings: 'Settings',
+		hint: 'hint',
+		answer: 'answer'
 
 	};
 

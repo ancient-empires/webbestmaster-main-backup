@@ -2,21 +2,23 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 	font-weight: normal;
 	line-height: 1.15rem;
+	background-color: #f7f0ea;
+	color: #4A3A2D;
 }
 
 .header-wrapper {
-	background-color: #fff;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	z-index: 1;
+	background-color: rgba(247, 240, 234, 0.9);
 }
 
 .header-title {
-	font-size: 1.25rem;
+	font-size: 1.15rem;
 	text-align: center;
-	padding: 1rem 3rem;
+	padding: 0.7rem 3rem;
 }
 
 .content-wrapper {
@@ -26,7 +28,7 @@ body {
 
 .list-item {
 	display: block;
-	background-color: #ccc;
+	background-color: #EEE5DC;
 	margin-bottom: 0.9rem;
 	padding: 0.6rem;
 	font-size: 1rem;
@@ -34,23 +36,51 @@ body {
 }
 
 .list-item:active {
-	opacity: 0.7;
+	opacity: 0.5;
 }
 
-.back {
+.back,
+.setting {
 	position: absolute;
-	left: 0;
 	top: 0;
 	padding: 1rem;
 	background-color: #ccc;
 }
 
+.back {
+	left: 0;
+}
 
+.setting {
+	right: 0;
+}
 
+.question-image {
+	display: block;
+	width: 100%;
+	padding-bottom: 0.8rem;
+}
 
+.question-text {
+	padding-bottom: 0.8rem;
+	text-indent: 1rem;
+}
 
-
-
+.button {
+	-webkit-box-shadow: inset 0 1px 0 0 #ffffff;
+	box-shadow: inset 0 1px 0 0 #ffffff;
+	background-image: -webkit-linear-gradient(top, #ededed, #dfdfdf );
+	background-image: linear-gradient(top, #ededed, #dfdfdf );
+	background-color: #ededed;
+	border-radius: 0.4rem;
+	border: 1px solid #dcdcdc;
+	text-align: center;
+	text-shadow: 1px 1px 0 #ffffff;
+	padding: 0.3rem 1rem;
+	width: 35%;
+	margin: 0 auto;
+	margin-bottom: 0.8rem;
+}
 
 
 

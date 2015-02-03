@@ -12,7 +12,9 @@
 		language: 'язык',
 		languageName: 'Русский',
 		appName: 'Логика и смекалка',
-		settings: 'Настройки'
+		settings: 'Настройки',
+		hint: 'подсказка',
+		answer: 'ответ'
 
 	};
 
