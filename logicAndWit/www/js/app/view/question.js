@@ -24,8 +24,6 @@
 			this.set('sectionName', data.sectionName);
 			this.set('questionIndex', data.questionIndex);
 
-			this.$el = $(this.tmpl.question());
-
 			this.render();
 
 		},
@@ -34,15 +32,18 @@
 
 			var sectionName = this.get('sectionName'),
 				questionIndex = this.get('questionIndex'),
-				question = win.sections[sectionName].questions[questionIndex];
+				question = this.util.copyJSON(win.sections[sectionName].questions[questionIndex]);
+
+			question.text = question.text.split('_!_').map(function (chunk) {
+				return chunk.trim();
+			});
 
 			this.$el = $(this.tmpl.question(question));
-			//
+
 			this.proto.render.call(this);
 
-			debugger;
-
 		}
+
 
 	});
 

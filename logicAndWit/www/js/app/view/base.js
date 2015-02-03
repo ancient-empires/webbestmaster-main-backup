@@ -152,6 +152,9 @@
 		},
 		init: function () {
 			win.addEventListener('resize', this.onResize.bind(this), false);
+		},
+		copyJSON: function (obj) {
+			return JSON.parse(JSON.stringify(obj));
 		}
 	};
 
