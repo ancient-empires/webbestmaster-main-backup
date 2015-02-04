@@ -243,9 +243,9 @@
 
 			<p class="text ta-center"><%= window.APP.lang.get('theme') %></p>
 
-			<div class="clear-fix ta-center">
+			<div class="clear-fix setting-block-wrapper">
 				<% _.each(themeList, function(themeName) { %>
-					<div class="js-set-theme theme <%= themeName %> <%= (window.APP.info.get('theme') === themeName) ? 'active-theme' : '' %>" data-theme="<%= themeName %>">
+					<div class="js-set-theme theme <%= themeName %>-icon <%= (window.APP.info.get('theme') === themeName) ? 'active-theme' : '' %>" data-theme="<%= themeName %>">
 						<%= window.APP.lang.get('text') %>
 					</div>
 				<% }); %>
@@ -253,7 +253,7 @@
 
 			<p class="text ta-center"><%= APP.languages.en.language %> / <%= APP.languages.ru.language %></p>
 
-			<div class="clear-fix ta-center">
+			<div class="clear-fix setting-block-wrapper">
 				<img class="js-set-lang flag <%= (window.APP.info.get('language') === 'en') ? 'active-flag' : '' %>" data-lang="en" src="i/flag-en-us.svg" alt=""/>
 				<img class="js-set-lang flag <%= (window.APP.info.get('language') === 'ru') ? 'active-flag' : '' %>" data-lang="ru" src="i/flag-ru.svg" alt=""/>
 			</div>

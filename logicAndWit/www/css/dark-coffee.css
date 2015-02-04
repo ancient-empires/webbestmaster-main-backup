@@ -43,11 +43,15 @@ body.black-coffee {
 	background-image: url(../i/black/corner.svg);
 }
 
-.black-coffee .flag {
+.black-coffee .flag,
+.black-coffee .theme {
 	box-shadow: 1px 1px 0 #b5c5d2, -1px 1px 0 #b5c5d2, 1px -1px 0 #b5c5d2, -1px -1px 0 #b5c5d2;
 }
 
-
+.black-coffee-icon {
+	background-color: #080f15;
+	color: #b5c5d2;
+}
 
 
 

@@ -133,7 +133,8 @@ body {
 	right: -0.7rem;
 }
 
-.flag {
+.flag,
+.theme {
 	width: 35%;
 	display: inline-block;
 	border-radius: 0.3rem;
@@ -155,7 +156,21 @@ body {
 }
 
 .theme {
-	padding: 2rem;
+	opacity: 0.7;
+	padding: 0.4rem 0;
+	font-size: 1.1rem;
 }
 
+.active-theme {
+	opacity: 1;
+}
 
+.coffee-icon {
+	background-color: #f7f0ea;
+	color: #4A3A2D;
+}
+
+.setting-block-wrapper {
+	text-align: center;
+	padding-bottom: 1.5rem;
+}

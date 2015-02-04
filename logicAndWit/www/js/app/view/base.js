@@ -160,6 +160,7 @@
 		},
 
 		themeList: ['coffee', 'black-coffee'],
+		themeDefault: 'coffee',
 
 		setTheme: function (themeName) {
 
@@ -175,14 +176,11 @@
 
 		},
 		loadSavedTheme: function () {
-			
-			var themeName = win.APP.info.get('theme');
 
-			if (!themeName) {
-				return;
-			}
+			var themeName = win.APP.info.get('theme') || this.themeDefault;
 
 			this.setTheme(themeName);
+
 		}
 
 	};
