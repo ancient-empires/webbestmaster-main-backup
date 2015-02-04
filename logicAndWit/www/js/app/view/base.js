@@ -1,7 +1,7 @@
 (function (win, doc) {
 
 	"use strict";
-	/*global window, location */
+	/*global window, document, location */
 	/*global Backbone, $, APP */
 
 	win.APP = win.APP || {};
@@ -52,9 +52,6 @@
 			//this.showDirectionAnimation();
 
 			this.$wrapper = $(this.selectors.wrapper);
-
-
-
 
 		},
 
@@ -160,7 +157,22 @@
 		},
 		copyJSON: function (obj) {
 			return JSON.parse(JSON.stringify(obj));
+		},
+
+		themeList: ['coffee', 'black-coffee'],
+
+		setTheme: function (themeName) {
+
+			var body = doc.body;
+
+			doc.body.classList.remove.apply(body.classList, this.themeList);
+
+			doc.body.classList.add(themeName);
+
+			win.APP.info.set('theme', themeName);
+
 		}
+
 	};
 
 	proto.util.init();

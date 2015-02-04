@@ -244,9 +244,11 @@
 			<p class="text ta-center"><%= window.APP.lang.get('theme') %></p>
 
 			<div class="clear-fix ta-center">
-
-				theme is here
-
+				<% _.each(themeList, function(themeName) { %>
+					<div class="js-set-theme theme <%= themeName %> <%= (window.APP.info.get('theme') === themeName) ? 'active-theme' : '' %>" data-theme="<%= themeName %>">
+						<%= window.APP.lang.get('text') %>
+					</div>
+				<% }); %>
 			</div>
 
 			<p class="text ta-center"><%= APP.languages.en.language %> / <%= APP.languages.ru.language %></p>

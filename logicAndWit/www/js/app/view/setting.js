@@ -15,7 +15,7 @@
 
 		initialize: function () {
 
-			this.$el = $(this.tmpl.setting());
+			this.$el = $(this.tmpl.setting({ themeList: this.util.themeList }));
 
 			this.proto.initialize.apply(this, arguments);
 

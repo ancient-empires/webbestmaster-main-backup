@@ -1,0 +1,60 @@
+body.black-coffee {
+	background-color: #f7f0ea;
+	color: #4A3A2D;
+}
+
+.black-coffee .header-wrapper {
+	background-color: rgba(247, 240, 234, 0.9);
+}
+
+.black-coffee .list-item {
+	background-color: #EEE5DC;
+}
+
+.black-coffee .list-item-progress {
+	background-color: #A48A75;
+}
+
+.black-coffee .back {
+	background-image: url('../i/black/back.svg');
+}
+
+.black-coffee .setting {
+	background-image: url('../i/black/setting.svg');
+}
+
+.black-coffee .button {
+	-webkit-box-shadow: inset 0 1px 0 0 #ffffff;
+	box-shadow: inset 0 1px 0 0 #ffffff;
+	background-image: -webkit-linear-gradient(top, #ededed, #dfdfdf );
+	background-image: linear-gradient(top, #ededed, #dfdfdf );
+	background-color: #ededed;
+	border: 1px solid #dcdcdc;
+	text-shadow: 1px 1px 0 #ffffff;
+}
+
+.black-coffee .button:active {
+	background: -webkit-linear-gradient(top, #dfdfdf, #ededed);
+	background: linear-gradient(top, #dfdfdf, #ededed);
+	background-color: #dfdfdf;
+}
+
+.black-coffee .flag {
+	box-shadow: 1px 1px 0 #4A3A2D, -1px 1px 0 #4A3A2D, 1px -1px 0 #4A3A2D, -1px -1px 0 #4A3A2D;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -15,7 +15,8 @@
 		settings: 'Settings',
 		hint: 'hint',
 		answer: 'answer',
-		theme: 'Theme'
+		theme: 'Theme',
+		text: 'Text'
 
 	};
 
