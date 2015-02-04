@@ -114,7 +114,8 @@ body {
 .navigate-button-left,
 .navigate-button-right {
 	font-size: 2.3rem;
-	padding: 0.2rem 0 0.6rem;
+	padding: 0.2rem 1rem 0.6rem;
+	position: relative;
 }
 
 .navigate-button-left:active,
@@ -124,12 +125,12 @@ body {
 
 .navigate-button-left {
 	float: left;
-	padding-right: 0.5rem;
+	left: -0.3em;
 }
 
 .navigate-button-right {
 	float: right;
-	padding-left: 0.5rem;
+	right: -0.7rem;
 }
 
 .flag {
