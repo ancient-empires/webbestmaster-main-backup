@@ -163,14 +163,26 @@
 
 		setTheme: function (themeName) {
 
-			var body = doc.body;
+			var $body = $(doc.body);
 
-			doc.body.classList.remove.apply(body.classList, this.themeList);
+			_.each(this.themeList, function (themeName) {
+				$body.removeClass(themeName);
+			});
 
-			doc.body.classList.add(themeName);
+			$body.addClass(themeName);
 
 			win.APP.info.set('theme', themeName);
 
+		},
+		loadSavedTheme: function () {
+			
+			var themeName = win.APP.info.get('theme');
+
+			if (!themeName) {
+				return;
+			}
+
+			this.setTheme(themeName);
 		}
 
 	};

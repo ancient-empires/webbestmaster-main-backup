@@ -21,6 +21,7 @@
 				history.back();
 				setTimeout(back, 200);
 			} else {
+				win.APP.BB.BaseView.prototype.util.loadSavedTheme();
 				win.APP.bb.router = new win.APP.BB.Router();
 				Backbone.history.start();
 			}

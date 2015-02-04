@@ -10,7 +10,8 @@
 	APP.BB.SettingView = APP.BB.BaseView.extend({
 
 		events: {
-			'click .js-set-lang': 'setLang'
+			'click .js-set-lang': 'setLang',
+			'click .js-set-theme': 'setTheme'
 		},
 
 		initialize: function () {
@@ -30,6 +31,17 @@
 
 			this.info.set('language', langName, true);
 			win.APP.lang.set(langName);
+
+			this.loadUrl();
+
+		},
+
+		setTheme: function (e) {
+
+			var $this = $(e.target),
+				themeName = $this.attr('data-theme');
+
+			this.util.setTheme(themeName);
 
 			this.loadUrl();
 
