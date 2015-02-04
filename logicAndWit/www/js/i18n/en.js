@@ -14,7 +14,8 @@
 		appName: 'Logic and Wit',
 		settings: 'Settings',
 		hint: 'hint',
-		answer: 'answer'
+		answer: 'answer',
+		theme: 'Theme'
 
 	};
 
