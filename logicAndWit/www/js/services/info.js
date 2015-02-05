@@ -51,11 +51,12 @@
 			// get data from LS
 			this.attr = JSON.parse(this.ls.getItem(this.saveItem) || '{}');
 
-			// todo: remove it after 1-2 months after release
+			// todo: remove it after 1-2 months after release added about - 05.02.2015
 			// backward compatibility - begin
 			var langOld = this.get('lang');
 			if (langOld) {
 				this.set('language', langOld);
+				this.remove('lang');
 			}
 			// backward compatibility - end
 
@@ -85,8 +86,19 @@
 			return true;
 
 		},
+
 		get: function (key) {
 			return this.attr[key];
+		},
+
+		remove: function (key) {
+
+			delete this.attr[key];
+
+			this.ls.setItem(this.saveItem, JSON.stringify(this.attr));
+
+			return key;
+
 		}
 
 	};
