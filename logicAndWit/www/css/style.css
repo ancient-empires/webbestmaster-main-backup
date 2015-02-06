@@ -174,3 +174,16 @@ body {
 	text-align: center;
 	padding-bottom: 1.5rem;
 }
+
+.web-site-link {
+	display: block;
+	position: fixed;
+	bottom: 0;
+	padding: 0.6rem 0;
+	width: 100%;
+	text-align: center;
+	left: 0;
+	text-decoration: none;
+	color: inherit;
+	z-index: 1;
+}
