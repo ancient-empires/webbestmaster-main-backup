@@ -28,12 +28,12 @@
 			{"type": "Wyvern", "x": 10, "y": 10, playerId: 1},
 			{"type": "Wyvern", "x": 9, "y": 12, playerId: 1},
 			{"type": "Wyvern", "x": 11, "y": 9, playerId: 1},
-			{"type": "Wyvern", "x": 12, "y": 8, playerId: 1},
+			{"type": "Wyvern", "x": 12, "y": 8, playerId: 1}
 
-			{"type": "Golem", "x": 7, "y": 15, playerId: 1},
-			{"type": "Golem", "x": 10, "y": 11, playerId: 1},
-			{"type": "Golem", "x": 10, "y": 12, playerId: 1},
-			{"type": "Golem", "x": 11, "y": 10, playerId: 1}
+			//{"type": "Golem", "x": 7, "y": 15, playerId: 1},
+			//{"type": "Golem", "x": 10, "y": 11, playerId: 1},
+			//{"type": "Golem", "x": 10, "y": 12, playerId: 1},
+			//{"type": "Golem", "x": 11, "y": 10, playerId: 1}
 
 
 		],
