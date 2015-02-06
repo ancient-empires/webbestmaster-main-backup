@@ -22,7 +22,20 @@
 			{"type": "Soldier", "x": 13, "y": 12, playerId: 1},
 			{"type": "Soldier", "x": 10, "y": 13, playerId: 1},
 			{"type": "Knight", "x": 13, "y": 13, playerId: 1},
-			{"type": "Wyvern", "x": 12, "y": 14, playerId: 1}
+			{"type": "Wyvern", "x": 12, "y": 14, playerId: 1},
+
+			{"type": "Wyvern", "x": 7, "y": 14, playerId: 1},
+			{"type": "Wyvern", "x": 10, "y": 10, playerId: 1},
+			{"type": "Wyvern", "x": 9, "y": 12, playerId: 1},
+			{"type": "Wyvern", "x": 11, "y": 9, playerId: 1},
+			{"type": "Wyvern", "x": 12, "y": 8, playerId: 1},
+
+			{"type": "Golem", "x": 7, "y": 15, playerId: 1},
+			{"type": "Golem", "x": 10, "y": 11, playerId: 1},
+			{"type": "Golem", "x": 10, "y": 12, playerId: 1},
+			{"type": "Golem", "x": 11, "y": 10, playerId: 1}
+
+
 		],
 		"buildings": [
 			{"type": "farm", "x": 13, "y": 0, playerId: 1},
