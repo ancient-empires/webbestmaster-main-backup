@@ -41,7 +41,7 @@ a {
 
 .header-fixed {
 	position: fixed;
-	z-index: 1;
+	z-index: 3;
 }
 
 .logo-link {
@@ -69,6 +69,7 @@ a {
 }
 
 .company-promo {
+	padding-top: 90px;
 	padding-bottom: 100px;
 	text-align: center;
 	color: #FFF;
@@ -360,6 +361,7 @@ a {
 
 	.company-promo {
 		padding-bottom: 35px;
+		padding-top: 57px;
 	}
 
 	.market-button {
@@ -427,6 +429,7 @@ a {
 
 	.company-promo {
 		padding-bottom: 15px;
+		padding-top: 45px;
 	}
 
 	.section h3 {
