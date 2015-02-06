@@ -43,6 +43,7 @@
 		ls: win.localStorage,
 		saveItem: 'zaggadki',
 		attr: {},
+		systemAttr: {},
 		defaultLanguage: 'en',
 		availableLanguages: ['ru', 'en'],
 
@@ -61,13 +62,13 @@
 			// backward compatibility - end
 
 			// set vendor prefix
-			this.set('pre', getPrefix());
+			this.set('pre', getPrefix(), true);
 
 			// is touch
-			this.set('isTouch', 'ontouchstart' in document);
+			this.set('isTouch', 'ontouchstart' in document, true);
 
 			// is phone
-			this.set('isPhone', Math.max(docElem.clientHeight, docElem.clientWidth) < 700);
+			this.set('isPhone', Math.max(docElem.clientHeight, docElem.clientWidth) < 700, true);
 
 			// set language
 			var lang = this.get('language') || navigator.language || navigator.userLanguage || this.defaultLanguage;
@@ -77,25 +78,31 @@
 			this.set('language', lang);
 
 		},
-		set: function (key, value) {
+		set: function (key, value, isSystem) {
 
-			this.attr[key] = value;
+			if (isSystem) {
+				this.systemAttr[key] = value;
+			} else {
+				this.attr[key] = value;
+				this.ls.setItem(this.saveItem, JSON.stringify(this.attr));
+			}
 
-			this.ls.setItem(this.saveItem, JSON.stringify(this.attr));
 
 			return true;
 
 		},
 
-		get: function (key) {
-			return this.attr[key];
+		get: function (key, isSystem) {
+			return isSystem ? this.systemAttr[key] : this.attr[key];
 		},
 
-		remove: function (key) {
-
-			delete this.attr[key];
-
-			this.ls.setItem(this.saveItem, JSON.stringify(this.attr));
+		remove: function (key, isSystem) {
+			if (isSystem) {
+				delete this.systemAttr[key];
+			} else {
+				delete this.attr[key];
+				this.ls.setItem(this.saveItem, JSON.stringify(this.attr));
+			}
 
 			return key;
 
