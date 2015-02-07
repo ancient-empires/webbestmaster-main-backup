@@ -256,6 +256,16 @@
 				<img class="js-set-lang flag <%= (window.APP.info.get('language') === 'ru') ? 'active-flag' : '' %>" data-lang="ru" src="i/flag-ru.svg" alt=""/>
 			</div>
 
+			<p class="text ta-center"><%= window.APP.lang.get('share') %></p>
+
+			<div class="clear-fix setting-block-wrapper share-link-wrapper">
+				<a href="http://vk.com/share.php?url=<%= link %>" class="share-link share-link-vk js-external-link">&nbsp;</a>
+				<a href="https://www.facebook.com/sharer/sharer.php?u=<%= link %>" class="share-link share-link-facebook js-external-link">&nbsp;</a>
+				<a href="https://twitter.com/share?url=<%= link %>" class="share-link share-link-twitter js-external-link">&nbsp;</a>
+				<a href="https://plus.google.com/share?url=<%= link %>" class="share-link share-link-google js-external-link">&nbsp;</a>
+				<a href="http://www.linkedin.com/shareArticle?url=<%= link %>" class="share-link share-link-linkedin js-external-link">&nbsp;</a>
+			</div>
+
 			<a href="http://statlex.com/" target="_blank" class="js-external-link web-site-link">statlex.com</a>
 
 		</div>

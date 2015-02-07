@@ -16,7 +16,7 @@
 
 		initialize: function () {
 
-			this.$el = $(this.tmpl.setting({ themeList: this.util.themeList }));
+			this.$el = $(this.tmpl.setting({ themeList: this.util.themeList, link: 'https://play.google.com/store/apps/details?id=com.statlex.logicandwit' }));
 
 			this.proto.initialize.apply(this, arguments);
 

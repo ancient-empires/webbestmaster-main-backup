@@ -16,7 +16,8 @@
 		hint: 'hint',
 		answer: 'answer',
 		theme: 'Theme',
-		text: 'Text'
+		text: 'Text',
+		share: 'Share'
 
 	};
 
