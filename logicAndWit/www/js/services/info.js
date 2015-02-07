@@ -68,7 +68,7 @@
 			this.set('isTouch', 'ontouchstart' in document, true);
 
 			// is phone
-			this.set('isPhone', Math.max(docElem.clientHeight, docElem.clientWidth) < 700, true);
+			this.set('isPhone', Math.max(docElem.clientHeight, docElem.clientWidth) < 760, true);
 
 			// set language
 			var lang = this.get('language') || navigator.language || navigator.userLanguage || this.defaultLanguage;
