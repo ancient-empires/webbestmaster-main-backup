@@ -16,8 +16,10 @@
 
 		initialize: function () {
 
-			//this.$el = $(this.tmpl.setting({ themeList: this.util.themeList, link: 'https://play.google.com/store/apps/details?id=com.statlex.logicandwit' }));
-			this.$el = $(this.tmpl.setting({ themeList: this.util.themeList, link: 'http://statlex.com/share/logic-and-wit.html' }));
+			this.$el = $(this.tmpl.setting({
+				themeList: this.util.themeList,
+				link: 'http://statlex.com/share/logic-and-wit.html'
+			}));
 
 			this.proto.initialize.apply(this, arguments);
 
@@ -30,7 +32,7 @@
 			var $this = $(e.target),
 				langName = $this.attr('data-lang');
 
-			this.info.set('language', langName, true);
+			this.info.set('language', langName);
 			win.APP.lang.set(langName);
 
 			this.loadUrl();

@@ -37,20 +37,6 @@
 
 		initialize: function() {
 
-			//this.$el.addClass('js-page-wrapper page-wrapper');
-			//this.$el.attr('data-url', this.url);
-
-			// workaround for io8 and swipe by finger
-			//this.$el.on('touchmove', function(e){
-			//	var data = {
-			//		x: e.originalEvent.touches[0].clientX,
-			//		time: Date.now()
-			//	};
-			//	APP.info.set('lastTouchMoveX', data);
-			//});
-
-			//this.showDirectionAnimation();
-
 			this.$wrapper = $(this.selectors.wrapper);
 
 		},
