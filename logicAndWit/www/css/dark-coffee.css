@@ -3,7 +3,8 @@ body.black-coffee {
 	color: #b5c5d2;
 }
 
-.black-coffee .header-wrapper {
+.black-coffee .header-wrapper,
+.black-coffee .web-site-link {
 	background-color: rgba(8, 15, 21, 0.9);
 }
 
