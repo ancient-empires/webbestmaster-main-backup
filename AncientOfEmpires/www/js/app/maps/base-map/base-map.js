@@ -117,8 +117,8 @@
 			className: 'bridge-horizontal'
 		},
 		moneyFrom: {
-			farm: 20,
-			castle: 30
+			farm: 30,
+			castle: 50
 		},
 		healthFrom: {
 			farm: 2,
