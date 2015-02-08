@@ -50,7 +50,8 @@ body {
 }
 
 .back,
-.setting {
+.setting,
+.no-ads {
 	position: absolute;
 	top: 0;
 	overflow: hidden;
@@ -66,6 +67,14 @@ body {
 	left: 0;
 	background-image: url('../i/white/back.svg');
 	background-size: 75% auto;
+}
+
+.no-ads {
+	left: 0;
+	background-image: url('../i/ads-free.svg');
+	background-size: 75% auto;
+	background-color: #777;
+	text-decoration: none;
 }
 
 .setting {

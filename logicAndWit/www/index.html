@@ -101,6 +101,8 @@
 
 		<% if ( window.location.hash ) { %>
 			<div class="js-back back">&nbsp;</div>
+		<% } else if ( window.APP.info.ads.withAds && window.APP.info.get('isIOS', true) ) { %>
+			<a href="<%= window.APP.info.ads.iosNoAds %>" class="js-external-link no-ads">&nbsp;</a>
 		<% }; %>
 
 		<% if ( obj && obj.showSetting ) { %>

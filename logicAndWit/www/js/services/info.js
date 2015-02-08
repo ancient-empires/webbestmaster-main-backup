@@ -40,6 +40,11 @@
 	var info;
 
 	info = {
+		ads: {
+			withAds: true,
+			iosNoAds: 'https://itunes.apple.com/us/app/logic-and-wit-pro/id929158288?mt=8',
+			androidNoAds: ''
+		},
 		ls: win.localStorage,
 		saveItem: 'zaggadki',
 		attr: {},
@@ -49,12 +54,16 @@
 
 		init: function () {
 
+			var ua = win.navigator.userAgent,
+				lang,
+				langOld;
+
 			// get data from LS
 			this.attr = JSON.parse(this.ls.getItem(this.saveItem) || '{}');
 
 			// todo: remove it after 1-2 months after release added about - 05.02.2015
 			// backward compatibility - begin
-			var langOld = this.get('lang');
+			langOld = this.get('lang');
 			if (langOld) {
 				this.set('language', langOld);
 				this.remove('lang');
@@ -70,8 +79,12 @@
 			// is phone
 			this.set('isPhone', Math.max(docElem.clientHeight, docElem.clientWidth) < 760, true);
 
+			this.set('isIE', /MSIE/.test(ua), true);
+			this.set('isAndroid', (/android/i).test(ua), true);
+			this.set('isIOS', /iPad|iPhone|iPod/.test(ua), true);
+
 			// set language
-			var lang = this.get('language') || navigator.language || navigator.userLanguage || this.defaultLanguage;
+			lang = this.get('language') || navigator.language || navigator.userLanguage || this.defaultLanguage;
 			lang = lang.split('-')[0].toLocaleLowerCase();
 			lang = (this.availableLanguages.indexOf(lang) === -1) ? this.defaultLanguage : lang;
 			lang = lang.toLowerCase();
