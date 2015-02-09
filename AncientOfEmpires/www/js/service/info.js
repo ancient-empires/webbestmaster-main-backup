@@ -41,7 +41,7 @@
 	info = {
 		lang: 'en', // current language
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
-		availableLangs: ['en'],
+		availableLangs: ['en', 'ru'],
 		saveItem: 'ancient-empires-ls-item',
 		isPhone: false,
 		isTouch: isTouch,
@@ -107,7 +107,8 @@
 		setting: {
 			endTurnConfirm: false,
 			music: false,
-			gameSpeed: 3
+			gameSpeed: 3,
+			lang: 'en'
 		},
 		openMissions: ['c01_regroup'],
 		pushNewMission: function (missionJsName) {

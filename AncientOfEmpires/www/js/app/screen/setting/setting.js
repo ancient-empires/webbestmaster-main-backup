@@ -111,6 +111,28 @@
 
 			});
 
+			// set lang
+			$node = this.$el.find('.js-game-lang[value="' + win.info.lang + '"]');
+			if (!$node.length) {
+				return;
+			}
+
+			$node.addClass('input-checked');
+
+			$node = this.$el.find('.js-game-lang');
+			$node.on('change', function () {
+
+				$('.js-game-lang.input-checked').removeClass('input-checked');
+				$(this).addClass('input-checked');
+
+				var setting =  win.info.get('setting');
+				setting.lang = this.value;
+				win.info.set('setting', setting, true);
+				win.info.set('lang', this.value, true);
+				// set game lang
+
+			});
+
 			// set game speed
 			$node = this.$el.find('.js-game-speed[value="' + setting.gameSpeed + '"]');
 

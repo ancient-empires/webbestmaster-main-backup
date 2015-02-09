@@ -25,6 +25,7 @@
 
 	<!-- langs -->
 	<script src="js/lang/en.js" type="text/javascript"></script>
+	<script src="js/lang/ru.js" type="text/javascript"></script>
 
 	<!-- libs -->
 	<script src="js/lib/shim.js" type="text/javascript"></script>
@@ -216,6 +217,21 @@
 			<div class="setting-list-wrapper">
 				<div data-tag="label" class="setting-item-wrapper"><input class="show-after hidden js-confirm-end-turn-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] confirm turn</div>
 				<div data-tag="label" class="setting-item-wrapper disable"><input class="show-after hidden js-music-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] sound</div>
+
+				<div class="setting-item-wrapper game-speed-wrapper">
+					<p class="setting-item-small-header"> Language / Язык </p>
+					<div class="text-align-center">
+
+						<% window.info.availableLangs.forEach(function(lang, index) { %>
+						<div data-tag="label" class="game-speed-input-wrapper">
+							<input class="show-after hidden js-game-lang" name="lang" type="radio" value="<%= lang %>" />
+							[<span class="show-after-show"><%= window.langs[lang].languageNameShort %></span>]
+						</div>
+						<% }); %>
+
+					</div>
+
+				</div>
 
 				<div class="setting-item-wrapper game-speed-wrapper">
 					<p class="setting-item-small-header">game speed</p>
