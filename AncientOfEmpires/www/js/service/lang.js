@@ -1,4 +1,4 @@
-(function (win) {
+(function (win, doc) {
 
 	"use strict";
 	/*global window */
@@ -14,10 +14,20 @@
 					this[key] = obj[key];
 				}
 			}
+
+			var node = doc.querySelector('.js-wrapper');
+
+			if (!node) {
+				return;
+			}
+
+			info.availableLangs.forEach(function (lang) {
+				node.classList.remove(lang);
+			});
+
+			node.classList.add(lang);
+
 		}
 	};
 
-	// default language
-	win.lang.push(win.info.lang);
-
-}(window));
+}(window, document));

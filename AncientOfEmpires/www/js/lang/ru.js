@@ -9,8 +9,23 @@
 		language: 'язык',
 		languageName: 'Русский',
 		languageNameShort: 'Рус',
-		objective: 'Objective:',
-		thanks: 'Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
+		objective: 'Цель мисссии',
+		thanks: 'Программист:<br>Дмитрий Туровцов<br><br>Благодарности:<br>Павел Прилутский<br>Игорь Купреев<br>Павел Сычиков',
+		back: 'Назад',
+		confirmTurn: 'подтверждение хода',
+		sound: 'звук',
+		gameSpeed: 'скорость игры',
+		fast: 'быстрее',
+		slow: 'медленнее',
+		companies: 'компании',
+		maps: 'карты',
+		createGame: 'создать игру',
+		instruction: 'инструкции',
+		settings: 'настройки',
+		credits: 'авторы',
+		players: 'игроки',
+		human: 'игрок',
+		cpu: 'бот',
 		units: {
 			archer: {
 				name: 'ru archer',
@@ -58,11 +73,11 @@
 			}
 		},
 		instructions: [
-			'Ancient Empires is a thrilling strategy game putting you in the role of King Galamar as you fight to reclaim your kingdom.',
-			'The flashing red/blue marks the movement range of a unit. A unit\'s range is determined by its type and the terrain it is on.',
-			'Different types of terrain affect a unit\'s ability to move, attack and defend. For example, mountains add defence points but slow units down. When you tap to these terrain features appear at the bottom of the screen.',
-			'When a unit has completed a move, unit becomes translucent. This means that it cannot be moved again until your next turn.',
-			'You can move each unit only once each turn.',
+			'ru Ancient Empires is a thrilling strategy game putting you in the role of King Galamar as you fight to reclaim your kingdom.',
+			'ru The flashing red/blue marks the movement range of a unit. A unit\'s range is determined by its type and the terrain it is on.',
+			'ru Different types of terrain affect a unit\'s ability to move, attack and defend. For example, mountains add defence points but slow units down. When you tap to these terrain features appear at the bottom of the screen.',
+			'ru When a unit has completed a move, unit becomes translucent. This means that it cannot be moved again until your next turn.',
+			'ru You can move each unit only once each turn.',
 			'Use \'+\' and \'-\' buttons (bottom-right corner) to scale map',
 			'You can view the characteristics of any unit in store. Units get more powerful as they gain battle experience.',
 			'To attack an enemy unit, move your unit within range and select \'attack\' icon. If there is more than one enemy in range, select which unit to attack. The success of your attack is determined by unit characteristics and terrain.',
@@ -79,18 +94,18 @@
 		],
 		missions: {
 			c01_regroup: {
-				A1Header: 'Chapter 1',
-				A1: 'The Kingdom of Thorin is divided. Betrayed by his own twin brother Valadorn, King Galamar has fled into the borderlands of the east. Only the Blue guard, Galamar\'s personal troops, have remained loyal and stand ready to reclaim the land...',
-				H1: 'Sire, your troops are weary after last night\'s battle. It would be wise to regroup at the abandoned castle.',
-				G1: 'Sound advice, captain. Ready the troops - we should not let the enemy catch us unprepared.',
-				H2: 'Valadorn\'s army should be easy to spot with their red uniforms.',
+				A1Header: 'Часть 1',
+				A1: 'ru The Kingdom of Thorin is divided. Betrayed by his own twin brother Valadorn, King Galamar has fled into the borderlands of the east. Only the Blue guard, Galamar\'s personal troops, have remained loyal and stand ready to reclaim the land...',
+				H1: 'ru Sire, your troops are weary after last night\'s battle. It would be wise to regroup at the abandoned castle.',
+				G1: 'ru Sound advice, captain. Ready the troops - we should not let the enemy catch us unprepared.',
+				H2: 'ru Valadorn\'s army should be easy to spot with their red uniforms.',
 				T1: '[] King Galamar must occupy castle.%%%%[] Keep all troops alive.',
-				H3: 'Spies!! Valadorn and his Red legion must know where we are! Quickly, protect the King!',
-				objective: '[] King Galamar must occupy castle.%%%%[] Keep all troops alive.',
-				'Keep all troops alive': 'Keep all troops alive'
+				H3: 'ru Spies!! Valadorn and his Red legion must know where we are! Quickly, protect the King!',
+				objective: '[] ru King Galamar must occupy castle.%%%%[] ru Keep all troops alive.',
+				'Keep all troops alive': 'ru Keep all troops alive'
 			},
 			c02_friendsAndEnemies: {
-				A1Header: 'Chapter 2',
+				A1Header: 'Часть 2',
 				A1: 'King Galamar has survived Valadorn\'s attack. However, before Galamar can try to reclaim his kingdom he must first travel north to seek new allies.',
 				G1: 'Forward, troops. But first, occupy these two buildings. We can rest once we reach the next village.',
 				T1: '[] Keep the knight.%%%%[] Occupy the castle and at least one village.%%%%[] Produce at least three new unit of troops.',
@@ -106,7 +121,7 @@
 				'Keep the knight': 'Keep the knight'
 			},
 			c03_escort: {
-				A1Header: 'Chapter 3',
+				A1Header: 'Часть 3',
 				A1: 'The Lizard Chief agrees to join Galamar\'s forces. Now Galamar\'s thoughts turn to the wizards of the Grey Tower. If the Lizard Chief can persuade them to help, their magic would be a great asset to his growing forces.',
 				H1: 'Sire, the bridge has been destroyed!',
 				G1: 'Valadorn must be expecting us - we must find another way across. This could be a trap.',
@@ -118,7 +133,7 @@
 				'Keep the Lizard Chief': 'Keep the Lizard Chief'
 			},
 			c04_reinforcements: {
-				A1Header: 'Chapter 4',
+				A1Header: 'Часть 4',
 				A1: 'Having reached the Grey Tower the High Wizard agrees to help Galamar. However, Galamar\'s troops have no time to rest, as a message arrives from the nearby city of Var Telan, telling of a surprise attack by Valadorn\'s Red legion.',
 				H1: 'Your majesty, the Red legion! Watch out for their long range catapult!',
 				T1: '[] Keep the knight.%%%%[] Save the city: destroy all enemy units!%%%%[] Occupy the castle.',
@@ -129,7 +144,7 @@
 				'Keep the knight': 'Keep the knight'
 			},
 			c05_wyvernRescue: {
-				A1Header: 'Chapter 5',
+				A1Header: 'Часть 5',
 				A1: 'As Galamar\'s forces settle into the city castle, a scout patrol discovers some flying serpents called wyverns being held captive at an enemy campsite nearby. Could the wyverns be used against Valadorn and his forces? To find out, Galamar will have to rescue them.',
 				G1: 'Sources indicate that the wyverns are being held in this castle.',
 				H1: 'Be careful, your Majesty, wyverns can be formidable enemies as well as powerful allies.',
@@ -139,7 +154,7 @@
 				'Keep the knight': 'Keep the knight'
 			},
 			c06_siege: {
-				A1Header: 'Chapter 6',
+				A1Header: 'Часть 6',
 				A1: 'With the powerful wyverns adding to his forces, Galamar is ready to fight back against Valadorn. He decides to mount a surprise attack on the main command outpost outside Thorin city.',
 				H1: 'The city is well defended, your Majesty.',
 				G1: 'So it seems. We may have to alter our battle plan.',
@@ -148,7 +163,7 @@
 				'Keep the knight': 'Keep the knight'
 			},
 			c07_finalAssault: {
-				A1Header: 'Chapter 7',
+				A1Header: 'Часть 7',
 				A1: 'Galamar is on the verge of recapturing the city when suddenly a huge explosion splits the ground.',
 				G1: 'Valadorn\'s troops appearing everywhere?! What kind of evil magic is this?',
 				V1: 'So, twin brother, it seems our positions are reversed! Submit now or be destroyed!',

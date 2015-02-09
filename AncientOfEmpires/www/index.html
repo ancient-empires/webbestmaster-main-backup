@@ -117,17 +117,17 @@
 
 					<div class="inline-block">
 
-						<div class="js-go-to-companies main-button">companies</div>
+						<div class="js-go-to-companies main-button"><%= lang.companies %></div>
 
-						<div class="js-go-to-select-map main-button">create game</div>
+						<div class="js-go-to-select-map main-button"><%= lang.createGame %></div>
 
 						<!--<div class="js-create-map main-button disable">create map</div>-->
 
-						<div class="js-instruction main-button">instruction</div>
+						<div class="js-instruction main-button"><%= lang.instruction %></div>
 
-						<div class="js-go-to-settings main-button">settings</div>
+						<div class="js-go-to-settings main-button"><%= lang.settings %></div>
 
-						<div class="js-to-credits main-button">credits</div>
+						<div class="js-to-credits main-button"><%= lang.credits %></div>
 
 					</div>
 
@@ -147,9 +147,9 @@
 
 		<div class="header clear-fix js-block-fix-wrapper js-no-scroll" data-size-land="min" data-size-port="min" data-size-order="1">
 
-			<div class="js-back header-button left"><- Back</div>
+			<div class="js-back header-button left"><- <%= lang.back %></div>
 
-			<div class="header-button right small-header ellipsis">Instructions</div>
+			<div class="header-button right small-header ellipsis"><%= lang.instruction %></div>
 
 		</div>
 
@@ -175,9 +175,9 @@
 
 		<div class="header clear-fix js-block-fix-wrapper js-no-scroll" data-size-land="min" data-size-port="min" data-size-order="1">
 
-			<div class="js-back header-button left"><- Back</div>
+			<div class="js-back header-button left"><- <%= lang.back %></div>
 
-			<div class="header-button right">Credits</div>
+			<div class="header-button right"><%= lang.credits %></div>
 
 		</div>
 
@@ -207,19 +207,19 @@
 
 		<div class="header clear-fix js-block-fix-wrapper js-no-scroll" data-size-land="min" data-size-port="min" data-size-order="1">
 
-			<div class="js-back header-button left"><- Back</div>
+			<div class="js-back header-button left"><- <%= lang.back %></div>
 
-			<div class="header-button right">Settings</div>
+			<div class="header-button right"><%= lang.settings %></div>
 
 		</div>
 
 		<div class="js-block-fix-wrapper js-no-scroll" data-size-land="float: none; width: 100%; height: max" data-size-port="float: none; width: 100%; height: max" data-size-order="2">
 			<div class="setting-list-wrapper">
-				<div data-tag="label" class="setting-item-wrapper"><input class="show-after hidden js-confirm-end-turn-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] confirm turn</div>
-				<div data-tag="label" class="setting-item-wrapper disable"><input class="show-after hidden js-music-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] sound</div>
+				<div data-tag="label" class="setting-item-wrapper"><input class="show-after hidden js-confirm-end-turn-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] <%= lang.confirmTurn %></div>
+				<div data-tag="label" class="setting-item-wrapper disable"><input class="show-after hidden js-music-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] <%= lang.sound %></div>
 
 				<div class="setting-item-wrapper game-speed-wrapper">
-					<p class="setting-item-small-header"> Language / Язык </p>
+					<p class="setting-item-small-header"> language / язык </p>
 					<div class="text-align-center">
 
 						<% window.info.availableLangs.forEach(function(lang, index) { %>
@@ -234,10 +234,10 @@
 				</div>
 
 				<div class="setting-item-wrapper game-speed-wrapper">
-					<p class="setting-item-small-header">game speed</p>
+					<p class="setting-item-small-header"><%= lang.gameSpeed %></p>
 					<div class="clear-fix game-speed-arrows-wrapper">
-						<div class="left"><- slow</div>
-						<div class="right">fast -></div>
+						<div class="left"><- <%= lang.slow %></div>
+						<div class="right"><%= lang.fast %> -></div>
 					</div>
 					<div class="text-align-center">
 						<% window.util.fromTo(function(index){ %><div data-tag="label" class="game-speed-input-wrapper"><input class="show-after hidden js-game-speed" name="game-speed" type="radio" value="<%= index %>"/>[<span class="show-after-show"><%= index %></span>]</div><% }, 1, 6); %>
@@ -258,7 +258,7 @@
 
 		<div class="header clear-fix js-block-fix-wrapper js-no-scroll" data-size-land="min" data-size-port="min" data-size-order="1">
 
-			<div class="js-back header-button left"><- Back</div>
+			<div class="js-back header-button left"><- <%= lang.back %></div>
 
 			<!--<div class="js-go-to-battle header-button right">Fight -></div>-->
 
@@ -266,7 +266,7 @@
 
 		<div class="js-block-fix-wrapper js-no-scroll <%= type === 'mission' ? 'hidden' : '' %>" data-size-land="float: left; width: 50%; height: max" data-size-port="min" data-size-order="2">
 
-				<p class="text-align-center with-padding-1">Players</p>
+				<p class="text-align-center with-padding-1 flttc"><%= lang.players %></p>
 
 				<div class="item-wrapper clear-fix js-player-form">
 
@@ -276,13 +276,13 @@
 
 					<div data-tag="label" class="left radio-button-wrapper">
 						<input class="hidden custom-radio-button" type="radio" name="p1-type" data-type="type" value="human" checked="checked"/>
-						<span class="left relative-opacity">Human</span>
+						<span class="left relative-opacity flttc"><%= lang.human %></span>
 					</div>
 
 					<div class="left small-separator">&nbsp;</div>
 					<div data-tag="label" class="left radio-button-wrapper">
 						<input class="hidden custom-radio-button" type="radio" name="p1-type" data-type="type" value="cpu"/>
-						<span class="left relative-opacity">CPU</span>
+						<span class="left relative-opacity flttc"><%= lang.cpu %></span>
 					</div>
 
 					<div class="left land-clear land-with-padding-left">&nbsp;</div>
@@ -313,13 +313,13 @@
 
 					<div data-tag="label" class="left radio-button-wrapper">
 						<input class="hidden custom-radio-button" type="radio" name="p2-type" data-type="type" value="human"/>
-						<span class="left relative-opacity">Human</span>
+						<span class="left relative-opacity flttc"><%= lang.human %></span>
 					</div>
 
 					<div class="left small-separator">&nbsp;</div>
 					<div data-tag="label" class="left radio-button-wrapper">
 						<input class="hidden custom-radio-button" type="radio" name="p2-type" data-type="type" value="cpu" checked="checked"/>
-						<span class="left relative-opacity">CPU</span>
+						<span class="left relative-opacity flttc"><%= lang.cpu %></span>
 					</div>
 
 					<div class="left land-clear land-with-padding-left">&nbsp;</div>
@@ -344,11 +344,11 @@
 
 		<div class="js-block-fix-wrapper relative scroll-arrows-bg" data-size-land="float: left; height: max; <%= type === 'mission' ? 'width: 100%; ' : 'width: 50%;' %>" data-size-port="float: none; width: 100%; height: max" data-size-order="3">
 
-				<p class="text-align-center with-padding-1 black-header js-no-scroll">
+				<p class="text-align-center with-padding-1 black-header js-no-scroll flttc">
 					<% if ( type === 'skirmish' ) { %>
-						Maps
+						<%= lang.maps %>
 					<% } else { %>
-						Companies
+						<%= lang.companies %>
 					<% }; %>
 				</p>
 
@@ -630,7 +630,7 @@
 
 						<div class="js-back battle-menu-close">X</div>
 
-						<div class="battle-menu-item-button" data-show="objective"><span class="js-hidden-data-state hidden-data-state">[+]</span>objective</div>
+						<div class="battle-menu-item-button" data-show="objective"><span class="js-hidden-data-state hidden-data-state">[+]</span><%= window.lang.objective %></div>
 						<div class="battle-menu-added-data hidden" data-block="objective">
 							<% objective.split('%%%%').forEach(function(part){ %>
 							<div class="text-part text-indent-with-margin-3"><%= part %></div>
@@ -639,8 +639,8 @@
 
 						<div class="battle-menu-item-button" data-show="settings"><span class="js-hidden-data-state hidden-data-state">[+]</span>settings</div>
 						<div class="battle-menu-added-data hidden" data-block="settings">
-							<div data-tag="label" class="setting-item-wrapper"><input class="show-after hidden js-confirm-end-turn-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] confirm turn</div>
-							<div data-tag="label" class="setting-item-wrapper disable"><input class="show-after hidden js-music-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] sound</div>
+							<div data-tag="label" class="setting-item-wrapper"><input class="show-after hidden js-confirm-end-turn-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] <%= lang.confirmTurn %></div>
+							<div data-tag="label" class="setting-item-wrapper disable"><input class="show-after hidden js-music-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] <%= lang.sound %></div>
 						</div>
 
 						<div class="battle-menu-item-button" data-show="restart-mission"><span class="js-hidden-data-state hidden-data-state">[+]</span>restart</div>

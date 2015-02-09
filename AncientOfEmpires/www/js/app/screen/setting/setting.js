@@ -129,7 +129,10 @@
 				setting.lang = this.value;
 				win.info.set('setting', setting, true);
 				win.info.set('lang', this.value, true);
+				win.lang.push(win.info.lang);
 				// set game lang
+
+				Backbone.history.loadUrl();
 
 			});
 

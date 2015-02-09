@@ -456,6 +456,14 @@ html {
 	padding: 1em 0.7em;
 }
 
+.header-button:first-letter {
+	text-transform: capitalize;
+}
+
+.flttc:first-letter {
+	text-transform: capitalize;
+}
+
 .with-padding-1 {
 	padding: 1em;
 }
@@ -781,3 +789,14 @@ html {
 	box-sizing: border-box;
 	bottom: 1em;
 }
+
+.ru .header-button.right {
+	padding-left: 0;
+}
+
+.ru .header-button.left {
+	padding-right: 0;
+}
+
+
+

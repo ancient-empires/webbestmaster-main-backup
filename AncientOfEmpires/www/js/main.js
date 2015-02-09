@@ -112,6 +112,9 @@
 	// start of app here
 	function main() {
 
+		// default language
+		win.lang.push(win.info.lang);
+
 		templateMaster.init();
 		APP.notificationView = new APP.NotificationView();
 		Backbone.history.start();
