@@ -105,3 +105,22 @@ output, progress, section, summary, time, video {
 .ta-right {
 	text-align: right;
 }
+
+
+.scroll-touch {
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+	overflow: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+

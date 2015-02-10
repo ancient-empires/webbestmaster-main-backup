@@ -726,7 +726,7 @@ html {
 
 .instruction-item-list {
 	padding-bottom: 5em;
-	-webkit-transform: translate3d(0, 0, 0);
+	/*-webkit-transform: translate3d(0, 0, 0);*/
 }
 
 .instruction-item {
@@ -799,4 +799,9 @@ html {
 }
 
 
+.scroll-touch {
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+	/*overflow: auto;*/
+}
 
