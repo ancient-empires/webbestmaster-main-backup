@@ -13,12 +13,6 @@ body.owl,
 	font-weight: normal;
 	position: relative;
 	font-size: 1.3rem;
-	/*line-height: 1.6rem;*/
-}
-
-.owl .web-site-link {
-	color: #bdc47a;
-	background-color: #39415f;
 }
 
 .owl .header-title:after {
@@ -32,6 +26,11 @@ body.owl,
 	background-repeat: repeat-x;
 	-webkit-background-size: auto 0.6rem;
 	background-size: auto 0.6rem;
+}
+
+.owl .web-site-link {
+	color: #bdc47a;
+	background-color: #39415f;
 }
 
 .owl .setting {

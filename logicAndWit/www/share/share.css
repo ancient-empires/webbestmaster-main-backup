@@ -19,7 +19,8 @@
 	background-image: url(icons-coffee.svg);
 }
 
-.black-coffee .share-link {
+.black-coffee .share-link,
+body.owl-black .share-link {
 	background-image: url(icons-dark-coffee.svg);
 }
 
