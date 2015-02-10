@@ -1,0 +1,43 @@
+body.owl {
+	background-image: url(../i/owl/bg-main.png);
+}
+
+.owl .header-title {
+	color: #bdc47a;
+	background-color: #39415f;
+	text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+	font-weight: normal;
+	position: relative;
+}
+
+.owl .header-title:after {
+	content: '';
+	position: absolute;
+	bottom: -0.5em;
+	width: 100%;
+	height: 0.5em;
+	left: 0;
+	background-image: url(../i/owl/header-border.png);
+	background-repeat: repeat-x;
+	-webkit-background-size: auto 0.5em;
+	background-size: auto 0.5em;
+}
+
+.owl .setting {
+	background-image: url('../i/owl/setting.svg');
+	background-size: 50% auto;
+}
+
+.owl .list-item {
+
+}
+
+
+
+
+
+
+
+
+
+

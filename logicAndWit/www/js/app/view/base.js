@@ -145,7 +145,7 @@
 			return JSON.parse(JSON.stringify(obj));
 		},
 
-		themeList: ['coffee', 'black-coffee'],
+		themeList: ['coffee', 'black-coffee', 'owl', 'owl owl-black'],
 		themeDefault: 'coffee',
 
 		setTheme: function (themeName) {
