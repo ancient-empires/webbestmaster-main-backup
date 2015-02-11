@@ -395,9 +395,9 @@
 		<div class="status-bar js-status-bar clear-fix js-no-scroll">
 			<div class="status-bar-color js-status-bar-color">&nbsp;&nbsp;</div>
 			<div class="status-bar-gold">0</div>
-			<div class="battle-menu-button js-menu-button">menu</div>
+			<div class="battle-menu-button js-menu-button"><%= lang.menu %></div>
 
-			<div class="status-bar-battle js-back">exit -></div>
+			<div class="status-bar-battle js-back"><%= lang.exit %> -></div>
 
 
 			<div class="status-bar-end-turn js-end-turn js-no-scroll js-hide-for-store">&gt;|<span class="js-status-bar-end-turn-hidden-confirm status-bar-end-turn-hidden-confirm hidden">?</span></div>
@@ -498,7 +498,7 @@
 
 			<div class="unit-card js-unit-card clear-fix" data-name="<%= name %>">
 
-				<div class="unit-card-header"><%= unitInfo[name].info.name %></div>
+				<div class="unit-card-header"><%= lang.units[name].name %></div>
 				<span class="js-count-buy-unit count-buy-unit"></span>
 
 				<% if ( map.type === 'mission' && (map.availableUnits || []).indexOf(name) === -1 ) { %>
@@ -511,7 +511,7 @@
 						def: <%= unitInfo[name].def %><br>
 						mov: <%= unitInfo[name].mov %>
 					</div>
-					<div class="buy-unit-cost opacity0">BUY<br><%= unitInfo[name].cost %></div>
+					<div class="buy-unit-cost opacity0"><%= lang.buy %><br><%= unitInfo[name].cost %></div>
 				</div>
 
 				<% } else { %>
@@ -524,7 +524,7 @@
 						def: <%= unitInfo[name].def %><br>
 						mov: <%= unitInfo[name].mov %>
 					</div>
-					<div class="buy-unit-cost">BUY<br><%= unitInfo[name].cost %></div>
+					<div class="buy-unit-cost"><%= lang.buy %><br><%= unitInfo[name].cost %></div>
 				</div>
 
 				<% }; %>
@@ -532,7 +532,7 @@
 				<div data-name="<%= name %>" class="js-get-unit-info store-get-unit-info">[i]</div>
 				<div class="clear"></div>
 				<div data-name="<%= name %>" class="unit-description js-unit-description hidden">
-					<%= unitInfo[name].info.description %>
+					<%= lang.units[name].description %>
 				</div>
 			</div>
 			<% }); %>

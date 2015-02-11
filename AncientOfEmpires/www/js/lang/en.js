@@ -26,6 +26,9 @@
 		players: 'players',
 		human: 'human',
 		cpu: 'CPU',
+		buy: 'buy',
+		menu: 'menu',
+		exit: 'exit',
 		units: {
 			archer: {
 				name: 'archer',

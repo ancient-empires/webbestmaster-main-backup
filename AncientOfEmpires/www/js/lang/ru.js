@@ -26,71 +26,74 @@
 		players: 'игроки',
 		human: 'игрок',
 		cpu: 'бот',
+		buy: 'цена',
+		menu: 'меню',
+		exit: 'выход',
 		units: {
 			archer: {
-				name: 'ru archer',
-				description: 'ru With their powerful bows archers can attack from a distance and are especially powerful against airborne enemies.'
+				name: 'лучник',
+				description: 'Со своими мощными луками лучники могут атаковать на расстоянии, и они особенно сильны против летающих врагов.'
 			},
 			bones: {
-				name: 'ru bones',
-				description: 'ru Summoned by Wizards, these lifeless warriors are as strong as soldiers and deadly opponents on any battlefield.'
+				name: 'скелет',
+				description: 'Вызванные волшебниками, эти безжизненные воины также сильны как солдаты, и являются смертелными противниками на любом поле битвы.'
 			},
 			catapult: {
-				name: 'ru catapult',
-				description: 'ru Catapults bring devastation wherever they go with their enormous attack range. However, their relative immobility and inability to attack up close make them vulnerable so guard them well. Catapults can either move or attack during a turn, but not do both.'
+				name: 'катапульта',
+				description: 'Катапульты приносят опустошение везде, куда достанут со своей гигантской зоной атаки. Однако, они относительная неподвижность и неспособность атаковать вблизи делают их уязвимыми, так что защищайте их хорошо. Катапульты могут передвигаться и атаковать в течении хода, но только что-нибудь одно за ход.'
 			},
 			golem: {
-				name: 'ru golem',
-				description: 'ru Forged out of living rock by the dwarf tribes of the Lost Mountains, Golems are slow but immensely strong in defence. A golem stationed in a building or a well defended mountain is very difficult to defeat.'
+				name: 'голем',
+				description: 'Выкованные из живых камней племенем гномов в Потерянных Горах, големы медленны, но необычайно сильны в защите. Голема, расположенного в здании или хорошо защищенной горе очень сложно победить.'
 			},
 			knight: {
-				name: 'ru knight',
-				description: 'ru The Knight is very strong in attack and defence. Knight can also occupy farms and castles to produce troops and can be revived in the castle if they fall in battle.'
+				name: 'рыцарь',
+				description: 'Рыцарь очень силен в атаке и защите. Также рыцарь может захватить замок или ферму.'
 			},
 			lizard: {
-				name: 'ru lizard',
-				description: 'ru Descendants of the ancient amphibian empire spanning the marshlands in the east Lizards are proud warriors. They are immensely mobile (+3) and stronger in defence (+2) when in water.'
+				name: 'ящерица',
+				description: 'Потомки древней земноводной империи, лежащей в болотах на востоке, ящерицы - гордые воины. Они чрезвычайно мобильны (+3) и сильны в защите (+2), когда находятся в воде.'
 			},
 			soldier: {
-				name: 'ru soldier',
-				description: 'ru Hardworking and brave, soldiers form the backbone of any army. They are also the only unit that can capture farms to earn gold.'
+				name: 'солдат',
+				description: 'Усердные и храбрые, солдаты сформируют основу любой армии. Только они и рыцари могут захватывать фермы с целью получения золота.'
 			},
 			spider: {
-				name: 'ru spider',
-				description: 'ru Spiders are dangerous creatures whose natural habitat spans the unforgiving dark forests of the west. In addition to being highly mobile, spiders use a poisoned attack to weaken their opponents for one turn.'
+				name: 'паук',
+				description: 'Пауки - это опасные создания, чье местообитание простирается в суровых темных лесах на западе. В добавление к их высокой мобильности, пауки используют атаку ядом, чтобы ослабить оппонента на один ход.'
 			},
 			wisp: {
-				name: 'ru wisp',
-				description: 'ru These mystical beings of pure light radiate an aura which adds attack points to nearby friendly units. In close combat they are especially deadly against skeletons.'
+				name: 'висп',
+				description: 'Эти мистические существа чистого Света излучают ауру, которая добавляет очки атаки ближайшим дружественным единицам. В близком бою они особенно смертельны против скелетов.'
 			},
 			wizard: {
-				name: 'ru wizard',
-				description: 'ru The ancient guild of wizards are weak at close combat, but immensely useful as they can summon fighting skeletons from dead troops.'
+				name: 'волшебник',
+				description: 'Древняя гильдия волшебников слаба в близком бою, но чрезвычайна полезна, так как они могут поднимать боевых скелетов из мертвых войск.'
 			},
 			wyvern: {
-				name: 'ru wyvern',
-				description: 'ru These majestic flying beasts have ruled over the mountains of mist since ancient times. They are extremely mobile as well as deadly in attack on land, air and sea.'
+				name: 'вайверн',
+				description: 'Эти грациозные летающие твари правят над горами с древнейших времен. Они чрезвычайно подвижны, а так же смертельно опасны в атаках на земле, воздухе и в море.'
 			}
 		},
 		instructions: [
-			'ru Ancient Empires is a thrilling strategy game putting you in the role of King Galamar as you fight to reclaim your kingdom.',
-			'ru The flashing red/blue marks the movement range of a unit. A unit\'s range is determined by its type and the terrain it is on.',
-			'ru Different types of terrain affect a unit\'s ability to move, attack and defend. For example, mountains add defence points but slow units down. When you tap to these terrain features appear at the bottom of the screen.',
-			'ru When a unit has completed a move, unit becomes translucent. This means that it cannot be moved again until your next turn.',
-			'ru You can move each unit only once each turn.',
-			'Use \'+\' and \'-\' buttons (bottom-right corner) to scale map',
-			'You can view the characteristics of any unit in store. Units get more powerful as they gain battle experience.',
-			'To attack an enemy unit, move your unit within range and select \'attack\' icon. If there is more than one enemy in range, select which unit to attack. The success of your attack is determined by unit characteristics and terrain.',
-			'Only a knight can occupy a castle. You can purchase new units with gold in castle.',
-			'You can occupy buildings by moving a soldier onto it and selecting \'occupy\' icon. Once a building is occupied, it changes colour.',
-			'Once a building has been occupied, it earns gold. The more buildings you occupy, the more you earn.',
-			'Units can be healed by occupying buildings. The longer a unit stays, the more life it regains.',
-			'Lizards are amphibious, giving them increased movement and defence when in water.',
-			'A spider\'s attack is poisonous. A poisoned unit is weak for its next turn.',
-			'A tombstone shows where a unit has been defeated. It disappears after 1 turn.',
-			'Wizards have the power to summon skeleton warriors from the graves of fallen soldiers. After a unit has been defeated, a tombstone appears for 1 turn. Move a wizard next to a tombstone and select \'raise\' icon.',
-			'Use wisps to provide nearby friendly units with an aura that augments their attack points.',
-			'Keep your wyverns away from enemy archers, as they are vulnerable to arrows!'
+			'Античные Империи это захватывающая стратегия, помещающая вас в роли Короля Галамара в битву за свое королевство.',
+			'Синие или красные квадратики показывают возможной путь единицы. Размер пути единицы определяется ее типом и местностью, на которой она стоит.',
+			'Разные типы местности влияют на способности единиц к передвижению, атаке и защите. Например, горы добавляют единицам очки защиты, но замедляют скорость передвижения. При нажатии на них особенности местности отображаются в нижней части экрана.',
+			'Когда единица завершила движение, то она становится полупрозрачной. Это означает, что он не может быть перемещена снова до следующего хода.',
+			'Вы можете перемещать единицу только один раз за ход.',
+			'Используйте \'+\' и \'-\' (в правом нижнем углу) чтобы масштабировать карту.',
+			'Вы можете посмотреть характеристики воинов в магазине. Единицы становятся более сильными, получая опыт в битвах.',
+			'Чтобы атаковать вражескую единицу, передвиньте вашу единицу в пределы атаки и выберите \'Атака\'. Если в пределах находятся несколько врагов, выберите, какую единицу атаковать. Успех атаки определяется характеристиками единиц и местностью.',
+			'Только рыцарь может занять замок. В замке Вы покупать новые единицы за золото.',
+			'Вы можете занять здание, переместив солдата на него и выбрав \'Занять\'. Как только здание будет занято, оно сменит цвет.',
+			'Как только здание будет занято, оно начнет приносить золото. Чем больше зданий вы займете, тем больше заработаете.',
+			'Единицы могут быть вылечены, заняв здание. Чем больше единица находится в здании, тем больше жизни восстановится.',
+			'Ящерицы - земноводные, это увеличивает им передвижение и защиту в воде.',
+			'Атака паука ядовита. Отравленная единица замедляется и слабеет до своего следующего хода.',
+			'Надгробие показывает, где единица была повержена. Оно исчезает после одного хода.',
+			'У волшебников есть сила для вызова скелетов-воинов из могил поверженных солдат.',
+			'Используйте виспов для обеспечения ближайшим дружественным единицам ауры, которая прибавляет им очки атаки.',
+			'Держите ваших вайвернов вдали от вражеских лучников, так как они уязвимы для стрел!'
 		],
 		missions: {
 			c01_regroup: {
