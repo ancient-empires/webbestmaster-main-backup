@@ -663,7 +663,8 @@ html {
 
 .end-game-message-button {
 	text-transform: uppercase;
-	padding: 0.6em 0;
+	padding: 0.3em 0;
+	line-height: 1.6em;
 }
 
 .setting-item-wrapper {

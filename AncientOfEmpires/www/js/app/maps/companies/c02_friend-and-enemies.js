@@ -423,7 +423,7 @@
 
 
 			if ( boughtList.length >= 3 && farms.length >= 2 ) {
-				result.message = 'you win';
+				result.message = lang.youWin;
 
 				window.info.pushNewMission('c03_escort');
 

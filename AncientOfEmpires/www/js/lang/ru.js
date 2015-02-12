@@ -36,6 +36,12 @@
 		no: 'нет',
 		blueTurn: 'ход<br>синих!',
 		redTurn: 'ход<br>красных!',
+		nextMission: 'следующая миссия',
+		youWin: 'победа',
+		youDefeat: 'поражение',
+		blueWin: 'синие победили!',
+		redWin: 'красные победили!',
+		occupyAllBuildings: 'Захватить все здания.',
 		units: {
 			archer: {
 				name: 'лучник',

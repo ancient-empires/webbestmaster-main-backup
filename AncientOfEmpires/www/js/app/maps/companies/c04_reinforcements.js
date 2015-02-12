@@ -396,7 +396,7 @@
 					text: words.V2, tmpl: 'n-banner', image: { url: 'img/face/valadorn-2.png', cssClass: 'right' }, from: 'right',
 					onHide: function () {
 
-						result.message = 'you win';
+						result.message = lang.youWin;
 
 						util.clearTimeouts();
 

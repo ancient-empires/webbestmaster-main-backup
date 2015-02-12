@@ -317,7 +317,7 @@
 					text: words.H2, tmpl: 'n-banner', image: { url: 'img/face/helper-1.png' },
 					onHide: function () {
 
-						result.message = 'you win';
+						result.message = lang.youWin;
 
 						util.clearTimeouts();
 

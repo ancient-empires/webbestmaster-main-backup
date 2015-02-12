@@ -186,7 +186,7 @@
 
 			if ( castle.playerId === human.id ) {
 
-				result.message = 'you win';
+				result.message = lang.youWin;
 
 				window.info.pushNewMission('c02_friendsAndEnemies');
 

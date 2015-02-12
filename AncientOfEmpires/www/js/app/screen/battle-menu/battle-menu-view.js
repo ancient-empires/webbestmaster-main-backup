@@ -16,7 +16,7 @@
 
 		init: function (data) {
 
-			data.objective = (data.jsMapName && win.langs[win.info.lang].missions[data.jsMapName]) ? win.langs[win.info.lang].missions[data.jsMapName].objective : 'Occupy all buildings.';
+			data.objective = (data.jsMapName && win.langs[win.info.lang].missions[data.jsMapName]) ? win.langs[win.info.lang].missions[data.jsMapName].objective : lang.occupyAllBuildings;
 
 			this.$el = $(this.tmpl['battle-menu'](data));
 

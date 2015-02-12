@@ -917,12 +917,12 @@
 				$node;
 
 			if (player1.type === player2.type) {
-				message = result.winner.color + ' win!';
+				message = lang[result.winner.color + 'Win'];
 			} else {
 				if (result.winner.type === 'human') {
-					message = result.message || 'you win';
+					message = result.message || lang.youWin;
 				} else {
-					message = result.message || 'you defeat';
+					message = result.message || lang.youDefeat;
 				}
 			}
 

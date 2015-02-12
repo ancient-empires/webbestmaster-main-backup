@@ -36,6 +36,12 @@
 		no: 'no',
 		blueTurn: 'blue turn!',
 		redTurn: 'red turn!',
+		nextMission: 'next mission',
+		youWin: 'you win',
+		youDefeat: 'you defeat',
+		blueWin: 'blue win!',
+		redWin: 'red win!',
+		occupyAllBuildings: 'Occupy all buildings.',
 		units: {
 			archer: {
 				name: 'archer',

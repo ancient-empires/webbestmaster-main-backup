@@ -312,7 +312,7 @@
 
 				window.info.pushNewMission('c07_finalAssault');
 
-				result.message = 'you win';
+				result.message = lang.youWin;
 
 				util.clearTimeouts();
 

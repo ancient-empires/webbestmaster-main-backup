@@ -701,10 +701,10 @@
 
 						<div class="end-game-message"><%= message %></div>
 						<% if ( obj.nextMissionNumber ) { %>
-							<div class="end-game-message-button js-next-mission" data-next-mission-number="<%= nextMissionNumber %>">next mission</div>
+							<div class="end-game-message-button js-next-mission" data-next-mission-number="<%= nextMissionNumber %>"><%= lang.nextMission %></div>
 						<% }; %>
-						<div class="end-game-message-button js-end-game-restart">restart</div>
-						<div class="end-game-message-button js-end-game-quit">quit</div>
+						<div class="end-game-message-button js-end-game-restart"><%= lang.restart %></div>
+						<div class="end-game-message-button js-end-game-quit"><%= lang.quit %></div>
 
 					</div>
 

@@ -302,7 +302,7 @@
 			// if castle is occupy
 			if ( castle.playerId === human.id ) {
 
-				result.message = 'you win';
+				result.message = lang.youWin;
 
 				window.info.pushNewMission('c04_reinforcements');
 
