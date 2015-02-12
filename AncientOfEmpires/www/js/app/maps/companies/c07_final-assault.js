@@ -27,9 +27,9 @@
 			{"type": "Wizard", "x": 11, "y": 14, playerId: 0},
 
 			{"type": "Wyvern", "x": 5, "y": 1, playerId: 1},
-			{"type": "Wyvern", "x": 4, "y": 2, playerId: 1},
+			//{"type": "Wyvern", "x": 4, "y": 2, playerId: 1},
 			{"type": "Wyvern", "x": 3, "y": 3, playerId: 1},
-			{"type": "Wyvern", "x": 2, "y": 4, playerId: 1},
+			//{"type": "Wyvern", "x": 2, "y": 4, playerId: 1},
 			{"type": "Wyvern", "x": 1, "y": 5, playerId: 1}
 
 			//{"type": "Golem", "x": 1, "y": 4, playerId: 1},
