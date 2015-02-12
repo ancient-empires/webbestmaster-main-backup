@@ -637,32 +637,32 @@
 							<% }); %>
 						</div>
 
-						<div class="battle-menu-item-button" data-show="settings"><span class="js-hidden-data-state hidden-data-state">[+]</span>settings</div>
+						<div class="battle-menu-item-button" data-show="settings"><span class="js-hidden-data-state hidden-data-state">[+]</span><%= lang.settings %></div>
 						<div class="battle-menu-added-data hidden" data-block="settings">
 							<div data-tag="label" class="setting-item-wrapper"><input class="show-after hidden js-confirm-end-turn-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] <%= lang.confirmTurn %></div>
 							<div data-tag="label" class="setting-item-wrapper disable"><input class="show-after hidden js-music-checkbox" type="checkbox"/>[<span class="show-after-show">*</span>] <%= lang.sound %></div>
 						</div>
 
-						<div class="battle-menu-item-button" data-show="restart-mission"><span class="js-hidden-data-state hidden-data-state">[+]</span>restart</div>
+						<div class="battle-menu-item-button" data-show="restart-mission"><span class="js-hidden-data-state hidden-data-state">[+]</span><%= lang.restart %></div>
 						<div class="battle-menu-added-data hidden" data-block="restart-mission">
 
 							<div class="confirm-wrapper">
-								<p class="confirm-message">Are you sure?</p>
+								<p class="confirm-message"><%= lang.areYouSure %></p>
 								<div class="confirm-buttons-wrapper clear-fix">
-									<div class="confirm-button js-restart-mission">yes</div>
-									<div class="confirm-button" data-hide-show="restart-mission">no</div>
+									<div class="confirm-button js-restart-mission"><%= lang.yes %></div>
+									<div class="confirm-button" data-hide-show="restart-mission"><%= lang.no %></div>
 								</div>
 							</div>
 
 						</div>
 
-						<div class="battle-menu-item-button" data-show="quit-mission"><span class="js-hidden-data-state hidden-data-state">[+]</span>quit</div>
+						<div class="battle-menu-item-button" data-show="quit-mission"><span class="js-hidden-data-state hidden-data-state">[+]</span><%= lang.quit %></div>
 						<div class="battle-menu-added-data hidden" data-block="quit-mission">
 							<div class="confirm-wrapper">
-								<p class="confirm-message">Are you sure?</p>
+								<p class="confirm-message"><%= lang.areYouSure %></p>
 								<div class="confirm-buttons-wrapper clear-fix">
-									<div class="confirm-button js-quit-mission">yes</div>
-									<div class="confirm-button" data-hide-show="quit-mission">no</div>
+									<div class="confirm-button js-quit-mission"><%= lang.yes %></div>
+									<div class="confirm-button" data-hide-show="quit-mission"><%= lang.no %></div>
 								</div>
 							</div>
 						</div>
@@ -745,7 +745,7 @@
 		<div class="n-text clear-fix">
 			<div class="unit unit-knight unit-color-<%= color %> left"></div>
 			<div class="unit unit-soldier unit-color-<%= color %> right"></div>
-			<div><%= text %> turn!</div>
+			<div><%= lang[text + 'Turn'] %></div>
 
 		</div>
 

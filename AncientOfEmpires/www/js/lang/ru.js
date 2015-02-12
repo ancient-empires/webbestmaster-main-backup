@@ -29,6 +29,13 @@
 		buy: 'цена',
 		menu: 'меню',
 		exit: 'выход',
+		restart: 'перезапуск',
+		quit: 'выход',
+		areYouSure: 'Вы уверены?',
+		yes: 'да',
+		no: 'нет',
+		blueTurn: 'ход<br>синих!',
+		redTurn: 'ход<br>красных!',
 		units: {
 			archer: {
 				name: 'лучник',

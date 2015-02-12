@@ -29,6 +29,13 @@
 		buy: 'buy',
 		menu: 'menu',
 		exit: 'exit',
+		restart: 'restart',
+		quit: 'quit',
+		areYouSure: 'Are you sure?',
+		yes: 'yes',
+		no: 'no',
+		blueTurn: 'blue turn!',
+		redTurn: 'red turn!',
 		units: {
 			archer: {
 				name: 'archer',
