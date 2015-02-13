@@ -672,6 +672,10 @@ html {
 	padding: 0.7em 0;
 }
 
+.setting-item-wrapper.hidden {
+	display: none;
+}
+
 .show-after-show {
 	opacity: 0.3;
 	/*-webkit-transition: opacity 0.3s linear;*/
