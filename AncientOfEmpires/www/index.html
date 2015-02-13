@@ -366,7 +366,8 @@
 
 							<div data-tag="label" class="radio-button-wrapper clear-fix <%= isDisabled ? 'disable opacity5' : '' %>">
 								<input data-js-name="<%= map.jsName %>" class="hidden custom-radio-button js-map-to-create-game" type="radio" name="map-name"/>
-								<span class="left ellipsis"><%= isDisabled ? map.name.replace(/\S/g, '?') : map.name %></span>
+								<% var mapName = lang.mapsName[map.name]; %>
+								<span class="left ellipsis"><%= isDisabled ? mapName.replace(/\S/g, '?') : mapName %></span>
 							</div>
 
 							<% }); %>

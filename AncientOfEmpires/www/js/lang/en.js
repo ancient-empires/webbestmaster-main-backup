@@ -42,6 +42,18 @@
 		blueWin: 'blue win!',
 		redWin: 'red win!',
 		occupyAllBuildings: 'Occupy all buildings.',
+		mapsName: {
+			'Regroup': 'Regroup',
+			'Friends and Enemies': 'Friends and Enemies',
+			'Escort': 'Escort',
+			'Reinforcements': 'Reinforcements',
+			'Wyvern Rescue!': 'Wyvern Rescue!',
+			'Siege!': 'Siege!',
+			'Final Assault': 'Final Assault',
+			'Island Cross': 'Island Cross',
+			'Rocky Bay': 'Rocky Bay',
+			'River': 'River'
+		},
 		units: {
 			archer: {
 				name: 'archer',

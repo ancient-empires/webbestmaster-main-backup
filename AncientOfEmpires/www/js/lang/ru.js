@@ -42,6 +42,18 @@
 		blueWin: 'синие победили!',
 		redWin: 'красные победили!',
 		occupyAllBuildings: 'Захватить все здания.',
+		mapsName: {
+			'Regroup': 'Перегруппировка',
+			'Friends and Enemies': 'Друзья и Враги',
+			'Escort': 'Эскорт',
+			'Reinforcements': 'Подкрепление',
+			'Wyvern Rescue!': 'Спасти Вайверн!',
+			'Siege!': 'Осада!',
+			'Final Assault': 'Последний Штурм',
+			'Island Cross': 'Остров Крест',
+			'Rocky Bay': 'Скалистая Бухта',
+			'River': 'Река'
+		},
 		units: {
 			archer: {
 				name: 'лучник',
