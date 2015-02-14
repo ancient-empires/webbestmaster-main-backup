@@ -8,15 +8,15 @@
 
 	win.APP.BB = win.APP.BB || {};
 
-	APP.BB.PopUpView = APP.BB.BaseView.extend({
+	APP.BB.PopupView = APP.BB.BaseView.extend({
 
 		events: {
-			'click .js-popup-container': 'stopEvent'
+
 		},
 
 		initialize: function(data) {
 
-			this.routeByUrl(Backbone.history.fragment + '?' + this.popupUrl);
+			this.routeToPopup();
 
 			this.$el = $(this.tmpl.popup(data));
 

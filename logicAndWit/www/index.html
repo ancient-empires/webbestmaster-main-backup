@@ -80,6 +80,7 @@
 	<script src="js/app/view/section.js" type="text/javascript"></script>
 	<script src="js/app/view/question.js" type="text/javascript"></script>
 	<script src="js/app/view/setting.js" type="text/javascript"></script>
+	<script src="js/app/view/rate.js" type="text/javascript"></script>
 
 	<!-- start app -->
 	<script src="js/app/main.js" type="text/javascript"></script>
@@ -101,8 +102,8 @@
 
 		<% if ( window.location.hash ) { %>
 			<div class="js-back back">&nbsp;</div>
-		<% } else if ( window.APP.info.ads.withAds && window.APP.info.get('isIOS', true) ) { %>
-			<a href="<%= window.APP.info.ads.iosNoAds %>" class="js-external-link no-ads">&nbsp;</a>
+		<% } else if ( window.APP.info.withAds && window.APP.info.get('isIOS', true) ) { %>
+			<a href="<%= window.APP.info.link.ios.pro %>" class="js-external-link no-ads">&nbsp;</a>
 		<% }; %>
 
 		<% if ( obj && obj.showSetting ) { %>
@@ -166,7 +167,7 @@
 			<div class="table-row">
 				<div class="table-cell">
 
-					<div class="popup-container js-popup-container">
+					<div class="popup-container">
 
 						<div class="popup-text"><%= obj.text || 'no message' %></div>
 						<div class="js-back popup-button">ok</div>
@@ -272,6 +273,37 @@
 
 		</div>
 
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="rate">
+
+	<div class="js-popup-wrapper popup-wrapper">
+		<div class="table popup-wrapper-table js-back">
+			<div class="table-row">
+				<div class="table-cell">
+					<div class="popup-container clear-fix">
+
+						<div class="js-stop-event popup-form clear-fix">
+							<% var rateUs = window.APP.lang.get('rateUs'); %>
+							<p class="popup-text"><%= rateUs.header %></p>
+							<div class="width-50 float-left">
+								<div class="popup-button js-back">
+									<%= rateUs.notNow %>
+								</div>
+							</div>
+							<div class="width-50 float-left js-five-stars">
+								<a class="popup-button js-external-link" href="<%= link %>">
+									<%= rateUs.fiveStars %>
+								</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 </script>

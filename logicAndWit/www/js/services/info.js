@@ -40,11 +40,20 @@
 	var info;
 
 	info = {
-		ads: {
-			withAds: true,
-			iosNoAds: 'https://itunes.apple.com/us/app/logic-and-wit-pro/id929158288?mt=8',
-			androidNoAds: ''
+
+		withAds: false,
+
+		link: {
+			ios: {
+				normal: 'https://itunes.apple.com/us/app/logika-i-smekalka/id908979726?mt=8',
+				pro: 'https://itunes.apple.com/us/app/logic-and-wit-pro/id929158288?mt=8'
+			},
+			android: {
+				normal: 'https://play.google.com/store/apps/details?id=com.statlex.logicandwit',
+				pro: 'https://play.google.com/store/apps/details?id=com.statlex.logicandwitpro'
+			}
 		},
+
 		ls: win.localStorage,
 		saveItem: 'zaggadki',
 		attr: {},
@@ -54,8 +63,7 @@
 
 		init: function () {
 
-			var ua = win.navigator.userAgent,
-				lang,
+			var lang,
 				langOld;
 
 			// get data from LS
@@ -79,9 +87,7 @@
 			// is phone
 			this.set('isPhone', Math.max(docElem.clientHeight, docElem.clientWidth) < 760, true);
 
-			this.set('isIE', /MSIE/.test(ua), true);
-			this.set('isAndroid', (/android/i).test(ua), true);
-			this.set('isIOS', /iPad|iPhone|iPod/.test(ua), true);
+			this.setOS();
 
 			// set language
 			lang = this.get('language') || navigator.language || navigator.userLanguage || this.defaultLanguage;
@@ -89,6 +95,30 @@
 			lang = (this.availableLanguages.indexOf(lang) === -1) ? this.defaultLanguage : lang;
 			lang = lang.toLowerCase();
 			this.set('language', lang);
+
+		},
+		setOS: function () {
+
+			var ua = win.navigator.userAgent,
+				isIE = /MSIE/.test(ua),
+				isAndroid = (/android/i).test(ua),
+				isIOS = /iPad|iPhone|iPod/.test(ua);
+
+			this.set('isIE', isIE, true);
+			this.set('isAndroid', isAndroid, true);
+			this.set('isIOS', isIOS, true);
+
+			if ( isIE ) {
+				this.set('os', 'wp', true);
+			}
+
+			if ( isAndroid ) {
+				this.set('os', 'android', true);
+			}
+
+			if ( isIOS ) {
+				this.set('os', 'ios', true);
+			}
 
 		},
 		set: function (key, value, isSystem) {

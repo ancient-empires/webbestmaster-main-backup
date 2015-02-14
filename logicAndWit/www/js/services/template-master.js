@@ -12,9 +12,12 @@
 		templateSelector: 'script[type="text/x-template"]',
 		tmplText: {},
 		tmplFn: {},
+		optimizeHtml: function (html) {
+			return html.trim().replace(/>\s+</g, '><').replace(/\s+/g, ' ');
+		},
 		createTemplateFunction: function (str) {
 			return new Function("obj",
-					"var p=[]; with(obj || {}){p.push('" + str
+					"var p=[]; obj = obj || {}; with( obj ){p.push('" + str
 					.replace(/[\r\t\n]/g, " ")
 					.split("<%").join("\t")
 					.replace(/((^|%>)[^\t]*)'/g, "$1\r")
@@ -30,7 +33,7 @@
 			Array.prototype.forEach.call(templates, function(tmplNode) {
 
 				var name = tmplNode.getAttribute('data-name'),
-					text = tmplNode.textContent.trim();
+					text = this.optimizeHtml(tmplNode.textContent);
 
 				this.tmplText[name] = text;
 				this.tmplFn[name] = this.createTemplateFunction(text);

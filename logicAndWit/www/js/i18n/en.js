@@ -17,7 +17,12 @@
 		answer: 'answer',
 		theme: 'Theme',
 		text: 'Text',
-		share: 'Share'
+		share: 'Share',
+		rateUs: {
+			header: 'Rate us, please!',
+			notNow: 'not now',
+			fiveStars: 'Yes, 5 stars!'
+		}
 
 	};
 

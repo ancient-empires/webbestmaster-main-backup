@@ -15,7 +15,8 @@
 		events: {
 			'click [data-route]': 'routeTo',
 			'click .js-back': 'routeBack',
-			'click .js-external-link': 'toExternalLink'
+			'click .js-external-link': 'toExternalLink',
+			'click .js-stop-event': 'stopEvent'
 		},
 
 		popupUrl: 'popup=true',
@@ -67,6 +68,12 @@
 			this.navigate(route, options);
 		},
 
+		routeToPopup: function () {
+
+			this.routeByUrl(Backbone.history.fragment + '?' + this.popupUrl);
+
+		},
+
 		routeBack: function(e) {
 
 			this.stopEvent(e);
@@ -79,12 +86,14 @@
 
 		showPopup: function(data) {
 
-			APP.bb.popUp = new APP.BB.PopUpView(data);
+			APP.bb.popup = new APP.BB.PopupView(data);
 
 		},
 
 		hidePopup: function () {
-			console.log('HIDE POPUP');
+
+			$('.js-popup-wrapper').remove();
+
 		},
 
 		stopEvent: function(e) {

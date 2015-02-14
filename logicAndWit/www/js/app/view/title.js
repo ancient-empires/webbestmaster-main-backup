@@ -21,6 +21,8 @@
 
 			this.render();
 
+			this.showRateUs();
+
 		},
 
 		getProgressBySection: function (jsPath, section) {
@@ -32,6 +34,16 @@
 				questionsDoneLength = _.keys(questionsDone).length;
 
 			return questionsDoneLength / questionLength * 100;
+
+		},
+		showRateUs: function () {
+
+			setTimeout(function () {
+				win.APP.bb.rate = new win.APP.BB.RateView();
+				win.APP.bb.rate.show();
+
+			}, 100);
+
 
 		}
 

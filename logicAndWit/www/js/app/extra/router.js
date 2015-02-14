@@ -34,13 +34,23 @@
 				proto = APP.BB.Router.prototype,
 				router = this;
 
-			function isPopupView() {
+			function getPopupAction() {
 
 				var e = window.event || {},
-					urls = (e.newURL || '') + (e.oldURL || ''),
-					popupPart = APP.BB.BaseView.prototype.popupUrl;
+					newURL = e.newURL || '',
+					oldURL = e.oldURL || '',
+					popupPart = APP.BB.BaseView.prototype.popupUrl,
+					popupAction;
 
-				return urls.indexOf(popupPart) !== -1;
+				if (newURL.indexOf(popupPart) !== -1) {
+					popupAction = 'showPopup';
+				}
+
+				if (oldURL.indexOf(popupPart) !== -1) {
+					popupAction = 'hidePopup';
+				}
+
+				return popupAction;
 
 			}
 
@@ -48,7 +58,14 @@
 				originalFunctions[value] = proto[value];
 				proto[value] = function () {
 
-					if ( isPopupView() ) {
+					var popupAction = getPopupAction();
+
+					if ( popupAction ) {
+
+						if (popupAction === 'hidePopup') {
+							APP.BB.BaseView.prototype.hidePopup();
+						}
+
 						return false;
 					}
 
