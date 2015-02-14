@@ -38,12 +38,12 @@
 		},
 		showRateUs: function () {
 
-			setTimeout(function () {
-				win.APP.bb.rate = new win.APP.BB.RateView();
-				win.APP.bb.rate.show();
-
-			}, 100);
-
+			this.util.runIfConnect(function () {
+				setTimeout(function () {
+					win.APP.bb.rate = new win.APP.BB.RateView();
+					win.APP.bb.rate.show();
+				}, 200);
+			}, this);
 
 		}
 

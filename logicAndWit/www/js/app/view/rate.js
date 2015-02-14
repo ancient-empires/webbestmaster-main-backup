@@ -74,11 +74,12 @@
 
 		fiveStars: function () {
 
-			this.routeBack();
-
 			var rateData = this.info.get('rate') || {};
 			rateData.isRated = true;
 			this.info.set('rate', rateData);
+
+			this.routeBack();
+
 
 		}
 

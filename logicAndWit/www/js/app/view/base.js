@@ -176,6 +176,11 @@
 
 			this.setTheme(themeName);
 
+		},
+		runIfConnect: function (calback, context) {
+			var img = new Image();
+			img.addEventListener('load', calback.call(context), false);
+			img.src = 'http://statlex.com/i/statlex-icon.png?t=' + Date.now();
 		}
 
 	};
