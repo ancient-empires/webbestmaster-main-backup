@@ -736,6 +736,7 @@ html {
 
 .instruction-item {
 	padding: 1em 0.7em;
+	background-color: rgba(0, 0, 0, 0.9);
 }
 
 .instruction-item-value {
@@ -792,7 +793,8 @@ html {
 	position: fixed;
 	width: 100%;
 	box-sizing: border-box;
-	bottom: 1em;
+	bottom: 0;
+	padding-bottom: 2em;
 }
 
 .ru .header-button.right {
@@ -832,4 +834,8 @@ html {
 	left: 0;
 	top: 0;
 	z-index: 1;
+}
+
+.text-underline {
+	text-decoration: underline;
 }

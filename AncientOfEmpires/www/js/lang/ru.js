@@ -42,6 +42,7 @@
 		blueWin: 'синие победили!',
 		redWin: 'красные победили!',
 		occupyAllBuildings: 'Захватить все здания.',
+		helpProject: 'Помочь проекту',
 		mapsName: {
 			'Regroup': 'Перегруппировка',
 			'Friends and Enemies': 'Друзья и Враги',

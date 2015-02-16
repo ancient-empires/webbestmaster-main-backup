@@ -42,6 +42,7 @@
 		blueWin: 'blue win!',
 		redWin: 'red win!',
 		occupyAllBuildings: 'Occupy all buildings.',
+		helpProject: 'help project',
 		mapsName: {
 			'Regroup': 'Regroup',
 			'Friends and Enemies': 'Friends and Enemies',
