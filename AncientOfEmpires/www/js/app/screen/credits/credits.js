@@ -11,7 +11,7 @@
 		templates: ['credits'],
 
 		events: {
-
+			'click .js-external-link': 'toExternalLink'
 		},
 
 		init: function() {
@@ -24,7 +24,32 @@
 
 			this.$wrapper.append(this.$el);
 
+			setTimeout(function () {
+
+				var node = win.document.querySelector('.js-do-not-touch');
+
+				if (!node) {
+					return;
+				}
+
+				node.parentNode.removeChild(node);
+
+			}, 500);
+
+		},
+
+		toExternalLink: function(e) {
+
+			e.preventDefault();
+			e.stopPropagation();
+
+			var $this = $(e.target),
+				url = $this.attr('href');
+
+			win.open(url);
+
 		}
+
 
 	});
 
