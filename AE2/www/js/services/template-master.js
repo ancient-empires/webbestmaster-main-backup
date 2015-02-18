@@ -13,7 +13,11 @@
 		tmplText: {},
 		tmplFn: {},
 		optimizeHtml: function (html) {
-			return html.trim().replace(/>\s+</g, '><').replace(/\s+/g, ' ');
+			return html
+				.trim() // remove extra spaces
+				.replace(/\{\{\s*(\S+)\s*\}\}/gi, "<%= window.APP.lang.attr.$1 %>") // {{ word }} to normal state
+				.replace(/>\s+</g, '><') // remove extra spaces
+				.replace(/\s+/g, ' '); // remove extra spaces
 		},
 		createTemplateFunction: function (str) {
 			return new Function("obj",

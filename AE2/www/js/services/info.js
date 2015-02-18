@@ -55,7 +55,7 @@
 		},
 
 		ls: win.localStorage,
-		saveItem: 'zaggadki',
+		saveItem: 'ae2-ls-item',
 		attr: {},
 		systemAttr: {},
 		defaultLanguage: 'en',

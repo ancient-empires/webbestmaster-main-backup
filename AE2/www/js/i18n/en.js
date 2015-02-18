@@ -9,12 +9,18 @@
 	APP.languages = APP.languages || {};
 
 	APP.languages.en = {
-		language: 'Language',
+		language: 'language',
 		languageName: 'English',
 		appName: 'AE2',
-		settings: 'Settings',
-		theme: 'Theme',
-		share: 'Share',
+
+		//theme: 'Theme',
+		//share: 'Share',
+		play: 'play',
+		online: 'online',
+		settings: 'settings',
+		instructions: 'instructions',
+		about: 'about',
+
 		rateUs: {
 			header: 'Rate us, please!',
 			notNow: 'not now',

@@ -21,7 +21,9 @@
 
 			this.render();
 
-			this.showRateUs();
+			log('do not show showRateUs');
+			//this.showRateUs();
+
 
 		},
 

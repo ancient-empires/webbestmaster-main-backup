@@ -22,6 +22,8 @@
 				setTimeout(back, 200);
 			} else {
 				//win.APP.BB.BaseView.prototype.util.loadSavedTheme();
+				win.APP.lang.set('en');
+				log('set lang "en" as default');
 				win.APP.bb.router = new win.APP.BB.Router();
 				Backbone.history.start();
 			}
