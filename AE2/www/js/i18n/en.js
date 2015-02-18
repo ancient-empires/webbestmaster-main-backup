@@ -15,11 +15,24 @@
 
 		//theme: 'Theme',
 		//share: 'Share',
+
+		// title page
 		play: 'play',
 		online: 'online',
 		settings: 'settings',
 		instructions: 'instructions',
 		about: 'about',
+
+		// settings
+		on: 'on',
+		off: 'off',
+		music: 'music',
+		vibrate: 'vibrate',
+		help: 'help',
+		fightAnimation: 'fight animation',
+		gameSpeed: 'game speed',
+
+
 
 		rateUs: {
 			header: 'Rate us, please!',

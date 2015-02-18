@@ -11,11 +11,16 @@
 	APP.BB.Router = Backbone.Router.extend({
 
 		routes: {
-			'': 'title'
+			'': 'title',
+			settings: 'settings'
 		},
 
 		title: function () {
-			APP.bb.title = new APP.BB.TitleView();
+			new APP.BB.TitleView();
+		},
+
+		settings: function () {
+			new APP.BB.SettingsView();
 		},
 
 		constructor: function () {
