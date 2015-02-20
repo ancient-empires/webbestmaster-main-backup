@@ -160,7 +160,8 @@
 					music: 'on',
 					vibrate: 'on',
 					help: 'on',
-					fightAnimation: 'on'
+					fightAnimation: 'on',
+					gameSpeed: '3' // 1..5, use string type
 				},
 				key,
 				value;

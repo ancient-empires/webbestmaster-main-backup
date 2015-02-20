@@ -106,11 +106,11 @@
 
 				<% if ( lang === info.get('language') ) { %>
 					<div class="js-change-select-setting" data-key="language" data-value="<%= lang %>">
-						<%=  window.APP.languages[lang].shortLanguageName %>
+						<%= window.APP.languages[lang].shortLanguageName %>
 					</div>
 				<% } else { %>
 					<div class="opacity50 js-change-select-setting" data-key="language" data-value="<%= lang %>">
-						<%=  window.APP.languages[lang].shortLanguageName %>
+						<%= window.APP.languages[lang].shortLanguageName %>
 					</div>
 				<% }; %>
 
@@ -118,6 +118,28 @@
 			<% }); %>
 
 			</div>
+		</div>
+
+		<div>{{ gameSpeed }}
+
+			<div>
+
+				<% _.each(['1', '2', '3', '4', '5'], function(speed){ %>
+
+					<% if ( speed === info.get('gameSpeed') ) { %>
+					<div class="js-change-select-setting" data-key="gameSpeed" data-value="<%= speed %>">
+						<%= speed %>
+					</div>
+					<% } else { %>
+					<div class="opacity50 js-change-select-setting" data-key="gameSpeed" data-value="<%= speed %>">
+						<%= speed %>
+					</div>
+					<% }; %>
+
+				<% }); %>
+
+			</div>
+
 		</div>
 
 	</div>
