@@ -33,7 +33,11 @@
 		fightAnimation: 'fight animation',
 		gameSpeed: 'game speed',
 
-
+		// play
+		newGame: 'new game',
+		loadGame: 'load game',
+		selectLevel: 'select level',
+		skirmish: 'skirmish',
 
 		rateUs: {
 			header: 'Rate us, please!',

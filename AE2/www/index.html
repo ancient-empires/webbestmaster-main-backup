@@ -39,6 +39,7 @@
 	<script src="js/app/view/popup.js" type="text/javascript"></script>
 	<script src="js/app/view/rate.js" type="text/javascript"></script>
 	<script src="js/app/view/settings.js" type="text/javascript"></script>
+	<script src="js/app/view/play.js" type="text/javascript"></script>
 
 	<!-- models -->
 
@@ -66,7 +67,7 @@
 
 	<div>
 
-		<button>{{ play }}</button>
+		<button data-route="play">{{ play }}</button>
 		<br/>
 		<button>{{ online }}</button>
 		<br/>
@@ -155,6 +156,19 @@
 		<% } else { %>
 		<div class="js-change-on-off-setting" data-key="<%= key %>" data-value="off"> {{ off }} </div>
 		<% }; %>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="play">
+
+	<div>
+
+		<button>{{ newGame }}</button>
+		<button>{{ loadGame }}</button>
+		<button>{{ selectLevel }}</button>
+		<button>{{ skirmish }}</button>
 
 	</div>
 

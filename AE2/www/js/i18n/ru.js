@@ -14,11 +14,6 @@
 		shortLanguageName: 'Рус',
 		appName: 'AE2',
 
-
-
-
-
-
 		//theme: 'Theme',
 		//share: 'Share',
 
@@ -38,8 +33,11 @@
 		fightAnimation: 'анимация боя',
 		gameSpeed: 'скорость игры',
 
-
-
+		// play
+		newGame: 'новая игра',
+		loadGame: 'загрузить игру',
+		selectLevel: 'выбор уровня',
+		skirmish: 'схватка',
 
 		rateUs: {
 			header: 'Пожалуйста, оцените приложение!',

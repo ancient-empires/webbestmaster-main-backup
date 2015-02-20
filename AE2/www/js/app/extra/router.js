@@ -12,7 +12,8 @@
 
 		routes: {
 			'': 'title',
-			settings: 'settings'
+			settings: 'settings',
+			play: 'play'
 		},
 
 		title: function () {
@@ -21,6 +22,10 @@
 
 		settings: function () {
 			new APP.BB.SettingsView();
+		},
+
+		play: function () {
+			new APP.BB.PlayView();
 		},
 
 		constructor: function () {
