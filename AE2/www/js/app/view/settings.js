@@ -9,9 +9,6 @@
 
 	APP.BB.SettingsView = APP.BB.BaseView.extend({
 
-		defaults: {
-		},
-
 		events: {
 			'click .js-change-on-off-setting': 'changeOnOffSetting',
 			'click .js-change-select-setting': 'changeSelectSetting'
