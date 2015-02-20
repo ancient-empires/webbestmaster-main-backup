@@ -14,7 +14,8 @@
 			'': 'title',
 			settings: 'settings',
 			play: 'play',
-			about: 'about'
+			about: 'about',
+			instructions: 'instructions'
 		},
 
 		title: function () {
@@ -31,6 +32,10 @@
 
 		about: function () {
 			new APP.BB.AboutView();
+		},
+
+		instructions: function () {
+			new APP.BB.InstructionsView();
 		},
 
 		constructor: function () {

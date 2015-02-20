@@ -41,6 +41,7 @@
 	<script src="js/app/view/settings.js" type="text/javascript"></script>
 	<script src="js/app/view/play.js" type="text/javascript"></script>
 	<script src="js/app/view/about.js" type="text/javascript"></script>
+	<script src="js/app/view/instructions.js" type="text/javascript"></script>
 
 	<!-- models -->
 
@@ -73,6 +74,8 @@
 		<button class="opacity50">{{ online }}</button>
 		<br/>
 		<button data-route="settings">{{ settings }}</button>
+		<br/>
+		<button data-route="instructions">{{ instructions }}</button>
 		<br/>
 		<button data-route="about">{{ about }}</button>
 		<br/>
@@ -214,11 +217,15 @@
 
 
 
-<script type="text/x-template" data-name="setting">
+<script type="text/x-template" data-name="instructions">
 
 	<div>
 
-		settings is here
+		<h1>{{ instructions }}</h1>
+
+		<% _.each(window.APP.lang.get('instructionsText'), function(part) { %>
+			<p><%= part %></p>
+		<% }); %>
 
 	</div>
 
