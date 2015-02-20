@@ -9,12 +9,38 @@
 	APP.languages = APP.languages || {};
 
 	APP.languages.ru = {
-		language: 'Язык',
+		language: 'язык',
 		languageName: 'Русский',
+		shortLanguageName: 'Рус',
 		appName: 'AE2',
-		settings: 'Настройки',
-		theme: 'Оформление',
-		share: 'Поделиться',
+
+
+
+
+
+
+		//theme: 'Theme',
+		//share: 'Share',
+
+		// title page
+		play: 'играть',
+		online: 'по сети',
+		settings: 'настройки',
+		instructions: 'инструкции',
+		about: 'о программе',
+
+		// settings
+		on: 'вкл',
+		off: 'выкл',
+		music: 'музыка',
+		vibrate: 'вибро',
+		help: 'помощь',
+		fightAnimation: 'анимация боя',
+		gameSpeed: 'скорость игры',
+
+
+
+
 		rateUs: {
 			header: 'Пожалуйста, оцените приложение!',
 			notNow: 'не сейчас',

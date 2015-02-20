@@ -137,7 +137,9 @@ output, progress, section, summary, time, video {
 	float: right;
 }
 
-
+.opacity50 {
+	opacity: 0.5;
+}
 
 
 

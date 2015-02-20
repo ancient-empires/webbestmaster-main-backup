@@ -11,6 +11,7 @@
 	APP.languages.en = {
 		language: 'language',
 		languageName: 'English',
+		shortLanguageName: 'Eng',
 		appName: 'AE2',
 
 		//theme: 'Theme',

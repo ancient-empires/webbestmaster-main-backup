@@ -13,10 +13,10 @@
 				css: ''
 			},
 			tempStyle = doc.createElement('div').style,
-			vendors = ['t','webkitT','MozT','msT','OT'];
+			vendors = ['t', 'webkitT', 'MozT', 'msT', 'OT'];
 
 		// find vendors by css transform property
-		vendors.forEach(function(vendor){
+		vendors.forEach(function (vendor) {
 			var transform = vendor + 'ransform';
 			if (!tempStyle.hasOwnProperty(transform)) {
 				return;
@@ -96,6 +96,9 @@
 			lang = lang.toLowerCase();
 			this.set('language', lang);
 
+			//set settings
+			this.setSettings();
+
 		},
 		setOS: function () {
 
@@ -108,15 +111,15 @@
 			this.set('isAndroid', isAndroid, true);
 			this.set('isIOS', isIOS, true);
 
-			if ( isIE ) {
+			if (isIE) {
 				this.set('os', 'wp', true);
 			}
 
-			if ( isAndroid ) {
+			if (isAndroid) {
 				this.set('os', 'android', true);
 			}
 
-			if ( isIOS ) {
+			if (isIOS) {
 				this.set('os', 'ios', true);
 			}
 
@@ -148,6 +151,26 @@
 			}
 
 			return key;
+
+		},
+
+		setSettings: function () {
+
+			var defaultSettings = {
+					music: 'on',
+					vibrate: 'on',
+					help: 'on',
+					fightAnimation: 'on'
+				},
+				key,
+				value;
+
+			for (key in defaultSettings) {
+				if (defaultSettings.hasOwnProperty(key)) {
+					value = this.get(key) || defaultSettings[key];
+					this.set(key, value)
+				}
+			}
 
 		}
 

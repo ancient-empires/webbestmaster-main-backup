@@ -38,7 +38,9 @@
 	<script src="js/app/view/title.js" type="text/javascript"></script>
 	<script src="js/app/view/popup.js" type="text/javascript"></script>
 	<script src="js/app/view/rate.js" type="text/javascript"></script>
-	<script src="js/app/view/setting.js" type="text/javascript"></script>
+	<script src="js/app/view/settings.js" type="text/javascript"></script>
+
+	<!-- models -->
 
 	<!-- start app -->
 	<script src="js/app/main.js" type="text/javascript"></script>
@@ -84,20 +86,57 @@
 
 		<h1>{{ settings }}</h1>
 
-		<div>{{ music }}</div>
-		<div>{{ vibrate }}</div>
-		<div>{{ help }}</div>
-		<div>{{ fightAnimation }}</div>
-		<div>{{ gameSpeed }}</div>
+		<div>{{ music }}
+			<div><%= view.tmpl.settingsOnOff({ key: 'music', info: info }) %></div>
+		</div>
+		<div>{{ vibrate }}
+			<div><%= view.tmpl.settingsOnOff({ key: 'vibrate', info: info }) %></div>
+		</div>
+		<div>{{ help }}
+			<div><%= view.tmpl.settingsOnOff({ key: 'help', info: info }) %></div>
+		</div>
+		<div>{{ fightAnimation }}
+			<div><%= view.tmpl.settingsOnOff({ key: 'fightAnimation', info: info }) %></div>
+		</div>
+
+		<div>{{ language }}
+			<div>
+
+			<% _.each(info.availableLanguages, function(lang) { %>
+
+				<% if ( lang === info.get('language') ) { %>
+					<div class="js-change-select-setting" data-key="language" data-value="<%= lang %>">
+						<%=  window.APP.languages[lang].shortLanguageName %>
+					</div>
+				<% } else { %>
+					<div class="opacity50 js-change-select-setting" data-key="language" data-value="<%= lang %>">
+						<%=  window.APP.languages[lang].shortLanguageName %>
+					</div>
+				<% }; %>
+
+
+			<% }); %>
+
+			</div>
+		</div>
 
 	</div>
 
 </script>
 
+<script type="text/x-template" data-name="settingsOnOff">
 
+	<div>
 
+		<% if (info.get(key) === 'on') { %>
+		<div class="js-change-on-off-setting" data-key="<%= key %>" data-value="on"> {{ on }} </div>
+		<% } else { %>
+		<div class="js-change-on-off-setting" data-key="<%= key %>" data-value="off"> {{ off }} </div>
+		<% }; %>
 
+	</div>
 
+</script>
 
 <script type="text/x-template" data-name="popup">
 
