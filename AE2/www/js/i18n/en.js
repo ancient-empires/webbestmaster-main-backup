@@ -43,7 +43,9 @@
 			header: 'Rate us, please!',
 			notNow: 'not now',
 			fiveStars: 'Yes, 5 stars!'
-		}
+		},
+
+		aboutText: 'Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau'
 
 	};
 

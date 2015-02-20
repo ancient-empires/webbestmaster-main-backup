@@ -40,6 +40,7 @@
 	<script src="js/app/view/rate.js" type="text/javascript"></script>
 	<script src="js/app/view/settings.js" type="text/javascript"></script>
 	<script src="js/app/view/play.js" type="text/javascript"></script>
+	<script src="js/app/view/about.js" type="text/javascript"></script>
 
 	<!-- models -->
 
@@ -69,11 +70,11 @@
 
 		<button data-route="play">{{ play }}</button>
 		<br/>
-		<button>{{ online }}</button>
+		<button class="opacity50">{{ online }}</button>
 		<br/>
 		<button data-route="settings">{{ settings }}</button>
 		<br/>
-		<button>{{ about }}</button>
+		<button data-route="about">{{ about }}</button>
 		<br/>
 
 	</div>
@@ -156,6 +157,18 @@
 		<% } else { %>
 		<div class="js-change-on-off-setting" data-key="<%= key %>" data-value="off"> {{ off }} </div>
 		<% }; %>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="about">
+
+	<div>
+
+		<h1>{{ about }}</h1>
+
+		<p>{{ aboutText }}</p>
 
 	</div>
 
