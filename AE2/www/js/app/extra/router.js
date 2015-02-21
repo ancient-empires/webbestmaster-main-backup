@@ -15,7 +15,8 @@
 			settings: 'settings',
 			play: 'play',
 			about: 'about',
-			instructions: 'instructions'
+			instructions: 'instructions',
+			'load-game': 'loadGame'
 		},
 
 		title: function () {
@@ -36,6 +37,10 @@
 
 		instructions: function () {
 			new APP.BB.InstructionsView();
+		},
+
+		loadGame: function () {
+			new APP.BB.LoadGameView();
 		},
 
 		constructor: function () {

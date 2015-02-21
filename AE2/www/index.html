@@ -42,6 +42,8 @@
 	<script src="js/app/view/play.js" type="text/javascript"></script>
 	<script src="js/app/view/about.js" type="text/javascript"></script>
 	<script src="js/app/view/instructions.js" type="text/javascript"></script>
+	<script src="js/app/view/instructions.js" type="text/javascript"></script>
+	<script src="js/app/view/load-game.js" type="text/javascript"></script>
 
 	<!-- models -->
 
@@ -181,10 +183,10 @@
 
 	<div>
 
-		<button>{{ newGame }}</button>
-		<button>{{ loadGame }}</button>
-		<button>{{ selectLevel }}</button>
-		<button>{{ skirmish }}</button>
+		<button class="opacity50">{{ newGame }}</button>
+		<button data-route="load-game">{{ loadGame }}</button>
+		<button class="opacity50">{{ selectLevel }}</button>
+		<button class="opacity50">{{ skirmish }}</button>
 
 	</div>
 
@@ -215,7 +217,22 @@
 
 </script>
 
+<script type="text/x-template" data-name="loadGame">
 
+	<div>
+
+		<h1>{{ loadGame }}</h1>
+
+		<ul>
+			<li>saved game name 1</li>
+			<li>saved game name 2</li>
+			<li>saved game name 3</li>
+			<li>saved game name 4</li>
+		</ul>
+
+	</div>
+
+</script>
 
 <script type="text/x-template" data-name="instructions">
 

@@ -16,7 +16,8 @@
 			'click [data-route]': 'routeTo',
 			'click .js-back': 'routeBack',
 			'click .js-external-link': 'toExternalLink',
-			'click .js-stop-event': 'stopEvent'
+			'click .js-stop-event': 'stopEvent',
+			'hide': 'hide'
 		},
 
 		popupUrl: 'popup=true',
@@ -42,9 +43,17 @@
 
 		},
 
+		hide: function () {
+			log('hide view');
+			this.undelegateEvents();
+			this.$el.remove();
+		},
+
 		render: function () {
 
-			this.$wrapper.empty();
+			var $oldContainer = this.$wrapper.find('> div');
+			$oldContainer.trigger('hide');
+
 			this.$wrapper.append(this.$el);
 			this.util.setSizes();
 			this.util.toTop();
@@ -92,7 +101,7 @@
 
 		hidePopup: function () {
 
-			$('.js-popup-wrapper').remove();
+			$('.js-popup-wrapper').trigger('hide');
 
 		},
 
