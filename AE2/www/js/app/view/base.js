@@ -39,7 +39,10 @@
 
 		initialize: function() {
 
-			this.$wrapper = $(this.selectors.wrapper);
+		},
+
+		initStatic: function () {
+			proto.$wrapper = $(this.selectors.wrapper);
 
 		},
 
