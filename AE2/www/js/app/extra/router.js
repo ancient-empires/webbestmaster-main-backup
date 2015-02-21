@@ -17,7 +17,8 @@
 			'about': 'about',
 			'instructions': 'instructions',
 			'load-game': 'loadGame',
-			'select-level': 'selectLevel'
+			'select-level': 'selectLevel',
+			'skirmish-select-map': 'skirmishSelectMap'
 		},
 
 		title: function () {
@@ -46,6 +47,10 @@
 
 		selectLevel: function () {
 			new APP.BB.SelectLevelView();
+		},
+
+		skirmishSelectMap: function () {
+			new APP.BB.SkirmishSelectMapView();
 		},
 
 		constructor: function () {

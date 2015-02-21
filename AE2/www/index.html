@@ -45,6 +45,7 @@
 	<script src="js/app/view/instructions.js" type="text/javascript"></script>
 	<script src="js/app/view/load-game.js" type="text/javascript"></script>
 	<script src="js/app/view/select-level.js" type="text/javascript"></script>
+	<script src="js/app/view/skirmish-select-map.js" type="text/javascript"></script>
 
 	<!-- models -->
 
@@ -187,7 +188,7 @@
 		<button class="opacity50">{{ newGame }}</button>
 		<button data-route="load-game">{{ loadGame }}</button>
 		<button data-route="select-level">{{ selectLevel }}</button>
-		<button class="opacity50">{{ skirmish }}</button>
+		<button data-route="skirmish-select-map">{{ skirmish }}</button>
 
 	</div>
 
@@ -229,6 +230,23 @@
 			<li>saved game name 2</li>
 			<li>saved game name 3</li>
 			<li>saved game name 4</li>
+		</ul>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="skirmishSelectMap">
+
+	<div>
+
+		<h1>{{ skirmish }}</h1>
+
+		<ul>
+			<li>map name 1</li>
+			<li>map name 2</li>
+			<li>map name 3</li>
+			<li>map name 4</li>
 		</ul>
 
 	</div>
