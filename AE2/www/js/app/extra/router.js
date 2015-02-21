@@ -12,11 +12,12 @@
 
 		routes: {
 			'': 'title',
-			settings: 'settings',
-			play: 'play',
-			about: 'about',
-			instructions: 'instructions',
-			'load-game': 'loadGame'
+			'settings': 'settings',
+			'play': 'play',
+			'about': 'about',
+			'instructions': 'instructions',
+			'load-game': 'loadGame',
+			'select-level': 'selectLevel'
 		},
 
 		title: function () {
@@ -41,6 +42,10 @@
 
 		loadGame: function () {
 			new APP.BB.LoadGameView();
+		},
+
+		selectLevel: function () {
+			new APP.BB.SelectLevelView();
 		},
 
 		constructor: function () {
