@@ -43,14 +43,15 @@
 		player: 'игрок',
 		cpu: 'ЦПУ',
 		none: 'нет',
+		money: 'деньги',
+		unitLimit: 'лимит войск',
+		fight: 'в бой',
 
 		// colors
 		blue: 'синий',
 		red: 'красный',
 		green: 'зелёный',
 		black: 'чёрный',
-		money: 'деньги',
-		unitLimit: 'лимит войск',
 
 		rateUs: {
 			header: 'Пожалуйста, оцените приложение!',

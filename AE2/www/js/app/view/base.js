@@ -17,13 +17,21 @@
 			'click .js-back': 'routeBack',
 			'click .js-external-link': 'toExternalLink',
 			'click .js-stop-event': 'stopEvent',
-			'hide': 'hide'
+			'hide': 'hide',
+			'click .js-list-backward[data-group-name]': 'changeSelect',
+			'click .js-list-changed-item[data-group-name]': 'changeSelect',
+			'click .js-list-forward[data-group-name]': 'changeSelect'
 		},
 
 		popupUrl: 'popup=true',
 
 		selectors: {
 			wrapper: '.js-wrapper'
+		},
+
+		initStatic: function () {
+			proto.$wrapper = $(this.selectors.wrapper);
+
 		},
 
 		constructor: function() {
@@ -41,8 +49,40 @@
 
 		},
 
-		initStatic: function () {
-			proto.$wrapper = $(this.selectors.wrapper);
+		changeSelect: function (e) {
+
+			var $this = $(e.target),
+				direction = $this.hasClass('js-list-backward') ? -1 : 1,
+				groupName = $this.attr('data-group-name'),
+				$container = this.$el.find('.js-list-changed-item[data-full-list][data-group-name="' + groupName + '"]'),
+				listData = JSON.parse(decodeURI($container.attr('data-full-list'))),
+				listLength = listData.length,
+				currentKey = $container.attr('data-key'),
+				followIndex = 0,
+				followData;
+
+			// find current index
+			listData.every(function (obj, i) {
+				if ( obj.key.toString() === currentKey ) {
+					followIndex = i + direction;
+					return false;
+				}
+				return true;
+			});
+
+			// adjust follow index
+			if ( followIndex < 0 ) {
+				followIndex = listLength - 1;
+			}
+
+			if ( followIndex >= listLength ) {
+				followIndex = 0;
+			}
+
+			followData = listData[followIndex];
+
+			$container.attr('data-key', followData.key);
+			$container.html(followData.value);
 
 		},
 

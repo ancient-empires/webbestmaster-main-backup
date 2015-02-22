@@ -115,20 +115,20 @@
 		<div>{{ language }}
 			<div>
 
-			<% _.each(info.availableLanguages, function(lang) { %>
+				<% _.each(info.availableLanguages, function(lang) { %>
 
 				<% if ( lang === info.get('language') ) { %>
-					<div class="js-change-select-setting" data-key="language" data-value="<%= lang %>">
-						<%= window.APP.languages[lang].shortLanguageName %>
-					</div>
+				<div class="js-change-select-setting" data-key="language" data-value="<%= lang %>">
+					<%= window.APP.languages[lang].shortLanguageName %>
+				</div>
 				<% } else { %>
-					<div class="opacity50 js-change-select-setting" data-key="language" data-value="<%= lang %>">
-						<%= window.APP.languages[lang].shortLanguageName %>
-					</div>
+				<div class="opacity50 js-change-select-setting" data-key="language" data-value="<%= lang %>">
+					<%= window.APP.languages[lang].shortLanguageName %>
+				</div>
 				<% }; %>
 
 
-			<% }); %>
+				<% }); %>
 
 			</div>
 		</div>
@@ -139,15 +139,15 @@
 
 				<% _.each(['1', '2', '3', '4', '5'], function(speed){ %>
 
-					<% if ( speed === info.get('gameSpeed') ) { %>
-					<div class="js-change-select-setting" data-key="gameSpeed" data-value="<%= speed %>">
-						<%= speed %>
-					</div>
-					<% } else { %>
-					<div class="opacity50 js-change-select-setting" data-key="gameSpeed" data-value="<%= speed %>">
-						<%= speed %>
-					</div>
-					<% }; %>
+				<% if ( speed === info.get('gameSpeed') ) { %>
+				<div class="js-change-select-setting" data-key="gameSpeed" data-value="<%= speed %>">
+					<%= speed %>
+				</div>
+				<% } else { %>
+				<div class="opacity50 js-change-select-setting" data-key="gameSpeed" data-value="<%= speed %>">
+					<%= speed %>
+				</div>
+				<% }; %>
 
 				<% }); %>
 
@@ -164,9 +164,9 @@
 	<div>
 
 		<% if (info.get(key) === 'on') { %>
-		<div class="js-change-on-off-setting" data-key="<%= key %>" data-value="on"> {{ on }} </div>
+		<div class="js-change-on-off-setting" data-key="<%= key %>" data-value="on"> {{ on }}</div>
 		<% } else { %>
-		<div class="js-change-on-off-setting" data-key="<%= key %>" data-value="off"> {{ off }} </div>
+		<div class="js-change-on-off-setting" data-key="<%= key %>" data-value="off"> {{ off }}</div>
 		<% }; %>
 
 	</div>
@@ -244,53 +244,51 @@
 
 	<div>
 
+		<% _.each(playersData, function(player, index){ %>
+
 		<div>
 
-			<% _.each(playersData, function(player){ %>
-
-				<div>
-
-					<span> <%= window.APP.lang.get(player.color) %> </span>
-
-					<span>
-						<span> <- </span>
-						<span data-full-list="<%= list.teamNumber %>" data-key="<%= player.teamNumber %>"> <%= player.teamNumber %> </span>
-						<span> -> </span>
-					</span>
-
-					<span>
-						<span> <- </span>
-						<span data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
-						<span> -> </span>
-					</span>
-
-				</div>
-
-			<% }); %>
-
-			<div>
-				<span>{{ money }}</span>
+			<span> <%= window.APP.lang.get(player.color) %> </span>
 
 				<span>
-					<span> <- </span>
-					<span data-full-list="<%= list.money %>" data-key="<%= money %>"> <%= money %> </span>
-					<span> -> </span>
+					<span class="js-list-backward" data-group-name="team-number-<%= index %>"> <- </span>
+					<span class="js-list-changed-item" data-group-name="team-number-<%= index %>" data-full-list="<%= list.teamNumber %>" data-key="<%= player.teamNumber %>"> <%= player.teamNumber %> </span>
+					<span class="js-list-forward" data-group-name="team-number-<%= index %>"> -> </span>
 				</span>
-
-			</div>
-
-			<div>
-				<span>{{ unitLimit }}</span>
 
 				<span>
-					<span> <- </span>
-					<span data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
-					<span> -> </span>
+					<span class="js-list-backward" data-group-name="player-type-<%= index %>"> <- </span>
+					<span class="js-list-changed-item" data-group-name="player-type-<%= index %>" data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
+					<span class="js-list-forward" data-group-name="player-type-<%= index %>"> -> </span>
 				</span>
-
-			</div>
 
 		</div>
+
+		<% }); %>
+
+		<div>
+			<span>{{ money }}</span>
+
+				<span>
+					<span class="js-list-backward" data-group-name="money"> <- </span>
+					<span class="js-list-changed-item" data-group-name="money" data-full-list="<%= list.money %>" data-key="<%= money %>"> <%= money %> </span>
+					<span class="js-list-forward" data-group-name="money"> -> </span>
+				</span>
+
+		</div>
+
+		<div>
+			<span>{{ unitLimit }}</span>
+
+				<span>
+					<span class="js-list-backward" data-group-name="unit-limit"> <- </span>
+					<span class="js-list-changed-item" data-group-name="unit-limit" data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
+					<span class="js-list-forward" data-group-name="unit-limit"> -> </span>
+				</span>
+
+		</div>
+
+		<button data-route="battle">{{ fight }}!</button>
 
 	</div>
 
@@ -305,10 +303,10 @@
 		<% var language = window.APP.info.get('language'); %>
 
 		<% _.each(window.APP.maps, function (map, jsKey) { %>
-			<% if (map.type === 'skirmish') { %>
-				<% var mapName = map['name-' + language] || map.name; %>
-				<div data-route="skirmish-setup-map/<%= jsKey %>" class="js-setup-skirmish-map">(<%= map.maxPlayers %>) <%= mapName %></div>
-			<% }; %>
+		<% if (map.type === 'skirmish') { %>
+		<% var mapName = map['name-' + language] || map.name; %>
+		<div data-route="skirmish-setup-map/<%= jsKey %>" class="js-setup-skirmish-map">(<%= map.maxPlayers %>) <%= mapName %></div>
+		<% }; %>
 		<% }); %>
 
 	</div>
@@ -339,7 +337,7 @@
 		<h1>{{ instructions }}</h1>
 
 		<% _.each(window.APP.lang.get('instructionsText'), function(part) { %>
-			<p><%= part %></p>
+		<p><%= part %></p>
 		<% }); %>
 
 	</div>
@@ -357,6 +355,7 @@
 						<div class="js-stop-event popup-form clear-fix">
 							<% var rateUs = window.APP.lang.get('rateUs'); %>
 							<p class="popup-text"><%= rateUs.header %></p>
+
 							<div class="width-50 float-left">
 								<div class="popup-button js-back">
 									<%= rateUs.notNow %>

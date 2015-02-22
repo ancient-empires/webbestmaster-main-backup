@@ -45,7 +45,7 @@
 			// set team number, color and type = cpu || player
 			for (i = 1, len = map.maxPlayers; i <= len; i += 1) {
 				playerData = {};
-				playerData.teamNumber = i + 1;
+				playerData.teamNumber = i;
 				colors = util.assortArray(colors);
 				playerData.color = colors.pop();
 				playersData.push(playerData);

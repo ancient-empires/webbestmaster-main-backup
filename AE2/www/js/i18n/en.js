@@ -45,6 +45,7 @@
 		none: 'none',
 		money: 'money',
 		unitLimit: 'unit limit',
+		fight: 'fight',
 
 		// colors
 		blue: 'blue',
