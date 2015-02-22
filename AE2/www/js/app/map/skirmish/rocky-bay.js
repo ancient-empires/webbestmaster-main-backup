@@ -8,9 +8,14 @@
 
 	APP.maps.rockyBay = {
 		"type": "skirmish",
-		"size": {"width": 17, "height": 12},
+		"size": {
+			"width": 17,
+			"height": 12
+		},
 		"name": "Rocky Bay",
 		"name-ru": "Скалистая Бухта",
+		"maxPlayers": 2,
+
 		"units": [
 			{"type": "Knight", "x": 1, "y": 9, playerId: 0},
 			{"type": "Knight", "x": 15, "y": 9, playerId: 1}

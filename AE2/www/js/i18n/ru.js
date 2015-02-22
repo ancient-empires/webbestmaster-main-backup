@@ -39,6 +39,19 @@
 		selectLevel: 'выбор уровня',
 		skirmish: 'схватка',
 
+		// setup skirmish
+		player: 'игрок',
+		cpu: 'ЦПУ',
+		none: 'нет',
+
+		// colors
+		blue: 'синий',
+		red: 'красный',
+		green: 'зелёный',
+		black: 'чёрный',
+		money: 'деньги',
+		unitLimit: 'лимит войск',
+
 		rateUs: {
 			header: 'Пожалуйста, оцените приложение!',
 			notNow: 'не сейчас',

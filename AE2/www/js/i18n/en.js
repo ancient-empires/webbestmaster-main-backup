@@ -39,6 +39,19 @@
 		selectLevel: 'select level',
 		skirmish: 'skirmish',
 
+		// setup skirmish
+		player: 'player',
+		cpu: 'cpu',
+		none: 'none',
+		money: 'money',
+		unitLimit: 'unit limit',
+
+		// colors
+		blue: 'blue',
+		red: 'red',
+		green: 'green',
+		black: 'black',
+
 		rateUs: {
 			header: 'Rate us, please!',
 			notNow: 'not now',

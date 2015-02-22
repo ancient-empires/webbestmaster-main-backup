@@ -8,9 +8,14 @@
 
 	APP.maps.islandCross = {
 		"type": "skirmish",
-		"size": {"width": 15, "height": 15},
+		"size": {
+			"width": 15,
+			"height": 15
+		},
 		"name": "Island Cross",
 		"name-ru": "Остров Крест",
+		"maxPlayers": 2,
+
 		"units": [
 			{"type": "Knight", "x": 1, "y": 13, playerId: 0},
 			{"type": "Knight", "x": 13, "y": 1, playerId: 1}
