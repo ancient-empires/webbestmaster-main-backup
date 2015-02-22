@@ -11,10 +11,12 @@
 	APP.BB.SkirmishSetupMapView = APP.BB.BaseView.extend({
 
 		events: {
-
+			'click .js-go-to-battle': 'goToBattle'
 		},
 
 		initialize: function (jsMapKey) {
+
+			this.set('jsMapKey', jsMapKey);
 
 			var viewData = this.createViewData(jsMapKey);
 
@@ -36,6 +38,7 @@
 				playerData,
 				playersData = [],
 				colors = staticMapInfo.playerColors,
+				playerType = staticMapInfo.playerTypes[0],
 				list = {};
 
 			function objToDataURL(obj) {
@@ -49,7 +52,7 @@
 				colors = util.assortArray(colors);
 				playerData.color = colors.pop();
 				playersData.push(playerData);
-				playerData.type = 'player';
+				playerData.type = playerType;
 			}
 			viewData.playersData = playersData;
 
@@ -103,6 +106,37 @@
 			viewData.list = list;
 
 			return viewData;
+
+		},
+
+		goToBattle: function () {
+
+			var data = {},
+				$players = this.$el.find('.js-player-info-wrapper'),
+				players = [],
+				$money = this.$el.find('.js-money'),
+				$unitLimit = this.$el.find('.js-unit-limit');
+
+			data.jsMapKey = this.get('jsMapKey');
+
+			data.money = parseInt($money.attr('data-key'), 10);
+
+			data.unitLimit = parseInt($unitLimit.attr('data-key'), 10);
+
+			$players.each(function () {
+				var $this = $(this),
+					teamNumber = parseInt($this.find('.js-player-team-number').attr('data-key'), 10),
+					type = $this.find('.js-player-type').attr('data-key');
+				players.push({
+					teamNumber: teamNumber,
+					type: type
+				});
+			});
+			data.players = players;
+
+			new win.APP.BB.BattleView(data);
+
+			this.navigate('battle');
 
 		}
 

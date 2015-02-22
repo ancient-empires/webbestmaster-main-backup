@@ -47,6 +47,7 @@
 	<script src="js/app/view/select-level.js" type="text/javascript"></script>
 	<script src="js/app/view/skirmish-select-map.js" type="text/javascript"></script>
 	<script src="js/app/view/skirmish-setup-map.js" type="text/javascript"></script>
+	<script src="js/app/view/battle.js" type="text/javascript"></script>
 
 	<!-- maps -->
 	<script src="js/app/map/map.js" type="text/javascript"></script>
@@ -246,19 +247,19 @@
 
 		<% _.each(playersData, function(player, index){ %>
 
-		<div>
+		<div class="js-player-info-wrapper">
 
-			<span> <%= window.APP.lang.get(player.color) %> </span>
+			<span data-player-color="<%= player.color %>"> <%= window.APP.lang.get(player.color) %> </span>
 
 				<span>
 					<span class="js-list-backward" data-group-name="team-number-<%= index %>"> <- </span>
-					<span class="js-list-changed-item" data-group-name="team-number-<%= index %>" data-full-list="<%= list.teamNumber %>" data-key="<%= player.teamNumber %>"> <%= player.teamNumber %> </span>
+					<span class="js-list-changed-item js-player-team-number" data-group-name="team-number-<%= index %>" data-full-list="<%= list.teamNumber %>" data-key="<%= player.teamNumber %>"> <%= player.teamNumber %> </span>
 					<span class="js-list-forward" data-group-name="team-number-<%= index %>"> -> </span>
 				</span>
 
 				<span>
 					<span class="js-list-backward" data-group-name="player-type-<%= index %>"> <- </span>
-					<span class="js-list-changed-item" data-group-name="player-type-<%= index %>" data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
+					<span class="js-list-changed-item js-player-type" data-group-name="player-type-<%= index %>" data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
 					<span class="js-list-forward" data-group-name="player-type-<%= index %>"> -> </span>
 				</span>
 
@@ -271,7 +272,7 @@
 
 				<span>
 					<span class="js-list-backward" data-group-name="money"> <- </span>
-					<span class="js-list-changed-item" data-group-name="money" data-full-list="<%= list.money %>" data-key="<%= money %>"> <%= money %> </span>
+					<span class="js-list-changed-item js-money" data-group-name="money" data-full-list="<%= list.money %>" data-key="<%= money %>"> <%= money %> </span>
 					<span class="js-list-forward" data-group-name="money"> -> </span>
 				</span>
 
@@ -282,13 +283,13 @@
 
 				<span>
 					<span class="js-list-backward" data-group-name="unit-limit"> <- </span>
-					<span class="js-list-changed-item" data-group-name="unit-limit" data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
+					<span class="js-list-changed-item js-unit-limit" data-group-name="unit-limit" data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
 					<span class="js-list-forward" data-group-name="unit-limit"> -> </span>
 				</span>
 
 		</div>
 
-		<button data-route="battle">{{ fight }}!</button>
+		<button class="js-go-to-battle">{{ fight }}!</button>
 
 	</div>
 
@@ -300,15 +301,23 @@
 
 		<h1>{{ skirmish }}</h1>
 
-		<% var language = window.APP.info.get('language'); %>
+		<% var languageField = 'name-' + window.APP.info.get('language'); %>
 
 		<% _.each(window.APP.maps, function (map, jsKey) { %>
 		<% if (map.type === 'skirmish') { %>
-		<% var mapName = map['name-' + language] || map.name; %>
+		<% var mapName = map[languageField] || map.name; %>
 		<div data-route="skirmish-setup-map/<%= jsKey %>" class="js-setup-skirmish-map">(<%= map.maxPlayers %>) <%= mapName %></div>
 		<% }; %>
 		<% }); %>
 
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="battle">
+
+	<div>
+		battle view
 	</div>
 
 </script>
