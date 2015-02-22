@@ -248,18 +248,46 @@
 
 			<% _.each(playersData, function(player){ %>
 
-				<div style="background-color: <%= player.color %> ;">
-					<%= window.APP.lang.get(player.color) %> / <%= player.teamNumber %> / {{ player }}
+				<div>
+
+					<span> <%= window.APP.lang.get(player.color) %> </span>
+
+					<span>
+						<span> <- </span>
+						<span data-full-list="<%= list.teamNumber %>" data-key="<%= player.teamNumber %>"> <%= player.teamNumber %> </span>
+						<span> -> </span>
+					</span>
+
+					<span>
+						<span> <- </span>
+						<span data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
+						<span> -> </span>
+					</span>
+
 				</div>
 
 			<% }); %>
 
 			<div>
-				{{ money }} / 500
+				<span>{{ money }}</span>
+
+				<span>
+					<span> <- </span>
+					<span data-full-list="<%= list.money %>" data-key="<%= money %>"> <%= money %> </span>
+					<span> -> </span>
+				</span>
+
 			</div>
 
 			<div>
-				{{ unitLimit }} / 10
+				<span>{{ unitLimit }}</span>
+
+				<span>
+					<span> <- </span>
+					<span data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
+					<span> -> </span>
+				</span>
+
 			</div>
 
 		</div>

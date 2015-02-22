@@ -35,21 +35,76 @@
 				i, len,
 				playerData,
 				playersData = [],
-				colors = staticMapInfo.playerColors;
+				colors = staticMapInfo.playerColors,
+				list = {};
 
-			for (i = 0, len = map.maxPlayers; i < len; i += 1) {
+			function objToDataURL(obj) {
+				return encodeURI(JSON.stringify(obj).replace(/\s/g, ''));
+			}
+
+			// set team number, color and type = cpu || player
+			for (i = 1, len = map.maxPlayers; i <= len; i += 1) {
 				playerData = {};
 				playerData.teamNumber = i + 1;
 				colors = util.assortArray(colors);
 				playerData.color = colors.pop();
 				playersData.push(playerData);
+				playerData.type = 'player';
 			}
 			viewData.playersData = playersData;
+
+			// set money
+			viewData.money = staticMapInfo.money[0];
+
+			// set unit limit
+			viewData.unitLimit = staticMapInfo.unitsLimits[0];
+
+			// set lists
+			// player types
+			list.playerTypes = [];
+			_.each(staticMapInfo.playerTypes, function (type) {
+				list.playerTypes.push({
+					key: type,
+					value: win.APP.lang.get(type)
+				});
+			});
+			list.playerTypes = objToDataURL(list.playerTypes);
+
+			// team numbers
+			list.teamNumber = [];
+			for (i = 1, len = map.maxPlayers; i <= len; i += 1) {
+				list.teamNumber.push({
+					key: i,
+					value: i
+				});
+			}
+			list.teamNumber = objToDataURL(list.teamNumber);
+
+			// money list
+			list.money = [];
+			_.each(staticMapInfo.money, function (value) {
+				list.money.push({
+					key: value,
+					value: value
+				});
+			});
+			list.money = objToDataURL(list.money);
+
+			// money list
+			list.unitsLimits = [];
+			_.each(staticMapInfo.unitsLimits, function (value) {
+				list.unitsLimits.push({
+					key: value,
+					value: value
+				});
+			});
+			list.unitsLimits = objToDataURL(list.unitsLimits);
+
+			viewData.list = list;
 
 			return viewData;
 
 		}
-
 
 	});
 
