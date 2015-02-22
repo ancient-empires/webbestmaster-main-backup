@@ -46,6 +46,7 @@
 	<script src="js/app/view/load-game.js" type="text/javascript"></script>
 	<script src="js/app/view/select-level.js" type="text/javascript"></script>
 	<script src="js/app/view/skirmish-select-map.js" type="text/javascript"></script>
+	<script src="js/app/view/skirmish-setup-map.js" type="text/javascript"></script>
 
 	<!-- maps -->
 	<script src="js/app/map/skirmish/island-cross.js" type="text/javascript"></script>
@@ -239,6 +240,16 @@
 
 </script>
 
+<script type="text/x-template" data-name="skirmishSetupMap">
+
+	<div>
+
+		<div>setup map</div>
+
+	</div>
+
+</script>
+
 <script type="text/x-template" data-name="skirmishSelectMap">
 
 	<div>
@@ -250,7 +261,7 @@
 		<% _.each(window.APP.maps, function (map, jsKey) { %>
 			<% if (map.type === 'skirmish') { %>
 				<% var mapName = map['name-' + language] || map.name; %>
-				<div data-js-map-key="<%= jsKey %>"><%= mapName %></div>
+				<div data-route="skirmish-setup-map/<%= jsKey %>" class="js-setup-skirmish-map"><%= mapName %></div>
 			<% }; %>
 		<% }); %>
 

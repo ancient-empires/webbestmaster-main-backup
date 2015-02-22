@@ -18,7 +18,9 @@
 			'instructions': 'instructions',
 			'load-game': 'loadGame',
 			'select-level': 'selectLevel',
-			'skirmish-select-map': 'skirmishSelectMap'
+			'skirmish-select-map': 'skirmishSelectMap',
+			'skirmish-setup-map/:jsMapKey': 'skirmishSetupMap'
+
 		},
 
 		title: function () {
@@ -51,6 +53,10 @@
 
 		skirmishSelectMap: function () {
 			new APP.BB.SkirmishSelectMapView();
+		},
+
+		skirmishSetupMap: function (jsMapKey) {
+			new APP.BB.SkirmishSetupMapView(jsMapKey);
 		},
 
 		constructor: function () {
