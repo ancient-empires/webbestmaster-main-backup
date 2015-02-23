@@ -1,0 +1,74 @@
+.battle-view-wrapper {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	z-index: 0;
+}
+
+.battle-view-container {
+	width: 100%;
+	height: 100%;
+	padding-bottom: 2rem;
+	box-sizing: border-box;
+}
+
+.battle-view-inner-container {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.battle-view-status-bar {
+	position: fixed;
+	width: 100%;
+	height: 2rem;
+	left: 0;
+	bottom: 0;
+	z-index: 1;
+}
+
+/* map */
+.map-bg-square {
+	float: left;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+
+.map-bg-bridge-horizontal {
+	background-image: url(../i/map/bridge-horizontal.png);
+}
+
+.map-bg-bridge-vertical {
+	background-image: url(../i/map/bridge-vertical.png);
+}
+
+.map-bg-forest {
+	background-image: url(../i/map/forest.png);
+}
+
+.map-bg-green {
+	background-image: url(../i/map/green.png);
+}
+
+.map-bg-hill {
+	background-image: url(../i/map/hill.png);
+}
+
+.map-bg-road {
+	background-image: url(../i/map/road.png);
+}
+
+.map-bg-stone {
+	background-image: url(../i/map/stone.png);
+}
+
+.map-bg-water {
+	background-image: url(../i/map/water.png);
+}
+
+
+
+
+

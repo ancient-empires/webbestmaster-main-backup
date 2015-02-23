@@ -123,12 +123,13 @@
 
 			data.unitLimit = parseInt($unitLimit.attr('data-key'), 10);
 
-			$players.each(function () {
+			$players.each(function (index) {
 				var $this = $(this),
 					teamNumber = parseInt($this.find('.js-player-team-number').attr('data-key'), 10),
 					type = $this.find('.js-player-type').attr('data-key');
 				players.push({
 					teamNumber: teamNumber,
+					id: index,
 					type: type
 				});
 			});
