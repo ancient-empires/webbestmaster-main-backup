@@ -43,18 +43,9 @@
 
 			var $mapImageWrapper = this.$el.find(this.selectors.mapImageWrapper),
 				map = this.get('map'),
-				squaresArr = [],
-				tmpl = '<div class="map-bg-{{type}} map-bg-square map-square"></div>',
-				squareSize = this.info.get('squareSize'),
-				style = '<style class="js-square-size-style"> .map-square { width: ' + squareSize + 'px; height: ' + squareSize + 'px; }</style>';
+				squareSize = this.info.get('squareSize');
 
-			squaresArr.push(style);
 
-			_.each(map.terrain, function (type) {
-				squaresArr.push( tmpl.replace('{{type}}', type) );
-			});
-
-			$mapImageWrapper.html(squaresArr.join(''));
 
 		},
 
@@ -62,6 +53,7 @@
 
 			var squareSize = this.info.get('squareSize') || (win.APP.util.defaultUnit * 3),
 				$moveAreaContainer = this.$el.find(this.selectors.moveAreaContainer),
+				$mapImageWrapper = this.$el.find(this.selectors.mapImageWrapper),
 				map = this.get('map'),
 				width = map.size.width * squareSize,
 				height = map.size.height * squareSize;
@@ -69,6 +61,11 @@
 			this.info.set('squareSize', squareSize);
 
 			$moveAreaContainer.css({
+					width: width + 'px',
+					height: height + 'px'
+				});
+
+			$mapImageWrapper.css({
 					width: width + 'px',
 					height: height + 'px'
 				});

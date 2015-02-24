@@ -68,6 +68,10 @@ output, progress, section, summary, time, video {
 	pointer-events: none;
 }
 
+.block {
+	display: block;
+}
+
 .table {
 	display: table;
 }

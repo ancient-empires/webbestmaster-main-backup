@@ -29,46 +29,6 @@
 	z-index: 1;
 }
 
-/* map */
-.map-bg-square {
-	float: left;
-	-webkit-background-size: 100% 100%;
-	background-size: 100% 100%;
-}
-
-.map-bg-bridge-horizontal {
-	background-image: url(../i/map/bridge-horizontal.png);
-}
-
-.map-bg-bridge-vertical {
-	background-image: url(../i/map/bridge-vertical.png);
-}
-
-.map-bg-forest {
-	background-image: url(../i/map/forest.png);
-}
-
-.map-bg-green {
-	background-image: url(../i/map/green.png);
-}
-
-.map-bg-hill {
-	background-image: url(../i/map/hill.png);
-}
-
-.map-bg-road {
-	background-image: url(../i/map/road.png);
-}
-
-.map-bg-stone {
-	background-image: url(../i/map/stone.png);
-}
-
-.map-bg-water {
-	background-image: url(../i/map/water.png);
-}
-
-
 
 
 
