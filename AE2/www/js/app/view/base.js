@@ -13,11 +13,13 @@
 	APP.BB.BaseView = Backbone.View.extend({
 
 		events: {
+			// base
 			'click [data-route]': 'routeTo',
 			'click .js-back': 'routeBack',
 			'click .js-external-link': 'toExternalLink',
 			'click .js-stop-event': 'stopEvent',
 			'hide': 'hide',
+			// external
 			'click .js-list-backward[data-group-name]': 'changeSelect',
 			'click .js-list-changed-item[data-group-name]': 'changeSelect',
 			'click .js-list-forward[data-group-name]': 'changeSelect'
@@ -49,7 +51,7 @@
 
 		},
 
-		changeSelect: function (e) {
+		changeSelect: function (e) { // external
 
 			var $this = $(e.target),
 				direction = $this.hasClass('js-list-backward') ? -1 : 1,
@@ -201,7 +203,7 @@
 		init: function () {
 			win.addEventListener('resize', this.onResize.bind(this), false);
 		},
-		copyJSON: function (obj) {
+		copyJSON: function (obj) { // extermal
 			return JSON.parse(JSON.stringify(obj));
 		},
 

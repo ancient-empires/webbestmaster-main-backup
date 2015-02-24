@@ -31,9 +31,9 @@
 		createViewData: function (jsMapKey) {
 
 			var viewData = {},
-				util = APP.util,
-				map = util.cloneJSON(APP.maps[jsMapKey]),
-				staticMapInfo = util.cloneJSON(APP.map),
+				util = win.APP.util,
+				map = this.util.copyJSON(APP.maps[jsMapKey]),
+				staticMapInfo = this.util.copyJSON(APP.map),
 				i, len,
 				playerData,
 				playersData = [],

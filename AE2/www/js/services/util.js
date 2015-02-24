@@ -20,9 +20,6 @@
 
 
 		},
-		cloneJSON: function (obj) {
-			return JSON.parse(JSON.stringify(obj));
-		},
 		assortArray: function (arr) {
 			return arr.sort(function () {
 				return 0.5 - Math.random();

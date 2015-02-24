@@ -25,8 +25,8 @@
 			this.proto.initialize.apply(this, arguments);
 
 			// get map
-			this.set('args', win.APP.util.cloneJSON(data));
-			this.set('map', win.APP.util.cloneJSON(APP.maps[data.jsMapKey]));
+			this.set('args', this.util.copyJSON(data));
+			this.set('map', this.util.copyJSON(APP.maps[data.jsMapKey]));
 
 			// set sizes
 			this.setSize();
