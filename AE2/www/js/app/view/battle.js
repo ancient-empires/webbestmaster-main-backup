@@ -1,7 +1,8 @@
 (function (win) {
 
 	"use strict";
-	/*global window, Backbone, $, templateMaster, setTimeout, APP, history */
+	/*global window, setTimeout, history, Image */
+	/*global Backbone, $, templateMaster, APP, log */
 
 	win.APP = win.APP || {};
 
@@ -42,9 +43,27 @@
 		drawMap: function () {
 
 			var $mapImageWrapper = this.$el.find(this.selectors.mapImageWrapper),
+				canvas = $mapImageWrapper.get(0),
+				ctx = canvas.getContext('2d'),
+				getXYFromStringXY = this.util.getXYFromStringXY,
 				map = this.get('map'),
-				squareSize = this.info.get('squareSize');
+				squareSize = this.info.get('squareSize'),
+				squareSizeX2 = squareSize * 2,
+				mapTiles = win.APP.mapTiles,
+				tempImg = new Image();
 
+			_.each(map.terrain, function (value, xy) {
+
+				if ( !/\d/.test(value) ) {
+					value = value + '-1';
+				}
+
+				tempImg.src = mapTiles[value];
+
+				xy = getXYFromStringXY(xy);
+				ctx.drawImage(tempImg, xy.x * squareSizeX2, xy.y * squareSizeX2, squareSizeX2, squareSizeX2);
+
+			});
 
 
 		},
@@ -54,6 +73,7 @@
 			var squareSize = this.info.get('squareSize') || (win.APP.util.defaultUnit * 3),
 				$moveAreaContainer = this.$el.find(this.selectors.moveAreaContainer),
 				$mapImageWrapper = this.$el.find(this.selectors.mapImageWrapper),
+				canvas = $mapImageWrapper.get(0),
 				map = this.get('map'),
 				width = map.size.width * squareSize,
 				height = map.size.height * squareSize;
@@ -69,6 +89,10 @@
 					width: width + 'px',
 					height: height + 'px'
 				});
+
+			canvas.width = width * 2;
+			canvas.height = height * 2;
+
 
 		}
 

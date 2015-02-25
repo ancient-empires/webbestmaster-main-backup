@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global console, alert, window, document */
+	/*global console, alert, window, document, Image */
 	/*global */
 
 	win.APP.mapTiles = {
@@ -54,5 +54,11 @@
 		'a-water-9-s': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAMAAABhq6zVAAAAElBMVEWca2BUKC9LuOsAl+IQdtshVNNLsAMwAAAAKElEQVQIW2NkZUAARupx/iM4/5FkQOz/UM5/EEJwgBDKAUn8/8fACACdqg86uLhn0wAAAABJRU5ErkJggg=='
 
 	};
+
+	// cache image, workaround for old android
+	_.each(win.APP.mapTiles, function (base64) {
+		var img = new Image();
+		img.src = base64;
+	});
 
 }(window));

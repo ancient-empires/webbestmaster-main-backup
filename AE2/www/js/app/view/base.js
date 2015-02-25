@@ -234,6 +234,12 @@
 			var img = new Image();
 			img.addEventListener('load', calback.call(context), false);
 			img.src = 'http://statlex.com/i/statlex-icon.png?t=' + Date.now();
+		},
+		getXYFromStringXY: function (xy) {
+			return {
+				x: parseInt(xy.replace(/^x(\d+)y\d+$/, '$1'), 10),
+				y: parseInt(xy.replace(/^x\d+y(\d+)$/, '$1'), 10)
+			};
 		}
 
 	};
