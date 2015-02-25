@@ -49,8 +49,7 @@
 				map = this.get('map'),
 				squareSize = this.info.get('squareSize'),
 				squareSizeX2 = squareSize * 2,
-				mapTiles = win.APP.mapTiles,
-				tempImg = new Image();
+				mapTiles = win.APP.mapTiles;
 
 			_.each(map.terrain, function (value, xy) {
 
@@ -58,10 +57,8 @@
 					value = value + '-1';
 				}
 
-				tempImg.src = mapTiles[value];
-
 				xy = getXYFromStringXY(xy);
-				ctx.drawImage(tempImg, xy.x * squareSizeX2, xy.y * squareSizeX2, squareSizeX2, squareSizeX2);
+				ctx.drawImage(mapTiles[value].img, xy.x * squareSizeX2, xy.y * squareSizeX2, squareSizeX2, squareSizeX2);
 
 			});
 

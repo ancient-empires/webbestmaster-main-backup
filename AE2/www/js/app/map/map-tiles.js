@@ -55,10 +55,15 @@
 
 	};
 
-	// cache image, workaround for old android
-	_.each(win.APP.mapTiles, function (base64) {
+	_.each(win.APP.mapTiles, function (base64, key) {
 		var img = new Image();
 		img.src = base64;
+
+		win.APP.mapTiles[key] = {
+			base64: base64,
+			img: img
+		};
+
 	});
 
 }(window));
