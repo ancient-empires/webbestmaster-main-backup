@@ -30,7 +30,6 @@
 				this.set('$container', data.container);
 			}
 
-
 			// detect vendor prefix for css and js
 			this.setPrefix();
 
@@ -81,14 +80,22 @@
 				startEventXY = this.getAverageXY(events.events),
 				$container = this.get('$container'),
 				styleXY = $container.attr('style'),
+				pre = this.get('prefix').css,
 				startContainerXY = this.getXYFromStyle(styleXY);
+
+			$container.css(pre + 'transition', 'none');
 
 			// set start EVENTs position
 			this.set('startEventXY', startEventXY);
 			// set start container position
 			this.set('startContainerXY', startContainerXY);
+			this.set('currentContainerXY', startContainerXY);
+
 
 			this.set('isActive', true);
+
+			this.clearLogMoving();
+			this.logMoving(startEventXY);
 
 		},
 
@@ -101,6 +108,8 @@
 				startContainerXY = this.get('startContainerXY'),
 				$container = this.get('$container'),
 				pre = this.get('prefix').css,
+				x,
+				y,
 				dx,
 				dy;
 
@@ -111,7 +120,17 @@
 			dx = startEventXY.x - currentEventXY.x;
 			dy = startEventXY.y - currentEventXY.y;
 
-			$container.css(pre + 'transform', 'translate3d(' + (startContainerXY.x - dx) + 'px, ' + (startContainerXY.y - dy) + 'px, 0px)');
+			x = startContainerXY.x - dx;
+			y = startContainerXY.y - dy;
+
+			this.set('currentContainerXY', {
+				x: x,
+				y: y
+			});
+
+			$container.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0px)');
+
+			this.logMoving(currentEventXY);
 
 		},
 
@@ -122,8 +141,37 @@
 
 			if ( events.events.length === 0 || !isTouch ) { // if is not touch device - stop moving
 				this.set('isActive', false);
+				this.sliding();
+				this.clearLogMoving();
 			}
 
+		},
+
+		sliding: function () {
+
+			var logMoving = this.get('logMoving');
+
+			if ( logMoving.length <= 1 ) {
+				return false;
+			}
+
+			var begin = logMoving.shift(),
+				end = logMoving.pop(),
+				$container = this.get('$container'),
+				currentContainerXY = this.get('currentContainerXY'),
+				pre = this.get('prefix').css,
+				dx = begin.x - end.x,
+				dy = begin.y - end.y,
+				dTime = end.timeStamp - begin.timeStamp,
+				endX = currentContainerXY.x - dx * 3,
+				endY = currentContainerXY.y - dy * 3,
+				endTime = dTime * 4 + 'ms';
+
+			$container.css(pre + 'transition', 'all ' + endTime + ' ease-out');
+
+			//setTimeout(function () {
+				$container.css(pre + 'transform', 'translate3d(' + endX + 'px, ' + endY + 'px, 0px)');
+			//}, 20);
 
 		},
 
@@ -134,8 +182,7 @@
 
 			return {
 				x: parseInt(coordinatesArr[0], 10),
-				y: parseInt(coordinatesArr[1], 10),
-				z: parseInt(coordinatesArr[2], 10)
+				y: parseInt(coordinatesArr[1], 10)
 			};
 
 		},
@@ -240,7 +287,28 @@
 
 			$container.css(pre + 'transform', 'translate3d(0px, 0px, 0px)');
 
+		},
 
+		logMoving: function (xy) {
+
+			var logMoving = this.get('logMoving');
+
+			if (logMoving.length > 50) {
+				logMoving.shift(); // delete first item
+			}
+
+			logMoving.push({
+				x: xy.x,
+				y: xy.y,
+				timeStamp: Date.now()
+			});
+
+			this.set('logMoving', logMoving);
+
+		},
+
+		clearLogMoving: function () {
+			this.set('logMoving', []);
 		}
 
 	};
