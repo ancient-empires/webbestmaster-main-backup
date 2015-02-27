@@ -2,7 +2,7 @@
 
 	"use strict";
 	/*global window, setTimeout, history, Image */
-	/*global Backbone, $, templateMaster, APP, log */
+	/*global Backbone, $, templateMaster, APP, log, Mover */
 
 	win.APP = win.APP || {};
 
@@ -16,6 +16,7 @@
 
 		selectors: {
 			mapImageWrapper: '.js-map-image-wrapper',
+			moveAreaWrapper: '.js-move-area-wrapper',
 			moveAreaContainer: '.js-move-area-container'
 		},
 
@@ -32,7 +33,11 @@
 			// set sizes
 			this.setSize();
 
+			// draw map
 			this.drawMap();
+
+			// bind move area // todo: unbind move area
+			this.bindMoveArea();
 
 			log(data);
 
@@ -58,7 +63,7 @@
 			// reduce blur
 			ctx.webkitImageSmoothingEnabled = false;
 			ctx.mozImageSmoothingEnabled = false;
-			ctx.imageSmoothingEnabled = false; /// future
+			ctx.imageSmoothingEnabled = false; // future
 
 			// draw main tiles
 			_.each(terrains, function (value, xy) {
@@ -103,15 +108,15 @@
 						ctx.drawImage(mapTiles['a-' + type + '-2'].img, xSquareSizeX2, ySquareSizeX2, squareSizeX2, squareSize);
 					}
 
-					if ( !t4 ) { // up is different type
+					if ( !t4 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-4'].img, xSquareSizeX2, ySquareSizeX2, squareSize, squareSizeX2);
 					}
 
-					if ( !t6 ) { // up is different type
+					if ( !t6 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-6'].img, xSquareSizeX2Half, ySquareSizeX2, squareSize, squareSizeX2);
 					}
 
-					if ( !t8 ) { // up is different type
+					if ( !t8 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-8'].img, xSquareSizeX2, ySquareSizeX2Half, squareSizeX2, squareSize);
 					}
 
@@ -180,6 +185,20 @@
 			canvas.width = width * 2;
 			canvas.height = height * 2;
 
+		},
+
+		bindMoveArea: function () {
+
+			var moveAreaWrapper = this.$el.find(this.selectors.moveAreaWrapper),
+				moveAreaContainer = moveAreaWrapper.find(this.selectors.moveAreaContainer),
+				mover = new Mover({
+					wrapper: moveAreaWrapper,
+					container: moveAreaContainer
+				});
+
+			mover.init();
+
+			this.set('mover', mover);
 
 		}
 
