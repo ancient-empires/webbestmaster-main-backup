@@ -1,12 +1,27 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document, setTimeout, history, location*/
+	/*global window, document, setTimeout, history, location, Image*/
 	/*global APP, Backbone, FastClick */
 
 	win.APP = win.APP || {};
 
 	win.APP.bb = win.APP.bb || {};
+
+	function initTiles() {
+
+		_.each(win.APP.mapTiles, function (base64, key) {
+			var img = new Image();
+			img.src = base64;
+
+			win.APP.mapTiles[key] = {
+				base64: base64,
+				img: img
+			};
+
+		});
+
+	}
 
 	function start() {
 
@@ -25,6 +40,7 @@
 				//win.APP.BB.BaseView.prototype.util.loadSavedTheme();
 				win.APP.bb.router = new win.APP.BB.Router();
 				Backbone.history.start();
+				initTiles();
 			}
 
 		}

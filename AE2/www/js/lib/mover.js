@@ -143,7 +143,10 @@
 				this.set('isActive', false);
 				this.sliding();
 				this.clearLogMoving();
+				return;
 			}
+
+			this.onDown(e);
 
 		},
 
@@ -165,7 +168,7 @@
 				dTime = end.timeStamp - begin.timeStamp,
 				endX = currentContainerXY.x - dx * 3,
 				endY = currentContainerXY.y - dy * 3,
-				endTime = dTime * 4 + 'ms';
+				endTime = Math.min(dTime * 3, 300)  + 'ms';
 
 			$container.css(pre + 'transition', 'all ' + endTime + ' ease-out');
 
@@ -293,7 +296,7 @@
 
 			var logMoving = this.get('logMoving');
 
-			if (logMoving.length > 50) {
+			if (logMoving.length > 20) {
 				logMoving.shift(); // delete first item
 			}
 
