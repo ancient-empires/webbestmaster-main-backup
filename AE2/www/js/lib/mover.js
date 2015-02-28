@@ -196,12 +196,32 @@
 			}
 
 			var $container = this.get('$container'),
-				style = $container.attr('style'),
-				xyzs = this.getXYZSFromStyle(style),
-				scale = xyzs.scale;
+				style = $container.attr('style');
 
 			onRedraw.fn.call(onRedraw.context, {
-				scale: scale
+				xyzs: this.getXYZSFromStyle(style)
+			});
+
+		},
+
+		redrawMapTest: function (data) {
+
+			var onRedraw = this.get('onRedraw');
+
+			if ( !onRedraw ) {
+				return false;
+			}
+
+			var $container = this.get('$container'),
+				style = $container.attr('style');
+
+			onRedraw.fn.call(onRedraw.context, {
+				xyzs: {
+					x: data.x,
+					y: data.y,
+					z: data.z,
+					scale: data.s
+				}
 			});
 
 		},

@@ -54,11 +54,19 @@
 				xyStr = this.util.getStringFromXY,
 				map = this.get('map'),
 				squareSize = this.info.get('squareSize'),
-				squareSizeX2 = squareSize * 2,
+				squareSizeX2,
 				mapTiles = win.APP.mapTiles,
 				terrains = map.terrain,
 				angleTypes = ['road', 'water'],
 				reBridge = /^bridge\-\d+$/;
+
+			squareSize = Math.max(squareSize, (win.APP.util.defaultUnit * 3)); // set max
+			squareSize = Math.min(squareSize, (win.APP.util.defaultUnit * 6)); // and min square
+
+			squareSizeX2 = squareSize * 2;
+
+			canvas.width = map.size.width * 2 * squareSize;
+			canvas.height = map.size.height * 2 * squareSize;
 
 			// reduce blur
 			ctx.webkitImageSmoothingEnabled = false;
@@ -165,7 +173,6 @@
 			var squareSize = this.info.get('squareSize') || (win.APP.util.defaultUnit * 3),
 				$moveAreaContainer = this.$el.find(this.selectors.moveAreaContainer),
 				$mapImageWrapper = this.$el.find(this.selectors.mapImageWrapper),
-				canvas = $mapImageWrapper.get(0),
 				map = this.get('map'),
 				width = map.size.width * squareSize,
 				height = map.size.height * squareSize;
@@ -181,9 +188,6 @@
 					width: width + 'px',
 					height: height + 'px'
 				});
-
-			canvas.width = width * 2;
-			canvas.height = height * 2;
 
 		},
 
@@ -202,13 +206,36 @@
 
 			mover.init();
 
+			win.mover = mover;
+
 			this.set('mover', mover);
 
 		},
 
 		onRedrawMapFromMover: function (data) {
-			alert(data.scale);
-			alert(this.selectors.moveAreaContainer);
+
+			var xyzs = data.xyzs,
+				scale = xyzs.scale,
+				x = xyzs.x,
+				y = xyzs.y,
+				z = xyzs.z,
+				squareSize = Math.round(this.info.get('squareSize') * scale),
+				mover = this.get('mover');
+
+			this.info.set('squareSize', squareSize);
+
+			this.setSize();
+
+			mover.detectSizes();
+			mover.detectEdgePositions();
+			mover.setDefaultContainerState();
+			mover.setStyleByXYZS({
+				x: x,
+				y: y,
+				z: z
+			});
+
+
 		}
 
 
