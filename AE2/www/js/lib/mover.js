@@ -246,6 +246,10 @@
 				return false;
 			}
 
+			// todo: get time and path between first and last points
+			// and get speed
+			// set dx and dx by speed
+
 			var begin = logMoving.shift(),
 				end = logMoving.pop(),
 				currentContainerXY = this.get('currentContainerXY'),
