@@ -128,11 +128,11 @@
 			y = currentContainerXY.y - dy;
 
 			if ( x > edges.max.x || x < edges.min.x ) {
-				x += dx * 0.5;
+				x += dx * 0.4;
 			}
 
 			if ( y > edges.max.y || y < edges.min.y ) {
-				y += dy * 0.5;
+				y += dy * 0.4;
 			}
 
 			this.set('currentContainerXY', {
