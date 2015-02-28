@@ -1,4 +1,4 @@
-(function (win, doc, $) {
+(function (win, doc, docElem, $) {
 
 	"use strict";
 	/*global console, alert, window, document */
@@ -97,38 +97,50 @@
 			this.clearLogMoving();
 			this.logMoving(startEventXY);
 
+			this.detectSizes();
+			this.detectEdgePositions();
+
 		},
 
 		onMove: function (e) {
 
+			if ( !this.get('isActive') ) {
+				return false;
+			}
+
 			var events = this.getEvents(e),
 				currentEventXY = this.getAverageXY(events.events),
-				isActive = this.get('isActive'),
-				startEventXY = this.get('startEventXY'),
-				startContainerXY = this.get('startContainerXY'),
+				currentContainerXY = this.get('currentContainerXY'),
 				$container = this.get('$container'),
 				pre = this.get('prefix').css,
+				edges = this.get('edges'),
+				logMoving = this.get('logMoving'),
+				lastEventXY = logMoving[logMoving.length - 1],
 				x,
 				y,
 				dx,
 				dy;
 
-			if ( !isActive ) {
-				return false;
+			dx = lastEventXY.x - currentEventXY.x;
+			x = currentContainerXY.x - dx;
+
+			dy = lastEventXY.y - currentEventXY.y;
+			y = currentContainerXY.y - dy;
+
+			if ( x > edges.max.x || x < edges.min.x ) {
+				x += dx * 0.5;
 			}
 
-			dx = startEventXY.x - currentEventXY.x;
-			dy = startEventXY.y - currentEventXY.y;
-
-			x = startContainerXY.x - dx;
-			y = startContainerXY.y - dy;
+			if ( y > edges.max.y || y < edges.min.y ) {
+				y += dy * 0.5;
+			}
 
 			this.set('currentContainerXY', {
 				x: x,
 				y: y
 			});
 
-			$container.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0px)');
+			$container.css(pre + 'transform', 'translate3d(' + Math.round(x) + 'px, ' + Math.round(y) + 'px, 0px)');
 
 			this.logMoving(currentEventXY);
 
@@ -162,6 +174,7 @@
 				end = logMoving.pop(),
 				$container = this.get('$container'),
 				currentContainerXY = this.get('currentContainerXY'),
+				edges = this.get('edges'),
 				pre = this.get('prefix').css,
 				dx = begin.x - end.x,
 				dy = begin.y - end.y,
@@ -170,11 +183,42 @@
 				endY = currentContainerXY.y - dy * 3,
 				endTime = Math.min(dTime * 3, 300)  + 'ms';
 
-			$container.css(pre + 'transition', 'all ' + endTime + ' ease-out');
+			// adjust end coordinates
+			endX = endX < edges.max.x ? endX : edges.max.x;
+			endX = endX > edges.min.x ? endX : edges.min.x;
+			endY = endY < edges.max.y ? endY : edges.max.y;
+			endY = endY > edges.min.y ? endY : edges.min.y;
 
-			//setTimeout(function () {
-				$container.css(pre + 'transform', 'translate3d(' + endX + 'px, ' + endY + 'px, 0px)');
-			//}, 20);
+			$container.css(pre + 'transition', 'all ' + endTime + ' ease-out');
+			$container.css(pre + 'transform', 'translate3d(' + Math.round(endX) + 'px, ' + Math.round(endY) + 'px, 0px)');
+
+		},
+
+		detectEdgePositions: function () {
+
+			var wrapper = {
+					width: this.get('$wrapper.width'),
+					height: this.get('$wrapper.height')
+				},
+				container = {
+					width: this.get('$container.width'),
+					height: this.get('$container.height')
+				},
+				edgeSize = Math.round(Math.min(docElem.clientWidth, docElem.clientHeight) / 2),
+				edges = {
+					max: {
+						x: edgeSize,
+						y: edgeSize
+					},
+					min: {
+						x: wrapper.width - container.width - edgeSize,
+						y: wrapper.height - container.height - edgeSize
+					}
+				};
+
+			this.set('edges', edges);
+
+			return edges;
 
 		},
 
@@ -296,7 +340,7 @@
 
 			var logMoving = this.get('logMoving');
 
-			if (logMoving.length > 20) {
+			if (logMoving.length > 10) {
 				logMoving.shift(); // delete first item
 			}
 
@@ -318,4 +362,4 @@
 
 	win.Mover = Mover;
 
-}(window, document, window.jQuery));
+}(window, document, document.documentElement, window.jQuery));
