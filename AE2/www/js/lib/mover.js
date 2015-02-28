@@ -73,7 +73,6 @@
 				$wrapper.on('mouseleave', $.proxy( this, 'onUp' ));
 			}
 
-
 		},
 
 		onDown: function (e) {
@@ -135,12 +134,12 @@
 			dy = lastEventXY.y - currentEventXY.y;
 			y = currentContainerXY.y - dy;
 
-			if ( x > edges.max.x || x < edges.min.x ) {
-				x += dx * 0.4;
+			if ( x >= edges.max.x || x <= edges.min.x ) {
+				x += dx * 0.3;
 			}
 
-			if ( y > edges.max.y || y < edges.min.y ) {
-				y += dy * 0.4;
+			if ( y >= edges.max.y || y <= edges.min.y ) {
+				y += dy * 0.3;
 			}
 
 			this.set('currentContainerXY', {
@@ -254,16 +253,14 @@
 
 			var begin = logMoving.shift(),
 				end = logMoving.pop(),
-				$container = this.get('$container'),
 				currentContainerXY = this.get('currentContainerXY'),
 				edges = this.get('edges'),
-				pre = this.get('prefix').css,
 				dx = begin.x - end.x,
 				dy = begin.y - end.y,
 				dTime = end.timeStamp - begin.timeStamp,
 				endX = currentContainerXY.x - dx * 3,
 				endY = currentContainerXY.y - dy * 3,
-				endTime = Math.min(dTime * 3, 300)  + 'ms';
+				endTime = Math.min(dTime * 3, 300);
 
 			// adjust end coordinates
 			endX = endX < edges.max.x ? endX : edges.max.x;
@@ -271,11 +268,10 @@
 			endY = endY < edges.max.y ? endY : edges.max.y;
 			endY = endY > edges.min.y ? endY : edges.min.y;
 
-			$container.css(pre + 'transition', 'all ' + endTime + ' ease-out');
-
 			this.setStyleByXYZS({
 				x: endX,
-				y: endY
+				y: endY,
+				time: endTime
 			});
 
 		},
@@ -286,11 +282,14 @@
 			xyzs.y = Math.round(xyzs.y);
 			xyzs.z = Math.round(xyzs.z || 0);
 			xyzs.scale = xyzs.scale || 1;
+			xyzs.time = xyzs.time || 0;
 
 			var pre = this.get('prefix').css,
 				$container = this.get('$container');
 
-			$container.css(pre + 'transform', 'translate3d(' + xyzs.x + 'px, ' + xyzs.y + 'px, ' + xyzs.z + 'px) scale(' + xyzs.scale + ')');
+			$container
+				.css(pre + 'transition', 'all ' + xyzs.time + 'ms ease-out')
+				.css(pre + 'transform', 'translate3d(' + xyzs.x + 'px, ' + xyzs.y + 'px, ' + xyzs.z + 'px) scale(' + xyzs.scale + ')');
 
 		},
 
@@ -305,8 +304,8 @@
 					height: this.get('$container.height')
 				},
 				edgeSize = Math.round( Math.min(wrapper.width, wrapper.height) / 2 ),
-				xEdge = container.width / 2 - wrapper.width / 2 + edgeSize,
-				yEdge = container.height / 2 - wrapper.height / 2 + edgeSize,
+				xEdge = container.width >= wrapper.width ? container.width / 2 - wrapper.width / 2 + edgeSize : 0,
+				yEdge = container.height >= wrapper.height ? container.height / 2 - wrapper.height / 2 + edgeSize : 0,
 				edges = {
 					max: {
 						x: xEdge,

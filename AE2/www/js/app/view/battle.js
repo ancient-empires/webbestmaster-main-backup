@@ -232,7 +232,8 @@
 			mover.setStyleByXYZS({
 				x: x,
 				y: y,
-				z: z
+				z: z,
+				time: 300
 			});
 
 
