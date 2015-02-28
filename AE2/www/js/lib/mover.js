@@ -242,7 +242,7 @@
 
 			var logMoving = this.get('logMoving');
 
-			if ( logMoving.length <= 1 ) {
+			if ( !logMoving || logMoving.length <= 1 ) {
 				return false;
 			}
 
