@@ -180,9 +180,26 @@
 			if (events.events.length === 1 && isTouch ) { // 2 fingers -> 1 finger
 				this.set('pinchIsActive', false);
 				this.redrawMap();
+				this.checkState(); // fix if user up two finger simultaneously
 			}
 
 			this.onDown(e);
+
+		},
+
+		checkState: function () {
+
+			var edges = this.get('edges');
+
+			if ( edges.min.x && edges.min.y ) {
+				return false;
+			}
+
+			this.setStyleByXYZS({
+				x: 0,
+				y: 0,
+				time: 300
+			});
 
 		},
 
@@ -199,28 +216,6 @@
 
 			onRedraw.fn.call(onRedraw.context, {
 				xyzs: this.getXYZSFromStyle(style)
-			});
-
-		},
-
-		redrawMapTest: function (data) {
-
-			var onRedraw = this.get('onRedraw');
-
-			if ( !onRedraw ) {
-				return false;
-			}
-
-			var $container = this.get('$container'),
-				style = $container.attr('style');
-
-			onRedraw.fn.call(onRedraw.context, {
-				xyzs: {
-					x: data.x,
-					y: data.y,
-					z: data.z,
-					scale: data.s
-				}
 			});
 
 		},
