@@ -92,6 +92,11 @@
 			log('hide view');
 			this.undelegateEvents();
 			this.$el.remove();
+
+			if (this.unbindEventListeners) {
+				this.unbindEventListeners();
+			}
+
 		},
 
 		render: function () {

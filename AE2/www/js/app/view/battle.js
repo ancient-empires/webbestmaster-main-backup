@@ -39,9 +39,29 @@
 			// bind move area // todo: unbind move area
 			this.bindMoveArea();
 
+			this.bindEventListeners(); // unbind event listener on hide
+
 			log(data);
 
 			this.render();
+
+		},
+
+		bindEventListeners: function () {
+			var device = win.APP.device;
+			this.listenTo(device, 'resize', this.onResize);
+		},
+
+		unbindEventListeners: function () {
+			this.stopListening();
+		},
+
+		onResize: function () {
+
+			var mover = this.get('mover');
+			mover.detectSizes();
+			mover.detectEdgePositions();
+			mover.checkState();
 
 		},
 
@@ -235,7 +255,6 @@
 				z: z,
 				time: 300
 			});
-
 
 		}
 
