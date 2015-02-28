@@ -11,6 +11,8 @@
 		this.set('$wrapper', data.wrapper);
 		this.set('$container', data.container);
 
+		this.set('onRedraw', data.onRedraw || false);
+
 		this.set('isTouch', 'ontouchstart' in document);
 
 		this.setEventMap();
@@ -81,7 +83,7 @@
 				$container = this.get('$container'),
 				styleXY = $container.attr('style'),
 				pre = this.get('prefix').css,
-				startContainerXY = this.getXYFromStyle(styleXY);
+				startContainerXY = this.getXYZSFromStyle(styleXY);
 
 			$container.css(pre + 'transition', 'none');
 
@@ -91,7 +93,6 @@
 			this.set('startContainerXY', startContainerXY);
 			this.set('currentContainerXY', startContainerXY);
 
-
 			this.set('isActive', true);
 
 			this.clearLogMoving();
@@ -99,6 +100,14 @@
 
 			this.detectSizes();
 			this.detectEdgePositions();
+
+			// detect start zooming
+			if (events.length === 2) {
+				this.set('pinchIsActive', true);
+				this.set('pinchStartEvents', events.events);
+			} else {
+				this.set('pinchIsActive', false);
+			}
 
 		},
 
@@ -111,11 +120,10 @@
 			var events = this.getEvents(e),
 				currentEventXY = this.getAverageXY(events.events),
 				currentContainerXY = this.get('currentContainerXY'),
-				$container = this.get('$container'),
-				pre = this.get('prefix').css,
 				edges = this.get('edges'),
 				logMoving = this.get('logMoving'),
 				lastEventXY = logMoving[logMoving.length - 1],
+				pinchData,
 				x,
 				y,
 				dx,
@@ -140,7 +148,19 @@
 				y: y
 			});
 
-			$container.css(pre + 'transform', 'translate3d(' + Math.round(x) + 'px, ' + Math.round(y) + 'px, 0px) scale(1)');
+			if ( this.get('pinchIsActive') ) { // zooming
+				pinchData = this.getPinchData(events.events);
+				this.setStyleByXYZS({
+					x: x,
+					y: y,
+					scale: pinchData.scale
+				});
+			} else { // just moving
+				this.setStyleByXYZS({
+					x: x,
+					y: y
+				});
+			}
 
 			this.logMoving(currentEventXY);
 
@@ -158,7 +178,49 @@
 				return;
 			}
 
+			if (events.events.length === 1 && isTouch ) { // 2 fingers -> 1 finger
+				this.set('pinchIsActive', false);
+				this.redrawMap();
+			}
+
 			this.onDown(e);
+
+		},
+
+		redrawMap: function () {
+
+			var onRedraw = this.get('onRedraw');
+
+			if ( !onRedraw ) {
+				return false;
+			}
+
+			var $container = this.get('$container'),
+				style = $container.attr('style'),
+				xyzs = this.getXYZSFromStyle(style),
+				scale = xyzs.scale;
+
+			onRedraw.fn.call(onRedraw.context, {
+				scale: scale
+			});
+
+		},
+
+		getPinchData: function (events) {
+
+			var startEvents = this.get('pinchStartEvents'),
+				before,
+				after;
+
+			before = Math.pow(startEvents[0].x - startEvents[1].x, 2) + Math.pow(startEvents[0].y - startEvents[1].y, 2);
+			before = Math.pow(before, 0.5);
+
+			after = Math.pow(events[0].x - events[1].x, 2) + Math.pow(events[0].y - events[1].y, 2);
+			after = Math.pow(after, 0.5);
+
+			return {
+				scale: (after / before) || 1
+			};
 
 		},
 
@@ -191,8 +253,24 @@
 
 			$container.css(pre + 'transition', 'all ' + endTime + ' ease-out');
 
-			// todo: setStyleByXYS, urgent
-			$container.css(pre + 'transform', 'translate3d(' + Math.round(endX) + 'px, ' + Math.round(endY) + 'px, 0px) scale(1)');
+			this.setStyleByXYZS({
+				x: endX,
+				y: endY
+			});
+
+		},
+
+		setStyleByXYZS: function (xyzs) {
+
+			xyzs.x = Math.round(xyzs.x);
+			xyzs.y = Math.round(xyzs.y);
+			xyzs.z = Math.round(xyzs.z || 0);
+			xyzs.scale = xyzs.scale || 1;
+
+			var pre = this.get('prefix').css,
+				$container = this.get('$container');
+
+			$container.css(pre + 'transform', 'translate3d(' + xyzs.x + 'px, ' + xyzs.y + 'px, ' + xyzs.z + 'px) scale(' + xyzs.scale + ')');
 
 		},
 
@@ -226,14 +304,18 @@
 
 		},
 
-		getXYFromStyle: function (style) {
+		getXYZSFromStyle: function (style) {
 
 			var reGetTransform = /^[\s\S]*?translate3d\((\-?\d+)px,\s?(\-?\d+)px,\s?(\-?\d+)px\)[\s\S]*?$/,
-				coordinatesArr = style.replace(reGetTransform, '$1_$2_$3').split('_');
+				coordinatesArr = style.replace(reGetTransform, '$1_$2_$3').split('_'),
+				reGetScale = /^[\s\S]*?scale\((\S+?)\)[\s\S]*?$/,
+				scale = parseFloat(style.replace(reGetScale, '$1'));
 
 			return {
 				x: parseInt(coordinatesArr[0], 10),
-				y: parseInt(coordinatesArr[1], 10)
+				y: parseInt(coordinatesArr[1], 10),
+				z: parseInt(coordinatesArr[2], 10),
+				scale: scale
 			};
 
 		},
@@ -334,13 +416,15 @@
 		setDefaultContainerState: function () {
 
 			var $container = this.get('$container'),
-				pre = this.get('prefix').css,
 				width = $container.width(),
 				height = $container.height();
 
-			$container
-				.css(pre + 'transform', 'translate3d(0px, 0px, 0px) scale(1)')
-				.css({
+			this.setStyleByXYZS({
+				x: 0,
+				y: 0
+			});
+
+			$container.css({
 					'position': 'relative',
 					'left': '50%',
 					'top': '50%',

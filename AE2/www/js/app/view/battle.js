@@ -193,13 +193,22 @@
 				moveAreaContainer = moveAreaWrapper.find(this.selectors.moveAreaContainer),
 				mover = new Mover({
 					wrapper: moveAreaWrapper,
-					container: moveAreaContainer
+					container: moveAreaContainer,
+					onRedraw: {
+						context: this,
+						fn: this.onRedrawMapFromMover
+					}
 				});
 
 			mover.init();
 
 			this.set('mover', mover);
 
+		},
+
+		onRedrawMapFromMover: function (data) {
+			alert(data.scale);
+			alert(this.selectors.moveAreaContainer);
 		}
 
 
