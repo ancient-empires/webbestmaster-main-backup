@@ -140,7 +140,7 @@
 				y: y
 			});
 
-			$container.css(pre + 'transform', 'translate3d(' + Math.round(x) + 'px, ' + Math.round(y) + 'px, 0px)');
+			$container.css(pre + 'transform', 'translate3d(' + Math.round(x) + 'px, ' + Math.round(y) + 'px, 0px) scale(1)');
 
 			this.logMoving(currentEventXY);
 
@@ -190,7 +190,9 @@
 			endY = endY > edges.min.y ? endY : edges.min.y;
 
 			$container.css(pre + 'transition', 'all ' + endTime + ' ease-out');
-			$container.css(pre + 'transform', 'translate3d(' + Math.round(endX) + 'px, ' + Math.round(endY) + 'px, 0px)');
+
+			// todo: setStyleByXYS, urgent
+			$container.css(pre + 'transform', 'translate3d(' + Math.round(endX) + 'px, ' + Math.round(endY) + 'px, 0px) scale(1)');
 
 		},
 
@@ -204,15 +206,17 @@
 					width: this.get('$container.width'),
 					height: this.get('$container.height')
 				},
-				edgeSize = Math.round(Math.min(docElem.clientWidth, docElem.clientHeight) / 2),
+				edgeSize = Math.round( Math.min(wrapper.width, wrapper.height) / 2 ),
+				xEdge = container.width / 2 - wrapper.width / 2 + edgeSize,
+				yEdge = container.height / 2 - wrapper.height / 2 + edgeSize,
 				edges = {
 					max: {
-						x: edgeSize,
-						y: edgeSize
+						x: xEdge,
+						y: yEdge
 					},
 					min: {
-						x: wrapper.width - container.width - edgeSize,
-						y: wrapper.height - container.height - edgeSize
+						x: -xEdge,
+						y: -yEdge
 					}
 				};
 
@@ -330,9 +334,19 @@
 		setDefaultContainerState: function () {
 
 			var $container = this.get('$container'),
-				pre = this.get('prefix').css;
+				pre = this.get('prefix').css,
+				width = $container.width(),
+				height = $container.height();
 
-			$container.css(pre + 'transform', 'translate3d(0px, 0px, 0px)');
+			$container
+				.css(pre + 'transform', 'translate3d(0px, 0px, 0px) scale(1)')
+				.css({
+					'position': 'relative',
+					'left': '50%',
+					'top': '50%',
+					'margin-left': '-' + Math.round(width / 2) + 'px',
+					'margin-top': '-' + Math.round(height / 2) + 'px'
+				});
 
 		},
 
