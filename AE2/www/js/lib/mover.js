@@ -1,9 +1,5 @@
 (function (win, doc, docElem, $) {
 
-	// todo:BUG
-	// after resize map and move map to left
-	// do not work any touches
-
 	"use strict";
 	/*global console, alert, window, document */
 	/*global */
