@@ -253,11 +253,11 @@
 				x: x,
 				y: y,
 				z: z,
-				time: 300
+				time: 300,
+				check: true // fix if user up two finger simultaneously
 			});
 
 		}
-
 
 	});
 

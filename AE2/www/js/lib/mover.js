@@ -180,7 +180,6 @@
 			if (events.events.length === 1 && isTouch ) { // 2 fingers -> 1 finger
 				this.set('pinchIsActive', false);
 				this.redrawMap();
-				this.checkState(); // fix if user up two finger simultaneously
 			}
 
 			this.onDown(e);
@@ -204,22 +203,6 @@
 			this.setStyleByXYZS({
 				x: x,
 				y: y,
-				time: 300
-			});
-
-		},
-
-		checkState: function () {
-
-			var edges = this.get('edges');
-
-			if ( edges.min.x && edges.min.y ) {
-				return false;
-			}
-
-			this.setStyleByXYZS({
-				x: 0,
-				y: 0,
 				time: 300
 			});
 
@@ -284,10 +267,11 @@
 				endTime = Math.min(dTime * 3, 300);
 
 			// adjust end coordinates
-			endX = endX < edges.max.x ? endX : edges.max.x;
-			endX = endX > edges.min.x ? endX : edges.min.x;
-			endY = endY < edges.max.y ? endY : edges.max.y;
-			endY = endY > edges.min.y ? endY : edges.min.y;
+			endX = Math.min(edges.max.x, endX);
+			endX = Math.max(edges.min.x, endX);
+
+			endY = Math.min(edges.max.y, endY);
+			endY = Math.max(edges.min.y, endY);
 
 			this.setStyleByXYZS({
 				x: endX,
@@ -306,7 +290,20 @@
 			xyzs.time = xyzs.time || 0;
 
 			var pre = this.get('prefix').css,
-				$container = this.get('$container');
+				$container = this.get('$container'),
+				edges;
+
+			if ( xyzs.check ) {
+
+				edges = this.get('edges');
+
+				xyzs.x = Math.min(edges.max.x, xyzs.x);
+				xyzs.x = Math.max(edges.min.x, xyzs.x);
+
+				xyzs.y = Math.min(edges.max.y, xyzs.y);
+				xyzs.y = Math.max(edges.min.y, xyzs.y);
+
+			}
 
 			$container
 				.css(pre + 'transition', 'all ' + xyzs.time + 'ms ease-out')
