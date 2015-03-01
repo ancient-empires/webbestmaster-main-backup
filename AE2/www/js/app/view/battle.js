@@ -249,13 +249,18 @@
 
 			mover.detectSizes();
 			mover.detectEdgePositions();
-			mover.setDefaultContainerState();
+			mover.setDefaultContainerSize();
 			mover.setStyleByXYZS({
 				x: x,
 				y: y,
 				z: z,
 				time: 300,
 				check: true // fix if user up two finger simultaneously
+			});
+
+			mover.set('currentContainerXY', { // fix if user up two finger simultaneously
+				x: x,                         // see mover.fixAfterResizing
+				y: y
 			});
 
 		}

@@ -169,8 +169,8 @@
 			if ( this.get('pinchIsActive') ) { // zooming
 				pinchData = this.getPinchData(events.events);
 				this.setStyleByXYZS({
-					x: x,
-					y: y,
+					x: x * pinchData.scale,
+					y: y * pinchData.scale,
 					scale: pinchData.scale
 				});
 			} else { // just moving
@@ -240,10 +240,11 @@
 			}
 
 			var $container = this.get('$container'),
-				style = $container.attr('style');
+				style = $container.attr('style'),
+				xyzs = this.getXYZSFromStyle(style);
 
 			onRedraw.fn.call(onRedraw.context, {
-				xyzs: this.getXYZSFromStyle(style)
+				xyzs: xyzs
 			});
 
 			// detect bug with position
@@ -485,22 +486,28 @@
 
 		setDefaultContainerState: function () {
 
-			var $container = this.get('$container'),
-				width = $container.width(),
-				height = $container.height();
+			this.setDefaultContainerSize();
 
 			this.setStyleByXYZS({
 				x: 0,
 				y: 0
 			});
 
+		},
+
+		setDefaultContainerSize: function () {
+
+			var $container = this.get('$container'),
+				width = $container.width(),
+				height = $container.height();
+
 			$container.css({
-					'position': 'relative',
-					'left': '50%',
-					'top': '50%',
-					'margin-left': '-' + Math.round(width / 2) + 'px',
-					'margin-top': '-' + Math.round(height / 2) + 'px'
-				});
+				'position': 'relative',
+				'left': '50%',
+				'top': '50%',
+				'margin-left': '-' + Math.round(width / 2) + 'px',
+				'margin-top': '-' + Math.round(height / 2) + 'px'
+			});
 
 		},
 
