@@ -36,10 +36,10 @@
 			// draw map
 			this.drawMap();
 
-			// bind move area // todo: unbind move area
+			// bind move area
 			this.bindMoveArea();
 
-			this.bindEventListeners(); // unbind event listener on hide
+			this.bindEventListeners();
 
 			log(data);
 
@@ -54,6 +54,7 @@
 
 		unbindEventListeners: function () {
 			this.stopListening();
+			this.get('mover').unbindEventListeners();
 		},
 
 		onResize: function () {

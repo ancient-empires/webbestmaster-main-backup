@@ -42,7 +42,7 @@
 			// set styles and other for container
 			this.setDefaultContainerState();
 
-			this.bindEventListeners(); // todo: unbind event listeners
+			this.bindEventListeners();
 
 			return this;
 
@@ -69,12 +69,28 @@
 				eventMap = this.get('eventMap'),
 				isTouch = this.get('isTouch');
 
-			$wrapper.on(eventMap.down, $.proxy( this, 'onDown' )); // todo: remove listeners -> wrapper.off( eventMap.down, this.onDown );
-			$wrapper.on(eventMap.move, $.proxy( this, 'onMove' )); // http://api.jquery.com/jquery.proxy/
+			$wrapper.on(eventMap.down, $.proxy( this, 'onDown' ));
+			$wrapper.on(eventMap.move, $.proxy( this, 'onMove' ));
 			$wrapper.on(eventMap.up, $.proxy( this, 'onUp' ));
 
 			if ( !isTouch ) { // fix for PC
 				$wrapper.on('mouseleave', $.proxy( this, 'onUp' ));
+			}
+
+		},
+
+		unbindEventListeners: function () {
+
+			var $wrapper = this.get('$wrapper'),
+				eventMap = this.get('eventMap'),
+				isTouch = this.get('isTouch');
+
+			$wrapper.off(eventMap.down, this.onDown);
+			$wrapper.off(eventMap.move, this.onMove);
+			$wrapper.off(eventMap.up, this.onUp);
+
+			if ( !isTouch ) { // fix for PC
+				$wrapper.off('mouseleave', this.onUp);
 			}
 
 		},
