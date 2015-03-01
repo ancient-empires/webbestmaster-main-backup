@@ -243,6 +243,10 @@
 				xyzs: this.getXYZSFromStyle(style)
 			});
 
+			// detect bug with position
+			// fix bug - if user up 2 fingers from display
+			this.fixAfterResizing();
+
 		},
 
 		getPinchData: function (events) {
@@ -517,6 +521,27 @@
 
 		clearLogMoving: function () {
 			this.set('logMoving', []);
+		},
+
+		fixAfterResizing: function () {
+
+			var edges = this.get('edges'),
+				currentContainerXY = this.get('currentContainerXY'),
+				x = currentContainerXY.x,
+				y = currentContainerXY.y;
+
+			x = Math.min(edges.max.x, x);
+			x = Math.max(edges.min.x, x);
+
+			y = Math.min(edges.max.y, y);
+			y = Math.max(edges.min.y, y);
+
+			this.setStyleByXYZS({
+				x: x,
+				y: y,
+				time: 300
+			});
+
 		}
 
 	};
