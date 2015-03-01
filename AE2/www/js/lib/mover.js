@@ -251,20 +251,26 @@
 				return false;
 			}
 
-			// todo: get time and path between first and last points
-			// and get speed
-			// set dx and dx by speed
-
 			var begin = logMoving.shift(),
 				end = logMoving.pop(),
 				currentContainerXY = this.get('currentContainerXY'),
 				edges = this.get('edges'),
 				dx = begin.x - end.x,
 				dy = begin.y - end.y,
-				dTime = end.timeStamp - begin.timeStamp,
-				endX = currentContainerXY.x - dx * 3,
-				endY = currentContainerXY.y - dy * 3,
-				endTime = Math.min(dTime * 3, 300);
+				dTime = Date.now() - begin.timeStamp,
+				speedX,
+				speedY,
+				endX,
+				endY,
+				endTime = Math.min(dTime * 3, 250);
+
+			speedX = dx / dTime;
+			speedY = dy / dTime;
+			speedX = Math.abs(speedX) < 0.3 ? 0 : speedX;
+			speedY = Math.abs(speedY) < 0.3 ? 0 : speedY;
+
+			endX = currentContainerXY.x - Math.abs(dx) * 3 * speedX;
+			endY = currentContainerXY.y - Math.abs(dy) * 3 * speedY;
 
 			// adjust end coordinates
 			endX = Math.min(edges.max.x, endX);
