@@ -71,6 +71,8 @@
 
 			if ( !isTouch ) { // fix for PC
 				$wrapper.on('mouseleave', $.proxy( this, 'onUp' ));
+				// zooming for PC
+				$wrapper.on('mousewheel', $.proxy( this, 'onScroll' ));
 			}
 
 		},
@@ -87,6 +89,7 @@
 
 			if ( !isTouch ) { // fix for PC
 				$wrapper.off('mouseleave', this.onUp);
+				$wrapper.off('scroll', this.onScroll);
 			}
 
 		},
@@ -200,6 +203,10 @@
 
 			this.onDown(e);
 
+		},
+
+		onScroll: function (e) {
+			console.log(e.originalEvent.wheelDelta );
 		},
 
 		onResizeCheckState: function () {
