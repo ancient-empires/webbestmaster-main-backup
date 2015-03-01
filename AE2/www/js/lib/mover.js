@@ -187,6 +187,28 @@
 
 		},
 
+		onResizeCheckState: function () {
+
+			var style = this.get('$container').attr('style'),
+				xyzs = this.getXYZSFromStyle(style),
+				edges = this.get('edges'),
+				x = xyzs.x,
+				y = xyzs.y;
+
+			x = Math.min(edges.max.x, x);
+			x = Math.max(edges.min.x, x);
+
+			y = Math.min(edges.max.y, y);
+			y = Math.max(edges.min.y, y);
+
+			this.setStyleByXYZS({
+				x: x,
+				y: y,
+				time: 300
+			});
+
+		},
+
 		checkState: function () {
 
 			var edges = this.get('edges');

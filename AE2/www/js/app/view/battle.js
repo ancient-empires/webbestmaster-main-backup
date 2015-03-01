@@ -61,7 +61,7 @@
 			var mover = this.get('mover');
 			mover.detectSizes();
 			mover.detectEdgePositions();
-			mover.checkState();
+			mover.onResizeCheckState();
 
 		},
 
