@@ -1,4 +1,4 @@
-(function (win, doc, docElem, $) {
+(function (win, doc, $) {
 
 	"use strict";
 	/*global console, alert, window, document */
@@ -72,7 +72,7 @@
 			if ( !isTouch ) { // fix for PC
 				$wrapper.on('mouseleave', $.proxy( this, 'onUp' ));
 				// zooming for PC
-				$wrapper.on('mousewheel', $.proxy( this, 'onScroll' ));
+				$wrapper.on('mousewheel', $.proxy( this, 'onMouseWheel' ));
 			}
 
 		},
@@ -89,7 +89,7 @@
 
 			if ( !isTouch ) { // fix for PC
 				$wrapper.off('mouseleave', this.onUp);
-				$wrapper.off('scroll', this.onScroll);
+				$wrapper.off('mousewheel', this.onMouseWheel);
 			}
 
 		},
@@ -205,8 +205,8 @@
 
 		},
 
-		onScroll: function (e) {
-			console.log(e.originalEvent.wheelDelta );
+		onMouseWheel: function (e) {
+			console.log(e.deltaY);
 		},
 
 		onResizeCheckState: function () {
@@ -558,4 +558,4 @@
 
 	win.Mover = Mover;
 
-}(window, document, document.documentElement, window.jQuery));
+}(window, document, window.jQuery));
