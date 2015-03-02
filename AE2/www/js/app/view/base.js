@@ -1,7 +1,7 @@
 (function (win, doc) {
 
 	"use strict";
-	/*global window, document, location */
+	/*global window, document, location, Image */
 	/*global Backbone, $, APP, log */
 
 	win.APP = win.APP || {};

@@ -38,9 +38,31 @@
 			// set styles and other for container
 			this.setDefaultContainerState();
 
+			this.detectTransitionEndEventName();
+
 			this.bindEventListeners();
 
 			return this;
+
+		},
+		detectTransitionEndEventName: function () {
+			var i,
+				el = document.createElement('div'),
+				transitions = {
+					'transition':'transitionend',
+					'OTransition':'otransitionend',  // oTransitionEnd in very old Opera
+					'MozTransition':'transitionend',
+					'WebkitTransition':'webkitTransitionEnd'
+				},
+				transitionEnd = 'transitionend';
+
+			for (i in transitions) {
+				if (transitions.hasOwnProperty(i) && el.style[i] !== undefined) {
+					transitionEnd = transitions[i];
+				}
+			}
+
+			this.set('transitionEnd', transitionEnd);
 
 		},
 		get: function (key) {
@@ -210,7 +232,22 @@
 		},
 
 		onMouseWheel: function (e) {
-			console.log(e.deltaY);
+
+			var style = this.get('$container').attr('style'),
+				xyzs = this.getXYZSFromStyle(style),
+				scale = 1 + e.deltaY/10;
+
+			this.setStyleByXYZS({
+				x: xyzs.x * scale,
+				y: xyzs.y * scale,
+				scale: scale,
+				time: 300
+			});
+
+			this.redrawMap({
+				withDelay: true
+			});
+
 		},
 
 		onResizeCheckState: function () {
@@ -235,17 +272,33 @@
 
 		},
 
-		redrawMap: function () {
+		redrawMap: function (data) {
 
-			var onRedraw = this.get('onRedraw');
+			data = data || {};
+
+			var onRedraw = this.get('onRedraw'),
+				$container,
+				style,
+				xyzs,
+				transitionEnd = this.get('transitionEnd');
 
 			if ( !onRedraw ) {
 				return false;
 			}
 
-			var $container = this.get('$container'),
-				style = $container.attr('style'),
-				xyzs = this.getXYZSFromStyle(style);
+			$container = this.get('$container');
+
+			if (data && data.withDelay) {
+				$container.on(transitionEnd, $.proxy( this, 'redrawMap', { time: 0 } ));
+				return;
+			}
+
+			$container.off(transitionEnd, this.redrawMap);
+
+			style = $container.attr('style');
+			xyzs = this.getXYZSFromStyle(style);
+
+			xyzs.time = data.time || 0;
 
 			onRedraw.fn.call(onRedraw.context, {
 				xyzs: xyzs
@@ -253,7 +306,9 @@
 
 			// detect bug with position
 			// fix bug - if user up 2 fingers from display
-			this.fixAfterResizing();
+			this.fixAfterResizing({
+				time: xyzs.time
+			});
 
 		},
 
@@ -502,8 +557,10 @@
 		setDefaultContainerSize: function () {
 
 			var $container = this.get('$container'),
-				width = $container.width(),
-				height = $container.height();
+				width = parseInt($container.css('width'), 10),
+				height = parseInt($container.css('height'), 10);
+
+			console.log($container.attr('style'));
 
 			$container.css({
 				'position': 'relative',
@@ -537,12 +594,15 @@
 			this.set('logMoving', []);
 		},
 
-		fixAfterResizing: function () {
+		fixAfterResizing: function (data) {
+
+			data = data || {};
 
 			var edges = this.get('edges'),
 				currentContainerXY = this.get('currentContainerXY'),
 				x = currentContainerXY.x,
-				y = currentContainerXY.y;
+				y = currentContainerXY.y,
+				time = data.hasOwnProperty('time') ? data.time : 300;
 
 			x = Math.min(edges.max.x, x);
 			x = Math.max(edges.min.x, x);
@@ -553,7 +613,7 @@
 			this.setStyleByXYZS({
 				x: x,
 				y: y,
-				time: 300
+				time: time
 			});
 
 		}

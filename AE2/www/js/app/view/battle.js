@@ -243,6 +243,7 @@
 		onRedrawMapFromMover: function (data) {
 
 			var xyzs = data.xyzs,
+				time = xyzs.hasOwnProperty('time') ? xyzs.time : 300,
 				scale = xyzs.scale,
 				x = xyzs.x,
 				y = xyzs.y,
@@ -250,6 +251,7 @@
 				squareSize = Math.round(this.info.get('squareSize') * scale),
 				mover = this.get('mover');
 
+			console.log(squareSize);
 			this.info.set('squareSize', squareSize);
 
 			this.setSize();
@@ -261,7 +263,7 @@
 				x: x,
 				y: y,
 				z: z,
-				time: 300,
+				time:  time,
 				check: true // fix if user up two finger simultaneously
 			});
 
