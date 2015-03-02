@@ -11,7 +11,10 @@
 	APP.BB.BattleView = APP.BB.BaseView.extend({
 
 		events: {
-
+			'touchmove .js-move-area-wrapper': 'stopEvent',
+			'gesturestart .js-move-area-wrapper': 'stopEvent',
+			'gesturechange .js-move-area-wrapper': 'stopEvent',
+			'gestureend .js-move-area-wrapper': 'stopEvent'
 		},
 
 		selectors: {
