@@ -87,6 +87,10 @@
 			squareSize = Math.max(squareSize, (win.APP.util.defaultUnit * 3)); // set max
 			squareSize = Math.min(squareSize, (win.APP.util.defaultUnit * 6)); // and min square
 
+			if ( this.info.get('isIOS', true) ) {
+				squareSize = 24; // see tiles image size
+			}
+
 			squareSizeX2 = squareSize * 2;
 
 			canvas.width = map.size.width * 2 * squareSize;
