@@ -69,7 +69,9 @@
 			$wrapper.on(eventMap.move, $.proxy( this, 'onMove' ));
 			$wrapper.on(eventMap.up, $.proxy( this, 'onUp' ));
 
-			if ( !isTouch ) { // fix for PC
+			if ( isTouch ) { // add for devices
+				$wrapper.on('touchcancel', $.proxy( this, 'onUp' ));
+			} else {  // fix for PC
 				$wrapper.on('mouseleave', $.proxy( this, 'onUp' ));
 				// zooming for PC
 				$wrapper.on('mousewheel', $.proxy( this, 'onMouseWheel' ));
@@ -87,7 +89,9 @@
 			$wrapper.off(eventMap.move, this.onMove);
 			$wrapper.off(eventMap.up, this.onUp);
 
-			if ( !isTouch ) { // fix for PC
+			if ( isTouch ) {
+				$wrapper.off('touchcancel', this.onUp);
+			} else {  // fix for PC
 				$wrapper.off('mouseleave', this.onUp);
 				$wrapper.off('mousewheel', this.onMouseWheel);
 			}
