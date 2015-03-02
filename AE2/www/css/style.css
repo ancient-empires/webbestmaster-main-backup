@@ -3,3 +3,30 @@ button {
 	margin: 1rem !important;
 }
 
+.square {
+	float: left;
+}
+
+.event-handler-wrapper,
+.unit-wrapper,
+.building-wrapper {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.building-wrapper {
+	z-index: 1;
+}
+
+.unit-wrapper {
+	z-index: 2;
+}
+
+.event-handler-wrapper {
+	z-index: 3;
+}
+
+

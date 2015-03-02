@@ -20,7 +20,9 @@
 		selectors: {
 			mapImageWrapper: '.js-map-image-wrapper',
 			moveAreaWrapper: '.js-move-area-wrapper',
-			moveAreaContainer: '.js-move-area-container'
+			moveAreaContainer: '.js-move-area-container',
+			eventHandlerWrapper: '.js-event-handler-wrapper',
+			square: '.js-square'
 		},
 
 		initialize: function (data) {
@@ -42,9 +44,13 @@
 			// bind move area
 			this.bindMoveArea();
 
-			this.bindEventListeners();
+			// 'draw' event listeners
+			this.setEventHandlerListeners();
+
 
 			log(data);
+
+			this.bindEventListeners();
 
 			this.render();
 
@@ -66,6 +72,26 @@
 			mover.detectSizes();
 			mover.detectEdgePositions();
 			mover.onResizeCheckState();
+
+		},
+
+		setEventHandlerListeners: function () {
+
+			var squareSize = this.info.get('squareSize'),
+				selectors = this.selectors,
+				$eventHandlerWrapper = this.$el.find(selectors.eventHandlerWrapper),
+				map = this.get('map'),
+				template = '<div class="js-square square" style="width: {{squareSize}}px; height: {{squareSize}}px;" data-xy="x{{x}}y{{y}}" data-x="{{x}}" data-y="{{y}}"></div>',
+				resultArr = [],
+				x, y, xLen, yLen;
+
+			for (x = 0, xLen = map.size.width; x < xLen; x += 1) {
+				for (y = 0, yLen = map.size.height; y < yLen; y += 1) {
+					resultArr.push( template.replace(/\{\{x\}\}/g, x).replace(/\{\{y\}\}/g, y).replace(/\{\{squareSize\}\}/g, squareSize) );
+				}
+			}
+
+			$eventHandlerWrapper.html(resultArr.join(''));
 
 		},
 
@@ -199,22 +225,39 @@
 		setSize: function () {
 
 			var squareSize = this.info.get('squareSize') || (win.APP.util.defaultUnit * 3),
-				$moveAreaContainer = this.$el.find(this.selectors.moveAreaContainer),
-				$mapImageWrapper = this.$el.find(this.selectors.mapImageWrapper),
+				selectors = this.selectors,
+				$moveAreaContainer = this.$el.find(selectors.moveAreaContainer),
+				$mapImageWrapper = this.$el.find(selectors.mapImageWrapper),
+				$eventHandlerWrapper = this.$el.find(selectors.eventHandlerWrapper),
+				$squares = this.$el.find(selectors.square),
 				map = this.get('map'),
 				width = map.size.width * squareSize,
 				height = map.size.height * squareSize;
 
 			this.info.set('squareSize', squareSize);
 
+			// set container
 			$moveAreaContainer.css({
 					width: width + 'px',
 					height: height + 'px'
 				});
 
+			// set canvas
 			$mapImageWrapper.css({
 					width: width + 'px',
 					height: height + 'px'
+				});
+
+			//set event handler wrapper
+			$eventHandlerWrapper.css({
+					width: width + 'px',
+					height: height + 'px'
+				});
+
+			// set squares sizes
+			$squares.css({
+					width: squareSize + 'px',
+					height: squareSize + 'px'
 				});
 
 		},
