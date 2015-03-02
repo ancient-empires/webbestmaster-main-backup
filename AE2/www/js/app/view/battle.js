@@ -251,7 +251,6 @@
 				squareSize = Math.round(this.info.get('squareSize') * scale),
 				mover = this.get('mover');
 
-			console.log(squareSize);
 			this.info.set('squareSize', squareSize);
 
 			this.setSize();

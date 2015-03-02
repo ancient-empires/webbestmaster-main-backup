@@ -235,7 +235,7 @@
 
 			var style = this.get('$container').attr('style'),
 				xyzs = this.getXYZSFromStyle(style),
-				scale = 1 + e.deltaY/10;
+				scale = 1 + e.deltaY/5;
 
 			this.setStyleByXYZS({
 				x: xyzs.x * scale,
@@ -557,10 +557,9 @@
 		setDefaultContainerSize: function () {
 
 			var $container = this.get('$container'),
-				width = parseInt($container.css('width'), 10),
-				height = parseInt($container.css('height'), 10);
-
-			console.log($container.attr('style'));
+				nodeContainer = $container.get(0),
+				width = parseInt(nodeContainer.style.width, 10),
+				height = parseInt(nodeContainer.style.height, 10);
 
 			$container.css({
 				'position': 'relative',
@@ -609,6 +608,10 @@
 
 			y = Math.min(edges.max.y, y);
 			y = Math.max(edges.min.y, y);
+
+			if (currentContainerXY.x === x && currentContainerXY.y === y) {
+				return;
+			}
 
 			this.setStyleByXYZS({
 				x: x,
