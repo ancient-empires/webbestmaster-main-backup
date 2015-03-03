@@ -289,11 +289,9 @@
 			$container = this.get('$container');
 
 			if (data && data.withDelay) {
-				$container.on(transitionEnd, $.proxy( this, 'redrawMap', { time: 0 } ));
+				$container.one(transitionEnd, $.proxy( this, 'redrawMap', { time: 0 } )); // work only one time
 				return;
 			}
-
-			$container.off(transitionEnd, this.redrawMap);
 
 			style = $container.attr('style');
 			xyzs = this.getXYZSFromStyle(style);
