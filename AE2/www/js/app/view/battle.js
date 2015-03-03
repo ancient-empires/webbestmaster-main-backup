@@ -27,6 +27,12 @@
 
 		initialize: function (data) {
 
+			this.squareSize = {
+				min: win.APP.util.defaultUnit,
+				max: win.APP.util.defaultUnit * 9,
+				default: win.APP.util.defaultUnit * 3
+			};
+
 			this.$el = $(this.tmpl.battle(data));
 
 			this.proto.initialize.apply(this, arguments);
@@ -110,8 +116,8 @@
 				angleTypes = ['road', 'water'],
 				reBridge = /^bridge\-\d+$/;
 
-			squareSize = Math.max(squareSize, (win.APP.util.defaultUnit * 3)); // set max
-			squareSize = Math.min(squareSize, (win.APP.util.defaultUnit * 6)); // and min square
+			squareSize = Math.max(squareSize, Math.round(this.squareSize.max * 0.66) ); // set max
+			squareSize = Math.min(squareSize, this.squareSize.min * 2); // and min square
 
 			if ( this.info.get('isIOS', true) ) {
 				squareSize = 24; // see tiles image size
@@ -224,7 +230,7 @@
 
 		setSize: function () {
 
-			var squareSize = this.info.get('squareSize') || (win.APP.util.defaultUnit * 3),
+			var squareSize = this.info.get('squareSize') || this.squareSize.default,
 				selectors = this.selectors,
 				$moveAreaContainer = this.$el.find(selectors.moveAreaContainer),
 				$mapImageWrapper = this.$el.find(selectors.mapImageWrapper),
@@ -293,6 +299,8 @@
 				z = xyzs.z,
 				squareSize = Math.round(this.info.get('squareSize') * scale),
 				mover = this.get('mover');
+
+			squareSize = win.APP.util.getBetween(this.squareSize.min, squareSize, this.squareSize.max);
 
 			this.info.set('squareSize', squareSize);
 

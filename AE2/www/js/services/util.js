@@ -18,12 +18,16 @@
 
 			docElem.style.fontSize = fontSize + 'px';
 
-
 		},
 		assortArray: function (arr) {
 			return arr.sort(function () {
 				return 0.5 - Math.random();
 			});
+		},
+		getBetween: function (min, current, max) {
+			current = Math.min(current, max);
+			current = Math.max(current, min);
+			return current;
 		}
 
 	};
