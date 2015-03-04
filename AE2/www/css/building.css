@@ -1,0 +1,53 @@
+.building {
+	position: absolute;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+}
+
+/* farms */
+.building-farm-gray {
+	background-image: url(../i/map/building/farm-gray.png);
+}
+
+.building-farm-green {
+	background-image: url(../i/map/building/farm-green.png);
+}
+
+.building-farm-blue {
+	background-image: url(../i/map/building/farm-blue.png);
+}
+
+.building-farm-red {
+	background-image: url(../i/map/building/farm-red.png);
+}
+
+.building-farm-black {
+	background-image: url(../i/map/building/farm-black.png);
+}
+
+.building-farm-destroyed {
+	background-image: url(../i/map/building/farm-destroyed.png);
+}
+/* end farms */
+
+/* castles */
+.building-castle-gray {
+	background-image: url(../i/map/building/castle-gray.png);
+}
+
+.building-castle-green {
+	background-image: url(../i/map/building/castle-green.png);
+}
+
+.building-castle-blue {
+	background-image: url(../i/map/building/castle-blue.png);
+}
+
+.building-castle-red {
+	background-image: url(../i/map/building/castle-red.png);
+}
+
+.building-castle-black {
+	background-image: url(../i/map/building/castle-black.png);
+}
+/* end castles */

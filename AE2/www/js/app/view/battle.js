@@ -1,7 +1,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, setTimeout, history, Image */
+	/*global window, document, setTimeout, history, Image */
 	/*global Backbone, $, templateMaster, APP, log, Mover */
 
 	win.APP = win.APP || {};
@@ -22,6 +22,7 @@
 			moveAreaWrapper: '.js-move-area-wrapper',
 			moveAreaContainer: '.js-move-area-container',
 			eventHandlerWrapper: '.js-event-handler-wrapper',
+			buildingWrapper: '.js-building-wrapper',
 			square: '.js-square'
 		},
 
@@ -244,7 +245,39 @@
 
 		appendBuilding: function (building) {
 
+			var $node = $('<div></div>'),
+				x = building.x,
+				y = building.y,
+				dY = building.type === 'castle' ? -1 : 0,
+				squareSize = this.info.get('squareSize'),
+				height = squareSize - squareSize * dY,
+				width = squareSize,
+				pre = this.info.get('pre', true).css,
+				$wrapper = this.$el.find(this.selectors.buildingWrapper);
+
 			console.log(building);
+
+			$node.attr('data-xy', 'x' + x + 'y' + y).attr('data-x', x).attr('data-y', y);
+
+			if (building.state === 'normal') {
+				$node.addClass('building').addClass( 'building-' + building.type + '-' + building.color );
+			}
+
+			if (building.state === 'destroyed') {
+				$node.addClass('building').addClass( 'building-' + building.type + '-destroyed' );
+			}
+
+			x = x * squareSize;
+			y = (y + dY) * squareSize;
+
+			$node.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0)');
+
+			$node.css({
+				height: height + 'px',
+				width: width + 'px'
+			});
+
+			$wrapper.append($node);
 
 		},
 
