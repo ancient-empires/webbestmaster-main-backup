@@ -41,6 +41,12 @@
 			this.set('args', this.util.copyJSON(data));
 			this.set('map', this.util.copyJSON(APP.maps[data.jsMapKey]));
 
+			this.set('model', new win.APP.BB.BattleModel({
+				view: this,
+				args: this.get('args'),
+				map: this.get('map')
+			}));
+
 			// set sizes
 			this.setSize();
 
@@ -232,6 +238,13 @@
 		},
 
 		drawBuildings: function () {
+			var model = this.get('model');
+			model.appendBuildings();
+		},
+
+		appendBuilding: function (building) {
+
+			console.log(building);
 
 		},
 

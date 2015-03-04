@@ -20,7 +20,22 @@
 			{"type": "Knight", "x": 1, "y": 13, playerId: 0},
 			{"type": "Knight", "x": 13, "y": 1, playerId: 1}
 		],
-		"buildings": [{"type": "farm", "x": 8, "y": 0}, {"type": "farm", "x": 0, "y": 1}, {"type": "farm", "x": 11, "y": 1}, {"type": "castle", "x": 13, "y": 1}, {"type": "farm", "x": 0, "y": 4}, {"type": "farm", "x": 7, "y": 6}, {"type": "castle", "x": 11, "y": 6}, {"type": "castle", "x": 3, "y": 8}, {"type": "farm", "x": 7, "y": 8}, {"type": "farm", "x": 14, "y": 10}, {"type": "castle", "x": 1, "y": 13}, {"type": "farm", "x": 3, "y": 13}, {"type": "farm", "x": 14, "y": 13}, {"type": "farm", "x": 6, "y": 14}],
+		"buildings": [
+			{"type": "farm", "x": 8, "y": 0, state: 'destroyed'},
+			{"type": "farm", "x": 0, "y": 1, state: 'destroyed'},
+			{"type": "farm", "x": 11, "y": 1, state: 'normal'},
+			{"type": "castle", "x": 13, "y": 1, state: 'normal', ownerId: 0},
+			{"type": "farm", "x": 0, "y": 4, state: 'destroyed'},
+			{"type": "farm", "x": 7, "y": 6, state: 'destroyed'},
+			{"type": "castle", "x": 11, "y": 6, state: 'normal'},
+			{"type": "castle", "x": 3, "y": 8, state: 'normal', ownerId: 1},
+			{"type": "farm", "x": 7, "y": 8, state: 'normal'},
+			{"type": "farm", "x": 14, "y": 10, state: 'normal'},
+			{"type": "castle", "x": 1, "y": 13, state: 'normal'},
+			{"type": "farm", "x": 3, "y": 13, state: 'normal'},
+			{"type": "farm", "x": 14, "y": 13, state: 'normal'},
+			{"type": "farm", "x": 6, "y": 14, state: 'normal'}
+		],
 		"terrain": {
 			"x0y0": "stone-1",
 			"x1y0": "terra-1",
