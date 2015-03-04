@@ -124,15 +124,21 @@
 			data.unitLimit = parseInt($unitLimit.attr('data-key'), 10);
 
 			$players.each(function (index) {
+
 				var $this = $(this),
 					teamNumber = parseInt($this.find('.js-player-team-number').attr('data-key'), 10),
-					type = $this.find('.js-player-type').attr('data-key');
+					type = $this.find('.js-player-type').attr('data-key'),
+					color = $this.find('.js-player-color').attr('data-player-color');
+
 				players.push({
 					teamNumber: teamNumber,
 					id: index,
-					type: type
+					type: type,
+					color: color
 				});
+
 			});
+
 			data.players = players;
 
 			new win.APP.BB.BattleView(data);

@@ -254,19 +254,19 @@
 
 		<div class="js-player-info-wrapper">
 
-			<span data-player-color="<%= player.color %>"> <%= window.APP.lang.get(player.color) %> </span>
+			<span class="js-player-color" data-player-color="<%= player.color %>"> <%= window.APP.lang.get(player.color) %> </span>
 
-				<span>
-					<span class="js-list-backward" data-group-name="team-number-<%= index %>"> <- </span>
-					<span class="js-list-changed-item js-player-team-number" data-group-name="team-number-<%= index %>" data-full-list="<%= list.teamNumber %>" data-key="<%= player.teamNumber %>"> <%= player.teamNumber %> </span>
-					<span class="js-list-forward" data-group-name="team-number-<%= index %>"> -> </span>
-				</span>
+			<span>
+				<span class="js-list-backward" data-group-name="team-number-<%= index %>"> <- </span>
+				<span class="js-list-changed-item js-player-team-number" data-group-name="team-number-<%= index %>" data-full-list="<%= list.teamNumber %>" data-key="<%= player.teamNumber %>"> <%= player.teamNumber %> </span>
+				<span class="js-list-forward" data-group-name="team-number-<%= index %>"> -> </span>
+			</span>
 
-				<span>
-					<span class="js-list-backward" data-group-name="player-type-<%= index %>"> <- </span>
-					<span class="js-list-changed-item js-player-type" data-group-name="player-type-<%= index %>" data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
-					<span class="js-list-forward" data-group-name="player-type-<%= index %>"> -> </span>
-				</span>
+			<span>
+				<span class="js-list-backward" data-group-name="player-type-<%= index %>"> <- </span>
+				<span class="js-list-changed-item js-player-type" data-group-name="player-type-<%= index %>" data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
+				<span class="js-list-forward" data-group-name="player-type-<%= index %>"> -> </span>
+			</span>
 
 		</div>
 
@@ -275,22 +275,22 @@
 		<div>
 			<span>{{ money }}</span>
 
-				<span>
-					<span class="js-list-backward" data-group-name="money"> <- </span>
-					<span class="js-list-changed-item js-money" data-group-name="money" data-full-list="<%= list.money %>" data-key="<%= money %>"> <%= money %> </span>
-					<span class="js-list-forward" data-group-name="money"> -> </span>
-				</span>
+			<span>
+				<span class="js-list-backward" data-group-name="money"> <- </span>
+				<span class="js-list-changed-item js-money" data-group-name="money" data-full-list="<%= list.money %>" data-key="<%= money %>"> <%= money %> </span>
+				<span class="js-list-forward" data-group-name="money"> -> </span>
+			</span>
 
 		</div>
 
 		<div>
 			<span>{{ unitLimit }}</span>
 
-				<span>
-					<span class="js-list-backward" data-group-name="unit-limit"> <- </span>
-					<span class="js-list-changed-item js-unit-limit" data-group-name="unit-limit" data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
-					<span class="js-list-forward" data-group-name="unit-limit"> -> </span>
-				</span>
+			<span>
+				<span class="js-list-backward" data-group-name="unit-limit"> <- </span>
+				<span class="js-list-changed-item js-unit-limit" data-group-name="unit-limit" data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
+				<span class="js-list-forward" data-group-name="unit-limit"> -> </span>
+			</span>
 
 		</div>
 

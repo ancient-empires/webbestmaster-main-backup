@@ -47,6 +47,9 @@
 			// draw map
 			this.drawMap();
 
+			// draw buildings
+			this.drawBuildings();
+
 			// bind move area
 			this.bindMoveArea();
 
@@ -225,6 +228,10 @@
 				});
 
 			});
+
+		},
+
+		drawBuildings: function () {
 
 		},
 
