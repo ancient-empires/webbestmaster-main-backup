@@ -58,13 +58,13 @@
 .building-farm-red .building-smoke,
 .building-farm-black .building-smoke {
 
-	width: 25%;
-	height: 25%;
+	width: 100%;
+	height: 100%;
 	background-image: url(../i/map/building/smoke.png);
 	background-repeat: no-repeat;
 	-webkit-background-size: 100% auto;
 	background-size: 100% auto;
-	margin-left: 50%;
+	margin-top: -50%;
 
 	-webkit-animation-name: to-top, bg-shift;
 	-webkit-animation-duration: 4s, 4s;
@@ -86,20 +86,10 @@
 
 	from {
 		-webkit-transform: translate3d(0, 0, 0);
-		opacity: 1;
-	}
-
-	50% {
-		opacity: 1;
-	}
-
-	75% {
-		opacity: 0.75;
 	}
 
 	to {
-		-webkit-transform: translate3d(0, -400%, 0);
-		opacity: 0.25;
+		-webkit-transform: translate3d(0, -100%, 0);
 	}
 
 }
@@ -121,20 +111,10 @@
 
 	from {
 		-webkit-transform: translate3d(0, 0, 0);
-		opacity: 1;
-	}
-
-	50% {
-		opacity: 1;
-	}
-
-	75% {
-		opacity: 0.75;
 	}
 
 	to {
-		-webkit-transform: translate3d(0, -400%, 0);
-		opacity: 0.25;
+		-webkit-transform: translate3d(0, -100%, 0);
 	}
 
 }
