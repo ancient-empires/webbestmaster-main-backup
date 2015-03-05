@@ -4,10 +4,13 @@ button {
 }
 
 .square {
-	float: left;
+	position: absolute;
+	left: 0;
+	top: 0;
 }
 
 .event-handler-wrapper,
+.smoke-wrapper,
 .unit-wrapper,
 .building-wrapper {
 	position: absolute;
@@ -17,16 +20,21 @@ button {
 	height: 100%;
 }
 
-.building-wrapper {
-	z-index: 1;
+.event-handler-wrapper {
+	z-index: 4;
+}
+
+.smoke-wrapper {
+	z-index: 3;
 }
 
 .unit-wrapper {
 	z-index: 2;
 }
 
-.event-handler-wrapper {
-	z-index: 3;
+.building-wrapper {
+	z-index: 1;
 }
+
 
 

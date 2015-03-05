@@ -53,10 +53,7 @@
 /* end castles */
 
 /* smoke animation for farm */
-.building-farm-green .building-smoke,
-.building-farm-blue .building-smoke,
-.building-farm-red .building-smoke,
-.building-farm-black .building-smoke {
+.smoke-container .building-smoke {
 
 	width: 100%;
 	height: 100%;
@@ -105,7 +102,6 @@
 	}
 
 }
-
 
 @keyframes to-top {
 

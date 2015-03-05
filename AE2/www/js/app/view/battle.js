@@ -23,6 +23,8 @@
 			moveAreaContainer: '.js-move-area-container',
 			eventHandlerWrapper: '.js-event-handler-wrapper',
 			buildingWrapper: '.js-building-wrapper',
+			building: '.js-building',
+			smokeWrapper: '.js-smoke-wrapper',
 			square: '.js-square'
 		},
 
@@ -97,13 +99,22 @@
 				selectors = this.selectors,
 				$eventHandlerWrapper = this.$el.find(selectors.eventHandlerWrapper),
 				map = this.get('map'),
-				template = '<div class="js-square square" style="width: {{squareSize}}px; height: {{squareSize}}px;" data-xy="x{{x}}y{{y}}" data-x="{{x}}" data-y="{{y}}"></div>',
+				pre = this.info.get('pre', true).css,
+				template = '<div class="js-square square" style="width: {{squareSize}}px; height: {{squareSize}}px; {{transform}}; " data-xy="x{{x}}y{{y}}" data-x="{{x}}" data-y="{{y}}"></div>',
+				transformTemplate = pre + 'transform: translate3d({{x}}px, {{y}}px, 0)',
+				transformStyle,
 				resultArr = [],
 				x, y, xLen, yLen;
 
 			for (x = 0, xLen = map.size.width; x < xLen; x += 1) {
 				for (y = 0, yLen = map.size.height; y < yLen; y += 1) {
-					resultArr.push( template.replace(/\{\{x\}\}/g, x).replace(/\{\{y\}\}/g, y).replace(/\{\{squareSize\}\}/g, squareSize) );
+					transformStyle = transformTemplate.replace(/\{\{x\}\}/g, x * squareSize).replace(/\{\{y\}\}/g, y * squareSize);
+					resultArr.push( template
+						.replace(/\{\{x\}\}/g, x)
+						.replace(/\{\{y\}\}/g, y)
+						.replace(/\{\{squareSize\}\}/g, squareSize)
+						.replace(/\{\{transform\}\}/g, transformStyle)
+					);
 				}
 			}
 
@@ -245,7 +256,7 @@
 
 		appendBuilding: function (building) {
 
-			var $node = $('<div></div>'),
+			var $node = $('<div>&nbsp;</div>'),
 				x = building.x,
 				y = building.y,
 				dY = building.type === 'castle' ? -1 : 0,
@@ -255,16 +266,16 @@
 				pre = this.info.get('pre', true).css,
 				$wrapper = this.$el.find(this.selectors.buildingWrapper);
 
-			console.log(building);
+			$node.attr('data-xy', 'x' + x + 'y' + y).attr('data-x', x).attr('data-y', y).attr('data-type', building.type);
 
-			$node.attr('data-xy', 'x' + x + 'y' + y).attr('data-x', x).attr('data-y', y);
+			$node.addClass('building').addClass('js-building');
 
 			if (building.state === 'normal') {
-				$node.addClass('building').addClass( 'building-' + building.type + '-' + building.color );
+				$node.addClass( 'building-' + building.type + '-' + building.color );
 			}
 
 			if (building.state === 'destroyed') {
-				$node.addClass('building').addClass( 'building-' + building.type + '-destroyed' );
+				$node.addClass( 'building-' + building.type + '-destroyed' );
 			}
 
 			x = x * squareSize;
@@ -277,11 +288,37 @@
 				width: width + 'px'
 			});
 
-			if (building.type === 'farm') {
-				$node.html('<div class="building-smoke"></div>');
+			if (building.type === 'farm' && building.hasOwnProperty('ownerId')) {
+				//$node.html('<div class="building-smoke"></div>');
+				this.addSmokeToBuilding(building);
 			}
 
 			$wrapper.append($node);
+
+		},
+
+		addSmokeToBuilding: function (building) {
+
+			var x = building.x,
+				y = building.y,
+				pre = this.info.get('pre', true).css,
+				squareSize = this.info.get('squareSize'),
+				$wrapper = this.$el.find(this.selectors.smokeWrapper),
+				$smokeContainer = $('<div class="smoke-container square js-square"><div class="building-smoke">&nbsp;</div></div>');
+
+			$smokeContainer.attr('data-xy', 'x' + x + 'y' + y).attr('data-x', x).attr('data-y', y);
+
+			x *= squareSize;
+			y *= squareSize;
+
+			$smokeContainer
+				.css({
+					height: squareSize + 'px',
+					width: squareSize + 'px'
+				})
+				.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0)');
+
+			$wrapper.append($smokeContainer);
 
 		},
 
@@ -293,7 +330,9 @@
 				$mapImageWrapper = this.$el.find(selectors.mapImageWrapper),
 				$eventHandlerWrapper = this.$el.find(selectors.eventHandlerWrapper),
 				$squares = this.$el.find(selectors.square),
+				$buildings = this.$el.find(selectors.building),
 				map = this.get('map'),
+				pre = this.info.get('pre', true).css,
 				width = map.size.width * squareSize,
 				height = map.size.height * squareSize;
 
@@ -318,10 +357,43 @@
 				});
 
 			// set squares sizes
-			$squares.css({
-					width: squareSize + 'px',
-					height: squareSize + 'px'
+			$squares.each(function () {
+
+				var $this = $(this),
+					x = parseInt($this.attr('data-x'), 10) * squareSize,
+					y = parseInt($this.attr('data-y'), 10) * squareSize;
+
+				$this
+					.css({
+						width: squareSize + 'px',
+						height: squareSize + 'px'
+					})
+					.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0)');
+
+			});
+
+			// set buildings position
+			$buildings.each(function () {
+
+				var $this = $(this),
+					type = $this.attr('data-type'),
+					x = parseInt($this.attr('data-x'), 10),
+					y = parseInt($this.attr('data-y'), 10),
+					dY = type === 'castle' ? -1 : 0,
+					nodeWidth = squareSize,
+					nodeHeight = squareSize - squareSize * dY;
+
+				x = x * squareSize;
+				y = (y + dY) * squareSize;
+
+				$this.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0)');
+
+				$this.css({
+					width: nodeWidth + 'px',
+					height: nodeHeight + 'px'
 				});
+
+			});
 
 		},
 
