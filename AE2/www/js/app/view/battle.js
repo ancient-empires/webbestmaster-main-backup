@@ -277,6 +277,10 @@
 				width: width + 'px'
 			});
 
+			if (building.type === 'farm') {
+				$node.html('<div class="building-smoke"></div>');
+			}
+
 			$wrapper.append($node);
 
 		},
