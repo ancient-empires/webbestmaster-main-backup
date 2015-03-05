@@ -59,12 +59,14 @@
 			// draw buildings
 			this.drawBuildings();
 
+			// draw units
+			this.drawUnits();
+
 			// bind move area
 			this.bindMoveArea();
 
 			// 'draw' event listeners
 			this.setEventHandlerListeners();
-
 
 			log(data);
 
@@ -320,6 +322,10 @@
 
 			$wrapper.append($smokeContainer);
 
+		},
+
+		drawUnits: function () {
+			console.log('--- DRAW UNITS ---');
 		},
 
 		setSize: function () {
