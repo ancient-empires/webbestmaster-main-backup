@@ -52,10 +52,104 @@
 }
 /* end castles */
 
-/* todo: add smoke animation for farm */
+/* smoke animation for farm */
+.building-farm-green .building-smoke,
+.building-farm-blue .building-smoke,
+.building-farm-red .building-smoke,
+.building-farm-black .building-smoke {
+
+	width: 25%;
+	height: 25%;
+	background-image: url(../i/map/building/smoke.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% auto;
+	background-size: 100% auto;
+	margin-left: 50%;
+
+	-webkit-animation-name: to-top, bg-shift;
+	-webkit-animation-duration: 4s, 4s;
+	-webkit-animation-iteration-count: infinite, infinite;
+	-webkit-animation-direction: normal, normal;
+	-webkit-animation-timing-function: ease-out, steps(4);
+	-webkit-animation-fill-mode: forwards, forwards;
+
+	animation-name: to-top, bg-shift;
+	animation-duration: 4s, 4s;
+	animation-iteration-count: infinite, infinite;
+	animation-direction: normal, normal;
+	animation-timing-function: ease-out, steps(4);
+	animation-fill-mode: forwards, forwards;
+
+}
+
+@-webkit-keyframes to-top {
+
+	from {
+		-webkit-transform: translate3d(0, 0, 0);
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	75% {
+		opacity: 0.75;
+	}
+
+	to {
+		-webkit-transform: translate3d(0, -400%, 0);
+		opacity: 0.25;
+	}
+
+}
+
+@-webkit-keyframes bg-shift {
+
+	from {
+		background-position: 0 100%;
+	}
+
+	to {
+		background-position: 0 0;
+	}
+
+}
 
 
+@keyframes to-top {
 
+	from {
+		-webkit-transform: translate3d(0, 0, 0);
+		opacity: 1;
+	}
 
+	50% {
+		opacity: 1;
+	}
 
+	75% {
+		opacity: 0.75;
+	}
+
+	to {
+		-webkit-transform: translate3d(0, -400%, 0);
+		opacity: 0.25;
+	}
+
+}
+
+@keyframes bg-shift {
+
+	from {
+		background-position: 0 100%;
+	}
+
+	to {
+		background-position: 0 0;
+	}
+
+}
+
+/* smoke animation for farm end */
 
