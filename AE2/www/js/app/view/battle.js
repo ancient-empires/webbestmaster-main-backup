@@ -1,5 +1,7 @@
 (function (win) {
 
+	// todo: bug - after resize on ios - smoke is wrong
+
 	"use strict";
 	/*global window, document, setTimeout, history, Image */
 	/*global Backbone, $, templateMaster, APP, log, Mover */

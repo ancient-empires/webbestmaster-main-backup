@@ -63,20 +63,10 @@
 
 		init: function () {
 
-			var lang,
-				langOld;
+			var lang;
 
 			// get data from LS
 			this.attr = JSON.parse(this.ls.getItem(this.saveItem) || '{}');
-
-			// todo: remove it after 1-2 months after release added about - 05.02.2015
-			// backward compatibility - begin
-			langOld = this.get('lang');
-			if (langOld) {
-				this.set('language', langOld);
-				this.remove('lang');
-			}
-			// backward compatibility - end
 
 			// set vendor prefix
 			this.set('pre', getPrefix(), true);
