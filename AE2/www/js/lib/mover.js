@@ -224,7 +224,7 @@
 
 			if (events.events.length === 1 && isTouch ) { // 2 fingers -> 1 finger
 				this.set('pinchIsActive', false);
-				this.redrawMap();
+				this.setContainerSize();
 			}
 
 			this.onDown(e);
@@ -244,7 +244,7 @@
 				time: 300
 			});
 
-			this.redrawMap({
+			this.setContainerSize({
 				withDelay: true
 			});
 
@@ -272,7 +272,7 @@
 
 		},
 
-		redrawMap: function (data) {
+		setContainerSize: function (data) {
 
 			data = data || {};
 
@@ -288,8 +288,8 @@
 
 			$container = this.get('$container');
 
-			if (data && data.withDelay) {
-				$container.one(transitionEnd, $.proxy( this, 'redrawMap', { time: 0 } )); // work only one time
+			if (data.withDelay) {
+				$container.one(transitionEnd, $.proxy( this, 'setContainerSize', { time: 0 } )); // work only one time
 				return;
 			}
 
