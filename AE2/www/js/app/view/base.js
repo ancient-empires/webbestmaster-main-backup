@@ -58,9 +58,21 @@
 
 			this.attr = {};
 
+			this.setClassNames();
+
 			this.info = win.APP.info;
 
 			return Backbone.View.prototype.constructor.apply(this, arguments);
+		},
+
+		setClassNames: function () {
+
+			this.classNames = {};
+
+			_.each(this.selectors, function (value, key) {
+				this[key] = value.replace(/\./g, ' ').trim();
+			}, this.classNames);
+
 		},
 
 		initialize: function() {

@@ -25,6 +25,8 @@
 			moveAreaContainer: '.js-move-area-container',
 			eventHandlerWrapper: '.js-event-handler-wrapper',
 			eventSquares: '.js-event-square',
+			activeEventSquare: '.active-event-square',
+			activeSquareMark: '.active-square-mark',
 			buildingWrapper: '.js-building-wrapper',
 			building: '.js-building',
 			smokeWrapper: '.js-smoke-wrapper',
@@ -81,8 +83,24 @@
 
 		},
 
-		onClick: function (e) {
-			console.log(e);
+		onClick: function (xy) {
+
+			this.markActiveSquare(xy);
+
+		},
+
+		markActiveSquare: function (xy) {
+
+			var selectorActiveEventSquare = this.selectors.activeEventSquare,
+				classNameActiveEventSquare = this.classNames.activeEventSquare,
+				selectorActiveSquareMark = this.selectors.activeSquareMark,
+				classNameActiveSquareMark = this.classNames.activeSquareMark,
+				$activeSquare = this.$el.find(this.selectors.eventSquares + selectorActiveEventSquare),
+				$newActiveSquare = this.$el.find(this.selectors.eventSquares + '[data-xy="x' + xy.x + 'y' + xy.y + '"]');
+
+			$activeSquare.removeClass(classNameActiveEventSquare).find(selectorActiveSquareMark).remove();
+			$newActiveSquare.addClass(classNameActiveEventSquare).html('<div class="' + classNameActiveSquareMark + '">&nbsp;</div>');
+
 		},
 
 		bindEventListeners: function () {
@@ -481,17 +499,24 @@
 				x,
 				y,
 				downXY = this.get('downEvent'),
-				moveXY = this.get('moveEvent');
+				moveXY = this.get('moveEvent'),
+				maxDeltaMove = 10,
+				eventSquareClassName = this.selectors.eventSquares.replace('.', '');
 
 			if ( !downXY || !moveXY ) {
 				return;
 			}
 
-			if (downXY.x !== moveXY.x || downXY.y !== moveXY.y) {
+			if ( Math.abs(downXY.x - moveXY.x) + Math.abs(downXY.y - moveXY.y) >  maxDeltaMove ) {
 				return;
 			}
 
 			$this = $(e.target);
+
+			if ( !$this.hasClass(eventSquareClassName) ) {
+				return;
+			}
+
 			x = Number($this.attr('data-x'));
 			y = Number($this.attr('data-y'));
 

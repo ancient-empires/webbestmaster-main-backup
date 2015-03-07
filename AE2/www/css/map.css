@@ -1,0 +1,21 @@
+.active-event-square {
+	z-index: -1;
+}
+
+.active-square-mark {
+	position: absolute;
+	background-image: url(../i/ux/select-mark.png);
+	width: 200%;
+	height: 200%;
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	left: -50%;
+	top: -50%;
+}
+
+
+
+
+
+
