@@ -24,6 +24,7 @@
 			moveAreaWrapper: '.js-move-area-wrapper',
 			moveAreaContainer: '.js-move-area-container',
 			eventHandlerWrapper: '.js-event-handler-wrapper',
+			eventSquares: '.js-event-square',
 			buildingWrapper: '.js-building-wrapper',
 			building: '.js-building',
 			smokeWrapper: '.js-smoke-wrapper',
@@ -31,6 +32,8 @@
 		},
 
 		initialize: function (data) {
+
+			this.detectClickEvent();
 
 			this.squareSize = {
 				min: win.APP.util.defaultUnit,
@@ -78,6 +81,10 @@
 
 		},
 
+		onClick: function (e) {
+			console.log(e);
+		},
+
 		bindEventListeners: function () {
 			var device = win.APP.device;
 			this.listenTo(device, 'resize', this.onResize);
@@ -104,7 +111,7 @@
 				$eventHandlerWrapper = this.$el.find(selectors.eventHandlerWrapper),
 				map = this.get('map'),
 				pre = this.info.get('pre', true).css,
-				template = '<div class="js-square square" style="width: {{squareSize}}px; height: {{squareSize}}px; {{transform}}; " data-xy="x{{x}}y{{y}}" data-x="{{x}}" data-y="{{y}}"></div>',
+				template = '<div class="js-square js-event-square square" style="width: {{squareSize}}px; height: {{squareSize}}px; {{transform}}; " data-xy="x{{x}}y{{y}}" data-x="{{x}}" data-y="{{y}}"></div>',
 				transformTemplate = pre + 'transform: translate3d({{x}}px, {{y}}px, 0)',
 				transformStyle,
 				resultArr = [],
@@ -368,8 +375,8 @@
 			$squares.each(function () {
 
 				var $this = $(this),
-					x = parseInt($this.attr('data-x'), 10) * squareSize,
-					y = parseInt($this.attr('data-y'), 10) * squareSize;
+					x = Number($this.attr('data-x')) * squareSize,
+					y = Number($this.attr('data-y')) * squareSize;
 
 				$this
 					.css({
@@ -385,8 +392,8 @@
 
 				var $this = $(this),
 					type = $this.attr('data-type'),
-					x = parseInt($this.attr('data-x'), 10),
-					y = parseInt($this.attr('data-y'), 10),
+					x = Number($this.attr('data-x')),
+					y = Number($this.attr('data-y')),
 					dY = type === 'castle' ? -1 : 0,
 					nodeWidth = squareSize,
 					nodeHeight = squareSize - squareSize * dY;
@@ -458,6 +465,86 @@
 				x: x,                         // see mover.fixAfterResizing
 				y: y
 			});
+
+		},
+
+		detectClickEvent: function () {
+
+			this.events[this.eventTypes.down + ' ' + this.selectors.moveAreaContainer] = 'saveDownEvent';
+			this.events[this.eventTypes.move + ' ' + this.selectors.moveAreaContainer] = 'saveMoveEvent';
+			this.events[this.eventTypes.up + ' ' + this.selectors.eventSquares] = 'detectClick';
+		},
+
+		detectClick: function (e) {
+
+			var $this,
+				x,
+				y,
+				downXY = this.get('downEvent'),
+				moveXY = this.get('moveEvent');
+
+			if ( !downXY || !moveXY ) {
+				return;
+			}
+
+			if (downXY.x !== moveXY.x || downXY.y !== moveXY.y) {
+				return;
+			}
+
+			$this = $(e.target);
+			x = Number($this.attr('data-x'));
+			y = Number($this.attr('data-y'));
+
+			this.onClick({ x: x, y: y });
+
+		},
+
+		saveDownEvent: function (e) {
+
+			var events = this.getEvents(e);
+
+			if (events.length === 1) {
+				this.set('downEvent', events.events[0]);
+				this.set('moveEvent', events.events[0]);
+			} else {
+				this.set('downEvent', false);
+				this.set('moveEvent', false);
+			}
+
+		},
+
+		saveMoveEvent: function (e) {
+
+			var events = this.getEvents(e);
+
+			if (events.length === 1) {
+				this.set('moveEvent', events.events[0]);
+			} else {
+				this.set('moveEvent', false);
+			}
+
+		},
+
+		getEvents: function (e) {
+
+			e = e.originalEvent;
+
+			var evt = {},
+				touches = e.touches,
+				events = touches || [e];
+
+			evt.events = [];
+
+			evt.length = events.length;
+
+			$.each(events, function (index, e) {
+				evt.events.push({
+					x: e.clientX,
+					y: e.clientY
+				});
+			});
+
+			return evt;
 
 		}
 

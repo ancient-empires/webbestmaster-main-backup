@@ -194,7 +194,6 @@
 
 			if ( this.get('pinchIsActive') ) { // zooming
 				pinchData = this.getPinchData(events.events);
-				console.log('pinchIsActive - ' +  pinchData.scale);
 				this.setStyleByXYZS({
 					x: x * pinchData.scale,
 					y: y * pinchData.scale,
@@ -224,16 +223,16 @@
 				return;
 			}
 
+			if (events.events.length === 0 && isTouch && this.get('pinchIsActive') ) { // 2 fingers -> 0 finger
+				this.set('pinchIsActive', false);
+				this.setContainerSize();
+				return;
+			}
+
 			if (events.events.length === 1 && isTouch ) { // 2 fingers -> 1 finger
 				this.set('pinchIsActive', false);
 				this.setContainerSize();
 				this.onDown(e);
-				return;
-			}
-
-			if (events.events.length === 0 && isTouch && this.get('pinchIsActive') ) { // 2 fingers -> 0 finger
-				this.set('pinchIsActive', false);
-				this.setContainerSize();
 			}
 
 		},

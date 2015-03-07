@@ -31,8 +31,24 @@
 			wrapper: '.js-wrapper'
 		},
 
+		// will be change after initStatic
+		eventTypes: {
+			down: ['mousedown', 'touchstart'],
+			move: ['mousemove', 'touchmove'],
+			up: ['mouseup', 'touchend']
+		},
+
 		initStatic: function () {
+
 			proto.$wrapper = $(this.selectors.wrapper);
+
+			var isTouch = win.APP.info.get('isTouch', true),
+				eventTypesIndex = Number(isTouch),
+				types = this.eventTypes;
+
+			_.each(types, function (typesArr, key) {
+				types[key] = typesArr[eventTypesIndex];
+			});
 
 		},
 
@@ -90,12 +106,14 @@
 
 		hide: function () {
 			log('hide view');
+
 			this.undelegateEvents();
-			this.$el.remove();
 
 			if (this.unbindEventListeners) {
 				this.unbindEventListeners();
 			}
+
+			this.$el.remove();
 
 		},
 
