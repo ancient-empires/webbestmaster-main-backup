@@ -67,6 +67,7 @@
 	-webkit-animation-duration: 4s, 4s;
 	-webkit-animation-iteration-count: infinite, infinite;
 	-webkit-animation-direction: normal, normal;
+	/* todo: remove animation for old native android browser */
 	-webkit-animation-timing-function: ease-out, steps(4);
 	-webkit-animation-fill-mode: forwards, forwards;
 
@@ -74,6 +75,7 @@
 	animation-duration: 4s, 4s;
 	animation-iteration-count: infinite, infinite;
 	animation-direction: normal, normal;
+	/* todo: remove animation for old native android browser */
 	animation-timing-function: ease-out, steps(4);
 	animation-fill-mode: forwards, forwards;
 
