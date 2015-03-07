@@ -12,9 +12,46 @@
 	background-repeat: no-repeat;
 	left: -50%;
 	top: -50%;
+
+	-webkit-animation-name: change-bg;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: normal;
+	-webkit-animation-timing-function: steps(2);
+	-webkit-animation-fill-mode: forwards;
+
+	animation-name: change-bg;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: normal;
+	animation-timing-function: steps(2);
+	animation-fill-mode: forwards;
+
 }
 
+@-webkit-keyframes change-bg {
 
+	from {
+		background-position: 0 0;
+	}
+
+	to {
+		background-position: 200% 0;
+	}
+
+}
+
+@keyframes change-bg {
+
+	from {
+		background-position: 0 0;
+	}
+
+	to {
+		background-position: 200% 0;
+	}
+
+}
 
 
 
