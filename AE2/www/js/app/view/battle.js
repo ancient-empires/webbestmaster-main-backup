@@ -87,6 +87,10 @@
 
 			this.markActiveSquare(xy);
 
+			// todo: action on click here !
+
+
+
 		},
 
 		markActiveSquare: function (xy) {
@@ -353,6 +357,9 @@
 
 		drawUnits: function () {
 			console.log('--- DRAW UNITS ---');
+
+			debugger
+
 		},
 
 		setSize: function () {
