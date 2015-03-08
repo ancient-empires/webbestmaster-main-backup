@@ -356,9 +356,14 @@
 		},
 
 		drawUnits: function () {
-			console.log('--- DRAW UNITS ---');
+			var model = this.get('model');
+			model.appendUnits();
+		},
 
-			debugger
+		appendUnit: function (unit) {
+
+			console.log('view');
+			console.log(unit.toJSON());
 
 		},
 

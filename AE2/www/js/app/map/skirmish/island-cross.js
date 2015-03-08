@@ -17,8 +17,8 @@
 		"maxPlayers": 2,
 
 		"units": [
-			{"type": "Knight", "x": 1, "y": 13, playerId: 0},
-			{"type": "Knight", "x": 13, "y": 1, playerId: 1}
+			{"type": "soldier", "x": 1, "y": 13, ownerId: 0},
+			{"type": "soldier", "x": 13, "y": 1, ownerId: 1}
 		],
 		"buildings": [
 			{"type": "farm", "x": 8, "y": 0, state: 'destroyed'},

@@ -4,16 +4,13 @@
 	/*global console, alert, window, document */
 	/*global Backbone, $, _ */
 
-	win.APP.BB.UnitModel = Backbone.Model.extend({
+	win.APP.BB.Unit = {};
 
-		initialize: function(data) {
+	win.APP.BB.Unit.BaseUnitModel = Backbone.Model.extend({
+
+		initialize: function() {
 
 		}
-
-
-
-
-
 
 	});
 
