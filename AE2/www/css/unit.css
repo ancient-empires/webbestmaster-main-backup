@@ -1,0 +1,40 @@
+.unit-image {
+	width: 100%;
+	height: 100%;
+	-webkit-background-size: 100% auto;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+
+	-webkit-animation-name: unit-bg-shift;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: normal;
+	-webkit-animation-timing-function: steps(2);
+	-webkit-animation-fill-mode: forwards;
+
+	animation-name: unit-bg-shift;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: normal;
+	animation-timing-function: steps(2);
+	animation-fill-mode: forwards;
+
+}
+
+@-webkit-keyframes unit-bg-shift {
+	from { background-position: 0 0; }
+	to { background-position: 0 200%; }
+}
+
+@keyframes unit-bg-shift {
+	from { background-position: 0 0; }
+	to { background-position: 0 200%; }
+}
+
+/* soldier */
+.unit-image-soldier-black { background-image: url(../i/unit/unit-soldier-black.png); }
+.unit-image-soldier-blue { background-image: url(../i/unit/unit-soldier-blue.png); }
+.unit-image-soldier-gray { background-image: url(../i/unit/unit-soldier-gray.png); }
+.unit-image-soldier-green { background-image: url(../i/unit/unit-soldier-green.png); }
+.unit-image-soldier-red { background-image: url(../i/unit/unit-soldier-red.png); }
+

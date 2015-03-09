@@ -1,4 +1,4 @@
-(function (win) {
+(function (win, doc) {
 
 	// todo: bug - after resize on ios - smoke is wrong
 
@@ -28,6 +28,7 @@
 			activeEventSquare: '.active-event-square',
 			activeSquareMark: '.active-square-mark',
 			buildingWrapper: '.js-building-wrapper',
+			unitWrapper: '.js-unit-wrapper',
 			building: '.js-building',
 			smokeWrapper: '.js-smoke-wrapper',
 			square: '.js-square'
@@ -362,8 +363,42 @@
 
 		appendUnit: function (unit) {
 
+			var pre = this.info.get('pre', true).css,
+				$unitWrapper = $('<div></div>'),
+				squareSize = this.info.get('squareSize'),
+				$unitBlock = $('<div>&nbsp;</div>'),
+				unitInfo = unit.toJSON(),
+				x = unitInfo.x,
+				y = unitInfo.y,
+				cssX = x * squareSize,
+				cssY = y * squareSize,
+				$unitLayerWrapper = this.$el.find(this.selectors.unitWrapper);
+
+			$unitWrapper
+				.css({
+					height: squareSize + 'px',
+					width: squareSize + 'px'
+				})
+				.css(pre + 'transform', 'translate3d(' + cssX + 'px, ' + cssY + 'px, 0)');
+
+			$unitWrapper.attr({
+				'data-x': x,
+				'data-y': y,
+				'data-xy': 'x' + x + 'y' + y,
+				'data-unit-id': unitInfo.id
+			});
+
+			$unitWrapper.addClass('js-square square unit-wrapper unit-wrapper-' + unitInfo.type);
+
+			$unitWrapper.append($unitBlock);
+
+			$unitBlock.addClass('unit-image unit-image-' + unitInfo.type + '-' + unitInfo.color);
+
+			$unitLayerWrapper.append($unitWrapper);
+
+			// set position for wrapper
 			console.log('view');
-			console.log(unit.toJSON());
+			console.log();
 
 		},
 
@@ -587,4 +622,4 @@
 
 	});
 
-}(window));
+}(window, window.document));

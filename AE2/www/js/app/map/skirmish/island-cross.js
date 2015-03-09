@@ -18,6 +18,19 @@
 
 		"units": [
 			{"type": "soldier", "x": 1, "y": 13, ownerId: 0},
+			{"type": "archer", "x": 2, "y": 13, ownerId: 0},
+			{"type": "elemental", "x": 3, "y": 13, ownerId: 0},
+			{"type": "sorceress", "x": 4, "y": 13, ownerId: 0},
+			{"type": "wisp", "x": 5, "y": 13, ownerId: 0},
+			{"type": "dire wolf", "x": 6, "y": 13, ownerId: 0},
+			{"type": "golem", "x": 7, "y": 13, ownerId: 0},
+			{"type": "catapult", "x": 8, "y": 13, ownerId: 0},
+			{"type": "dragon", "x": 9, "y": 13, ownerId: 0},
+			{"type": "skeleton", "x": 10, "y": 13, ownerId: 0},
+			{"type": "galamar", "x": 1, "y": 12, ownerId: 0},
+			{"type": "valadorn", "x": 2, "y": 12, ownerId: 0},
+			{"type": "demon lord", "x": 3, "y": 12, ownerId: 0},
+			{"type": "saeth", "x": 4, "y": 12, ownerId: 0},
 			{"type": "soldier", "x": 13, "y": 1, ownerId: 1}
 		],
 		"buildings": [
