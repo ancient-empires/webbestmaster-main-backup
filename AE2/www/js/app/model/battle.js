@@ -36,10 +36,11 @@
 		},
 		appendUnits: function () {
 
-			var mapUnits = this.get('map').units,
-				view = this.get('view'),
-				players = this.get('players'),
-				unitArr = this.get('units');
+			var model = this,
+				mapUnits = model.get('map').units,
+				view = model.get('view'),
+				players = model.get('players'),
+				unitArr = model.get('units');
 
 			_.each(mapUnits, function (unit) {
 
@@ -49,6 +50,8 @@
 				unit.color = player.color;
 
 				unit = win.APP.unitMaster.createUnits(unit);
+				unit.set('model', model);
+				unit.set('view', view);
 
 				unitArr.push(unit);
 

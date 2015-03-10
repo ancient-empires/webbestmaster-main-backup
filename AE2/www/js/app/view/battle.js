@@ -13,10 +13,7 @@
 	APP.BB.BattleView = APP.BB.BaseView.extend({
 
 		events: {
-			'touchmove .js-move-area-wrapper': 'stopEvent',
-			'gesturestart .js-move-area-wrapper': 'stopEvent',
-			'gesturechange .js-move-area-wrapper': 'stopEvent',
-			'gestureend .js-move-area-wrapper': 'stopEvent'
+
 		},
 
 		selectors: {
@@ -31,6 +28,7 @@
 			unitWrapper: '.js-unit-wrapper',
 			building: '.js-building',
 			smokeWrapper: '.js-smoke-wrapper',
+			viewDisable: '.js-view-disable',
 			square: '.js-square'
 		},
 
@@ -84,11 +82,19 @@
 
 		},
 
+		disable: function () {
+			this.$el.find(this.selectors.viewDisable).removeClass('hidden');
+		},
+
+		enable: function () {
+			this.$el.find(this.selectors.viewDisable).addClass('hidden');
+		},
+
 		onClick: function (xy) {
 
 			this.markActiveSquare(xy);
 
-			// todo: action on click here !
+
 
 
 
@@ -395,10 +401,6 @@
 			$unitBlock.addClass('unit-image unit-image-' + unitInfo.type + '-' + unitInfo.color);
 
 			$unitLayerWrapper.append($unitWrapper);
-
-			// set position for wrapper
-			console.log('view');
-			console.log();
 
 		},
 

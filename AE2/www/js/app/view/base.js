@@ -18,7 +18,16 @@
 			'click .js-back': 'routeBack',
 			'click .js-external-link': 'toExternalLink',
 			'click .js-stop-event': 'stopEvent',
+
+			// hide view
 			'hide': 'hide',
+
+			// no scroll
+			'touchmove .js-no-scroll': 'stopEvent',
+			'gesturestart .js-no-scroll': 'stopEvent',
+			'gesturechange .js-no-scroll': 'stopEvent',
+			'gestureend .js-no-scroll': 'stopEvent',
+
 			// external
 			'click .js-list-backward[data-group-name]': 'changeSelect',
 			'click .js-list-changed-item[data-group-name]': 'changeSelect',

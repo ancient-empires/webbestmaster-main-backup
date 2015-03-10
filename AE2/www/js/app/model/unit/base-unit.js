@@ -11,6 +11,7 @@
 		initialize: function() {
 
 		},
+
 		baseUnitMethod: function () {
 			console.log('///');
 		}

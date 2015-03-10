@@ -30,6 +30,15 @@
 	background-color: #666;
 }
 
+.view-disable {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2; /* z-i: 1 has .battle-view-status-bar */
+}
+
 
 
 
