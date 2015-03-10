@@ -31,10 +31,112 @@
 	to { background-position: 0 200%; }
 }
 
+
+
+/* archer */
+.unit-image-archer-black { background-image: url(../i/unit/unit-archer-black.png); }
+.unit-image-archer-blue { background-image: url(../i/unit/unit-archer-blue.png); }
+.unit-image-archer-gray { background-image: url(../i/unit/unit-archer-gray.png); }
+.unit-image-archer-green { background-image: url(../i/unit/unit-archer-green.png); }
+.unit-image-archer-red { background-image: url(../i/unit/unit-archer-red.png); }
+
+/* catapult */
+.unit-image-catapult-black { background-image: url(../i/unit/unit-catapult-black.png); }
+.unit-image-catapult-blue { background-image: url(../i/unit/unit-catapult-blue.png); }
+.unit-image-catapult-gray { background-image: url(../i/unit/unit-catapult-gray.png); }
+.unit-image-catapult-green { background-image: url(../i/unit/unit-catapult-green.png); }
+.unit-image-catapult-red { background-image: url(../i/unit/unit-catapult-red.png); }
+
+/* demon-lord */
+.unit-image-demon-lord-black { background-image: url(../i/unit/unit-demon-lord-black.png); }
+.unit-image-demon-lord-blue { background-image: url(../i/unit/unit-demon-lord-blue.png); }
+.unit-image-demon-lord-gray { background-image: url(../i/unit/unit-demon-lord-gray.png); }
+.unit-image-demon-lord-green { background-image: url(../i/unit/unit-demon-lord-green.png); }
+.unit-image-demon-lord-red { background-image: url(../i/unit/unit-demon-lord-red.png); }
+
+/* dire-wolf */
+.unit-image-dire-wolf-black { background-image: url(../i/unit/unit-dire-wolf-black.png); }
+.unit-image-dire-wolf-blue { background-image: url(../i/unit/unit-dire-wolf-blue.png); }
+.unit-image-dire-wolf-gray { background-image: url(../i/unit/unit-dire-wolf-gray.png); }
+.unit-image-dire-wolf-green { background-image: url(../i/unit/unit-dire-wolf-green.png); }
+.unit-image-dire-wolf-red { background-image: url(../i/unit/unit-dire-wolf-red.png); }
+
+/* dragon */
+.unit-image-dragon-black { background-image: url(../i/unit/unit-dragon-black.png); }
+.unit-image-dragon-blue { background-image: url(../i/unit/unit-dragon-blue.png); }
+.unit-image-dragon-gray { background-image: url(../i/unit/unit-dragon-gray.png); }
+.unit-image-dragon-green { background-image: url(../i/unit/unit-dragon-green.png); }
+.unit-image-dragon-red { background-image: url(../i/unit/unit-dragon-red.png); }
+
+/* elemental */
+.unit-image-elemental-black { background-image: url(../i/unit/unit-elemental-black.png); }
+.unit-image-elemental-blue { background-image: url(../i/unit/unit-elemental-blue.png); }
+.unit-image-elemental-gray { background-image: url(../i/unit/unit-elemental-gray.png); }
+.unit-image-elemental-green { background-image: url(../i/unit/unit-elemental-green.png); }
+.unit-image-elemental-red { background-image: url(../i/unit/unit-elemental-red.png); }
+
+/* galamar */
+.unit-image-galamar-black { background-image: url(../i/unit/unit-galamar-black.png); }
+.unit-image-galamar-blue { background-image: url(../i/unit/unit-galamar-blue.png); }
+.unit-image-galamar-gray { background-image: url(../i/unit/unit-galamar-gray.png); }
+.unit-image-galamar-green { background-image: url(../i/unit/unit-galamar-green.png); }
+.unit-image-galamar-red { background-image: url(../i/unit/unit-galamar-red.png); }
+
+/* golem */
+.unit-image-golem-black { background-image: url(../i/unit/unit-golem-black.png); }
+.unit-image-golem-blue { background-image: url(../i/unit/unit-golem-blue.png); }
+.unit-image-golem-gray { background-image: url(../i/unit/unit-golem-gray.png); }
+.unit-image-golem-green { background-image: url(../i/unit/unit-golem-green.png); }
+.unit-image-golem-red { background-image: url(../i/unit/unit-golem-red.png); }
+
+/* saeth */
+.unit-image-saeth-black { background-image: url(../i/unit/unit-saeth-black.png); }
+.unit-image-saeth-blue { background-image: url(../i/unit/unit-saeth-blue.png); }
+.unit-image-saeth-gray { background-image: url(../i/unit/unit-saeth-gray.png); }
+.unit-image-saeth-green { background-image: url(../i/unit/unit-saeth-green.png); }
+.unit-image-saeth-red { background-image: url(../i/unit/unit-saeth-red.png); }
+
+/* skeleton */
+.unit-image-skeleton-black { background-image: url(../i/unit/unit-skeleton-black.png); }
+.unit-image-skeleton-blue { background-image: url(../i/unit/unit-skeleton-blue.png); }
+.unit-image-skeleton-gray { background-image: url(../i/unit/unit-skeleton-gray.png); }
+.unit-image-skeleton-green { background-image: url(../i/unit/unit-skeleton-green.png); }
+.unit-image-skeleton-red { background-image: url(../i/unit/unit-skeleton-red.png); }
+
 /* soldier */
 .unit-image-soldier-black { background-image: url(../i/unit/unit-soldier-black.png); }
 .unit-image-soldier-blue { background-image: url(../i/unit/unit-soldier-blue.png); }
 .unit-image-soldier-gray { background-image: url(../i/unit/unit-soldier-gray.png); }
 .unit-image-soldier-green { background-image: url(../i/unit/unit-soldier-green.png); }
 .unit-image-soldier-red { background-image: url(../i/unit/unit-soldier-red.png); }
+
+/* sorceress */
+.unit-image-sorceress-black { background-image: url(../i/unit/unit-sorceress-black.png); }
+.unit-image-sorceress-blue { background-image: url(../i/unit/unit-sorceress-blue.png); }
+.unit-image-sorceress-gray { background-image: url(../i/unit/unit-sorceress-gray.png); }
+.unit-image-sorceress-green { background-image: url(../i/unit/unit-sorceress-green.png); }
+.unit-image-sorceress-red { background-image: url(../i/unit/unit-sorceress-red.png); }
+
+/* valadorn */
+.unit-image-valadorn-black { background-image: url(../i/unit/unit-valadorn-black.png); }
+.unit-image-valadorn-blue { background-image: url(../i/unit/unit-valadorn-blue.png); }
+.unit-image-valadorn-gray { background-image: url(../i/unit/unit-valadorn-gray.png); }
+.unit-image-valadorn-green { background-image: url(../i/unit/unit-valadorn-green.png); }
+.unit-image-valadorn-red { background-image: url(../i/unit/unit-valadorn-red.png); }
+
+/* wisp */
+.unit-image-wisp-black { background-image: url(../i/unit/unit-wisp-black.png); }
+.unit-image-wisp-blue { background-image: url(../i/unit/unit-wisp-blue.png); }
+.unit-image-wisp-gray { background-image: url(../i/unit/unit-wisp-gray.png); }
+.unit-image-wisp-green { background-image: url(../i/unit/unit-wisp-green.png); }
+.unit-image-wisp-red { background-image: url(../i/unit/unit-wisp-red.png); }
+
+
+
+
+
+
+
+
+
 
