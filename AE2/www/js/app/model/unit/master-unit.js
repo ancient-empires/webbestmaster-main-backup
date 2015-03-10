@@ -22,7 +22,8 @@
 				},
 				def: 5,
 				mov: 5,
-				modelName: 'SoldierModel'
+				modelName: 'SoldierModel',
+				langKey: 'soldier'
 			},
 			archer: {
 				atk: {
@@ -31,7 +32,8 @@
 				},
 				def: 5,
 				mov: 5,
-				modelName: 'ArcherModel'
+				modelName: 'ArcherModel',
+				langKey: 'archer'
 			},
 			elemental: {
 				atk: {
@@ -41,6 +43,7 @@
 				def: 10,
 				mov: 5,
 				modelName: 'ElementalModel',
+				langKey: 'elemental',
 				defByWater: 20,
 				movByWater: 3
 			},
@@ -51,7 +54,8 @@
 				},
 				def: 5,
 				mov: 5,
-				modelName: 'SorceressModel'
+				modelName: 'SorceressModel',
+				langKey: 'sorceress'
 			},
 			wisp: {
 				atk: {
@@ -60,9 +64,10 @@
 				},
 				def: 10,
 				mov: 5,
-				modelName: 'WispModel'
+				modelName: 'WispModel',
+				langKey: 'wisp'
 			},
-			'dire wolf': {
+			'dire-wolf': {
 				atk: {
 					min: 60,
 					max: 65
@@ -70,6 +75,7 @@
 				def: 15,
 				mov: 6,
 				modelName: 'DireWolfModel',
+				langKey: 'dire-wolf',
 				canPoison: true
 			},
 			golem: {
@@ -79,7 +85,8 @@
 				},
 				def: 30,
 				mov: 5,
-				modelName: 'GolemModel'
+				modelName: 'GolemModel',
+				langKey: 'golem'
 			},
 			catapult: {
 				atk: {
@@ -88,7 +95,8 @@
 				},
 				def: 10,
 				mov: 4,
-				modelName: 'CatapultModel'
+				modelName: 'CatapultModel',
+				langKey: 'catapult'
 			},
 			dragon: {
 				atk: {
@@ -97,7 +105,8 @@
 				},
 				def: 25,
 				mov: 7,
-				modelName: 'DragonModel'
+				modelName: 'DragonModel',
+				langKey: 'dragon'
 			},
 			skeleton: {
 				atk: {
@@ -106,7 +115,8 @@
 				},
 				def: 2,
 				mov: 5,
-				modelName: 'SkeletonModel'
+				modelName: 'SkeletonModel',
+				langKey: 'skeleton'
 			},
 			galamar: {
 				atk: {
@@ -115,7 +125,8 @@
 				},
 				def: 20,
 				mov: 7,
-				modelName: 'GalamarModel'
+				modelName: 'GalamarModel',
+				langKey: 'galamar'
 			},
 			valadorn: {
 				atk: {
@@ -124,16 +135,18 @@
 				},
 				def: 20,
 				mov: 7,
-				modelName: 'ValadornModel'
+				modelName: 'ValadornModel',
+				langKey: 'valadorn'
 			},
-			'demon lord': {
+			'demon-lord': {
 				atk: {
 					min: 55,
 					max: 65
 				},
 				def: 20,
 				mov: 7,
-				modelName: 'DemonLordModel'
+				modelName: 'DemonLordModel',
+				langKey: 'demon-lord'
 			},
 			saeth: {
 				atk: {
@@ -142,7 +155,8 @@
 				},
 				def: 20,
 				mov: 7,
-				modelName: 'SaethModel'
+				modelName: 'SaethModel',
+				langKey: 'saeth'
 			}
 
 		}
