@@ -8,9 +8,18 @@
 
 		initialize: function() {
 
-			this.set('players', this.get('args').players);
+			var args = this.get('args');
+
+			this.set('jsMapKey', args.jsMapKey);
+			this.set('unitLimit', args.unitLimit);
+			this.set('players', JSON.parse(JSON.stringify(args.players)));
 			this.set('buildings', []); // will be filled building append units
 			this.set('units', []); // will be filled after append units
+
+			// add money to player
+			_.each(this.get('players'), function (player) {
+				player.money = args.money;
+			});
 
 		},
 
@@ -34,6 +43,7 @@
 			});
 
 		},
+
 		appendUnits: function () {
 
 			var model = this,
@@ -59,7 +69,152 @@
 
 			});
 
+		},
 
+		startGame: function () {
+			this.set('activePlayer', this.get('players')[0]);
+
+			this.startTurn();
+
+		},
+
+		newTurn: function () {
+			this.setActivePlayer();
+
+			this.startTurn();
+
+		},
+
+		setActivePlayer: function () {
+
+			var players = this.get('players'),
+				activePlayer = this.get('activePlayer'),
+				playersLength = players.length,
+				activePlayerIndex = players.indexOf(activePlayer),
+				nextActivePlayerIndex = activePlayerIndex + 1;
+
+			if (nextActivePlayerIndex >= playersLength) {
+				nextActivePlayerIndex = 0;
+			}
+
+			activePlayer = players[nextActivePlayerIndex];
+			this.set('activePlayer', activePlayer);
+
+		},
+
+		startTurn: function () {
+			console.log('active player is (see below)');
+			console.log(this.get('activePlayer'));
+		},
+
+		click: function (xy) {
+
+			// 0 - show unit available attack (using available path) - hold or dblclick
+			// 1 - show unit info in popup - hold or dblclick
+			// 5 - show available path - only for player unit - click
+
+			var model = this,
+				activePlayer = model.get('activePlayer'),
+				action = model.getActionByXY(xy),
+				unit = model.getUnitByXY(xy),
+				building = model.getBuildingByXY(xy),
+				terrain = model.getTerrainByXY(xy);
+
+			// find active actions
+			if (action) {
+				// do action
+				console.log(action);
+				return;
+			}
+
+			// find unit
+			if (unit) {
+				// if unit is active - 1
+					// if unit owned by active player
+						// create and show available action
+					// if unit is NOT owned by active player
+						// show available path and available attack (attack only)
+				// if unit is inactive - 2
+					// show terrain info
+				console.log(unit);
+				return;
+			}
+
+			// find building
+			if (building) {
+				// show buildingterrain info
+				console.log(building);
+				return;
+			}
+
+			// find terrain
+			if (terrain) {
+				// show terrain info
+				console.log(terrain);
+				return;
+			}
+
+		},
+
+		//////////////////
+		// find by xy
+		//////////////////
+
+		getActionByXY: function (xy) {
+
+		},
+
+		getUnitByXY: function (xy) {
+
+			var x = xy.x,
+				y = xy.y,
+				result = false;
+
+			_.each(this.get('units'), function (unit) {
+				var unitData = unit.toJSON();
+				if ( unitData.x === x && unitData.y === y ) {
+					result = unit;
+				}
+			});
+
+			return result;
+
+		},
+
+		getBuildingByXY: function (xy) {
+
+			var x = xy.x,
+				y = xy.y,
+				result = false;
+
+			_.each(this.get('buildings'), function (building) {
+				if ( building.x === x && building.y === y ) {
+					result = building;
+				}
+			});
+
+			return result;
+
+		},
+
+		getTerrainByXY: function (xy) {
+
+			var map = this.get('map'),
+				terrain = map.terrain,
+				terrainName = terrain['x' + xy.x + 'y' + xy.y] || '',
+				terrainType = terrainName.replace(/\-\d+$/,'');
+
+			if ( !terrainName ) { // if terrain with xy is not exist -> return false
+				return false;
+			}
+
+			return {
+				xy: xy,
+				x: xy.x,
+				y: xy.y,
+				terrainName: terrainName,
+				terrainType: terrainType
+			};
 
 		}
 

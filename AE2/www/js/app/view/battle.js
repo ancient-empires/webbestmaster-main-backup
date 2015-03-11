@@ -13,7 +13,7 @@
 	APP.BB.BattleView = APP.BB.BaseView.extend({
 
 		events: {
-
+			'click .js-end-turn': 'endTurn'
 		},
 
 		selectors: {
@@ -80,6 +80,9 @@
 
 			this.render();
 
+			// start game from model
+			this.get('model').startGame();
+
 		},
 
 		disable: function () {
@@ -94,10 +97,16 @@
 
 			this.markActiveSquare(xy);
 
+			// 0 - show unit available attack (using available path) - hold or dblclick
+			// 1 - show unit info in popup - hold or dblclick
+			// 5 - show available path - only for player unit - click
 
+			this.get('model').click(xy);
 
+		},
 
-
+		endTurn: function () {
+			this.get('model').newTurn();
 		},
 
 		markActiveSquare: function (xy) {
@@ -550,7 +559,7 @@
 				downXY = this.get('downEvent'),
 				moveXY = this.get('moveEvent'),
 				maxDeltaMove = 10,
-				eventSquareClassName = this.selectors.eventSquares.replace('.', '');
+				eventSquareClassName = this.classNames.eventSquares;
 
 			if ( !downXY || !moveXY ) {
 				return;
