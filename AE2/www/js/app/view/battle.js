@@ -107,6 +107,7 @@
 
 		endTurn: function () {
 			this.get('model').newTurn();
+			this.removeActiveSquare();
 		},
 
 		markActiveSquare: function (xy) {
@@ -120,6 +121,17 @@
 
 			$activeSquare.removeClass(classNameActiveEventSquare).find(selectorActiveSquareMark).remove();
 			$newActiveSquare.addClass(classNameActiveEventSquare).html('<div class="' + classNameActiveSquareMark + '">&nbsp;</div>');
+
+		},
+
+		removeActiveSquare: function () {
+			// this.classNames.eventSquares
+			var selectorActiveEventSquare = this.selectors.activeEventSquare,
+				selectorActiveSquareMark = this.selectors.activeSquareMark,
+				classNameActiveEventSquare = this.classNames.activeEventSquare,
+				$activeSquare = this.$el.find(this.selectors.eventSquares + selectorActiveEventSquare);
+
+			$activeSquare.removeClass(classNameActiveEventSquare).find(selectorActiveSquareMark).remove();
 
 		},
 

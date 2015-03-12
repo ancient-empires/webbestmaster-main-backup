@@ -58,6 +58,7 @@
 				var player = _.where(players, { id: unit.ownerId })[0];
 
 				unit.color = player.color;
+				unit.teamNumber = player.teamNumber;
 
 				unit = win.APP.unitMaster.createUnits(unit);
 				unit.set('model', model);
@@ -118,7 +119,8 @@
 				action = model.getActionByXY(xy),
 				unit = model.getUnitByXY(xy),
 				building = model.getBuildingByXY(xy),
-				terrain = model.getTerrainByXY(xy);
+				terrain = model.getTerrainByXY(xy),
+				availableActions;
 
 			// find active actions
 			if (action) {
@@ -130,6 +132,7 @@
 
 			// find unit
 			if (unit) {
+
 				// if unit is active - 1
 					// if unit owned by active player
 						// create and show available action
@@ -137,7 +140,23 @@
 						// show available path and available attack (attack only)
 				// if unit is inactive - 2
 					// show terrain info
-				console.log(unit);
+
+				if ( unit.get('isActive') ) {
+
+					if ( unit.get('ownerId') === activePlayer.id ) {
+						// create and show available action
+						availableActions = unit.getAvailableActions();
+						console.log('create and show available action');
+					} else {
+						// show available path and available attack (attack only)
+						console.log('show available path and available attack (attack only)');
+					}
+
+				} else {
+					// show terrain info
+					console.log(terrain);
+				}
+
 				return;
 			}
 
@@ -203,7 +222,7 @@
 			var map = this.get('map'),
 				terrain = map.terrain,
 				terrainName = terrain['x' + xy.x + 'y' + xy.y] || '',
-				terrainType = terrainName.replace(/\-\d+$/,'');
+				terrainType = win.APP.map.getTypeByTileName(terrainName);
 
 			if ( !terrainName ) { // if terrain with xy is not exist -> return false
 				return false;
