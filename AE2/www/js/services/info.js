@@ -149,6 +149,7 @@
 			var defaultSettings = {
 					confirmTurn: 'off', // game turn
 					confirmMove: 'off', // move unit
+					confirmAttack: 'off', // attack unit
 					music: 'on',
 					vibrate: 'off',
 					help: 'on',

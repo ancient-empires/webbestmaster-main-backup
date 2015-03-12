@@ -34,6 +34,7 @@
 		gameSpeed: 'game speed',
 		confirmTurn: 'confirm turn',
 		confirmMove: 'confirm move',
+		confirmAttack: 'confirm attack',
 
 		// play
 		newGame: 'new game',
