@@ -147,10 +147,12 @@
 		setSettings: function () {
 
 			var defaultSettings = {
+					confirmTurn: 'off', // game turn
+					confirmMove: 'off', // move unit
 					music: 'on',
-					vibrate: 'on',
+					vibrate: 'off',
 					help: 'on',
-					fightAnimation: 'on',
+					fightAnimation: 'off',
 					gameSpeed: '3' // 1..5, use string type
 				},
 				key,

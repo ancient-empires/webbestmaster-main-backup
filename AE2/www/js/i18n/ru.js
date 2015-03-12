@@ -32,6 +32,8 @@
 		help: 'помощь',
 		fightAnimation: 'анимация боя',
 		gameSpeed: 'скорость игры',
+		confirmTurn: 'подтверждение хода',
+		confirmMove: 'подтверждение движения юнита',
 
 		// play
 		newGame: 'новая игра',

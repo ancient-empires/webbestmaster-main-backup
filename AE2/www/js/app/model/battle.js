@@ -122,6 +122,7 @@
 
 			// find active actions
 			if (action) {
+				// also find end move action, see settings
 				// do action
 				console.log(action);
 				return;

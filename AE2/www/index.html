@@ -125,6 +125,12 @@
 
 		<h1>{{ settings }}</h1>
 
+		<div>{{ confirmTurn }}
+			<div><%= view.tmpl.settingsOnOff({ key: 'confirmTurn', info: info }) %></div>
+		</div>
+		<div>{{ confirmMove }}
+			<div><%= view.tmpl.settingsOnOff({ key: 'confirmMove', info: info }) %></div>
+		</div>
 		<div>{{ music }}
 			<div><%= view.tmpl.settingsOnOff({ key: 'music', info: info }) %></div>
 		</div>

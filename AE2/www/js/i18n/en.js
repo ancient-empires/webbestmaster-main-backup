@@ -32,6 +32,8 @@
 		help: 'help',
 		fightAnimation: 'fight animation',
 		gameSpeed: 'game speed',
+		confirmTurn: 'confirm turn',
+		confirmMove: 'confirm move',
 
 		// play
 		newGame: 'new game',
