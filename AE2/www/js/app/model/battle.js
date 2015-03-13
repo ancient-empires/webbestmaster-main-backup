@@ -21,6 +21,8 @@
 				player.money = args.money;
 			});
 
+			this.clearAvailableActions();
+			
 		},
 
 		appendBuildings: function () {
@@ -125,9 +127,10 @@
 
 			// find active actions
 			if (action) {
-				// also find end move action, see settings
 				// do action
-				console.log(action);
+				console.log('action');
+				// todo: also find end move action, see settings
+				this.doAction(action);
 				return;
 			}
 
@@ -148,17 +151,20 @@
 						// create and show available action
 						availableActions = unit.getAvailableActions();
 						view.showAvailableActions(availableActions);
+						model.set('availableActions', availableActions);
 						console.log('create and show available action');
 					} else {
 						// show available path and available attack (attack only)
 						console.log('show available path and available attack (attack only)');
-						view.clearActions();
+						model.clearAvailableActions();
+						view.clearAvailableActions();
 					}
 
 				} else {
 					// show terrain info
 					console.log(terrain);
-					view.clearActions();
+					model.clearAvailableActions();
+					view.clearAvailableActions();
 				}
 
 				return;
@@ -168,7 +174,8 @@
 			if (building) {
 				// show buildingterrain info
 				console.log(building);
-				view.clearActions();
+				model.clearAvailableActions();
+				view.clearAvailableActions();
 				return;
 			}
 
@@ -176,7 +183,8 @@
 			if (terrain) {
 				// show terrain info
 				console.log(terrain);
-				view.clearActions();
+				model.clearAvailableActions();
+				view.clearAvailableActions();
 				return;
 			}
 
@@ -187,6 +195,25 @@
 		//////////////////
 
 		getActionByXY: function (xy) {
+
+			var model = this,
+				actions = model.get('availableActions'),
+				unit = actions.unit,
+				availablePathViewWithoutTeamUnit = actions.availablePathViewWithoutTeamUnit,
+				move;
+
+			move = _.find(availablePathViewWithoutTeamUnit, xy);
+
+			if (move) {
+				return {
+					type: 'move',
+					x: xy.x,
+					y: xy.y,
+					unit: unit
+				};
+			}
+
+			return false;
 
 		},
 
@@ -242,6 +269,20 @@
 				terrainType: terrainType
 			};
 
+		},
+
+		//////////////////
+		// unit actions
+		//////////////////
+
+		clearAvailableActions: function () {
+			this.set('availableActions', []);
+		},
+
+		doAction: function (action) {
+			// todo: also find end move action, see settings
+			console.log('do action');
+			console.log(action);
 		}
 
 	});

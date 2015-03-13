@@ -108,7 +108,7 @@
 		endTurn: function () {
 			this.get('model').newTurn();
 			this.removeActiveSquare();
-			this.clearActions();
+			this.clearAvailableActions();
 		},
 
 		markActiveSquare: function (xy) {
@@ -126,7 +126,7 @@
 		},
 
 		showAvailableActions: function (actions) {
-			this.clearActions();
+			this.clearAvailableActions();
 			this.showAvailablePathViewWithTeamUnit(actions.availablePathViewWithTeamUnit);
 		},
 
@@ -147,7 +147,7 @@
 			});
 		},
 
-		clearActions: function () {
+		clearAvailableActions: function () {
 			this.hideAvailablePathViewWithTeamUnit();
 		},
 
