@@ -108,6 +108,7 @@
 		endTurn: function () {
 			this.get('model').newTurn();
 			this.removeActiveSquare();
+			this.clearActions();
 		},
 
 		markActiveSquare: function (xy) {
@@ -120,8 +121,34 @@
 				$newActiveSquare = this.$el.find(this.selectors.eventSquares + '[data-xy="x' + xy.x + 'y' + xy.y + '"]');
 
 			$activeSquare.removeClass(classNameActiveEventSquare).find(selectorActiveSquareMark).remove();
-			$newActiveSquare.addClass(classNameActiveEventSquare).html('<div class="' + classNameActiveSquareMark + '">&nbsp;</div>');
+			$newActiveSquare.addClass(classNameActiveEventSquare).append('<div class="' + classNameActiveSquareMark + '">&nbsp;</div>');
 
+		},
+
+		showAvailableActions: function (actions) {
+			this.clearActions();
+			this.showAvailablePathViewWithTeamUnit(actions.availablePathViewWithTeamUnit);
+		},
+
+		showAvailablePathViewWithTeamUnit: function (path) {
+
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
+
+			_.each(path, function (xy) {
+				$eventWrapper.find('[data-xy="x' + xy.x + 'y' + xy.y + '"]').addClass('show-available-path');
+			}, this);
+
+		},
+
+		hideAvailablePathViewWithTeamUnit: function () {
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
+			$eventWrapper.find('.show-available-path').each(function () {
+				$(this).removeClass('show-available-path');
+			});
+		},
+
+		clearActions: function () {
+			this.hideAvailablePathViewWithTeamUnit();
 		},
 
 		removeActiveSquare: function () {
@@ -161,7 +188,7 @@
 				$eventHandlerWrapper = this.$el.find(selectors.eventHandlerWrapper),
 				map = this.get('map'),
 				pre = this.info.get('pre', true).css,
-				template = '<div class="js-square js-event-square square" style="width: {{squareSize}}px; height: {{squareSize}}px; {{transform}}; " data-xy="x{{x}}y{{y}}" data-x="{{x}}" data-y="{{y}}"></div>',
+				template = '<div class="js-square js-event-square square" style="width: {{squareSize}}px; height: {{squareSize}}px; {{transform}}; " data-xy="x{{x}}y{{y}}" data-x="{{x}}" data-y="{{y}}"><div class="available-path">&nbsp;</div><div class="available-attack">&nbsp;</div></div>',
 				transformTemplate = pre + 'transform: translate3d({{x}}px, {{y}}px, 0)',
 				transformStyle,
 				resultArr = [],
@@ -584,7 +611,7 @@
 			$this = $(e.target);
 
 			if ( !$this.hasClass(eventSquareClassName) ) {
-				return;
+				$this = $this.parent();
 			}
 
 			x = Number($this.attr('data-x'));

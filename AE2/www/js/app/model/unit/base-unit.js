@@ -40,22 +40,42 @@
 		getAvailableActions: function () {
 
 			var unit = this,
-				availablePathViewWithTeamUnit,
-				availablePathViewWithoutTeamUnit,
+				unitTeamNumber = unit.get('teamNumber'),
+				units = unit.get('model').get('units'),
+				teamUnits = [], // done
+				availablePathViewWithTeamUnit,// ~ done, todo: add to getAvailablePathViewWithTeamUnit terrain types and unit type relatives
+				availablePathViewWithoutTeamUnit = [], // done
 				availableAttacks,
+				unitsUnderAttack,
 				riseSkeletons,
 				availableFixBuilding,
 				availableGetBuilding,
 				openStore;
 
+			// get team units
+			teamUnits = _.filter(units, function (unit) {
+				return unit.get('teamNumber') === unitTeamNumber;
+			});
+
+			// get available path view with team unit
 			availablePathViewWithTeamUnit = this.getAvailablePathViewWithTeamUnit();
-			console.log(availablePathViewWithTeamUnit);
 
-			// get available path with team unit
-			// get available path withOUT team unit
-			// get available attack
-			// get available rise skeleton
+			// get available path view withOUT team unit
+			availablePathViewWithoutTeamUnit = _.filter(availablePathViewWithTeamUnit, function (xy) {
+				var founded = false;
+				_.each(teamUnits, function (unit) {
+					if ( unit.get('x') === xy.x && unit.get('y') === xy.y ) {
+						founded = true;
+					}
+				});
+				return !founded;
+			});
 
+			return {
+				unit: unit,
+				availablePathViewWithTeamUnit: availablePathViewWithTeamUnit,
+				availablePathViewWithoutTeamUnit: availablePathViewWithoutTeamUnit
+			};
 
 		},
 
@@ -149,14 +169,15 @@
 
 		getAvailablePath: function () {
 
-			var point = new PathFinderPoint({
-				pathFinder: this,
-				mov: this.get('mov'),
-				x: this.get('x'),
-				y: this.get('y')
-			});
+			var availablePath,
+				point = new PathFinderPoint({
+					pathFinder: this,
+					mov: this.get('mov'),
+					x: this.get('x'),
+					y: this.get('y')
+				});
 
-			var availablePath = this.get('availablePath');
+			availablePath = this.get('availablePath');
 
 			// remove first xy with unit's xy
 			availablePath.shift();

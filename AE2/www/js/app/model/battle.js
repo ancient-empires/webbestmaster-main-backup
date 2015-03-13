@@ -115,6 +115,7 @@
 			// 5 - show available path - only for player unit - click
 
 			var model = this,
+				view = this.get('view'),
 				activePlayer = model.get('activePlayer'),
 				action = model.getActionByXY(xy),
 				unit = model.getUnitByXY(xy),
@@ -146,15 +147,18 @@
 					if ( unit.get('ownerId') === activePlayer.id ) {
 						// create and show available action
 						availableActions = unit.getAvailableActions();
+						view.showAvailableActions(availableActions);
 						console.log('create and show available action');
 					} else {
 						// show available path and available attack (attack only)
 						console.log('show available path and available attack (attack only)');
+						view.clearActions();
 					}
 
 				} else {
 					// show terrain info
 					console.log(terrain);
+					view.clearActions();
 				}
 
 				return;
@@ -164,6 +168,7 @@
 			if (building) {
 				// show buildingterrain info
 				console.log(building);
+				view.clearActions();
 				return;
 			}
 
@@ -171,6 +176,7 @@
 			if (terrain) {
 				// show terrain info
 				console.log(terrain);
+				view.clearActions();
 				return;
 			}
 
