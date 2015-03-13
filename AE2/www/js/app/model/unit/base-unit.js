@@ -49,6 +49,7 @@
 				openStore;
 
 			availablePathViewWithTeamUnit = this.getAvailablePathViewWithTeamUnit();
+			console.log(availablePathViewWithTeamUnit);
 
 			// get available path with team unit
 			// get available path withOUT team unit
@@ -68,7 +69,6 @@
 				map = view.get('map'),
 				terrain = map.terrain,
 				pathFinder,
-				availablePath,
 				blackWholes = [];
 
 			_.each(units, function (unit) {
@@ -94,8 +94,8 @@
 				relativeTypeSpace: true
 			});
 
-			availablePath = pathFinder.getAvailablePath();
-			console.log(availablePath);
+			return pathFinder.getAvailablePath();
+
 		}
 
 	});
@@ -155,6 +155,13 @@
 				x: this.get('x'),
 				y: this.get('y')
 			});
+
+			var availablePath = this.get('availablePath');
+
+			// remove first xy with unit's xy
+			availablePath.shift();
+
+			this.set('availablePath', availablePath);
 
 			return this.get('availablePath');
 
