@@ -44,7 +44,7 @@
 				mov: 5,
 				modelName: 'ElementalModel',
 				langKey: 'elemental',
-				bonusDefByWater: 20,
+				bonusDefByWater: 15,
 				moveType: 'flow'
 			},
 			sorceress: {
@@ -125,7 +125,7 @@
 					max: 65
 				},
 				def: 20,
-				mov: 7,
+				mov: 5,
 				modelName: 'GalamarModel',
 				langKey: 'galamar'
 			},
@@ -135,7 +135,7 @@
 					max: 65
 				},
 				def: 20,
-				mov: 7,
+				mov: 5,
 				modelName: 'ValadornModel',
 				langKey: 'valadorn'
 			},
@@ -145,7 +145,7 @@
 					max: 65
 				},
 				def: 20,
-				mov: 7,
+				mov: 5,
 				modelName: 'DemonLordModel',
 				langKey: 'demon-lord'
 			},
@@ -155,7 +155,7 @@
 					max: 65
 				},
 				def: 20,
-				mov: 7,
+				mov: 5,
 				modelName: 'SaethModel',
 				langKey: 'saeth'
 			}

@@ -38,8 +38,8 @@
 			defence: 15
 		},
 		water: {
-			pathResistance: 3,
-			flowPathResistance: 0.6, // todo: check elemental move by water
+			pathResistance: 4,
+			flowPathResistance: 1,
 			defence: 0
 		}
 
