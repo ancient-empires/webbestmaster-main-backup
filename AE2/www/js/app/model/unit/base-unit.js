@@ -107,6 +107,7 @@
 				mov: unit.get('mov') - 1,
 				x: unit.get('x'),
 				y: unit.get('y'),
+				moveType: unit.get('moveType'),
 				minX: 0,
 				minY: 0,
 				maxX: map.size.width - 1,
@@ -165,6 +166,10 @@
 				}
 			}
 
+		},
+
+		getSquareByXY: function (x, y) {
+			return this.get('terrain')['x' + x + 'y' + y];
 		},
 
 		getAvailablePath: function () {
@@ -294,8 +299,10 @@
 				maxX = pathFinder.get('maxX'),
 				maxY = pathFinder.get('maxY'),
 				blackWholes = pathFinder.get('blackWholes'),
-				pathResistance = 1; // todo: set pathResistance relative
-									// unit relativeTypeSpace, unit type, terrain type
+				isRelativeTypeSpace = pathFinder.get('relativeTypeSpace'),
+				squareType,
+				unitMoveType,
+				pathResistance = 1;
 
 			// detect max and min xy
 			if ( x > maxX || x < minX || y > maxY || y < minY ) {
@@ -307,9 +314,30 @@
 				return;
 			}
 
+			if (isRelativeTypeSpace) {
+
+				squareType = pathFinder.getSquareByXY(x, y);
+				unitMoveType = pathFinder.get('moveType');
+
+				switch (unitMoveType) {
+					case 'fly':
+						pathResistance = 1;
+						break;
+					case 'flow':
+						if (squareType === 'water') {
+							pathResistance = win.APP.map.water.flowPathResistance;
+						}
+						break;
+					default :
+						pathResistance = win.APP.map[squareType].pathResistance;
+
+				}
+
+			}
+
 			if ( mov >= pathResistance ) {
 				new PathFinderPoint({
-					pathFinder: this.get('pathFinder'),
+					pathFinder: pathFinder,
 					mov: mov - pathResistance,
 					x: x,
 					y: y
@@ -317,55 +345,6 @@
 			}
 
 		}
-		//tryGoToSquare: function (coordinates) {
-		//
-		//	var x = coordinates.x,
-		//		y = coordinates.y,
-		//		square,
-		//		pathResistance = 1,
-		//		point,
-		//		unitType = this.unit.runType;
-		//
-		//	if (this.parent.relativeTypeSpace) {
-		//		// get square bu coordinates
-		//		square = APP.map.getSquareByXY(this.parent.map, x, y);
-		//		if (square) {
-		//
-		//			switch (unitType) {
-		//				case 'fly':
-		//					pathResistance = 1;
-		//					break;
-		//
-		//				case 'flow':
-		//
-		//					if (square === 'water') {
-		//						pathResistance = APP.map.water.specialPathResistance;
-		//					}
-		//
-		//					break;
-		//				default :
-		//					pathResistance = APP.map[square].pathResistance;
-		//
-		//			}
-		//
-		//
-		//
-		//		}
-		//	}
-		//
-		//	if (this.mov >= pathResistance) {
-		//		point = new PathFinderPoint({
-		//			parent: this.parent,
-		//			mov: this.mov - pathResistance,
-		//			x: x,
-		//			y: y,
-		//			unit: this.unit
-		//		});
-		//
-		//	}
-		//
-		//
-		//}
 
 	};
 

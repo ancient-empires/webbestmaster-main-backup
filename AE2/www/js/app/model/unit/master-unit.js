@@ -44,8 +44,8 @@
 				mov: 5,
 				modelName: 'ElementalModel',
 				langKey: 'elemental',
-				defByWater: 20,
-				movByWater: 3
+				bonusDefByWater: 20,
+				moveType: 'flow'
 			},
 			sorceress: {
 				atk: {
@@ -106,7 +106,8 @@
 				def: 25,
 				mov: 7,
 				modelName: 'DragonModel',
-				langKey: 'dragon'
+				langKey: 'dragon',
+				moveType: 'fly'
 			},
 			skeleton: {
 				atk: {
