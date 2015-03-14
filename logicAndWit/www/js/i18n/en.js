@@ -18,6 +18,10 @@
 		theme: 'Theme',
 		text: 'Text',
 		share: 'Share',
+
+		thanksForBuyProVersion: 'Thank you for<br>purchasing paid version!',
+		helpProject: 'Help project',
+
 		rateUs: {
 			header: 'Rate us, please!',
 			notNow: 'not now',

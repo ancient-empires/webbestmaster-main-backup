@@ -269,6 +269,18 @@
 				<a href="http://www.linkedin.com/shareArticle?url=<%= link %>" class="share-link share-link-linkedin js-external-link">&nbsp;</a>
 			</div>
 
+			<div class="clear-fix setting-block-wrapper">
+
+				<% var info = window.APP.info, osName = info.get('os', true); %>
+
+				<% if ( info.withAds ) { %>
+					<a href="<%= info.link[osName].pro %>" target="_blank" class="js-external-link help-project"><%= window.APP.lang.get('helpProject') %></a>
+				<% } else { %>
+					<div class="help-project"><%= window.APP.lang.get('thanksForBuyProVersion') %></div>
+				<% }; %>
+
+			</div>
+
 			<a href="http://statlex.com/" target="_blank" class="js-external-link web-site-link">statlex.com</a>
 
 		</div>

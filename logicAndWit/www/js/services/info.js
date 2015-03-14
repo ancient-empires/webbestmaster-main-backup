@@ -41,7 +41,7 @@
 
 	info = {
 
-		withAds: false,
+		withAds: true,
 
 		link: {
 			ios: {

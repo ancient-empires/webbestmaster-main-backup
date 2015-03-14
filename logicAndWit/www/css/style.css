@@ -128,7 +128,8 @@ body {
 }
 
 .navigate-button-left:active,
-.navigate-button-right:active {
+.navigate-button-right:active,
+.help-project:active {
 	opacity: 0.5;
 }
 
@@ -198,3 +199,19 @@ body {
 	z-index: 1;
 	background-color: rgba(247, 240, 234, 0.9);
 }
+
+.help-project {
+	color: inherit;
+	display: inline-block;
+	text-decoration: none;
+	border-style: solid;
+	border-width: 0.1rem;
+	border-color: inherit;
+	padding: 1rem;
+	border-radius: 0.4rem;
+}
+
+
+
+
+
