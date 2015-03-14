@@ -123,6 +123,41 @@
 
 		},
 
+		getConfirmMoveActions: function (xy) {
+
+			var unit = this,
+				view = this.get('view'),
+				sizes = view.get('map').size,
+				undoMoveActions = [],
+				curX = xy.x,
+				curY = xy.y,
+				beforeX = xy.beforeX,
+				beforeY = xy.beforeY,
+				x, y,
+				xLen, yLen;
+
+			for (x = 0, xLen = sizes.width; x < xLen; x += 1) {
+				for (y = 0, yLen = sizes.height; y < yLen; y += 1) {
+					undoMoveActions.push({
+						x: x,
+						y: y,
+						beforeX: xy.beforeX,
+						beforeY: xy.beforeY
+					});
+				}
+			}
+
+			return {
+				unit: unit,
+				confirmMoveAction: {
+					x: curX,
+					y: curY
+				},
+				undoMoveActions: undoMoveActions
+			};
+
+		},
+
 		//////////
 		// unit's action
 		//////////
@@ -134,7 +169,10 @@
 				view = unit.get('view'),
 
 				x = data.x,
-				y = data.y;
+				y = data.y,
+
+				beforeX = unit.get('x'),
+				beforeY = unit.get('y');
 
 			view
 				.moveUnitTo(data)
@@ -145,13 +183,74 @@
 
 					unit.set('didMove', true);
 
-					var availableActions = unit.getAvailableActions();
+					// detect - confirm move
+
+					var availableActions;
+
+					if ( view.info.get('confirmMove') === 'on' ) {
+						availableActions = unit.getConfirmMoveActions({
+							x: x,
+							y: y,
+							beforeX: beforeX,
+							beforeY: beforeY
+						});
+					} else {
+						availableActions = unit.getAvailableActions();
+					}
+
 					view.showAvailableActions(availableActions);
 					model.set('availableActions', availableActions);
 
 				});
 
+		},
 
+		confirmMove: function () {
+
+			var unit = this,
+				model = unit.get('model'),
+				view = unit.get('view'),
+				availableActions = unit.getAvailableActions();
+
+			view.clearAvailableActions();
+			model.clearAvailableActions();
+
+			view.showAvailableActions(availableActions);
+			model.set('availableActions', availableActions);
+
+		},
+
+		undoMoveAction: function (data) {
+
+			var unit = this,
+				model = unit.get('model'),
+				view = unit.get('view'),
+
+				x = data.beforeX,
+				y = data.beforeY;
+
+			view
+				.moveUnitTo({
+					x: x,
+					y: y,
+					unit: data.unit
+				})
+				.done(function () {
+
+					unit.set('x', x);
+					unit.set('y', y);
+
+					unit.set('didMove', false);
+
+					var availableActions = unit.getAvailableActions();
+					view.markActiveSquare({
+						x: x,
+						y: y
+					});
+					view.showAvailableActions(availableActions);
+					model.set('availableActions', availableActions);
+
+				});
 
 		},
 

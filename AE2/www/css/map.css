@@ -54,7 +54,8 @@
 }
 
 .available-path,
-.available-attack {
+.available-attack,
+.confirm-move {
 	background-repeat: no-repeat;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
@@ -80,8 +81,13 @@
 	background-image: url(../i/ux/available-attack.png);
 }
 
+.show-confirm-move .confirm-move {
+	background-image: url(../i/ux/confirm-move.png);
+}
+
 .show-available-path .available-path,
-.show-available-attack .available-attack {
+.show-available-attack .available-attack,
+.show-confirm-move .confirm-move {
 	-webkit-transform: scale(1);
 	transform: scale(1);
 }

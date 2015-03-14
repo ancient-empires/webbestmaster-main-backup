@@ -151,7 +151,17 @@
 
 		showAvailableActions: function (actions) {
 			this.clearAvailableActions();
-			this.showAvailablePathViewWithTeamUnit(actions.availablePathViewWithTeamUnit);
+
+			if ( actions.availablePathViewWithTeamUnit ) {
+				this.showAvailablePathViewWithTeamUnit(actions.availablePathViewWithTeamUnit);
+			}
+
+			if ( actions.confirmMoveAction ) {
+
+				this.showConfirmMoveAction(actions.confirmMoveAction);
+
+			}
+
 		},
 
 		showAvailablePathViewWithTeamUnit: function (path) {
@@ -171,8 +181,27 @@
 			});
 		},
 
+		showConfirmMoveAction: function (confirmMoveAction) {
+
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper),
+				x = confirmMoveAction.x,
+				y = confirmMoveAction.y;
+
+			$eventWrapper.find('[data-xy="x' + x + 'y' + y + '"]').addClass('show-confirm-move');
+
+		},
+
+		hideConfirmMoveAction: function () {
+
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
+
+			$eventWrapper.find('.show-confirm-move').removeClass('show-confirm-move');
+
+		},
+
 		clearAvailableActions: function () {
 			this.hideAvailablePathViewWithTeamUnit();
+			this.hideConfirmMoveAction();
 		},
 
 		removeActiveSquare: function () {
@@ -208,24 +237,21 @@
 		setEventHandlerListeners: function () {
 
 			var squareSize = this.info.get('squareSize'),
-				selectors = this.selectors,
-				$eventHandlerWrapper = this.$el.find(selectors.eventHandlerWrapper),
+				$eventHandlerWrapper = this.$el.find(this.selectors.eventHandlerWrapper),
 				map = this.get('map'),
 				pre = this.info.get('pre', true).css,
-				template = '<div class="js-square js-event-square square" style="width: {{squareSize}}px; height: {{squareSize}}px; {{transform}}; " data-xy="x{{x}}y{{y}}" data-x="{{x}}" data-y="{{y}}"><div class="available-path">&nbsp;</div><div class="available-attack">&nbsp;</div></div>',
-				transformTemplate = pre + 'transform: translate3d({{x}}px, {{y}}px, 0)',
-				transformStyle,
+				template = this.tmpl['event-handler'],
 				resultArr = [],
 				x, y, xLen, yLen;
 
 			for (x = 0, xLen = map.size.width; x < xLen; x += 1) {
 				for (y = 0, yLen = map.size.height; y < yLen; y += 1) {
-					transformStyle = transformTemplate.replace(/\{\{x\}\}/g, x * squareSize).replace(/\{\{y\}\}/g, y * squareSize);
-					resultArr.push( template
-						.replace(/\{\{x\}\}/g, x)
-						.replace(/\{\{y\}\}/g, y)
-						.replace(/\{\{squareSize\}\}/g, squareSize)
-						.replace(/\{\{transform\}\}/g, transformStyle)
+					resultArr.push(template({
+							x: x,
+							y: y,
+							squareSize: squareSize,
+							pre: pre
+						})
 					);
 				}
 			}

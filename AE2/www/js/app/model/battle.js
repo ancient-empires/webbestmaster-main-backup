@@ -207,16 +207,39 @@
 				actions = model.get('availableActions'),
 				unit = actions.unit,
 				availablePathViewWithoutTeamUnit = actions.availablePathViewWithoutTeamUnit,
-				move;
+				confirmMoveAction = actions.confirmMoveAction,
+				move,
+				undoMoveActions = actions.undoMoveActions;
+
+			console.log('actions');
+			console.log(actions);
 
 			move = _.find(availablePathViewWithoutTeamUnit, xy);
 
-			if (move) {
+			if ( move ) {
 				return {
 					type: 'move',
+					unit: unit,
 					x: xy.x,
-					y: xy.y,
-					unit: unit
+					y: xy.y
+				};
+			}
+
+			if ( confirmMoveAction && confirmMoveAction.x === xy.x && confirmMoveAction.y === xy.y ) {
+				return {
+					type: 'confirmMove',
+					unit: unit,
+					x: xy.x,
+					y: xy.y
+				};
+			}
+
+			if ( undoMoveActions && _.find(undoMoveActions, xy) ) {
+				return {
+					type: 'undoMoveAction',
+					unit: unit,
+					beforeX: undoMoveActions[0].beforeX,
+					beforeY: undoMoveActions[0].beforeY
 				};
 			}
 
@@ -298,6 +321,18 @@
 				case 'move':
 
 					unit.moveTo(action);
+
+					break;
+
+				case 'confirmMove':
+
+					unit.confirmMove();
+
+					break;
+
+				case 'undoMoveAction':
+
+					unit.undoMoveAction(action);
 
 					break;
 

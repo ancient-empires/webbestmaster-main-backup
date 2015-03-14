@@ -402,6 +402,17 @@
 
 </script>
 
+<script type="text/x-template" data-name="event-handler">
+
+	<div class="js-square js-event-square square"
+	     style="width: <%= squareSize %>px; height: <%= squareSize %>px; <%= pre %>transform: translate3d(<%= x * squareSize %>px, <%= y * squareSize %>px, 0);" data-xy="x<%= x %>y<%= y %>" data-x="<%= x %>" data-y="<%= y %>">
+		<div class="available-path">&nbsp;</div>
+		<div class="available-attack">&nbsp;</div>
+		<div class="confirm-move">&nbsp;</div>
+	</div>
+
+</script>
+
 <script type="text/x-template" data-name="rate">
 
 	<div class="js-popup-wrapper popup-wrapper">
