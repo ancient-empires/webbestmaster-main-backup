@@ -12,10 +12,10 @@
 	APP.BB.RateView = APP.BB.BaseView.extend({
 
 		events: {
-			'click .js-five-stars': 'fiveStars'
+			'click .js-rate-button': 'rate'
 		},
 
-		showPeriod: 3 * d,
+		showPeriod: 2 * d,
 
 		initialize: function () {
 
@@ -72,7 +72,7 @@
 
 		},
 
-		fiveStars: function () {
+		rate: function () {
 
 			var rateData = this.info.get('rate') || {};
 			rateData.isRated = true;
