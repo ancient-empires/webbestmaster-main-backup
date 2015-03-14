@@ -21,6 +21,12 @@
 
 }
 
+.unit-wrapper.moving {
+	z-index: 1;
+	-webkit-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
+}
+
 @-webkit-keyframes unit-bg-shift {
 	from { background-position: 0 0; }
 	to { background-position: 0 200%; }

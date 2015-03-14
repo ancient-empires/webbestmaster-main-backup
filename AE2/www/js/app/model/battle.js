@@ -106,8 +106,15 @@
 		},
 
 		startTurn: function () {
+
+			this.clearAvailableActions();
+
+			this.setUnitsState();
+
 			console.log('active player is (see below)');
 			console.log(this.get('activePlayer'));
+
+
 		},
 
 		click: function (xy) {
@@ -280,9 +287,39 @@
 		},
 
 		doAction: function (action) {
+
 			// todo: also find end move action, see settings
+
+			var unit = action.unit,
+				actionType = action.type;
+
+			switch (actionType) {
+
+				case 'move':
+
+					unit.moveTo(action);
+
+					break;
+
+				default:
+					console.log('--- undefind unit action');
+
+			}
+
 			console.log('do action');
 			console.log(action);
+
+		},
+
+		setUnitsState: function () {
+
+			var model = this,
+				units = model.get('units');
+
+			_.each(units, function (unit) {
+				unit.prepareToNextTurn();
+			});
+
 		}
 
 	});

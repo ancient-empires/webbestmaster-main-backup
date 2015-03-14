@@ -25,6 +25,7 @@
 			activeEventSquare: '.active-event-square',
 			activeSquareMark: '.active-square-mark',
 			buildingWrapper: '.js-building-wrapper',
+			unitsWrapper: '.js-units-wrapper',
 			unitWrapper: '.js-unit-wrapper',
 			building: '.js-building',
 			smokeWrapper: '.js-smoke-wrapper',
@@ -35,6 +36,8 @@
 		initialize: function (data) {
 
 			this.detectClickEvent();
+
+			this.detectTransitionEndEventName();
 
 			this.squareSize = {
 				min: win.APP.util.defaultUnit,
@@ -82,6 +85,27 @@
 
 			// start game from model
 			this.get('model').startGame();
+
+		},
+
+		detectTransitionEndEventName: function () {
+			var i,
+				el = document.createElement('div'),
+				transitions = {
+					'transition':'transitionend',
+					'OTransition':'otransitionend',  // oTransitionEnd in very old Opera
+					'MozTransition':'transitionend',
+					'WebkitTransition':'webkitTransitionEnd'
+				},
+				transitionEnd = 'transitionend';
+
+			for (i in transitions) {
+				if (transitions.hasOwnProperty(i) && el.style[i] !== undefined) {
+					transitionEnd = transitions[i];
+				}
+			}
+
+			this.set('transitionEnd', transitionEnd);
 
 		},
 
@@ -426,7 +450,7 @@
 				y = unitInfo.y,
 				cssX = x * squareSize,
 				cssY = y * squareSize,
-				$unitLayerWrapper = this.$el.find(this.selectors.unitWrapper);
+				$unitLayerWrapper = this.$el.find(this.selectors.unitsWrapper);
 
 			$unitWrapper
 				.css({
@@ -668,7 +692,52 @@
 
 			return evt;
 
+		},
+
+		//////////////////
+		// unit actions
+		//////////////////
+
+		moveUnitTo: function (data) {
+
+			var view = this,
+				model = view.get('model'),
+				deferred = $.Deferred(),
+				unit = data.unit,
+				unitId = unit.get('id'),
+				pre = view.info.get('pre', true).css,
+				transitionEnd = this.get('transitionEnd'),
+				squareSize = view.info.get('squareSize'),
+				$unitNode = view.$el.find('[data-unit-id="' + unitId + '"]'),
+				x = data.x,
+				y = data.y,
+				xPx = x * squareSize,
+				yPx = y * squareSize;
+
+			$unitNode.addClass('moving');
+
+			// set action on move end
+			$unitNode.one(transitionEnd, function () {
+
+				$(this)
+					.removeClass('moving')
+					.attr('data-x', x)
+					.attr('data-y', y)
+					.attr('data-xy', 'x' + x + 'y' + y);
+
+				model.clearAvailableActions();
+				view.clearAvailableActions();
+
+				deferred.resolve();
+
+			}); // work only one time
+
+			$unitNode.css(pre + 'transform', 'translate3d(' + xPx + 'px, ' + yPx + 'px, 0)');
+
+			return deferred.promise();
+
 		}
+
 
 	});
 

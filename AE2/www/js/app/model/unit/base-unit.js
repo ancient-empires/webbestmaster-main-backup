@@ -81,6 +81,10 @@
 
 		getAvailablePathViewWithTeamUnit: function () {
 
+			if ( this.get('didMove') ) {
+				return [];
+			}
+
 			var unit = this,
 				view = unit.get('view'),
 				model = unit.get('model'),
@@ -116,6 +120,54 @@
 			});
 
 			return pathFinder.getAvailablePath();
+
+		},
+
+		//////////
+		// unit's action
+		//////////
+
+		moveTo: function (data) {
+
+			var unit = this,
+				model = unit.get('model'),
+				view = unit.get('view'),
+
+				x = data.x,
+				y = data.y;
+
+			view
+				.moveUnitTo(data)
+				.done(function () {
+
+					unit.set('x', x);
+					unit.set('y', y);
+
+					unit.set('didMove', true);
+
+					var availableActions = unit.getAvailableActions();
+					view.showAvailableActions(availableActions);
+					model.set('availableActions', availableActions);
+
+				});
+
+
+
+		},
+
+		prepareToNextTurn: function () {
+
+			var unit = this;
+
+			unit.set('isActive', true);
+			unit.set('didMove', false);
+			unit.set('didAttack', false);
+			unit.set('didRaise', false);
+			unit.set('isPoison', false); // todo: see poison counter
+			unit.set('didPoison', false);
+			unit.set('underWispAura', false);
+			unit.set('gotBuilding', false);
+			unit.set('fixedBuilding', false);
 
 		}
 
