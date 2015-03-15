@@ -45,8 +45,8 @@
 				unitTeamNumber = unit.get('teamNumber'),
 				units = unit.get('model').get('units'),
 				teamUnits = [], // done
-				enemyUnits = [],
-				availablePathViewWithTeamUnit,// ~ done, todo: add to getAvailablePathViewWithTeamUnit terrain types and unit type relatives
+				enemyUnits = [], // done
+				availablePathViewWithTeamUnit, // done
 				availablePathViewWithoutTeamUnit, // done
 				availableAttacks,
 				unitsUnderAttack,
