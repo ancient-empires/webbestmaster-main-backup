@@ -150,6 +150,7 @@
 		},
 
 		showAvailableActions: function (actions) {
+
 			this.clearAvailableActions();
 
 			if ( actions.availablePathViewWithTeamUnit ) {
@@ -157,9 +158,11 @@
 			}
 
 			if ( actions.confirmMoveAction ) {
-
 				this.showConfirmMoveAction(actions.confirmMoveAction);
+			}
 
+			if ( actions.unitsUnderAttack ) {
+				this.showUnitsUnderAttack(actions.unitsUnderAttack);
 			}
 
 		},
@@ -199,9 +202,29 @@
 
 		},
 
+		showUnitsUnderAttack: function (unitsUnderAttack) {
+
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
+
+			_.each(unitsUnderAttack, function (xy) {
+				$eventWrapper.find('[data-xy="x' + xy.x + 'y' + xy.y + '"]').addClass('show-unit-under-attack');
+			}, this);
+
+		},
+
+		hideUnitsUnderAttack: function () {
+
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
+			$eventWrapper.find('.show-unit-under-attack').each(function () {
+				$(this).removeClass('show-unit-under-attack');
+			});
+
+		},
+
 		clearAvailableActions: function () {
 			this.hideAvailablePathViewWithTeamUnit();
 			this.hideConfirmMoveAction();
+			this.hideUnitsUnderAttack();
 		},
 
 		removeActiveSquare: function () {

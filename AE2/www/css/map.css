@@ -13,14 +13,14 @@
 	left: -50%;
 	top: -50%;
 
-	-webkit-animation-name: change-bg;
+	-webkit-animation-name: change-bg-2;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-direction: normal;
 	-webkit-animation-timing-function: steps(2);
 	-webkit-animation-fill-mode: forwards;
 
-	animation-name: change-bg;
+	animation-name: change-bg-2;
 	animation-duration: 1s;
 	animation-iteration-count: infinite;
 	animation-direction: normal;
@@ -29,7 +29,7 @@
 
 }
 
-@-webkit-keyframes change-bg {
+@-webkit-keyframes change-bg-2 {
 
 	from {
 		background-position: 0 0;
@@ -41,7 +41,7 @@
 
 }
 
-@keyframes change-bg {
+@keyframes change-bg-2 {
 
 	from {
 		background-position: 0 0;
@@ -49,13 +49,38 @@
 
 	to {
 		background-position: 200% 0;
+	}
+
+}
+
+@-webkit-keyframes change-bg-3 {
+
+	from {
+		background-position: 0 0;
+	}
+
+	to {
+		background-position: 150% 0;
+	}
+
+}
+
+@keyframes change-bg-3 {
+
+	from {
+		background-position: 0 0;
+	}
+
+	to {
+		background-position: 150% 0;
 	}
 
 }
 
 .available-path,
 .available-attack,
-.confirm-move {
+.confirm-move,
+.unit-under-attack {
 	background-repeat: no-repeat;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
@@ -85,9 +110,31 @@
 	background-image: url(../i/ux/confirm-move.png);
 }
 
+.unit-under-attack {
+	background-image: url(../i/ux/unit-under-attack.png);
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
+
+	-webkit-animation-name: change-bg-3;
+	-webkit-animation-duration: 1.5s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: normal;
+	-webkit-animation-timing-function: steps(3);
+	-webkit-animation-fill-mode: forwards;
+
+	animation-name: change-bg-3;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-direction: normal;
+	animation-timing-function: steps(3);
+	animation-fill-mode: forwards;
+
+}
+
 .show-available-path .available-path,
 .show-available-attack .available-attack,
-.show-confirm-move .confirm-move {
+.show-confirm-move .confirm-move,
+.show-unit-under-attack .unit-under-attack {
 	-webkit-transform: scale(1);
 	transform: scale(1);
 }

@@ -21,7 +21,7 @@
 			{"type": "archer", "x": 2, "y": 13, ownerId: 0},
 			{"type": "elemental", "x": 3, "y": 13, ownerId: 0},
 			{"type": "sorceress", "x": 4, "y": 13, ownerId: 0},
-			{"type": "wisp", "x": 5, "y": 13, ownerId: 0},
+			{"type": "wisp", "x": 5, "y": 13, ownerId: 1},
 			{"type": "dire-wolf", "x": 6, "y": 13, ownerId: 0},
 			{"type": "golem", "x": 7, "y": 13, ownerId: 0},
 			{"type": "catapult", "x": 8, "y": 13, ownerId: 0},

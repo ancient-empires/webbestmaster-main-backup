@@ -46,9 +46,8 @@
 				units = unit.get('model').get('units'),
 				teamUnits = [], // done
 				enemyUnits = [], // done
-				availablePathViewWithTeamUnit, // done
+				availablePathViewWithTeamUnit, // ~done // todo: add path resistance
 				availablePathViewWithoutTeamUnit, // done
-				availableAttacks,
 				unitsUnderAttack,
 				riseSkeletons,
 				availableFixBuilding,
@@ -65,7 +64,7 @@
 			});
 
 			// get available path view with team unit
-			availablePathViewWithTeamUnit = unit.getAvailablePathViewWithTeamUnit();
+			availablePathViewWithTeamUnit = unit.getAvailablePathWithTeamUnit();
 
 			// get available path view withOUT team unit
 			availablePathViewWithoutTeamUnit = _.filter(availablePathViewWithTeamUnit, function (xy) {
@@ -78,15 +77,19 @@
 				return !founded;
 			});
 
+			// get unitsUnderAttack
+			unitsUnderAttack = unit.unitsUnderAttack();
+
 			return {
 				unit: unit,
+				unitsUnderAttack: unitsUnderAttack,
 				availablePathViewWithTeamUnit: availablePathViewWithTeamUnit,
 				availablePathViewWithoutTeamUnit: availablePathViewWithoutTeamUnit
 			};
 
 		},
 
-		getAvailablePathViewWithTeamUnit: function () {
+		getAvailablePathWithTeamUnit: function () {
 
 			if ( this.get('didMove') ) {
 				return [];
@@ -130,6 +133,62 @@
 
 		},
 
+		unitsUnderAttack: function () {
+
+			var unit = this,
+				view = unit.get('view'),
+				model = unit.get('model'),
+				units = model.get('units'),
+				map = view.get('map'),
+				terrain = map.terrain,
+				teamUnits = [],
+				enemyUnits = [],
+				availableAttackXYs,
+				underAttackXYs = [],
+				pathFinder,
+				unitTeamNumber = unit.get('teamNumber');
+
+			_.each(units, function (unit) {
+				if ( unit.get('teamNumber') === unitTeamNumber ) {
+					teamUnits.push(unit);
+				} else {
+					enemyUnits.push(unit);
+				}
+			});
+
+			pathFinder = new PathFinder({
+				blackWholes: [],
+				terrain: terrain,
+				mov: unit.get('atkRange') - 1,
+				x: unit.get('x'),
+				y: unit.get('y'),
+				moveType: unit.get('moveType'),
+				minX: 0,
+				minY: 0,
+				maxX: map.size.width - 1,
+				maxY: map.size.height - 1,
+				relativeTypeSpace: false
+			});
+
+			availableAttackXYs = pathFinder.getAvailablePath();
+
+			_.each(enemyUnits, function (enemyUnit) {
+
+				var xy = {
+					x: enemyUnit.get('x'),
+					y: enemyUnit.get('y')
+				};
+
+				if ( _.find(availableAttackXYs, xy) ) {
+					underAttackXYs.push(xy);
+				}
+
+			});
+
+			return underAttackXYs;
+
+		},
+
 		getConfirmMoveActions: function (xy) {
 
 			var unit = this,
@@ -148,8 +207,8 @@
 					undoMoveActions.push({
 						x: x,
 						y: y,
-						beforeX: xy.beforeX,
-						beforeY: xy.beforeY
+						beforeX: beforeX,
+						beforeY: beforeY
 					});
 				}
 			}
@@ -224,6 +283,12 @@
 
 			view.showAvailableActions(availableActions);
 			model.set('availableActions', availableActions);
+
+		},
+
+		attackToXy: function (action) {
+
+			alert('attackToXy');
 
 		},
 
@@ -476,6 +541,8 @@
 
 				squareType = pathFinder.getSquareByXY(x, y);
 				unitMoveType = pathFinder.get('moveType');
+
+				// todo: add resistance relative from square type
 
 				switch (unitMoveType) {
 					case 'fly':

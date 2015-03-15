@@ -208,10 +208,11 @@
 				unit = actions.unit,
 				availablePathViewWithoutTeamUnit = actions.availablePathViewWithoutTeamUnit,
 				confirmMoveAction = actions.confirmMoveAction,
+				unitsUnderAttack = actions.unitsUnderAttack,
 				move,
 				undoMoveActions = actions.undoMoveActions;
 
-			console.log('actions');
+			console.log(' -- actions');
 			console.log(actions);
 
 			move = _.find(availablePathViewWithoutTeamUnit, xy);
@@ -242,6 +243,16 @@
 					beforeY: undoMoveActions[0].beforeY
 				};
 			}
+
+			if ( unitsUnderAttack && _.find(unitsUnderAttack, xy) ) {
+				return {
+					type: 'attack',
+					unit: unit,
+					attackX: xy.x,
+					attackY: xy.y
+				};
+			}
+
 
 			return false;
 
@@ -336,7 +347,17 @@
 
 					break;
 
+				case 'attack':
+
+					unit.attackToXy(action);
+
+					break;
+
 				default:
+
+
+
+					debugger
 					console.log('--- undefind unit action');
 
 			}

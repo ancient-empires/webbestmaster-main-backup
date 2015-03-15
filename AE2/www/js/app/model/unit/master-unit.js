@@ -20,6 +20,7 @@
 					min: 50,
 					max: 55
 				},
+				atkRange: 2,
 				def: 5,
 				mov: 5,
 				modelName: 'SoldierModel',
@@ -30,6 +31,7 @@
 					min: 50,
 					max: 55
 				},
+				atkRange: 3,
 				def: 5,
 				mov: 5,
 				modelName: 'ArcherModel',
@@ -40,6 +42,7 @@
 					min: 50,
 					max: 55
 				},
+				atkRange: 2,
 				def: 10,
 				mov: 5,
 				modelName: 'ElementalModel',
@@ -52,6 +55,8 @@
 					min: 40,
 					max: 45
 				},
+				atkRange: 2,
+				raiseRange: 2,
 				def: 5,
 				mov: 5,
 				modelName: 'SorceressModel',
@@ -62,6 +67,8 @@
 					min: 35,
 					max: 40
 				},
+				atkRange: 2,
+				auraRange: 3,
 				def: 10,
 				mov: 5,
 				modelName: 'WispModel',
@@ -72,6 +79,7 @@
 					min: 60,
 					max: 65
 				},
+				atkRange: 2,
 				def: 15,
 				mov: 6,
 				modelName: 'DireWolfModel',
@@ -83,6 +91,7 @@
 					min: 60,
 					max: 70
 				},
+				atkRange: 2,
 				def: 30,
 				mov: 5,
 				modelName: 'GolemModel',
@@ -93,6 +102,7 @@
 					min: 50,
 					max: 70
 				},
+				atkRange: 7,
 				def: 10,
 				mov: 4,
 				modelName: 'CatapultModel',
@@ -103,6 +113,7 @@
 					min: 70,
 					max: 80
 				},
+				atkRange: 2,
 				def: 25,
 				mov: 7,
 				modelName: 'DragonModel',
@@ -114,6 +125,7 @@
 					min: 40,
 					max: 50
 				},
+				atkRange: 2,
 				def: 2,
 				mov: 5,
 				modelName: 'SkeletonModel',
@@ -124,6 +136,7 @@
 					min: 55,
 					max: 65
 				},
+				atkRange: 2,
 				def: 20,
 				mov: 5,
 				modelName: 'GalamarModel',
@@ -134,6 +147,7 @@
 					min: 55,
 					max: 65
 				},
+				atkRange: 2,
 				def: 20,
 				mov: 5,
 				modelName: 'ValadornModel',
@@ -144,6 +158,7 @@
 					min: 55,
 					max: 65
 				},
+				atkRange: 2,
 				def: 20,
 				mov: 5,
 				modelName: 'DemonLordModel',
@@ -154,6 +169,7 @@
 					min: 55,
 					max: 65
 				},
+				atkRange: 2,
 				def: 20,
 				mov: 5,
 				modelName: 'SaethModel',
