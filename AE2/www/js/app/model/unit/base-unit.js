@@ -17,6 +17,8 @@
 			// default state
 			this.setDefaultState();
 
+			this.set('health', 100);
+
 		},
 
 		setDefaultState: function () {
@@ -43,8 +45,9 @@
 				unitTeamNumber = unit.get('teamNumber'),
 				units = unit.get('model').get('units'),
 				teamUnits = [], // done
+				enemyUnits = [],
 				availablePathViewWithTeamUnit,// ~ done, todo: add to getAvailablePathViewWithTeamUnit terrain types and unit type relatives
-				availablePathViewWithoutTeamUnit = [], // done
+				availablePathViewWithoutTeamUnit, // done
 				availableAttacks,
 				unitsUnderAttack,
 				riseSkeletons,
@@ -52,13 +55,17 @@
 				availableGetBuilding,
 				openStore;
 
-			// get team units
-			teamUnits = _.filter(units, function (unit) {
-				return unit.get('teamNumber') === unitTeamNumber;
+			// get team and enemy units
+			_.each(units, function (unit) {
+				if ( unit.get('teamNumber') === unitTeamNumber ) {
+					teamUnits.push(unit);
+				} else {
+					enemyUnits.push(unit);
+				}
 			});
 
 			// get available path view with team unit
-			availablePathViewWithTeamUnit = this.getAvailablePathViewWithTeamUnit();
+			availablePathViewWithTeamUnit = unit.getAvailablePathViewWithTeamUnit();
 
 			// get available path view withOUT team unit
 			availablePathViewWithoutTeamUnit = _.filter(availablePathViewWithTeamUnit, function (xy) {
