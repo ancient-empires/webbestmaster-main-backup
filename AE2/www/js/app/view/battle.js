@@ -732,13 +732,15 @@
 				unit = data.unit,
 				unitId = unit.get('id'),
 				pre = view.info.get('pre', true).css,
-				transitionEnd = this.get('transitionEnd'),
+				transitionEnd = view.get('transitionEnd'),
 				squareSize = view.info.get('squareSize'),
 				$unitNode = view.$el.find('[data-unit-id="' + unitId + '"]'),
 				x = data.x,
 				y = data.y,
 				xPx = x * squareSize,
 				yPx = y * squareSize;
+
+			view.disable();
 
 			$unitNode.addClass('moving');
 
@@ -753,6 +755,8 @@
 
 				model.clearAvailableActions();
 				view.clearAvailableActions();
+
+				view.enable();
 
 				deferred.resolve();
 
