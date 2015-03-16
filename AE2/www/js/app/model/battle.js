@@ -135,7 +135,7 @@
 			// find active actions
 			if (action) {
 				// do action
-				console.log('action');
+				console.log('!!!!!!action');
 				// todo: also find end move action, see settings
 				this.doAction(action);
 				return;
@@ -208,9 +208,11 @@
 				unit = actions.unit,
 				availablePathViewWithoutTeamUnit = actions.availablePathViewWithoutTeamUnit,
 				confirmMoveAction = actions.confirmMoveAction,
+				confirmAttackAction = actions.confirmAttackAction,
 				unitsUnderAttack = actions.unitsUnderAttack,
 				move,
-				undoMoveActions = actions.undoMoveActions;
+				undoMoveActions = actions.undoMoveActions,
+				undoAttackActions = actions.undoAttackActions;
 
 			console.log(' -- actions');
 			console.log(actions);
@@ -244,6 +246,24 @@
 				};
 			}
 
+			if ( confirmAttackAction && confirmAttackAction.x === xy.x && confirmAttackAction.y === xy.y ) {
+				return {
+					type: 'confirmAttackAction',
+					unit: unit,
+					x: xy.x,
+					y: xy.y
+				};
+			}
+
+			if ( undoAttackActions && _.find(undoAttackActions, xy) ) {
+				return {
+					type: 'undoAttackAction',
+					unit: unit,
+					x: xy.x,
+					y: xy.y
+				};
+			}
+
 			if ( unitsUnderAttack && _.find(unitsUnderAttack, xy) ) {
 				return {
 					type: 'attack',
@@ -252,7 +272,6 @@
 					attackY: xy.y
 				};
 			}
-
 
 			return false;
 
@@ -353,10 +372,20 @@
 
 					break;
 
+
+				case 'confirmAttackAction':
+
+					unit.confirmAttack(action);
+
+					break;
+
+				case 'undoAttackAction':
+
+					unit.undoAttack(action);
+
+					break;
+
 				default:
-
-
-
 					debugger
 					console.log('--- undefind unit action');
 

@@ -192,7 +192,7 @@
 		getConfirmMoveActions: function (xy) {
 
 			var unit = this,
-				view = this.get('view'),
+				view = unit.get('view'),
 				sizes = view.get('map').size,
 				undoMoveActions = [],
 				curX = xy.x,
@@ -221,6 +221,60 @@
 				},
 				undoMoveActions: undoMoveActions
 			};
+
+		},
+
+		getConfirmAttackActions: function (xy) {
+
+			var unit = this,
+				view = unit.get('view'),
+				sizes = view.get('map').size,
+				undoAttackActions = [],
+				curX = xy.x,
+				curY = xy.y,
+				x, y,
+				xLen, yLen;
+
+			for (x = 0, xLen = sizes.width; x < xLen; x += 1) {
+				for (y = 0, yLen = sizes.height; y < yLen; y += 1) {
+					undoAttackActions.push({
+						x: x,
+						y: y
+					});
+				}
+			}
+
+			return {
+				unit: unit,
+				confirmAttackAction: {
+					x: curX,
+					y: curY
+				},
+				undoAttackActions: undoAttackActions
+			};
+
+		},
+
+		getUnitByXY: function (xy) {
+
+			var unit = this,
+				units = unit.get('model').get('units'),
+				x = xy.x,
+				y = xy.y,
+				enemyUnit = false;
+
+			_.each(units, function (unit) {
+
+				var unitX = unit.get('x'),
+					unitY = unit.get('y');
+
+				if (x === unitX && y === unitY) {
+					enemyUnit = unit;
+				}
+
+			});
+
+			return enemyUnit;
 
 		},
 
@@ -288,7 +342,34 @@
 
 		attackToXy: function (action) {
 
-			alert('attackToXy');
+			var unit = this,
+				x = action.attackX,
+				y = action.attackY,
+				enemyUnit = this.getUnitByXY({
+					x: x,
+					y: y
+				}),
+				model = unit.get('model'),
+				view = unit.get('view'),
+				availableActions;
+
+			if ( view.info.get('confirmAttack') === 'on' && !action.confirmed ) {
+				availableActions = unit.getConfirmAttackActions({
+					x: x,
+					y: y
+				});
+			} else {
+
+				console.log('attack !!!!!!!!!!!!!!!!!');
+
+				alert('attack !!!!!!!!!!!!!!!!!');
+
+				//availableActions = unit.getAvailableActions();
+
+			}
+
+			view.showAvailableActions(availableActions);
+			model.set('availableActions', availableActions);
 
 		},
 
@@ -323,6 +404,36 @@
 					model.set('availableActions', availableActions);
 
 				});
+
+		},
+
+		confirmAttack: function (action) {
+
+			this.attackToXy({
+				attackX: action.x,
+				attackY: action.y,
+				confirmed: true
+			});
+
+		},
+
+		undoAttack: function () {
+
+			var unit = this,
+				model = unit.get('model'),
+				view = unit.get('view'),
+				availableActions = unit.getAvailableActions();
+
+			view.clearAvailableActions();
+			model.clearAvailableActions();
+
+			view.showAvailableActions(availableActions);
+			model.set('availableActions', availableActions);
+
+			view.markActiveSquare({
+				x: unit.get('x'),
+				y: unit.get('y')
+			});
 
 		},
 

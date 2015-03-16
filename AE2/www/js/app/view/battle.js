@@ -151,18 +151,24 @@
 
 		showAvailableActions: function (actions) {
 
-			this.clearAvailableActions();
+			var view = this;
+
+			view.clearAvailableActions();
 
 			if ( actions.availablePathViewWithTeamUnit ) {
-				this.showAvailablePathViewWithTeamUnit(actions.availablePathViewWithTeamUnit);
+				view.showAvailablePathViewWithTeamUnit(actions.availablePathViewWithTeamUnit);
 			}
 
 			if ( actions.confirmMoveAction ) {
-				this.showConfirmMoveAction(actions.confirmMoveAction);
+				view.showConfirmMoveAction(actions.confirmMoveAction);
 			}
 
 			if ( actions.unitsUnderAttack ) {
-				this.showUnitsUnderAttack(actions.unitsUnderAttack);
+				view.showUnitsUnderAttack(actions.unitsUnderAttack);
+			}
+
+			if ( actions.confirmAttackAction ) {
+				view.showConfirmAttackAction(actions.confirmAttackAction);
 			}
 
 		},
@@ -221,10 +227,28 @@
 
 		},
 
+		showConfirmAttackAction: function (confirmAttackAction) {
+
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper),
+				x = confirmAttackAction.x,
+				y = confirmAttackAction.y;
+
+			$eventWrapper.find('[data-xy="x' + x + 'y' + y + '"]').addClass('show-confirm-attack');
+
+		},
+
+		hideConfirmAttackAction: function () {
+
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
+			$eventWrapper.find('.show-confirm-attack').removeClass('show-confirm-attack');
+
+		},
+
 		clearAvailableActions: function () {
 			this.hideAvailablePathViewWithTeamUnit();
 			this.hideConfirmMoveAction();
 			this.hideUnitsUnderAttack();
+			this.hideConfirmAttackAction();
 		},
 
 		removeActiveSquare: function () {
