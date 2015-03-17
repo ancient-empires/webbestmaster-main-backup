@@ -37,7 +37,20 @@
 	to { background-position: 0 200%; }
 }
 
+.unit-health {
+	font-size: 1rem;
+	color: #000;
+}
 
+.attack-square { /* above from units */
+	background-color: #ff00ff;
+	z-index: 2;
+}
+
+.attack-square.moving { /* above from units */
+	-webkit-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
+}
 
 /* archer */
 .unit-image-archer-black { background-image: url(../i/unit/unit-archer-black.png); }

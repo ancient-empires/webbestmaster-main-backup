@@ -545,6 +545,8 @@
 
 			$unitBlock.addClass('unit-image unit-image-' + unitInfo.type + '-' + unitInfo.color);
 
+			$unitBlock.append('<div class="unit-health">' + unit.get('health') + '</div>');
+
 			$unitLayerWrapper.append($unitWrapper);
 
 		},
@@ -810,6 +812,53 @@
 			}); // work only one time
 
 			$unitNode.css(pre + 'transform', 'translate3d(' + xPx + 'px, ' + yPx + 'px, 0)');
+
+			return deferred.promise();
+
+		},
+
+		showAttack: function (data) {
+
+			var view = this,
+				model = view.get('model'),
+				from = data.from,
+				to = data.to,
+				deferred = $.Deferred(),
+				pre = view.info.get('pre', true).css,
+				transitionEnd = view.get('transitionEnd'),
+				squareSize = view.info.get('squareSize'),
+				$attackNode = $('<div class="attack-square">&nbsp;</div>'),
+				$unitsWrapper = view.$el.find(view.selectors.unitsWrapper);
+
+			$unitsWrapper.append($attackNode);
+
+			$attackNode
+				.css(pre + 'transform', 'translate3d(' + (from.x * squareSize) + 'px, ' + (from.y * squareSize) + 'px, 0)')
+				.css({
+					width: squareSize + 'px',
+					height: squareSize + 'px'
+				});
+
+			$attackNode.one(transitionEnd, function () {
+
+				$(this).remove();
+
+				model.clearAvailableActions();
+				view.clearAvailableActions();
+
+				view.enable();
+
+				deferred.resolve();
+
+			}); // work only one time
+
+			view.disable();
+
+			$attackNode.addClass('moving');
+
+			setTimeout(function () { // todo: try to do transitionEnd without this hack
+				$attackNode.css(pre + 'transform', 'translate3d(' + (to.x * squareSize) + 'px, ' + (to.y * squareSize) + 'px, 0)');
+			}, 0);
 
 			return deferred.promise();
 

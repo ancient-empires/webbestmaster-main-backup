@@ -345,31 +345,61 @@
 			var unit = this,
 				x = action.attackX,
 				y = action.attackY,
-				enemyUnit = this.getUnitByXY({
-					x: x,
-					y: y
-				}),
+				enemyUnit,
 				model = unit.get('model'),
 				view = unit.get('view'),
 				availableActions;
 
 			if ( view.info.get('confirmAttack') === 'on' && !action.confirmed ) {
+
 				availableActions = unit.getConfirmAttackActions({
 					x: x,
 					y: y
 				});
+
+				view.showAvailableActions(availableActions);
+				model.set('availableActions', availableActions);
+
 			} else {
 
-				console.log('attack !!!!!!!!!!!!!!!!!');
+				enemyUnit = this.getUnitByXY({
+					x: x,
+					y: y
+				});
 
-				alert('attack !!!!!!!!!!!!!!!!!');
-
-				//availableActions = unit.getAvailableActions();
+				unit.attackToUnit(enemyUnit);
 
 			}
 
-			view.showAvailableActions(availableActions);
-			model.set('availableActions', availableActions);
+		},
+
+		attackToUnit: function (enemyUnit) {
+
+			var unit = this,
+				view = unit.get('view'),
+				model = unit.get('model'),
+				atk = 10;
+
+			view.showAttack({
+				from: {
+					x: unit.get('x'),
+					y: unit.get('y')
+				},
+				to: {
+					x: enemyUnit.get('x'),
+					y: enemyUnit.get('y')
+				}
+			}).then(function () {
+
+
+				console.log('attack here !!!');
+
+
+
+
+			});
+
+
 
 		},
 
