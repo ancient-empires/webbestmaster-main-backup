@@ -372,8 +372,8 @@
 					y: y
 				});
 
-				view.showAvailableActions(availableActions);
 				model.set('availableActions', availableActions);
+				view.showAvailableActions(availableActions);
 
 			} else {
 
@@ -381,6 +381,9 @@
 					x: x,
 					y: y
 				});
+
+				model.clearAvailableActions();
+				view.clearAvailableActions();
 
 				unit.attackToUnit(enemyUnit);
 
