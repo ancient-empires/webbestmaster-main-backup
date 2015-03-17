@@ -63,7 +63,10 @@
 }
 
 .attack-square { /* above from units */
-	background-color: #F0F;
+	background-image: url(../i/unit/attack-action.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
 	z-index: 2;
 }
 
