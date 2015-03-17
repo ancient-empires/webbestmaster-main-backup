@@ -14,10 +14,13 @@
 
 		initialize: function() {
 
-			// default state
-			this.setDefaultState();
+			var unit = this;
 
-			this.set('health', 100);
+			// default state
+			unit.setDefaultState();
+
+			unit.set('health', 100);
+			unit.set('defaultHealth', 100);
 
 		},
 
@@ -278,18 +281,49 @@
 
 		},
 
-
-		canStrikeBack: function (enemyUnit) {
+		canStrikeBack: function (enemy) {
 
 			var unit = this,
 				unitX = unit.get('x'),
 				unitY = unit.get('y'),
-				enemyX = enemyUnit.get('x'),
-				enemyY = enemyUnit.get('y'),
+				enemyX = enemy.get('x'),
+				enemyY = enemy.get('y'),
 				dX = Math.abs(unitX - enemyX),
 				dY = Math.abs(unitY - enemyY);
 
 			return dX + dY <= 1;
+
+		},
+
+		getAttackToUnit: function (enemy) {
+
+			// todo: count more parameters,
+			// like level,
+			// bonus damage by level,
+			// bonus armor by level,
+			// poisoned, wisp aura,
+			// special armor for elemental
+			// special damage archer vs dragon
+			// special damage wisp vs skeleton
+
+			var unit = this,
+				unitHealth = unit.get('health'),
+				enemyHealth = enemy.get('health'),
+				unitDefaultHealth = unit.get('defaultHealth'),
+				model = unit.get('model'),
+				unitAkt = unit.get('atk'),
+				maxAtk = unitAkt.max,
+				minAtk = unitAkt.min,
+				atk = unit.util.getRandomBetween(minAtk, maxAtk),
+				enemyArmor = enemy.get('def'),
+				groundArmor = model.getArmorByXY({
+					x: enemy.get('x'),
+					y: enemy.get('y')
+				});
+
+			atk = atk - ( enemyArmor + groundArmor );
+
+			return atk;
 
 		},
 
@@ -395,8 +429,7 @@
 
 			var unit = this,
 				view = unit.get('view'),
-				model = unit.get('model'),
-				atk = 10;
+				model = unit.get('model');
 
 			view.showAttack({
 				from: {
@@ -409,7 +442,7 @@
 				}
 			}).then(function () {
 
-				//todo: count attack here
+				var atk = unit.getAttackToUnit(enemyUnit);
 
 				var enemyUnitHealth = enemyUnit.get('health');
 				enemyUnitHealth -= atk;
@@ -440,8 +473,7 @@
 							}
 						}).then(function () {
 
-							// todo: count attack for strike back
-							var atk = 8,
+							var atk = enemyUnit.getAttackToUnit(unit),
 								unitHealth = unit.get('health');
 
 							unitHealth -= atk;
@@ -560,9 +592,17 @@
 			unit.set('gotBuilding', false);
 			unit.set('fixedBuilding', false);
 
+		},
+
+		util: {
+			getRandomBetween: function (start, end) {
+				return Math.floor(Math.random() * (end - start + 1) + start);
+			}
 		}
 
 	});
+
+
 
 
 	function PathFinder(data) {

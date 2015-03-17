@@ -331,6 +331,24 @@
 
 		},
 
+		getArmorByXY: function (xy) {
+
+			// try to get building
+			var model = this,
+				buildings = model.get('buildings'),
+				build = _.find(buildings, xy),
+				armor = build && win.APP.map.building.defence,
+				terrainType;
+
+			if (armor) {
+				return armor;
+			}
+
+			terrainType = model.getTerrainByXY(xy).terrainType;
+			return win.APP.map[terrainType].defence;
+
+		},
+
 		//////////////////
 		// unit actions
 		//////////////////

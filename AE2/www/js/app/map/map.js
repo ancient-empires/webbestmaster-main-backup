@@ -41,6 +41,10 @@
 			pathResistance: 4,
 			flowPathResistance: 1,
 			defence: 0
+		},
+
+		building: {
+			defence: 15
 		}
 
 	};
