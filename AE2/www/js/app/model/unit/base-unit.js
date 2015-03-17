@@ -762,8 +762,6 @@
 				squareType = pathFinder.getSquareByXY(x, y);
 				unitMoveType = pathFinder.get('moveType');
 
-				// todo: add resistance relative from square type
-
 				switch (unitMoveType) {
 					case 'fly':
 						pathResistance = 1;
