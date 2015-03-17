@@ -39,11 +39,31 @@
 
 .unit-health {
 	font-size: 1rem;
-	color: #000;
+	color: #FF0;
+	position: absolute;
+	bottom: 0;
+	z-index: 1;
+}
+
+.delta-unit-health {
+	font-size: 1rem;
+	color: #00F;
+	position: absolute;
+	bottom: 0;
+	z-index: 2;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+.delta-unit-health.move-up {
+	-webkit-transition: all 0.5s ease-out;
+	transition: all 0.5s ease-out;
+	-webkit-transform: translate3d(0, -500%, 0);
+	transform: translate3d(0, -500%, 0);
 }
 
 .attack-square { /* above from units */
-	background-color: #ff00ff;
+	background-color: #F0F;
 	z-index: 2;
 }
 
@@ -51,6 +71,42 @@
 	-webkit-transition: all 0.5s ease-out;
 	transition: all 0.5s ease-out;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* archer */
 .unit-image-archer-black { background-image: url(../i/unit/unit-archer-black.png); }
@@ -149,13 +205,4 @@
 .unit-image-wisp-gray { background-image: url(../i/unit/unit-wisp-gray.png); }
 .unit-image-wisp-green { background-image: url(../i/unit/unit-wisp-green.png); }
 .unit-image-wisp-red { background-image: url(../i/unit/unit-wisp-red.png); }
-
-
-
-
-
-
-
-
-
 

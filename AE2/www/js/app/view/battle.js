@@ -545,7 +545,8 @@
 
 			$unitBlock.addClass('unit-image unit-image-' + unitInfo.type + '-' + unitInfo.color);
 
-			$unitBlock.append('<div class="unit-health">' + unit.get('health') + '</div>');
+			$unitWrapper.append('<div class="unit-health js-unit-health">' + unit.get('health') + '</div>');
+			$unitWrapper.append('<div class="delta-unit-health js-delta-unit-health"></div>');
 
 			$unitLayerWrapper.append($unitWrapper);
 
@@ -866,20 +867,37 @@
 
 		showDifferentUnitHealth: function (data) {
 
-			var view = this,
-				model = view.get('model'),
-				from = data.from,
-				to = data.to,
+			var unit = data.unit,
+				health = unit.get('health'),
+				differentHealth = data.differentHealth,
 				deferred = $.Deferred(),
+				view = this,
+				unitWrapper = view.$el.find(view.selectors.unitsWrapper + ' [data-unit-id="' + unit.get('id') + '"]'),
+				$health = unitWrapper.find('.js-unit-health'),
+				$deltaHealth = unitWrapper.find('.js-delta-unit-health'),
 				pre = view.info.get('pre', true).css,
 				transitionEnd = view.get('transitionEnd'),
-				squareSize = view.info.get('squareSize'),
-				$attackNode = $('<div class="attack-square">&nbsp;</div>'),
-				$unitsWrapper = view.$el.find(view.selectors.unitsWrapper);
+				model = view.get('model');
 
-			setTimeout(function () {
+			view.disable();
+
+			$health.html(health);
+
+			$deltaHealth.html(differentHealth);
+
+			$deltaHealth.one(transitionEnd, function () {
+
+				$deltaHealth.html('');
+
+				$deltaHealth.removeClass('move-up');
+
+				view.enable();
+
 				deferred.resolve();
-			}, 5000);
+
+			}); // work only one time
+
+			$deltaHealth.addClass('move-up');
 
 			return deferred.promise();
 

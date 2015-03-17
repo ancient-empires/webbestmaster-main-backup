@@ -278,6 +278,21 @@
 
 		},
 
+
+		canStrikeBack: function (enemyUnit) {
+
+			var unit = this,
+				unitX = unit.get('x'),
+				unitY = unit.get('y'),
+				enemyX = enemyUnit.get('x'),
+				enemyY = enemyUnit.get('y'),
+				dX = Math.abs(unitX - enemyX),
+				dY = Math.abs(unitY - enemyY);
+
+			return dX + dY <= 1;
+
+		},
+
 		//////////
 		// unit's action
 		//////////
@@ -391,8 +406,9 @@
 				}
 			}).then(function () {
 
-				var enemyUnitHealth = enemyUnit.get('health');
+				//todo: count attack here
 
+				var enemyUnitHealth = enemyUnit.get('health');
 				enemyUnitHealth -= atk;
 
 				enemyUnit.set('health', enemyUnitHealth);
@@ -403,10 +419,63 @@
 				});
 
 			}).then(function () {
-				console.log('yyyyyppppppaaaaaa!!!!!!!');
+
+				var enemyUnitHealth = enemyUnit.get('health');
+
+				if (enemyUnitHealth > 0) {
+
+					if ( enemyUnit.canStrikeBack(unit) ) {
+
+						view.showAttack({
+							from: {
+								x: enemyUnit.get('x'),
+								y: enemyUnit.get('y')
+							},
+							to: {
+								x: unit.get('x'),
+								y: unit.get('y')
+							}
+						}).then(function () {
+
+							// todo: count attack for strike back
+							var atk = 8,
+								unitHealth = unit.get('health');
+
+							unitHealth -= atk;
+
+							unit.set('health', unitHealth);
+
+							return view.showDifferentUnitHealth({
+								unit: unit,
+								differentHealth: atk
+							});
+
+						}).then(function () {
+
+							var unitHealth = unit.get('health');
+
+							if ( unitHealth < 0 ) {
+								// todo: create grove for unit
+								// todo: count level for enemy
+							} else {
+								// todo: count level for both unit
+							}
+
+						});
+
+					} else {
+						console.log('-- can NOT strike BACK');
+						// todo: count level for unit
+
+					}
+
+				} else {
+					// todo: show/create grove for enemy unit
+					console.log(' -- create grove for enemy unit');
+					// todo: count level for unit
+				}
+
 			});
-
-
 
 		},
 
