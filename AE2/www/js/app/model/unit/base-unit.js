@@ -391,12 +391,19 @@
 				}
 			}).then(function () {
 
+				var enemyUnitHealth = enemyUnit.get('health');
 
-				console.log('attack here !!!');
+				enemyUnitHealth -= atk;
 
+				enemyUnit.set('health', enemyUnitHealth);
 
+				return view.showDifferentUnitHealth({
+					unit: enemyUnit,
+					differentHealth: atk
+				});
 
-
+			}).then(function () {
+				console.log('yyyyyppppppaaaaaa!!!!!!!');
 			});
 
 

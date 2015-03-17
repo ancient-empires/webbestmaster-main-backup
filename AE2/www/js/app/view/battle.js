@@ -862,6 +862,27 @@
 
 			return deferred.promise();
 
+		},
+
+		showDifferentUnitHealth: function (data) {
+
+			var view = this,
+				model = view.get('model'),
+				from = data.from,
+				to = data.to,
+				deferred = $.Deferred(),
+				pre = view.info.get('pre', true).css,
+				transitionEnd = view.get('transitionEnd'),
+				squareSize = view.info.get('squareSize'),
+				$attackNode = $('<div class="attack-square">&nbsp;</div>'),
+				$unitsWrapper = view.$el.find(view.selectors.unitsWrapper);
+
+			setTimeout(function () {
+				deferred.resolve();
+			}, 5000);
+
+			return deferred.promise();
+
 		}
 
 
