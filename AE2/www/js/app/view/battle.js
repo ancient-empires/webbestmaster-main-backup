@@ -114,7 +114,7 @@
 			var i,
 				el = document.createElement('div'),
 				animations = {
-					'transition':'animationend',
+					'animation':'animationend',
 					'OAnimation':'oAnimationEnd',  // oAnimationEnd in very old Opera
 					'MozAnimation':'animationend',
 					'WebkitAnimation':'webkitAnimationEnd'
@@ -122,7 +122,7 @@
 				animationEnd = 'animationend';
 
 			for (i in animations) {
-				if (animations.hasOwnProperty(i) && el.style[i] !== animations) {
+				if (animations.hasOwnProperty(i) && el.style[i] !== undefined) {
 					animationEnd = animations[i];
 				}
 			}
