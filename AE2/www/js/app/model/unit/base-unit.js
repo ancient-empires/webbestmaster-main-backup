@@ -323,7 +323,7 @@
 
 			atk = atk - ( enemyArmor + groundArmor );
 
-			return atk;
+			return Math.round(atk);
 
 		},
 
@@ -451,7 +451,7 @@
 
 				return view.showDifferentUnitHealth({
 					unit: enemyUnit,
-					differentHealth: atk
+					differentHealth: -atk
 				});
 
 			}).then(function () {
@@ -482,7 +482,7 @@
 
 							return view.showDifferentUnitHealth({
 								unit: unit,
-								differentHealth: atk
+								differentHealth: -atk
 							});
 
 						}).then(function () {

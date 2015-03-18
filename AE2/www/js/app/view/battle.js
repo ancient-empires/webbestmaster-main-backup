@@ -514,16 +514,17 @@
 
 		appendUnit: function (unit) {
 
-			var pre = this.info.get('pre', true).css,
+			var view = this,
+				pre = view.info.get('pre', true).css,
 				$unitWrapper = $('<div></div>'),
-				squareSize = this.info.get('squareSize'),
+				squareSize = view.info.get('squareSize'),
 				$unitBlock = $('<div>&nbsp;</div>'),
 				unitInfo = unit.toJSON(),
 				x = unitInfo.x,
 				y = unitInfo.y,
 				cssX = x * squareSize,
 				cssY = y * squareSize,
-				$unitLayerWrapper = this.$el.find(this.selectors.unitsWrapper);
+				$unitLayerWrapper = view.$el.find(view.selectors.unitsWrapper);
 
 			$unitWrapper
 				.css({
@@ -545,10 +546,13 @@
 
 			$unitBlock.addClass('unit-image unit-image-' + unitInfo.type + '-' + unitInfo.color);
 
-			$unitWrapper.append('<div class="unit-health js-unit-health">' + unit.get('health') + '</div>');
-			$unitWrapper.append('<div class="delta-unit-health js-delta-unit-health"></div>');
+			//$unitWrapper.append('<div class="unit-health js-unit-health">' + unit.get('health') + '</div>');
+			$unitWrapper.append('<div class="js-unit-health unit-health"><div class="js-unit-health-ten unit-health-ten">&nbsp;</div><div class="js-unit-health-one unit-health-one">&nbsp;</div></div>');
+			$unitWrapper.append('<div class="js-delta-unit-health delta-unit-health"><div class="js-delta-unit-health-sign delta-unit-health-sign">&nbsp;</div><div class="js-delta-unit-health-ten delta-unit-health-ten">&nbsp;</div><div class="js-delta-unit-health-one delta-unit-health-one">&nbsp;</div></div>');
 
 			$unitLayerWrapper.append($unitWrapper);
+
+			view.setUnitHealth({ unit: unit });
 
 		},
 
@@ -873,7 +877,6 @@
 				deferred = $.Deferred(),
 				view = this,
 				unitWrapper = view.$el.find(view.selectors.unitsWrapper + ' [data-unit-id="' + unit.get('id') + '"]'),
-				$health = unitWrapper.find('.js-unit-health'),
 				$deltaHealth = unitWrapper.find('.js-delta-unit-health'),
 				pre = view.info.get('pre', true).css,
 				transitionEnd = view.get('transitionEnd'),
@@ -881,15 +884,16 @@
 
 			view.disable();
 
-			$health.html(health);
+			view.setUnitHealth({ unit: unit });
 
-			$deltaHealth.html(differentHealth);
+			view.setUnitDifferentHealth({
+				unit: unit,
+				differentHealth: differentHealth
+			});
 
 			$deltaHealth.one(transitionEnd, function () {
 
-				$deltaHealth.html('');
-
-				$deltaHealth.removeClass('move-up');
+				$deltaHealth.removeClass('bounce');
 
 				view.enable();
 
@@ -897,9 +901,82 @@
 
 			}); // work only one time
 
-			$deltaHealth.addClass('move-up');
+			$deltaHealth.addClass('bounce');
 
 			return deferred.promise();
+
+		},
+
+		chars: {
+			charsList: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'none', 'plus', 'minus', 'slash'],
+			charReference: {
+				'-': 'minus',
+				'+': 'plus',
+				'/': 'slash'
+			}
+		},
+
+		setUnitHealth: function (data) {
+
+			var view = this,
+				charsList = view.chars.charsList,
+				unit = data.unit,
+				health = unit.get('health'),
+				defaultHealth = unit.get('defaultHealth'),
+				unitId = unit.get('id'),
+				$unitWrapper = view.$el.find(view.selectors.unitsWrapper + ' [data-unit-id="' + unitId + '"]'),
+				one = 'none',
+				ten = 'none',
+				$healthOne = $unitWrapper.find('.js-unit-health-one'),
+				$healthTen = $unitWrapper.find('.js-unit-health-ten');
+
+			_.each(charsList, function (char) {
+				$healthOne.removeClass('number-1-' + char);
+				$healthTen.removeClass('number-1-' + char);
+			});
+
+			if (health !== defaultHealth) {
+				health = health.toString().split('');
+				one = health.pop() || one;
+				ten = health.pop() || ten;
+			}
+
+			$healthOne.addClass('number-1-' + one);
+			$healthTen.addClass('number-1-' + ten);
+
+		},
+
+		setUnitDifferentHealth: function (data) {
+
+			var view = this,
+				charsList = view.chars.charsList,
+				charReference = view.chars.charReference,
+				unit = data.unit,
+				unitId = unit.get('id'),
+				$unitWrapper = view.$el.find(view.selectors.unitsWrapper + ' [data-unit-id="' + unitId + '"]'),
+				sign = 'minus',
+				one = 'none',
+				ten = 'none',
+				$deltaHealthSign = $unitWrapper.find('.js-delta-unit-health-sign'),
+				$deltaHealthOne = $unitWrapper.find('.js-delta-unit-health-one'),
+				$deltaHealthTen = $unitWrapper.find('.js-delta-unit-health-ten'),
+				differentHealth = data.differentHealth;
+
+			_.each(charsList, function (char) {
+				$deltaHealthSign.removeClass('number-2-' + char);
+				$deltaHealthOne.removeClass('number-2-' + char);
+				$deltaHealthTen.removeClass('number-2-' + char);
+			});
+
+			differentHealth = differentHealth.toString().split('');
+
+			sign = charReference[differentHealth[0]] || sign;
+			one = differentHealth[2] || one;
+			ten = differentHealth[1] || ten;
+
+			$deltaHealthSign.addClass('number-2-' + sign);
+			$deltaHealthOne.addClass('number-2-' + one);
+			$deltaHealthTen.addClass('number-2-' + ten);
 
 		}
 
