@@ -857,6 +857,8 @@
 				$attackNode = $('<div class="attack-square">&nbsp;</div>'),
 				$unitsWrapper = view.$el.find(view.selectors.unitsWrapper);
 
+			view.removeActiveSquare();
+
 			$unitsWrapper.append($attackNode);
 
 			$attackNode
