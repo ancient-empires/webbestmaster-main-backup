@@ -38,6 +38,7 @@
 			this.detectClickEvent();
 
 			this.detectTransitionEndEventName();
+			this.detectAnimationEndEventName();
 
 			this.squareSize = {
 				min: win.APP.util.defaultUnit,
@@ -106,6 +107,27 @@
 			}
 
 			this.set('transitionEnd', transitionEnd);
+
+		},
+
+		detectAnimationEndEventName: function () {
+			var i,
+				el = document.createElement('div'),
+				animations = {
+					'transition':'animationend',
+					'OAnimation':'oAnimationEnd',  // oAnimationEnd in very old Opera
+					'MozAnimation':'animationend',
+					'WebkitAnimation':'webkitAnimationEnd'
+				},
+				animationEnd = 'animationend';
+
+			for (i in animations) {
+				if (animations.hasOwnProperty(i) && el.style[i] !== animations) {
+					animationEnd = animations[i];
+				}
+			}
+
+			this.set('animationEnd', animationEnd);
 
 		},
 
@@ -871,16 +893,13 @@
 
 		showDifferentUnitHealth: function (data) {
 
-			var unit = data.unit,
-				health = unit.get('health'),
+			var view = this,
+				unit = data.unit,
 				differentHealth = data.differentHealth,
 				deferred = $.Deferred(),
-				view = this,
 				unitWrapper = view.$el.find(view.selectors.unitsWrapper + ' [data-unit-id="' + unit.get('id') + '"]'),
 				$deltaHealth = unitWrapper.find('.js-delta-unit-health'),
-				pre = view.info.get('pre', true).css,
-				transitionEnd = view.get('transitionEnd'),
-				model = view.get('model');
+				animationEnd = view.get('animationEnd');
 
 			view.disable();
 
@@ -891,7 +910,7 @@
 				differentHealth: differentHealth
 			});
 
-			$deltaHealth.one(transitionEnd, function () {
+			$deltaHealth.one(animationEnd, function () {
 
 				$deltaHealth.removeClass('bounce');
 
