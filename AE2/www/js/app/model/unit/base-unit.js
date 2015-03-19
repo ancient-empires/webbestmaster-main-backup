@@ -429,8 +429,7 @@
 		attackToUnit: function (enemyUnit) {
 
 			var unit = this,
-				view = unit.get('view'),
-				model = unit.get('model');
+				view = unit.get('view');
 
 			view.showAttack({
 				from: {

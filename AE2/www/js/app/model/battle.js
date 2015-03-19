@@ -93,15 +93,11 @@
 
 		removeUnit: function (unit) {
 
-			console.log(this.get('units'));
-
 			var model = this,
 				units = model.get('units'),
 				unitIndex = units.indexOf(unit);
 
 			units.splice(unitIndex, 1);
-
-			console.log(this.get('units'));
 
 		},
 
@@ -161,9 +157,10 @@
 
 			this.setUnitsState();
 
+			this.setGraveState();
+
 			console.log('active player is (see below)');
 			console.log(this.get('activePlayer'));
-
 
 		},
 
@@ -472,6 +469,28 @@
 			_.each(units, function (unit) {
 				unit.prepareToNextTurn();
 			});
+
+		},
+
+		setGraveState: function () {
+
+			var model = this,
+				view = model.get('view'),
+				graves = model.get('graves'),
+				stayGraves = [],
+				removedGraves = [];
+
+			_.each(graves, function (grave) {
+				grave.increaseTime();
+				return grave.needRemove() ? removedGraves.push(grave) : stayGraves.push(grave);
+			});
+
+			_.each(removedGraves, function (grave) {
+				model.removeGrave(grave);
+				view.removeGrave(grave);
+			});
+
+			model.set('graves', stayGraves);
 
 		}
 
