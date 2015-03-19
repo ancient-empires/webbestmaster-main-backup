@@ -4,12 +4,37 @@
 	/*global console, alert, window, document */
 	/*global */
 
-	win.APP.unitMaster = {
-		counter: 1,
-		createUnits: function (data) {
+	function Grave(data) {
+		this.id = data.id;
+		this.x = data.x;
+		this.y = data.y;
+		this.currentTime = 1;
+	}
 
-			data.id = this.counter;
-			this.counter += 1;
+	Grave.prototype = {
+		maxTtl: 3,
+		increaseTime: function () {
+			this.currentTime += 1;
+		},
+		needRemove: function () {
+			return this.currentTime > this.maxTtl;
+		}
+	};
+
+	win.APP.unitMaster = {
+		unitCounter: 1, // set unit id
+		graveCounter: 1, // set grave id
+		createGrave: function (data) {
+
+			data.id = this.graveCounter;
+			this.graveCounter += 1;
+
+			return new Grave(data);
+		},
+		createUnit: function (data) {
+
+			data.id = this.unitCounter;
+			this.unitCounter += 1;
 
 			return new win.APP.BB.Unit[this.list[data.type].modelName](data);
 

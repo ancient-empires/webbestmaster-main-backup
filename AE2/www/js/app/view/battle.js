@@ -578,6 +578,57 @@
 
 		},
 
+
+		removeUnit: function (unit) {
+
+			var view = this,
+				$unitWrapper = view.$el.find(view.selectors.unitsWrapper + ' [data-unit-id="' + unit.get('id') + '"]');
+
+			$unitWrapper.remove();
+
+		},
+
+		addGrave: function (grave) {
+
+			var view = this,
+				pre = view.info.get('pre', true).css,
+				$graveWrapper = $('<div></div>'),
+				squareSize = view.info.get('squareSize'),
+				x = grave.x,
+				y = grave.y,
+				cssX = x * squareSize,
+				cssY = y * squareSize,
+				$unitLayerWrapper = view.$el.find(view.selectors.unitsWrapper);
+
+			$graveWrapper
+				.css({
+					height: squareSize + 'px',
+					width: squareSize + 'px'
+				})
+				.css(pre + 'transform', 'translate3d(' + cssX + 'px, ' + cssY + 'px, 0)');
+
+			$graveWrapper.attr({
+				'data-x': x,
+				'data-y': y,
+				'data-xy': 'x' + x + 'y' + y,
+				'data-grave-id': grave.id
+			});
+
+			$graveWrapper.addClass('js-square square grave-wrapper');
+
+			$unitLayerWrapper.append($graveWrapper);
+
+		},
+
+		removeGrave: function (grave) {
+
+			var view = this,
+				$graveWrapper = view.$el.find(view.selectors.unitsWrapper + ' [data-grave-id="' + grave.id + '"]');
+
+			$graveWrapper.remove();
+
+		},
+
 		setSize: function () {
 
 			var squareSize = this.info.get('squareSize') || this.squareSize.default,

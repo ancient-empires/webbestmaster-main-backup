@@ -15,6 +15,7 @@
 			this.set('players', JSON.parse(JSON.stringify(args.players)));
 			this.set('buildings', []); // will be filled building append units
 			this.set('units', []); // will be filled after append units
+			this.set('graves', []); // will be filled in battle
 
 			// add money to player
 			_.each(this.get('players'), function (player) {
@@ -62,7 +63,7 @@
 				unit.color = player.color;
 				unit.teamNumber = player.teamNumber;
 
-				unit = win.APP.unitMaster.createUnits(unit);
+				unit = win.APP.unitMaster.createUnit(unit);
 				unit.set('model', model);
 				unit.set('view', view);
 
@@ -71,6 +72,55 @@
 				view.appendUnit(unit);
 
 			});
+
+		},
+
+		addGraveInsteadUnit: function (unit) {
+
+			var model = this,
+				view = model.get('view'),
+				grave = win.APP.unitMaster.createGrave({
+					x: unit.get('x'),
+					y: unit.get('y')
+				});
+
+			model.removeUnit(unit);
+			view.removeUnit(unit);
+			model.addGrave(grave);
+			view.addGrave(grave);
+
+		},
+
+		removeUnit: function (unit) {
+
+			console.log(this.get('units'));
+
+			var model = this,
+				units = model.get('units'),
+				unitIndex = units.indexOf(unit);
+
+			units.splice(unitIndex, 1);
+
+			console.log(this.get('units'));
+
+		},
+
+		addGrave: function (grave) {
+
+			var model = this,
+				graves = model.get('graves');
+
+			graves.push(grave);
+
+		},
+
+		removeGrave: function (grave) {
+
+			var model = this,
+				graves = model.get('graves'),
+				graveIndex = graves.indexOf(grave);
+
+			graves.splice(graveIndex, 1);
 
 		},
 

@@ -21,6 +21,7 @@
 
 			unit.set('health', 100);
 			unit.set('defaultHealth', 100);
+			unit.set('xp', 0);
 
 		},
 
@@ -442,12 +443,14 @@
 				}
 			}).then(function () {
 
-				var atk = unit.getAttackToUnit(enemyUnit);
+				var atk = unit.getAttackToUnit(enemyUnit),
+					enemyUnitHealth = enemyUnit.get('health');
 
-				var enemyUnitHealth = enemyUnit.get('health');
+				atk = Math.min(atk, enemyUnitHealth);
 				enemyUnitHealth -= atk;
-
 				enemyUnit.set('health', enemyUnitHealth);
+
+				//todo: add atk to unit's xp
 
 				return view.showDifferentUnitHealth({
 					unit: enemyUnit,
@@ -456,7 +459,8 @@
 
 			}).then(function () {
 
-				var enemyUnitHealth = enemyUnit.get('health');
+				var enemyUnitHealth = enemyUnit.get('health'),
+					model = enemyUnit.get('model');
 
 				if (enemyUnitHealth > 0) {
 
@@ -476,9 +480,11 @@
 							var atk = enemyUnit.getAttackToUnit(unit),
 								unitHealth = unit.get('health');
 
+							atk = Math.min(atk, unitHealth);
 							unitHealth -= atk;
-
 							unit.set('health', unitHealth);
+
+							//todo: add atk to enemyUnit's xp
 
 							return view.showDifferentUnitHealth({
 								unit: unit,
@@ -487,10 +493,12 @@
 
 						}).then(function () {
 
-							var unitHealth = unit.get('health');
+							var unitHealth = unit.get('health'),
+								model = unit.get('model');
 
 							if ( unitHealth < 0 ) {
-								// todo: create grove for unit
+
+								model.addGraveInsteadUnit(unit);
 								// todo: count level for enemy
 							} else {
 								// todo: count level for both unit
@@ -505,7 +513,7 @@
 					}
 
 				} else {
-					// todo: show/create grove for enemy unit
+					model.addGraveInsteadUnit(enemyUnit);
 					console.log(' -- create grove for enemy unit');
 					// todo: count level for unit
 				}
