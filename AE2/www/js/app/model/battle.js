@@ -31,13 +31,14 @@
 			var mapBuildings = this.get('map').buildings,
 				view = this.get('view'),
 				players = this.get('players'),
-				buildingArr = this.get('buildings');
+				buildingArr = this.get('buildings'),
+				buildingDefaultColor = win.APP.building.defaults.color;
 
 			_.each(mapBuildings, function (building) {
 
 				// detect color of building
 				var player = _.where(players, { id: building.ownerId })[0];
-				building.color = player ? player.color : 'gray';
+				building.color = player ? player.color : buildingDefaultColor;
 
 				buildingArr.push(building);
 
@@ -384,7 +385,7 @@
 			var model = this,
 				buildings = model.get('buildings'),
 				build = _.find(buildings, xy),
-				armor = build && win.APP.map.building.defence,
+				armor = build && win.APP.building.list[build.type].defence,
 				terrainType;
 
 			if (armor) {

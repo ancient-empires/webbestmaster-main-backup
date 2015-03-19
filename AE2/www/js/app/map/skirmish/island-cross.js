@@ -46,8 +46,9 @@
 			{"type": "farm", "x": 14, "y": 10, state: 'normal'},
 			{"type": "castle", "x": 1, "y": 13, state: 'normal'},
 			{"type": "farm", "x": 3, "y": 13, state: 'normal'},
-			{"type": "farm", "x": 14, "y": 13, state: 'normal'},
-			{"type": "farm", "x": 6, "y": 14, state: 'normal'}
+			{"type": "well", "x": 14, "y": 13, state: 'normal'},
+			{"type": "temple", "x": 6, "y": 14, state: 'normal'}, // todo: extra building - remove it
+			{"type": "temple", "x": 6, "y": 12, state: 'normal'}
 		],
 		"terrain": {
 			"x0y0": "stone-1",

@@ -4,6 +4,16 @@
 	background-size: 100% 100%;
 }
 
+/* temple and well */
+.building-temple-gray {
+	background-image: url(../i/map/building/temple.png);
+}
+
+.building-well-gray {
+	background-image: url(../i/map/building/well.png);
+}
+/* end temple and well */
+
 /* farms */
 .building-farm-gray {
 	background-image: url(../i/map/building/farm-gray.png);
