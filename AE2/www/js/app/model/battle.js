@@ -78,6 +78,8 @@
 
 		addGraveInsteadUnit: function (unit) {
 
+			unit.unbindEventListener();
+
 			var model = this,
 				view = model.get('view'),
 				grave = win.APP.unitMaster.createGrave({

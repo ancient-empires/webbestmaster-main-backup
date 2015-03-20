@@ -23,6 +23,36 @@
 			unit.set('defaultHealth', 100);
 			unit.set('xp', 0);
 
+			unit.bindEventListener();
+
+		},
+
+		setBy: function (key, delta) {
+
+			return this.set(key, this.get(key) + delta);
+
+		},
+
+		bindEventListener: function () {
+
+			var unit = this;
+			unit.on('change:isActive', unit.onChangeIsActive);
+
+		},
+
+		unbindEventListener: function () {
+
+			// todo: unbind event listeners for unit
+			console.log('unbind event listeners for unit');
+
+		},
+
+		//////////
+		// on changes
+		//////////
+
+		onChangeIsActive: function (e, isActive) {
+			console.log(' --- onChangeIsActive');
 		},
 
 		setDefaultState: function () {
@@ -37,6 +67,12 @@
 			this.set('gotBuilding', false);
 			this.set('fixedBuilding', false);
 
+		},
+
+		autoSetLevel: function () {
+			// get/set level
+			// if level was changed -> show levelUp
+			console.log('--- autoSetLevel');
 		},
 
 		//////////
@@ -456,7 +492,7 @@
 				enemyUnitHealth -= atk;
 				enemyUnit.set('health', enemyUnitHealth);
 
-				//todo: add atk to unit's xp
+				unit.setBy('xp', atk);
 
 				return view.showDifferentUnitHealth({
 					unit: enemyUnit,
@@ -490,7 +526,7 @@
 							unitHealth -= atk;
 							unit.set('health', unitHealth);
 
-							//todo: add atk to enemyUnit's xp
+							enemyUnit.setBy('xp', atk);
 
 							return view.showDifferentUnitHealth({
 								unit: unit,
@@ -505,8 +541,12 @@
 							if ( unitHealth < 0 ) {
 
 								model.addGraveInsteadUnit(unit);
+								//uni
+								enemyUnit.autoSetLevel();
 								// todo: count level for enemy
 							} else {
+								enemyUnit.autoSetLevel();
+								unit.autoSetLevel();
 								// todo: count level for both unit
 							}
 
@@ -514,14 +554,14 @@
 
 					} else {
 						console.log('-- can NOT strike BACK');
-						// todo: count level for unit
+						unit.autoSetLevel();
 
 					}
 
 				} else {
 					model.addGraveInsteadUnit(enemyUnit);
 					console.log(' -- create grove for enemy unit');
-					// todo: count level for unit
+					unit.autoSetLevel();
 				}
 
 			});
