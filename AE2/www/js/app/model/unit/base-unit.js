@@ -82,7 +82,7 @@
 			});
 
 			// get unitsUnderAttack
-			unitsUnderAttack = unit.unitsUnderAttack();
+			unitsUnderAttack = unit.getUnitsUnderAttack();
 
 			return {
 				unit: unit,
@@ -137,7 +137,7 @@
 
 		},
 
-		unitsUnderAttack: function () {
+		getUnitsUnderAttack: function () {
 
 			var unit = this,
 				view = unit.get('view'),
@@ -151,6 +151,11 @@
 				underAttackXYs = [],
 				pathFinder,
 				unitTeamNumber = unit.get('teamNumber');
+
+
+			if ( unit.get('didAttack') ) {
+				return underAttackXYs; // []
+			}
 
 			_.each(units, function (unit) {
 				if ( unit.get('teamNumber') === unitTeamNumber ) {
@@ -431,6 +436,8 @@
 			var unit = this,
 				view = unit.get('view');
 
+			unit.set('isActive', false);
+
 			view.showAttack({
 				from: {
 					x: unit.get('x'),
@@ -589,6 +596,8 @@
 
 			var unit = this;
 
+
+			// todo: see unit.setDefaultState();
 			unit.set('isActive', true);
 			unit.set('didMove', false);
 			unit.set('didAttack', false);
