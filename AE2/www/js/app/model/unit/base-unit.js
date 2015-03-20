@@ -34,17 +34,11 @@
 		},
 
 		bindEventListener: function () {
-
-			var unit = this;
-			unit.on('change:isActive', unit.onChangeIsActive);
-
+			this.on('change:isActive', this.onChangeIsActive);
 		},
 
 		unbindEventListener: function () {
-
-			// todo: unbind event listeners for unit
-			console.log('unbind event listeners for unit');
-
+			this.off();
 		},
 
 		//////////
@@ -52,7 +46,12 @@
 		//////////
 
 		onChangeIsActive: function (e, isActive) {
-			console.log(' --- onChangeIsActive');
+
+			var unit = this,
+				view = unit.get('view');
+
+			return isActive ? view.setActiveUnit(unit) : view.setNotActiveUnit(unit);
+
 		},
 
 		setDefaultState: function () {
@@ -472,7 +471,6 @@
 			var unit = this,
 				view = unit.get('view');
 
-			unit.set('isActive', false);
 
 			view.showAttack({
 				from: {
@@ -484,6 +482,8 @@
 					y: enemyUnit.get('y')
 				}
 			}).then(function () {
+
+				unit.set('isActive', false);
 
 				var atk = unit.getAttackToUnit(enemyUnit),
 					enemyUnitHealth = enemyUnit.get('health');

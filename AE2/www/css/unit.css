@@ -347,3 +347,112 @@
 .unit-image-wisp-green { background-image: url(../i/unit/unit-wisp-green.png); }
 .unit-image-wisp-red { background-image: url(../i/unit/unit-wisp-red.png); }
 
+/* not active */
+/* archer */
+.not-active .unit-image-archer-black { background-image: url(../i/unit/unit-archer-gray.png); }
+.not-active .unit-image-archer-blue { background-image: url(../i/unit/unit-archer-gray.png); }
+.not-active .unit-image-archer-gray { background-image: url(../i/unit/unit-archer-gray.png); }
+.not-active .unit-image-archer-green { background-image: url(../i/unit/unit-archer-gray.png); }
+.not-active .unit-image-archer-red { background-image: url(../i/unit/unit-archer-gray.png); }
+
+/* catapult */
+.not-active .unit-image-catapult-black { background-image: url(../i/unit/unit-catapult-gray.png); }
+.not-active .unit-image-catapult-blue { background-image: url(../i/unit/unit-catapult-gray.png); }
+.not-active .unit-image-catapult-gray { background-image: url(../i/unit/unit-catapult-gray.png); }
+.not-active .unit-image-catapult-green { background-image: url(../i/unit/unit-catapult-gray.png); }
+.not-active .unit-image-catapult-red { background-image: url(../i/unit/unit-catapult-gray.png); }
+
+/* demon-lord */
+.not-active .unit-image-demon-lord-black { background-image: url(../i/unit/unit-demon-lord-gray.png); }
+.not-active .unit-image-demon-lord-blue { background-image: url(../i/unit/unit-demon-lord-gray.png); }
+.not-active .unit-image-demon-lord-gray { background-image: url(../i/unit/unit-demon-lord-gray.png); }
+.not-active .unit-image-demon-lord-green { background-image: url(../i/unit/unit-demon-lord-gray.png); }
+.not-active .unit-image-demon-lord-red { background-image: url(../i/unit/unit-demon-lord-gray.png); }
+
+/* dire-wolf */
+.not-active .unit-image-dire-wolf-black { background-image: url(../i/unit/unit-dire-wolf-gray.png); }
+.not-active .unit-image-dire-wolf-blue { background-image: url(../i/unit/unit-dire-wolf-gray.png); }
+.not-active .unit-image-dire-wolf-gray { background-image: url(../i/unit/unit-dire-wolf-gray.png); }
+.not-active .unit-image-dire-wolf-green { background-image: url(../i/unit/unit-dire-wolf-gray.png); }
+.not-active .unit-image-dire-wolf-red { background-image: url(../i/unit/unit-dire-wolf-gray.png); }
+
+/* dragon */
+.not-active .unit-image-dragon-black { background-image: url(../i/unit/unit-dragon-gray.png); }
+.not-active .unit-image-dragon-blue { background-image: url(../i/unit/unit-dragon-gray.png); }
+.not-active .unit-image-dragon-gray { background-image: url(../i/unit/unit-dragon-gray.png); }
+.not-active .unit-image-dragon-green { background-image: url(../i/unit/unit-dragon-gray.png); }
+.not-active .unit-image-dragon-red { background-image: url(../i/unit/unit-dragon-gray.png); }
+
+/* elemental */
+.not-active .unit-image-elemental-black { background-image: url(../i/unit/unit-elemental-gray.png); }
+.not-active .unit-image-elemental-blue { background-image: url(../i/unit/unit-elemental-gray.png); }
+.not-active .unit-image-elemental-gray { background-image: url(../i/unit/unit-elemental-gray.png); }
+.not-active .unit-image-elemental-green { background-image: url(../i/unit/unit-elemental-gray.png); }
+.not-active .unit-image-elemental-red { background-image: url(../i/unit/unit-elemental-gray.png); }
+
+/* galamar */
+.not-active .unit-image-galamar-black { background-image: url(../i/unit/unit-galamar-gray.png); }
+.not-active .unit-image-galamar-blue { background-image: url(../i/unit/unit-galamar-gray.png); }
+.not-active .unit-image-galamar-gray { background-image: url(../i/unit/unit-galamar-gray.png); }
+.not-active .unit-image-galamar-green { background-image: url(../i/unit/unit-galamar-gray.png); }
+.not-active .unit-image-galamar-red { background-image: url(../i/unit/unit-galamar-gray.png); }
+
+/* golem */
+.not-active .unit-image-golem-black { background-image: url(../i/unit/unit-golem-gray.png); }
+.not-active .unit-image-golem-blue { background-image: url(../i/unit/unit-golem-gray.png); }
+.not-active .unit-image-golem-gray { background-image: url(../i/unit/unit-golem-gray.png); }
+.not-active .unit-image-golem-green { background-image: url(../i/unit/unit-golem-gray.png); }
+.not-active .unit-image-golem-red { background-image: url(../i/unit/unit-golem-gray.png); }
+
+/* saeth */
+.not-active .unit-image-saeth-black { background-image: url(../i/unit/unit-saeth-gray.png); }
+.not-active .unit-image-saeth-blue { background-image: url(../i/unit/unit-saeth-gray.png); }
+.not-active .unit-image-saeth-gray { background-image: url(../i/unit/unit-saeth-gray.png); }
+.not-active .unit-image-saeth-green { background-image: url(../i/unit/unit-saeth-gray.png); }
+.not-active .unit-image-saeth-red { background-image: url(../i/unit/unit-saeth-gray.png); }
+
+/* skeleton */
+.not-active .unit-image-skeleton-black { background-image: url(../i/unit/unit-skeleton-gray.png); }
+.not-active .unit-image-skeleton-blue { background-image: url(../i/unit/unit-skeleton-gray.png); }
+.not-active .unit-image-skeleton-gray { background-image: url(../i/unit/unit-skeleton-gray.png); }
+.not-active .unit-image-skeleton-green { background-image: url(../i/unit/unit-skeleton-gray.png); }
+.not-active .unit-image-skeleton-red { background-image: url(../i/unit/unit-skeleton-gray.png); }
+
+/* soldier */
+.not-active .unit-image-soldier-black { background-image: url(../i/unit/unit-soldier-gray.png); }
+.not-active .unit-image-soldier-blue { background-image: url(../i/unit/unit-soldier-gray.png); }
+.not-active .unit-image-soldier-gray { background-image: url(../i/unit/unit-soldier-gray.png); }
+.not-active .unit-image-soldier-green { background-image: url(../i/unit/unit-soldier-gray.png); }
+.not-active .unit-image-soldier-red { background-image: url(../i/unit/unit-soldier-gray.png); }
+
+/* sorceress */
+.not-active .unit-image-sorceress-black { background-image: url(../i/unit/unit-sorceress-gray.png); }
+.not-active .unit-image-sorceress-blue { background-image: url(../i/unit/unit-sorceress-gray.png); }
+.not-active .unit-image-sorceress-gray { background-image: url(../i/unit/unit-sorceress-gray.png); }
+.not-active .unit-image-sorceress-green { background-image: url(../i/unit/unit-sorceress-gray.png); }
+.not-active .unit-image-sorceress-red { background-image: url(../i/unit/unit-sorceress-gray.png); }
+
+/* valadorn */
+.not-active .unit-image-valadorn-black { background-image: url(../i/unit/unit-valadorn-gray.png); }
+.not-active .unit-image-valadorn-blue { background-image: url(../i/unit/unit-valadorn-gray.png); }
+.not-active .unit-image-valadorn-gray { background-image: url(../i/unit/unit-valadorn-gray.png); }
+.not-active .unit-image-valadorn-green { background-image: url(../i/unit/unit-valadorn-gray.png); }
+.not-active .unit-image-valadorn-red { background-image: url(../i/unit/unit-valadorn-gray.png); }
+
+/* wisp */
+.not-active .unit-image-wisp-black { background-image: url(../i/unit/unit-wisp-gray.png); }
+.not-active .unit-image-wisp-blue { background-image: url(../i/unit/unit-wisp-gray.png); }
+.not-active .unit-image-wisp-gray { background-image: url(../i/unit/unit-wisp-gray.png); }
+.not-active .unit-image-wisp-green { background-image: url(../i/unit/unit-wisp-gray.png); }
+.not-active .unit-image-wisp-red { background-image: url(../i/unit/unit-wisp-gray.png); }
+
+
+
+
+
+
+
+
+
+
+

@@ -581,11 +581,20 @@
 
 		removeUnit: function (unit) {
 
-			var view = this,
-				$unitWrapper = view.$el.find(view.selectors.unitsWrapper + ' [data-unit-id="' + unit.get('id') + '"]');
+			this.getUnitByUnit(unit).remove();
 
-			$unitWrapper.remove();
+		},
 
+		getUnitByUnit: function (unit) {
+			return this.$el.find(this.selectors.unitsWrapper + ' [data-unit-id="' + unit.get('id') + '"]');
+		},
+
+		setActiveUnit: function (unit) {
+			this.getUnitByUnit(unit).removeClass('not-active');
+		},
+
+		setNotActiveUnit: function (unit) {
+			this.getUnitByUnit(unit).addClass('not-active');
 		},
 
 		addGrave: function (grave) {
@@ -856,12 +865,10 @@
 			var view = this,
 				model = view.get('model'),
 				deferred = $.Deferred(),
-				unit = data.unit,
-				unitId = unit.get('id'),
 				pre = view.info.get('pre', true).css,
 				transitionEnd = view.get('transitionEnd'),
 				squareSize = view.info.get('squareSize'),
-				$unitNode = view.$el.find('[data-unit-id="' + unitId + '"]'),
+				$unitNode = view.getUnitByUnit(data.unit),
 				x = data.x,
 				y = data.y,
 				xPx = x * squareSize,
@@ -950,7 +957,7 @@
 				unit = data.unit,
 				differentHealth = data.differentHealth,
 				deferred = $.Deferred(),
-				unitWrapper = view.$el.find(view.selectors.unitsWrapper + ' [data-unit-id="' + unit.get('id') + '"]'),
+				unitWrapper = view.getUnitByUnit(unit),
 				$deltaHealth = unitWrapper.find('.js-delta-unit-health'),
 				animationEnd = view.get('animationEnd');
 
@@ -995,8 +1002,7 @@
 				unit = data.unit,
 				health = unit.get('health'),
 				defaultHealth = unit.get('defaultHealth'),
-				unitId = unit.get('id'),
-				$unitWrapper = view.$el.find(view.selectors.unitsWrapper + ' [data-unit-id="' + unitId + '"]'),
+				$unitWrapper = view.getUnitByUnit(unit),
 				one = 'none',
 				ten = 'none',
 				$healthOne = $unitWrapper.find('.js-unit-health-one'),
@@ -1023,9 +1029,7 @@
 			var view = this,
 				charsList = view.chars.charsList,
 				charReference = view.chars.charReference,
-				unit = data.unit,
-				unitId = unit.get('id'),
-				$unitWrapper = view.$el.find(view.selectors.unitsWrapper + ' [data-unit-id="' + unitId + '"]'),
+				$unitWrapper = view.getUnitByUnit(data.unit),
 				sign = 'minus',
 				one = 'none',
 				ten = 'none',
