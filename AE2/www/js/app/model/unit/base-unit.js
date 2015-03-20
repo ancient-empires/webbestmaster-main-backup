@@ -538,7 +538,7 @@
 							var unitHealth = unit.get('health'),
 								model = unit.get('model');
 
-							if ( unitHealth < 0 ) {
+							if ( unitHealth <= 0 ) {
 
 								model.addGraveInsteadUnit(unit);
 								//uni
