@@ -85,7 +85,7 @@
 				units = unit.get('model').get('units'),
 				teamUnits = [], // done
 				enemyUnits = [], // done
-				availablePathViewWithTeamUnit, // ~done // todo: add path resistance
+				availablePathViewWithTeamUnit, // done
 				availablePathViewWithoutTeamUnit, // done
 				unitsUnderAttack,
 				riseSkeletons,
