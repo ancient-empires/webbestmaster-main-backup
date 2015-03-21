@@ -88,7 +88,7 @@
 				availablePathViewWithTeamUnit, // done
 				availablePathViewWithoutTeamUnit, // done
 				unitsUnderAttack,
-				gravesToRise,
+				gravesToRaise,
 				availableFixBuilding,
 				availableGetBuilding,
 				openStore;
@@ -120,11 +120,11 @@
 			unitsUnderAttack = unit.getUnitsUnderAttack();
 
 			// get graves to raise
-			gravesToRise = unit.getGravesToRise();
+			gravesToRaise = unit.getGravesToRaise();
 
 			return {
 				unit: unit,
-				gravesToRise: gravesToRise,
+				gravesToRaise: gravesToRaise,
 				unitsUnderAttack: unitsUnderAttack,
 				availablePathViewWithTeamUnit: availablePathViewWithTeamUnit,
 				availablePathViewWithoutTeamUnit: availablePathViewWithoutTeamUnit
@@ -237,7 +237,7 @@
 
 		},
 
-		getGravesToRise: function () {
+		getGravesToRaise: function () {
 
 			var unit = this,
 				view = unit.get('view'),
@@ -247,7 +247,7 @@
 				graves = model.get('graves'),
 				availableGraves = [],
 				raiseRange = unit.get('raiseRange'),
-				availableXYToRise,
+				availableXYToRaise,
 				pathFinder;
 
 			if ( !raiseRange ) {
@@ -268,9 +268,9 @@
 				relativeTypeSpace: false
 			});
 
-			availableXYToRise = pathFinder.getAvailablePath();
+			availableXYToRaise = pathFinder.getAvailablePath();
 
-			_.each(availableXYToRise, function (xy) {
+			_.each(availableXYToRaise, function (xy) {
 				var graveToAdd = _.find(graves, xy);
 				return graveToAdd && availableGraves.push(graveToAdd);
 			});
@@ -678,7 +678,7 @@
 
 		},
 
-		rise: function (action) {
+		raise: function (action) {
 
 			var unit = this,
 				model = unit.get('model'),

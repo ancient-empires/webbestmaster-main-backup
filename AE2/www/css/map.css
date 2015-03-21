@@ -112,11 +112,8 @@
 	background-image: url(../i/ux/confirm-move.png);
 }
 
+.unit-under-attack,
 .raise-skeleton {
-	background-color: #ff2a94;
-}
-
-.unit-under-attack {
 	background-image: url(../i/ux/unit-under-attack.png);
 	-webkit-background-size: auto 100%;
 	background-size: auto 100%;

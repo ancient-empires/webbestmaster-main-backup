@@ -193,8 +193,8 @@
 				view.showConfirmAttackAction(actions.confirmAttackAction);
 			}
 
-			if ( actions.gravesToRise ) {
-				view.showGravesToRise(actions.gravesToRise);
+			if ( actions.gravesToRaise ) {
+				view.showGravesToRaise(actions.gravesToRaise);
 			}
 
 		},
@@ -270,7 +270,7 @@
 
 		},
 
-		showGravesToRise: function (graves) {
+		showGravesToRaise: function (graves) {
 
 			var view = this,
 				$eventWrapper = view.$el.find(view.selectors.eventHandlerWrapper);
@@ -283,7 +283,7 @@
 
 		},
 
-		hideGravesToRise: function () {
+		hideGravesToRaise: function () {
 			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
 			$eventWrapper.find('.show-raise-skeleton').removeClass('show-raise-skeleton');
 		},
@@ -293,7 +293,7 @@
 			this.hideConfirmMoveAction();
 			this.hideUnitsUnderAttack();
 			this.hideConfirmAttackAction();
-			this.hideGravesToRise();
+			this.hideGravesToRaise();
 		},
 
 		removeActiveSquare: function () {

@@ -282,7 +282,7 @@
 				confirmMoveAction = actions.confirmMoveAction,
 				confirmAttackAction = actions.confirmAttackAction,
 				unitsUnderAttack = actions.unitsUnderAttack,
-				gravesToRise = actions.gravesToRise,
+				gravesToRaise = actions.gravesToRaise,
 				move,
 				undoMoveActions = actions.undoMoveActions,
 				undoAttackActions = actions.undoAttackActions;
@@ -346,9 +346,9 @@
 				};
 			}
 
-			if ( gravesToRise && _.find(gravesToRise, xy) ) {
+			if ( gravesToRaise && _.find(gravesToRaise, xy) ) {
 				return {
-					type: 'rise',
+					type: 'raise',
 					unit: unit,
 					x: xy.x,
 					y: xy.y
@@ -485,9 +485,9 @@
 
 					break;
 
-				case 'rise':
+				case 'raise':
 
-					unit.rise(action);
+					unit.raise(action);
 
 					break;
 
