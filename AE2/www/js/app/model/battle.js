@@ -24,10 +24,6 @@
 
 			this.clearAvailableActions();
 
-			// todo: only for debug
-			console.error('win.model = this;');
-			win.model = this;
-
 		},
 
 		appendBuildings: function () {
