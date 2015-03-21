@@ -193,6 +193,10 @@
 				view.showConfirmAttackAction(actions.confirmAttackAction);
 			}
 
+			if ( actions.gravesToRise ) {
+				view.showGravesToRise(actions.gravesToRise);
+			}
+
 		},
 
 		showAvailablePathViewWithTeamUnit: function (path) {
@@ -266,11 +270,30 @@
 
 		},
 
+		showGravesToRise: function (graves) {
+
+			var view = this,
+				$eventWrapper = view.$el.find(view.selectors.eventHandlerWrapper);
+
+			_.each(graves, function (xy) {
+				var x = xy.x,
+					y = xy.y;
+				$eventWrapper.find('[data-xy="x' + x + 'y' + y + '"]').addClass('show-raise-skeleton');
+			});
+
+		},
+
+		hideGravesToRise: function () {
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
+			$eventWrapper.find('.show-raise-skeleton').removeClass('show-raise-skeleton');
+		},
+
 		clearAvailableActions: function () {
 			this.hideAvailablePathViewWithTeamUnit();
 			this.hideConfirmMoveAction();
 			this.hideUnitsUnderAttack();
 			this.hideConfirmAttackAction();
+			this.hideGravesToRise();
 		},
 
 		removeActiveSquare: function () {

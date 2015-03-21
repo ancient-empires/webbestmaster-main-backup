@@ -260,6 +260,7 @@
 				confirmMoveAction = actions.confirmMoveAction,
 				confirmAttackAction = actions.confirmAttackAction,
 				unitsUnderAttack = actions.unitsUnderAttack,
+				gravesToRise = actions.gravesToRise,
 				move,
 				undoMoveActions = actions.undoMoveActions,
 				undoAttackActions = actions.undoAttackActions;
@@ -320,6 +321,15 @@
 					unit: unit,
 					attackX: xy.x,
 					attackY: xy.y
+				};
+			}
+
+			if ( gravesToRise && _.find(gravesToRise, xy) ) {
+				return {
+					type: 'rise',
+					unit: unit,
+					x: xy.x,
+					y: xy.y
 				};
 			}
 
@@ -450,6 +460,12 @@
 				case 'undoAttackAction':
 
 					unit.undoAttack(action);
+
+					break;
+
+				case 'rise':
+
+					unit.rise(action);
 
 					break;
 

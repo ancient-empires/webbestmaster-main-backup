@@ -81,7 +81,8 @@
 .available-attack,
 .confirm-move,
 .unit-under-attack,
-.confirm-attack {
+.confirm-attack,
+.raise-skeleton {
 	background-repeat: no-repeat;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
@@ -109,6 +110,10 @@
 
 .confirm-move {
 	background-image: url(../i/ux/confirm-move.png);
+}
+
+.raise-skeleton {
+	background-color: #ff2a94;
 }
 
 .unit-under-attack {
@@ -140,7 +145,8 @@
 .show-available-attack .available-attack,
 .show-confirm-move .confirm-move,
 .show-unit-under-attack .unit-under-attack,
-.show-confirm-attack .confirm-attack {
+.show-confirm-attack .confirm-attack,
+.show-raise-skeleton .raise-skeleton {
 	-webkit-transform: scale(1);
 	transform: scale(1);
 }

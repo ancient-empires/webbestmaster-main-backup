@@ -88,7 +88,7 @@
 				availablePathViewWithTeamUnit, // done
 				availablePathViewWithoutTeamUnit, // done
 				unitsUnderAttack,
-				riseSkeletons,
+				gravesToRise,
 				availableFixBuilding,
 				availableGetBuilding,
 				openStore;
@@ -119,8 +119,12 @@
 			// get unitsUnderAttack
 			unitsUnderAttack = unit.getUnitsUnderAttack();
 
+			// get graves to raise
+			gravesToRise = unit.getGravesToRise();
+
 			return {
 				unit: unit,
+				gravesToRise: gravesToRise,
 				unitsUnderAttack: unitsUnderAttack,
 				availablePathViewWithTeamUnit: availablePathViewWithTeamUnit,
 				availablePathViewWithoutTeamUnit: availablePathViewWithoutTeamUnit
@@ -230,6 +234,48 @@
 			});
 
 			return underAttackXYs;
+
+		},
+
+		getGravesToRise: function () {
+
+			var unit = this,
+				view = unit.get('view'),
+				model = unit.get('model'),
+				map = view.get('map'),
+				terrain = map.terrain,
+				graves = model.get('graves'),
+				availableGraves = [],
+				raiseRange = unit.get('raiseRange'),
+				availableXYToRise,
+				pathFinder;
+
+			if ( unit.get('didRaise') || !raiseRange ) {
+				return availableGraves;
+			}
+
+			pathFinder = new PathFinder({
+				blackWholes: [],
+				terrain: terrain,
+				mov: raiseRange - 1,
+				x: unit.get('x'),
+				y: unit.get('y'),
+				moveType: unit.get('moveType'),
+				minX: 0,
+				minY: 0,
+				maxX: map.size.width - 1,
+				maxY: map.size.height - 1,
+				relativeTypeSpace: false
+			});
+
+			availableXYToRise = pathFinder.getAvailablePath();
+
+			_.each(availableXYToRise, function (xy) {
+				var graveToAdd = _.find(graves, xy);
+				return graveToAdd && availableGraves.push(graveToAdd);
+			});
+
+			return availableGraves;
 
 		},
 
@@ -629,6 +675,13 @@
 				x: unit.get('x'),
 				y: unit.get('y')
 			});
+
+		},
+
+		rise: function (action) {
+
+
+			debugger
 
 		},
 
