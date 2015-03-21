@@ -76,6 +76,24 @@
 
 		},
 
+		appendUnit: function (unitData) {
+
+			var unit,
+				model = this,
+				view = model.get('view'),
+				unitArr = model.get('units');
+
+			unit = win.APP.unitMaster.createUnit(unitData);
+			unit.set('model', model);
+			unit.set('view', view);
+
+			unitArr.push(unit);
+			view.appendUnit(unit);
+
+			return unit;
+
+		},
+
 		addGraveInsteadUnit: function (unit) {
 
 			unit.unbindEventListener();

@@ -59,9 +59,9 @@
 			this.set('isActive', true);
 			this.set('didMove', false);
 			this.set('didAttack', false);
-			this.set('didRaise', false);
+			//this.set('didRaise', false);
 			this.set('isPoison', false);
-			this.set('didPoison', false);
+			//this.set('didPoison', false);
 			this.set('underWispAura', false);
 			this.set('gotBuilding', false);
 			this.set('fixedBuilding', false);
@@ -250,7 +250,7 @@
 				availableXYToRise,
 				pathFinder;
 
-			if ( unit.get('didRaise') || !raiseRange ) {
+			if ( !raiseRange ) {
 				return availableGraves;
 			}
 
@@ -680,8 +680,36 @@
 
 		rise: function (action) {
 
+			var unit = this,
+				model = unit.get('model'),
+				view = unit.get('view'),
+				x = action.x,
+				y = action.y,
+				graves = model.get('graves'),
+				grave = _.find(graves, { x: x, y: y }),
+				newUnitData,
+				newUnit;
 
-			debugger
+			model.removeGrave(grave);
+			view.removeGrave(grave);
+
+			model.clearAvailableActions();
+			view.clearAvailableActions();
+
+			unit.set('isActive', false);
+
+			newUnitData = {
+				ownerId: unit.get('ownerId'),
+				type: 'skeleton',
+				x: x,
+				y: y,
+				teamNumber: unit.get('teamNumber'),
+				color: unit.get('color')
+			};
+
+			newUnit = model.appendUnit(newUnitData);
+
+			newUnit.set('isActive', false);
 
 		},
 
@@ -689,14 +717,13 @@
 
 			var unit = this;
 
-
 			// todo: see unit.setDefaultState();
 			unit.set('isActive', true);
 			unit.set('didMove', false);
 			unit.set('didAttack', false);
-			unit.set('didRaise', false);
+			//unit.set('didRaise', false);
 			unit.set('isPoison', false); // todo: see poison counter
-			unit.set('didPoison', false);
+			//unit.set('didPoison', false);
 			unit.set('underWispAura', false);
 			unit.set('gotBuilding', false);
 			unit.set('fixedBuilding', false);
