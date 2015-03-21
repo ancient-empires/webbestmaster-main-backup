@@ -1051,9 +1051,8 @@
 
 			var view = this,
 				charsList = view.chars.charsList,
-				charReference = view.chars.charReference,
 				$unitWrapper = view.getUnitByUnit(data.unit),
-				sign = 'minus',
+				sign = 'none',
 				one = 'none',
 				ten = 'none',
 				$deltaHealthSign = $unitWrapper.find('.js-delta-unit-health-sign'),
@@ -1061,17 +1060,30 @@
 				$deltaHealthTen = $unitWrapper.find('.js-delta-unit-health-ten'),
 				differentHealth = data.differentHealth;
 
+			if ( differentHealth > 0 ) {
+				sign = 'plus';
+			}
+
+			if ( differentHealth < 0 ) {
+				sign = 'minus';
+			}
+
 			_.each(charsList, function (char) {
 				$deltaHealthSign.removeClass('number-2-' + char);
 				$deltaHealthOne.removeClass('number-2-' + char);
 				$deltaHealthTen.removeClass('number-2-' + char);
 			});
 
-			differentHealth = differentHealth.toString().split('');
+			differentHealth = Math.abs(differentHealth).toString();
 
-			sign = charReference[differentHealth[0]] || sign;
-			one = differentHealth[2] || one;
-			ten = differentHealth[1] || ten;
+			if ( differentHealth.length === 1 ) {
+				one = differentHealth[0];
+			}
+
+			if ( differentHealth.length === 2 ) {
+				one = differentHealth[1];
+				ten = differentHealth[0];
+			}
 
 			$deltaHealthSign.addClass('number-2-' + sign);
 			$deltaHealthOne.addClass('number-2-' + one);
