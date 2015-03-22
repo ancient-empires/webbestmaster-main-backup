@@ -5,16 +5,20 @@
 	/*global console, alert, window, document */
 	/*global _ */
 
-	win.APP.BB.Unit.CatapultModel =  win.APP.BB.Unit.BaseUnitModel.extend({
+	win.APP.BB.Unit.CatapultModel = win.APP.BB.Unit.BaseUnitModel.extend({
 
 		defaults: win.APP.unitMaster.list.catapult,
 
 		/* overwrite
-		* base-unit.js canStrikeBack
-		* */
+		 * base-unit.js canStrikeBack
+		 * */
 		canStrikeBack: function () {
 			return false;
 		},
+
+		/* overwrite
+		 * base-unit.js getUnitsUnderAttack
+		 * */
 		getUnitsUnderAttack: function () {
 
 			var unit = this,
@@ -24,10 +28,10 @@
 				x = unit.get('x'),
 				y = unit.get('y'),
 				removedXYs = [
-					{ x: x, y: y - 1 }, // 2
-					{ x: x - 1, y: y }, // 4
-					{ x: x + 1, y: y }, // 6
-					{ x: x, y: y + 1 }  // 8
+					{x: x, y: y - 1}, // 2
+					{x: x - 1, y: y}, // 4
+					{x: x + 1, y: y}, // 6
+					{x: x, y: y + 1}  // 8
 				];
 
 			underAttackXYs = getUnitsUnderAttack.call(this);
@@ -38,6 +42,9 @@
 
 		},
 
+		/* overwrite
+		 * base-unit.js bindEventListener
+		 * */
 		bindEventListener: function () {
 
 			var unit = this,
