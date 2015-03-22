@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
 (function (win) {
 
 	"use strict";
@@ -92,6 +93,8 @@
 			unitArr.push(unit);
 			view.appendUnit(unit);
 
+			model.autoSetWispAura();
+
 			return unit;
 
 		},
@@ -143,10 +146,42 @@
 
 		},
 
+		autoSetWispAura: function () {
+
+			var model = this,
+				activePlayer = model.get('activePlayer'),
+				allPlayerUnits = model.getUnitsByOwnerId(activePlayer.id),
+				wisps = [],
+				wispAuraMap = [],
+				otherUnits = [];
+
+			_.each(allPlayerUnits, function (unit) {
+				return unit.get('type') === 'wisp' ? wisps.push(unit) : otherUnits.push(unit);
+			});
+
+			// create wisp aura map
+			_.each(wisps, function (wisp) {
+				var auraMap = wisp.getWispAuraMap();
+				wispAuraMap = wispAuraMap.concat(auraMap);
+			});
+
+			_.each(otherUnits, function (unit) {
+
+				var unitX = unit.get('x'),
+					unitY = unit.get('y');
+
+				unit.set('underWispAura', Boolean( _.find(wispAuraMap, { x: unitX, y: unitY }) ));
+
+			});
+
+		},
+
 		startGame: function () {
 			this.set('activePlayer', this.get('players')[0]);
 
 			this.startTurn();
+
+			this.autoSetWispAura();
 
 		},
 
@@ -267,6 +302,18 @@
 				return;
 			}
 
+		},
+
+		getUnitsByOwnerId: function (ownerId) {
+			return _.filter(this.get('units'), function (unit) {
+				return unit.get('ownerId') === ownerId;
+			});
+		},
+
+		getUnitsByTeamNumber: function (teamNumber) {
+			return _.filter(this.get('units'), function (unit) {
+				return unit.get('teamNumber') === teamNumber;
+			});
 		},
 
 		//////////////////

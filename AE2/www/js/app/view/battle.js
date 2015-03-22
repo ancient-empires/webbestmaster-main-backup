@@ -653,9 +653,14 @@
 
 			$unitBlock.addClass('unit-image unit-image-' + unitInfo.type + '-' + unitInfo.color);
 
-			//$unitWrapper.append('<div class="unit-health js-unit-health">' + unit.get('health') + '</div>');
+			// health
 			$unitWrapper.append('<div class="js-unit-health unit-health"><div class="js-unit-health-ten unit-health-ten">&nbsp;</div><div class="js-unit-health-one unit-health-one">&nbsp;</div></div>');
+
+			// delta health
 			$unitWrapper.append('<div class="js-delta-unit-health delta-unit-health"><div class="js-delta-unit-health-sign delta-unit-health-sign">&nbsp;</div><div class="js-delta-unit-health-ten delta-unit-health-ten">&nbsp;</div><div class="js-delta-unit-health-one delta-unit-health-one">&nbsp;</div></div>');
+
+			// wisp aura
+			$unitWrapper.append('<div class="js-under-wisp-aura-image under-wisp-aura-image">&nbsp;</div>');
 
 			$unitLayerWrapper.append($unitWrapper);
 
@@ -720,6 +725,17 @@
 				$graveWrapper = view.$el.find(view.selectors.unitsWrapper + ' [data-grave-id="' + grave.id + '"]');
 
 			$graveWrapper.remove();
+
+		},
+
+		setWispAuraState: function (data) {
+
+			var view = this,
+				unit = data.unit,
+				wispAuraState = data.wispAuraState,
+				$unitNode = view.getUnitByUnit(unit);
+
+			return wispAuraState ? $unitNode.addClass('under-wisp-aura') : $unitNode.removeClass('under-wisp-aura');
 
 		},
 

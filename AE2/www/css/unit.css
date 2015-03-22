@@ -12,6 +12,8 @@
 	-webkit-background-size: 100% auto;
 	background-size: 100% auto;
 	background-repeat: no-repeat;
+	position: absolute;
+	z-index: 0;
 
 	-webkit-transition: background 0.5s linear;
 	transition: background 0.5s linear;
@@ -216,7 +218,22 @@
 	transition: all 0.5s ease-out;
 }
 
+.under-wisp-aura-image {
+	display: none;
+	width: 33.333333%;
+	height: 33.333333%;
+	background-image: url(../i/unit/under-wisp-aura.png);
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	position: relative;
+	z-index: 1;
+	float: right;
+}
 
+.under-wisp-aura .under-wisp-aura-image {
+	display: block;
+}
 
 
 

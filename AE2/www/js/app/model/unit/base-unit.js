@@ -36,6 +36,9 @@
 
 		bindEventListener: function () {
 			this.on('change:isActive', this.onChangeIsActive);
+			this.on('change:x', this.autoSetWispAura);
+			this.on('change:y', this.autoSetWispAura);
+			this.on('change:underWispAura', this.onUnderWispAuraChange);
 		},
 
 		unbindEventListener: function () {
@@ -52,6 +55,27 @@
 				view = unit.get('view');
 
 			return isActive ? view.setActiveUnit(unit) : view.setNotActiveUnit(unit);
+
+		},
+
+		autoSetWispAura: function () {
+
+			var unit = this,
+				model = unit.get('model');
+
+			model.autoSetWispAura();
+
+		},
+
+		onUnderWispAuraChange: function (e, underWispAura) {
+
+			var unit = this,
+				view = unit.get('view');
+
+			view.setWispAuraState({
+				unit: unit,
+				wispAuraState: underWispAura
+			});
 
 		},
 
@@ -471,6 +495,33 @@
 
 		},
 
+		getWispAuraMap: function () {
+
+			var unit = this,
+				view = unit.get('view'),
+				map = view.get('map'),
+				terrain = map.terrain,
+				auraRange = unit.get('auraRange'),
+				pathFinder;
+
+			pathFinder = new PathFinder({
+				blackWholes: [],
+				terrain: terrain,
+				mov: auraRange - 1,
+				x: unit.get('x'),
+				y: unit.get('y'),
+				moveType: unit.get('moveType'),
+				minX: 0,
+				minY: 0,
+				maxX: map.size.width - 1,
+				maxY: map.size.height - 1,
+				relativeTypeSpace: false
+			});
+
+			return pathFinder.getAvailablePath();
+
+		},
+
 		//////////
 		// unit's action
 		//////////
@@ -867,7 +918,7 @@
 			//unit.set('didRaise', false);
 			unit.set('isPoison', false); // todo: see poison counter
 			//unit.set('didPoison', false);
-			unit.set('underWispAura', false);
+			unit.set('underWispAura', false); // set only from wisp autoSetWispAura
 			unit.set('gotBuilding', false);
 			unit.set('fixedBuilding', false);
 

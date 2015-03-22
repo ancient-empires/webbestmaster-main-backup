@@ -100,7 +100,8 @@
 				def: 10,
 				mov: 5,
 				modelName: 'WispModel',
-				langKey: 'wisp'
+				langKey: 'wisp',
+				bonusAtkByWispAura: 10
 			},
 			'dire-wolf': {
 				atk: {
