@@ -24,7 +24,7 @@
 			{"type": "wisp", "x": 5, "y": 13, ownerId: 1},
 			{"type": "dire-wolf", "x": 6, "y": 13, ownerId: 0},
 			{"type": "golem", "x": 7, "y": 13, ownerId: 0},
-			{"type": "catapult", "x": 8, "y": 13, ownerId: 0},
+			{"type": "catapult", "x": 8, "y": 13, ownerId: 1},
 			{"type": "wisp", "x": 9, "y": 13, ownerId: 0},
 			{"type": "skeleton", "x": 10, "y": 13, ownerId: 0},
 			{"type": "galamar", "x": 1, "y": 12, ownerId: 0},
