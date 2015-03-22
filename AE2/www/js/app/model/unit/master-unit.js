@@ -167,7 +167,9 @@
 				def: 20,
 				mov: 5,
 				modelName: 'GalamarModel',
-				langKey: 'galamar'
+				langKey: 'galamar',
+				canFixBuilding: true,
+				listOccupyBuilding: ['farm', 'castle']
 			},
 			valadorn: {
 				atk: {
@@ -178,7 +180,9 @@
 				def: 20,
 				mov: 5,
 				modelName: 'ValadornModel',
-				langKey: 'valadorn'
+				langKey: 'valadorn',
+				canFixBuilding: true,
+				listOccupyBuilding: ['farm', 'castle']
 			},
 			'demon-lord': {
 				atk: {
@@ -189,7 +193,9 @@
 				def: 20,
 				mov: 5,
 				modelName: 'DemonLordModel',
-				langKey: 'demon-lord'
+				langKey: 'demon-lord',
+				canFixBuilding: true,
+				listOccupyBuilding: ['farm', 'castle']
 			},
 			saeth: {
 				atk: {
@@ -200,7 +206,9 @@
 				def: 20,
 				mov: 5,
 				modelName: 'SaethModel',
-				langKey: 'saeth'
+				langKey: 'saeth',
+				canFixBuilding: true,
+				listOccupyBuilding: ['farm', 'castle']
 			}
 
 		}
