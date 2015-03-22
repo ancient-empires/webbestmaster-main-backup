@@ -103,7 +103,8 @@
 
 			unit.unbindEventListener();
 
-			var model = this,
+			var withoutGrave = unit.get('withoutGrave'),
+				model = this,
 				view = model.get('view'),
 				grave = win.APP.unitMaster.createGrave({
 					x: unit.get('x'),
@@ -112,6 +113,11 @@
 
 			model.removeUnit(unit);
 			view.removeUnit(unit);
+
+			if (withoutGrave) {
+				return;
+			}
+
 			model.addGrave(grave);
 			view.addGrave(grave);
 

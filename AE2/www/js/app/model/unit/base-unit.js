@@ -1,5 +1,4 @@
 /*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
-//todo: after skeleton dead - grave not remove
 (function (win) {
 
 	"use strict";

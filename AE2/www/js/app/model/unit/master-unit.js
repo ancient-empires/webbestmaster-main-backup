@@ -159,7 +159,8 @@
 				def: 2,
 				mov: 5,
 				modelName: 'SkeletonModel',
-				langKey: 'skeleton'
+				langKey: 'skeleton',
+				withoutGrave: true
 			},
 			galamar: {
 				atk: {
