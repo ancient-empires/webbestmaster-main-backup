@@ -118,6 +118,10 @@
 
 		getAvailableActions: function () {
 
+			if ( !this.get('isActive') ) {
+				return {};
+			}
+
 			var unit = this,
 				unitTeamNumber = unit.get('teamNumber'),
 				units = unit.get('model').get('units'),

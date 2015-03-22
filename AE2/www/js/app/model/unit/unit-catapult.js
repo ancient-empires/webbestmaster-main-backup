@@ -36,6 +36,21 @@
 				return !_.find(removedXYs, xy);
 			});
 
+		},
+
+		bindEventListener: function () {
+
+			var unit = this,
+				proto = win.APP.BB.Unit.BaseUnitModel.prototype,
+				bindEventListener = proto.bindEventListener;
+
+			bindEventListener.call(unit);
+
+			unit.on('change:didMove', function (e, didMove) {
+				this.set('isActive', !didMove);
+			});
+
+
 		}
 
 	});
