@@ -918,7 +918,7 @@
 			//unit.set('didRaise', false);
 			unit.set('isPoison', false); // todo: see poison counter
 			//unit.set('didPoison', false);
-			unit.set('underWispAura', false); // set only from wisp autoSetWispAura
+			//unit.set('underWispAura', false); // set only from wisp autoSetWispAura
 			unit.set('gotBuilding', false);
 			unit.set('fixedBuilding', false);
 
