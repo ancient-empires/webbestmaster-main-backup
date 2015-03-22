@@ -62,7 +62,8 @@
 				def: 5,
 				mov: 5,
 				modelName: 'ArcherModel',
-				langKey: 'archer'
+				langKey: 'archer',
+				bonusAtkByFly: 30
 			},
 			elemental: {
 				atk: {
