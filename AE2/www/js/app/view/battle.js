@@ -662,6 +662,9 @@
 			// wisp aura
 			$unitWrapper.append('<div class="js-under-wisp-aura-image under-wisp-aura-image">&nbsp;</div>');
 
+			// poisoned
+			$unitWrapper.append('<div class="js-under-poison-image under-poison-image">&nbsp;</div>');
+
 			$unitLayerWrapper.append($unitWrapper);
 
 			view.setUnitHealth({ unit: unit });
@@ -736,6 +739,17 @@
 				$unitNode = view.getUnitByUnit(unit);
 
 			return wispAuraState ? $unitNode.addClass('under-wisp-aura') : $unitNode.removeClass('under-wisp-aura');
+
+		},
+
+		setPoisonState: function (data) {
+
+			var view = this,
+				unit = data.unit,
+				poisonCount = data.poisonCount,
+				$unitNode = view.getUnitByUnit(unit);
+
+			return poisonCount ? $unitNode.addClass('under-poison') : $unitNode.removeClass('under-poison');
 
 		},
 

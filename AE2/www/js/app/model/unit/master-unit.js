@@ -114,7 +114,7 @@
 				mov: 6,
 				modelName: 'DireWolfModel',
 				langKey: 'dire-wolf',
-				canPoison: true
+				poisonPeriod: 3
 			},
 			golem: {
 				atk: {

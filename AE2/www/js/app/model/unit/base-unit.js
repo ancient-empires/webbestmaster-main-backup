@@ -39,6 +39,7 @@
 			this.on('change:x', this.autoSetWispAura);
 			this.on('change:y', this.autoSetWispAura);
 			this.on('change:underWispAura', this.onUnderWispAuraChange);
+			this.on('change:poisonCount', this.onPoisonCountChange);
 		},
 
 		unbindEventListener: function () {
@@ -79,13 +80,25 @@
 
 		},
 
+		onPoisonCountChange: function (e, poisonCount) {
+
+			var unit = this,
+				view = unit.get('view');
+
+			view.setPoisonState({
+				unit: unit,
+				poisonCount: poisonCount
+			});
+
+		},
+
 		setDefaultState: function () {
 
 			this.set('isActive', true);
 			this.set('didMove', false);
 			this.set('didAttack', false);
 			//this.set('didRaise', false);
-			this.set('isPoison', false);
+			this.set('poisonCount', 0);
 			//this.set('didPoison', false);
 			this.set('underWispAura', false);
 			this.set('gotBuilding', false);
@@ -625,7 +638,6 @@
 			var unit = this,
 				view = unit.get('view');
 
-
 			view.showAttack({
 				from: {
 					x: unit.get('x'),
@@ -645,6 +657,8 @@
 				atk = Math.min(atk, enemyUnitHealth);
 				enemyUnitHealth -= atk;
 				enemyUnit.set('health', enemyUnitHealth);
+
+				enemyUnit.setBy('poisonCount', unit.get('poisonPeriod') || 0);
 
 				unit.setBy('xp', atk);
 
@@ -679,6 +693,7 @@
 							atk = Math.min(atk, unitHealth);
 							unitHealth -= atk;
 							unit.set('health', unitHealth);
+							unit.setBy('poisonCount', enemyUnit.get('poisonPeriod') || 0);
 
 							enemyUnit.setBy('xp', atk);
 
@@ -916,7 +931,7 @@
 			unit.set('didMove', false);
 			unit.set('didAttack', false);
 			//unit.set('didRaise', false);
-			unit.set('isPoison', false); // todo: see poison counter
+			//unit.set('poisonCount', false); // sen only by dire wolf or 'next turn'
 			//unit.set('didPoison', false);
 			//unit.set('underWispAura', false); // set only from wisp autoSetWispAura
 			unit.set('gotBuilding', false);

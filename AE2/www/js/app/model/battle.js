@@ -219,6 +219,8 @@
 
 			this.healthByBuildings();
 
+			this.autoSetPoisonCount();
+
 			console.log('active player is (see below)');
 			console.log(this.get('activePlayer'));
 
@@ -633,6 +635,25 @@
 					building = _.find(buildings, {x: x, y: y});
 
 				unit.healthUpByBuilding(building);
+
+			});
+
+		},
+
+		autoSetPoisonCount: function () {
+
+			var model = this,
+				units = model.get('units');
+
+			_.each(units, function (unit) {
+
+				var poisonCount = unit.get('poisonCount');
+
+				if ( !poisonCount ) {
+					return;
+				}
+
+				unit.setBy('poisonCount', -1);
 
 			});
 
