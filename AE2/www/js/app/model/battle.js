@@ -209,7 +209,7 @@
 				// do action
 				console.log('!!!!!!action');
 				// todo: also find end move action, see settings
-				this.doAction(action);
+				model.doAction(action);
 				return;
 			}
 
@@ -286,7 +286,8 @@
 				move,
 				undoMoveActions = actions.undoMoveActions,
 				undoAttackActions = actions.undoAttackActions,
-				buildingToFix = actions.buildingToFix;
+				buildingToFix = actions.buildingToFix,
+				buildingToOccupy = actions.buildingToOccupy;
 
 			console.log(' -- actions');
 			console.log(actions);
@@ -357,11 +358,21 @@
 			}
 
 
-			if ( buildingToFix ) {
+			if ( buildingToFix && buildingToFix.x === xy.x && buildingToFix.y === xy.y ) {
 				return {
 					type: 'fix-building',
 					unit: unit,
 					buildingToFix: buildingToFix,
+					x: xy.x,
+					y: xy.y
+				};
+			}
+
+			if ( buildingToOccupy && buildingToOccupy.x === xy.x && buildingToOccupy.y === xy.y  ) {
+				return {
+					type: 'occupy-building',
+					unit: unit,
+					buildingToOccupy: buildingToOccupy,
 					x: xy.x,
 					y: xy.y
 				};
@@ -504,6 +515,12 @@
 				case 'fix-building':
 
 					unit.fixBuilding(action);
+
+					break;
+
+				case 'occupy-building':
+
+					unit.occupyBuilding(action);
 
 					break;
 

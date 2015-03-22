@@ -201,6 +201,10 @@
 				view.showFixBuilding(actions.buildingToFix);
 			}
 
+			if ( actions.buildingToOccupy ) {
+				view.showBuildingToOccupy(actions.buildingToOccupy);
+			}
+
 		},
 
 		showAvailablePathViewWithTeamUnit: function (path) {
@@ -305,6 +309,19 @@
 			$eventWrapper.find('.show-fix-building').removeClass('show-fix-building');
 		},
 
+		showBuildingToOccupy: function (building) {
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper),
+				x = building.x,
+				y = building.y;
+
+			$eventWrapper.find('[data-xy="x' + x + 'y' + y + '"]').addClass('show-occupy-building');
+		},
+
+		hideBuildingToOccupy: function () {
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
+			$eventWrapper.find('.show-occupy-building').removeClass('show-occupy-building');
+		},
+
 		clearAvailableActions: function () {
 			this.hideAvailablePathViewWithTeamUnit();
 			this.hideConfirmMoveAction();
@@ -312,6 +329,7 @@
 			this.hideConfirmAttackAction();
 			this.hideGravesToRaise();
 			this.hideFixBuilding();
+			this.hideBuildingToOccupy();
 		},
 
 		removeActiveSquare: function () {

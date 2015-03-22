@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
 (function (win) {
 
 	"use strict";
@@ -90,8 +91,7 @@
 				unitsUnderAttack,
 				gravesToRaise,
 				buildingToFix,
-				availableFixBuilding,
-				availableGetBuilding,
+				buildingToOccupy,
 				openStore;
 
 			// get team and enemy units
@@ -126,8 +126,12 @@
 			// detect building (farm) to fix
 			buildingToFix = unit.getBuildingToFix();
 
+			// get building to occupy (farm and castle)
+			buildingToOccupy = unit.getBuildingToOccupy();
+
 			return {
 				unit: unit,
+				buildingToOccupy: buildingToOccupy,
 				buildingToFix: buildingToFix,
 				gravesToRaise: gravesToRaise,
 				unitsUnderAttack: unitsUnderAttack,
@@ -430,6 +434,37 @@
 
 			if ( unit.get('canFixBuilding') ) {
 				building = _.find(buildings, {x: unitX, y: unitY, state: 'destroyed'});
+			}
+
+			return building;
+
+		},
+
+		getBuildingToOccupy: function () {
+
+			var unit = this,
+				unitX = unit.get('x'),
+				unitY = unit.get('y'),
+				model = unit.get('model'),
+				unitOwnerId = unit.get('ownerId'),
+				listOccupyBuilding = unit.get('listOccupyBuilding'),
+				buildings = model.get('buildings'),
+				building = _.find(buildings, {x: unitX, y: unitY});
+
+			if ( !listOccupyBuilding || !building ) {
+				return false;
+			}
+
+			if ( building.state !== 'normal' ) {
+				return false;
+			}
+
+			if ( building.ownerId === unitOwnerId ) {
+				return false;
+			}
+
+			if ( !_.contains(listOccupyBuilding, building.type) ) {
+				return false;
 			}
 
 			return building;
@@ -748,6 +783,26 @@
 			model.clearAvailableActions();
 
 			building.state = 'normal';
+			view.redrawBuilding(building);
+
+		},
+
+		occupyBuilding: function (action) {
+
+			var unit = this,
+				view = unit.get('view'),
+				model = unit.get('model'),
+				building = action.buildingToOccupy;
+
+			unit.set('isActive', false);
+
+			view.clearAvailableActions();
+			model.clearAvailableActions();
+
+			building.color = unit.get('color');
+			building.ownerId = unit.get('ownerId');
+			building.teamNumber = unit.get('teamNumber');
+
 			view.redrawBuilding(building);
 
 		},

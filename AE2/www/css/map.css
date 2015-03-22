@@ -83,7 +83,9 @@
 .unit-under-attack,
 .confirm-attack,
 .raise-skeleton,
-.fix-building {
+.fix-building,
+.occupy-building
+{
 	background-repeat: no-repeat;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
@@ -115,6 +117,10 @@
 
 .fix-building {
 	background-image: url(../i/ux/fix-building.png);
+}
+
+.occupy-building {
+	background-image: url(../i/ux/occupy-building.png);
 }
 
 .unit-under-attack,
@@ -149,7 +155,8 @@
 .show-unit-under-attack .unit-under-attack,
 .show-confirm-attack .confirm-attack,
 .show-raise-skeleton .raise-skeleton,
-.show-fix-building .fix-building {
+.show-fix-building .fix-building,
+.show-occupy-building .occupy-building {
 	-webkit-transform: scale(1);
 	transform: scale(1);
 }
