@@ -82,7 +82,8 @@
 .confirm-move,
 .unit-under-attack,
 .confirm-attack,
-.raise-skeleton {
+.raise-skeleton,
+.fix-building {
 	background-repeat: no-repeat;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
@@ -110,6 +111,10 @@
 
 .confirm-move {
 	background-image: url(../i/ux/confirm-move.png);
+}
+
+.fix-building {
+	background-image: url(../i/ux/fix-building.png);
 }
 
 .unit-under-attack,
@@ -143,7 +148,8 @@
 .show-confirm-move .confirm-move,
 .show-unit-under-attack .unit-under-attack,
 .show-confirm-attack .confirm-attack,
-.show-raise-skeleton .raise-skeleton {
+.show-raise-skeleton .raise-skeleton,
+.show-fix-building .fix-building {
 	-webkit-transform: scale(1);
 	transform: scale(1);
 }

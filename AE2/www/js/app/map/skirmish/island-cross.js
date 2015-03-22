@@ -45,7 +45,7 @@
 			{"type": "farm", "x": 7, "y": 8, state: 'normal', ownerId: 1},
 			{"type": "farm", "x": 14, "y": 10, state: 'normal'},
 			{"type": "castle", "x": 1, "y": 13, state: 'normal', ownerId: 0},
-			{"type": "farm", "x": 3, "y": 13, state: 'normal', ownerId: 0},
+			{"type": "farm", "x": 3, "y": 13, state: 'destroyed'},
 			{"type": "well", "x": 14, "y": 13, state: 'normal'},
 			{"type": "temple", "x": 6, "y": 12, state: 'normal'}
 		],

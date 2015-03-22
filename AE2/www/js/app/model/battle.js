@@ -285,7 +285,8 @@
 				gravesToRaise = actions.gravesToRaise,
 				move,
 				undoMoveActions = actions.undoMoveActions,
-				undoAttackActions = actions.undoAttackActions;
+				undoAttackActions = actions.undoAttackActions,
+				buildingToFix = actions.buildingToFix;
 
 			console.log(' -- actions');
 			console.log(actions);
@@ -350,6 +351,17 @@
 				return {
 					type: 'raise',
 					unit: unit,
+					x: xy.x,
+					y: xy.y
+				};
+			}
+
+
+			if ( buildingToFix ) {
+				return {
+					type: 'fix-building',
+					unit: unit,
+					buildingToFix: buildingToFix,
 					x: xy.x,
 					y: xy.y
 				};
@@ -441,8 +453,6 @@
 
 		doAction: function (action) {
 
-			// todo: also find end move action, see settings
-
 			var unit = action.unit,
 				actionType = action.type;
 
@@ -488,6 +498,12 @@
 				case 'raise':
 
 					unit.raise(action);
+
+					break;
+
+				case 'fix-building':
+
+					unit.fixBuilding(action);
 
 					break;
 

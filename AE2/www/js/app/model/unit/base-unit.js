@@ -89,6 +89,7 @@
 				availablePathViewWithoutTeamUnit, // done
 				unitsUnderAttack,
 				gravesToRaise,
+				buildingToFix,
 				availableFixBuilding,
 				availableGetBuilding,
 				openStore;
@@ -122,8 +123,12 @@
 			// get graves to raise
 			gravesToRaise = unit.getGravesToRaise();
 
+			// detect building (farm) to fix
+			buildingToFix = unit.getBuildingToFix();
+
 			return {
 				unit: unit,
+				buildingToFix: buildingToFix,
 				gravesToRaise: gravesToRaise,
 				unitsUnderAttack: unitsUnderAttack,
 				availablePathViewWithTeamUnit: availablePathViewWithTeamUnit,
@@ -411,6 +416,23 @@
 			atk = atk - ( enemyArmor + groundArmor );
 
 			return Math.round(atk);
+
+		},
+
+		getBuildingToFix: function () {
+
+			var unit = this,
+				unitX = unit.get('x'),
+				unitY = unit.get('y'),
+				model = unit.get('model'),
+				buildings = model.get('buildings'),
+				building = null;
+
+			if ( unit.get('canFixBuilding') ) {
+				building = _.find(buildings, {x: unitX, y: unitY, state: 'destroyed'});
+			}
+
+			return building;
 
 		},
 
@@ -713,6 +735,23 @@
 
 		},
 
+		fixBuilding: function (action) {
+
+			var unit = this,
+				view = unit.get('view'),
+				model = unit.get('model'),
+				building = action.buildingToFix;
+
+			unit.set('isActive', false);
+
+			view.clearAvailableActions();
+			model.clearAvailableActions();
+
+			building.state = 'normal';
+			view.redrawBuilding(building);
+
+		},
+
 		healthUpByBuilding: function (building) {
 
 			if ( !building ) {
@@ -759,10 +798,6 @@
 					break;
 
 			}
-
-
-
-
 
 		},
 

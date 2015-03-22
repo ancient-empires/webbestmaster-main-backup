@@ -49,7 +49,9 @@
 				def: 5,
 				mov: 5,
 				modelName: 'SoldierModel',
-				langKey: 'soldier'
+				langKey: 'soldier',
+				canFixBuilding: true,
+				listOccupyBuilding: ['farm']
 			},
 			archer: {
 				atk: {

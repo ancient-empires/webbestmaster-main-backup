@@ -197,6 +197,10 @@
 				view.showGravesToRaise(actions.gravesToRaise);
 			}
 
+			if ( actions.buildingToFix ) {
+				view.showFixBuilding(actions.buildingToFix);
+			}
+
 		},
 
 		showAvailablePathViewWithTeamUnit: function (path) {
@@ -288,12 +292,26 @@
 			$eventWrapper.find('.show-raise-skeleton').removeClass('show-raise-skeleton');
 		},
 
+		showFixBuilding: function (building) {
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper),
+				x = building.x,
+				y = building.y;
+
+			$eventWrapper.find('[data-xy="x' + x + 'y' + y + '"]').addClass('show-fix-building');
+		},
+
+		hideFixBuilding: function () {
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
+			$eventWrapper.find('.show-fix-building').removeClass('show-fix-building');
+		},
+
 		clearAvailableActions: function () {
 			this.hideAvailablePathViewWithTeamUnit();
 			this.hideConfirmMoveAction();
 			this.hideUnitsUnderAttack();
 			this.hideConfirmAttackAction();
 			this.hideGravesToRaise();
+			this.hideFixBuilding();
 		},
 
 		removeActiveSquare: function () {
@@ -519,11 +537,37 @@
 			});
 
 			if (building.type === 'farm' && building.hasOwnProperty('ownerId')) {
-				//$node.html('<div class="building-smoke"></div>');
 				this.addSmokeToBuilding(building);
 			}
 
 			$wrapper.append($node);
+
+		},
+
+		redrawBuilding: function (building) {
+
+			var view = this,
+				state = building.state,
+				color = building.color || win.APP.building.defaults.color,
+				type = building.type,
+				x = building.x,
+				y = building.y,
+				$wrapper = view.$el.find(view.selectors.buildingWrapper),
+				$buildingNode = $wrapper.find('[data-xy="x' + x + 'y' + y + '"]');
+
+			$buildingNode.attr('class', '').addClass('building js-building');
+
+			if ( state === 'normal' ) {
+				$buildingNode.addClass( 'building-' + type + '-' + color );
+			}
+
+			if ( state === 'destroyed' ) {
+				$buildingNode.addClass( 'building-' + type + '-destroyed' );
+			}
+
+			if ( type === 'farm' && building.hasOwnProperty('ownerId') ) {
+				this.addSmokeToBuilding(building);
+			}
 
 		},
 
