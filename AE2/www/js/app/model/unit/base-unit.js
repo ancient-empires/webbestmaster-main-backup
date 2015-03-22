@@ -998,6 +998,8 @@
 					case 'flow':
 						if (squareType === 'water') {
 							pathResistance = win.APP.map.water.flowPathResistance;
+						} else {
+							pathResistance = win.APP.map[squareType].pathResistance;
 						}
 						break;
 					default :
