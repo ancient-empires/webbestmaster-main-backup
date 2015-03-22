@@ -32,13 +32,15 @@
 				view = this.get('view'),
 				players = this.get('players'),
 				buildingArr = this.get('buildings'),
-				buildingDefaultColor = win.APP.building.defaults.color;
+				buildingDefaultColor = win.APP.building.defaults.color,
+				buildingDefaultTeamNumber = win.APP.building.defaults.teamNumber;
 
 			_.each(mapBuildings, function (building) {
 
 				// detect color of building
 				var player = _.where(players, { id: building.ownerId })[0];
 				building.color = player ? player.color : buildingDefaultColor;
+				building.teamNumber = player ? player.teamNumber : buildingDefaultTeamNumber;
 
 				buildingArr.push(building);
 
@@ -179,6 +181,8 @@
 			this.setUnitsState();
 
 			this.setGraveState();
+
+			this.healthByBuildings();
 
 			console.log('active player is (see below)');
 			console.log(this.get('activePlayer'));
@@ -528,6 +532,29 @@
 			});
 
 			model.set('graves', stayGraves);
+
+		},
+
+		healthByBuildings: function () {
+
+			var model = this,
+				buildings = model.get('buildings'),
+				units = model.get('units'),
+				activePlayerId = model.get('activePlayer').id;
+
+			_.each(units, function (unit) {
+
+				if ( unit.get('ownerId') !== activePlayerId ) {
+					return;
+				}
+
+				var x = unit.get('x'),
+					y = unit.get('y'),
+					building = _.find(buildings, {x: x, y: y});
+
+				unit.healthUpByBuilding(building);
+
+			});
 
 		}
 

@@ -713,6 +713,59 @@
 
 		},
 
+		healthUpByBuilding: function (building) {
+
+			if ( !building ) {
+				return;
+			}
+
+			var unit = this,
+				unitTeamNumber = unit.get('teamNumber'),
+				unitHealth = unit.get('health'),
+				defaultHealth = unit.get('defaultHealth'),
+				view = unit.get('view'),
+				buildingType = building.type,
+				buildingTeamNumber = building.teamNumber,
+
+				deltaHealth = defaultHealth - unitHealth,
+				buildingUpHealth = win.APP.building.list[buildingType].healthUp;
+
+			deltaHealth = Math.min(deltaHealth, buildingUpHealth);
+
+			if ( !deltaHealth ) {
+				return;
+			}
+
+			switch (buildingType) {
+
+				case 'well':
+				case 'temple':
+					unit.setBy('health', deltaHealth);
+					view.showDifferentUnitHealth({
+						unit: unit,
+						differentHealth: deltaHealth
+					});
+					break;
+
+				case 'castle':
+				case 'farm':
+					if ( unitTeamNumber === buildingTeamNumber ) {
+						unit.setBy('health', deltaHealth);
+						view.showDifferentUnitHealth({
+							unit: unit,
+							differentHealth: deltaHealth
+						});
+					}
+					break;
+
+			}
+
+
+
+
+
+		},
+
 		prepareToNextTurn: function () {
 
 			var unit = this;

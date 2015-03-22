@@ -8,7 +8,8 @@
 		defaults: {
 			state: 'normal',
 			ownerId: null,
-			color: 'gray'
+			color: 'gray',
+			teamNumber: null
 		},
 		list: {
 			castle: {
