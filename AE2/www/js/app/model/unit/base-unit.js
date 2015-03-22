@@ -1,4 +1,5 @@
 /*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
+//todo: after skeleton dead - grave not remove
 (function (win) {
 
 	"use strict";
@@ -395,29 +396,6 @@
 
 		},
 
-		getUnitByXY: function (xy) {
-
-			var unit = this,
-				units = unit.get('model').get('units'),
-				x = xy.x,
-				y = xy.y,
-				enemyUnit = false;
-
-			_.each(units, function (unit) {
-
-				var unitX = unit.get('x'),
-					unitY = unit.get('y');
-
-				if (x === unitX && y === unitY) {
-					enemyUnit = unit;
-				}
-
-			});
-
-			return enemyUnit;
-
-		},
-
 		canStrikeBack: function (enemy) {
 
 			var unit = this,
@@ -607,6 +585,7 @@
 				x = action.attackX,
 				y = action.attackY,
 				enemyUnit,
+				enemyBuilding,
 				model = unit.get('model'),
 				view = unit.get('view'),
 				availableActions;
@@ -623,15 +602,28 @@
 
 			} else {
 
-				enemyUnit = this.getUnitByXY({
+				model.clearAvailableActions();
+				view.clearAvailableActions();
+
+				enemyUnit = model.getUnitByXY({
 					x: x,
 					y: y
 				});
 
-				model.clearAvailableActions();
-				view.clearAvailableActions();
+				if (enemyUnit) {
+					unit.attackToUnit(enemyUnit);
+					return;
+				}
 
-				unit.attackToUnit(enemyUnit);
+				enemyBuilding = model.getBuildingByXY({
+					x: x,
+					y: y
+				});
+
+				if ( enemyBuilding ) {
+					unit.attackToBuilding(enemyBuilding);
+				}
+
 
 			}
 
@@ -737,6 +729,36 @@
 					unit.autoSetLevel();
 				}
 
+			});
+
+		},
+
+		attackToBuilding: function (building) {
+
+			var unit = this,
+				view = unit.get('view');
+
+			view.showAttack({
+				from: {
+					x: unit.get('x'),
+					y: unit.get('y')
+				},
+				to: {
+					x: building.x,
+					y: building.y
+				}
+			}).then(function () {
+
+				delete building.color;
+				delete building.teamNumber;
+				delete building.ownerId;
+				building.state = 'destroyed';
+
+				view.redrawBuilding(building);
+
+				unit.set('isActive', false);
+				unit.setBy('xp', unit.get('atk').min);
+				unit.autoSetLevel();
 			});
 
 		},

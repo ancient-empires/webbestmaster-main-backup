@@ -581,10 +581,11 @@
 
 			if ( state === 'destroyed' ) {
 				$buildingNode.addClass( 'building-' + type + '-destroyed' );
+				view.removeSmokeToBuilding(building);
 			}
 
 			if ( type === 'farm' && building.hasOwnProperty('ownerId') ) {
-				this.addSmokeToBuilding(building);
+				view.addSmokeToBuilding(building);
 			}
 
 		},
@@ -611,6 +612,17 @@
 				.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0)');
 
 			$wrapper.append($smokeContainer);
+
+		},
+
+		removeSmokeToBuilding: function (building) {
+
+			var x = building.x,
+				y = building.y,
+				$wrapper = this.$el.find(this.selectors.smokeWrapper),
+				$smokeContainer = $wrapper.find('[data-xy="x' + x + 'y' + y + '"]');
+
+			$smokeContainer.remove();
 
 		},
 

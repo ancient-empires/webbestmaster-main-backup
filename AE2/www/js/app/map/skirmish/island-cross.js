@@ -39,6 +39,7 @@
 			{"type": "farm", "x": 11, "y": 1, state: 'normal'},
 			{"type": "castle", "x": 13, "y": 1, state: 'normal', ownerId: 0},
 			{"type": "farm", "x": 0, "y": 4, state: 'normal', ownerId: 0},
+			{"type": "farm", "x": 9, "y": 12, state: 'normal'},
 			{"type": "farm", "x": 7, "y": 6, state: 'destroyed'},
 			{"type": "castle", "x": 11, "y": 6, state: 'normal'},
 			{"type": "castle", "x": 3, "y": 8, state: 'normal', ownerId: 1},
