@@ -63,7 +63,7 @@
 				mov: 5,
 				modelName: 'ArcherModel',
 				langKey: 'archer',
-				bonusAtkByFly: 30
+				bonusAtkAgainstFly: 30
 			},
 			elemental: {
 				atk: {
@@ -101,7 +101,8 @@
 				mov: 5,
 				modelName: 'WispModel',
 				langKey: 'wisp',
-				bonusAtkByWispAura: 10
+				bonusAtkByWispAura: 10,
+				bonusAtkAgainstSkeleton: 30
 			},
 			'dire-wolf': {
 				atk: {

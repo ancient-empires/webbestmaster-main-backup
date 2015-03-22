@@ -150,12 +150,12 @@
 
 			var model = this,
 				activePlayer = model.get('activePlayer'),
-				allPlayerUnits = model.getUnitsByOwnerId(activePlayer.id),
+				allTeamUnits = model.getUnitsByTeamNumber(activePlayer.teamNumber),
 				wisps = [],
 				wispAuraMap = [],
 				otherUnits = [];
 
-			_.each(allPlayerUnits, function (unit) {
+			_.each(allTeamUnits, function (unit) {
 				return unit.get('type') === 'wisp' ? wisps.push(unit) : otherUnits.push(unit);
 			});
 
