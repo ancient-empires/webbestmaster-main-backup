@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
 (function (win) {
 
 	"use strict";
@@ -82,7 +83,66 @@
 			'У волшебников есть сила для вызова скелетов-воинов из могил поверженных солдат.',
 			'Используйте виспов для обеспечения ближайшим дружественным единицам ауры, которая прибавляет им очки атаки.',
 			'Держите ваших вайвернов вдали от вражеских лучников, так как они уязвимы для стрел!'
-		]
+		],
+		unitsList: {
+			'soldier': {
+				name: 'солдат',
+				description: ''
+			},
+			'archer': {
+				name: 'лучник',
+				description: ''
+			},
+			'elemental': {
+				name: 'элементаль',
+				description: ''
+			},
+			'sorceress': {
+				name: 'чародейка',
+				description: ''
+			},
+			'wisp': {
+				name: 'висп',
+				description: ''
+			},
+			'dire-wolf': {
+				name: 'лесной волк',
+				description: ''
+			},
+			'golem': {
+				name: 'голем',
+				description: ''
+			},
+			'catapult': {
+				name: 'катапульта',
+				description: ''
+			},
+			'dragon': {
+				name: 'дракон',
+				description: ''
+			},
+			'skeleton': {
+				name: 'скелет',
+				description: ''
+			},
+			'galamar': {
+				name: 'галамар',
+				description: ''
+			},
+			'valadorn': {
+				name: 'валадорн',
+				description: ''
+			},
+			'demon-lord': {
+				name: 'демон лорд',
+				description: ''
+			},
+			'saeth': {
+				name: 'саеф',
+				description: ''
+			}
+
+		}
 
 	};
 

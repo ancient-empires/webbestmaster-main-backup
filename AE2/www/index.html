@@ -355,7 +355,7 @@
 
 	<div class="battle-view-wrapper">
 		<div class="battle-view-container">
-			<div class="battle-view-inner-container js-move-area-wrapper js-no-scroll"> <!-- container with data  -->
+			<div class="battle-view-inner-container js-move-area-wrapper js-no-scroll">
 				<div class="js-move-area-container">
 					<div class="js-event-handler-wrapper event-handler-wrapper"></div>
 					<div class="js-smoke-wrapper smoke-wrapper"></div>
@@ -364,24 +364,37 @@
 					<canvas class="js-map-image-wrapper block"></canvas>
 				</div>
 			</div>
+			<div class="js-store-wrapper"></div>
 		</div>
 		<div class="js-end-turn end-turn">end turn</div>
 		<div class="battle-view-status-bar">
 			status bar
 		</div>
 		<div class="js-view-disable view-disable js-no-scroll hidden"></div>
-		<div class="js-store-wrapper"></div>
 	</div>
 
 </script>
 
 <script type="text/x-template" data-name="unit-store">
 
-	<div class="unit-store-wrapper">
+	<div class="unit-store-wrapper js-unit-store-wrapper">
+		<% var langUnits = window.APP.lang.get('unitsList'); %>
+		<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
 
-		<h1><- back unit-store</h1>
+			<% if (unitData.canNotBeBuy ) { %>
+				<% return; %>
+			<% }; %>
 
+			<div class="unit-card js-unit-card clear-fix">
 
+				<div class="unit-card-header"><%= langUnits[unitData.langKey].name %></div>
+				<div>mov: <%= unitData.mov %></div>
+				<div>akt: <%= unitData.atk.min %> - <%= unitData.atk.max %></div>
+				<div>def: <%= unitData.def %></div>
+				<div>cost: <%= unitData.cost %></div>
+				<button class="js-buy-unit" data-unit-name="<%= key %>">buy</button>
+			</div>
+		<% }); %>
 
 	</div>
 

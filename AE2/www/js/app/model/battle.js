@@ -465,8 +465,7 @@
 				result = false;
 
 			_.each(this.get('units'), function (unit) {
-				var unitData = unit.toJSON();
-				if ( unitData.x === x && unitData.y === y ) {
+				if ( unit.get('x') === x && unit.get('y') === y ) {
 					result = unit;
 				}
 			});

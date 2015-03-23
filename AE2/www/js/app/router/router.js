@@ -63,6 +63,8 @@
 
 		battle: function () {
 
+			$('.js-unit-store-wrapper').trigger('hide-unit-store');
+
 			// todo: unbind unit store view
 			// todo: unbind game menu
 

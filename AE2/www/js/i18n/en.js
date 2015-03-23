@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
 (function (win) {
 
 	"use strict";
@@ -82,7 +83,66 @@
 			'Wizards have the power to summon skeleton warriors from the graves of fallen soldiers. After a unit has been defeated, a tombstone appears for 1 turn. Move a wizard next to a tombstone and select \'raise\' icon.',
 			'Use wisps to provide nearby friendly units with an aura that augments their attack points.',
 			'Keep your wyverns away from enemy archers, as they are vulnerable to arrows!'
-		]
+		],
+		unitsList: {
+			'soldier': {
+				name: 'soldier',
+				description: ''
+			},
+			'archer': {
+				name: 'archer',
+				description: ''
+			},
+			'elemental': {
+				name: 'elemental',
+				description: ''
+			},
+			'sorceress': {
+				name: 'sorceress',
+				description: ''
+			},
+			'wisp': {
+				name: 'wisp',
+				description: ''
+			},
+			'dire-wolf': {
+				name: 'dire wolf',
+				description: ''
+			},
+			'golem': {
+				name: 'golem',
+				description: ''
+			},
+			'catapult': {
+				name: 'catapult',
+				description: ''
+			},
+			'dragon': {
+				name: 'dragon',
+				description: ''
+			},
+			'skeleton': {
+				name: 'skeleton',
+				description: ''
+			},
+			'galamar': {
+				name: 'galamar',
+				description: ''
+			},
+			'valadorn': {
+				name: 'valadorn',
+				description: ''
+			},
+			'demon-lord': {
+				name: 'demon lord',
+				description: ''
+			},
+			'saeth': {
+				name: 'saeth',
+				description: ''
+			}
+
+		}
 
 	};
 

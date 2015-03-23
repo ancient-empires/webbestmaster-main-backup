@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
 (function (win, doc, docElem) {
 
 	"use strict";
@@ -28,6 +29,9 @@
 			current = Math.min(current, max);
 			current = Math.max(current, min);
 			return current;
+		},
+		getPathSize: function (xy1, xy2) {
+			return Math.pow( Math.pow(xy1.x - xy2.x, 2) + Math.pow(xy1.y - xy2.y, 2) , 0.5);
 		}
 
 	};

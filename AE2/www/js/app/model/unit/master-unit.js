@@ -1,8 +1,8 @@
+/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
 (function (win) {
 
 	"use strict";
-	/*global console, alert, window, document */
-	/*global */
+	/*global window */
 
 	function Grave(data) {
 		this.id = data.id;
@@ -51,7 +51,8 @@
 				modelName: 'SoldierModel',
 				langKey: 'soldier',
 				canFixBuilding: true,
-				listOccupyBuilding: ['farm']
+				listOccupyBuilding: ['farm'],
+				cost: 150
 			},
 			archer: {
 				atk: {
@@ -63,7 +64,8 @@
 				mov: 5,
 				modelName: 'ArcherModel',
 				langKey: 'archer',
-				bonusAtkAgainstFly: 30
+				bonusAtkAgainstFly: 30,
+				cost: 250
 			},
 			elemental: {
 				atk: {
@@ -76,7 +78,8 @@
 				modelName: 'ElementalModel',
 				langKey: 'elemental',
 				bonusDefByWater: 15,
-				moveType: 'flow'
+				moveType: 'flow',
+				cost: 300
 			},
 			sorceress: {
 				atk: {
@@ -88,7 +91,8 @@
 				def: 5,
 				mov: 5,
 				modelName: 'SorceressModel',
-				langKey: 'sorceress'
+				langKey: 'sorceress',
+				cost: 400
 			},
 			wisp: {
 				atk: {
@@ -102,7 +106,8 @@
 				modelName: 'WispModel',
 				langKey: 'wisp',
 				bonusAtkByWispAura: 10,
-				bonusAtkAgainstSkeleton: 30
+				bonusAtkAgainstSkeleton: 30,
+				cost: 500
 			},
 			'dire-wolf': {
 				atk: {
@@ -114,7 +119,8 @@
 				mov: 6,
 				modelName: 'DireWolfModel',
 				langKey: 'dire-wolf',
-				poisonPeriod: 3
+				poisonPeriod: 3,
+				cost: 600
 			},
 			golem: {
 				atk: {
@@ -125,7 +131,8 @@
 				def: 30,
 				mov: 5,
 				modelName: 'GolemModel',
-				langKey: 'golem'
+				langKey: 'golem',
+				cost: 600
 			},
 			catapult: {
 				atk: {
@@ -136,7 +143,8 @@
 				def: 10,
 				mov: 4,
 				modelName: 'CatapultModel',
-				langKey: 'catapult'
+				langKey: 'catapult',
+				cost: 700
 			},
 			dragon: {
 				atk: {
@@ -148,7 +156,8 @@
 				mov: 7,
 				modelName: 'DragonModel',
 				langKey: 'dragon',
-				moveType: 'fly'
+				moveType: 'fly',
+				cost: 1000
 			},
 			skeleton: {
 				atk: {
@@ -160,7 +169,9 @@
 				mov: 5,
 				modelName: 'SkeletonModel',
 				langKey: 'skeleton',
-				withoutGrave: true
+				withoutGrave: true,
+				canNotBeBuy: true,
+				cost: 400
 			},
 			galamar: {
 				atk: {
@@ -173,7 +184,8 @@
 				modelName: 'GalamarModel',
 				langKey: 'galamar',
 				canFixBuilding: true,
-				listOccupyBuilding: ['farm', 'castle']
+				listOccupyBuilding: ['farm', 'castle'],
+				cost: 400
 			},
 			valadorn: {
 				atk: {
@@ -186,7 +198,8 @@
 				modelName: 'ValadornModel',
 				langKey: 'valadorn',
 				canFixBuilding: true,
-				listOccupyBuilding: ['farm', 'castle']
+				listOccupyBuilding: ['farm', 'castle'],
+				cost: 400
 			},
 			'demon-lord': {
 				atk: {
@@ -199,7 +212,8 @@
 				modelName: 'DemonLordModel',
 				langKey: 'demon-lord',
 				canFixBuilding: true,
-				listOccupyBuilding: ['farm', 'castle']
+				listOccupyBuilding: ['farm', 'castle'],
+				cost: 400
 			},
 			saeth: {
 				atk: {
@@ -212,7 +226,8 @@
 				modelName: 'SaethModel',
 				langKey: 'saeth',
 				canFixBuilding: true,
-				listOccupyBuilding: ['farm', 'castle']
+				listOccupyBuilding: ['farm', 'castle'],
+				cost: 400
 			}
 
 		}
