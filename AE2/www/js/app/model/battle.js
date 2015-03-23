@@ -245,7 +245,8 @@
 				unit = model.getUnitByXY(xy),
 				building = model.getBuildingByXY(xy),
 				terrain = model.getTerrainByXY(xy),
-				availableActions;
+				availableActions,
+				unitOwnerId;
 
 			// find active actions
 			if (action) {
@@ -259,6 +260,8 @@
 			// find unit
 			if (unit) {
 
+				unitOwnerId = unit.get('ownerId');
+
 				// if unit is active - 1
 					// if unit owned by active player
 						// create and show available action
@@ -269,7 +272,7 @@
 
 				if ( unit.get('isActive') ) {
 
-					if ( unit.get('ownerId') === activePlayer.id ) {
+					if ( unitOwnerId === activePlayer.id ) {
 						// create and show available action
 						availableActions = unit.getAvailableActions();
 						view.showAvailableActions(availableActions);
@@ -283,10 +286,16 @@
 					}
 
 				} else {
+
+					if ( unitOwnerId === activePlayer.id ) {
+						model.openStore(xy);
+					}
+
 					// show terrain info
 					console.log(terrain);
 					model.clearAvailableActions();
 					view.clearAvailableActions();
+
 				}
 
 				return;
@@ -294,7 +303,8 @@
 
 			// find building
 			if (building) {
-				// show buildingterrain info
+				// show building / terrain info
+				model.tryToOpenStoreByBuilding(building);
 				console.log(building);
 				model.clearAvailableActions();
 				view.clearAvailableActions();
@@ -530,7 +540,8 @@
 
 		doAction: function (action) {
 
-			var unit = action.unit,
+			var model = this,
+				unit = action.unit,
 				actionType = action.type;
 
 			switch (actionType) {
@@ -587,6 +598,12 @@
 				case 'occupy-building':
 
 					unit.occupyBuilding(action);
+
+					break;
+
+				case 'open-store':
+
+					model.openStore(action);
 
 					break;
 
@@ -674,7 +691,42 @@
 
 			});
 
+		},
+
+		openStore: function (xy) {
+
+			var model = this,
+				x = xy.x,
+				y = xy.y,
+				activePlayer = model.get('activePlayer');
+
+			debugger
+
+
+
+		},
+
+		tryToOpenStoreByBuilding: function (building) {
+
+			var model = this,
+				activePlayer = model.get('activePlayer');
+
+			if ( building.ownerId !== activePlayer.id ) {
+				return;
+			}
+
+			if ( !win.APP.building.list[building.type].canBeStore ) {
+				return;
+			}
+
+			model.openStore({
+				x: building.x,
+				y: building.y
+			});
+
 		}
+
+
 
 	});
 
