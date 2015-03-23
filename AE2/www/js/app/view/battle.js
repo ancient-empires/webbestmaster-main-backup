@@ -205,6 +205,10 @@
 				view.showBuildingToOccupy(actions.buildingToOccupy);
 			}
 
+			if ( actions.openStore ) {
+				view.showOpenStore(actions.openStore);
+			}
+
 		},
 
 		showAvailablePathViewWithTeamUnit: function (path) {
@@ -322,6 +326,19 @@
 			$eventWrapper.find('.show-occupy-building').removeClass('show-occupy-building');
 		},
 
+		showOpenStore: function (xy) {
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper),
+				x = xy.x,
+				y = xy.y;
+
+			$eventWrapper.find('[data-xy="x' + x + 'y' + y + '"]').addClass('show-open-store');
+		},
+
+		hideOpenStore: function () {
+			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
+			$eventWrapper.find('.show-open-store').removeClass('show-open-store');
+		},
+
 		clearAvailableActions: function () {
 			this.hideAvailablePathViewWithTeamUnit();
 			this.hideConfirmMoveAction();
@@ -330,6 +347,7 @@
 			this.hideGravesToRaise();
 			this.hideFixBuilding();
 			this.hideBuildingToOccupy();
+			this.hideOpenStore();
 		},
 
 		removeActiveSquare: function () {

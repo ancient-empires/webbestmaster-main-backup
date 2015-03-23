@@ -1,4 +1,5 @@
-(function (win, doc, docElem) {
+/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
+(function (win) {
 
 	"use strict";
 	/*global console, alert, window, document */
@@ -16,7 +17,8 @@
 				availableStates: ['normal'],
 				earn: 30,
 				healthUp: 30,
-				defence: 20
+				defence: 20,
+				canBeStore: true
 			},
 			farm: {
 				availableStates: ['normal', 'destroyed'],
@@ -39,4 +41,4 @@
 	};
 
 
-}(window, document, document.documentElement));
+}(window));

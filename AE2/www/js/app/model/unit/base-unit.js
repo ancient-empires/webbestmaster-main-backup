@@ -170,8 +170,12 @@
 			// get building to occupy (farm and castle)
 			buildingToOccupy = unit.getBuildingToOccupy();
 
+			// show $ to go to store
+			openStore = unit.getCanOpenStore();
+
 			return {
 				unit: unit,
+				openStore: openStore,
 				buildingToOccupy: buildingToOccupy,
 				buildingToFix: buildingToFix,
 				gravesToRaise: gravesToRaise,
@@ -513,6 +517,37 @@
 			});
 
 			return pathFinder.getAvailablePath();
+
+		},
+
+		getCanOpenStore: function () {
+
+			var unit = this,
+				unitX = unit.get('x'),
+				unitY = unit.get('y'),
+				unitOwnerId = unit.get('ownerId'),
+				model = unit.get('model'),
+				buildings = model.get('buildings'),
+				building;
+
+			building = _.find(buildings, {x: unitX, y: unitY});
+
+			if ( !building ) {
+				return false;
+			}
+
+			if ( !win.APP.building.list[building.type].canBeStore ) {
+				return false;
+			}
+
+			if ( building.ownerId !== unitOwnerId ) {
+				return false;
+			}
+
+			return {
+				x: unitX,
+				y: unitY
+			};
 
 		},
 

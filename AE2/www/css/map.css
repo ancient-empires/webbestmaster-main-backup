@@ -84,8 +84,8 @@
 .confirm-attack,
 .raise-skeleton,
 .fix-building,
-.occupy-building
-{
+.occupy-building,
+.open-store {
 	background-repeat: no-repeat;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
@@ -149,6 +149,10 @@
 	background-image: url(../i/ux/confirm-attack.png);
 }
 
+.open-store {
+	background-image: url(../i/ux/open-store.png);
+}
+
 .show-available-path .available-path,
 .show-available-attack .available-attack,
 .show-confirm-move .confirm-move,
@@ -156,8 +160,15 @@
 .show-confirm-attack .confirm-attack,
 .show-raise-skeleton .raise-skeleton,
 .show-fix-building .fix-building,
-.show-occupy-building .occupy-building {
+.show-occupy-building .occupy-building,
+.show-open-store .open-store {
 	-webkit-transform: scale(1);
 	transform: scale(1);
 }
+
+
+
+
+
+
 

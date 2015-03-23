@@ -342,7 +342,8 @@
 				undoMoveActions = actions.undoMoveActions,
 				undoAttackActions = actions.undoAttackActions,
 				buildingToFix = actions.buildingToFix,
-				buildingToOccupy = actions.buildingToOccupy;
+				buildingToOccupy = actions.buildingToOccupy,
+				openStore = actions.openStore;
 
 			console.log(' -- actions');
 			console.log(actions);
@@ -432,6 +433,16 @@
 					y: xy.y
 				};
 			}
+
+			if ( openStore && openStore.x === xy.x && openStore.y === xy.y ) {
+				return {
+					type: 'open-store',
+					unit: unit,
+					x: xy.x,
+					y: xy.y
+				};
+			}
+
 
 			return false;
 
