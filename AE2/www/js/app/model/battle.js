@@ -696,9 +696,15 @@
 		openStore: function (xy) {
 
 			var model = this,
+				view = model.get('view'),
 				x = xy.x,
 				y = xy.y,
 				activePlayer = model.get('activePlayer');
+
+			model.clearAvailableActions();
+			view.clearAvailableActions();
+			view.removeActiveSquare();
+
 
 			debugger
 
