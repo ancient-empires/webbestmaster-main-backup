@@ -52,7 +52,8 @@
 						y: building.y
 					},
 					state = building.state,
-					availableStates = win.APP.building.list[type].availableStates;
+					availableStates = win.APP.building.list[type].availableStates,
+					unitOnXY = model.getUnitByXY(xy);
 
 				if ( !_.contains(availableStates, 'destroyed') ) { // do not add without 'destroyed' state
 					return;
@@ -67,6 +68,10 @@
 				}
 
 				if ( _.find(underAttackXYs, xy) ) { // do not add the same XY twice
+					return;
+				}
+
+				if ( unitOnXY && unitOnXY.get('teamNumber') === unit.get('teamNumber') ) { // do not add xy if team unit on building
 					return;
 				}
 
