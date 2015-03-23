@@ -29,6 +29,7 @@
 				getUnitsUnderAttack = proto.getUnitsUnderAttack,
 
 				underAttackXYs,
+				availableAttackMap,
 				x = unit.get('x'),
 				y = unit.get('y'),
 				removedXYs = [
@@ -44,6 +45,8 @@
 				return !_.find(removedXYs, xy);
 			});
 
+			availableAttackMap = unit.getAvailableAttackMap();
+
 			_.each(buildings, function (building) {
 
 				var type = building.type,
@@ -54,6 +57,10 @@
 					state = building.state,
 					availableStates = win.APP.building.list[type].availableStates,
 					unitOnXY = model.getUnitByXY(xy);
+
+				if ( !_.find(availableAttackMap, xy) ) { // do not ad extra buildings
+					return;
+				}
 
 				if ( !_.contains(availableStates, 'destroyed') ) { // do not add without 'destroyed' state
 					return;

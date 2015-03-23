@@ -233,46 +233,24 @@
 		getUnitsUnderAttack: function () {
 
 			var unit = this,
-				view = unit.get('view'),
 				model = unit.get('model'),
 				units = model.get('units'),
-				map = view.get('map'),
-				terrain = map.terrain,
-				teamUnits = [],
 				enemyUnits = [],
 				availableAttackXYs,
 				underAttackXYs = [],
-				pathFinder,
 				unitTeamNumber = unit.get('teamNumber');
-
 
 			if ( unit.get('didAttack') ) {
 				return underAttackXYs; // []
 			}
 
 			_.each(units, function (unit) {
-				if ( unit.get('teamNumber') === unitTeamNumber ) {
-					teamUnits.push(unit);
-				} else {
+				if ( unit.get('teamNumber') !== unitTeamNumber ) {
 					enemyUnits.push(unit);
 				}
 			});
 
-			pathFinder = new PathFinder({
-				blackWholes: [],
-				terrain: terrain,
-				mov: unit.get('atkRange') - 1,
-				x: unit.get('x'),
-				y: unit.get('y'),
-				moveType: unit.get('moveType'),
-				minX: 0,
-				minY: 0,
-				maxX: map.size.width - 1,
-				maxY: map.size.height - 1,
-				relativeTypeSpace: false
-			});
-
-			availableAttackXYs = pathFinder.getAvailablePath();
+			availableAttackXYs = unit.getAvailableAttackMap();
 
 			_.each(enemyUnits, function (enemyUnit) {
 
@@ -288,6 +266,29 @@
 			});
 
 			return underAttackXYs;
+
+		},
+
+		getAvailableAttackMap: function () {
+
+			var unit = this,
+				view = unit.get('view'),
+				map = view.get('map'),
+				pathFinder;
+
+			pathFinder = new PathFinder({
+				blackWholes: [],
+				mov: unit.get('atkRange') - 1,
+				x: unit.get('x'),
+				y: unit.get('y'),
+				minX: 0,
+				minY: 0,
+				maxX: map.size.width - 1,
+				maxY: map.size.height - 1,
+				relativeTypeSpace: false
+			});
+
+			return pathFinder.getAvailablePath();
 
 		},
 
