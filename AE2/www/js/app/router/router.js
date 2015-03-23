@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
 (function (win) {
 
 	"use strict";
@@ -19,7 +20,8 @@
 			'load-game': 'loadGame',
 			'select-level': 'selectLevel',
 			'skirmish-select-map': 'skirmishSelectMap',
-			'skirmish-setup-map/:jsMapKey': 'skirmishSetupMap'
+			'skirmish-setup-map/:jsMapKey': 'skirmishSetupMap',
+			'battle': 'battle'
 
 		},
 
@@ -59,6 +61,16 @@
 			new APP.BB.SkirmishSetupMapView(jsMapKey);
 		},
 
+		battle: function () {
+
+			// todo: unbind unit store view
+			// todo: unbind game menu
+
+			console.log(' todo: unbind/undelegate event listeners --- battle from route --- ');
+
+
+		},
+
 		constructor: function () {
 
 			var originalFunctions = {},
@@ -85,7 +97,7 @@
 
 			}
 
-			$.each(this.routes, function (key, value) {
+			_.each(this.routes, function (value) {
 				originalFunctions[value] = proto[value];
 				proto[value] = function () {
 

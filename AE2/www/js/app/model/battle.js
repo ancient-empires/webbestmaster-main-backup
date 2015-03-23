@@ -697,18 +697,19 @@
 
 			var model = this,
 				view = model.get('view'),
-				x = xy.x,
-				y = xy.y,
 				activePlayer = model.get('activePlayer');
 
 			model.clearAvailableActions();
 			view.clearAvailableActions();
 			view.removeActiveSquare();
 
-
-			debugger
-
-
+			new APP.BB.UnitStoreView({
+				model: model,
+				view: view,
+				x: xy.x,
+				y: xy.y,
+				player: activePlayer
+			});
 
 		},
 

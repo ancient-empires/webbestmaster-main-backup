@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
 (function (win, doc) {
 
 	"use strict";
@@ -64,6 +65,8 @@
 		constructor: function() {
 
 			this.events = $.extend( {}, proto.events, this.events );
+
+			this.selectors = $.extend( {}, proto.selectors, this.selectors );
 
 			this.attr = {};
 
@@ -222,6 +225,9 @@
 		},
 		get: function (key) {
 			return this.attr[key];
+		},
+		extendFromObj: function (data) {
+			_.extend(this.attr, data);
 		}
 
 	});
