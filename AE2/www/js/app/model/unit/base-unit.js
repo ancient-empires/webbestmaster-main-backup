@@ -96,7 +96,12 @@
 		},
 
 		onChangeLevel: function (e, level) {
-			alert('level ' + level);
+
+			var unit = this,
+				view = unit.get('view');
+
+			view.setUnitLevel({ unit: unit });
+
 		},
 
 		setDefaultState: function () {
@@ -451,17 +456,6 @@
 
 		getAttackToUnit: function (enemy) {
 
-			// todo: count more parameters,
-			// like level,
-			// bonus damage by level,
-			// bonus armor by level,
-			// wisp aura,
-			// poisoned,
-			// special armor for elemental
-			// special damage for elemental
-			// special damage archer vs dragon
-			// special damage wisp vs skeleton
-
 			var unit = this,
 				model = unit.get('model'),
 				unitXY = {
@@ -504,8 +498,6 @@
 			atk = Math.max(atk, 1);
 
 			atk = Math.min(atk, enemy.get('health'));
-
-			debugger
 
 			return Math.round(atk);
 

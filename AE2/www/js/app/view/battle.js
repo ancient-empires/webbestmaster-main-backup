@@ -719,9 +719,14 @@
 			// poisoned
 			$unitWrapper.append('<div class="js-under-poison-image under-poison-image">&nbsp;</div>');
 
+			// level
+			$unitWrapper.append('<div class="js-unit-level unit-level">&nbsp;</div>');
+
 			$unitLayerWrapper.append($unitWrapper);
 
 			view.setUnitHealth({ unit: unit });
+
+			view.setUnitLevel({ unit: unit });
 
 		},
 
@@ -1234,6 +1239,29 @@
 			$deltaHealthSign.addClass('number-2-' + sign);
 			$deltaHealthOne.addClass('number-2-' + one);
 			$deltaHealthTen.addClass('number-2-' + ten);
+
+		},
+
+		setUnitLevel: function (data) {
+
+			var view = this,
+				charsList = view.chars.charsList,
+				unit = data.unit,
+				level = unit.get('level'),
+				$unitWrapper = view.getUnitByUnit(unit),
+				$level = $unitWrapper.find('.js-unit-level');
+
+			_.each(charsList, function (char) {
+				$level.removeClass('number-1-' + char);
+			});
+
+			if ( !level ) {
+				return;
+			}
+
+			$level.addClass('number-1-' + level);
+
+			// show level up
 
 		}
 

@@ -92,6 +92,17 @@
 	margin-top: 50%;
 }
 
+.unit-level {
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	width: 25%;
+	height: 33.666666%;
+	position: absolute;
+	right: 12.5%;
+	bottom: 0;
+}
+
 /*.delta-unit-health.bounce {*/
 	/*-webkit-transition: all linear 1.5s;*/
 	/*transition: all linear 1.5s;*/
