@@ -39,8 +39,15 @@
 			return new win.APP.BB.Unit[this.list[data.type].modelName](data);
 
 		},
-		_levelList: [0, 140, 160, 180, 200, 220, 240, 260, 280, 300],
-		levelList: [0, 50, 100, 111, 120, 122, 124, 126, 128, 130],
+		defByLevel: 2,
+		atkByLevel: 2,
+		bonusAtkByWispAura: 10,
+		reduceAktPoison: 10,
+		reduceDefPoison: 10,
+		bonusAtkByWater: 10,
+		bonusDefByWater: 15,
+		_levelList: [0, 84, 88, 93, 97, 102, 107, 113, 118, 124], // +5% for every level
+		levelList: [0, 50, 60, 70, 80, 90, 100, 110, 120, 130],
 		list: {
 			soldier: {
 				atk: {
@@ -79,7 +86,6 @@
 				mov: 5,
 				modelName: 'ElementalModel',
 				langKey: 'elemental',
-				bonusDefByWater: 15,
 				moveType: 'flow',
 				cost: 300
 			},
@@ -107,7 +113,6 @@
 				mov: 5,
 				modelName: 'WispModel',
 				langKey: 'wisp',
-				bonusAtkByWispAura: 10,
 				bonusAtkAgainstSkeleton: 30,
 				cost: 500
 			},
@@ -121,7 +126,7 @@
 				mov: 6,
 				modelName: 'DireWolfModel',
 				langKey: 'dire-wolf',
-				poisonPeriod: 3,
+				poisonPeriod: 2,
 				cost: 600
 			},
 			golem: {

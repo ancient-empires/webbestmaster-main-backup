@@ -455,27 +455,57 @@
 			// like level,
 			// bonus damage by level,
 			// bonus armor by level,
-			// poisoned, wisp aura,
+			// wisp aura,
+			// poisoned,
 			// special armor for elemental
+			// special damage for elemental
 			// special damage archer vs dragon
 			// special damage wisp vs skeleton
 
 			var unit = this,
-				unitHealth = unit.get('health'),
-				enemyHealth = enemy.get('health'),
-				unitDefaultHealth = unit.get('defaultHealth'),
 				model = unit.get('model'),
-				unitAkt = unit.get('atk'),
-				maxAtk = unitAkt.max,
-				minAtk = unitAkt.min,
-				atk = unit.util.getRandomBetween(minAtk, maxAtk),
-				enemyArmor = enemy.get('def'),
-				groundArmor = model.getArmorByXY({
+				unitXY = {
+					x: unit.get('x'),
+					y: unit.get('y')
+				},
+				enemyXY = {
 					x: enemy.get('x'),
 					y: enemy.get('y')
-				});
+				},
+				unitMaster = win.APP.unitMaster,
+				unitLevel = unit.get('level'),
+				unitAktBonusByLevel = unitMaster.atkByLevel * unitLevel,
+				unitAkt = unit.get('atk'),
+				unitMaxAtk = unitAkt.max,
+				unitMinAtk = unitAkt.min,
+				unitAktBonusByWispAura = unit.get('underWispAura') ? unitMaster.bonusAtkByWispAura : 0,
+				unitAtkReduceByPoison = unit.get('poisonCount') ? unitMaster.reduceAktPoison : 0,
+				unitMoveType = unit.get('moveType'),
+				unitTerrain = model.getTerrainByXY(unitXY),
+				unitFlowAtkBonus = (unitMoveType === 'flow' && unitTerrain.terrainType === 'water') ? unitMaster.bonusAtkByWater : 0,
+				enemyMoveType = enemy.get('moveType'),
+				enemyType = enemy.get('type'),
+				unitAtkBonusAgainstFly = ( enemyMoveType === 'fly' && unit.get('bonusAtkAgainstFly') ) ? unit.get('bonusAtkAgainstFly') : 0,
+				unitAtkBonusAgainstSkeleton = ( enemyType === 'skeleton' && unit.get('bonusAtkAgainstSkeleton') ) ? unit.get('bonusAtkAgainstSkeleton') : 0,
+				enemyDef = enemy.get('def'),
+				enemyDefTerrain = model.getArmorByXY(enemyXY),
+				enemyTerrain = model.getTerrainByXY(enemyXY),
+				enemyLevel = enemy.get('level'),
+				enemyDefBonusByLevel = unitMaster.defByLevel * enemyLevel,
+				enemyDefReduceByPoison = enemy.get('poisonCount') ? unitMaster.reduceDefPoison : 0,
+				enemyFlowDefBonus = (enemyMoveType === 'flow' && enemyTerrain.terrainType === 'water') ? unitMaster.bonusDefByWater : 0,
+				unitStartAtk = unit.util.getRandomBetween(unitMinAtk, unitMaxAtk),
+				unitQ = unit.get('health') / unit.get('defaultHealth'),
+				enemyQ = enemy.get('health') / enemy.get('defaultHealth'),
+				atk;
 
-			atk = atk - ( enemyArmor + groundArmor );
+			atk = ( unitStartAtk + unitAktBonusByLevel + unitFlowAtkBonus + unitAtkBonusAgainstFly + unitAtkBonusAgainstSkeleton - unitAtkReduceByPoison ) * unitQ + unitAktBonusByWispAura - ( enemyDefBonusByLevel + enemyFlowDefBonus - enemyDefReduceByPoison ) * enemyQ - enemyDef - enemyDefTerrain;
+
+			atk = Math.max(atk, 1);
+
+			atk = Math.min(atk, enemy.get('health'));
+
+			debugger
 
 			return Math.round(atk);
 
@@ -720,14 +750,11 @@
 
 				unit.set('isActive', false);
 
-				var atk = unit.getAttackToUnit(enemyUnit),
-					enemyUnitHealth = enemyUnit.get('health');
+				var atk = unit.getAttackToUnit(enemyUnit);
 
-				atk = Math.min(atk, enemyUnitHealth);
-				enemyUnitHealth -= atk;
-				enemyUnit.set('health', enemyUnitHealth);
+				enemyUnit.setBy('health', -atk);
 
-				enemyUnit.setBy('poisonCount', unit.get('poisonPeriod') || 0);
+				//enemyUnit.setBy('poisonCount', unit.get('poisonPeriod') || 0);
 
 				unit.setBy('xp', atk);
 
@@ -756,13 +783,9 @@
 							}
 						}).then(function () {
 
-							var atk = enemyUnit.getAttackToUnit(unit),
-								unitHealth = unit.get('health');
+							var atk = enemyUnit.getAttackToUnit(unit);
 
-							atk = Math.min(atk, unitHealth);
-							unitHealth -= atk;
-							unit.set('health', unitHealth);
-							unit.setBy('poisonCount', enemyUnit.get('poisonPeriod') || 0);
+							unit.setBy('health', -atk);
 
 							enemyUnit.setBy('xp', atk);
 
@@ -788,10 +811,13 @@
 								// todo: count level for both unit
 							}
 
+							enemyUnit.setBy('poisonCount', unit.get('poisonPeriod') || 0);
+
 						});
 
 					} else {
 						console.log('-- can NOT strike BACK');
+						enemyUnit.setBy('poisonCount', unit.get('poisonPeriod') || 0);
 						unit.autoSetLevel();
 
 					}

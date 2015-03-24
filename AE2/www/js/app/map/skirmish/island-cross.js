@@ -18,7 +18,7 @@
 
 		"units": [
 			{"type": "soldier", "x": 1, "y": 13, ownerId: 0},
-			{"type": "archer", "x": 2, "y": 13, ownerId: 0},
+			{"type": "archer", "x": 2, "y": 13, ownerId: 1},
 			{"type": "elemental", "x": 3, "y": 13, ownerId: 0},
 			{"type": "sorceress", "x": 4, "y": 13, ownerId: 0},
 			{"type": "wisp", "x": 5, "y": 13, ownerId: 1},
