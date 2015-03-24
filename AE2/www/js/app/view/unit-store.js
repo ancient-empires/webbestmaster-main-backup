@@ -3,7 +3,7 @@
 
 	"use strict";
 	/*global window */
-	/*global $, templateMaster, APP */
+	/*global $, templateMaster, APP, Backbone */
 
 	win.APP = win.APP || {};
 

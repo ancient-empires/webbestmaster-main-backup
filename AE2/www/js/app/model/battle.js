@@ -248,6 +248,7 @@
 				action = model.getActionByXY(xy),
 				unit = model.getUnitByXY(xy),
 				building = model.getBuildingByXY(xy),
+				buildingData = win.APP.building.list,
 				terrain = model.getTerrainByXY(xy),
 				availableActions,
 				unitOwnerId;
@@ -291,7 +292,7 @@
 
 				} else {
 
-					if ( unitOwnerId === activePlayer.id ) {
+					if ( unitOwnerId === activePlayer.id && building && buildingData[building.type].canBeStore ) { // try to open store
 						model.openStore(xy);
 					}
 
