@@ -722,6 +722,9 @@
 			// level
 			$unitWrapper.append('<div class="js-unit-level unit-level">&nbsp;</div>');
 
+			// level up
+			$unitWrapper.append('<div class="js-unit-level-up unit-level-up">&nbsp;</div>');
+
 			$unitLayerWrapper.append($unitWrapper);
 
 			view.setUnitHealth({ unit: unit });
@@ -1131,8 +1134,8 @@
 				unit = data.unit,
 				differentHealth = data.differentHealth,
 				deferred = $.Deferred(),
-				unitWrapper = view.getUnitByUnit(unit),
-				$deltaHealth = unitWrapper.find('.js-delta-unit-health'),
+				$unitWrapper = view.getUnitByUnit(unit),
+				$deltaHealth = $unitWrapper.find('.js-delta-unit-health'),
 				animationEnd = view.get('animationEnd');
 
 			view.disable();
@@ -1261,10 +1264,27 @@
 
 			$level.addClass('number-1-' + level);
 
-			// show level up
+			view.showLevelUp({
+				unit: unit
+			});
+
+		},
+
+		showLevelUp: function (data) {
+
+			var view = this,
+				unit = data.unit,
+				$unitWrapper = view.getUnitByUnit(unit),
+				$levelUp = $unitWrapper.find('.js-unit-level-up'),
+				animationEnd = view.get('animationEnd');
+
+			$levelUp.one(animationEnd, function () {
+				$(this).removeClass('move-up');
+			}); // work only one time
+
+			$levelUp.addClass('move-up');
 
 		}
-
 
 	});
 

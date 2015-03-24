@@ -46,8 +46,7 @@
 		reduceDefPoison: 10,
 		bonusAtkByWater: 10,
 		bonusDefByWater: 15,
-		_levelList: [0, 84, 88, 93, 97, 102, 107, 113, 118, 124], // +5% for every level
-		levelList: [0, 50, 60, 70, 80, 90, 100, 110, 120, 130],
+		levelList: [0, 84, 88, 93, 97, 102, 107, 113, 118, 124], // +5% for every level
 		list: {
 			soldier: {
 				atk: {

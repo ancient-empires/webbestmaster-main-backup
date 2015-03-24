@@ -256,15 +256,69 @@
 	display: block;
 }
 
+.unit-level-up {
+	background-repeat: no-repeat;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	width: 300%;
+	left: -100%;
+	position: absolute;
+	bottom: 0;
+	height: 50%;
+	background-image: url(../i/ux/level-up.png);
+	opacity: 0;
+}
 
+.unit-level-up.move-up {
+	-webkit-animation-duration: 0.8s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-name: level-up;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-transform-origin: center center;
 
+	animation-duration: 0.8s;
+	animation-iteration-count: 1;
+	animation-name: level-up;
+	animation-fill-mode: forwards;
+	transform-origin: center center;
 
+}
 
+@-webkit-keyframes level-up {
 
+	0% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 0, 0);
+	}
 
+	95% {
+		opacity: 1;
+	}
 
+	100% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -200% ,0);
+	}
 
+}
 
+@keyframes level-up {
+
+	0% {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+
+	95% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: translate3d(0, -200% ,0);
+	}
+
+}
 
 
 
