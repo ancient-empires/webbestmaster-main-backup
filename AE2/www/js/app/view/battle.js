@@ -359,11 +359,13 @@
 				activePlayer = model.get('activePlayer'),
 				unitLimit = model.get('unitLimit'),
 				color = activePlayer.color,
+				money = activePlayer.money,
 				playerUnits = model.getUnitsByOwnerId(activePlayer.id),
 				obj = {
 					color: color,
 					unitLimit: unitLimit,
-					unitCount: playerUnits.length
+					unitCount: playerUnits.length,
+					money: money
 				},
 				$node = view.tmpl['battle-view-status-bar'](obj),
 				$statusBarWrapper = view.$el.find(view.selectors.statusBar);
