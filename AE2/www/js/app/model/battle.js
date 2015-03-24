@@ -217,15 +217,19 @@
 
 		startTurn: function () {
 
-			this.clearAvailableActions();
+			var model = this;
 
-			this.setUnitsState();
+			model.clearAvailableActions();
 
-			this.setGraveState();
+			model.setUnitsState();
 
-			this.healthByBuildings();
+			model.setGraveState();
 
-			this.autoSetPoisonCount();
+			model.healthByBuildings();
+
+			model.autoSetPoisonCount();
+
+			model.get('view').updateStatusBar();
 
 			console.log('active player is (see below)');
 			console.log(this.get('activePlayer'));

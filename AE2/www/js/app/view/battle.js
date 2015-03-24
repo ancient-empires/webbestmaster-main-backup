@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
 (function (win, doc) {
 
 	// todo: bug - after resize on ios - smoke is wrong
@@ -30,7 +31,8 @@
 			building: '.js-building',
 			smokeWrapper: '.js-smoke-wrapper',
 			viewDisable: '.js-view-disable',
-			square: '.js-square'
+			square: '.js-square',
+			statusBar: '.js-battle-view-status-bar'
 		},
 
 		initialize: function (data) {
@@ -91,7 +93,7 @@
 
 		detectTransitionEndEventName: function () {
 			var i,
-				el = document.createElement('div'),
+				el = doc.createElement('div'),
 				transitions = {
 					'transition':'transitionend',
 					'OTransition':'otransitionend',  // oTransitionEnd in very old Opera
@@ -112,7 +114,7 @@
 
 		detectAnimationEndEventName: function () {
 			var i,
-				el = document.createElement('div'),
+				el = doc.createElement('div'),
 				animations = {
 					'animation':'animationend',
 					'OAnimation':'oAnimationEnd',  // oAnimationEnd in very old Opera
@@ -348,6 +350,26 @@
 			this.hideFixBuilding();
 			this.hideBuildingToOccupy();
 			this.hideOpenStore();
+		},
+
+		updateStatusBar: function () {
+
+			var view = this,
+				model = view.get('model'),
+				activePlayer = model.get('activePlayer'),
+				unitLimit = model.get('unitLimit'),
+				color = activePlayer.color,
+				playerUnits = model.getUnitsByOwnerId(activePlayer.id),
+				obj = {
+					color: color,
+					unitLimit: unitLimit,
+					unitCount: playerUnits.length
+				},
+				$node = view.tmpl['battle-view-status-bar'](obj),
+				$statusBarWrapper = view.$el.find(view.selectors.statusBar);
+
+			$statusBarWrapper.empty().append($node);
+
 		},
 
 		removeActiveSquare: function () {

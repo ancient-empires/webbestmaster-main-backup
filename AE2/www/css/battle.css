@@ -10,7 +10,7 @@
 .battle-view-container {
 	width: 100%;
 	height: 100%;
-	padding-bottom: 2rem;
+	padding-bottom: 3rem;
 	box-sizing: border-box;
 }
 
@@ -23,7 +23,7 @@
 .battle-view-status-bar {
 	position: fixed;
 	width: 100%;
-	height: 2rem;
+	height: 3rem;
 	left: 0;
 	bottom: 0;
 	z-index: 3;

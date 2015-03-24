@@ -12,7 +12,8 @@
 	APP.BB.UnitStoreView = APP.BB.BaseView.extend({
 
 		selectors: {
-			storeWrapper: '.js-store-wrapper'
+			storeWrapper: '.js-store-wrapper',
+			card: '.js-unit-card'
 		},
 
 		settings: {
@@ -49,6 +50,7 @@
 			var view = this,
 				storeWrapper = view.$wrapper.find(view.selectors.storeWrapper);
 
+			view.autoSetCardState();
 			storeWrapper.append(view.$el);
 
 		},
@@ -58,6 +60,7 @@
 			var view = this,
 				model = view.get('model'),
 				mapSize = model.get('map').size,
+				unitLimit = model.get('unitLimit'),
 				mapWidth = mapSize.width,
 				mapHeight = mapSize.height,
 				x, y,
@@ -68,10 +71,23 @@
 				},
 				getPathSize = win.APP.util.getPathSize,
 				player = view.get('player'),
+				playerUnits = model.getUnitsByOwnerId(player.id),
+				playerMoney = player.money,
 				$this = $(e.currentTarget),
 				unitType = $this.attr('data-unit-name'),
 				unitData = win.APP.unitMaster.list[unitType],
+				unitCost = unitData.cost,
 				freeXYs = [];
+
+			if ( playerUnits.length >= unitLimit ) {
+				return;
+			}
+
+			if ( unitCost > playerMoney ) {
+				return;
+			}
+
+			player.money -= unitCost;
 
 			for (x = 0; x < mapWidth; x += 1) {
 				for (y = 0; y < mapHeight; y += 1) {
@@ -93,6 +109,37 @@
 				color: player.color,
 				x: freeXYs[0].x,
 				y: freeXYs[0].y
+			});
+
+			view.autoSetCardState();
+			view.get('view').updateStatusBar();
+
+		},
+
+		autoSetCardState: function () {
+
+			var view = this,
+				model = view.get('model'),
+				player = view.get('player'),
+				playerUnits = model.getUnitsByOwnerId(player.id),
+				unitLimit = model.get('unitLimit'),
+				playerMoney = player.money,
+				unitData = win.APP.unitMaster.list,
+				$cards = view.$el.find(view.selectors.card);
+
+			if ( playerUnits.length >= unitLimit ) {
+				$cards.addClass('disable');
+				return;
+			}
+
+			_.each($cards, function (card) {
+
+				var $card = $(card),
+					unitType = $card.attr('data-unit-card-name'),
+					unitCost = unitData[unitType].cost;
+
+				return unitCost > playerMoney ? $card.addClass('disable') : $card.removeClass('disable');
+
 			});
 
 		}

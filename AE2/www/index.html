@@ -367,11 +367,19 @@
 		</div>
 		<div class="js-store-wrapper"></div>
 		<div class="js-end-turn end-turn">end turn</div>
-		<div class="battle-view-status-bar">
-			status bar
+		<div class="battle-view-status-bar js-battle-view-status-bar">
+
 		</div>
 		<div class="js-view-disable view-disable js-no-scroll hidden"></div>
 	</div>
+
+</script>
+
+<script type="text/x-template" data-name="battle-view-status-bar">
+
+	<div>player color: <%= color %></div>
+	<div>player units: <%= unitCount %></div>
+	<div>game unit limit: <%= unitLimit %></div>
 
 </script>
 
@@ -385,7 +393,7 @@
 				<% return; %>
 			<% }; %>
 
-			<div class="unit-card js-unit-card clear-fix">
+			<div class="unit-card js-unit-card clear-fix" data-unit-card-name="<%= key %>">
 
 				<div class="unit-card-header"><%= langUnits[unitData.langKey].name %></div>
 				<div>mov: <%= unitData.mov %></div>
