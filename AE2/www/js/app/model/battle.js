@@ -194,7 +194,10 @@
 		newTurn: function () {
 			this.setActivePlayer();
 
+			this.grabBuildingEarn();
+
 			this.startTurn();
+
 
 		},
 
@@ -336,6 +339,18 @@
 		getUnitsByTeamNumber: function (teamNumber) {
 			return _.filter(this.get('units'), function (unit) {
 				return unit.get('teamNumber') === teamNumber;
+			});
+		},
+
+		getBuildingsByOwnerId: function (ownerId) {
+			return _.filter(this.get('buildings'), function (building) {
+				return building.ownerId === ownerId;
+			});
+		},
+
+		getBuildingsByTeamNumber: function (teamNumber) {
+			return _.filter(this.get('buildings'), function (building) {
+				return building.teamNumber === teamNumber;
 			});
 		},
 
@@ -734,6 +749,24 @@
 				x: building.x,
 				y: building.y
 			});
+
+		},
+
+		grabBuildingEarn: function () {
+
+			var model = this,
+				earn = 0,
+				player = model.get('activePlayer'),
+				buildingData = win.APP.building.list,
+				buildings = model.getBuildingsByOwnerId(player.id);
+
+			_.each(buildings, function (building) {
+				earn += buildingData[building.type].earn;
+			});
+
+			console.log(' earned --- ' + earn);
+
+			player.money += earn;
 
 		}
 

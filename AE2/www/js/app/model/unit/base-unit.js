@@ -915,6 +915,8 @@
 
 			newUnit.set('isActive', false);
 
+			view.updateStatusBar();
+
 		},
 
 		fixBuilding: function (action) {
