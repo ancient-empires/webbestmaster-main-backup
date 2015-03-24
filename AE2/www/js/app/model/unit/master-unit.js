@@ -39,6 +39,8 @@
 			return new win.APP.BB.Unit[this.list[data.type].modelName](data);
 
 		},
+		_levelList: [0, 140, 160, 180, 200, 220, 240, 260, 280, 300],
+		levelList: [0, 50, 100, 111, 120, 122, 124, 126, 128, 130],
 		list: {
 			soldier: {
 				atk: {

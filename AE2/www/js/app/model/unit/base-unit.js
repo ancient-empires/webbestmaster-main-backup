@@ -23,6 +23,7 @@
 			unit.set('health', 100);
 			unit.set('defaultHealth', 100);
 			unit.set('xp', 0);
+			unit.set('level', 0);
 
 			unit.bindEventListener();
 
@@ -35,11 +36,13 @@
 		},
 
 		bindEventListener: function () {
-			this.on('change:isActive', this.onChangeIsActive);
-			this.on('change:x', this.autoSetWispAura);
-			this.on('change:y', this.autoSetWispAura);
-			this.on('change:underWispAura', this.onUnderWispAuraChange);
-			this.on('change:poisonCount', this.onPoisonCountChange);
+			var unit = this;
+			unit.on('change:isActive', unit.onChangeIsActive);
+			unit.on('change:x', unit.autoSetWispAura);
+			unit.on('change:y', unit.autoSetWispAura);
+			unit.on('change:underWispAura', unit.onUnderWispAuraChange);
+			unit.on('change:poisonCount', unit.onPoisonCountChange);
+			unit.on('change:level', unit.onChangeLevel);
 		},
 
 		unbindEventListener: function () {
@@ -92,6 +95,10 @@
 
 		},
 
+		onChangeLevel: function (e, level) {
+			alert('level ' + level);
+		},
+
 		setDefaultState: function () {
 
 			this.set('isActive', true);
@@ -107,9 +114,20 @@
 		},
 
 		autoSetLevel: function () {
-			// get/set level
-			// if level was changed -> show levelUp
-			console.log('--- autoSetLevel');
+
+			var unit = this,
+				xp = unit.get('xp'),
+				level = unit.get('level'),
+				levelList = win.APP.unitMaster.levelList;
+
+			_.each(levelList, function (levelPoint, index) {
+				if (xp >= levelPoint) {
+					level = index;
+				}
+			});
+
+			unit.set('level', level);
+
 		},
 
 		//////////
