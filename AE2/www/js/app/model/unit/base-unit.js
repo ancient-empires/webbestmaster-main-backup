@@ -116,6 +116,23 @@
 		// getting data
 		//////////
 
+		autoSetActiveState: function () {
+
+			var unit = this,
+				actions = unit.getAvailableActions(),
+				isActive = false;
+
+			isActive = isActive || (actions.availablePathViewWithTeamUnit && actions.availablePathViewWithTeamUnit.length);
+			isActive = isActive || (actions.availablePathViewWithoutTeamUnit && actions.availablePathViewWithoutTeamUnit.length);
+			isActive = isActive || actions.buildingToFix;
+			isActive = isActive || actions.buildingToOccupy;
+			isActive = isActive || (actions.gravesToRaise && actions.gravesToRaise.length);
+			isActive = isActive || (actions.unitsUnderAttack && actions.unitsUnderAttack.length);
+
+			unit.set('isActive', Boolean(isActive));
+
+		},
+
 		getAvailableActions: function () {
 
 			if ( !this.get('isActive') ) {
@@ -589,7 +606,8 @@
 							beforeY: beforeY
 						});
 					} else {
-						availableActions = unit.getAvailableActions();
+						unit.autoSetActiveState();
+						availableActions = unit.getAvailableActions(); // view.info.get('confirmMove') === 'off'
 					}
 
 					view.showAvailableActions(availableActions);
@@ -600,6 +618,8 @@
 		},
 
 		confirmMove: function () {
+
+			this.autoSetActiveState();
 
 			var unit = this,
 				model = unit.get('model'),
