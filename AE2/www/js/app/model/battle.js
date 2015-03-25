@@ -80,11 +80,13 @@
 				player,
 				view = model.get('view'),
 				unitArr = model.get('units'),
-				unitType = unitData.type;
+				unitType = unitData.type,
+				isCommander = unitType === 'commander' || _.contains(win.APP.unitMaster.commanderList, unitType);
 
-			if ( unitType === 'commander' || _.contains(win.APP.unitMaster.commanderList, unitType) ) {
+			if ( isCommander ) {
 				player = _.find( model.get('players'), {id: unitData.ownerId});
 				unitData.type = player.commander.name;
+				unitData.xp = player.commander.xp;
 				player.commander.isLive = true;
 			}
 

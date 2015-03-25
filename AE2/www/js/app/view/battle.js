@@ -685,6 +685,8 @@
 				y = unitInfo.y,
 				cssX = x * squareSize,
 				cssY = y * squareSize,
+				unitType = unit.get('type'),
+				isCommander = unit.isCommander(),
 				$unitLayerWrapper = view.$el.find(view.selectors.unitsWrapper);
 
 			$unitWrapper
@@ -701,11 +703,11 @@
 				'data-unit-id': unitInfo.id
 			});
 
-			$unitWrapper.addClass('js-square square unit-wrapper unit-wrapper-' + unitInfo.type);
+			$unitWrapper.addClass('js-square square unit-wrapper unit-wrapper-' + unitType);
 
 			$unitWrapper.append($unitBlock);
 
-			$unitBlock.addClass('unit-image unit-image-' + unitInfo.type + '-' + unitInfo.color);
+			$unitBlock.addClass('unit-image unit-image-' + unitType + '-' + unitInfo.color);
 
 			// health
 			$unitWrapper.append('<div class="js-unit-health unit-health"><div class="js-unit-health-ten unit-health-ten">&nbsp;</div><div class="js-unit-health-one unit-health-one">&nbsp;</div></div>');
@@ -729,7 +731,7 @@
 
 			view.setUnitHealth({ unit: unit });
 
-			view.setUnitLevel({ unit: unit });
+			view.setUnitLevel({ unit: unit, doNotShowLevelUp: isCommander });
 
 		},
 
@@ -1264,9 +1266,11 @@
 
 			$level.addClass('number-1-' + level);
 
-			view.showLevelUp({
-				unit: unit
-			});
+			if ( !data.doNotShowLevelUp ) { // when commander was killed and was buy in unit store
+				view.showLevelUp({
+					unit: unit
+				});
+			}
 
 		},
 

@@ -13,7 +13,9 @@
 		// init
 		//////////
 
-		initialize: function() {
+		initialize: function(data) {
+
+			data = data || {};
 
 			var unit = this;
 
@@ -22,8 +24,10 @@
 
 			unit.set('health', 100);
 			unit.set('defaultHealth', 100);
-			unit.set('xp', 0);
+			unit.set('xp', data.xp || 0);
 			unit.set('level', 0);
+
+			unit.autoSetLevel();  // workaround for commanders before listeners
 
 			unit.bindEventListener();
 
@@ -44,6 +48,7 @@
 			unit.on('change:poisonCount', unit.onPoisonCountChange);
 			unit.on('change:level', unit.onChangeLevel);
 			unit.on('change:health', unit.onChangeHealth);
+			unit.on('change:xp', unit.onChangeXp);
 		},
 
 		unbindEventListener: function () {
@@ -113,6 +118,18 @@
 			if ( health <= 0 && unit.isCommander() ) {
 				player = unit.getOwner();
 				player.commander.isLive = false;
+			}
+
+		},
+
+		onChangeXp: function (e, xp) {
+
+			var unit = this,
+				player;
+
+			if ( unit.isCommander() ) {
+				player = unit.getOwner();
+				player.commander.xp = xp;
 			}
 
 		},
