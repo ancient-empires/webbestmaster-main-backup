@@ -232,7 +232,7 @@
 
 	});
 
-	proto = APP.BB.BaseView.prototype;
+	proto = win.APP.BB.BaseView.prototype;
 
 	proto.tmpl = win.APP.templateMaster.tmplFn;
 	proto.proto = proto;

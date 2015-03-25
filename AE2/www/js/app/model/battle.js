@@ -25,6 +25,8 @@
 
 			this.clearAvailableActions();
 
+			this.autoSetCommandersName();
+
 		},
 
 		appendBuildings: function () {
@@ -55,9 +57,7 @@
 
 			var model = this,
 				mapUnits = model.get('map').units,
-				view = model.get('view'),
-				players = model.get('players'),
-				unitArr = model.get('units');
+				players = model.get('players');
 
 			_.each(mapUnits, function (unit) {
 
@@ -67,13 +67,7 @@
 				unit.color = player.color;
 				unit.teamNumber = player.teamNumber;
 
-				unit = win.APP.unitMaster.createUnit(unit);
-				unit.set('model', model);
-				unit.set('view', view);
-
-				unitArr.push(unit);
-
-				view.appendUnit(unit);
+				model.appendUnit(unit);
 
 			});
 
@@ -83,8 +77,15 @@
 
 			var unit,
 				model = this,
+				player,
 				view = model.get('view'),
-				unitArr = model.get('units');
+				unitArr = model.get('units'),
+				unitType = unitData.type;
+
+			if ( unitType === 'commander' || _.contains(win.APP.unitMaster.commanderList, unitType) ) {
+				player = _.find( model.get('players'), {id: unitData.ownerId});
+				unitData.type = player.commander.name;
+			}
 
 			unit = win.APP.unitMaster.createUnit(unitData);
 			unit.set('model', model);
@@ -96,6 +97,44 @@
 			model.autoSetWispAura();
 
 			return unit;
+
+		},
+
+		autoSetCommandersName: function () {
+
+			var model = this,
+				players = model.get('players'),
+				jsMapKey = model. get('args').jsMapKey,
+				mapUnits = win.APP.maps[jsMapKey].units,
+				copyJSON = win.APP.BB.BaseView.prototype.util.copyJSON,
+				util = win.APP.util,
+				commanderList = util.assortArray(copyJSON(win.APP.unitMaster.commanderList));
+
+			// set commanders from map
+			_.each(players, function (player) {
+
+				player.commander = {};
+
+				var ownerId = player.id,
+					units = _.where(mapUnits, { ownerId: ownerId });
+
+				_.each(units, function (unit) {
+					var unitType = unit.type;
+					if ( _.contains(commanderList, unitType) ) {
+						player.commander.name = unitType;
+						util.arrayRemoveByValue(commanderList, unitType);
+					}
+				});
+
+			});
+
+			// set other commanders
+			_.each(players, function (player) {
+				if ( player.commander.name ) {
+					return;
+				}
+				player.commander.name = commanderList.pop();
+			});
 
 		},
 
@@ -156,10 +195,19 @@
 
 			var model = this,
 				activePlayer = model.get('activePlayer'),
-				allTeamUnits = model.getUnitsByTeamNumber(activePlayer.teamNumber),
-				wisps = [],
-				wispAuraMap = [],
-				otherUnits = [];
+				allTeamUnits,
+				wisps,
+				wispAuraMap,
+				otherUnits;
+
+			if ( !activePlayer ) {
+				return;
+			}
+
+			allTeamUnits = model.getUnitsByTeamNumber(activePlayer.teamNumber);
+			wisps = [];
+			wispAuraMap = [];
+			otherUnits = [];
 
 			_.each(allTeamUnits, function (unit) {
 				return unit.get('type') === 'wisp' ? wisps.push(unit) : otherUnits.push(unit);

@@ -25,6 +25,13 @@
 				return 0.5 - Math.random();
 			});
 		},
+		arrayRemoveByValue: function (arr, value) {
+			var index = arr.indexOf(value);
+			if (index !== -1) {
+				arr.splice(index, 1);
+			}
+			return arr;
+		},
 		getBetween: function (min, current, max) {
 			current = Math.min(current, max);
 			current = Math.max(current, min);

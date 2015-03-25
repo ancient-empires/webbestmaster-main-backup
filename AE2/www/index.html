@@ -391,12 +391,15 @@
 		<% var langUnits = window.APP.lang.get('unitsList'); %>
 		<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
 
-			<% if (unitData.canNotBeBuy ) { %>
+			<% if ( unitData.canNotBeBuy ) { %>
 				<% return; %>
 			<% }; %>
 
-			<div class="unit-card js-unit-card clear-fix" data-unit-card-name="<%= key %>">
+		<!-- unitsData = window.APP.unitMaster -->
 
+		<!-- _.contains(unitsData.commanderList, key)  -->
+
+			<div class="unit-card js-unit-card clear-fix" data-unit-card-name="<%= key %>">
 				<div class="unit-card-header"><%= langUnits[unitData.langKey].name %></div>
 				<div>mov: <%= unitData.mov %></div>
 				<div>akt: <%= unitData.atk.min %> - <%= unitData.atk.max %></div>

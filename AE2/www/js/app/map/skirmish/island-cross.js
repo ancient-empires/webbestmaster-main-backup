@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */
 (function () {
 
 	"use strict";
@@ -27,10 +28,11 @@
 			{"type": "catapult", "x": 8, "y": 13, ownerId: 1},
 			{"type": "wisp", "x": 9, "y": 13, ownerId: 0},
 			{"type": "skeleton", "x": 10, "y": 13, ownerId: 0},
-			{"type": "galamar", "x": 1, "y": 12, ownerId: 0},
-			{"type": "valadorn", "x": 2, "y": 12, ownerId: 0},
-			{"type": "demon-lord", "x": 3, "y": 12, ownerId: 0},
-			{"type": "saeth", "x": 4, "y": 12, ownerId: 0},
+			{"type": "commander", "x": 1, "y": 12, ownerId: 0},
+			//{"type": "galamar", "x": 1, "y": 12, ownerId: 0},
+			//{"type": "valadorn", "x": 2, "y": 12, ownerId: 0},
+			//{"type": "demon-lord", "x": 3, "y": 12, ownerId: 0},
+			//{"type": "saeth", "x": 4, "y": 12, ownerId: 0},
 			{"type": "soldier", "x": 13, "y": 1, ownerId: 1}
 		],
 		"buildings": [
