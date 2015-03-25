@@ -52,13 +52,17 @@
 
 			proto.$wrapper = $(this.selectors.wrapper);
 
-			var isTouch = win.APP.info.get('isTouch', true),
+			var info = win.APP.info,
+				isTouch = info.get('isTouch', true),
 				eventTypesIndex = Number(isTouch),
-				types = this.eventTypes;
+				types = this.eventTypes,
+				os = info.get('os', true);
 
 			_.each(types, function (typesArr, key) {
 				types[key] = typesArr[eventTypesIndex];
 			});
+
+			proto.$wrapper.addClass(os);
 
 		},
 
