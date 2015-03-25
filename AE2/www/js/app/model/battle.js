@@ -167,6 +167,8 @@
 			model.addGrave(grave);
 			view.addGrave(grave);
 
+			model.checkPlayerDefeat();
+
 		},
 
 		removeUnit: function (unit) {
@@ -823,8 +825,135 @@
 
 			player.money += earn;
 
-		}
+		},
 
+		//////////////////
+		// unit actions
+		//////////////////
+
+		checkPlayerDefeat: function () {
+
+			var model = this,
+				view = model.get('view'),
+				players = model.get('players'),
+				looser = false,
+				teamsNumbers = [],
+				util = win.APP.util,
+				winTeam,
+				looserTeam,
+				looserBuilding,
+				teamOfLooser;
+
+			_.each(players, function (player) {
+
+				teamsNumbers.push(player.teamNumber);
+
+				if ( model.playerIsDefeat(player) ) {
+					looser = player;
+				}
+
+			});
+
+			teamsNumbers = _.uniq(teamsNumbers);
+
+			if ( !looser ) {
+				return false;
+			}
+
+			teamOfLooser = model.getTeamByPlayer(looser);
+
+			if ( teamOfLooser.length ) {
+
+				// divide money and farm between team
+				// divide money
+				_.each(teamOfLooser, function (player) {
+					player.money += Math.floor( looser.money / teamOfLooser.length ); // really do not want create one more variable with teamOfLooser.length
+				});
+
+				_.each( model.getBuildingsByOwnerId(looser.id), function (building) {
+
+					var teamPlayer = teamOfLooser[0];
+
+					building.color = teamPlayer.color;
+					building.ownerId = teamPlayer.id;
+
+					view.redrawBuilding(building);
+
+				});
+
+				alert('player - ' + JSON.stringify(looser) + ' was defeat! \n NOT end game!');
+
+				return false;
+
+			}
+
+			if ( teamsNumbers.length <= 2 ) { // duel
+
+				looserTeam = looser.teamNumber;
+				winTeam = util.arrayRemoveByValue(teamsNumbers, looserTeam)[0];
+
+				alert('win team - ' + winTeam + '\n' + 'looser team - ' + looserTeam + ' \n END game!');
+
+				return true; // end game
+			}
+
+			// adjust building
+			looserBuilding = model.getBuildingsByOwnerId(looser.id);
+			_.each(looserBuilding, function (building) {
+
+				delete building.ownerId;
+				delete building.teamNumber;
+				delete building.color;
+
+				view.redrawBuilding(building);
+
+			});
+
+			return false;
+
+		},
+
+		playerHasCastle: function (player) {
+
+			var model = this,
+				buildings = model.getBuildingsByOwnerId(player.id);
+
+			return Boolean( _.find(buildings, { type: 'castle' }) );
+
+		},
+
+		playerHasCommander: function (player) {
+			return player.commander.isLive;
+		},
+
+		playerIsDefeat: function (player) {
+
+			var model = this;
+
+			return !(model.playerHasCastle(player) || model.playerHasCommander(player));
+
+		},
+
+		getTeamByPlayer: function (player) {
+
+			var model = this,
+				players = model.get('players'),
+				team = [],
+				teamNumber = player.teamNumber;
+
+			_.each(players, function (teamPlayer) {
+
+				if ( teamNumber !== teamPlayer.teamNumber || teamPlayer === player ) {
+					return;
+				}
+
+				team.push(teamPlayer);
+
+			});
+
+			return team;
+
+		}
 
 
 	});

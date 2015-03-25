@@ -628,6 +628,8 @@
 
 			if ( type === 'farm' && building.hasOwnProperty('ownerId') ) {
 				view.addSmokeToBuilding(building);
+			} else {
+				view.removeSmokeToBuilding(building);
 			}
 
 		},

@@ -1040,6 +1040,8 @@
 
 			view.redrawBuilding(building);
 
+			model.checkPlayerDefeat();
+
 		},
 
 		healthUpByBuilding: function (building) {
