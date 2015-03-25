@@ -37,8 +37,6 @@
 
 			view.extendFromObj(data);
 
-			view.$el = $(view.tmpl['unit-store']());
-
 			view.proto.initialize.apply(view, arguments);
 
 			view.render();
@@ -48,7 +46,13 @@
 		render: function () {
 
 			var view = this,
+				model = view.get('model'),
+				player = model.get('activePlayer'),
 				storeWrapper = view.$wrapper.find(view.selectors.storeWrapper);
+
+			view.$el = $(view.tmpl['unit-store']({
+				commander: player.commander
+			}));
 
 			view.autoSetCardState();
 			storeWrapper.append(view.$el);
@@ -84,6 +88,12 @@
 			}
 
 			if ( unitCost > playerMoney ) {
+				return;
+			}
+
+			// if commander is live - return
+			// do not buy 2+ commander
+			if ( player.commander.isLive && _.contains(win.APP.unitMaster.commanderList, unitType) ) {
 				return;
 			}
 
@@ -125,7 +135,8 @@
 				unitLimit = model.get('unitLimit'),
 				playerMoney = player.money,
 				unitData = win.APP.unitMaster.list,
-				$cards = view.$el.find(view.selectors.card);
+				$cards = view.$el.find(view.selectors.card),
+				$commanderCard = view.$el.find(view.selectors.card + '[data-is-commander="true"]');
 
 			if ( playerUnits.length >= unitLimit ) {
 				$cards.addClass('disable');
@@ -141,6 +152,13 @@
 				return unitCost > playerMoney ? $card.addClass('disable') : $card.removeClass('disable');
 
 			});
+
+			// set commander state
+			if ( player.commander.isLive ) {
+				$commanderCard.addClass('hidden');
+			} else {
+				$commanderCard.removeClass('hidden');
+			}
 
 		}
 

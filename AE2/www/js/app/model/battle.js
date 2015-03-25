@@ -85,6 +85,7 @@
 			if ( unitType === 'commander' || _.contains(win.APP.unitMaster.commanderList, unitType) ) {
 				player = _.find( model.get('players'), {id: unitData.ownerId});
 				unitData.type = player.commander.name;
+				player.commander.isLive = true;
 			}
 
 			unit = win.APP.unitMaster.createUnit(unitData);
@@ -113,7 +114,11 @@
 			// set commanders from map
 			_.each(players, function (player) {
 
-				player.commander = {};
+				player.commander = {
+					isLive: false,
+					name: null,
+					xp: 0
+				};
 
 				var ownerId = player.id,
 					units = _.where(mapUnits, { ownerId: ownerId });

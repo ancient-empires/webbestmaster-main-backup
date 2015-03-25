@@ -388,18 +388,20 @@
 <script type="text/x-template" data-name="unit-store">
 
 	<div class="unit-store-wrapper js-unit-store-wrapper">
-		<% var langUnits = window.APP.lang.get('unitsList'); %>
+		<% var unitsData = window.APP.unitMaster, langUnits = window.APP.lang.get('unitsList'); %>
 		<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
+
+			<% var isCommander = _.contains(unitsData.commanderList, key); %>
 
 			<% if ( unitData.canNotBeBuy ) { %>
 				<% return; %>
 			<% }; %>
 
-		<!-- unitsData = window.APP.unitMaster -->
+			<% if ( isCommander && key !== commander.name ) { %>
+				<% return; %>
+			<% }; %>
 
-		<!-- _.contains(unitsData.commanderList, key)  -->
-
-			<div class="unit-card js-unit-card clear-fix" data-unit-card-name="<%= key %>">
+			<div class="unit-card js-unit-card clear-fix" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
 				<div class="unit-card-header"><%= langUnits[unitData.langKey].name %></div>
 				<div>mov: <%= unitData.mov %></div>
 				<div>akt: <%= unitData.atk.min %> - <%= unitData.atk.max %></div>

@@ -43,6 +43,7 @@
 			unit.on('change:underWispAura', unit.onUnderWispAuraChange);
 			unit.on('change:poisonCount', unit.onPoisonCountChange);
 			unit.on('change:level', unit.onChangeLevel);
+			unit.on('change:health', unit.onChangeHealth);
 		},
 
 		unbindEventListener: function () {
@@ -95,12 +96,24 @@
 
 		},
 
-		onChangeLevel: function (e, level) {
+		onChangeLevel: function () {
 
 			var unit = this,
 				view = unit.get('view');
 
 			view.setUnitLevel({ unit: unit });
+
+		},
+
+		onChangeHealth: function (e, health) {
+
+			var unit = this,
+				player;
+
+			if ( health <= 0 && unit.isCommander() ) {
+				player = unit.getOwner();
+				player.commander.isLive = false;
+			}
 
 		},
 
@@ -606,6 +619,26 @@
 				x: unitX,
 				y: unitY
 			};
+
+		},
+
+		getOwner: function () {
+
+			var unit = this,
+				model = unit.get('model'),
+				players = model.get('players');
+
+			return _.find( players, { id: unit.get('ownerId') } );
+
+		},
+
+		isCommander: function () {
+
+			var unit = this,
+				unitType = unit.get('type'),
+				commanderList = win.APP.unitMaster.commanderList;
+
+			return _.contains(commanderList, unitType);
 
 		},
 
