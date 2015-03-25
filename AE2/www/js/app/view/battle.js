@@ -35,6 +35,12 @@
 			statusBar: '.js-battle-view-status-bar'
 		},
 
+		squareSize: {
+			min: 24,
+			max: 96, // 192
+			default: 48 // 24 * 2
+		},
+
 		initialize: function (data) {
 
 			this.detectClickEvent();
@@ -42,11 +48,11 @@
 			this.detectTransitionEndEventName();
 			this.detectAnimationEndEventName();
 
-			this.squareSize = {
-				min: win.APP.util.defaultUnit,
-				max: win.APP.util.defaultUnit * 9,
-				default: win.APP.util.defaultUnit * 3
-			};
+			//this.squareSize = {
+			//	min: win.APP.util.defaultUnit,
+			//	max: win.APP.util.defaultUnit * 9,
+			//	default: win.APP.util.defaultUnit * 3
+			//};
 
 			this.$el = $(this.tmpl.battle(data));
 
