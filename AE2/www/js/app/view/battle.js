@@ -609,7 +609,7 @@
 				$wrapper = view.$el.find(view.selectors.buildingWrapper),
 				$buildingNode = $wrapper.find('[data-xy="x' + x + 'y' + y + '"]');
 
-			$buildingNode.attr('class', '').addClass('building js-building');
+			$buildingNode.attr('class', '').addClass('building js-building square');
 
 			if ( state === 'normal' ) {
 				$buildingNode.addClass( 'building-' + type + '-' + color );
