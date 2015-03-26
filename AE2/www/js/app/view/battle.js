@@ -63,6 +63,8 @@
 				map: this.get('map')
 			}));
 
+			this.set('markActiveSquare', {}); // {x: number, y: number}
+
 			// set sizes
 			this.setSize();
 
@@ -77,9 +79,6 @@
 
 			// bind move area
 			this.bindMoveArea();
-
-			// 'draw' event listeners
-			this.setEventHandlerListeners();
 
 			log(data);
 
@@ -162,15 +161,55 @@
 
 		markActiveSquare: function (xy) {
 
-			var selectorActiveEventSquare = this.selectors.activeEventSquare,
-				classNameActiveEventSquare = this.classNames.activeEventSquare,
-				selectorActiveSquareMark = this.selectors.activeSquareMark,
-				classNameActiveSquareMark = this.classNames.activeSquareMark,
-				$activeSquare = this.$el.find(this.selectors.eventSquares + selectorActiveEventSquare),
-				$newActiveSquare = this.$el.find(this.selectors.eventSquares + '[data-xy="x' + xy.x + 'y' + xy.y + '"]');
+			this.removeActiveSquare();
 
-			$activeSquare.removeClass(classNameActiveEventSquare).find(selectorActiveSquareMark).remove();
-			$newActiveSquare.addClass(classNameActiveEventSquare).append('<div class="' + classNameActiveSquareMark + '">&nbsp;</div>');
+			var view = this,
+				x = xy.x,
+				y = xy.y,
+				util = view.util,
+				selectors = view.selectors,
+				squareEventHandler = util.findIn(view.$el[0], selectors.eventSquares + '[data-xy="x' + x + 'y' + y + '"]');
+
+			if ( !squareEventHandler ) {
+				squareEventHandler = view.createEventHandlerListener({
+					x: xy.x,
+					y: xy.y
+				});
+			}
+
+			view.set('markActiveSquare', {
+				x: x,
+				y: y
+			});
+
+			squareEventHandler.innerHTML = '<div class="' + view.classNames.activeSquareMark + '">&nbsp;</div>';
+
+		},
+
+		removeActiveSquare: function () {
+
+			var view = this,
+				node = view.util.findIn(view.$el[0], view.selectors.activeSquareMark);
+
+			view.set('markActiveSquare', {
+				x: null,
+				y: null
+			});
+
+			return node && node.parentNode.removeChild(node);
+
+		},
+
+		restoreActiveSquare: function () {
+
+			var view = this,
+				markActiveSquareXy = view.get('markActiveSquare');
+
+			if ( markActiveSquareXy.x === null || markActiveSquareXy.y === null ) {
+				return;
+			}
+
+			view.markActiveSquare(markActiveSquareXy);
 
 		},
 
@@ -216,141 +255,103 @@
 
 		showAvailablePathViewWithTeamUnit: function (path) {
 
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
-
-			_.each(path, function (xy) {
-				$eventWrapper.find('[data-xy="x' + xy.x + 'y' + xy.y + '"]').addClass('show-available-path');
+			path.forEach(function (xy) {
+				this.createEventHandlerListener({
+					x: xy.x,
+					y: xy.y,
+					className: 'show-available-path'
+				});
 			}, this);
 
 		},
 
-		hideAvailablePathViewWithTeamUnit: function () {
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
-			$eventWrapper.find('.show-available-path').each(function () {
-				$(this).removeClass('show-available-path');
-			});
-		},
-
 		showConfirmMoveAction: function (confirmMoveAction) {
 
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper),
-				x = confirmMoveAction.x,
-				y = confirmMoveAction.y;
-
-			$eventWrapper.find('[data-xy="x' + x + 'y' + y + '"]').addClass('show-confirm-move');
-
-		},
-
-		hideConfirmMoveAction: function () {
-
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
-
-			$eventWrapper.find('.show-confirm-move').removeClass('show-confirm-move');
+			this.createEventHandlerListener({
+				x: confirmMoveAction.x,
+				y: confirmMoveAction.y,
+				className: 'show-confirm-move'
+			});
 
 		},
 
 		showUnitsUnderAttack: function (unitsUnderAttack) {
 
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
-
-			_.each(unitsUnderAttack, function (xy) {
-				$eventWrapper.find('[data-xy="x' + xy.x + 'y' + xy.y + '"]').addClass('show-unit-under-attack');
+			unitsUnderAttack.forEach(function (xy) {
+				this.createEventHandlerListener({
+					x: xy.x,
+					y: xy.y,
+					className: 'show-unit-under-attack'
+				});
 			}, this);
-
-		},
-
-		hideUnitsUnderAttack: function () {
-
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
-			$eventWrapper.find('.show-unit-under-attack').each(function () {
-				$(this).removeClass('show-unit-under-attack');
-			});
 
 		},
 
 		showConfirmAttackAction: function (confirmAttackAction) {
 
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper),
-				x = confirmAttackAction.x,
-				y = confirmAttackAction.y;
-
-			$eventWrapper.find('[data-xy="x' + x + 'y' + y + '"]').addClass('show-confirm-attack');
-
-		},
-
-		hideConfirmAttackAction: function () {
-
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
-			$eventWrapper.find('.show-confirm-attack').removeClass('show-confirm-attack');
+			this.createEventHandlerListener({
+				x: confirmAttackAction.x,
+				y: confirmAttackAction.y,
+				className: 'show-confirm-attack'
+			});
 
 		},
 
 		showGravesToRaise: function (graves) {
 
-			var view = this,
-				$eventWrapper = view.$el.find(view.selectors.eventHandlerWrapper);
+			graves.forEach(function (xy) {
+				this.createEventHandlerListener({
+					x: xy.x,
+					y: xy.y,
+					className: 'show-raise-skeleton'
+				});
+			}, this);
 
-			_.each(graves, function (xy) {
-				var x = xy.x,
-					y = xy.y;
-				$eventWrapper.find('[data-xy="x' + x + 'y' + y + '"]').addClass('show-raise-skeleton');
+		},
+
+		showFixBuilding: function (building) {
+
+			this.createEventHandlerListener({
+				x: building.x,
+				y: building.y,
+				className: 'show-fix-building'
 			});
 
 		},
 
-		hideGravesToRaise: function () {
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
-			$eventWrapper.find('.show-raise-skeleton').removeClass('show-raise-skeleton');
-		},
-
-		showFixBuilding: function (building) {
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper),
-				x = building.x,
-				y = building.y;
-
-			$eventWrapper.find('[data-xy="x' + x + 'y' + y + '"]').addClass('show-fix-building');
-		},
-
-		hideFixBuilding: function () {
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
-			$eventWrapper.find('.show-fix-building').removeClass('show-fix-building');
-		},
-
 		showBuildingToOccupy: function (building) {
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper),
-				x = building.x,
-				y = building.y;
 
-			$eventWrapper.find('[data-xy="x' + x + 'y' + y + '"]').addClass('show-occupy-building');
-		},
+			this.createEventHandlerListener({
+				x: building.x,
+				y: building.y,
+				className: 'show-occupy-building'
+			});
 
-		hideBuildingToOccupy: function () {
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
-			$eventWrapper.find('.show-occupy-building').removeClass('show-occupy-building');
 		},
 
 		showOpenStore: function (xy) {
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper),
-				x = xy.x,
-				y = xy.y;
 
-			$eventWrapper.find('[data-xy="x' + x + 'y' + y + '"]').addClass('show-open-store');
-		},
+			this.createEventHandlerListener({
+				x: xy.x,
+				y: xy.y,
+				className: 'show-open-store'
+			});
 
-		hideOpenStore: function () {
-			var $eventWrapper = this.$el.find(this.selectors.eventHandlerWrapper);
-			$eventWrapper.find('.show-open-store').removeClass('show-open-store');
 		},
 
 		clearAvailableActions: function () {
-			this.hideAvailablePathViewWithTeamUnit();
-			this.hideConfirmMoveAction();
-			this.hideUnitsUnderAttack();
-			this.hideConfirmAttackAction();
-			this.hideGravesToRaise();
-			this.hideFixBuilding();
-			this.hideBuildingToOccupy();
-			this.hideOpenStore();
+
+			var view = this,
+				util = view.util,
+				nodes = util.findInAll(view.$el[0], view.selectors.eventSquares),
+				parentNode = nodes[0] && nodes[0].parentNode;
+
+			nodes.forEach(function (node) {
+				parentNode.removeChild(node);
+			});
+
+			view.restoreActiveSquare();
+
 		},
 
 		updateStatusBar: function () {
@@ -375,17 +376,6 @@
 
 		},
 
-		removeActiveSquare: function () {
-			// this.classNames.eventSquares
-			var selectorActiveEventSquare = this.selectors.activeEventSquare,
-				selectorActiveSquareMark = this.selectors.activeSquareMark,
-				classNameActiveEventSquare = this.classNames.activeEventSquare,
-				$activeSquare = this.$el.find(this.selectors.eventSquares + selectorActiveEventSquare);
-
-			$activeSquare.removeClass(classNameActiveEventSquare).find(selectorActiveSquareMark).remove();
-
-		},
-
 		bindEventListeners: function () {
 			var device = win.APP.device;
 			this.listenTo(device, 'resize', this.onResize);
@@ -405,30 +395,35 @@
 
 		},
 
-		setEventHandlerListeners: function () {
+		createEventHandlerListener: function (data) { // x, y, className
 
-			var squareSize = this.getSquareSize(),
-				$eventHandlerWrapper = this.$el.find(this.selectors.eventHandlerWrapper),
-				map = this.get('map'),
-				pre = this.info.get('pre', true).css,
-				template = this.tmpl['event-handler'],
-				resultArr = [],
-				x, y, xLen, yLen;
+			var view = this,
+				util = view.util,
+				x = data.x,
+				y = data.y,
+				className = data.className || '',
+				squareSize = view.getSquareSize(),
+				pre = view.info.get('pre', true).css,
+				node = doc.createElement('div'),
+				prevNode = util.findIn(view.$el[0], view.selectors.eventSquares + '[data-xy="x' + x + 'y' + y + '"]'),
+				wrapper;
 
-			for (x = 0, xLen = map.size.width; x < xLen; x += 1) {
-				for (y = 0, yLen = map.size.height; y < yLen; y += 1) {
-					resultArr.push(template({
-							x: x,
-							y: y,
-							squareSize: squareSize,
-							pre: pre
-						})
-					);
-				}
+			if ( prevNode ) {
+				prevNode.parentNode.removeChild(prevNode);
 			}
 
-			$eventHandlerWrapper.html(resultArr.join(''));
+			node.className = ('js-square js-event-square square ' + className).trim();
 
+			node.setAttribute('data-xy', 'x' + x + 'y' + y);
+			node.setAttribute('data-x', x);
+			node.setAttribute('data-y', y);
+
+			node.setAttribute('style', pre + 'transform: translate3d(' + (x * squareSize) + 'px, ' +  (y * squareSize) + 'px, 0);');
+
+			wrapper = util.findIn(view.$el[0], view.selectors.eventHandlerWrapper);
+			wrapper.appendChild(node);
+
+			return node;
 		},
 
 		drawMap: function () {

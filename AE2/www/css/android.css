@@ -6,7 +6,7 @@
 .android .active-square-mark,
 .android .unit-under-attack,
 .android .raise-skeleton {
-	-webkit-animation: none;
-	animation: none;
+	/*-webkit-animation: none;*/
+	/*animation: none;*/
 }
 

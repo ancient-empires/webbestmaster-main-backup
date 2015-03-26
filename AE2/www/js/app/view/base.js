@@ -305,6 +305,12 @@
 				x: parseInt(xy[0], 10),
 				y: parseInt(xy[1], 10)
 			};
+		},
+		findIn: function (context, selector) {
+			return context.querySelector(selector);
+		},
+		findInAll: function (context, selector) {
+			return Array.prototype.slice.call(context.querySelectorAll(selector));
 		}
 
 	};

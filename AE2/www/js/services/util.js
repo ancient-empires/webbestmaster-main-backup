@@ -15,8 +15,6 @@
 
 			fontSize = Math.max(16, fontSize);
 
-			//this.defaultUnit = fontSize;
-
 			docElem.style.fontSize = fontSize + 'px';
 
 		},
