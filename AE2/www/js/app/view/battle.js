@@ -37,11 +37,7 @@
 			styleSquareSize: '.js-style-square-size'
 		},
 
-		squareSize: {
-			min: 24,
-			max: 96, // 192
-			default: 48 // 24 * 2
-		},
+		squareSize: win.APP.map.squareSize,
 
 		initialize: function (data) {
 
@@ -468,26 +464,31 @@
 				getXYFromStringXY = this.util.getXYFromStringXY,
 				xyStr = this.util.getStringFromXY,
 				map = this.get('map'),
-				squareSize = this.getSquareSize(),
+				squareSize = this.squareSize.max,
 				squareSizeX2,
 				mapTiles = win.APP.mapTiles,
 				terrains = map.terrain,
 				angleTypes = ['road', 'water'],
-				reBridge = /^bridge\-\d+$/;
-
-			squareSize = Math.max(squareSize, Math.round(this.squareSize.max * 0.66) ); // set max
-			squareSize = Math.min(squareSize, this.squareSize.min * 2); // and min square
+				reBridge = /^bridge\-\d+$/,
+				mapWidth = map.size.width,
+				mapHeight = map.size.height,
+				maxCanvasSize = win.APP.map.maxCanvasSize;
 
 			if ( this.info.get('isIOS', true) ) {
 				squareSize = 24; // see tiles image size
 			}
 
+			// adjust square size
+			while ( mapWidth * mapHeight * squareSize * squareSize * 4 > maxCanvasSize ) {
+				squareSize -= 12;
+			}
+
 			squareSizeX2 = squareSize * 2;
 
-			canvas.width = map.size.width * 2 * squareSize;
-			canvas.height = map.size.height * 2 * squareSize;
+			canvas.width = mapWidth * 2 * squareSize;
+			canvas.height = mapHeight * 2 * squareSize;
 
-			// reduce blur
+			// reduce blur for ios devices
 			ctx.webkitImageSmoothingEnabled = false;
 			ctx.mozImageSmoothingEnabled = false;
 			ctx.imageSmoothingEnabled = false; // future

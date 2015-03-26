@@ -1,8 +1,9 @@
+/*jslint white: true, nomen: true */
 (function (win) {
 
 	"use strict";
 	/*global window, document, setTimeout, history, location, Image*/
-	/*global APP, Backbone, FastClick */
+	/*global APP, Backbone, FastClick, _, $ */
 
 	win.APP = win.APP || {};
 
@@ -11,13 +12,23 @@
 	function initTiles() {
 
 		_.each(win.APP.mapTiles, function (base64, key) {
-			var img = new Image();
-			img.src = base64;
+			var img = new Image(),
+				scale = 8;
 
-			win.APP.mapTiles[key] = {
-				base64: base64,
-				img: img
-			};
+			$(img).one('load', function () {
+
+				var base64Scaled = win.APP.map.scaleImage(this, scale);
+
+				win.APP.mapTiles[key] = {
+					base64: base64Scaled,
+					img: img
+				};
+
+				img.src = base64Scaled;
+
+			}.bind(img, scale, key));
+
+			img.src = base64;
 
 		});
 
