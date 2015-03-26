@@ -149,10 +149,20 @@
 
 			});
 
-
-
-
 			return availablePathWithTeamUnit;
+
+		},
+
+		getAvailableAttackMapWithPath: function () {
+
+			var unit = this,
+				x = unit.get('x'),
+				y = unit.get('y');
+
+			return unit.getAvailableAttackMapFromXy({
+				x: x,
+				y: y
+			});
 
 		}
 
