@@ -577,7 +577,7 @@
 
 			$node.attr('data-xy', 'x' + x + 'y' + y).attr('data-x', x).attr('data-y', y).attr('data-type', building.type);
 
-			$node.addClass('building').addClass('js-building');
+			$node.addClass('building').addClass('js-building').addClass('square');
 
 			if (building.state === 'normal') {
 				$node.addClass( 'building-' + building.type + '-' + building.color );
@@ -593,8 +593,7 @@
 			$node.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0)');
 
 			$node.css({
-				height: height + 'px',
-				width: width + 'px'
+				height: height + 'px'
 			});
 
 			if (building.type === 'farm' && building.hasOwnProperty('ownerId')) {
@@ -687,12 +686,7 @@
 				isCommander = unit.isCommander(),
 				$unitLayerWrapper = view.$el.find(view.selectors.unitsWrapper);
 
-			$unitWrapper
-				.css({
-					height: squareSize + 'px',
-					width: squareSize + 'px'
-				})
-				.css(pre + 'transform', 'translate3d(' + cssX + 'px, ' + cssY + 'px, 0)');
+			$unitWrapper.css(pre + 'transform', 'translate3d(' + cssX + 'px, ' + cssY + 'px, 0)');
 
 			$unitWrapper.attr({
 				'data-x': x,
@@ -764,12 +758,7 @@
 				cssY = y * squareSize,
 				$unitLayerWrapper = view.$el.find(view.selectors.unitsWrapper);
 
-			$graveWrapper
-				.css({
-					height: squareSize + 'px',
-					width: squareSize + 'px'
-				})
-				.css(pre + 'transform', 'translate3d(' + cssX + 'px, ' + cssY + 'px, 0)');
+			$graveWrapper.css(pre + 'transform', 'translate3d(' + cssX + 'px, ' + cssY + 'px, 0)');
 
 			$graveWrapper.attr({
 				'data-x': x,
@@ -872,7 +861,6 @@
 					x = Number($this.attr('data-x')),
 					y = Number($this.attr('data-y')),
 					dY = type === 'castle' ? -1 : 0,
-					nodeWidth = squareSize,
 					nodeHeight = squareSize - squareSize * dY;
 
 				x = x * squareSize;
@@ -881,7 +869,6 @@
 				$this.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0)');
 
 				$this.css({
-					width: nodeWidth + 'px',
 					height: nodeHeight + 'px'
 				});
 
@@ -1102,19 +1089,15 @@
 				pre = view.info.get('pre', true).css,
 				transitionEnd = view.get('transitionEnd'),
 				squareSize = view.getSquareSize(),
-				$attackNode = $('<div class="attack-square">&nbsp;</div>'),
+				$attackNode = $('<div class="attack-square square">&nbsp;</div>'),
 				$unitsWrapper = view.$el.find(view.selectors.unitsWrapper);
 
 			view.removeActiveSquare();
 
 			$unitsWrapper.append($attackNode);
 
-			$attackNode
-				.css(pre + 'transform', 'translate3d(' + (from.x * squareSize) + 'px, ' + (from.y * squareSize) + 'px, 0)')
-				.css({
-					width: squareSize + 'px',
-					height: squareSize + 'px'
-				});
+			$attackNode.css(pre + 'transform', 'translate3d(' + (from.x * squareSize) + 'px, ' + (from.y * squareSize) + 'px, 0)');
+
 
 			$attackNode.one(transitionEnd, function () {
 
@@ -1136,6 +1119,7 @@
 			setTimeout(function () { // todo: try to do transitionEnd without this hack
 				$attackNode.css(pre + 'transform', 'translate3d(' + (to.x * squareSize) + 'px, ' + (to.y * squareSize) + 'px, 0)');
 			}, 0);
+
 
 			return deferred.promise();
 
