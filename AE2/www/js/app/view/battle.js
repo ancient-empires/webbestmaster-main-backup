@@ -5,7 +5,7 @@
 
 	"use strict";
 	/*global window, document, setTimeout, history, Image */
-	/*global Backbone, $, templateMaster, APP, log, Mover */
+	/*global Backbone, $, templateMaster, APP, log, Mover, _ */
 
 	win.APP = win.APP || {};
 
@@ -952,24 +952,13 @@
 			view.events[view.eventTypes.dbl + ' ' + selectors.mainEventHandler] = 'detectDblClick';
 		},
 
-		detectClick: function (e) {
+		detectClick: function () {
 
 			var view = this,
-				x,
-				y,
 				downXY = view.get('downEvent'),
 				moveXY = view.get('moveEvent'),
 				maxDeltaMove = 10,
-
-				// math analise,
-				selectors,
-				$el,
-				$moveAreaWrapper,
-				$moveAreaContainer,
-				squareSize,
-				$mainEventHandler,
-				w, h, aw, ah, dxy;
-
+				xy;
 
 			if ( !downXY || !moveXY ) {
 				return;
@@ -979,17 +968,39 @@
 				return;
 			}
 
-			selectors = view.selectors;
-			$el = view.$el;
-			$moveAreaWrapper = $el.find(selectors.moveAreaWrapper);
-			$moveAreaContainer = $el.find(selectors.moveAreaContainer);
-			squareSize = view.getSquareSize();
-			$mainEventHandler = $(e.currentTarget);
-			w = $moveAreaWrapper.width();
-			h = $moveAreaWrapper.height();
-			aw = $mainEventHandler.width();
-			ah = $mainEventHandler.height();
-			dxy = view.util.getXyFromStyle($moveAreaContainer.attr('style'));
+			xy = view.getEventXy();
+
+			view.onClick(xy);
+
+		},
+
+		detectDblClick: function () {
+
+			var view = this,
+				markActiveSquareXy = view.get('markActiveSquare'),
+				x = markActiveSquareXy.x,
+				y = markActiveSquareXy.y;
+
+			alert(x + ' - ' + y);
+
+		},
+
+		getEventXy: function () {
+
+			var view = this,
+				x, y,
+				downXY = view.get('downEvent'),
+				selectors = view.selectors,
+				$el = view.$el,
+				$moveAreaWrapper = $el.find(selectors.moveAreaWrapper),
+				$moveAreaContainer = $el.find(selectors.moveAreaContainer),
+				squareSize = view.getSquareSize(),
+				$mainEventHandler = $el.find(selectors.mainEventHandler),
+				w = $moveAreaWrapper.width(),
+				h = $moveAreaWrapper.height(),
+				aw = $mainEventHandler.width(),
+				ah = $mainEventHandler.height(),
+				dxy = view.util.getXyFromStyle($moveAreaContainer.attr('style'));
 
 			x = (aw - w) / 2 + downXY.x - dxy.x;
 			y = (ah - h) / 2 + downXY.y - dxy.y;
@@ -997,14 +1008,10 @@
 			x = Math.floor( x / squareSize );
 			y = Math.floor( y / squareSize );
 
-			view.onClick({ x: x, y: y });
-
-		},
-
-		detectDblClick: function () {
-
-
-			alert(JSON.stringify(this.get('markActiveSquare')));
+			return {
+				x: x,
+				y: y
+			};
 
 		},
 
