@@ -347,7 +347,6 @@
 				pathFinder;
 
 			pathFinder = new PathFinder({
-				blackWholes: [],
 				mov: unit.get('atkRange') - 1,
 				x: unit.get('x'),
 				y: unit.get('y'),
@@ -380,7 +379,6 @@
 			}
 
 			pathFinder = new PathFinder({
-				blackWholes: [],
 				terrain: terrain,
 				mov: raiseRange - 1,
 				x: unit.get('x'),
@@ -591,7 +589,6 @@
 				pathFinder;
 
 			pathFinder = new PathFinder({
-				blackWholes: [],
 				terrain: terrain,
 				mov: auraRange - 1,
 				x: unit.get('x'),
@@ -1127,6 +1124,10 @@
 
 		this.setAttributes(data);
 
+		if ( !data.blackWholes ) {
+			this.set('blackWholes', []);
+		}
+
 		this.set('availablePath', []);
 		this.set('donePathPoints', []);
 
@@ -1189,6 +1190,12 @@
 			this.set('availablePath', availablePath);
 
 			return this.get('availablePath');
+
+		},
+
+		getAvailablePathFromPoint: function (data) {
+
+			//
 
 		},
 
