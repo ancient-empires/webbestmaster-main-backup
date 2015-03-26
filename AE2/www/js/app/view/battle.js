@@ -32,7 +32,8 @@
 			smokeWrapper: '.js-smoke-wrapper',
 			viewDisable: '.js-view-disable',
 			square: '.js-square',
-			statusBar: '.js-battle-view-status-bar'
+			statusBar: '.js-battle-view-status-bar',
+			styleSquareSize: '.js-style-square-size'
 		},
 
 		squareSize: {
@@ -47,12 +48,6 @@
 
 			this.detectTransitionEndEventName();
 			this.detectAnimationEndEventName();
-
-			//this.squareSize = {
-			//	min: win.APP.util.defaultUnit,
-			//	max: win.APP.util.defaultUnit * 9,
-			//	default: win.APP.util.defaultUnit * 3
-			//};
 
 			this.$el = $(this.tmpl.battle(data));
 
@@ -412,7 +407,7 @@
 
 		setEventHandlerListeners: function () {
 
-			var squareSize = this.info.get('squareSize'),
+			var squareSize = this.getSquareSize(),
 				$eventHandlerWrapper = this.$el.find(this.selectors.eventHandlerWrapper),
 				map = this.get('map'),
 				pre = this.info.get('pre', true).css,
@@ -444,7 +439,7 @@
 				getXYFromStringXY = this.util.getXYFromStringXY,
 				xyStr = this.util.getStringFromXY,
 				map = this.get('map'),
-				squareSize = this.info.get('squareSize'),
+				squareSize = this.getSquareSize(),
 				squareSizeX2,
 				mapTiles = win.APP.mapTiles,
 				terrains = map.terrain,
@@ -574,7 +569,7 @@
 				x = building.x,
 				y = building.y,
 				dY = building.type === 'castle' ? -1 : 0,
-				squareSize = this.info.get('squareSize'),
+				squareSize = this.getSquareSize(),
 				height = squareSize - squareSize * dY,
 				width = squareSize,
 				pre = this.info.get('pre', true).css,
@@ -645,7 +640,7 @@
 			var x = building.x,
 				y = building.y,
 				pre = this.info.get('pre', true).css,
-				squareSize = this.info.get('squareSize'),
+				squareSize = this.getSquareSize(),
 				$wrapper = this.$el.find(this.selectors.smokeWrapper),
 				$smokeContainer = $('<div class="smoke-container square js-square"><div class="building-smoke">&nbsp;</div></div>');
 
@@ -654,12 +649,7 @@
 			x *= squareSize;
 			y *= squareSize;
 
-			$smokeContainer
-				.css({
-					height: squareSize + 'px',
-					width: squareSize + 'px'
-				})
-				.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0)');
+			$smokeContainer.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0)');
 
 			$wrapper.append($smokeContainer);
 
@@ -686,7 +676,7 @@
 			var view = this,
 				pre = view.info.get('pre', true).css,
 				$unitWrapper = $('<div></div>'),
-				squareSize = view.info.get('squareSize'),
+				squareSize = view.getSquareSize(),
 				$unitBlock = $('<div>&nbsp;</div>'),
 				unitInfo = unit.toJSON(),
 				x = unitInfo.x,
@@ -767,7 +757,7 @@
 			var view = this,
 				pre = view.info.get('pre', true).css,
 				$graveWrapper = $('<div></div>'),
-				squareSize = view.info.get('squareSize'),
+				squareSize = view.getSquareSize(),
 				x = grave.x,
 				y = grave.y,
 				cssX = x * squareSize,
@@ -825,9 +815,13 @@
 
 		},
 
+		getSquareSize: function () {
+			return this.info.get('squareSize');
+		},
+
 		setSize: function () {
 
-			var squareSize = this.info.get('squareSize') || this.squareSize.default,
+			var squareSize = this.getSquareSize() || this.squareSize.default,
 				selectors = this.selectors,
 				$moveAreaContainer = this.$el.find(selectors.moveAreaContainer),
 				$mapImageWrapper = this.$el.find(selectors.mapImageWrapper),
@@ -866,12 +860,7 @@
 					x = Number($this.attr('data-x')) * squareSize,
 					y = Number($this.attr('data-y')) * squareSize;
 
-				$this
-					.css({
-						width: squareSize + 'px',
-						height: squareSize + 'px'
-					})
-					.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0)');
+				$this.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0)');
 
 			});
 
@@ -897,6 +886,20 @@
 				});
 
 			});
+
+			this.autoSetStyleForSize();
+
+		},
+
+		autoSetStyleForSize: function () {
+
+			var view = this,
+				squareSize = view.getSquareSize(),
+				$el = view.$el,
+				selectors = view.selectors,
+				$style = $el.find(selectors.styleSquareSize);
+
+			$style.html('.square { width: ' + squareSize + 'px; height: ' + squareSize + 'px; }');
 
 		},
 
@@ -929,7 +932,7 @@
 				x = xyzs.x,
 				y = xyzs.y,
 				z = xyzs.z,
-				squareSize = Math.round(this.info.get('squareSize') * scale),
+				squareSize = Math.round(this.getSquareSize() * scale),
 				mover = this.get('mover');
 
 			squareSize = win.APP.util.getBetween(this.squareSize.min, squareSize, this.squareSize.max);
@@ -1054,7 +1057,7 @@
 				deferred = $.Deferred(),
 				pre = view.info.get('pre', true).css,
 				transitionEnd = view.get('transitionEnd'),
-				squareSize = view.info.get('squareSize'),
+				squareSize = view.getSquareSize(),
 				$unitNode = view.getUnitByUnit(data.unit),
 				x = data.x,
 				y = data.y,
@@ -1098,7 +1101,7 @@
 				deferred = $.Deferred(),
 				pre = view.info.get('pre', true).css,
 				transitionEnd = view.get('transitionEnd'),
-				squareSize = view.info.get('squareSize'),
+				squareSize = view.getSquareSize(),
 				$attackNode = $('<div class="attack-square">&nbsp;</div>'),
 				$unitsWrapper = view.$el.find(view.selectors.unitsWrapper);
 
