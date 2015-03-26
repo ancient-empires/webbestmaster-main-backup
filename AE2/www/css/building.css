@@ -78,6 +78,7 @@
 	-webkit-animation-direction: normal;
 	-webkit-animation-timing-function: steps(4);
 	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-delay: 12s;
 
 	animation-name: smoke-bg-shift;
 	animation-duration: 4s;
@@ -85,6 +86,7 @@
 	animation-direction: normal;
 	animation-timing-function: steps(4);
 	animation-fill-mode: forwards;
+	animation-delay: 12s;
 
 }
 
@@ -101,6 +103,7 @@
 	-webkit-animation-direction: normal;
 	-webkit-animation-timing-function: ease-out;
 	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-delay: 12s;
 
 	animation-name: to-top;
 	animation-duration: 4s;
@@ -108,6 +111,7 @@
 	animation-direction: normal;
 	animation-timing-function: ease-out;
 	animation-fill-mode: forwards;
+	animation-delay: 12s;
 
 }
 
