@@ -53,6 +53,19 @@
 
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 @-webkit-keyframes change-bg-3 {
 
 	from {
@@ -77,59 +90,48 @@
 
 }
 
-.available-path,
-.available-attack,
-.confirm-move,
-.unit-under-attack,
-.confirm-attack,
-.raise-skeleton,
-.fix-building,
-.occupy-building,
-.open-store {
-	background-repeat: no-repeat;
+
+.show-available-path,
+.show-available-attack,
+.show-confirm-move,
+.show-fix-building,
+.show-occupy-building,
+.show-confirm-attack,
+.show-open-store {
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-
-	-webkit-transform: scale(0);
-	transform: scale(0);
-
-	-webkit-transition: -webkit-transform 0.25s ease-out;
-	transition: transform 0.25s ease-out;
-	z-index: 1;
 }
 
-.available-path {
-	border-radius: 10%;
-	background-color: rgba(227, 0, 123, 0.56);
+.show-unit-under-attack,
+.show-raise-skeleton {
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
 }
 
-.available-attack {
-	border-radius: 10%;
-	background-color: rgba(255, 212, 0, 0.56);
+
+.show-available-path {
+	background-image: url(../i/ux/available-path.png);
 }
 
-.confirm-move {
+.show-available-attack {
+	background-image: url(../i/ux/available-attack.png);
+}
+
+.show-confirm-move {
 	background-image: url(../i/ux/confirm-move.png);
 }
 
-.fix-building {
+.show-fix-building {
 	background-image: url(../i/ux/fix-building.png);
 }
 
-.occupy-building {
+.show-occupy-building {
 	background-image: url(../i/ux/occupy-building.png);
 }
 
-.unit-under-attack,
-.raise-skeleton {
+.show-unit-under-attack,
+.show-raise-skeleton {
 	background-image: url(../i/ux/unit-under-attack.png);
-	-webkit-background-size: auto 100%;
-	background-size: auto 100%;
 
 	-webkit-animation-name: change-bg-3;
 	-webkit-animation-duration: 1.5s;
@@ -147,30 +149,19 @@
 
 }
 
-.confirm-attack {
+.show-confirm-attack {
 	background-image: url(../i/ux/confirm-attack.png);
 }
 
-.open-store {
+.show-open-store {
 	background-image: url(../i/ux/open-store.png);
 }
 
-.show-confirm-move .confirm-move,
-.show-unit-under-attack .unit-under-attack,
-.show-confirm-attack .confirm-attack,
-.show-raise-skeleton .raise-skeleton,
-.show-fix-building .fix-building,
-.show-occupy-building .occupy-building,
-.show-open-store .open-store {
-	-webkit-transform: scale(1);
-	transform: scale(1);
-}
 
-.show-available-path .available-path,
-.show-available-attack .available-attack {
-	-webkit-transform: scale(0.9);
-	transform: scale(0.9);
-}
+
+
+
+
 
 
 

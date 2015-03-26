@@ -10,27 +10,3 @@
 	animation: none;
 }
 
-.android .available-path,
-.android .available-attack,
-.android .confirm-move,
-.android .unit-under-attack,
-.android .confirm-attack,
-.android .raise-skeleton,
-.android .fix-building,
-.android .occupy-building,
-.android .open-store {
-	display: none;
-}
-
-.android .show-available-path .available-path,
-.android .show-available-attack .available-attack,
-.android .show-confirm-move .confirm-move,
-.android .show-unit-under-attack .unit-under-attack,
-.android .show-confirm-attack .confirm-attack,
-.android .show-raise-skeleton .raise-skeleton,
-.android .show-fix-building .fix-building,
-.android .show-occupy-building .occupy-building,
-.android .show-open-store .open-store {
-	display: block;
-}
-
