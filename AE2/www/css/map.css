@@ -91,6 +91,33 @@
 }
 
 
+
+
+@-webkit-keyframes increase-bg-size {
+
+	from {
+		-webkit-background-size: 0 0;
+	}
+
+	to {
+		-webkit-background-size: 100% 100%;
+	}
+
+}
+
+@keyframes increase-bg-size {
+
+	from {
+		background-size: 0 0;
+	}
+
+	to {
+		background-size: 100% 100%;
+	}
+
+}
+
+
 .show-available-path,
 .show-available-attack,
 .show-confirm-move,
@@ -98,8 +125,24 @@
 .show-occupy-building,
 .show-confirm-attack,
 .show-open-store {
-	-webkit-background-size: 100% 100%;
-	background-size: 100% 100%;
+
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: 0 0;
+	background-size: 0 0;
+
+	-webkit-animation-name: increase-bg-size;
+	-webkit-animation-duration: 0.3s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-direction: normal;
+	-webkit-animation-fill-mode: forwards;
+
+	animation-name: increase-bg-size;
+	animation-duration: 0.3s;
+	animation-iteration-count: 1;
+	animation-direction: normal;
+	animation-fill-mode: forwards;
+
 }
 
 .show-unit-under-attack,
