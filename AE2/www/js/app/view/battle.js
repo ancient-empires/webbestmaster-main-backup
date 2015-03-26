@@ -949,7 +949,8 @@
 
 			this.events[this.eventTypes.down + ' ' + this.selectors.moveAreaContainer] = 'saveDownEvent';
 			this.events[this.eventTypes.move + ' ' + this.selectors.moveAreaContainer] = 'saveMoveEvent';
-			this.events[this.eventTypes.up + ' ' + this.selectors.eventSquares] = 'detectClick';
+			//this.events[this.eventTypes.up + ' ' + this.selectors.eventHandlerWrapper] = 'detectClick';
+			this.events[this.eventTypes.up + ' ' + '.js-main-event-handler'] = 'detectClick';
 		},
 
 		detectClick: function (e) {
@@ -959,8 +960,7 @@
 				y,
 				downXY = this.get('downEvent'),
 				moveXY = this.get('moveEvent'),
-				maxDeltaMove = 10,
-				eventSquareClassName = this.classNames.eventSquares;
+				maxDeltaMove = 10;
 
 			if ( !downXY || !moveXY ) {
 				return;
@@ -970,11 +970,7 @@
 				return;
 			}
 
-			$this = $(e.target);
-
-			if ( !$this.hasClass(eventSquareClassName) ) {
-				$this = $this.parent();
-			}
+			$this = $(e.currentTarget);
 
 			x = Number($this.attr('data-x'));
 			y = Number($this.attr('data-y'));
@@ -1026,6 +1022,7 @@
 					x: e.clientX,
 					y: e.clientY
 				});
+
 			});
 
 			return evt;
