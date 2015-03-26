@@ -571,7 +571,6 @@
 				dY = building.type === 'castle' ? -1 : 0,
 				squareSize = this.getSquareSize(),
 				height = squareSize - squareSize * dY,
-				width = squareSize,
 				pre = this.info.get('pre', true).css,
 				$wrapper = this.$el.find(this.selectors.buildingWrapper);
 
@@ -1022,7 +1021,7 @@
 
 			evt.length = events.length;
 
-			$.each(events, function (index, e) {
+			_.each(events, function (e) {
 				evt.events.push({
 					x: e.clientX,
 					y: e.clientY
