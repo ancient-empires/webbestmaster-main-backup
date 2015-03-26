@@ -146,7 +146,7 @@
 					min: 50,
 					max: 70
 				},
-				atkRange: 7,
+				atkRange: 5,
 				def: 10,
 				mov: 4,
 				modelName: 'CatapultModel',

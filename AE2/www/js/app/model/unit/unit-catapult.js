@@ -29,21 +29,11 @@
 				getUnitsUnderAttack = proto.getUnitsUnderAttack,
 
 				underAttackXYs,
-				availableAttackMap,
-				x = unit.get('x'),
-				y = unit.get('y'),
-				removedXYs = [
-					{x: x, y: y - 1}, // 2
-					{x: x - 1, y: y}, // 4
-					{x: x + 1, y: y}, // 6
-					{x: x, y: y + 1}  // 8
-				];
+				availableAttackMap;
 
 			underAttackXYs = getUnitsUnderAttack.call(this);
 
-			underAttackXYs = _.filter(underAttackXYs, function (xy) {
-				return !_.find(removedXYs, xy);
-			});
+			underAttackXYs = unit.filterExtraXYs(underAttackXYs);
 
 			availableAttackMap = unit.getAvailableAttackMap();
 
@@ -153,16 +143,35 @@
 
 		},
 
+		filterExtraXYs: function (arr) {
+			
+			var unit = this,
+				x = unit.get('x'),
+				y = unit.get('y'),
+				removedXYs = [
+					{x: x, y: y - 1}, // 2
+					{x: x - 1, y: y}, // 4
+					{x: x + 1, y: y}, // 6
+					{x: x, y: y + 1}  // 8
+				];
+
+			return _.filter(arr, function (xy) {
+				return !_.find(removedXYs, xy);
+			});
+
+		},
+
 		getAvailableAttackMapWithPath: function () {
 
 			var unit = this,
 				x = unit.get('x'),
-				y = unit.get('y');
+				y = unit.get('y'),
+				availableAttackMap = unit.getAvailableAttackMapFromXy({
+					x: x,
+					y: y
+				});
 
-			return unit.getAvailableAttackMapFromXy({
-				x: x,
-				y: y
-			});
+			return unit.filterExtraXYs(availableAttackMap);
 
 		}
 
