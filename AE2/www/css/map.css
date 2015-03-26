@@ -151,13 +151,16 @@
 	background-size: auto 100%;
 }
 
-
 .show-available-path {
 	background-image: url(../i/ux/available-path.png);
 }
 
 .show-available-attack {
 	background-image: url(../i/ux/available-attack.png);
+}
+
+.show-available-path.show-available-attack {
+	background-image: url(../i/ux/available-path-with-attack.png);
 }
 
 .show-confirm-move {

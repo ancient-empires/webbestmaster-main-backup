@@ -361,6 +361,49 @@
 
 		},
 
+		getAvailableAttackMapFromXy: function (xy) {
+
+			var unit = this,
+				view = unit.get('view'),
+				map = view.get('map'),
+				pathFinder;
+
+			pathFinder = new PathFinder({
+				mov: unit.get('atkRange') - 1,
+				x: xy.x,
+				y: xy.y,
+				minX: 0,
+				minY: 0,
+				maxX: map.size.width - 1,
+				maxY: map.size.height - 1,
+				relativeTypeSpace: false
+			});
+
+			return pathFinder.getAvailablePath();
+
+		},
+
+		getAvailableAttackMapWithPath: function () {
+
+			var unit = this,
+				attacksMap = [{
+					x: unit.get('x'), // add unit's xy
+					y: unit.get('y')
+				}],
+				availablePath = unit.getAvailablePathWithTeamUnit();
+
+			_.each(availablePath, function (xy) {
+				_.each(unit.getAvailableAttackMapFromXy(xy), function (xy) {
+					return _.find(attacksMap, xy) || attacksMap.push(xy);
+				});
+			});
+
+			attacksMap.shift(); // remove unit's xy
+
+			return attacksMap;
+
+		},
+
 		getGravesToRaise: function () {
 
 			var unit = this,
@@ -1184,12 +1227,6 @@
 			this.set('availablePath', availablePath);
 
 			return this.get('availablePath');
-
-		},
-
-		getAvailablePathFromPoint: function (data) {
-
-			//
 
 		},
 

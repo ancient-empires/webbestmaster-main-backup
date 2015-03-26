@@ -252,6 +252,10 @@
 				view.showOpenStore(actions.openStore);
 			}
 
+			if ( actions.availableAttackMapWithPath ) {
+				view.showAvailableAttackMapWithPath(actions.availableAttackMapWithPath);
+			}
+
 		},
 
 		showAvailablePathViewWithTeamUnit: function (path) {
@@ -336,6 +340,35 @@
 				x: xy.x,
 				y: xy.y,
 				className: 'show-open-store'
+			});
+
+		},
+
+		showAvailableAttackMapWithPath: function (attackSquares) {
+
+			var view = this,
+				util = view.util,
+				el = view.$el[0],
+				squareSelector = view.selectors.eventSquares,
+				availableAttackClassName = 'show-available-attack';
+
+			attackSquares.forEach(function (xy) {
+
+				var x = xy.x,
+					y = xy.y,
+					node = util.findIn(el, squareSelector + '[data-xy="x' + x + 'y' + y + '"]');
+
+				if ( node ) {
+					node.classList.add(availableAttackClassName);
+					return;
+				}
+
+				view.createEventHandlerListener({
+					x: x,
+					y: y,
+					className: availableAttackClassName
+				});
+
 			});
 
 		},
@@ -977,11 +1010,38 @@
 		detectDblClick: function () {
 
 			var view = this,
+				model = view.get('model'),
 				markActiveSquareXy = view.get('markActiveSquare'),
-				x = markActiveSquareXy.x,
-				y = markActiveSquareXy.y;
+				activePlayer = model.get('activePlayer'),
+				availableActions,
+				availableAttackMapWithPath,
+				//x = markActiveSquareXy.x,
+				//y = markActiveSquareXy.y,
+				unit = model.getUnitByXY(markActiveSquareXy);
 
-			alert(x + ' - ' + y);
+			if ( unit ) {
+
+				availableAttackMapWithPath = unit.getAvailableAttackMapWithPath();
+
+				if ( unit.get('ownerId') === activePlayer.id ) { // 'active' unit
+
+					availableActions = unit.getAvailableActions();
+					availableActions.availableAttackMapWithPath = availableAttackMapWithPath;
+					view.showAvailableActions(availableActions);
+					model.set('availableActions', availableActions);
+
+				} else { // enemy or teams unit
+
+					model.clearAvailableActions();
+					view.clearAvailableActions();
+					view.showAvailableActions({
+						availableAttackMapWithPath: availableAttackMapWithPath
+					});
+
+				}
+
+				return;
+			}
 
 		},
 
