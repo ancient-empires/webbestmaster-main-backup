@@ -21,6 +21,7 @@
 			mapImageWrapper: '.js-map-image-wrapper',
 			moveAreaWrapper: '.js-move-area-wrapper',
 			moveAreaContainer: '.js-move-area-container',
+			mainEventHandler: '.js-main-event-handler',
 			eventHandlerWrapper: '.js-event-handler-wrapper',
 			eventSquares: '.js-event-square',
 			activeEventSquare: '.active-event-square',
@@ -942,10 +943,13 @@
 
 		detectClickEvent: function () {
 
-			this.events[this.eventTypes.down + ' ' + this.selectors.moveAreaContainer] = 'saveDownEvent';
-			this.events[this.eventTypes.move + ' ' + this.selectors.moveAreaContainer] = 'saveMoveEvent';
-			//this.events[this.eventTypes.up + ' ' + this.selectors.eventHandlerWrapper] = 'detectClick';
-			this.events[this.eventTypes.up + ' ' + '.js-main-event-handler'] = 'detectClick';
+			var view = this,
+				selectors = view.selectors;
+
+			view.events[view.eventTypes.down + ' ' + selectors.moveAreaContainer] = 'saveDownEvent';
+			view.events[view.eventTypes.move + ' ' + selectors.moveAreaContainer] = 'saveMoveEvent';
+			view.events[view.eventTypes.up + ' ' + selectors.mainEventHandler] = 'detectClick';
+			view.events[view.eventTypes.dbl + ' ' + selectors.mainEventHandler] = 'detectDblClick';
 		},
 
 		detectClick: function (e) {
@@ -994,6 +998,13 @@
 			y = Math.floor( y / squareSize );
 
 			view.onClick({ x: x, y: y });
+
+		},
+
+		detectDblClick: function () {
+
+
+			alert(JSON.stringify(this.get('markActiveSquare')));
 
 		},
 

@@ -45,7 +45,8 @@
 		eventTypes: {
 			down: ['mousedown', 'touchstart'],
 			move: ['mousemove', 'touchmove'],
-			up: ['mouseup', 'touchend']
+			up: ['mouseup', 'touchend'],
+			dbl: ['dblclick', 'doubletap']
 		},
 
 		initStatic: function () {
@@ -63,6 +64,7 @@
 			});
 
 			proto.$wrapper.addClass(os);
+			proto.$wrapper.addClass('isMobile' + isTouch);
 
 		},
 
