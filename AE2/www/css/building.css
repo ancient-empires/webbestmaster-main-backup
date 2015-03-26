@@ -76,7 +76,6 @@
 	-webkit-animation-duration: 4s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-direction: normal;
-	/* todo: remove animation for old native android browser */
 	-webkit-animation-timing-function: steps(4);
 	-webkit-animation-fill-mode: forwards;
 
@@ -84,7 +83,6 @@
 	animation-duration: 4s;
 	animation-iteration-count: infinite;
 	animation-direction: normal;
-	/* todo: remove animation for old native android browser */
 	animation-timing-function: steps(4);
 	animation-fill-mode: forwards;
 
@@ -101,7 +99,6 @@
 	-webkit-animation-duration: 4s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-direction: normal;
-	/* todo: remove animation for old native android browser */
 	-webkit-animation-timing-function: ease-out;
 	-webkit-animation-fill-mode: forwards;
 
@@ -109,7 +106,6 @@
 	animation-duration: 4s;
 	animation-iteration-count: infinite;
 	animation-direction: normal;
-	/* todo: remove animation for old native android browser */
 	animation-timing-function: ease-out;
 	animation-fill-mode: forwards;
 
