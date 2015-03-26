@@ -220,8 +220,8 @@
 
 			view.clearAvailableActions();
 
-			if ( actions.availablePathViewWithTeamUnit ) {
-				view.showAvailablePathViewWithTeamUnit(actions.availablePathViewWithTeamUnit);
+			if ( actions.availablePathWithTeamUnit ) {
+				view.showAvailablePathWithTeamUnit(actions.availablePathWithTeamUnit);
 			}
 
 			if ( actions.confirmMoveAction ) {
@@ -258,7 +258,7 @@
 
 		},
 
-		showAvailablePathViewWithTeamUnit: function (path) {
+		showAvailablePathWithTeamUnit: function (path) {
 
 			path.forEach(function (xy) {
 				this.createEventHandlerListener({
@@ -1035,6 +1035,7 @@
 					model.clearAvailableActions();
 					view.clearAvailableActions();
 					view.showAvailableActions({
+						availablePathWithTeamUnit: unit.getAvailablePathWithTeamUnit(),
 						availableAttackMapWithPath: availableAttackMapWithPath
 					});
 

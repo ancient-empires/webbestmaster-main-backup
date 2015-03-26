@@ -175,7 +175,7 @@
 				actions = unit.getAvailableActions(),
 				isActive = false;
 
-			isActive = isActive || (actions.availablePathViewWithTeamUnit && actions.availablePathViewWithTeamUnit.length);
+			isActive = isActive || (actions.availablePathWithTeamUnit && actions.availablePathWithTeamUnit.length);
 			isActive = isActive || (actions.availablePathViewWithoutTeamUnit && actions.availablePathViewWithoutTeamUnit.length);
 			isActive = isActive || actions.buildingToFix;
 			isActive = isActive || actions.buildingToOccupy;
@@ -197,7 +197,7 @@
 				units = unit.get('model').get('units'),
 				teamUnits = [], // done
 				enemyUnits = [], // done
-				availablePathViewWithTeamUnit, // done
+				availablePathWithTeamUnit, // done
 				availablePathViewWithoutTeamUnit, // done
 				unitsUnderAttack,
 				gravesToRaise,
@@ -215,10 +215,10 @@
 			});
 
 			// get available path view with team unit
-			availablePathViewWithTeamUnit = unit.getAvailablePathWithTeamUnit();
+			availablePathWithTeamUnit = unit.getAvailablePathWithTeamUnit();
 
 			// get available path view withOUT team unit
-			availablePathViewWithoutTeamUnit = _.filter(availablePathViewWithTeamUnit, function (xy) {
+			availablePathViewWithoutTeamUnit = _.filter(availablePathWithTeamUnit, function (xy) {
 				var founded = false;
 				_.each(teamUnits, function (unit) {
 					if ( unit.get('x') === xy.x && unit.get('y') === xy.y ) {
@@ -250,7 +250,7 @@
 				buildingToFix: buildingToFix,
 				gravesToRaise: gravesToRaise,
 				unitsUnderAttack: unitsUnderAttack,
-				availablePathViewWithTeamUnit: availablePathViewWithTeamUnit,
+				availablePathWithTeamUnit: availablePathWithTeamUnit,
 				availablePathViewWithoutTeamUnit: availablePathViewWithoutTeamUnit
 			};
 
