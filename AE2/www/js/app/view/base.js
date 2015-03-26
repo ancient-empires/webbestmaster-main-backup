@@ -297,6 +297,14 @@
 		},
 		getStringFromXY: function (x, y) {
 			return 'x' + x + 'y' + y;
+		},
+		getXyFromStyle: function (style) {
+			var xy = style.replace(/^[\s\S]+translate3d\(/, '').match(/\-?\d+(\.\d*)?/g);
+
+			return {
+				x: parseInt(xy[0], 10),
+				y: parseInt(xy[1], 10)
+			};
 		}
 
 	};

@@ -955,12 +955,22 @@
 
 		detectClick: function (e) {
 
-			var $this,
+			var view = this,
 				x,
 				y,
-				downXY = this.get('downEvent'),
-				moveXY = this.get('moveEvent'),
-				maxDeltaMove = 10;
+				downXY = view.get('downEvent'),
+				moveXY = view.get('moveEvent'),
+				maxDeltaMove = 10,
+
+				// math analise,
+				selectors,
+				$el,
+				$moveAreaWrapper,
+				$moveAreaContainer,
+				squareSize,
+				$mainEventHandler,
+				w, h, aw, ah, dxy;
+
 
 			if ( !downXY || !moveXY ) {
 				return;
@@ -970,12 +980,25 @@
 				return;
 			}
 
-			$this = $(e.currentTarget);
+			selectors = view.selectors;
+			$el = view.$el;
+			$moveAreaWrapper = $el.find(selectors.moveAreaWrapper);
+			$moveAreaContainer = $el.find(selectors.moveAreaContainer);
+			squareSize = view.getSquareSize();
+			$mainEventHandler = $(e.currentTarget);
+			w = $moveAreaWrapper.width();
+			h = $moveAreaWrapper.height();
+			aw = $mainEventHandler.width();
+			ah = $mainEventHandler.height();
+			dxy = view.util.getXyFromStyle($moveAreaContainer.attr('style'));
 
-			x = Number($this.attr('data-x'));
-			y = Number($this.attr('data-y'));
+			x = (aw - w) / 2 + downXY.x - dxy.x;
+			y = (ah - h) / 2 + downXY.y - dxy.y;
 
-			this.onClick({ x: x, y: y });
+			x = Math.floor( x / squareSize );
+			y = Math.floor( y / squareSize );
+
+			view.onClick({ x: x, y: y });
 
 		},
 
