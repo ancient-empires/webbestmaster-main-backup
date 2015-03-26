@@ -670,7 +670,7 @@
 				pre = this.info.get('pre', true).css,
 				squareSize = this.getSquareSize(),
 				$wrapper = this.$el.find(this.selectors.smokeWrapper),
-				$smokeContainer = $('<div class="smoke-container square js-square"><div class="building-smoke">&nbsp;</div></div>');
+				$smokeContainer = $('<div class="square js-square"><div class="building-smoke-mover"><div class="building-smoke">&nbsp;</div></div></div>');
 
 			$smokeContainer.attr('data-xy', 'x' + x + 'y' + y).attr('data-x', x).attr('data-y', y);
 
