@@ -367,7 +367,6 @@
 				view = unit.get('view'),
 				model = unit.get('model'),
 				map = view.get('map'),
-				terrain = map.terrain,
 				graves = model.get('graves'),
 				availableGraves = [],
 				raiseRange = unit.get('raiseRange'),
@@ -379,11 +378,9 @@
 			}
 
 			pathFinder = new PathFinder({
-				terrain: terrain,
 				mov: raiseRange - 1,
 				x: unit.get('x'),
 				y: unit.get('y'),
-				moveType: unit.get('moveType'),
 				minX: 0,
 				minY: 0,
 				maxX: map.size.width - 1,
@@ -584,16 +581,13 @@
 			var unit = this,
 				view = unit.get('view'),
 				map = view.get('map'),
-				terrain = map.terrain,
 				auraRange = unit.get('auraRange'),
 				pathFinder;
 
 			pathFinder = new PathFinder({
-				terrain: terrain,
 				mov: auraRange - 1,
 				x: unit.get('x'),
 				y: unit.get('y'),
-				moveType: unit.get('moveType'),
 				minX: 0,
 				minY: 0,
 				maxX: map.size.width - 1,
