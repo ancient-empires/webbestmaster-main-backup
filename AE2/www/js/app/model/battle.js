@@ -368,7 +368,7 @@
 
 			// find building
 			if (building) {
-				// show building / terrain info
+				// show building / terrain info // see view.autoSetSquareInfo
 				model.tryToOpenStoreByBuilding(building);
 				console.log(building);
 				model.clearAvailableActions();
@@ -378,7 +378,7 @@
 
 			// find terrain
 			if (terrain) {
-				// show terrain info
+				// show terrain info // see view.autoSetSquareInfo
 				console.log(terrain);
 				model.clearAvailableActions();
 				view.clearAvailableActions();

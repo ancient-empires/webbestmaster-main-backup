@@ -16,8 +16,8 @@
 			castle: {
 				availableStates: ['normal'],
 				earn: 30,
-				healthUp: 30,
-				defence: 20,
+				healthUp: 20,
+				defence: 15,
 				canBeStore: true
 			},
 			farm: {

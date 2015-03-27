@@ -140,13 +140,17 @@
 
 		onClick: function (xy) {
 
-			this.markActiveSquare(xy);
+			var view = this;
+
+			view.markActiveSquare(xy);
+			view.autoSetSquareInfo();
 
 			// 0 - show unit available attack (using available path) - hold or dblclick
 			// 1 - show unit info in popup - hold or dblclick
 			// 5 - show available path - only for player unit - click
 
-			this.get('model').click(xy);
+			view.get('model').click(xy);
+
 
 		},
 
@@ -403,6 +407,54 @@
 				$statusBarWrapper = view.$el.find(view.selectors.statusBar);
 
 			$statusBarWrapper.empty().append($node);
+
+			view.autoSetSquareInfo();
+
+		},
+
+		autoSetSquareInfo: function () {
+
+			var view = this,
+				xy = view.get('markActiveSquare'),
+				model = view.get('model'),
+				isNotXY = !xy.hasOwnProperty('x') || !xy.hasOwnProperty('y') || xy.x === null || xy.y === null,
+				building,
+				terrain,
+				infoViewObj = {
+					armor: 5,
+					className: 'terrain-terra-1'
+				},
+				$el = view.$el,
+				$node;
+
+			if ( isNotXY ) {
+
+				$node = $(view.tmpl['battle-view-info-square'](infoViewObj));
+				$el.find('.js-status-bar-info-square-container').remove();
+				$el.find('.js-status-bar-info-square-wrapper').append($node);
+
+				return;
+
+			}
+
+			building = model.getBuildingByXY(xy);
+			terrain = model.getTerrainByXY(xy);
+			infoViewObj.armor = model.getArmorByXY(xy);
+
+			if ( building ) {
+				if (building.state === 'normal') {
+					infoViewObj.className = 'building-' + building.type + '-' + building.color;
+				}
+				if (building.state === 'destroyed') {
+					infoViewObj.className = 'building-' + building.type + '-destroyed';
+				}
+			} else if ( terrain ) { // find terrain
+				infoViewObj.className = 'terrain-' + terrain.terrainName;
+			}
+
+			$node = $(view.tmpl['battle-view-info-square'](infoViewObj));
+			$el.find('.js-status-bar-info-square-container').remove();
+			$el.find('.js-status-bar-info-square-wrapper').append($node);
 
 		},
 

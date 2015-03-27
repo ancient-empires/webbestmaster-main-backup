@@ -11,14 +11,19 @@
 	float: right;
 	height: 100%;
 	width: 3rem;
-	background-color: #c0c;
+	/*background-color: #c0c;*/
 	border-width: 0.1rem;
 	border-color: #424963;
 	border-style: solid;
 	box-sizing: border-box;
+	position: relative;
 }
 
-.status-bar-info-square-container {
+.status-bar-info-square-border {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	top: 0;
 	width: 100%;
 	height: 100%;
 	box-sizing: border-box;
@@ -112,3 +117,55 @@
 	display: block;
 	position: absolute;
 }
+
+.status-bar-info-square-container {
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 0.1rem;
+}
+
+.status-bar-square-info-image {
+	width: 100%;
+	height: 100%;
+	background-size: 100% auto;
+	background-position: bottom;
+	position: relative;
+}
+
+.status-bar-sign-square-wrapper {
+	position: absolute;
+	right: 0.24rem;
+	bottom: 0.19rem;
+	height: 30%;
+}
+
+.status-bar-sign-square-info-block {
+	height: 100%;
+	float: left;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	position: relative;
+}
+
+.square-info-sign {
+	float: left;
+	height: 100%;
+	width: auto;
+	opacity: 0;
+	display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

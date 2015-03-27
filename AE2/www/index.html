@@ -378,8 +378,9 @@
 
 <script type="text/x-template" data-name="battle-view-status-bar">
 
-	<div class="status-bar-info-square-wrapper">
-		<div class="status-bar-info-square-container">
+	<div class="status-bar-info-square-wrapper js-status-bar-info-square-wrapper">
+		<div class="status-bar-info-square-border">
+			&nbsp;
 		</div>
 	</div>
 	<div class="status-bar-player-info-wrapper status-bar-bg-color-<%= color %>">
@@ -408,6 +409,27 @@
 			</div>
 		</div>
 	</div>
+
+</script>
+
+<script type="text/x-template" data-name="battle-view-info-square">
+
+	<div class="status-bar-info-square-container js-status-bar-info-square-container">
+		<div class="<%= className %> status-bar-square-info-image">
+			&nbsp;
+			<div class="status-bar-sign-square-wrapper">
+				<% arr = ['def', 'space'].concat(String(armor).split('')); %>
+				<% _.each(arr, function(sign) { %>
+				<div class="status-bar-sign-square-info-block" style="background-image: url(i/fonts/numbers-1-<%= sign %>.png);">
+					<img src="i/fonts/numbers-1-<%= sign %>.png" alt="" class="square-info-sign"/>
+					<span class="add-more-sharp">&nbsp;</span>
+				</div>
+				<% }); %>
+			</div>
+		</div>
+
+	</div>
+
 
 </script>
 
