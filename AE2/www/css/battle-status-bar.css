@@ -23,6 +23,7 @@
 	height: 100%;
 	box-sizing: border-box;
 	border-width: 0.5rem;
+	-webkit-border-image: url(../i/ui/border-2.png) 25% repeat repeat;
 	border-image: url(../i/ui/border-2.png) 25% repeat repeat;
 }
 
@@ -44,6 +45,7 @@
 	height: 100%;
 	box-sizing: border-box;
 	border-width: 0.5rem;
+	-webkit-border-image: url(../i/ui/border-1.png) 25% repeat repeat;
 	border-image: url(../i/ui/border-1.png) 25% repeat repeat;
 }
 
