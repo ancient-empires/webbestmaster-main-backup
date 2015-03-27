@@ -80,14 +80,23 @@
 	width: auto;
 }
 
-.status-bar-money {
+.status-bar-money,
+.status-bar-units {
 	height: 100%;
 	box-sizing: border-box;
-	padding: 0.1rem 0.4rem 0.1rem;
-	float: left;
+	padding-top: 0.1rem;
+	padding-bottom: 0.1rem;
 }
 
+.status-bar-money {
+	float: left;
+	padding-left: 0.4rem;
+}
 
+.status-bar-units {
+	float: right;
+	padding-right: 3.2rem;
+}
 
 
 

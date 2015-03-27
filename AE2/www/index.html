@@ -390,7 +390,19 @@
 				<% _.each( String(money).split(''), function(number) { %>
 				<img src="i/fonts/numbers-2-<%= number %>.png" alt="" class="status-bar-sign"/>
 				<% }); %>
-
+			</div>
+			<div class="status-bar-units">
+				<img src="i/fonts/numbers-2-icon-unit.png" alt="" class="status-bar-sign"/>
+				<img src="i/fonts/numbers-2-space.png" alt="" class="status-bar-sign"/>
+				<% _.each( String(unitCount).split(''), function(number) { %>
+				<img src="i/fonts/numbers-2-<%= number %>.png" alt="" class="status-bar-sign"/>
+				<% }); %>
+				<img src="i/fonts/numbers-2-space.png" alt="" class="status-bar-sign"/>
+				<img src="i/fonts/numbers-2-slash.png" alt="" class="status-bar-sign"/>
+				<img src="i/fonts/numbers-2-space.png" alt="" class="status-bar-sign"/>
+				<% _.each( String(unitLimit).split(''), function(number) { %>
+				<img src="i/fonts/numbers-2-<%= number %>.png" alt="" class="status-bar-sign"/>
+				<% }); %>
 			</div>
 		</div>
 	</div>
