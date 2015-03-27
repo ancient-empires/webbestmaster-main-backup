@@ -316,8 +316,6 @@
 			// find active actions
 			if (action) {
 				// do action
-				console.log('!!!!!!action');
-				// todo: also find end move action, see settings
 				model.doAction(action);
 				return;
 			}

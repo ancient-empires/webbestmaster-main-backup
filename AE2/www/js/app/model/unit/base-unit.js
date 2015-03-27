@@ -1185,6 +1185,9 @@
 
 		setAttributes: function (data) {
 			var key;
+
+			data = JSON.parse(JSON.stringify(data));
+
 			for (key in data) {
 				if (data.hasOwnProperty(key)) {
 					this.set(key, data[key]);
