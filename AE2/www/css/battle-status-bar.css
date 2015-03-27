@@ -29,7 +29,10 @@
 .status-bar-player-info-wrapper {
 	height: 100%;
 	margin-right: 2.9rem;
-	background-color: #00c;
+	background-image: -webkit-linear-gradient(rgb(48, 48, 48), rgb(149, 149, 149));
+	background-image: linear-gradient(rgb(48, 48, 48), rgb(149, 149, 149));
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
 	border-width: 0.1rem;
 	border-color: #424963;
 	border-style: solid;
@@ -44,10 +47,43 @@
 	border-image: url(../i/ui/border-1.png) 25% repeat repeat;
 }
 
+.status-bar-bg-color-black {
+	background-image: -webkit-linear-gradient(rgb(0, 22, 48), rgb(0, 118, 150));
+	background-image: linear-gradient(rgb(0, 22, 48), rgb(0, 118, 150));
+}
 
+.status-bar-bg-color-blue {
+	background-image: -webkit-linear-gradient(rgb(12, 53, 112), rgb(150, 217, 244));
+	background-image: linear-gradient(rgb(12, 53, 112), rgb(150, 217, 244));
+}
 
+.status-bar-bg-color-gray {
+	background-image: -webkit-linear-gradient(rgb(48, 48, 48), rgb(149, 149, 149));
+	background-image: linear-gradient(rgb(48, 48, 48), rgb(149, 149, 149));
+}
 
+.status-bar-bg-color-green {
+	background-image: -webkit-linear-gradient(rgb(0, 85, 82), rgb(171, 237, 90));
+	background-image: linear-gradient(rgb(0, 85, 82), rgb(171, 237, 90));
+}
 
+.status-bar-bg-color-red {
+	background-image: -webkit-linear-gradient(rgb(95, 5, 120), rgb(244, 158, 156));
+	background-image: linear-gradient(rgb(95, 5, 120), rgb(244, 158, 156));
+}
+
+.status-bar-sign {
+	float: left;
+	height: 100%;
+	width: auto;
+}
+
+.status-bar-money {
+	height: 100%;
+	box-sizing: border-box;
+	padding: 0.2rem 0.4rem 0.3rem;
+	float: left;
+}
 
 
 

@@ -382,9 +382,16 @@
 		<div class="status-bar-info-square-container">
 		</div>
 	</div>
-	<div class="status-bar-player-info-wrapper">
+	<div class="status-bar-player-info-wrapper status-bar-bg-color-<%= color %>">
 		<div class="status-bar-player-info-container">
+			<div class="status-bar-money">
+				<img src="i/fonts/numbers-2-icon-money.png" alt="" class="status-bar-sign"/>
+				<img src="i/fonts/numbers-2-space.png" alt="" class="status-bar-sign"/>
+				<% _.each( String(money).split(''), function(number) { %>
+				<img src="i/fonts/numbers-2-<%= number %>.png" alt="" class="status-bar-sign"/>
+				<% }); %>
 
+			</div>
 		</div>
 	</div>
 
