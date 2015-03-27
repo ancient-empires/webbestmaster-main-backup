@@ -15,14 +15,14 @@
 		list: {
 			castle: {
 				availableStates: ['normal'],
-				earn: 30,
+				earn: 50,
 				healthUp: 20,
 				defence: 15,
 				canBeStore: true
 			},
 			farm: {
 				availableStates: ['normal', 'destroyed'],
-				earn: 20,
+				earn: 30,
 				healthUp: 20,
 				defence: 15
 			},
