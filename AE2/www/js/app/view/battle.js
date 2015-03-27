@@ -474,7 +474,7 @@
 				mapHeight = map.size.height,
 				maxCanvasSize = win.APP.map.maxCanvasSize;
 
-			if ( this.info.get('isIOS', true) ) {
+			if ( !this.info.get('isAndroid', true) ) { // for NOT android set size 24
 				squareSize = 24; // see tiles image size
 			}
 
