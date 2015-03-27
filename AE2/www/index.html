@@ -385,38 +385,29 @@
 	<div class="status-bar-player-info-wrapper status-bar-bg-color-<%= color %>">
 		<div class="status-bar-player-info-container">
 			<div class="status-bar-money">
-				<img src="i/fonts/numbers-2-icon-money.png" alt="" class="status-bar-sign"/>
-				<img src="i/fonts/numbers-2-space.png" alt="" class="status-bar-sign"/>
-				<% _.each( String(money).split(''), function(number) { %>
-				<img src="i/fonts/numbers-2-<%= number %>.png" alt="" class="status-bar-sign"/>
+
+				<% var arr = ['icon-money', 'space'].concat(String(money).split('')); %>
+				<% _.each(arr, function(sign) { %>
+				<div class="status-bar-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">
+					<img src="i/fonts/numbers-2-<%= sign %>.png" alt="" class="status-bar-sign"/>
+					<span class="add-more-sharp">&nbsp;</span>
+				</div>
 				<% }); %>
+
 			</div>
 			<div class="status-bar-units">
-				<img src="i/fonts/numbers-2-icon-unit.png" alt="" class="status-bar-sign"/>
-				<img src="i/fonts/numbers-2-space.png" alt="" class="status-bar-sign"/>
-				<% _.each( String(unitCount).split(''), function(number) { %>
-				<img src="i/fonts/numbers-2-<%= number %>.png" alt="" class="status-bar-sign"/>
+
+				<% arr = ['icon-unit', 'space'].concat(String(unitCount).split('')).concat(['space', 'slash', 'space']).concat(String(unitLimit).split('')); %>
+				<% _.each(arr, function(sign) { %>
+				<div class="status-bar-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">
+					<img src="i/fonts/numbers-2-<%= sign %>.png" alt="" class="status-bar-sign"/>
+					<span class="add-more-sharp">&nbsp;</span>
+				</div>
 				<% }); %>
-				<img src="i/fonts/numbers-2-space.png" alt="" class="status-bar-sign"/>
-				<img src="i/fonts/numbers-2-slash.png" alt="" class="status-bar-sign"/>
-				<img src="i/fonts/numbers-2-space.png" alt="" class="status-bar-sign"/>
-				<% _.each( String(unitLimit).split(''), function(number) { %>
-				<img src="i/fonts/numbers-2-<%= number %>.png" alt="" class="status-bar-sign"/>
-				<% }); %>
+
 			</div>
 		</div>
 	</div>
-
-	<!--<div style="color: <%= color %>">-->
-
-	<!--<div>player color: <%= color %> &#45;&#45;&#45;&#45; money <%= money %> </div>-->
-	<!--<div>player units: <%= unitCount %></div>-->
-	<!--<div>game unit limit: <%= unitLimit %></div>-->
-
-	<!--</div>-->
-
-
-
 
 </script>
 

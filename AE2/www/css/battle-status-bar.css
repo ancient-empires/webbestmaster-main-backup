@@ -78,6 +78,8 @@
 	float: left;
 	height: 100%;
 	width: auto;
+	opacity: 0;
+	display: block;
 }
 
 .status-bar-money,
@@ -98,5 +100,15 @@
 	padding-right: 3.2rem;
 }
 
+.status-bar-sign-block {
+	height: 100%;
+	float: left;
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+	position: relative;
+}
 
-
+.add-more-sharp {
+	display: block;
+	position: absolute;
+}
