@@ -422,10 +422,7 @@
 				isNotXY = !xy.hasOwnProperty('x') || !xy.hasOwnProperty('y') || xy.x === null || xy.y === null,
 				building,
 				terrain,
-				infoViewObj = {
-					armor: 5,
-					className: 'terrain-terra-1'
-				},
+				infoViewObj = {},
 				$el = view.$el,
 				$node;
 
