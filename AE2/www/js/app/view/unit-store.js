@@ -51,7 +51,8 @@
 				storeWrapper = view.$wrapper.find(view.selectors.storeWrapper);
 
 			view.$el = $(view.tmpl['unit-store']({
-				commander: player.commander
+				commander: player.commander,
+				playerColor: player.color
 			}));
 
 			view.autoSetCardState();

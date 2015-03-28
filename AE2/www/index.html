@@ -464,14 +464,33 @@
 						<% return; %>
 					<% }; %>
 
-					<div class="unit-card js-unit-card clear-fix" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
-						<div class="unit-card-header"><%= langUnits[unitData.langKey].name %></div>
-						<div>mov: <%= unitData.mov %></div>
-						<div>akt: <%= unitData.atk.min %> - <%= unitData.atk.max %></div>
-						<div>def: <%= unitData.def %></div>
-						<div>cost: <%= unitData.cost %></div>
-						<button class="js-buy-unit" data-unit-name="<%= key %>">buy</button>
+					<div class="unit-card-wrapper js-unit-card clear-fix" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
+
+						<div class="unit-card-header"><%= langUnits[unitData.langKey].name %>
+							<!--<span class="buy-unit-count js-buy-unit-count"></span>-->
+						</div>
+
+						<div class="unit-shot-info-wrapper">
+							<div class="unit-shot-info-image">
+								<div class="unit-image unit-image-<%= key %>-<%= playerColor %>">&nbsp;</div>
+							</div>
+							<div class="unit-shot-info-properties">
+								<div class="unit-shot-info-attack"><%= unitData.atk.min %>-<%= unitData.atk.max %></div>
+								<div class="clear"></div>
+								<div class="unit-shot-info-defence"><%= unitData.def %></div>
+								<div class="unit-shot-info-move"><%= unitData.mov %></div>
+							</div>
+						</div>
+
+						<button class="js-buy-unit" data-unit-name="<%= key %>">buy - <%= unitData.cost %></button>
+
+						<button>[i]</button>
+						<div class="unit-description">
+							unit info text
+						</div>
+
 					</div>
+
 					<% }); %>
 
 				</div>

@@ -11,3 +11,56 @@
 .unit-store-wrapper .main-content-wrapper {
 	padding-bottom: 3rem;
 }
+
+.unit-card-header {
+	text-transform: capitalize;
+	padding-bottom: 0.4rem;
+}
+
+.unit-shot-info-image {
+	width: 3rem;
+	height: 3rem;
+	float: left;
+	position: relative;
+	margin: 0 0.5rem;
+}
+
+.buy-unit-count {
+
+}
+
+.unit-shot-info-properties {
+	float: left;
+	width: 8.5rem;
+}
+
+.unit-shot-info-move,
+.unit-shot-info-attack,
+.unit-shot-info-defence {
+	float: left;
+	background-repeat: no-repeat;
+	-webkit-background-size: 1rem 1rem;
+	background-size: auto 100%;
+	padding: 0.3rem 0.1rem 0.3rem 1.8rem;
+}
+
+.unit-shot-info-move {
+	background-image: url(../i/ui/icon-unit-info-move.png);
+}
+
+.unit-shot-info-attack {
+	background-image: url(../i/ui/icon-unit-info-attack.png);
+}
+
+.unit-shot-info-defence {
+	background-image: url(../i/ui/icon-unit-info-defence.png);
+}
+
+
+
+
+
+
+
+
+
