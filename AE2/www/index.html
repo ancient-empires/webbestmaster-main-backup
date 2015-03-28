@@ -464,10 +464,10 @@
 						<% return; %>
 					<% }; %>
 
-					<div class="unit-card-wrapper js-unit-card clear-fix" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
+					<div class="unit-card-wrapper js-unit-card clear-fix disabled-card" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
 
 						<div class="unit-card-header"><%= langUnits[unitData.langKey].name %>
-							<!--<span class="buy-unit-count js-buy-unit-count"></span>-->
+							<span class="buy-unit-count js-buy-unit-count hidden" data-unit-count="0" data-unit-count-name="<%= key %>"></span>
 						</div>
 
 						<div class="unit-shot-info-wrapper">
@@ -480,14 +480,18 @@
 								<div class="unit-shot-info-defence"><%= unitData.def %></div>
 								<div class="unit-shot-info-move"><%= unitData.mov %></div>
 							</div>
+							<div class="unit-buy-button js-buy-unit" data-unit-name="<%= key %>">
+								<%= unitData.cost %>
+							</div>
 						</div>
 
-						<button class="js-buy-unit" data-unit-name="<%= key %>">buy - <%= unitData.cost %></button>
+						<!--<button class="" >buy - </button>-->
 
-						<button>[i]</button>
-						<div class="unit-description">
-							unit info text
-						</div>
+						<!--<button>[i]</button>-->
+
+						<!--<div class="unit-description">-->
+							<!--unit info text-->
+						<!--</div>-->
 
 					</div>
 

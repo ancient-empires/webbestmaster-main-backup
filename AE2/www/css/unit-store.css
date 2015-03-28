@@ -26,12 +26,12 @@
 }
 
 .buy-unit-count {
-
+	float: right;
 }
 
 .unit-shot-info-properties {
 	float: left;
-	width: 8.5rem;
+	width: 8rem;
 }
 
 .unit-shot-info-move,
@@ -56,11 +56,31 @@
 	background-image: url(../i/ui/icon-unit-info-defence.png);
 }
 
+.unit-buy-button {
+	background-color: #242a45;
+	box-shadow: 0.2rem 0.2rem 0 #0b0b16;
+	border: solid 0.15rem;
+	padding: 0.1rem 0 0 0;
+	line-height: 2.3rem;
+	margin-top: 0.4rem;
+	width: 4.5rem;
+	text-align: center;
+	float: left;
+}
 
+.unit-buy-button:active {
+	box-shadow: none;
+}
 
+.unit-card-wrapper {
+	padding-bottom: 1.2rem;
+}
 
+.disabled-card {
 
+}
 
-
-
-
+.disabled-card .unit-card-header,
+.disabled-card .unit-shot-info-wrapper {
+	opacity: 0.45;
+}

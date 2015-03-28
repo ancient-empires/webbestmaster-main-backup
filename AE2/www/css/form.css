@@ -45,5 +45,5 @@
 	border-width: 0.75rem;
 	-webkit-border-image: url(../i/ui/border-1.png) 25% repeat repeat;
 	border-image: url(../i/ui/border-1.png) 25% repeat repeat;
-	padding: 1rem 0;
+	padding: 1rem 0.25rem;
 }

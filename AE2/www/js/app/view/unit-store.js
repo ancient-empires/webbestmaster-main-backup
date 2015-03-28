@@ -13,7 +13,8 @@
 
 		selectors: {
 			storeWrapper: '.js-store-wrapper',
-			card: '.js-unit-card'
+			card: '.js-unit-card',
+			buyUnitCount: '.js-buy-unit-count'
 		},
 
 		settings: {
@@ -21,6 +22,7 @@
 		},
 
 		events: {
+			'show-battle-view': 'showBattleView',
 			'hide-unit-store': 'hide',
 			'click .js-buy-unit': 'buyUnit'
 			//'click .js-change-on-off-setting': 'changeOnOffSetting',
@@ -43,12 +45,25 @@
 
 		},
 
+		showBattleView: function () {
+
+			var view = this,
+				model = view.get('model'),
+				battleView = model.get('view');
+
+			battleView.$el.find(battleView.selectors.moveAreaContainer).removeClass('hidden');
+
+		},
+
 		render: function () {
 
 			var view = this,
 				model = view.get('model'),
+				battleView = model.get('view'),
 				player = model.get('activePlayer'),
 				storeWrapper = view.$wrapper.find(view.selectors.storeWrapper);
+
+			battleView.$el.find(battleView.selectors.moveAreaContainer).addClass('hidden');
 
 			view.$el = $(view.tmpl['unit-store']({
 				commander: player.commander,
@@ -125,6 +140,8 @@
 			view.autoSetCardState();
 			view.get('view').updateStatusBar();
 
+			view.setUnitCounter(unitType);
+
 		},
 
 		autoSetCardState: function () {
@@ -148,7 +165,7 @@
 
 			// detect unit limit exceed
 			if ( playerUnits.length >= unitLimit ) {
-				$cards.addClass('disable');
+				$cards.addClass('disabled-card');
 				return;
 			}
 
@@ -158,10 +175,23 @@
 					unitType = $card.attr('data-unit-card-name'),
 					unitCost = unitData[unitType].cost;
 
-				return unitCost > playerMoney ? $card.addClass('disable') : $card.removeClass('disable');
+				return unitCost > playerMoney ? $card.addClass('disabled-card') : $card.removeClass('disabled-card');
 
 			});
 
+		},
+
+		setUnitCounter: function (type) {
+
+			var view = this,
+				selectors = view.selectors,
+				$count = view.$el.find(selectors.buyUnitCount + '[data-unit-count-name="' + type + '"]'),
+				count = parseInt($count.attr('data-unit-count'), 10) + 1;
+
+			$count
+				.removeClass('hidden')
+				.attr('data-unit-count', count)
+				.html('[' + count + ']');
 
 		}
 
