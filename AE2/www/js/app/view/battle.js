@@ -62,6 +62,8 @@
 
 			this.set('markActiveSquare', {}); // {x: number, y: number}
 
+			this.set('infoSquareXY', {x: 0, y: 0}); // {x: number, y: number}
+
 			// set sizes
 			this.setSize();
 
@@ -428,14 +430,10 @@
 				$node;
 
 			if ( isNotXY ) {
-
-				$node = $(view.tmpl['battle-view-info-square'](infoViewObj));
-				$el.find('.js-status-bar-info-square-container').remove();
-				$el.find('.js-status-bar-info-square-wrapper').append($node);
-
-				return;
-
+				xy = view.get('infoSquareXY');
 			}
+
+			view.set('infoSquareXY', xy);
 
 			building = model.getBuildingByXY(xy);
 			terrain = model.getTerrainByXY(xy);
