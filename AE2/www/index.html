@@ -448,7 +448,7 @@
 		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('unitStoreHeader') }) %>
 
 		<div class="main-content-wrapper">
-			<div class="main-content-container js-scroll-area-container">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
 				<div class="scroll-area">
 
 					<% var unitsData = window.APP.unitMaster, langUnits = window.APP.lang.get('unitsList'); %>
@@ -467,10 +467,10 @@
 					<div class="unit-card-wrapper js-unit-card clear-fix disabled-card" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
 
 						<div class="unit-card-header"><%= langUnits[unitData.langKey].name %>
-							<span class="buy-unit-count js-buy-unit-count hidden" data-unit-count="0" data-unit-count-name="<%= key %>"></span>
+							<span class="buy-unit-count js-buy-unit-count hidden" data-unit-count="0" data-unit-key="<%= key %>"></span>
 						</div>
 
-						<div class="unit-shot-info-wrapper">
+						<div class="unit-shot-info-wrapper clear-fix js-show-unit-description" data-description-is-show="no" data-unit-key="<%= key %>">
 							<div class="unit-shot-info-image">
 								<div class="unit-image unit-image-<%= key %>-<%= playerColor %>">&nbsp;</div>
 							</div>
@@ -480,18 +480,15 @@
 								<div class="unit-shot-info-defence"><%= unitData.def %></div>
 								<div class="unit-shot-info-move"><%= unitData.mov %></div>
 							</div>
-							<div class="unit-buy-button js-buy-unit" data-unit-name="<%= key %>">
-								<%= unitData.cost %>
-							</div>
 						</div>
 
-						<!--<button class="" >buy - </button>-->
-
-						<!--<button>[i]</button>-->
-
-						<!--<div class="unit-description">-->
-							<!--unit info text-->
-						<!--</div>-->
+						<div class="unit-buy-button js-buy-unit" data-unit-key="<%= key %>">
+							<%= unitData.cost %>
+						</div>
+						<div class="clear"></div>
+						<div class="js-description-unit-info description-unit-info hidden" data-unit-key="<%= key %>">
+							<%= langUnits[unitData.langKey].description %>
+						</div>
 
 					</div>
 

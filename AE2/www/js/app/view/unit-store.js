@@ -14,7 +14,8 @@
 		selectors: {
 			storeWrapper: '.js-store-wrapper',
 			card: '.js-unit-card',
-			buyUnitCount: '.js-buy-unit-count'
+			buyUnitCount: '.js-buy-unit-count',
+			descriptionUnitInfo: '.js-description-unit-info'
 		},
 
 		settings: {
@@ -24,7 +25,8 @@
 		events: {
 			'show-battle-view': 'showBattleView',
 			'hide-unit-store': 'hide',
-			'click .js-buy-unit': 'buyUnit'
+			'click .js-buy-unit': 'buyUnit',
+			'click .js-show-unit-description': 'showUnitDescription'
 			//'click .js-change-on-off-setting': 'changeOnOffSetting',
 			//'click .js-change-select-setting': 'changeSelectSetting'
 		},
@@ -94,7 +96,7 @@
 				playerUnits = model.getUnitsByOwnerId(player.id),
 				playerMoney = player.money,
 				$this = $(e.currentTarget),
-				unitType = $this.attr('data-unit-name'),
+				unitType = $this.attr('data-unit-key'),
 				unitData = win.APP.unitMaster.list[unitType],
 				unitCost = unitData.cost,
 				freeXYs = [];
@@ -185,13 +187,31 @@
 
 			var view = this,
 				selectors = view.selectors,
-				$count = view.$el.find(selectors.buyUnitCount + '[data-unit-count-name="' + type + '"]'),
+				$count = view.$el.find(selectors.buyUnitCount + '[data-unit-key="' + type + '"]'),
 				count = parseInt($count.attr('data-unit-count'), 10) + 1;
 
 			$count
 				.removeClass('hidden')
 				.attr('data-unit-count', count)
 				.html('[' + count + ']');
+
+		},
+
+		showUnitDescription: function (e) {
+
+			var view = this,
+				$button = $(e.currentTarget),
+				unitKey = $button.attr('data-unit-key'),
+				state = $button.attr('data-description-is-show'),
+				$description = view.$el.find(view.selectors.descriptionUnitInfo + '[data-unit-key="' + unitKey + '"]');
+
+			if ( state === 'no' ) {
+				$description.removeClass('hidden');
+				$button.attr('data-description-is-show', 'yes');
+			} else {
+				$description.addClass('hidden');
+				$button.attr('data-description-is-show', 'no');
+			}
 
 		}
 

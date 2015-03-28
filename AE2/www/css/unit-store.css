@@ -59,7 +59,8 @@
 .unit-buy-button {
 	background-color: #242a45;
 	box-shadow: 0.2rem 0.2rem 0 #0b0b16;
-	border: solid 0.15rem;
+	border-style: solid;
+	border-width: 0.15rem;
 	padding: 0.1rem 0 0 0;
 	line-height: 2.3rem;
 	margin-top: 0.4rem;
@@ -81,6 +82,29 @@
 }
 
 .disabled-card .unit-card-header,
-.disabled-card .unit-shot-info-wrapper {
+.disabled-card .unit-shot-info-wrapper,
+.disabled-card .unit-buy-button {
 	opacity: 0.45;
+}
+
+.disabled-card .unit-buy-button {
+	-o-pointer-events: none;
+	-ms-pointer-events: none;
+	-moz-pointer-events: none;
+	-webkit-pointer-events: none;
+	pointer-events: none;
+}
+
+.description-unit-info {
+	clear: both;
+	margin-top: 0.5rem;
+	padding-top: 0.4rem;
+	border-top-style: solid;
+	border-top-width: 0.15rem;
+	font-size: 0.6rem;
+	line-height: 0.9rem;
+}
+
+.unit-shot-info-wrapper {
+	float: left;
 }

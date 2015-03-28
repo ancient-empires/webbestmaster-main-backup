@@ -90,59 +90,59 @@
 		unitsList: {
 			'soldier': {
 				name: 'soldier',
-				description: ''
+				description: 'Soldiers are solid all-round fighters that form the backbone of any army. Soldiers are also the only unit that can capture towns to earn gold.'
 			},
 			'archer': {
 				name: 'archer',
-				description: ''
+				description: 'With their powerful bows archers can attack from a distance and are especially powerful against airborne enemies.'
 			},
 			'elemental': {
 				name: 'elemental',
-				description: ''
+				description: 'Elementals are magical water spirits. When in water, Elementals have greater movement and stronger defence.'
 			},
 			'sorceress': {
 				name: 'sorceress',
-				description: ''
+				description: 'Skilled in the use of magic, Sorceresses are weak in close combat. However, their ability to summon fighting skeletons from dead troops can be decisive in battle.'
 			},
 			'wisp': {
 				name: 'wisp',
-				description: ''
+				description: 'These mystical beings of pure light radiate an aura which strengthens the attacking abilities of nearby friendly units. In close combat they are especially deadly against skeletons.'
 			},
 			'dire-wolf': {
 				name: 'dire wolf',
-				description: ''
+				description: 'Dire Wolves are feared hunters that travel in packs. Beware - their bite is poisonous and reduces both attack and defence levels for one turn.'
 			},
 			'golem': {
 				name: 'golem',
-				description: ''
+				description: 'Golems are ancient beings - slow but immensely strong in defence. A golem stationed in a building or a well defended mountain is very difficult to defeat.'
 			},
 			'catapult': {
 				name: 'catapult',
-				description: ''
+				description: 'Catapults blaze a trail of destruction with their enormous attack range. However, their relative immobility and inability to attack up close make them vulnerable, so guard them well. Catapults can either move or attack during a turn, but not do both.'
 			},
 			'dragon': {
 				name: 'dragon',
-				description: ''
+				description: 'These massive flying beasts have ruled over the mountains of mist since ancient times. They are extremely mobile as well as deadly in attack on land, air and sea.'
 			},
 			'skeleton': {
 				name: 'skeleton',
-				description: ''
+				description: 'Summoned by Sorceresses, these lifeless warriors are as strong as soldiers and deadly opponents on any battlefield.'
 			},
 			'galamar': {
 				name: 'galamar',
-				description: ''
+				description: 'Galamar (commander) is very strong in attack and defence. Commanders can also occupy castles to produce troops and can be revived in the castle if they fall in battle.'
 			},
 			'valadorn': {
 				name: 'valadorn',
-				description: ''
+				description: 'Valadorn (commander) is very strong in attack and defence. Commanders can also occupy castles to produce troops and can be revived in the castle if they fall in battle.'
 			},
 			'demon-lord': {
 				name: 'demon lord',
-				description: ''
+				description: 'Demon Lords (commander) is very strong in attack and defence. Commanders can also occupy castles to produce troops and can be revived in the castle if they fall in battle.'
 			},
 			'saeth': {
 				name: 'saeth',
-				description: ''
+				description: 'Saeth (commander) is very strong in attack and defence. Commanders can also occupy castles to produce troops and can be revived in the castle if they fall in battle.'
 			}
 
 		}
