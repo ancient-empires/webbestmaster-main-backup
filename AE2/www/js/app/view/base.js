@@ -29,6 +29,9 @@
 			'gesturechange .js-no-scroll': 'stopEvent',
 			'gestureend .js-no-scroll': 'stopEvent',
 
+			// fix extra scroll for iOS
+			'touchstart .js-scroll-area-container': 'touchStartAutoScroll',
+
 			// external
 			'click .js-list-backward[data-group-name]': 'changeSelect',
 			'click .js-list-changed-item[data-group-name]': 'changeSelect',
@@ -214,7 +217,7 @@
 
 			this.stopEvent(e);
 
-			var $this = $(e.target),
+			var $this = $(e.currentTarget),
 				url = $this.attr('href');
 
 			win.open(url);
@@ -230,8 +233,37 @@
 		get: function (key) {
 			return this.attr[key];
 		},
+
 		extendFromObj: function (data) {
 			_.extend(this.attr, data);
+		},
+
+		touchStartAutoScroll: function (e) {
+
+			if ( !this.info.get('isIOS', true) ) { // do for IOS only
+				return;
+			}
+
+			var $wrapper = $(e.currentTarget),
+				$scrollArea = $wrapper.find('> div'),
+				scrollTop = $wrapper.scrollTop(),
+				wrapperHeight,
+				scrollAreaHeight,
+				maxScrollTop;
+
+			if (scrollTop <= 0) {
+				$wrapper.scrollTop(1);
+				return;
+			}
+
+			wrapperHeight = $wrapper.outerHeight();
+			scrollAreaHeight = $scrollArea.outerHeight();
+			maxScrollTop = scrollAreaHeight - wrapperHeight;
+
+			if ( scrollTop >= maxScrollTop ) {
+				$wrapper.scrollTop(maxScrollTop - 1);
+			}
+
 		}
 
 	});

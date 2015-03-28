@@ -49,6 +49,66 @@
 		levelList: [0, 84, 172, 265, 362, 464, 571, 684, 802, 926], // prev + (prev +5%) for every level
 		commanderList: ['galamar', 'valadorn', 'demon-lord', 'saeth'],
 		list: {
+
+			// commanders
+			galamar: {
+				atk: {
+					min: 55,
+					max: 65
+				},
+				atkRange: 2,
+				def: 20,
+				mov: 5,
+				modelName: 'GalamarModel',
+				langKey: 'galamar',
+				canFixBuilding: true,
+				listOccupyBuilding: ['farm', 'castle'],
+				cost: 400
+			},
+			valadorn: {
+				atk: {
+					min: 55,
+					max: 65
+				},
+				atkRange: 2,
+				def: 20,
+				mov: 5,
+				modelName: 'ValadornModel',
+				langKey: 'valadorn',
+				canFixBuilding: true,
+				listOccupyBuilding: ['farm', 'castle'],
+				cost: 400
+			},
+			'demon-lord': {
+				atk: {
+					min: 55,
+					max: 65
+				},
+				atkRange: 2,
+				def: 20,
+				mov: 5,
+				modelName: 'DemonLordModel',
+				langKey: 'demon-lord',
+				canFixBuilding: true,
+				listOccupyBuilding: ['farm', 'castle'],
+				cost: 400
+			},
+			saeth: {
+				atk: {
+					min: 55,
+					max: 65
+				},
+				atkRange: 2,
+				def: 20,
+				mov: 5,
+				modelName: 'SaethModel',
+				langKey: 'saeth',
+				canFixBuilding: true,
+				listOccupyBuilding: ['farm', 'castle'],
+				cost: 400
+			},
+
+			// private units
 			soldier: {
 				atk: {
 					min: 50,
@@ -166,6 +226,8 @@
 				moveType: 'fly',
 				cost: 1000
 			},
+
+			// other
 			skeleton: {
 				atk: {
 					min: 40,
@@ -178,62 +240,6 @@
 				langKey: 'skeleton',
 				withoutGrave: true,
 				canNotBeBuy: true,
-				cost: 400
-			},
-			galamar: {
-				atk: {
-					min: 55,
-					max: 65
-				},
-				atkRange: 2,
-				def: 20,
-				mov: 5,
-				modelName: 'GalamarModel',
-				langKey: 'galamar',
-				canFixBuilding: true,
-				listOccupyBuilding: ['farm', 'castle'],
-				cost: 400
-			},
-			valadorn: {
-				atk: {
-					min: 55,
-					max: 65
-				},
-				atkRange: 2,
-				def: 20,
-				mov: 5,
-				modelName: 'ValadornModel',
-				langKey: 'valadorn',
-				canFixBuilding: true,
-				listOccupyBuilding: ['farm', 'castle'],
-				cost: 400
-			},
-			'demon-lord': {
-				atk: {
-					min: 55,
-					max: 65
-				},
-				atkRange: 2,
-				def: 20,
-				mov: 5,
-				modelName: 'DemonLordModel',
-				langKey: 'demon-lord',
-				canFixBuilding: true,
-				listOccupyBuilding: ['farm', 'castle'],
-				cost: 400
-			},
-			saeth: {
-				atk: {
-					min: 55,
-					max: 65
-				},
-				atkRange: 2,
-				def: 20,
-				mov: 5,
-				modelName: 'SaethModel',
-				langKey: 'saeth',
-				canFixBuilding: true,
-				listOccupyBuilding: ['farm', 'castle'],
 				cost: 400
 			}
 

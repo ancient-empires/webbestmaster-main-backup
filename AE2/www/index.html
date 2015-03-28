@@ -97,8 +97,16 @@
 
 <script type="text/x-template" data-name="header">
 
-	<div class="js-header-wrapper header-wrapper">
-		header is here
+	<div class="main-header-wrapper clear-fix">
+
+		<div class="main-header"><%= (obj && obj.header) || window.APP.lang.get('appName') %></div>
+
+		<% if ( window.location.hash ) { %>
+		<div class="js-back back">&lt;&lt;</div>
+		<% } else if ( window.APP.info.withAds && window.APP.info.get('isIOS', true) ) { %>
+		<a href="<%= window.APP.info.link.ios.pro %>" class="js-external-link no-ads">&nbsp;</a>
+		<% }; %>
+
 	</div>
 
 </script>
@@ -435,29 +443,41 @@
 
 <script type="text/x-template" data-name="unit-store">
 
-	<div class="unit-store-wrapper js-unit-store-wrapper">
-		<% var unitsData = window.APP.unitMaster, langUnits = window.APP.lang.get('unitsList'); %>
-		<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
+	<div class="js-unit-store-wrapper unit-store-wrapper">
 
-			<% var isCommander = _.contains(unitsData.commanderList, key); %>
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('unitStoreHeader') }) %>
 
-			<% if ( unitData.canNotBeBuy ) { %>
-				<% return; %>
-			<% }; %>
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container">
+				<div class="scroll-area">
 
-			<% if ( isCommander && key !== commander.name ) { %>
-				<% return; %>
-			<% }; %>
+					<% var unitsData = window.APP.unitMaster, langUnits = window.APP.lang.get('unitsList'); %>
+					<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
 
-			<div class="unit-card js-unit-card clear-fix" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
-				<div class="unit-card-header"><%= langUnits[unitData.langKey].name %></div>
-				<div>mov: <%= unitData.mov %></div>
-				<div>akt: <%= unitData.atk.min %> - <%= unitData.atk.max %></div>
-				<div>def: <%= unitData.def %></div>
-				<div>cost: <%= unitData.cost %></div>
-				<button class="js-buy-unit" data-unit-name="<%= key %>">buy</button>
+					<% var isCommander = _.contains(unitsData.commanderList, key); %>
+
+					<% if ( unitData.canNotBeBuy ) { %>
+						<% return; %>
+					<% }; %>
+
+					<% if ( isCommander && key !== commander.name ) { %>
+						<% return; %>
+					<% }; %>
+
+					<div class="unit-card js-unit-card clear-fix" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
+						<div class="unit-card-header"><%= langUnits[unitData.langKey].name %></div>
+						<div>mov: <%= unitData.mov %></div>
+						<div>akt: <%= unitData.atk.min %> - <%= unitData.atk.max %></div>
+						<div>def: <%= unitData.def %></div>
+						<div>cost: <%= unitData.cost %></div>
+						<button class="js-buy-unit" data-unit-name="<%= key %>">buy</button>
+					</div>
+					<% }); %>
+
+				</div>
 			</div>
-		<% }); %>
+		</div>
+
 
 	</div>
 

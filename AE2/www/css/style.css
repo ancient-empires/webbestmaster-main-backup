@@ -1,45 +1,16 @@
+@font-face {
+	font-family: 'main-font';
+	src: url('../font/PressStart2P.ttf');
+}
+
+body {
+	font-family: 'main-font';
+	color: #cecece;
+}
+
 button {
 	padding: 1rem !important;
 	margin: 1rem !important;
-}
-
-.square {
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: 0;
-}
-
-.event-handler-wrapper,
-.smoke-wrapper,
-.units-wrapper,
-.building-wrapper,
-.main-event-handler {
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-}
-
-.main-event-handler {
-	z-index: 5;
-}
-
-.event-handler-wrapper {
-	z-index: 4;
-}
-
-.smoke-wrapper {
-	z-index: 3;
-}
-
-.units-wrapper {
-	z-index: 2;
-}
-
-.building-wrapper {
-	z-index: 1;
 }
 
 

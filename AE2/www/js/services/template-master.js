@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */
 (function (win, doc) {
 
 	"use strict";

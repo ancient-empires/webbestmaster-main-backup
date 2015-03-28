@@ -138,6 +138,14 @@
 				$cards = view.$el.find(view.selectors.card),
 				$commanderCard = view.$el.find(view.selectors.card + '[data-is-commander="true"]');
 
+			// set commander state
+			if ( player.commander.isLive ) {
+				$commanderCard.addClass('hidden');
+			} else {
+				$commanderCard.removeClass('hidden');
+			}
+
+			// detect unit limit exceed
 			if ( playerUnits.length >= unitLimit ) {
 				$cards.addClass('disable');
 				return;
@@ -153,12 +161,6 @@
 
 			});
 
-			// set commander state
-			if ( player.commander.isLive ) {
-				$commanderCard.addClass('hidden');
-			} else {
-				$commanderCard.removeClass('hidden');
-			}
 
 		}
 

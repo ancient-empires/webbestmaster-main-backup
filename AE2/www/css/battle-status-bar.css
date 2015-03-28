@@ -17,6 +17,8 @@
 	border-style: solid;
 	box-sizing: border-box;
 	position: relative;
+	border-right: none;
+	border-bottom: none;
 }
 
 .status-bar-info-square-border {
@@ -43,6 +45,8 @@
 	border-color: #424963;
 	border-style: solid;
 	box-sizing: border-box;
+	border-left: none;
+	border-bottom: none;
 }
 
 .status-bar-player-info-container {

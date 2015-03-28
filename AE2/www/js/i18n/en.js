@@ -13,7 +13,7 @@
 		language: 'language',
 		languageName: 'English',
 		shortLanguageName: 'Eng',
-		appName: 'AE2',
+		appName: 'AE2FG',
 
 		//theme: 'Theme',
 		//share: 'Share',
@@ -62,6 +62,9 @@
 			notNow: 'not now',
 			fiveStars: 'Yes, 5 stars!'
 		},
+
+		// unit store
+		unitStoreHeader: 'Units',
 
 		aboutText: 'Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
 		instructionsText: [

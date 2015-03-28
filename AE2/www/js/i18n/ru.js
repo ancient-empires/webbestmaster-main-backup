@@ -13,7 +13,7 @@
 		language: 'язык',
 		languageName: 'Русский',
 		shortLanguageName: 'Рус',
-		appName: 'AE2',
+		appName: 'AE2FG',
 
 		//theme: 'Theme',
 		//share: 'Share',
@@ -62,6 +62,9 @@
 			notNow: 'не сейчас',
 			fiveStars: 'Да, 5 звёзд!'
 		},
+
+		// unit store
+		unitStoreHeader: 'Войска',
 
 		aboutText: 'Программист:<br>Дмитрий Туровцов<br><br>Благодарности:<br>Павел Прилуцкий<br>Игорь Купреев<br>Павел Сычиков',
 		instructionsText: [
