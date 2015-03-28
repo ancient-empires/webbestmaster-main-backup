@@ -101,16 +101,16 @@
 }
 
 .status-bar-units {
-	float: right;
-	padding-right: 3.2rem;
+	text-align: center;
+	padding-right: 1.5rem;
 }
 
 .status-bar-sign-block {
 	height: 100%;
-	float: left;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 	position: relative;
+	display: inline-block;
 }
 
 .add-more-sharp {
