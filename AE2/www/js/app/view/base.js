@@ -78,8 +78,6 @@
 
 			this.setClassNames();
 
-			this.info = win.APP.info;
-
 			return Backbone.View.prototype.constructor.apply(this, arguments);
 		},
 
@@ -99,7 +97,7 @@
 
 		changeSelect: function (e) { // external
 
-			var $this = $(e.target),
+			var $this = $(e.currentTarget),
 				direction = $this.hasClass('js-list-backward') ? -1 : 1,
 				groupName = $this.attr('data-group-name'),
 				$container = this.$el.find('.js-list-changed-item[data-full-list][data-group-name="' + groupName + '"]'),
@@ -242,6 +240,7 @@
 
 	proto.tmpl = win.APP.templateMaster.tmplFn;
 	proto.proto = proto;
+	proto.info = win.APP.info;
 
 	proto.util = {
 		toTop: function () {
