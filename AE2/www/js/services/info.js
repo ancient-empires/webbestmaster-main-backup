@@ -163,7 +163,7 @@
 			for (key in defaultSettings) {
 				if (defaultSettings.hasOwnProperty(key)) {
 					value = this.get(key) || defaultSettings[key];
-					this.set(key, value)
+					this.set(key, value);
 				}
 			}
 
