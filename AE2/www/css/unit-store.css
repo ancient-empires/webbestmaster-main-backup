@@ -22,7 +22,7 @@
 	height: 3rem;
 	float: left;
 	position: relative;
-	margin: 0 0.5rem;
+	margin: 0 0.3rem;
 }
 
 .buy-unit-count {
@@ -31,7 +31,7 @@
 
 .unit-shot-info-properties {
 	float: left;
-	width: 8rem;
+	width: 7.4rem;
 }
 
 .unit-shot-info-move,
@@ -66,8 +66,8 @@
 	margin-top: 0.4rem;
 	width: 4.5rem;
 	text-align: center;
-	float: left;
 	position: relative;
+	float: right;
 }
 
 .unit-buy-button:active {
