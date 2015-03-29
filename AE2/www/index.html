@@ -245,12 +245,35 @@
 
 </script>
 
-<script type="text/x-template" data-name="end-turn-popup">
+<script type="text/x-template" data-name="win-or-defeat">
 
 	<div>
 
-		<div class="popup-header">{{ endTurnQuestion }}</div>
+		<div class="popup-header"><%= header %></div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div class="popup-button js-back">{{ ok }}</div>
+		</div>
 
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="end-turn-popup">
+
+	<div>
+		<div class="popup-header">{{ endTurnQuestion }}</div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div class="popup-button js-confirmed-end-turn">{{ yes }}</div>
+			<div class="popup-button js-back">{{ no }}</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="end-turn-popup">
+
+	<div>
+		<div class="popup-header">{{ endTurnQuestion }}</div>
 		<div class="popup-buttons-wrapper ta-center">
 			<div class="popup-button js-confirmed-end-turn">{{ yes }}</div>
 			<div class="popup-button js-back">{{ no }}</div>
@@ -549,12 +572,6 @@
 	</div>
 
 </script>
-
-<!--<script type="text/x-template" data-name="event-handler">-->
-
-	<!--<div class="js-square js-event-square square" style="<%= pre %>transform: translate3d(<%= x * squareSize %>px, <%= y * squareSize %>px, 0);" data-xy="x<%= x %>y<%= y %>" data-x="<%= x %>" data-y="<%= y %>">&nbsp;</div>-->
-
-<!--</script>-->
 
 <script type="text/x-template" data-name="rate">
 

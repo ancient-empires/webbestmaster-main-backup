@@ -43,7 +43,7 @@
 				$content = $(view.tmpl[view.get('popupName')](popupData)),
 				$container = view.$el.find(view.selectors.popupContainer);
 
-			$container.append($content);
+			$container.html( $content.html() );
 
 			view.$wrapper.append(view.$el);
 

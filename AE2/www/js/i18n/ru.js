@@ -70,6 +70,15 @@
 		endTurnQuestion: 'Конец Хода?',
 		yes: 'да',
 		no: 'нет',
+		ok: 'ok',
+
+			// end game
+		blackDefeat: 'Чёрный игрок повержен!',
+		blueDefeat: 'Синий игрок повержен!',
+		greenDefeat: 'Зелёный игрок повержен!',
+		redDefeat: 'Красный игрок повержен!',
+		victory: 'Победа!',
+		defeat: 'Поражение!',
 
 		aboutText: 'Программист:<br>Дмитрий Туровцов<br><br>Благодарности:<br>Павел Прилуцкий<br>Игорь Купреев<br>Павел Сычиков',
 		instructionsText: [

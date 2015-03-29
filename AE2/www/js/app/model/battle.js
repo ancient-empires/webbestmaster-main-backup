@@ -837,8 +837,8 @@
 				looser = false,
 				teamsNumbers = [],
 				util = win.APP.util,
-				winTeam,
-				looserTeam,
+				//winTeam,
+				//looserTeam,
 				looserBuilding,
 				teamOfLooser;
 
@@ -858,9 +858,12 @@
 				return false;
 			}
 
+			// remove looser from players
+			players = util.arrayRemoveByValue(players, looser);
+
 			teamOfLooser = model.getTeamByPlayer(looser);
 
-			if ( teamOfLooser.length ) {
+			if ( teamOfLooser.length ) { // team is empty
 
 				// divide money and farm between team
 				// divide money
@@ -879,20 +882,40 @@
 
 				});
 
-				alert('player - ' + JSON.stringify(looser) + ' was defeat! \n NOT end game!');
+				view.showPopup({
+					popupName: 'win-or-defeat',
+					parentView: view,
+					popupData: {
+						header: win.APP.lang.get(looser.color + 'Defeat')
+					}
+				});
 
 				return false;
 
 			}
 
-			if ( teamsNumbers.length <= 2 ) { // duel
+			// update team numbers
+			teamsNumbers = [];
+			_.each(players, function (player) {
+				teamsNumbers.push(player.teamNumber);
+			});
+			teamsNumbers = _.uniq(teamsNumbers);
 
-				looserTeam = looser.teamNumber;
-				winTeam = util.arrayRemoveByValue(teamsNumbers, looserTeam)[0];
+			if ( teamsNumbers.length === 1 ) { // detect winner
 
-				alert('win team - ' + winTeam + '\n' + 'looser team - ' + looserTeam + ' \n END game!');
+				//looserTeam = looser.teamNumber;
+				//winTeam = teamsNumbers[0];
+
+				view.showPopup({
+					popupName: 'win-or-defeat',
+					parentView: view,
+					popupData: {
+						header: win.APP.lang.get('victory')
+					}
+				});
 
 				return true; // end game
+
 			}
 
 			// adjust building

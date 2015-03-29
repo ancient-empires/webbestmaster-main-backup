@@ -70,6 +70,15 @@
 		endTurnQuestion: 'End Turn?',
 		yes: 'yes',
 		no: 'no',
+		ok: 'ok',
+
+			// end game
+		blackDefeat: 'Black player was defeat!',
+		blueDefeat: 'Blue player was defeat!',
+		greenDefeat: 'Green player was defeat!',
+		redDefeat: 'Red player was defeat!',
+		victory: 'Victory!',
+		defeat: 'Defeat!',
 
 		aboutText: 'Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
 		instructionsText: [
