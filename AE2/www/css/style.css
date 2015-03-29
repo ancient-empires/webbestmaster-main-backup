@@ -4,8 +4,9 @@
 }
 
 body {
-	font-family: 'main-font';
+	font-family: 'main-font', "Lucida Grande", monospace;
 	color: #fff;
+	background-color: #000;
 }
 
 button {

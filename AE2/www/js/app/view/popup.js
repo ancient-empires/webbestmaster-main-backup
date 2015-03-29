@@ -12,7 +12,8 @@
 	APP.BB.PopupView = APP.BB.BaseView.extend({
 
 		events: {
-			'click .js-popup-container': 'stopEvent'
+			'click .js-popup-container': 'stopEvent',
+			'click .js-confirmed-end-turn': 'confirmedEndTurn'
 		},
 
 		selectors: {
@@ -23,7 +24,7 @@
 
 			var view = this;
 
-			view.extendFromObj(data); // popupName, prentView, popupData(objToView)
+			view.extendFromObj(data); // popupName, parentView, popupData(objToView)
 
 			view.routeToPopup();
 
@@ -46,8 +47,22 @@
 
 			view.$wrapper.append(view.$el);
 
+		},
+
+		// actions
+
+		confirmedEndTurn: function (e) {
+
+			var view = this,
+				parentView = view.get('parentView');
+
+			view.stopEvent(e);
+			view.routeBack();
+
+			parentView.confirmedEndTurn();
 
 		}
+
 
 	});
 
