@@ -79,6 +79,8 @@
 		redDefeat: 'Красный игрок повержен!',
 		victory: 'Победа!',
 		defeat: 'Поражение!',
+		restartBattle: 'Заново',
+		quitBattle: 'Выход',
 
 		aboutText: 'Программист:<br>Дмитрий Туровцов<br><br>Благодарности:<br>Павел Прилуцкий<br>Игорь Купреев<br>Павел Сычиков',
 		instructionsText: [

@@ -52,6 +52,15 @@
 	position: relative;
 }
 
+.popup-button-single-in-row {
+	width: 80%;
+	margin-bottom: 1rem;
+}
+
+.popup-buttons-wrapper .popup-button-single-in-row:last-child {
+	margin-bottom: 0;
+}
+
 .popup-button:active {
 	box-shadow: none;
 	left: 0.2rem;

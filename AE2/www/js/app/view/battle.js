@@ -90,6 +90,17 @@
 
 		},
 
+		restart: function () {
+
+			var view = this,
+				args = view.get('args');
+
+			view.trigger('hide');
+
+			new view.constructor(args);
+
+		},
+
 		detectTransitionEndEventName: function () {
 			var i,
 				el = doc.createElement('div'),

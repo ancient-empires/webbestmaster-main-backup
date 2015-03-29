@@ -13,7 +13,9 @@
 
 		events: {
 			'click .js-popup-container': 'stopEvent',
-			'click .js-confirmed-end-turn': 'confirmedEndTurn'
+			'click .js-confirmed-end-turn': 'confirmedEndTurn',
+			'click .js-restart-battle': 'restartBattle',
+			'click .js-quit-battle': 'quitBattle'
 		},
 
 		selectors: {
@@ -43,6 +45,10 @@
 				$content = $(view.tmpl[view.get('popupName')](popupData)),
 				$container = view.$el.find(view.selectors.popupContainer);
 
+			if ( view.get('isEndGame') ) {
+				view.$el.find('.js-back').removeClass('js-back');
+			}
+
 			$container.html( $content.html() );
 
 			view.$wrapper.append(view.$el);
@@ -61,6 +67,19 @@
 
 			parentView.confirmedEndTurn();
 
+		},
+
+		restartBattle: function () {
+
+			var view = this,
+				parentView = view.get('parentView');
+
+			parentView.restart();
+
+		},
+
+		quitBattle: function () {
+			console.log('quit');
 		}
 
 

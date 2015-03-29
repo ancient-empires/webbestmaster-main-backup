@@ -79,6 +79,8 @@
 		redDefeat: 'Red player was defeat!',
 		victory: 'Victory!',
 		defeat: 'Defeat!',
+		restartBattle: 'Restart',
+		quitBattle: 'Quit',
 
 		aboutText: 'Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
 		instructionsText: [

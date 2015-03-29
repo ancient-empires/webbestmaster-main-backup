@@ -245,13 +245,29 @@
 
 </script>
 
-<script type="text/x-template" data-name="win-or-defeat">
+<script type="text/x-template" data-name="simple-popup">
 
 	<div>
 
 		<div class="popup-header"><%= header %></div>
 		<div class="popup-buttons-wrapper ta-center">
 			<div class="popup-button js-back">{{ ok }}</div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="win-or-defeat">
+
+	<div>
+
+		<div class="popup-header"><%= header %></div>
+		<div class="popup-buttons-wrapper ta-center">
+
+			<div class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
+			<div class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
+
 		</div>
 
 	</div>

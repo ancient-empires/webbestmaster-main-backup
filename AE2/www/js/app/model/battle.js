@@ -883,7 +883,7 @@
 				});
 
 				view.showPopup({
-					popupName: 'win-or-defeat',
+					popupName: 'simple-popup',
 					parentView: view,
 					popupData: {
 						header: win.APP.lang.get(looser.color + 'Defeat')
@@ -909,6 +909,7 @@
 				view.showPopup({
 					popupName: 'win-or-defeat',
 					parentView: view,
+					isEndGame: true,
 					popupData: {
 						header: win.APP.lang.get('victory')
 					}
