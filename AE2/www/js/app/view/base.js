@@ -194,7 +194,7 @@
 
 		showPopup: function(data) {
 
-			APP.bb.popup = new APP.BB.PopupView(data);
+			new APP.BB.PopupView(data);
 
 		},
 

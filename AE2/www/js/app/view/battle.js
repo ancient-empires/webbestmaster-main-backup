@@ -162,7 +162,7 @@
 				info = view.info;
 
 			if ( info.get('confirmTurn') === 'on' ) {
-				new win.APP.BB.PopupView({
+				view.showPopup({
 					popupName: 'end-turn-popup',
 					parentView: view
 				});
