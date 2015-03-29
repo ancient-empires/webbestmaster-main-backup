@@ -40,7 +40,7 @@
 	z-index: 1;
 	font-size: 2rem;
 	letter-spacing: -0.9rem;
-	box-shadow: 0.2rem 0.2rem 0 #0b0b16;
+	box-shadow: 0.2rem 0.2rem 0 #000;
 	border-style: solid;
 	border-width: 0.15rem;
 }

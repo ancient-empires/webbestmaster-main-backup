@@ -25,7 +25,7 @@
 	border-image: url(../i/ui/border-1.png) 25% repeat repeat;
 	background-color: #242a45;
 	margin: 0 auto;
-	box-shadow: 0.2rem 0.2rem 0 #0b0b16;
+	box-shadow: 0.2rem 0.2rem 0 #000;
 	padding: 0.6rem;
 }
 
@@ -44,7 +44,7 @@
 	background-color: #242a45;
 	padding: 0.7rem 0 0.5rem;
 	z-index: 1;
-	box-shadow: 0.2rem 0.2rem 0 #0b0b16;
+	box-shadow: 0.2rem 0.2rem 0 #000;
 	border-style: solid;
 	border-width: 0.15rem;
 	text-transform: capitalize;

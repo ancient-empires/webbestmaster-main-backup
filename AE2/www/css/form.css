@@ -5,9 +5,10 @@
 	width: 100%;
 	z-index: 1;
 	box-sizing: border-box;
-	border-bottom: 0.1rem solid #cecece;
+	border-bottom-width: 0.1rem;
+	border-bottom-style: solid;
 	background-color: #242a45;
-	text-shadow: 0.15rem 0.15rem 0 #0b0b16;
+	text-shadow: 0.15rem 0.15rem 0 #000;
 }
 
 .main-header,
