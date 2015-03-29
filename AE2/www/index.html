@@ -245,7 +245,21 @@
 
 </script>
 
-<script type="text/x-template" data-name="popup">
+<script type="text/x-template" data-name="end-turn-popup">
+
+	<div>
+
+		<div class="popup-header">{{ endTurnQuestion }}</div>
+
+		<div class="popup-buttons-wrapper ta-center">
+			<div class="popup-button">{{ yes }}</div>
+			<div class="popup-button js-back">{{ no }}</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="popup-wrapper">
 
 	<div class="js-popup-wrapper popup-wrapper">
 
@@ -256,8 +270,10 @@
 
 					<div class="popup-container">
 
-						<div class="popup-text"><%= obj.text || 'no message' %></div>
-						<div class="js-back popup-button">ok</div>
+						<div class="popup-form js-popup-container">
+
+
+						</div>
 
 					</div>
 

@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */
 (function (win) {
 
 	"use strict";
@@ -11,16 +12,40 @@
 	APP.BB.PopupView = APP.BB.BaseView.extend({
 
 		events: {
+			'click .js-popup-container': 'stopEvent'
+		},
 
+		selectors: {
+			popupContainer: '.js-popup-container'
 		},
 
 		initialize: function(data) {
 
-			this.routeToPopup();
+			var view = this;
 
-			this.$el = $(this.tmpl.popup(data));
+			view.extendFromObj(data); // popupName, prentView, popupData(objToView)
 
-			this.proto.initialize.apply(this, arguments);
+			view.routeToPopup();
+
+			view.$el = $(view.tmpl['popup-wrapper']());
+
+			view.proto.initialize.apply(this, arguments);
+
+			view.render();
+
+		},
+
+		render: function () {
+
+			var view = this,
+				popupData = view.get('popupData') || {},
+				$content = $(view.tmpl[view.get('popupName')](popupData)),
+				$container = view.$el.find(view.selectors.popupContainer);
+
+			$container.append($content);
+
+			view.$wrapper.append(view.$el);
+
 
 		}
 

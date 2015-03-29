@@ -157,9 +157,30 @@
 		},
 
 		endTurn: function () {
-			this.get('model').newTurn();
-			this.removeActiveSquare();
-			this.clearAvailableActions();
+
+			var view = this,
+				info = view.info;
+
+			if ( info.get('confirmTurn') === 'on' ) {
+				new win.APP.BB.PopupView({
+					popupName: 'end-turn-popup',
+					prentView: view
+				});
+				return;
+			}
+
+			view.confirmedEndTurn();
+
+		},
+
+		confirmedEndTurn: function () {
+
+			var view = this;
+
+			view.get('model').newTurn();
+			view.removeActiveSquare();
+			view.clearAvailableActions();
+
 		},
 
 		markActiveSquare: function (xy) {
