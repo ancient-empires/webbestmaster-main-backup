@@ -35,9 +35,20 @@
 	position: absolute;
 	right: 1rem;
 	top: 1rem;
-	background-color: #666;
-	padding: 0.5rem;
+	background-color: #242a45;
+	padding: 0.7rem 0.9rem 0.5rem 0.5rem;
 	z-index: 1;
+	font-size: 2rem;
+	letter-spacing: -0.9rem;
+	box-shadow: 0.2rem 0.2rem 0 #0b0b16;
+	border-style: solid;
+	border-width: 0.15rem;
+}
+
+.end-turn:active {
+	box-shadow: none;
+	right: 0.8rem;
+	top: 1.2rem;
 }
 
 .square {
