@@ -5,9 +5,18 @@
 	/*global console, alert, window, document */
 	/*global Backbone, $, _ */
 
+	win.APP.bb = win.APP.bb || {};
+
+	win.APP.bb.battleData = {};
+
 	win.APP.BB.BattleModel = Backbone.Model.extend({
 
 		initialize: function() {
+
+			win.APP.bb.battleData = {
+				isEndGame: 'no',
+				gameTo: 'quit'
+			};
 
 			var args = this.get('args');
 
@@ -906,10 +915,11 @@
 				//looserTeam = looser.teamNumber;
 				//winTeam = teamsNumbers[0];
 
+				win.APP.bb.battleData.isEndGame = 'yes';
+
 				view.showPopup({
 					popupName: 'win-or-defeat',
 					parentView: view,
-					isEndGame: true,
 					popupData: {
 						header: win.APP.lang.get('victory')
 					}

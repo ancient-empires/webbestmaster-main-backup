@@ -81,6 +81,7 @@
 		defeat: 'Defeat!',
 		restartBattle: 'Restart',
 		quitBattle: 'Quit',
+		areYouSureToLeaveBattle: 'Are you sure to leave battle?',
 
 		aboutText: 'Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
 		instructionsText: [

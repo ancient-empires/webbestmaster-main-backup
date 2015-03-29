@@ -2,7 +2,7 @@
 (function (win) {
 
 	"use strict";
-	/*global console, alert, window, document, setTimeout, clearTimeout */
+	/*global console, alert, window, document, setTimeout */
 	/*global APP, $, Backbone*/
 
 	win.APP = win.APP || {};
@@ -45,10 +45,6 @@
 				$content = $(view.tmpl[view.get('popupName')](popupData)),
 				$container = view.$el.find(view.selectors.popupContainer);
 
-			if ( view.get('isEndGame') ) {
-				view.$el.find('.js-back').removeClass('js-back');
-			}
-
 			$container.html( $content.html() );
 
 			view.$wrapper.append(view.$el);
@@ -72,15 +68,33 @@
 		restartBattle: function () {
 
 			var view = this,
-				parentView = view.get('parentView');
+				parentView = view.get('parentView'),
+				battleData = win.APP.bb.battleData;
 
+			battleData.isEndGame = 'yes';
+			battleData.gameTo = 'restart';
+
+			view.hide();
+			view.routeBack();
 			parentView.restart();
 
 		},
 
 		quitBattle: function () {
-			console.log('quit');
+
+			var view = this,
+				battleData = win.APP.bb.battleData;
+
+			battleData.isEndGame = 'yes';
+			battleData.gameTo = 'quit';
+
+			view.hide();
+			view.routeBack();
+
+			// see router to quit
+
 		}
+
 
 
 	});

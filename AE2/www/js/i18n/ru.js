@@ -81,6 +81,7 @@
 		defeat: 'Поражение!',
 		restartBattle: 'Заново',
 		quitBattle: 'Выход',
+		areYouSureToLeaveBattle: 'Вы уверены, что хотите покинуть сражение?',
 
 		aboutText: 'Программист:<br>Дмитрий Туровцов<br><br>Благодарности:<br>Павел Прилуцкий<br>Игорь Купреев<br>Павел Сычиков',
 		instructionsText: [

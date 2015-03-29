@@ -2,7 +2,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window */
+	/*global window, setTimeout */
 	/*global Backbone, APP, $ */
 
 	win.APP = win.APP || {};
@@ -72,7 +72,6 @@
 
 			console.log(' todo: unbind/undelegate event listeners --- battle from route --- ');
 
-
 		},
 
 		constructor: function () {
@@ -81,23 +80,28 @@
 				proto = APP.BB.Router.prototype,
 				router = this;
 
-			function getPopupAction() {
+			function getAction() {
 
 				var e = window.event || {},
 					newURL = e.newURL || '',
 					oldURL = e.oldURL || '',
+					reBattle = /#battle$/,
 					popupPart = APP.BB.BaseView.prototype.popupUrl,
-					popupAction;
+					viewAction;
 
-				if (newURL.indexOf(popupPart) !== -1) {
-					popupAction = 'showPopup';
+				if ( newURL.indexOf(popupPart) !== -1 ) {
+					viewAction = 'showPopup';
 				}
 
-				if (oldURL.indexOf(popupPart) !== -1) {
-					popupAction = 'hidePopup';
+				if ( oldURL.indexOf(popupPart) !== -1 ) {
+					viewAction = 'hidePopup';
 				}
 
-				return popupAction;
+				if ( reBattle.test(oldURL) ) {
+					viewAction = 'routeFromBattle';
+				}
+
+				return viewAction;
 
 			}
 
@@ -105,18 +109,41 @@
 				originalFunctions[value] = proto[value];
 				proto[value] = function () {
 
-					var popupAction = getPopupAction();
+					var router = this,
+						viewAction = getAction(),
+						baseProto = win.APP.BB.BaseView.prototype,
+						battleData = win.APP.bb.battleData;
 
-					if ( popupAction ) {
-
-						if (popupAction === 'hidePopup') {
-							APP.BB.BaseView.prototype.hidePopup();
-						}
-
-						return false;
+					if ( !viewAction ) {
+						return originalFunctions[value].apply(router, arguments);
 					}
 
-					return originalFunctions[value].apply(router, arguments);
+					switch (viewAction) {
+						
+						case 'hidePopup':
+							baseProto.hidePopup();
+							if ( battleData.isEndGame === 'yes' && battleData.gameTo === 'quit') {
+								router.routeFromBattle();
+							}
+
+							break;							
+							
+						case 'showPopup':
+
+							break;							
+							
+						case 'routeFromBattle':
+
+							if ( battleData.isEndGame !== 'yes' ) {
+								baseProto.routeByUrl('battle');
+								baseProto.showPopup({
+									popupName: 'route-from-battle'
+								});
+							}
+
+							break;
+
+					}
 
 				};
 
@@ -124,8 +151,16 @@
 
 			return Backbone.Router.prototype.constructor.apply(this, arguments);
 
-		}
+		},
 
+		routeFromBattle: function () {
+			var baseProto = win.APP.BB.BaseView.prototype;
+			baseProto.routeBack();
+			setTimeout(function () {
+				baseProto.routeBack();
+			}, 200);
+
+		}
 
 	});
 
