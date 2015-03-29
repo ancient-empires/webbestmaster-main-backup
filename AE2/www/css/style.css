@@ -14,5 +14,10 @@ button {
 	margin: 1rem !important;
 }
 
+.add-more-sharp {
+	display: block;
+	position: absolute;
+}
+
 
 
