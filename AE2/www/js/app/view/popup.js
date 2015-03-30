@@ -118,7 +118,7 @@
 			var view = this;
 			setTimeout(function () { // show animation
 				view.$el.addClass('show-in');
-			}, 100);
+			}, 50);
 
 		},
 
@@ -133,9 +133,7 @@
 				deferred.resolve();
 			}); // work only one time
 
-			setTimeout(function () { // show animation
-				view.$el.addClass('show-out');
-			}, 100);
+			view.$el.addClass('show-out');
 
 			return deferred.promise();
 
