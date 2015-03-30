@@ -1411,6 +1411,22 @@
 
 			$levelUp.addClass('move-up');
 
+		},
+
+		//notifications
+		showObjective: function () {
+
+			var view = this,
+				lang = win.APP.lang;
+
+			view.showPopup({
+				popupName: 'simple-notification',
+				popupData: {
+					header: lang.get('objective'),
+					text: lang.get('skirmishObjective')
+				}
+			});
+
 		}
 
 	});

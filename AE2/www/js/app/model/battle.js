@@ -249,11 +249,19 @@
 		},
 
 		startGame: function () {
-			this.set('activePlayer', this.get('players')[0]);
 
-			this.startTurn();
+			var model = this,
+				view = model.get('view');
 
-			this.autoSetWispAura();
+			model.set('activePlayer', model.get('players')[0]);
+
+			model.startTurn();
+
+			model.autoSetWispAura();
+
+			setTimeout(function () {
+				view.showObjective();
+			}, 0);
 
 		},
 
@@ -263,7 +271,6 @@
 			this.grabBuildingEarn();
 
 			this.startTurn();
-
 
 		},
 
@@ -828,9 +835,11 @@
 				earn += buildingData[building.type].earn;
 			});
 
-			console.log(' earned --- ' + earn);
-
 			player.money += earn;
+
+			return {
+				earn: earn
+			};
 
 		},
 

@@ -83,6 +83,10 @@
 		quitBattle: 'Quit',
 		areYouSureToLeaveBattle: 'Are you sure to leave battle?',
 
+			// notification
+		objective: 'objective',
+		skirmishObjective: 'Defeat the enemy commander and occupy all enemy castles!',
+
 		aboutText: 'Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
 		instructionsText: [
 			'Ancient Empires is a thrilling strategy game putting you in the role of King Galamar as you fight to reclaim your kingdom.',

@@ -197,7 +197,7 @@
 			var deferred = $.Deferred(),
 				popup =	new APP.BB.PopupView(data);
 
-			popup.set(deferred);
+			popup.set('deferred', deferred);
 
 			return deferred.promise();
 
