@@ -22,7 +22,6 @@
 			'skirmish-select-map': 'skirmishSelectMap',
 			'skirmish-setup-map/:jsMapKey': 'skirmishSetupMap',
 			'battle': 'battle'
-
 		},
 
 		title: function () {
@@ -67,18 +66,15 @@
 				.trigger('show-battle-view')
 				.trigger('hide-unit-store');
 
-			// todo: unbind unit store view
-			// todo: unbind game menu
-
-			console.log(' todo: unbind/undelegate event listeners --- battle from route --- ');
+			$('.js-battle-menu-wrapper')
+				.trigger('hide-battle-menu');
 
 		},
 
 		constructor: function () {
 
 			var originalFunctions = {},
-				proto = APP.BB.Router.prototype,
-				router = this;
+				proto = APP.BB.Router.prototype;
 
 			function getAction() {
 
