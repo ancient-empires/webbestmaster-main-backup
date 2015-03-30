@@ -35,7 +35,8 @@
 			viewDisable: '.js-view-disable',
 			square: '.js-square',
 			statusBar: '.js-battle-view-status-bar',
-			styleSquareSize: '.js-style-square-size'
+			styleSquareSize: '.js-style-square-size',
+			unitInfoWrapper: '.js-unit-info-wrapper'
 		},
 
 		squareSize: win.APP.map.squareSize,
@@ -175,6 +176,8 @@
 
 			squareEventHandler.innerHTML = '<div class="' + view.classNames.activeSquareMark + '">&nbsp;</div>';
 
+			view.showUnitInfo();
+
 		},
 
 		removeActiveSquare: function () {
@@ -186,6 +189,8 @@
 				x: null,
 				y: null
 			});
+
+			view.hideUnitInfo();
 
 			return node && node.parentNode.removeChild(node);
 
@@ -201,6 +206,7 @@
 			}
 
 			view.markActiveSquare(markActiveSquareXy);
+			view.showUnitInfo();
 
 		},
 
@@ -1435,6 +1441,57 @@
 			new APP.BB.BattleMenuView({
 				view: this
 			});
+
+		},
+
+		showUnitInfo: function () {
+
+			var view = this,
+				model = view.get('model'),
+				unit,
+				xy = view.get('markActiveSquare'),
+				isNotXY = !xy.hasOwnProperty('x') || !xy.hasOwnProperty('y') || xy.x === null || xy.y === null;
+
+			view.hideUnitInfo();
+
+			if (isNotXY) {
+				return;
+			}
+
+			unit = model.getUnitByXY(xy);
+			if (!unit) {
+				return;
+			}
+
+			var level = unit.get('level'),
+				atk = unit.get('atk'),
+				atkMax = atk.max,
+				atkMin = atk.min,
+				def = unit.get('def'),
+				underWispAura = unit.get('underWispAura'),
+				poisonCount = unit.get('poisonCount'),
+				unitMaster = win.APP.unitMaster,
+				defByLevel = unitMaster.defByLevel,
+				atkByLevel = unitMaster.atkByLevel,
+				viewObj = {};
+
+			atkMin = atkMin + level * atkByLevel;
+			atkMax = atkMax + level * atkByLevel;
+			viewObj.atk = atkMin + '-' + atkMax;
+			viewObj.def = def + level * defByLevel;
+			viewObj.level = level;
+			viewObj.underWispAura = underWispAura;
+			viewObj.poisonCount = poisonCount;
+
+			view.$el.find(view.selectors.unitInfoWrapper).html(view.tmpl['unit-info'](viewObj));
+
+		},
+
+		hideUnitInfo: function () {
+
+			var view = this;
+
+			view.$el.find(view.selectors.unitInfoWrapper).empty();
 
 		}
 
