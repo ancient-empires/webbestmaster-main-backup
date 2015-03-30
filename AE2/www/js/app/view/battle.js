@@ -14,7 +14,8 @@
 	APP.BB.BattleView = APP.BB.BaseView.extend({
 
 		events: {
-			'click .js-end-turn': 'endTurn'
+			'click .js-end-turn': 'endTurn',
+			'click .js-battle-menu-button': 'openMenu'
 		},
 
 		selectors: {
@@ -1425,6 +1426,14 @@
 					header: lang.get('objective'),
 					text: lang.get('skirmishObjective')
 				}
+			});
+
+		},
+
+		openMenu: function () {
+
+			new APP.BB.BattleMenuView({
+				view: this
 			});
 
 		}

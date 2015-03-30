@@ -65,6 +65,34 @@
 	top: 1.2rem;
 }
 
+
+.battle-menu-button {
+	position: absolute;
+	left: 0.7rem;
+	top: -0.2rem;
+	background-color: #242a45;
+	z-index: 1;
+	box-shadow: 0.2rem 0.2rem 0 #000;
+	border-style: solid;
+	border-width: 0.15rem;
+	width: 2.8rem;
+	height: 1.55rem;
+	padding-top: 0.4rem;
+}
+
+.battle-menu-button:active {
+	left: 0.9rem;
+	top: 0;
+	box-shadow: none;
+}
+
+.battle-menu-button-line {
+	background-color: #fff;
+	width: 2rem;
+	margin: 0 auto 0.4rem;
+	height: 0.35rem;
+}
+
 .square {
 	position: absolute;
 	left: 0;

@@ -36,7 +36,7 @@
 			var view = this;
 
 			if (Backbone.history.fragment !== view.settings.url) {
-				this.navigate(view.settings.url);
+				view.navigate(view.settings.url);
 			}
 
 			view.extendFromObj(data);

@@ -133,7 +133,7 @@
 				deferred.resolve();
 			}); // work only one time
 
-			view.$el.addClass('show-out');
+			$el.addClass('show-out');
 
 			return deferred.promise();
 
