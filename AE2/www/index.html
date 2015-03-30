@@ -367,13 +367,42 @@
 
 </script>
 
+<script type="text/x-template" data-name="popup-confirm-restart-battle">
+
+	<div>
+		<div class="popup-header"> Are you sure to restart the battle? </div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div class="popup-button js-restart-battle">{{ yes }}</div>
+			<div class="popup-button js-back">{{ no }}</div>
+		</div>
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="popup-confirm-quit-battle">
+
+	<div>
+		<div class="popup-header"> Are you sure to quit the battle? </div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div class="popup-button js-quit-battle">{{ yes }}</div>
+			<div class="popup-button js-back">{{ no }}</div>
+		</div>
+	</div>
+
+</script>
+
 <script type="text/x-template" data-name="battle-menu">
 
 	<div>
 
 		<div class="popup-header">{{ menu }}</div>
 
-
+		<div class="popup-buttons-wrapper ta-center">
+			<div class="popup-button popup-button-single-in-row ">{{ objective }}</div>
+			<div class="popup-button popup-button-single-in-row ">{{ settings }}</div>
+			<div class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
+			<div class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
+		</div>
 
 	</div>
 

@@ -106,10 +106,12 @@
 			battleData.isEndGame = 'yes';
 			battleData.gameTo = 'quit';
 
+
+
 			view.hide();
 			view.routeBack();
 
-			// see router to quit
+
 
 		},
 

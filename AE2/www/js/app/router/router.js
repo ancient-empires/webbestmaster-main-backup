@@ -21,7 +21,8 @@
 			'select-level': 'selectLevel',
 			'skirmish-select-map': 'skirmishSelectMap',
 			'skirmish-setup-map/:jsMapKey': 'skirmishSetupMap',
-			'battle': 'battle'
+			'battle': 'battle',
+			'main-battle-menu': 'mainBattleMenu'
 		},
 
 		title: function () {
@@ -68,6 +69,10 @@
 
 			$('.js-battle-menu-wrapper')
 				.trigger('hide-battle-menu');
+
+		},
+
+		mainBattleMenu: function () {
 
 		},
 

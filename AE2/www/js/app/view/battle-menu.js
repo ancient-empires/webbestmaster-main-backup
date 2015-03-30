@@ -21,7 +21,9 @@
 
 		events: {
 			'click .js-popup-container': 'stopEvent',
-			'hide-battle-menu': 'hide'
+			'hide-battle-menu': 'hide',
+			'click .js-restart-battle': 'restartBattle',
+			'click .js-quit-battle': 'quitBattle'
 		},
 
 		initialize: function (data) {
@@ -56,7 +58,38 @@
 
 			$menuWrapper.append(view.$el);
 
+		},
+
+		restartBattle: function () {
+
+			var view = this;
+
+			view.routeBack();
+
+			setTimeout(function () {
+				view.showPopup({
+					popupName: 'popup-confirm-restart-battle',
+					parentView: view.get('view')
+				});
+			}, 50);
+
+		},
+
+		quitBattle: function () {
+
+			var view = this;
+
+			view.routeBack();
+
+			setTimeout(function () {
+				view.showPopup({
+					popupName: 'popup-confirm-quit-battle',
+					parentView: view.get('view')
+				});
+			}, 50);
+
 		}
+
 
 
 	});
