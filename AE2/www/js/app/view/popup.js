@@ -24,7 +24,13 @@
 
 		initialize: function(data) {
 
-			var view = this;
+			var view = this,
+				popupUrl = view.popupUrl,
+				url = win.location.href;
+
+			if ( url.indexOf(popupUrl) === -1 ) {
+				view.routeToPopup();
+			}
 
 			view.extendFromObj(data); // popupName, parentView, popupData(objToView)
 
@@ -33,8 +39,6 @@
 			view.proto.initialize.apply(this, arguments);
 
 			view.render();
-
-			view.routeToPopup();
 
 			view.showInAnimation();
 
@@ -88,7 +92,9 @@
 
 			view.hide();
 			view.routeBack();
-			parentView.restart();
+			setTimeout(function () {
+				parentView.restart();
+			}, 50);
 
 		},
 

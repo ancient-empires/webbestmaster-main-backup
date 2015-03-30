@@ -178,7 +178,9 @@
 
 		routeToPopup: function () {
 
-			this.routeByUrl(Backbone.history.fragment + '?' + this.popupUrl);
+			var view = this;
+
+			view.routeByUrl(Backbone.history.fragment + '?' + view.popupUrl);
 
 		},
 
@@ -194,10 +196,16 @@
 
 		showPopup: function(data) {
 
-			var deferred = $.Deferred(),
-				popup =	new APP.BB.PopupView(data);
+			var view = this,
+				deferred = $.Deferred(),
+				popup;
 
-			popup.set('deferred', deferred);
+			view.hidePopup();
+
+			setTimeout(function () {
+				popup =	new APP.BB.PopupView(data);
+				popup.set('deferred', deferred);
+			}, 50);
 
 			return deferred.promise();
 

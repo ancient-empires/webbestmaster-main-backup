@@ -259,18 +259,33 @@
 
 			model.autoSetWispAura();
 
-			setTimeout(function () {
-				view.showObjective();
-			}, 0);
+			view.showObjective();
 
 		},
 
 		newTurn: function () {
-			this.setActivePlayer();
 
-			this.grabBuildingEarn();
+			var model = this,
+				view = model.get('view'),
+				earn, color,
+				activePlayer;
 
-			this.startTurn();
+			model.setActivePlayer();
+
+			activePlayer = model.get('activePlayer');
+
+			earn = model.grabBuildingEarn(); // auto increase player money
+			color = activePlayer.color;
+
+			model.startTurn();
+
+			view.showPopup({
+				popupName: 'between-turn-notification',
+				popupData: {
+					color: color,
+					earn: earn
+				}
+			});
 
 		},
 
@@ -837,9 +852,7 @@
 
 			player.money += earn;
 
-			return {
-				earn: earn
-			};
+			return earn;
 
 		},
 

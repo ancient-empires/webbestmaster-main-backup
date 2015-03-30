@@ -86,6 +86,8 @@
 			// notification
 		objective: 'objective',
 		skirmishObjective: 'Defeat the enemy commander and occupy all enemy castles!',
+		newTurn: 'new turn',
+		income: 'income',
 
 		aboutText: 'Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
 		instructionsText: [
