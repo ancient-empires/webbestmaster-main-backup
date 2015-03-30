@@ -81,7 +81,8 @@
 		defeat: 'Поражение!',
 		restartBattle: 'Заново',
 		quitBattle: 'Выход',
-		areYouSureToLeaveBattle: 'Вы уверены, что хотите покинуть сражение?',
+		areYouSureToQuitBattle: 'Вы уверены, что хотите покинуть сражение?',
+		areYouSureToRestartBattle: 'Вы уверены, что хотите перезапустить сражение?',
 
 			// notification
 		objective: 'цель',

@@ -81,7 +81,8 @@
 		defeat: 'Defeat!',
 		restartBattle: 'Restart',
 		quitBattle: 'Quit',
-		areYouSureToLeaveBattle: 'Are you sure to leave battle?',
+		areYouSureToQuitBattle: 'Are you sure to quit battle?',
+		areYouSureToRestartBattle: 'Are you sure to restart the battle?',
 
 			// notification
 		objective: 'objective',
