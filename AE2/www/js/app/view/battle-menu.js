@@ -23,7 +23,8 @@
 			'click .js-popup-container': 'stopEvent',
 			'hide-battle-menu': 'hide',
 			'click .js-restart-battle': 'restartBattle',
-			'click .js-quit-battle': 'quitBattle'
+			'click .js-quit-battle': 'quitBattle',
+			'click .js-show-objective': 'showObjective'
 		},
 
 		initialize: function (data) {
@@ -86,6 +87,17 @@
 					popupName: 'popup-confirm-quit-battle',
 					parentView: view.get('view')
 				});
+			}, 50);
+
+		},
+
+		showObjective: function () {
+
+			var view = this;
+
+			view.routeBack();
+			setTimeout(function () {
+				view.get('view').showObjective();
 			}, 50);
 
 		}
