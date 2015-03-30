@@ -28,13 +28,15 @@
 
 			view.extendFromObj(data); // popupName, parentView, popupData(objToView)
 
-			view.routeToPopup();
-
 			view.$el = $(view.tmpl['popup-wrapper']());
 
 			view.proto.initialize.apply(this, arguments);
 
 			view.render();
+
+			view.routeToPopup();
+
+			view.showInAnimation();
 
 		},
 
@@ -48,6 +50,16 @@
 			$container.html( $content.html() );
 
 			view.$wrapper.append(view.$el);
+
+		},
+
+		hide: function () {
+
+			var view = this;
+			view.showOutAnimation().then(function () {
+				view.proto.hide.call(view);
+				view.get('deferred').resolve();
+			});
 
 		},
 
@@ -92,6 +104,34 @@
 			view.routeBack();
 
 			// see router to quit
+
+		},
+
+		showInAnimation: function () {
+
+			var view = this;
+			setTimeout(function () { // show animation
+				view.$el.addClass('show-in');
+			}, 100);
+
+		},
+
+		showOutAnimation: function () {
+
+			var view = this,
+				$el = view.$el,
+				deferred = $.Deferred(),
+				transitionEnd = view.info.get('transitionEnd', true);
+
+			$el.one(transitionEnd, function () {
+				deferred.resolve();
+			}); // work only one time
+
+			setTimeout(function () { // show animation
+				view.$el.addClass('show-out');
+			}, 100);
+
+			return deferred.promise();
 
 		}
 

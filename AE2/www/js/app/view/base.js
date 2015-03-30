@@ -194,7 +194,12 @@
 
 		showPopup: function(data) {
 
-			new APP.BB.PopupView(data);
+			var deferred = $.Deferred(),
+				popup =	new APP.BB.PopupView(data);
+
+			popup.set(deferred);
+
+			return deferred.promise();
 
 		},
 

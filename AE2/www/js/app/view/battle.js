@@ -43,9 +43,6 @@
 
 			this.detectClickEvent();
 
-			this.detectTransitionEndEventName();
-			this.detectAnimationEndEventName();
-
 			this.$el = $(this.tmpl.battle(data));
 
 			this.proto.initialize.apply(this, arguments);
@@ -98,48 +95,6 @@
 			view.trigger('hide');
 
 			new view.constructor(args);
-
-		},
-
-		detectTransitionEndEventName: function () {
-			var i,
-				el = doc.createElement('div'),
-				transitions = {
-					'transition':'transitionend',
-					'OTransition':'otransitionend',  // oTransitionEnd in very old Opera
-					'MozTransition':'transitionend',
-					'WebkitTransition':'webkitTransitionEnd'
-				},
-				transitionEnd = 'transitionend';
-
-			for (i in transitions) {
-				if (transitions.hasOwnProperty(i) && el.style[i] !== undefined) {
-					transitionEnd = transitions[i];
-				}
-			}
-
-			this.set('transitionEnd', transitionEnd);
-
-		},
-
-		detectAnimationEndEventName: function () {
-			var i,
-				el = doc.createElement('div'),
-				animations = {
-					'animation':'animationend',
-					'OAnimation':'oAnimationEnd',  // oAnimationEnd in very old Opera
-					'MozAnimation':'animationend',
-					'WebkitAnimation':'webkitAnimationEnd'
-				},
-				animationEnd = 'animationend';
-
-			for (i in animations) {
-				if (animations.hasOwnProperty(i) && el.style[i] !== undefined) {
-					animationEnd = animations[i];
-				}
-			}
-
-			this.set('animationEnd', animationEnd);
 
 		},
 
@@ -1216,7 +1171,7 @@
 				model = view.get('model'),
 				deferred = $.Deferred(),
 				pre = view.info.get('pre', true).css,
-				transitionEnd = view.get('transitionEnd'),
+				transitionEnd = view.info.get('transitionEnd', true),
 				squareSize = view.getSquareSize(),
 				$unitNode = view.getUnitByUnit(data.unit),
 				x = data.x,
@@ -1260,7 +1215,7 @@
 				to = data.to,
 				deferred = $.Deferred(),
 				pre = view.info.get('pre', true).css,
-				transitionEnd = view.get('transitionEnd'),
+				transitionEnd = view.info.get('transitionEnd', true),
 				squareSize = view.getSquareSize(),
 				$attackNode = $('<div class="attack-square square">&nbsp;</div>'),
 				$unitsWrapper = view.$el.find(view.selectors.unitsWrapper);
@@ -1306,7 +1261,7 @@
 				deferred = $.Deferred(),
 				$unitWrapper = view.getUnitByUnit(unit),
 				$deltaHealth = $unitWrapper.find('.js-delta-unit-health'),
-				animationEnd = view.get('animationEnd');
+				animationEnd = view.info.get('animationEnd', true);
 
 			view.disable();
 
@@ -1448,7 +1403,7 @@
 				unit = data.unit,
 				$unitWrapper = view.getUnitByUnit(unit),
 				$levelUp = $unitWrapper.find('.js-unit-level-up'),
-				animationEnd = view.get('animationEnd');
+				animationEnd = view.info.get('animationEnd', true);
 
 			$levelUp.one(animationEnd, function () {
 				$(this).removeClass('move-up');

@@ -90,6 +90,9 @@
 			//set settings
 			this.setSettings();
 
+			this.detectTransitionEndEventName();
+			this.detectAnimationEndEventName();
+
 		},
 		setOS: function () {
 
@@ -115,6 +118,50 @@
 			}
 
 		},
+
+		detectTransitionEndEventName: function () {
+
+			var i,
+				el = doc.createElement('div'),
+				transitions = {
+					'transition':'transitionend',
+					'OTransition':'otransitionend',  // oTransitionEnd in very old Opera
+					'MozTransition':'transitionend',
+					'WebkitTransition':'webkitTransitionEnd'
+				},
+				transitionEnd = 'transitionend';
+
+			for (i in transitions) {
+				if (transitions.hasOwnProperty(i) && el.style[i] !== undefined) {
+					transitionEnd = transitions[i];
+				}
+			}
+
+			this.set('transitionEnd', transitionEnd, true);
+
+		},
+
+		detectAnimationEndEventName: function () {
+			var i,
+				el = doc.createElement('div'),
+				animations = {
+					'animation':'animationend',
+					'OAnimation':'oAnimationEnd',  // oAnimationEnd in very old Opera
+					'MozAnimation':'animationend',
+					'WebkitAnimation':'webkitAnimationEnd'
+				},
+				animationEnd = 'animationend';
+
+			for (i in animations) {
+				if (animations.hasOwnProperty(i) && el.style[i] !== undefined) {
+					animationEnd = animations[i];
+				}
+			}
+
+			this.set('animationEnd', animationEnd, true);
+
+		},
+
 		set: function (key, value, isSystem) {
 
 			if (isSystem) {
