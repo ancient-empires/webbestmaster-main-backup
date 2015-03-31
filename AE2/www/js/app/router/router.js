@@ -70,6 +70,9 @@
 			$('.js-battle-menu-wrapper')
 				.trigger('hide-battle-menu');
 
+			$('.js-settings-wrapper')
+				.trigger('hide-battle-setting');
+
 		},
 
 		mainBattleMenu: function () {

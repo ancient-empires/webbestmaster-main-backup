@@ -79,7 +79,6 @@
 	<script src="js/app/model/unit/unit-soldier.js" type="text/javascript"></script>
 	<script src="js/app/model/unit/unit-sorceress.js" type="text/javascript"></script>
 	<script src="js/app/model/unit/unit-valadorn.js" type="text/javascript"></script>
-	<script src="js/app/model/unit/unit-valadorn.js" type="text/javascript"></script>
 	<script src="js/app/model/unit/unit-wisp.js" type="text/javascript"></script>
 
 	<script src="js/app/model/building.js" type="text/javascript"></script>
@@ -134,7 +133,7 @@
 
 <script type="text/x-template" data-name="settings">
 
-	<div>
+	<div class="js-settings-wrapper settings-wrapper">
 
 		<h1>{{ settings }}</h1>
 
@@ -399,7 +398,7 @@
 
 		<div class="popup-buttons-wrapper ta-center">
 			<div class="popup-button popup-button-single-in-row js-show-objective">{{ objective }}</div>
-			<div class="popup-button popup-button-single-in-row ">{{ settings }}</div>
+			<div class="popup-button popup-button-single-in-row js-show-settings">{{ settings }}</div>
 			<div class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
 			<div class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
 		</div>
@@ -514,6 +513,7 @@
 			</div>
 		</div>
 		<div class="js-unit-info-wrapper"></div>
+		<div class="js-battle-settings-wrapper"></div>
 		<div class="js-store-wrapper"></div>
 		<div class="js-end-turn end-turn">&gt;|</div>
 		<div class="js-battle-menu-button battle-menu-button">

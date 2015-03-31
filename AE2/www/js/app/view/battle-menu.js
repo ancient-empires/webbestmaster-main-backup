@@ -24,7 +24,8 @@
 			'hide-battle-menu': 'hide',
 			'click .js-restart-battle': 'restartBattle',
 			'click .js-quit-battle': 'quitBattle',
-			'click .js-show-objective': 'showObjective'
+			'click .js-show-objective': 'showObjective',
+			'click .js-show-settings': 'showSettings'
 		},
 
 		initialize: function (data) {
@@ -67,12 +68,10 @@
 
 			view.routeBack();
 
-			setTimeout(function () {
-				view.showPopup({
-					popupName: 'popup-confirm-restart-battle',
-					parentView: view.get('view')
-				});
-			}, 50);
+			view.showPopup({
+				popupName: 'popup-confirm-restart-battle',
+				parentView: view.get('view')
+			});
 
 		},
 
@@ -82,12 +81,10 @@
 
 			view.routeBack();
 
-			setTimeout(function () {
-				view.showPopup({
-					popupName: 'popup-confirm-quit-battle',
-					parentView: view.get('view')
-				});
-			}, 50);
+			view.showPopup({
+				popupName: 'popup-confirm-quit-battle',
+				parentView: view.get('view')
+			});
 
 		},
 
@@ -96,9 +93,21 @@
 			var view = this;
 
 			view.routeBack();
+			view.get('view').showObjective();
+
+		},
+
+		showSettings: function () {
+
+			var view = this;
+
+			view.routeBack();
+
 			setTimeout(function () {
-				view.get('view').showObjective();
+				new win.APP.BB.SettingsView();
+				view.routeByUrl('battle-settings');
 			}, 50);
+
 
 		}
 

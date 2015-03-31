@@ -10,9 +10,14 @@
 
 	APP.BB.SettingsView = APP.BB.BaseView.extend({
 
+		selectors: {
+			settingsWrapper: '.js-battle-settings-wrapper'
+		},
+
 		events: {
 			'click .js-change-on-off-setting': 'changeOnOffSetting',
-			'click .js-change-select-setting': 'changeSelectSetting'
+			'click .js-change-select-setting': 'changeSelectSetting',
+			'hide-battle-setting': 'hide'
 		},
 
 		initialize: function () {
@@ -22,6 +27,21 @@
 			this.proto.initialize.apply(this, arguments);
 
 			this.render();
+
+		},
+
+		render: function () {
+
+			var view = this,
+				$mainWrapper = view.$wrapper,
+				$wrapper = $mainWrapper.find(view.selectors.settingsWrapper);
+
+			if ($wrapper.length) {
+				$wrapper.empty().append(view.$el);
+				return;
+			}
+
+			view.proto.render.call(view);
 
 		},
 
@@ -40,19 +60,20 @@
 
 		changeSelectSetting: function (e) {
 
-			var $this = $(e.target),
+			var view = this,
+				$this = $(e.target),
 				key = $this.attr('data-key'),
 				value = $this.attr('data-value'),
-				$nodes = this.$el.find('.js-change-select-setting[data-key="' + key + '"]');
+				$nodes = view.$el.find('.js-change-select-setting[data-key="' + key + '"]');
 
 			$nodes.addClass('opacity50');
 			$this.removeClass('opacity50');
 
-			this.info.set(key, value);
+			view.info.set(key, value);
 
 			if (key === 'language') {
 				win.APP.lang.set(value);
-				this.loadUrl();
+				new view.constructor(); // do not use this.loadUrl(); cause this view used in battle view
 			}
 
 		}
