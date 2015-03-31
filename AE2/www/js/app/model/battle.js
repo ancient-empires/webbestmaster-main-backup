@@ -321,7 +321,8 @@
 
 		startTurn: function () {
 
-			var model = this;
+			var model = this,
+				activePlayer = model.get('activePlayer');
 
 			model.clearAvailableActions();
 
@@ -335,8 +336,10 @@
 
 			model.get('view').updateStatusBar();
 
-			console.log('active player is (see below)');
-			console.log(this.get('activePlayer'));
+			if (activePlayer.type === 'cpu') {
+				model.runCpu();
+			}
+
 
 		},
 
@@ -1019,6 +1022,17 @@
 			});
 
 			return team;
+
+		},
+
+		runCpu: function () {
+
+			var model = this;
+
+			console.log('----CPU');
+
+			
+
 
 		}
 
