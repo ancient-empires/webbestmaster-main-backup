@@ -33,7 +33,7 @@
 }
 
 .popup-form {
-	width: 80%;
+	width: 90%;
 	box-sizing: border-box;
 	border-width: 0.75rem;
 	-webkit-border-image: url(../i/ui/border-1.png) 25% repeat repeat;
@@ -47,7 +47,7 @@
 .popup-header {
 	font-size: 1.2rem;
 	padding-bottom: 0.9rem;
-	text-transform: capitalize;
+	line-height: 2.2rem;
 }
 
 .popup-buttons-wrapper {
@@ -62,7 +62,6 @@
 	box-shadow: 0.2rem 0.2rem 0 #000;
 	border-style: solid;
 	border-width: 0.15rem;
-	text-transform: capitalize;
 	margin: 0 0.5rem;
 	width: 4rem;
 	position: relative;
