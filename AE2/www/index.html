@@ -341,11 +341,8 @@
 <script type="text/x-template" data-name="between-turn-notification">
 
 	<div>
-		<div class="js-back bg-gradient-color-<%= color %>">
-
-			<div class="popup-header">{{ newTurn }}</div>
-			<div class="popup-text">{{ income }}: <%= earn %></div>
-
+		<div class="js-back bg-gradient-color-<%= color %> new-turn-notification">
+			<div class="popup-header">{{ newTurn }}<br>{{ income }}: <%= earn %></div>
 		</div>
 	</div>
 

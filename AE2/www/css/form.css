@@ -61,3 +61,10 @@
 	opacity: 1;
 }
 
+.new-turn-notification {
+	border: 0.15rem solid #ccc;
+}
+
+.new-turn-notification .popup-header {
+	padding-top: 0.3rem;
+}
