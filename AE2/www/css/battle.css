@@ -46,6 +46,7 @@
 }
 
 .end-turn {
+	font-family: 'big-pixel-font', "Courier New", Courier, monospace;
 	position: absolute;
 	right: 1rem;
 	top: 1rem;
@@ -53,6 +54,7 @@
 	padding: 0.5rem 0.7rem 0.3rem 0.3rem;
 	z-index: 1;
 	font-size: 1.8rem;
+	line-height: 1;
 	letter-spacing: -0.9rem;
 	box-shadow: 0.2rem 0.2rem 0 #000;
 	border-style: solid;

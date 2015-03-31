@@ -47,7 +47,6 @@
 .popup-header {
 	font-size: 1.2rem;
 	padding-bottom: 0.9rem;
-	line-height: 1.5rem;
 	text-transform: capitalize;
 }
 
@@ -86,6 +85,5 @@
 
 .popup-text {
 	font-size: 0.8rem;
-	line-height: 1rem;
 }
 

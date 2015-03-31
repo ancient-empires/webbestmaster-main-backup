@@ -226,9 +226,9 @@
 <script type="text/x-template" data-name="settingsOnOff">
 
 		<% if (info.get(key) === 'on') { %>
-		<div class="js-change-on-off-setting setting-state" data-key="<%= key %>" data-value="on">[*]</div>
+		<div class="js-change-on-off-setting setting-state on-off-enable" data-key="<%= key %>" data-value="on">[<span class="on-off">*</span>]</div>
 		<% } else { %>
-		<div class="js-change-on-off-setting setting-state" data-key="<%= key %>" data-value="off">[&nbsp;]</div>
+		<div class="js-change-on-off-setting setting-state" data-key="<%= key %>" data-value="off">[<span class="on-off">*</span>]</div>
 		<% }; %>
 
 </script>

@@ -15,6 +15,7 @@
 .back {
 	font-size: 1rem;
 	padding: 0.7rem;
+	line-height: 1;
 }
 
 .main-header {
@@ -49,3 +50,14 @@
 	padding: 0.5rem 0.25rem;
 	min-height: 100%;
 }
+
+.on-off {
+	opacity: 0.2;
+	position: relative;
+	top: 0.3rem;
+}
+
+.on-off-enable .on-off {
+	opacity: 1;
+}
+

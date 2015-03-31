@@ -61,14 +61,15 @@
 				$wrapper = $(e.currentTarget),
 				$this = $wrapper.find(view.selectors.onOffSetting),
 				key = $this.attr('data-key'),
-				value = ( $this.attr('data-value') === 'on' ) ? 'off' : 'on',
-				html;
+				value = ( $this.attr('data-value') === 'on' ) ? 'off' : 'on';
+
+			if ( value === 'on' ) {
+				$this.addClass('on-off-enable');
+			} else {
+				$this.removeClass('on-off-enable');
+			}
 
 			$this.attr( 'data-value', value );
-			html = value === 'on' ? '[*]' : '[&nbsp;]';
-			//$this.html( win.APP.lang.get(value) );
-			$this.html(html);
-
 			view.info.set(key, value);
 
 		},
