@@ -13,22 +13,30 @@
 
 		initialize: function() {
 
+			var model = this,
+				args = model.get('args'),
+				players;
+
 			win.APP.bb.battleData = {
 				isEndGame: 'no',
 				gameTo: 'quit'
 			};
 
-			var args = this.get('args');
+			players = JSON.parse(JSON.stringify(args.players));
 
-			this.set('jsMapKey', args.jsMapKey);
-			this.set('unitLimit', args.unitLimit);
-			this.set('players', JSON.parse(JSON.stringify(args.players)));
-			this.set('buildings', []); // will be filled building append units
-			this.set('units', []); // will be filled after append units
-			this.set('graves', []); // will be filled in battle
+			players = _.filter(players, function (player) {
+				return player.type !== 'none';
+			});
+
+			model.set('jsMapKey', args.jsMapKey);
+			model.set('unitLimit', args.unitLimit);
+			model.set('players', players);
+			model.set('buildings', []); // will be filled building append units
+			model.set('units', []); // will be filled after append units
+			model.set('graves', []); // will be filled in battle
 
 			// add money to player
-			_.each(this.get('players'), function (player) {
+			_.each(model.get('players'), function (player) {
 				player.money = args.money;
 			});
 
@@ -51,6 +59,7 @@
 
 				// detect color of building
 				var player = _.where(players, { id: building.ownerId })[0];
+
 				building.color = player ? player.color : buildingDefaultColor;
 				building.teamNumber = player ? player.teamNumber : buildingDefaultTeamNumber;
 
@@ -72,6 +81,10 @@
 
 				// detect color of building
 				var player = _.where(players, { id: unit.ownerId })[0];
+
+				if ( !player ) { // detect player.type === 'none' was deleted from players
+					return;
+				}
 
 				unit.color = player.color;
 				unit.teamNumber = player.teamNumber;
