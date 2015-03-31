@@ -1,3 +1,13 @@
+.view-disable {
+	/*background-color: rgba(255, 255, 255, 0.5);*/
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 10; /* z-i: 3 has .battle-view-status-bar, z-1: 2 unit-store, z-1: 1 next turn button and etc */
+}
+
 .battle-view-wrapper {
 	position: fixed;
 	width: 100%;
@@ -35,15 +45,6 @@
 }
 
 
-.view-disable {
-	background-color: rgba(255, 255, 255, 0.5);
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 10; /* z-i: 3 has .battle-view-status-bar, z-1: 2 unit-store, z-1: 1 next turn button and etc */
-}
 
 .end-turn {
 	font-family: 'big-pixel-font', "Courier New", Courier, monospace;
