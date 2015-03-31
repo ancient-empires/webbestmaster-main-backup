@@ -11,12 +11,14 @@
 	APP.BB.SettingsView = APP.BB.BaseView.extend({
 
 		selectors: {
-			settingsWrapper: '.js-battle-settings-wrapper'
+			settingsWrapper: '.js-battle-settings-wrapper',
+			onOffSetting: '.js-change-on-off-setting'
 		},
 
 		events: {
-			'click .js-change-on-off-setting': 'changeOnOffSetting',
+			'click .js-change-on-off-setting-wrapper': 'changeOnOffSetting',
 			'click .js-change-select-setting': 'changeSelectSetting',
+			'click .js-setting-item-wrapper': 'changeSettings',
 			'hide-battle-setting': 'hide'
 		},
 
@@ -53,21 +55,26 @@
 
 		changeOnOffSetting: function (e) {
 
-			var $this = $(e.target),
+			var view = this,
+				$wrapper = $(e.currentTarget),
+				$this = $wrapper.find(view.selectors.onOffSetting),
 				key = $this.attr('data-key'),
-				value = ( $this.attr('data-value') === 'on' ) ? 'off' : 'on';
+				value = ( $this.attr('data-value') === 'on' ) ? 'off' : 'on',
+				html;
 
 			$this.attr( 'data-value', value );
-			$this.html( win.APP.lang.get(value) );
+			html = value === 'on' ? '[*]' : '[&nbsp;]';
+			//$this.html( win.APP.lang.get(value) );
+			$this.html(html);
 
-			this.info.set(key, value);
+			view.info.set(key, value);
 
 		},
 
 		changeSelectSetting: function (e) {
 
 			var view = this,
-				$this = $(e.target),
+				$this = $(e.currentTarget),
 				key = $this.attr('data-key'),
 				value = $this.attr('data-value'),
 				$nodes = view.$el.find('.js-change-select-setting[data-key="' + key + '"]');
