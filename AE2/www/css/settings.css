@@ -9,7 +9,7 @@
 }
 
 .change-on-off-setting-wrapper {
-	padding-bottom: 1rem;
+	padding: 0.4rem 0;
 }
 
 .change-on-off-setting-wrapper .setting-name {
@@ -20,6 +20,18 @@
 	float: left;
 }
 
+.select-setting-wrapper {
+	padding-top: 0.8rem;
+	text-align: center;
+}
 
+.select-setting-wrapper .setting-name {
+	padding-bottom: 0.2rem;
+}
+
+.select-setting-wrapper .setting-state {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+}
 
 

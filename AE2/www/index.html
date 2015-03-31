@@ -178,51 +178,39 @@
 						<div class="setting-name">{{ fightAnimation }}</div>
 					</div>
 
-
-					<div>{{ language }}
-						<div>
-
+					<div class="select-setting-wrapper">
+						<div class="setting-name">{{ language }}</div>
+						<div class="clear-fix">
 							<% _.each(info.availableLanguages, function(lang) { %>
-
 							<% if ( lang === info.get('language') ) { %>
-							<div class="js-change-select-setting" data-key="language" data-value="<%= lang %>">
+							<div class="js-change-select-setting setting-state" data-key="language" data-value="<%= lang %>">
 								<%= window.APP.languages[lang].shortLanguageName %>
 							</div>
 							<% } else { %>
-							<div class="opacity50 js-change-select-setting" data-key="language" data-value="<%= lang %>">
+							<div class="opacity50 js-change-select-setting setting-state" data-key="language" data-value="<%= lang %>">
 								<%= window.APP.languages[lang].shortLanguageName %>
 							</div>
 							<% }; %>
-
-
 							<% }); %>
-
 						</div>
 					</div>
 
-					<div>{{ gameSpeed }}
-
-						<div>
-
+					<div class="select-setting-wrapper">
+						<div class="setting-name">{{ gameSpeed }}</div>
+						<div class="clear-fix">
 							<% _.each(['1', '2', '3', '4', '5'], function(speed){ %>
-
 							<% if ( speed === info.get('gameSpeed') ) { %>
-							<div class="js-change-select-setting" data-key="gameSpeed" data-value="<%= speed %>">
+							<div class="js-change-select-setting setting-state" data-key="gameSpeed" data-value="<%= speed %>">
 								<%= speed %>
 							</div>
 							<% } else { %>
-							<div class="opacity50 js-change-select-setting" data-key="gameSpeed" data-value="<%= speed %>">
+							<div class="opacity50 js-change-select-setting setting-state" data-key="gameSpeed" data-value="<%= speed %>">
 								<%= speed %>
 							</div>
 							<% }; %>
-
 							<% }); %>
-
 						</div>
-
 					</div>
-
-
 
 				</div>
 			</div>
