@@ -30,6 +30,8 @@
 
 			view.extendFromObj(data);
 
+			view.set('args', data);
+
 			view.proto.initialize.apply(view, arguments);
 
 			view.render();
@@ -86,7 +88,7 @@
 
 			if (key === 'language') {
 				win.APP.lang.set(value);
-				new view.constructor(); // do not use this.loadUrl(); cause this view used in battle view
+				new view.constructor(view.get('args')); // do not use this.loadUrl(); cause this view used in battle view
 			}
 
 		}
