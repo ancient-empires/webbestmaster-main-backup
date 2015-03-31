@@ -23,7 +23,6 @@
 		},
 
 		events: {
-			'show-battle-view': 'showBattleView',
 			'hide-unit-store': 'hide',
 			'click .js-buy-unit': 'buyUnit',
 			'click .js-show-unit-description': 'showUnitDescription'
@@ -44,16 +43,6 @@
 			view.proto.initialize.apply(view, arguments);
 
 			view.render();
-
-		},
-
-		showBattleView: function () {
-
-			var view = this,
-				model = view.get('model'),
-				battleView = model.get('view');
-
-			battleView.$el.find(battleView.selectors.moveAreaContainer).removeClass('hidden');
 
 		},
 

@@ -64,7 +64,6 @@
 		battle: function () {
 
 			$('.js-unit-store-wrapper')
-				.trigger('show-battle-view')
 				.trigger('hide-unit-store');
 
 			$('.js-battle-menu-wrapper')
@@ -72,6 +71,9 @@
 
 			$('.js-settings-wrapper')
 				.trigger('hide-battle-setting');
+
+			$('.js-move-area-container')
+				.removeClass('hidden');
 
 		},
 

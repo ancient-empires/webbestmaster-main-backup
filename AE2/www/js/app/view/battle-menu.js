@@ -104,7 +104,9 @@
 			view.routeBack();
 
 			setTimeout(function () {
-				new win.APP.BB.SettingsView();
+				new win.APP.BB.SettingsView({
+					view: view.get('view')
+				});
 				view.routeByUrl('battle-settings');
 			}, 50);
 

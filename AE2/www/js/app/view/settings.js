@@ -20,13 +20,17 @@
 			'hide-battle-setting': 'hide'
 		},
 
-		initialize: function () {
+		initialize: function (data) {
 
-			this.$el = $(this.tmpl.settings({ view: this, info: this.info }));
+			var view = this;
 
-			this.proto.initialize.apply(this, arguments);
+			view.$el = $(this.tmpl.settings({ view: view, info: view.info }));
 
-			this.render();
+			view.extendFromObj(data);
+
+			view.proto.initialize.apply(view, arguments);
+
+			view.render();
 
 		},
 
@@ -34,10 +38,12 @@
 
 			var view = this,
 				$mainWrapper = view.$wrapper,
-				$wrapper = $mainWrapper.find(view.selectors.settingsWrapper);
+				$wrapper = $mainWrapper.find(view.selectors.settingsWrapper),
+				battleView = view.get('view');
 
 			if ($wrapper.length) {
 				$wrapper.empty().append(view.$el);
+				battleView.$el.find(battleView.selectors.moveAreaContainer).addClass('hidden');
 				return;
 			}
 
