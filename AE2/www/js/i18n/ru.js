@@ -36,6 +36,11 @@
 		confirmTurn: 'подтверждение хода',
 		confirmMove: 'подтверждение движения юнита',
 		confirmAttack: 'подтверждение атаки',
+		'gameSpeed-1': 'оч.медленно',
+		'gameSpeed-2': 'медленно',
+		'gameSpeed-3': 'обычная',
+		'gameSpeed-4': 'быстро',
+		'gameSpeed-5': 'оч.быстро',
 
 		// play
 		newGame: 'новая игра',

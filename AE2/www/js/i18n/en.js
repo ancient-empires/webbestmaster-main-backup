@@ -36,6 +36,11 @@
 		confirmTurn: 'confirm turn',
 		confirmMove: 'confirm move',
 		confirmAttack: 'confirm attack',
+		'gameSpeed-1': 'slower',
+		'gameSpeed-2': 'slow',
+		'gameSpeed-3': 'normal',
+		'gameSpeed-4': 'fast',
+		'gameSpeed-5': 'faster',
 
 		// play
 		newGame: 'new game',

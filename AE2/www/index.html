@@ -179,7 +179,7 @@
 					</div>
 
 					<div class="select-setting-wrapper">
-						<div class="setting-name">{{ language }}</div>
+						<div class="setting-name">{{ language }}:</div>
 						<div class="clear-fix">
 							<% _.each(info.availableLanguages, function(lang) { %>
 							<% if ( lang === info.get('language') ) { %>
@@ -196,18 +196,20 @@
 					</div>
 
 					<div class="select-setting-wrapper">
-						<div class="setting-name">{{ gameSpeed }}</div>
+						<div class="setting-name">{{ gameSpeed }}:</div>
 						<div class="clear-fix">
 							<% _.each(['1', '2', '3', '4', '5'], function(speed){ %>
+							<% var gameSpeedWord = window.APP.lang.get('gameSpeed-' + speed); %>
 							<% if ( speed === info.get('gameSpeed') ) { %>
 							<div class="js-change-select-setting setting-state" data-key="gameSpeed" data-value="<%= speed %>">
-								<%= speed %>
+								<%= gameSpeedWord %>
 							</div>
 							<% } else { %>
 							<div class="opacity50 js-change-select-setting setting-state" data-key="gameSpeed" data-value="<%= speed %>">
-								<%= speed %>
+								<%= gameSpeedWord %>
 							</div>
 							<% }; %>
+							<div class="clear"></div>
 							<% }); %>
 						</div>
 					</div>
