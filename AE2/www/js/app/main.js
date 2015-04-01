@@ -52,6 +52,7 @@
 				win.APP.bb.router = new win.APP.BB.Router();
 				Backbone.history.start();
 				initTiles();
+				win.APP.BB.SettingsView.prototype.setSpeedStyle();
 			}
 
 		}

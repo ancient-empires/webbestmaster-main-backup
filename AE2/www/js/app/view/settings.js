@@ -12,7 +12,8 @@
 
 		selectors: {
 			settingsWrapper: '.js-battle-settings-wrapper',
-			onOffSetting: '.js-change-on-off-setting'
+			onOffSetting: '.js-change-on-off-setting',
+			style: '.js-game-speed-style'
 		},
 
 		events: {
@@ -92,8 +93,24 @@
 				new view.constructor(view.get('args')); // do not use this.loadUrl(); cause this view used in battle view
 			}
 
-		}
+			if (key === 'gameSpeed') {
+				view.setSpeedStyle();
+			}
 
+		},
+
+		setSpeedStyle: function () {
+
+			var view = this,
+				speed = parseInt(view.info.get('gameSpeed'), 10),
+				q = 6 - speed, // 6 === maxSpeed'5' + 1
+				$style = view.tmpl['game-speed']({q: q});
+
+			view.$wrapper.find(view.selectors.style).remove();
+
+			view.$wrapper.append($style);
+
+		}
 
 	});
 
