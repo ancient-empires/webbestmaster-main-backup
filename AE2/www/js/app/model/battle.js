@@ -1032,7 +1032,7 @@
 
 			var model = this;
 
-			console.log('----CPU');
+			console.log('-------- CPU');
 
 			
 
