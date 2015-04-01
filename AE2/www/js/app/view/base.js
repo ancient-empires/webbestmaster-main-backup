@@ -219,9 +219,30 @@
 
 		hidePopups: function () {
 
-			var deferred = $.Deferred();
+			var view = this,
+				deferred = $.Deferred();
 
+			(function routeBackIfNeeded () {
+				setTimeout(function () {
+					if (view.isPopupExist()) {
+						view.routeBack();
+						routeBackIfNeeded();
+					} else {
+						deferred.resolve();
+					}
+				}, 200 * 2);
+			}());
 
+			return deferred.promise();
+
+		},
+
+		isPopupExist: function () {
+			var view = this,
+				url = win.location.href,
+				popupPart = view.popupUrl;
+
+			return url.indexOf(popupPart) !== -1;
 
 		},
 
