@@ -322,6 +322,7 @@
 		startTurn: function () {
 
 			var model = this,
+				view = model.get('view'),
 				activePlayer = model.get('activePlayer');
 
 			model.clearAvailableActions();
@@ -337,7 +338,9 @@
 			model.get('view').updateStatusBar();
 
 			if (activePlayer.type === 'cpu') {
-				model.runCpu();
+				view.hidePopups().then(function () {
+					model.runCpu();
+				});
 			}
 
 

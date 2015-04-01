@@ -164,7 +164,7 @@
 			baseProto.routeBack();
 			setTimeout(function () {
 				baseProto.routeBack();
-			}, 200);
+			}, 50);
 
 		}
 

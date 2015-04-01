@@ -15,18 +15,18 @@
 	position: absolute;
 	z-index: 0;
 
-	-webkit-transition: background 0.5s linear;
-	transition: background 0.5s linear;
+	-webkit-transition: background 0.2s ease-out;
+	transition: background 0.2s ease-out;
 
 	-webkit-animation-name: unit-bg-shift;
-	-webkit-animation-duration: 1s;
+	-webkit-animation-duration: 0.2s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-direction: normal;
 	-webkit-animation-timing-function: steps(2);
 	-webkit-animation-fill-mode: forwards;
 
 	animation-name: unit-bg-shift;
-	animation-duration: 1s;
+	animation-duration: 0.2s;
 	animation-iteration-count: infinite;
 	animation-direction: normal;
 	animation-timing-function: steps(2);
@@ -36,8 +36,8 @@
 
 .unit-wrapper.moving {
 	z-index: 1;
-	-webkit-transition: all 0.5s ease-out;
-	transition: all 0.5s ease-out;
+	-webkit-transition: -webkit-transform 0.2s ease-out;
+	transition: transform 0.2s ease-out;
 }
 
 @-webkit-keyframes unit-bg-shift {
@@ -103,20 +103,15 @@
 	bottom: 0;
 }
 
-/*.delta-unit-health.bounce {*/
-	/*-webkit-transition: all linear 1.5s;*/
-	/*transition: all linear 1.5s;*/
-/*}*/
-
 .bounce {
 
-	-webkit-animation-duration: 1.2s;
+	-webkit-animation-duration: 0.2s;
 	-webkit-animation-iteration-count: 1;
 	-webkit-animation-name: bounce;
 	-webkit-animation-fill-mode: forwards;
 	-webkit-transform-origin: center bottom;
 
-	animation-duration: 1.2s;
+	animation-duration: 0.2s;
 	animation-iteration-count: 1;
 	animation-name: bounce;
 	animation-fill-mode: forwards;
@@ -225,8 +220,8 @@
 }
 
 .attack-square.moving { /* above from units */
-	-webkit-transition: all 0.5s ease-out;
-	transition: all 0.5s ease-out;
+	-webkit-transition: -webkit-transform 0.2s ease-out;
+	transition: transform 0.2s ease-out;
 }
 
 .under-wisp-aura-image,
@@ -270,13 +265,13 @@
 }
 
 .unit-level-up.move-up {
-	-webkit-animation-duration: 0.8s;
+	-webkit-animation-duration: 0.2s;
 	-webkit-animation-iteration-count: 1;
 	-webkit-animation-name: level-up;
 	-webkit-animation-fill-mode: forwards;
 	-webkit-transform-origin: center center;
 
-	animation-duration: 0.8s;
+	animation-duration: 0.2s;
 	animation-iteration-count: 1;
 	animation-name: level-up;
 	animation-fill-mode: forwards;

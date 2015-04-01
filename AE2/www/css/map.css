@@ -14,14 +14,14 @@
 	top: -50%;
 
 	-webkit-animation-name: change-bg-2;
-	-webkit-animation-duration: 1s;
+	-webkit-animation-duration: 0.2s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-direction: normal;
 	-webkit-animation-timing-function: steps(2);
 	-webkit-animation-fill-mode: forwards;
 
 	animation-name: change-bg-2;
-	animation-duration: 1s;
+	animation-duration: 0.2s;
 	animation-iteration-count: infinite;
 	animation-direction: normal;
 	animation-timing-function: steps(2);
@@ -52,19 +52,6 @@
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @-webkit-keyframes change-bg-3 {
 
@@ -132,13 +119,13 @@
 	background-size: 0 0;
 
 	-webkit-animation-name: increase-bg-size;
-	-webkit-animation-duration: 0.3s;
+	-webkit-animation-duration: 0.2s;
 	-webkit-animation-iteration-count: 1;
 	-webkit-animation-direction: normal;
 	-webkit-animation-fill-mode: forwards;
 
 	animation-name: increase-bg-size;
-	animation-duration: 0.3s;
+	animation-duration: 0.2s;
 	animation-iteration-count: 1;
 	animation-direction: normal;
 	animation-fill-mode: forwards;
@@ -180,14 +167,14 @@
 	background-image: url(../i/ux/unit-under-attack.png);
 
 	-webkit-animation-name: change-bg-3;
-	-webkit-animation-duration: 1.5s;
+	-webkit-animation-duration: 0.2s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-direction: normal;
 	-webkit-animation-timing-function: steps(3);
 	-webkit-animation-fill-mode: forwards;
 
 	animation-name: change-bg-3;
-	animation-duration: 1.5s;
+	animation-duration: 0.2s;
 	animation-iteration-count: infinite;
 	animation-direction: normal;
 	animation-timing-function: steps(3);

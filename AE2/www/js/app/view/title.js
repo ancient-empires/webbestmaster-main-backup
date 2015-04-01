@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */
 (function (win) {
 
 	"use strict";
@@ -33,7 +34,7 @@
 				setTimeout(function () {
 					win.APP.bb.rate = new win.APP.BB.RateView();
 					win.APP.bb.rate.show();
-				}, 200);
+				}, 50);
 			}, this);
 
 		}

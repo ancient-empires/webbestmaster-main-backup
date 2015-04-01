@@ -46,7 +46,7 @@
 
 			if ( location.hash ) {
 				history.back();
-				setTimeout(back, 200);
+				setTimeout(back, 50);
 			} else {
 				//win.APP.BB.BaseView.prototype.util.loadSavedTheme();
 				win.APP.bb.router = new win.APP.BB.Router();

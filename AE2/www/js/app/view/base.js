@@ -217,6 +217,14 @@
 
 		},
 
+		hidePopups: function () {
+
+			var deferred = $.Deferred();
+
+
+
+		},
+
 		stopEvent: function(e) {
 
 			if (e && e.preventDefault) {
