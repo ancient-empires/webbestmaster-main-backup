@@ -222,15 +222,15 @@
 			var view = this,
 				deferred = $.Deferred();
 
-			(function routeBackIfNeeded () {
+			(function hidePopups () {
 				setTimeout(function () {
 					if (view.isPopupExist()) {
 						view.routeBack();
-						routeBackIfNeeded();
+						hidePopups();
 					} else {
 						deferred.resolve();
 					}
-				}, 200 * 2);
+				}, 200); // def se time out for routing is 50
 			}());
 
 			return deferred.promise();
