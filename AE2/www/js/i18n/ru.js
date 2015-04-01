@@ -41,6 +41,10 @@
 		'gameSpeed-3': 'обычная',
 		'gameSpeed-4': 'быстро',
 		'gameSpeed-5': 'оч.быстро',
+		gameDifficulty: 'сложность игры',
+		easy: 'легко',
+		normal: 'нормально',
+		hard: 'трудно',
 
 		// play
 		newGame: 'новая игра',

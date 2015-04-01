@@ -202,6 +202,7 @@
 					vibrate: 'off',
 					help: 'on',
 					fightAnimation: 'off',
+					difficult: 'normal', // easy, normal, hard
 					gameSpeed: '3' // 1..5, use string type
 				},
 				key,

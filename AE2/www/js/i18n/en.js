@@ -41,6 +41,10 @@
 		'gameSpeed-3': 'normal',
 		'gameSpeed-4': 'fast',
 		'gameSpeed-5': 'faster',
+		gameDifficulty: 'game difficulty',
+		easy: 'easy',
+		normal: 'normal',
+		hard: 'hard',
 
 		// play
 		newGame: 'new game',

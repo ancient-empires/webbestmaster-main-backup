@@ -200,6 +200,25 @@
 					</div>
 
 					<div class="select-setting-wrapper">
+						<div class="setting-name">{{ gameDifficulty }}:</div>
+						<div class="clear-fix">
+							<% _.each(['easy', 'normal', 'hard'], function(difficult) { %>
+							<% var gameDifficulty = window.APP.lang.get(difficult); %>
+							<% if ( difficult === info.get('difficult') ) { %>
+							<div class="js-change-select-setting setting-state" data-key="difficult" data-value="<%= difficult %>">
+								<%= gameDifficulty %>
+							</div>
+							<% } else { %>
+							<div class="opacity50 js-change-select-setting setting-state" data-key="difficult" data-value="<%= difficult %>">
+								<%= gameDifficulty %>
+							</div>
+							<% }; %>
+							<div class="clear"></div>
+							<% }); %>
+						</div>
+					</div>
+
+					<div class="select-setting-wrapper">
 						<div class="setting-name">{{ gameSpeed }}:</div>
 						<div class="clear-fix">
 							<% _.each(['1', '2', '3', '4', '5'], function(speed){ %>
