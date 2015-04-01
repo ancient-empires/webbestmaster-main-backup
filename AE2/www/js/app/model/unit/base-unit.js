@@ -880,11 +880,9 @@
 								model.addGraveInsteadUnit(unit);
 								//uni
 								enemyUnit.autoSetLevel();
-								// todo: count level for enemy
 							} else {
 								enemyUnit.autoSetLevel();
 								unit.autoSetLevel();
-								// todo: count level for both unit
 							}
 
 							enemyUnit.setBy('poisonCount', unit.get('poisonPeriod') || 0);

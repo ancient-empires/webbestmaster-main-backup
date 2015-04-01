@@ -3,7 +3,7 @@
 
 	"use strict";
 	/*global window */
-	/*global $, templateMaster, APP, Backbone */
+	/*global $, templateMaster, APP, Backbone, _ */
 
 	win.APP = win.APP || {};
 
@@ -68,27 +68,51 @@
 
 		buyUnit: function (e) {
 
-			var view = this,
-				model = view.get('model'),
-				mapSize = model.get('map').size,
-				unitLimit = model.get('unitLimit'),
-				mapWidth = mapSize.width,
-				mapHeight = mapSize.height,
-				x, y,
-				xy,
+			var view, model, mapSize, unitLimit, mapWidth, mapHeight, x, y, xy, currentXY, getPathSize, player,
+				playerUnits, playerMoney, $this, unitType, unitData, unitCost, freeXYs;
+
+			if (e.state === 'cpu') { // bot
+
+				view = e.view;
+				model = e.model;
+
+				currentXY = {
+					x: e.x,
+					y: e.y
+				};
+
+				player = e.player;
+
+				//$this;
+				unitType = e.unitType;
+
+			} else { // human
+
+				view = this;
+				model = view.get('model');
+
 				currentXY = {
 					x: view.get('x'),
 					y: view.get('y')
-				},
-				getPathSize = win.APP.util.getPathSize,
-				player = view.get('player'),
-				playerUnits = model.getUnitsByOwnerId(player.id),
-				playerMoney = player.money,
-				$this = $(e.currentTarget),
-				unitType = $this.attr('data-unit-key'),
-				unitData = win.APP.unitMaster.list[unitType],
-				unitCost = unitData.cost,
-				freeXYs = [];
+				};
+
+				player = view.get('player');
+
+				$this = $(e.currentTarget);
+				unitType = $this.attr('data-unit-key');
+
+			}
+
+			mapSize = model.get('map').size;
+			unitLimit = model.get('unitLimit');
+			mapWidth = mapSize.width;
+			mapHeight = mapSize.height;
+			getPathSize = win.APP.util.getPathSize;
+			playerUnits = model.getUnitsByOwnerId(player.id);
+			playerMoney = player.money;
+			unitData = win.APP.unitMaster.list[unitType];
+			unitCost = unitData.cost;
+			freeXYs = [];
 
 			if ( playerUnits.length >= unitLimit ) {
 				return;
@@ -128,10 +152,14 @@
 				y: freeXYs[0].y
 			});
 
-			view.autoSetCardState();
-			view.get('view').updateStatusBar();
+			if (e.state === 'cpu') { // bot
+				view.updateStatusBar();
+			} else {
+				view.autoSetCardState();
+				view.get('view').updateStatusBar();
+				view.setUnitCounter(unitType);
+			}
 
-			view.setUnitCounter(unitType);
 
 		},
 

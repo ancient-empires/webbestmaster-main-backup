@@ -53,6 +53,7 @@
 				players = this.get('players'),
 				buildingArr = this.get('buildings'),
 				buildingDefaultColor = win.APP.building.defaults.color,
+				buildingMap = win.APP.building.list,
 				buildingDefaultTeamNumber = win.APP.building.defaults.teamNumber;
 
 			_.each(mapBuildings, function (building) {
@@ -62,6 +63,7 @@
 
 				building.color = player ? player.color : buildingDefaultColor;
 				building.teamNumber = player ? player.teamNumber : buildingDefaultTeamNumber;
+				building.canBeStore = Boolean(buildingMap[building.type].canBeStore);
 
 				buildingArr.push(building);
 
@@ -448,16 +450,12 @@
 		},
 
 		getBuildingsByOwnerId: function (ownerId) {
-			return _.filter(this.get('buildings'), function (building) {
-				return building.ownerId === ownerId;
-			});
+			return _.where(this.get('buildings'), {ownerId: ownerId});
 		},
 
-		getBuildingsByTeamNumber: function (teamNumber) {
-			return _.filter(this.get('buildings'), function (building) {
-				return building.teamNumber === teamNumber;
-			});
-		},
+		//getBuildingsByTeamNumber: function (teamNumber) {
+		//
+		//},
 
 		//////////////////
 		// find by xy
@@ -1030,12 +1028,15 @@
 
 		runCpu: function () {
 
-			var model = this;
+			var model = this,
+				cpu;
 
-			console.log('-------- CPU');
+			cpu = new win.APP.Cpu({
+				model: model,
+				player: model.get('activePlayer')
+			});
 
-			
-
+			cpu.run();
 
 		}
 
