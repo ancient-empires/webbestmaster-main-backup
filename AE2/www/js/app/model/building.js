@@ -12,7 +12,8 @@
 			color: 'gray',
 			teamNumber: null
 		},
-		upHealthList: ['well', 'temple'],
+		upHealthList: ['well', 'temple'], // bot only
+		wantedBuildingList: ['castle', 'farm'], // bot only
 		list: {
 			castle: {
 				availableStates: ['normal'],

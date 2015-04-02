@@ -373,15 +373,12 @@
 				//availableGivenDamage: 2,
 				//availableResponseDamage: -0.5,
 				placeArmor: 0.5,
-				//nearestNoPlayerBuilding: -1.5,
+				nearestNonOwnedBuilding: -1.5,
 				upHealth: 2
 			},
 
 			// next value wipe previous
-			onCanEnemyGetBuilding: 100, // high priority
-			onCanNotEnemyGetBuilding: 2,
-			onEnemyBuilding: 2,
-			onUpHealthBuilding: 2
+			onCanEnemyGetBuilding: 100 // high priority
 			//,withBuilding: 2
 
 		},
@@ -391,14 +388,15 @@
 			var cpu = this,
 				action = scenario.get('action').name,
 				rates = cpu.rates,
-				dataByPosition = cpu.getDataByPosition(scenario),
 				rate = 0;
+
+			cpu.insertDataByPosition(scenario);
 
 			switch (action) {
 
 				case 'move':
 
-					rate = cpu.rateMove({
+					rate = cpu.rateMove({ // usually move rate is <0
 						scenario: scenario,
 						allScenarios: allScenarios
 					});
@@ -437,7 +435,7 @@
 
 		},
 
-		getDataByPosition: function (scenario) {
+		insertDataByPosition: function (scenario) {
 
 			var cpu = this,
 				model = cpu.get('model'),
@@ -490,11 +488,11 @@
 			unit.set('x', unitX);
 			unit.set('y', unitY);
 
-			return {
+			scenario.set('dataByPosition', {
 				placeArmor: placeArmor,
 				availableReceiveDamage: availableReceiveDamage,
 				upHealth: upHealth
-			}
+			});
 
 		},
 
@@ -502,6 +500,9 @@
 
 			var cpu = this,
 				model = cpu.get('model'),
+				allBuildings = model.get('buildings'),
+				wantedBuildings,
+				util = win.APP.util,
 				allUnits = model.get('units'),
 				enemyUnits,
 				scenario = data.scenario,
@@ -510,13 +511,18 @@
 				allScenarios = data.allScenarios,
 				rates = cpu.rates,
 				buildingData = win.APP.building,
+				wantedBuildingList = buildingData.wantedBuildingList,
 				x = scenario.get('x'),
 				y = scenario.get('y'),
-				building = model.getBuildingByXY({x: x, y: y}),
+				xy = {
+					x: x,
+					y: y
+				},
+				building = model.getBuildingByXY(xy),
+				pathToBuildingLength = Infinity,
 				rate = 0;
 
-
-			// 1 - todo: detect: enemy unit get or stay on building
+			// 1 detect: enemy unit get or stay on building
 			if ( building ) {
 
 				enemyUnits = _.filter(allUnits, function (unit) {
@@ -530,53 +536,29 @@
 					var path = enemy.getAvailablePathFull(),
 						buildingTypeList = enemy.get('listOccupyBuilding');
 
-					if ( !_.find(path, {x: x, y: y}) || !buildingTypeList ) {
+					if ( !_.find(path, xy) || !buildingTypeList ) {
 						return;
 					}
 
 					if ( _.contains(buildingTypeList, building.type) ) {
 						rate = rates.onCanEnemyGetBuilding;
-					} else {
-						rate = rates.onCanNotEnemyGetBuilding;
 					}
 
 				});
 
-				// if enemy building
-				if ( building.teamNumber !== null && building.teamNumber !== unit.get('teamNumber') ) {
-					rate = rates.onEnemyBuilding;
-				}
-
-				// if well building
-				if ( _.contains(buildingData.upHealthList, building.type) ) {
-					rate = rates.onUpHealthBuilding;
-				}
-
 			}
 
+			// 2 nearest non player and available to get building
+			wantedBuildings = _.filter(allBuildings, function (building) {
+				return building.teamNumber !== unitTeamNumber && _.contains(wantedBuildingList, building.type);
+			});
 
+			_.each(wantedBuildings, function (building) {
+				pathToBuildingLength = Math.min(pathToBuildingLength, util.getPathSize(building, xy));
+			});
 
-
-
-
-
-
-
-
-
-
-
-
-			// 2 - todo: nearest non player and available to get building
-
-
-
-
-
-
-
-
-
+			// set current rate
+			rate = rate || pathToBuildingLength * rates.q.nearestNonOwnedBuilding;
 
 			// detect scenario where unit get building or raise skeleton
 			_.each(allScenarios, function (sc) {
