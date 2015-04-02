@@ -36,6 +36,7 @@
 	width: 90%;
 	box-sizing: border-box;
 	border-width: 0.75rem;
+	border-style: solid;
 	-webkit-border-image: url(../i/ui/border-1.png) 25% repeat repeat;
 	border-image: url(../i/ui/border-1.png) 25% repeat repeat;
 	background-color: #242a45;
