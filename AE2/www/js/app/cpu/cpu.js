@@ -305,7 +305,7 @@
 						// detect can unit get this building
 						buildingToGet = unit.getBuildingToOccupy();
 
-						if (buildingToGet) {
+						if ( buildingToGet && buildingToGet.teamNumber !== unit.get('teamNumber') ) {
 
 							scenario = new Scenario({
 								x: x,
@@ -366,6 +366,7 @@
 			fixBuilding: 1000,
 			raiseSkeleton: 500,
 			lowPriority: -1000,
+			highPriority: 1000,
 
 			q: {
 				availableReceiveDamage: -0.5,
@@ -374,7 +375,13 @@
 				placeArmor: 0.5,
 				//nearestNoPlayerBuilding: -1.5,
 				upHealth: 2
-			}
+			},
+
+			// next value wipe previous
+			onCanEnemyGetBuilding: 100, // high priority
+			onCanNotEnemyGetBuilding: 2,
+			onEnemyBuilding: 2,
+			onUpHealthBuilding: 2
 			//,withBuilding: 2
 
 		},
@@ -494,12 +501,82 @@
 		rateMove: function (data) {
 
 			var cpu = this,
+				model = cpu.get('model'),
+				allUnits = model.get('units'),
+				enemyUnits,
 				scenario = data.scenario,
+				unit = scenario.get('unit'),
+				unitTeamNumber = unit.get('teamNumber'),
 				allScenarios = data.allScenarios,
 				rates = cpu.rates,
+				buildingData = win.APP.building,
 				x = scenario.get('x'),
 				y = scenario.get('y'),
+				building = model.getBuildingByXY({x: x, y: y}),
 				rate = 0;
+
+
+			// 1 - todo: detect: enemy unit get or stay on building
+			if ( building ) {
+
+				enemyUnits = _.filter(allUnits, function (unit) {
+					return unit.get('teamNumber') !== unitTeamNumber;
+				});
+
+				// can enemy get building
+				// can not enemy get building
+				_.each(enemyUnits, function (enemy) {
+
+					var path = enemy.getAvailablePathFull(),
+						buildingTypeList = enemy.get('listOccupyBuilding');
+
+					if ( !_.find(path, {x: x, y: y}) || !buildingTypeList ) {
+						return;
+					}
+
+					if ( _.contains(buildingTypeList, building.type) ) {
+						rate = rates.onCanEnemyGetBuilding;
+					} else {
+						rate = rates.onCanNotEnemyGetBuilding;
+					}
+
+				});
+
+				// if enemy building
+				if ( building.teamNumber !== null && building.teamNumber !== unit.get('teamNumber') ) {
+					rate = rates.onEnemyBuilding;
+				}
+
+				// if well building
+				if ( _.contains(buildingData.upHealthList, building.type) ) {
+					rate = rates.onUpHealthBuilding;
+				}
+
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			// 2 - todo: nearest non player and available to get building
+
+
+
+
+
+
+
+
+
 
 			// detect scenario where unit get building or raise skeleton
 			_.each(allScenarios, function (sc) {
@@ -532,8 +609,6 @@
 				}
 
 			});
-
-			// todo: detect: enemy unit get or stay on building
 
 
 			return rate;

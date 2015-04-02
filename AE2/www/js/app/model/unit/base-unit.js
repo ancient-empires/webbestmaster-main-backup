@@ -256,6 +256,35 @@
 
 		},
 
+		getAvailablePathFull: function () {
+
+			if ( this.get('didMove') ) {
+				return [];
+			}
+
+			var unit = this,
+				view = unit.get('view'),
+				map = view.get('map'),
+				terrain = map.terrain,
+				pathFinder;
+
+			pathFinder = new PathFinder({
+				terrain: terrain,
+				mov: unit.get('mov') - 1,
+				x: unit.get('x'),
+				y: unit.get('y'),
+				moveType: unit.get('moveType'),
+				minX: 0,
+				minY: 0,
+				maxX: map.size.width - 1,
+				maxY: map.size.height - 1,
+				relativeTypeSpace: true
+			});
+
+			return pathFinder.getAvailablePath();
+
+		},
+
 		getAvailablePathWithTeamUnit: function () {
 
 			if ( this.get('didMove') ) {
@@ -923,7 +952,7 @@
 			}).then(function () {
 
 				delete building.color;
-				delete building.teamNumber;
+				building.teamNumber = null;
 				delete building.ownerId;
 				building.state = 'destroyed';
 

@@ -973,7 +973,7 @@
 			_.each(looserBuilding, function (building) {
 
 				delete building.ownerId;
-				delete building.teamNumber;
+				building.teamNumber = null;
 				delete building.color;
 
 				view.redrawBuilding(building);
