@@ -9,7 +9,6 @@
 
 		var cpu = this;
 		cpu.attr = {};
-
 		cpu.extend(json);
 
 	}
@@ -128,15 +127,217 @@
 				enemyUnit = _.filter(units, function (unit) {
 					return unit.get('teamNumber') !== playerTeamNumber;
 				}),
-				privateUnit = model.getUnitsByOwnerId(player.id),
-				wholes = []; // x, y, why is whiles - unit isNotActive, available to get castle or farm, up health ...
+				privateUnits = model.getUnitsByOwnerId(player.id),
+				wholes = [], // x, y, and who can ignore this whole
+				scenarios = [];
+
+			// get ALL scenarios, except nonActive units
+			_.each(privateUnits, function (unit) {
+
+				if ( !unit.get('isActive') ) {
+					return;
+				}
+
+				var scenario = cpu.getUnitScenarios(unit);
+				scenarios = scenarios.concat(scenario);
+
+			});
+
+			console.log('scenarios');
+			console.log(scenarios);
 
 
 
+		},
+
+		// getting action of unit
+		getUnitScenarios: function (unit) {
+
+			var cpu = this,
+				availableXYs = cpu.getAvailableUnitXYs(unit),
+				scenarios = [];
+
+			_.each(availableXYs, function (xy) {
+
+				var xyScenarios = cpu.getUnitScenariosByXY({
+					x: xy.x,
+					y: xy.y,
+					unit: unit
+				});
+
+				scenarios = scenarios.concat(xyScenarios);
+
+			});
+
+			return scenarios;
+
+		},
+
+		getAvailableUnitXYs: function (unit) {
+
+			var cpu = this,
+				model = cpu.get('model'),
+				fullPath = unit.getAvailablePathWithTeamUnit(),
+				restPath,
+				units = model.get('units');
+
+			restPath = _.filter(fullPath, function (xy) {
+
+				var unit = model.getUnitByXY(xy);
+
+				if ( !unit ) {
+					return true;
+				}
+
+				return unit.get('isActive');
+
+			});
+
+			restPath.push({
+				x: unit.get('x'),
+				y: unit.get('y')
+			});
+
+			return restPath;
+
+		},
+
+		getUnitScenariosByXY: function (data) {
+
+			var cpu = this,
+				model = cpu.get('model'),
+				x = data.x,
+				y = data.y,
+				unit = data.unit,
+				unitX = unit.get('x'),
+				unitY = unit.get('y'),
+				gravesToRaise,
+				unitTeamNumber = unit.get('teamNumber'),
+				scenarios = [],
+				actionList = ['move', 'attack', 'getBuilding', 'raiseSkeleton'],
+				Scenario = win.APP.Scenario;
+
+			// todo: see change:x and y, create silent mode for this
+
+			unit.set('x', x);
+			unit.set('y', y);
+
+			_.each(actionList, function (action) {
+
+				var scenario,
+					unitsUnderAttack,
+					buildingToGet,
+					unitBuildingList = unit.get('listOccupyBuilding');
+
+				switch (action) {
+
+					case 'move':
+
+						scenario = new Scenario({
+							x: x,
+							y: y,
+							unit: unit,
+							action: {
+								name: action
+							}
+						});
+
+						scenarios.push(scenario);
+						break;
+
+					case 'attack':
+
+						// todo: add IF for cristal, cristal can not attack
+
+						if ( !(unit.get('canNotActionAfterMove') && ( unitX !== x || unitY !== y )) ) { // detect moved catapult
+
+							unitsUnderAttack = unit.getUnitsUnderAttack();
+
+							_.each(unitsUnderAttack, function (enemyUnitXY) {
+
+								var scenario = new Scenario({
+									x: x,
+									y: y,
+									unit: unit,
+									action: {
+										name: action,
+										enemy: {
+											x: enemyUnitXY.x,
+											y: enemyUnitXY.y
+										}
+									}
+								});
+
+								scenarios.push(scenario);
+
+							});
+
+						}
 
 
+						break;
+
+					case 'getBuilding':
+
+						// detect can unit get this building
+						buildingToGet = model.getBuildingByXY({x: x, y: y});
+
+						if ( buildingToGet && unitBuildingList && _.contains(unitBuildingList, buildingToGet.type) && buildingToGet.teamNumber !== unitTeamNumber) {
+
+							scenario = new Scenario({
+								x: x,
+								y: y,
+								unit: unit,
+								action: {
+									name: action,
+									building: {
+										type: buildingToGet.type
+									}
+								}
+							});
+
+							scenarios.push(scenario);
+
+						}
+
+						break;
+
+					case 'raiseSkeleton':
+
+						gravesToRaise = unit.getGravesToRaise();
+
+						_.each(gravesToRaise, function (grave) {
+
+							var scenario = new Scenario({
+								x: x,
+								y: y,
+								unit: unit,
+								action: {
+									name: action,
+									grave: {
+										x: grave.x,
+										y: grave.y
+									}
+								}
+							});
+
+							scenarios.push(scenario);
+
+						});
+
+						break;
+
+				}
+
+			});
+
+			unit.set('x', unitX);
+			unit.set('y', unitY);
+
+			return scenarios;
 
 		}
+
 
 	};
 
