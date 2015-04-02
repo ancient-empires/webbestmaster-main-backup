@@ -34,7 +34,11 @@
 
 			var cpu = this;
 
-			cpu.buyUnits();
+			cpu.buyUnits().then(function () {
+
+				cpu.turnUnit()
+
+			});
 
 		},
 
@@ -45,7 +49,8 @@
 				model = cpu.get('model'),
 				player = cpu.get('player'),
 				stores = cpu.getStores(),
-				store;
+				store,
+				deferred = $.Deferred();
 
 			if ( !stores.length ) {
 				return;
@@ -75,6 +80,9 @@
 				type: 'archer'
 			});
 
+			deferred.resolve();
+
+			return deferred.promise();
 
 		},
 
@@ -107,6 +115,21 @@
 				y: store.y
 			});
 
+		},
+
+		turnUnit: function () {
+
+			var cpu = this,
+				player = cpu.get('player'),
+				playerTeamNumber = player.teamNumber,
+				model = cpu.get('model'),
+				units = model.get('units'),
+				buildings = model.get('building'),
+				enemyUnit = _.filter(units, function (unit) {
+					return unit.get('teamNumber') !== playerTeamNumber;
+				}),
+				privateUnit = model.getUnitsByOwnerId(player.id),
+				wholes = []; // x, y, why is whiles - unit isNotActive, available to get castle or farm, up health ...
 
 
 
