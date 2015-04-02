@@ -211,7 +211,8 @@
 				mov: 4,
 				modelName: 'CatapultModel',
 				langKey: 'catapult',
-				cost: 700
+				cost: 700,
+				canNotActionAfterMove: true
 			},
 			dragon: {
 				atk: {
