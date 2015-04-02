@@ -170,4 +170,11 @@
 
 	});
 
+
+	if ($.browser.mozilla) {
+		window.addEventListener("hashchange", function (e) {
+			window.event = e;
+		}, true);
+	}
+
 }(window));
