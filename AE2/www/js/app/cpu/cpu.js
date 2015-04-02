@@ -143,10 +143,13 @@
 
 			});
 
+
+			_.each(scenarios, function (scenario) {
+				cpu.setAutoRate(scenario, scenarios);
+			});
+
 			console.log('scenarios');
 			console.log(scenarios);
-
-
 
 		},
 
@@ -212,9 +215,8 @@
 				unitX = unit.get('x'),
 				unitY = unit.get('y'),
 				gravesToRaise,
-				unitTeamNumber = unit.get('teamNumber'),
 				scenarios = [],
-				actionList = ['move', 'attack', 'getBuilding', 'raiseSkeleton'],
+				actionList = ['move', 'attack', 'fixBuilding', 'getBuilding', 'raiseSkeleton'],
 				Scenario = win.APP.Scenario;
 
 			// todo: see change:x and y, create silent mode for this
@@ -227,7 +229,7 @@
 				var scenario,
 					unitsUnderAttack,
 					buildingToGet,
-					unitBuildingList = unit.get('listOccupyBuilding');
+					buildingToFix;
 
 				switch (action) {
 
@@ -277,12 +279,33 @@
 
 						break;
 
+					case 'fixBuilding':
+
+						buildingToFix = unit.getBuildingToFix();
+
+						if (buildingToFix) {
+
+							scenario = new Scenario({
+								x: x,
+								y: y,
+								unit: unit,
+								action: {
+									name: action
+								}
+							});
+
+							scenarios.push(scenario);
+
+						}
+
+						break;
+
 					case 'getBuilding':
 
 						// detect can unit get this building
-						buildingToGet = model.getBuildingByXY({x: x, y: y});
+						buildingToGet = unit.getBuildingToOccupy();
 
-						if ( buildingToGet && unitBuildingList && _.contains(unitBuildingList, buildingToGet.type) && buildingToGet.teamNumber !== unitTeamNumber) {
+						if (buildingToGet) {
 
 							scenario = new Scenario({
 								x: x,
@@ -335,6 +358,194 @@
 			unit.set('y', unitY);
 
 			return scenarios;
+
+		},
+
+		rates: {
+			getBuilding: 1000,
+			fixBuilding: 1000,
+			raiseSkeleton: 500,
+			lowPriority: -1000,
+
+			q: {
+				availableReceiveDamage: -0.5,
+				//availableGivenDamage: 2,
+				//availableResponseDamage: -0.5,
+				placeArmor: 0.5,
+				//nearestNoPlayerBuilding: -1.5,
+				upHealth: 2
+			}
+			//,withBuilding: 2
+
+		},
+
+		setAutoRate: function (scenario, allScenarios) {
+
+			var cpu = this,
+				action = scenario.get('action').name,
+				rates = cpu.rates,
+				dataByPosition = cpu.getDataByPosition(scenario),
+				rate = 0;
+
+			switch (action) {
+
+				case 'move':
+
+					rate = cpu.rateMove({
+						scenario: scenario,
+						allScenarios: allScenarios
+					});
+
+					break;
+
+				case 'attack':
+
+					rate = cpu.rateAttack({
+						scenario: scenario
+					});
+
+					break;
+
+				case 'fixBuilding':
+
+					rate = rates.fixBuilding;
+
+					break;
+
+				case 'getBuilding':
+
+					rate = rates.getBuilding;
+
+					break;
+
+				case 'raiseSkeleton':
+
+					rate = rates.raiseSkeleton;
+
+					break;
+
+			}
+
+			scenario.set('rate', rate);
+
+		},
+
+		getDataByPosition: function (scenario) {
+
+			var cpu = this,
+				model = cpu.get('model'),
+				allUnits = model.get('units'),
+				unit = scenario.get('unit'),
+				x = scenario.get('x'),
+				y = scenario.get('y'),
+				unitX = unit.get('x'),
+				unitY = unit.get('y'),
+				unitTeamNumber = unit.get('teamNumber'),
+				enemyUnits,
+				availableReceiveDamage = 0, // +
+				placeArmor, // +
+				upHealth = 0, // ---
+				building,
+				buildingData = win.APP.building,
+				buildingUpHealthList = buildingData.upHealthList,
+				buildingList = buildingData.list;
+
+			unit.set('x', x);
+			unit.set('y', y);
+
+			enemyUnits = _.filter(allUnits, function (unit) {
+				return unit.get('teamNumber') !== unitTeamNumber;
+			});
+
+			_.each(enemyUnits, function (enemy) {
+
+				var availableAttackMap = enemy.getAvailableAttackMap();
+
+				if ( !_.find(availableAttackMap, {x: x, y: y}) ) {
+					return;
+				}
+
+				availableReceiveDamage += enemy.getAttackToUnit(unit);
+
+			});
+
+			placeArmor = model.getArmorByXY({
+				x: x,
+				y: y
+			});
+
+			building = model.getBuildingByXY({ x: x, y: y });
+			if ( building && (building.ownerId === unit.get('ownerId') || _.contains(buildingUpHealthList, building.type) ) ) {
+				upHealth = buildingList[building.type].healthUp;
+				upHealth = Math.min(upHealth, unit.get('defaultHealth') - unit.get('health'));
+			}
+
+			unit.set('x', unitX);
+			unit.set('y', unitY);
+
+			return {
+				placeArmor: placeArmor,
+				availableReceiveDamage: availableReceiveDamage,
+				upHealth: upHealth
+			}
+
+		},
+
+		rateMove: function (data) {
+
+			var cpu = this,
+				scenario = data.scenario,
+				allScenarios = data.allScenarios,
+				rates = cpu.rates,
+				x = scenario.get('x'),
+				y = scenario.get('y'),
+				rate = 0;
+
+			// detect scenario where unit get building or raise skeleton
+			_.each(allScenarios, function (sc) {
+
+				var action = sc.get('action'),
+					actionName = action.name,
+					grave;
+
+				switch (actionName) {
+
+					case 'fixBuilding':
+					case 'getBuilding':
+
+						if ( sc.get('x') === x && sc.get('y') === y ) {
+							rate = rates.lowPriority;
+						}
+
+						break;
+
+					case 'raiseSkeleton':
+
+						grave = action.grave;
+
+						if ( grave.x === x && grave.y === y ) {
+							rate = rates.lowPriority;
+						}
+
+						break;
+
+				}
+
+			});
+
+			// todo: detect: enemy unit get or stay on building
+
+
+			return rate;
+
+		},
+
+		rateAttack: function (data) {
+
+			var scenario = data.scenario;
+
+
+
 
 		}
 

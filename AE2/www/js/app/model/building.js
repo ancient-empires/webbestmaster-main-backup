@@ -12,6 +12,7 @@
 			color: 'gray',
 			teamNumber: null
 		},
+		upHealthList: ['well', 'temple'],
 		list: {
 			castle: {
 				availableStates: ['normal'],

@@ -578,7 +578,7 @@
 				unitY = unit.get('y'),
 				model = unit.get('model'),
 				buildings = model.get('buildings'),
-				building = null;
+				building = false;
 
 			if ( unit.get('canFixBuilding') ) {
 				building = _.find(buildings, {x: unitX, y: unitY, state: 'destroyed'});
