@@ -902,28 +902,29 @@
 
 			rate += dataByPosition.onHealthUpBuilding;
 
-			building = model.getBuildingByXY(xy);
 
 			enemyUnits = _.filter(allUnits, function (unit) {
 				return unit.get('teamNumber') !== unitTeamNumber;
 			});
 
 			// can enemy get building
-			_.each(enemyUnits, function (enemy) {
+			building = model.getBuildingByXY(xy);
+			if ( building ) {
+				_.each(enemyUnits, function (enemy) {
 
-				var path = enemy.getAvailablePathFull(),
-					buildingTypeList = enemy.get('listOccupyBuilding');
+					var path = enemy.getAvailablePathFull(),
+						buildingTypeList = enemy.get('listOccupyBuilding');
 
-				if ( !_.find(path, xy) || !buildingTypeList ) {
-					return;
-				}
+					if (!_.find(path, xy) || !buildingTypeList) {
+						return;
+					}
 
-				if ( _.contains(buildingTypeList, building.type) ) {
-					rate += rates.onCanEnemyGetBuilding;
-				}
+					if ( _.contains(buildingTypeList, building.type) ) {
+						rate += rates.onCanEnemyGetBuilding;
+					}
 
-			});
-
+				});
+			}
 			unit.set('x', unitX);
 			unit.set('y', unitY);
 			unit.silentOff('x', 'y');
