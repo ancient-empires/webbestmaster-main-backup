@@ -720,6 +720,8 @@
 				$wrapper = this.$el.find(this.selectors.smokeWrapper),
 				$smokeContainer = $('<div class="square js-square"><div class="building-smoke-mover"><div class="building-smoke">&nbsp;</div></div></div>');
 
+			$wrapper.find('[data-xy="x' + x +'y' + y + '"]').remove();
+
 			$smokeContainer.attr('data-xy', 'x' + x + 'y' + y).attr('data-x', x).attr('data-y', y);
 
 			x *= squareSize;
@@ -728,6 +730,7 @@
 			$smokeContainer.css(pre + 'transform', 'translate3d(' + x + 'px, ' + y + 'px, 0)');
 
 			$wrapper.append($smokeContainer);
+
 
 		},
 

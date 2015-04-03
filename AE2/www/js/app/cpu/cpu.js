@@ -114,7 +114,8 @@
 					y: y
 				},
 				unit = scenario.get('unit'),
-				actionName = scenario.get('action').name;
+				actionName = scenario.get('action').name,
+				q = 1;
 
 			switch (actionName) {
 
@@ -132,6 +133,8 @@
 						attackX: action.enemy.x,
 						attackY: action.enemy.y
 					});
+
+					q = 3;
 
 					break;
 
@@ -164,7 +167,7 @@
 
 			setTimeout(function () {
 				cpu.turnUnit();
-			}, win.APP.info.actionTime());
+			}, win.APP.info.actionTime() * q);
 
 		},
 
