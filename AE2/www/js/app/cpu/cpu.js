@@ -581,11 +581,19 @@
 				},
 				actionName = action.name,
 				unitOnXY = model.getUnitByXY(xy),
-				isUnitOnXY = unitOnXY && unitOnXY !== unit;
+				isUnitOnXY = unitOnXY && unitOnXY !== unit,
+				graveXY,
+				unitOnGraveXY,
+				isUnitOnGraveXY;
 
 			// raise
 			if ( actionName === 'raiseSkeleton' ) {
-				scenario.set('isAvailable', !(isUnitOnXY || model.getUnitByXY(xy)));
+
+				graveXY = action.grave;
+				unitOnGraveXY = model.getUnitByXY(graveXY);
+				isUnitOnGraveXY = unitOnGraveXY && unitOnGraveXY !== unit;
+
+				scenario.set('isAvailable', !(isUnitOnXY || isUnitOnGraveXY));
 				return;
 			}
 
