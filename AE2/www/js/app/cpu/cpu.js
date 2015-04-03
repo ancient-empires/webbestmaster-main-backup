@@ -41,6 +41,13 @@
 
 		},
 
+		runScenario: function (scenario) {
+
+			console.log('-- run scenario');
+			console.log(scenario);
+
+		},
+
 		buyUnits: function () {
 
 			// 1 - detect castle closest to enemy castle
@@ -129,7 +136,8 @@
 				}),
 				privateUnits = model.getUnitsByOwnerId(player.id),
 				wholes = [], // x, y, and who can ignore this whole
-				scenarios = [];
+				scenarios = [],
+				bestScenario;
 
 			// get ALL scenarios, except nonActive units
 			_.each(privateUnits, function (unit) {
@@ -147,6 +155,62 @@
 			_.each(scenarios, function (scenario) {
 				cpu.setAutoRate(scenario, scenarios);
 			});
+
+			scenarios = scenarios.sort(function (sc1, sc2) {
+				return sc2.get('rate') - sc1.get('rate');
+			});
+
+
+			// detect no move and no attack scenario
+			bestScenario = scenarios[0];
+			if ( !/move|attack/.test(bestScenario.get('action').name) ) {
+				cpu.runScenario(bestScenario);
+				return;
+			}
+
+			// find best attack scenario
+			bestScenario = false;
+			_.each(scenarios, function (scenario) {
+
+				if ( scenario.get('action').name !== 'attack' ) {
+					return;
+				}
+
+				if ( !bestScenario ) {
+					bestScenario = scenario;
+				}
+
+				if ( scenario.get('rate') > bestScenario.get('rate') ) {
+					bestScenario = scenario;
+				}
+
+			});
+
+			if ( bestScenario.get('rate') > 10 ) {
+				cpu.runScenario(bestScenario);
+				return;
+			}
+
+
+			// find best move scenario
+			bestScenario = false;
+			_.each(scenarios, function (scenario) {
+
+				if ( scenario.get('action').name !== 'move' ) {
+					return;
+				}
+
+				if ( !bestScenario ) {
+					bestScenario = scenario;
+				}
+
+				if ( scenario.get('rate') > bestScenario.get('rate') ) {
+					bestScenario = scenario;
+				}
+
+			});
+
+			cpu.runScenario(bestScenario);
 
 			console.log('scenarios');
 			console.log(scenarios);
@@ -368,17 +432,14 @@
 			lowPriority: -1000,
 			highPriority: 1000,
 
-			//availableReceiveDamage: -0.5,
+			q: {
+				nearestNonOwnedBuilding: -5,
+				placeArmor: 0.5,
+				availableReceiveDamage: 0.5,
+				upHealth: 3
+			},
 
-			// attack rate
-			//availableGivenDamage: 2,
-			//availableResponseDamage: -0.5,
-
-			nearestNonOwnedBuilding: -1.5,
-
-			// next value wipe previous
 			onCanEnemyGetBuilding: 100 // high priority
-			//,withBuilding: 2
 
 		},
 
@@ -512,6 +573,7 @@
 				allScenarios = data.allScenarios,
 				rates = cpu.rates,
 				buildingData = win.APP.building,
+				dataByPosition = scenario.get('dataByPosition'),
 				wantedBuildingList = buildingData.wantedBuildingList,
 				x = scenario.get('x'),
 				y = scenario.get('y'),
@@ -559,7 +621,9 @@
 			});
 
 			// set current rate
-			rate = rate || pathToBuildingLength * rates.nearestNonOwnedBuilding;
+			rate = rate || pathToBuildingLength * rates.q.nearestNonOwnedBuilding;
+
+			rate += dataByPosition.upHealth * rates.q.upHealth + dataByPosition.placeArmor * rates.q.placeArmor - dataByPosition.availableReceiveDamage * rates.q.availableReceiveDamage;
 
 			// detect scenario where unit get building or raise skeleton
 			_.each(allScenarios, function (sc) {
