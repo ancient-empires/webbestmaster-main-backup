@@ -35,7 +35,7 @@
 
 			cpu.buyUnits().then(function () {
 
-				cpu.turnUnit()
+				cpu.turnUnit();
 
 			});
 
@@ -98,7 +98,7 @@
 
 					setTimeout(function () {
 						cpu.runScenarioAction(scenario);
-					}, 2000); // todo: relative from current speed
+					}, win.APP.info.actionTime());
 
 				})
 
@@ -164,6 +164,9 @@
 
 			}
 
+			setTimeout(function () {
+				cpu.turnUnit();
+			}, win.APP.info.actionTime());
 
 		},
 
@@ -270,6 +273,10 @@
 
 			});
 
+			if ( !scenarios.length ) {
+				model.newTurn();
+				return;
+			}
 
 			_.each(scenarios, function (scenario) {
 				cpu.setAutoRate(scenario, scenarios);

@@ -215,6 +215,15 @@
 				}
 			}
 
+		},
+
+		actionTime: function () {
+
+			var info = this,
+				speed = parseInt(info.get('gameSpeed'), 10),
+				q = 6 - speed; // 6 === maxSpeed'5' + 1
+
+
 		}
 
 	};

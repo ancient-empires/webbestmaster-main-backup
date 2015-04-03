@@ -255,7 +255,7 @@
 
 				setTimeout(function () {
 					deferred.resolve();
-				}, 2000); // todo: relative from current speed
+				}, win.APP.info.actionTime());
 
 			return deferred.promise();
 
