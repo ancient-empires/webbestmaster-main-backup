@@ -581,7 +581,9 @@
 
 		},
 
-		getAttackToUnit: function (enemy) {
+		getAttackToUnit: function (enemy, data) {
+
+			data = data || {};
 
 			var unit = this,
 				model = unit.get('model'),
@@ -615,7 +617,7 @@
 				enemyDefBonusByLevel = unitMaster.defByLevel * enemyLevel,
 				enemyDefReduceByPoison = enemy.get('poisonCount') ? unitMaster.reduceDefPoison : 0,
 				enemyFlowDefBonus = (enemyMoveType === 'flow' && enemyTerrain.terrainType === 'water') ? unitMaster.bonusDefByWater : 0,
-				unitStartAtk = unit.util.getRandomBetween(unitMinAtk, unitMaxAtk),
+				unitStartAtk = data.average ? Math.round( (unitMinAtk + unitMaxAtk) / 2) : unit.util.getRandomBetween(unitMinAtk, unitMaxAtk),
 				unitQ = unit.get('health') / unit.get('defaultHealth'),
 				enemyQ = enemy.get('health') / enemy.get('defaultHealth'),
 				atk;

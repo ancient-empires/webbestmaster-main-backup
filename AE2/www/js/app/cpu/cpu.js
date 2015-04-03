@@ -696,7 +696,7 @@
 					return;
 				}
 
-				availableReceiveDamage += enemy.getAttackToUnit(unit);
+				availableReceiveDamage += enemy.getAttackToUnit(unit, {average: true});
 
 			});
 
@@ -856,13 +856,13 @@
 			unit.set('y', scenarioY);
 
 			// count
-			availableGivenDamage = unit.getAttackToUnit(enemy);
+			availableGivenDamage = unit.getAttackToUnit(enemy, {average: true});
 
 			// detect can enemy do strike back
 			if ( availableGivenDamage < enemyHealth && enemy.canStrikeBack(unit) ) {
 				enemy.silentOn('health');
 				enemy.set('health', enemyHealth - availableGivenDamage);
-				availableResponseDamage = enemy.getAttackToUnit(unit);
+				availableResponseDamage = enemy.getAttackToUnit(unit, {average: true});
 				enemy.set('health', enemyHealth);
 				enemy.silentOff('health');
 			}
