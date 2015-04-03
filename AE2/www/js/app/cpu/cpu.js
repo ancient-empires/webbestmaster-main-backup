@@ -368,17 +368,13 @@
 			lowPriority: -1000,
 			highPriority: 1000,
 
-			q: {
-				availableReceiveDamage: -0.5,
+			//availableReceiveDamage: -0.5,
 
-				// attack rate
-				//availableGivenDamage: 2,
-				//availableResponseDamage: -0.5,
+			// attack rate
+			//availableGivenDamage: 2,
+			//availableResponseDamage: -0.5,
 
-				placeArmor: 0.5,
-				nearestNonOwnedBuilding: -1.5,
-				upHealth: 2
-			},
+			nearestNonOwnedBuilding: -1.5,
 
 			// next value wipe previous
 			onCanEnemyGetBuilding: 100 // high priority
@@ -563,7 +559,7 @@
 			});
 
 			// set current rate
-			rate = rate || pathToBuildingLength * rates.q.nearestNonOwnedBuilding;
+			rate = rate || pathToBuildingLength * rates.nearestNonOwnedBuilding;
 
 			// detect scenario where unit get building or raise skeleton
 			_.each(allScenarios, function (sc) {
