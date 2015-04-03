@@ -202,7 +202,7 @@
 
 			cpu.buyUnit({
 				store: store,
-				type: 'archer'
+				type: 'sorceress'
 			});
 
 		},
@@ -563,7 +563,8 @@
 				upHealth: 3
 			},
 
-			onCanEnemyGetBuilding: 100 // high priority
+			onCanEnemyGetBuilding: 100, // high priority
+			onHealthUpBuilding: 5
 
 		},
 
@@ -659,7 +660,9 @@
 
 				case 'raiseSkeleton':
 
-					rate = rates.raiseSkeleton;
+					rate = cpu.rateRaise({
+						scenario: scenario
+					});
 
 					break;
 
@@ -672,6 +675,7 @@
 		insertDataByPosition: function (scenario) {
 
 			var cpu = this,
+				rates = cpu.rates,
 				model = cpu.get('model'),
 				allUnits = model.get('units'),
 				unit = scenario.get('unit'),
@@ -687,7 +691,8 @@
 				building,
 				buildingData = win.APP.building,
 				buildingUpHealthList = buildingData.upHealthList,
-				buildingList = buildingData.list;
+				buildingList = buildingData.list,
+				onHealthUpBuilding = 0;
 
 			unit.silentOn('x', 'y');
 			unit.set('x', x);
@@ -718,9 +723,7 @@
 			if ( building && (building.ownerId === unit.get('ownerId') || _.contains(buildingUpHealthList, building.type) ) ) {
 				upHealth = buildingList[building.type].healthUp;
 				upHealth = Math.min(upHealth, unit.get('defaultHealth') - unit.get('health'));
-
-				// todo: add bonus onHealthBuilding, use on rateAttack
-
+				onHealthUpBuilding = rates.onHealthUpBuilding;
 			}
 
 			unit.set('x', unitX);
@@ -730,7 +733,8 @@
 			scenario.set('dataByPosition', {
 				placeArmor: placeArmor,
 				availableReceiveDamage: availableReceiveDamage,
-				upHealth: upHealth
+				upHealth: upHealth,
+				onHealthUpBuilding: onHealthUpBuilding
 			});
 
 		},
@@ -864,7 +868,6 @@
 				dataByPosition = scenario.get('dataByPosition'),
 				rate;
 
-
 			unit.silentOn('x', 'y');
 			unit.set('x', scenarioX);
 			unit.set('y', scenarioY);
@@ -887,11 +890,24 @@
 				rate = availableGivenDamage - availableResponseDamage;
 			}
 
+			rate += dataByPosition.onHealthUpBuilding;
+
 			unit.set('x', unitX);
 			unit.set('y', unitY);
 			unit.silentOff('x', 'y');
 
 			return rate;
+
+		},
+
+		rateRaise: function (data) {
+
+			var cpu = this,
+				rates = cpu.rates,
+				scenario = data.scenario,
+				dataByPosition = scenario.get('dataByPosition');
+
+			return rates.raiseSkeleton + dataByPosition.onHealthUpBuilding + dataByPosition.placeArmor;
 
 		}
 
