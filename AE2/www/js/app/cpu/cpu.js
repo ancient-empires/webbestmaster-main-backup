@@ -718,6 +718,9 @@
 			if ( building && (building.ownerId === unit.get('ownerId') || _.contains(buildingUpHealthList, building.type) ) ) {
 				upHealth = buildingList[building.type].healthUp;
 				upHealth = Math.min(upHealth, unit.get('defaultHealth') - unit.get('health'));
+
+				// todo: add bonus onHealthBuilding, use on rateAttack
+
 			}
 
 			unit.set('x', unitX);
@@ -858,7 +861,9 @@
 				enemyHealth = enemy.get('health'),
 				availableGivenDamage,
 				availableResponseDamage = 0,
+				dataByPosition = scenario.get('dataByPosition'),
 				rate;
+
 
 			unit.silentOn('x', 'y');
 			unit.set('x', scenarioX);
