@@ -310,7 +310,7 @@
 
 			});
 
-			if ( bestScenario.get('rate') > 10 ) {
+			if ( bestScenario && bestScenario.get('rate') > 10 ) {
 				cpu.runScenario(bestScenario);
 				return;
 			}
@@ -551,7 +551,7 @@
 
 		rates: {
 			getBuilding: 1000,
-			fixBuilding: 1000,
+			fixBuilding: 750,
 			raiseSkeleton: 500,
 			lowPriority: -1000,
 			highPriority: 1000,
@@ -572,6 +572,7 @@
 			var cpu = this,
 				model = cpu.get('model'),
 				action = scenario.get('action'),
+				unit = scenario.get('unit'),
 				x = scenario.get('x'),
 				y = scenario.get('y'),
 				xy = {
@@ -579,15 +580,16 @@
 					y: y
 				},
 				actionName = action.name,
-				rate = 0;
+				unitOnXY = model.getUnitByXY(xy),
+				isUnitOnXY = unitOnXY && unitOnXY !== unit;
 
 			// raise
 			if ( actionName === 'raiseSkeleton' ) {
-				scenario.set('isAvailable', !(model.getUnitByXY(action.grave) || model.getUnitByXY(xy)));
+				scenario.set('isAvailable', !(isUnitOnXY || model.getUnitByXY(xy)));
 				return;
 			}
 
-			scenario.set('isAvailable', !model.getUnitByXY(xy));
+			scenario.set('isAvailable', !isUnitOnXY);
 
 		},
 
