@@ -774,7 +774,6 @@
 				});
 
 				// can enemy get building
-				// can not enemy get building
 				_.each(enemyUnits, function (enemy) {
 
 					var path = enemy.getAvailablePathFull(),
@@ -853,11 +852,18 @@
 			var cpu = this,
 				rates = cpu.rates,
 				model = cpu.get('model'),
+				allUnits = model.get('units'),
+				enemyUnits,
 				scenario = data.scenario,
 				action = scenario.get('action'),
 				scenarioX = scenario.get('x'),
 				scenarioY = scenario.get('y'),
+				xy = {
+					x: scenarioX,
+					y: scenarioY
+				},
 				unit = scenario.get('unit'),
+				unitTeamNumber = unit.get('teamNumber'),
 				unitX = unit.get('x'),
 				unitY = unit.get('y'),
 				enemyXY = action.enemy,
@@ -866,6 +872,7 @@
 				availableGivenDamage,
 				availableResponseDamage = 0,
 				dataByPosition = scenario.get('dataByPosition'),
+				building,
 				rate;
 
 			unit.silentOn('x', 'y');
@@ -884,13 +891,35 @@
 				enemy.silentOff('health');
 			}
 
-			if ( availableGivenDamage > enemyHealth ) {
+			if ( availableGivenDamage >= enemyHealth ) {
 				rate = rates.killUnit;
 			} else {
 				rate = availableGivenDamage - availableResponseDamage;
 			}
 
 			rate += dataByPosition.onHealthUpBuilding;
+
+			building = model.getBuildingByXY(xy);
+
+			enemyUnits = _.filter(allUnits, function (unit) {
+				return unit.get('teamNumber') !== unitTeamNumber;
+			});
+
+			// can enemy get building
+			_.each(enemyUnits, function (enemy) {
+
+				var path = enemy.getAvailablePathFull(),
+					buildingTypeList = enemy.get('listOccupyBuilding');
+
+				if ( !_.find(path, xy) || !buildingTypeList ) {
+					return;
+				}
+
+				if ( _.contains(buildingTypeList, building.type) ) {
+					rate += rates.onCanEnemyGetBuilding;
+				}
+
+			});
 
 			unit.set('x', unitX);
 			unit.set('y', unitY);
