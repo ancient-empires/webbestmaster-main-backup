@@ -566,6 +566,7 @@
 				upHealth: 3
 			},
 
+			maxAvailableReceiveDamage: 80,
 			onCanEnemyGetBuilding: 100, // high priority
 			onHealthUpBuilding: 5
 
@@ -812,6 +813,10 @@
 				rate += dataByPosition.upHealth * rates.q.upHealth;
 			}
 
+			if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
+				console.log(' -- move - maxAvailableReceiveDamage!!!');
+				rate = rates.lowPriority;
+			}
 
 			// detect scenario where unit get building or raise skeleton
 			_.each(allScenarios, function (sc) {
@@ -925,6 +930,12 @@
 
 				});
 			}
+
+			if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
+				console.log(' -- attack - maxAvailableReceiveDamage!!!');
+				rate = rates.lowPriority;
+			}
+
 			unit.set('x', unitX);
 			unit.set('y', unitY);
 			unit.silentOff('x', 'y');
