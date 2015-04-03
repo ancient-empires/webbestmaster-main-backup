@@ -210,6 +210,11 @@
 
 			_.each(scenarios, function (scenario) {
 				cpu.setAutoRate(scenario, scenarios);
+
+			});
+
+			scenarios = _.filter(scenarios, function (scenario) {
+				return scenario.get('isAvailable');
 			});
 
 			scenarios = scenarios.sort(function (sc1, sc2) {
@@ -499,12 +504,42 @@
 
 		},
 
+		setAutoIsAvailableScenario: function (scenario) {
+
+			var cpu = this,
+				model = cpu.get('model'),
+				action = scenario.get('action'),
+				x = scenario.get('x'),
+				y = scenario.get('y'),
+				xy = {
+					x: x,
+					y: y
+				},
+				actionName = action.name,
+				rate = 0;
+
+			// raise
+			if ( actionName === 'raiseSkeleton' ) {
+				scenario.set('isAvailable', !(model.getUnitByXY(action.grave) || model.getUnitByXY(xy)));
+				return;
+			}
+
+			scenario.set('isAvailable', !model.getUnitByXY(xy));
+
+		},
+
 		setAutoRate: function (scenario, allScenarios) {
 
 			var cpu = this,
 				action = scenario.get('action').name,
 				rates = cpu.rates,
 				rate = 0;
+
+			cpu.setAutoIsAvailableScenario(scenario);
+
+			if ( !scenario.get('isAvailable') ) {
+				return;
+			}
 
 			cpu.insertDataByPosition(scenario);
 

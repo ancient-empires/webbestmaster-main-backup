@@ -492,7 +492,9 @@
 
 			_.each(availableXYToRaise, function (xy) {
 				var graveToAdd = _.find(graves, xy);
-				return graveToAdd && availableGraves.push(graveToAdd);
+				if ( graveToAdd && !model.getUnitByXY(xy) ) {
+					availableGraves.push(graveToAdd);
+				}
 			});
 
 			return availableGraves;
