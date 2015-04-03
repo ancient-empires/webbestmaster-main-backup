@@ -608,13 +608,21 @@
 				model = cpu.get('model'),
 				scenario = data.scenario,
 				action = scenario.get('action'),
+				scenarioX = scenario.get('x'),
+				scenarioY = scenario.get('y'),
 				unit = scenario.get('unit'),
+				unitX = unit.get('x'),
+				unitY = unit.get('y'),
 				enemyXY = action.enemy,
 				enemy = model.getUnitByXY(enemyXY),
 				enemyHealth = enemy.get('health'),
 				availableGivenDamage,
 				availableResponseDamage = 0,
 				rate;
+
+			unit.silentOn('x', 'y');
+			unit.set('x', scenarioX);
+			unit.set('y', scenarioY);
 
 			// count
 			availableGivenDamage = unit.getAttackToUnit(enemy);
@@ -628,7 +636,12 @@
 				enemy.silentOff('health');
 			}
 
+
 			rate = availableGivenDamage - availableResponseDamage;
+
+			unit.set('x', unitX);
+			unit.set('y', unitY);
+			unit.silentOff('x', 'y');
 
 			return rate;
 

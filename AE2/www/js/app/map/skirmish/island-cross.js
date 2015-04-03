@@ -19,7 +19,7 @@
 
 		"units": [
 			{"type": "commander", "x": 13, "y": 1, ownerId: 0},
-			{"type": "catapult", "x": 8, "y": 1, ownerId: 1},
+			{"type": "soldier", "x": 8, "y": 1, ownerId: 1},
 			{"type": "commander", "x": 1, "y": 13, ownerId: 1}
 		],
 		"buildings": [
