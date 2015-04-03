@@ -212,7 +212,8 @@
 
 		showAvailableActions: function (actions) {
 
-			var view = this;
+			var view = this,
+				deferred = $.Deferred();
 
 			view.clearAvailableActions();
 
@@ -251,6 +252,12 @@
 			if ( actions.availableAttackMapWithPath ) {
 				view.showAvailableAttackMapWithPath(actions.availableAttackMapWithPath);
 			}
+
+			setTimeout(function () {
+				deferred.resolve();
+			}, 2000); // todo: relative from current speed
+
+			return deferred.promise();
 
 		},
 

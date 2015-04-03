@@ -43,8 +43,64 @@
 
 		runScenario: function (scenario) {
 
-			console.log('-- run scenario');
-			console.log(scenario);
+			var cpu = this,
+				model = cpu.get('model'),
+				view = model.get('view'),
+				unit = scenario.get('unit'),
+				actionName = scenario.get('action').name,
+				unitX = unit.get('x'),
+				unitY = unit.get('y'),
+				x = scenario.get('x'),
+				y = scenario.get('y'),
+				xy = {
+					x: x,
+					y: y
+				};
+
+			// see view.onClick
+			view.markActiveSquare(xy); // {x: number, y: number}
+			view.autoSetSquareInfo();
+
+			// show available actions
+			view
+				.showAvailableActions(unit.getAvailableActions())
+				.then(function () {
+
+					var deferred = $.Deferred();
+
+					if ( unitX !== x || unitY !== y ) {
+						unit
+							.moveTo({
+								x: x,
+								y: y,
+								type: 'move',
+								unit: unit
+							})
+							.then(function () {
+								deferred.resolve();
+							});
+					} else {
+						deferred.resolve();
+					}
+
+					return deferred.promise();
+
+				})
+
+				.then(function () {
+					console.log('after move !!!');
+				})
+
+
+
+
+
+
+
+
+
+
+
 
 		},
 

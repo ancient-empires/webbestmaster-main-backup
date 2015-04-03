@@ -757,6 +757,7 @@
 		moveTo: function (data) {
 
 			var unit = this,
+				deferred = $.Deferred(),
 				model = unit.get('model'),
 				view = unit.get('view'),
 
@@ -794,7 +795,11 @@
 					view.showAvailableActions(availableActions);
 					model.set('availableActions', availableActions);
 
+					deferred.resolve();
+
 				});
+
+			return deferred.promise();
 
 		},
 
