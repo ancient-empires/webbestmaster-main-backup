@@ -124,6 +124,8 @@
 
 					// do nothing, move was in past step
 
+					unit.set('isActive', false);
+
 					break;
 
 				case 'attack':
@@ -137,7 +139,7 @@
 
 				case 'fixBuilding':
 
-					unit.occupyBuilding({
+					unit.fixBuilding({
 						buildingToFix: model.getBuildingByXY(xy)
 					});
 
@@ -153,6 +155,10 @@
 
 				case 'raiseSkeleton':
 
+					unit.raise({
+						x: action.grave.x,
+						y: action.grave.y
+					});
 
 					break;
 
