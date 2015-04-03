@@ -27,6 +27,8 @@
 			unit.set('xp', data.xp || 0);
 			unit.set('level', 0);
 
+			unit.set('silents', {}); // hack for triggering
+
 			unit.autoSetLevel();  // workaround for commanders before listeners
 
 			unit.bindEventListener();
@@ -55,6 +57,22 @@
 			this.off();
 		},
 
+		silentOn: function () {
+			var unit = this,
+				silents = unit.get('silents');
+			_.each(arguments, function (eventName) {
+				silents[eventName] = true;
+			});
+		},
+
+		silentOff: function () {
+			var unit = this,
+				silents = unit.get('silents');
+			_.each(arguments, function (eventName) {
+				delete silents[eventName];
+			});
+		},
+
 		//////////
 		// on changes
 		//////////
@@ -71,7 +89,12 @@
 		autoSetWispAura: function () {
 
 			var unit = this,
+				silents = unit.get('silents'),
 				model = unit.get('model');
+
+			if ( silents.x || silents.y ) {
+				return;
+			}
 
 			model.autoSetWispAura();
 
@@ -113,7 +136,12 @@
 		onChangeHealth: function (e, health) {
 
 			var unit = this,
+				silents = unit.get('silents'),
 				player;
+
+			if (silents.health) {
+				return;
+			}
 
 			if ( health <= 0 && unit.isCommander() ) {
 				player = unit.getOwner();

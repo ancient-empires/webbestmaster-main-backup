@@ -219,8 +219,7 @@
 				actionList = ['move', 'attack', 'fixBuilding', 'getBuilding', 'raiseSkeleton'],
 				Scenario = win.APP.Scenario;
 
-			// todo: see change:x and y, create silent mode for this
-
+			unit.silentOn('x', 'y');
 			unit.set('x', x);
 			unit.set('y', y);
 
@@ -356,6 +355,7 @@
 
 			unit.set('x', unitX);
 			unit.set('y', unitY);
+			unit.silentOff('x', 'y');
 
 			return scenarios;
 
@@ -370,8 +370,11 @@
 
 			q: {
 				availableReceiveDamage: -0.5,
+
+				// attack rate
 				//availableGivenDamage: 2,
 				//availableResponseDamage: -0.5,
+
 				placeArmor: 0.5,
 				nearestNonOwnedBuilding: -1.5,
 				upHealth: 2
@@ -455,6 +458,7 @@
 				buildingUpHealthList = buildingData.upHealthList,
 				buildingList = buildingData.list;
 
+			unit.silentOn('x', 'y');
 			unit.set('x', x);
 			unit.set('y', y);
 
@@ -487,6 +491,7 @@
 
 			unit.set('x', unitX);
 			unit.set('y', unitY);
+			unit.silentOff('x', 'y');
 
 			scenario.set('dataByPosition', {
 				placeArmor: placeArmor,
@@ -599,10 +604,33 @@
 
 		rateAttack: function (data) {
 
-			var scenario = data.scenario;
+			var cpu = this,
+				model = cpu.get('model'),
+				scenario = data.scenario,
+				action = scenario.get('action'),
+				unit = scenario.get('unit'),
+				enemyXY = action.enemy,
+				enemy = model.getUnitByXY(enemyXY),
+				enemyHealth = enemy.get('health'),
+				availableGivenDamage,
+				availableResponseDamage = 0,
+				rate;
 
+			// count
+			availableGivenDamage = unit.getAttackToUnit(enemy);
 
+			// detect can enemy do strike back
+			if ( availableGivenDamage < enemyHealth && enemy.canStrikeBack(unit) ) {
+				enemy.silentOn('health');
+				enemy.set('health', enemyHealth - availableGivenDamage);
+				availableResponseDamage = enemy.getAttackToUnit(unit);
+				enemy.set('health', enemyHealth);
+				enemy.silentOff('health');
+			}
 
+			rate = availableGivenDamage - availableResponseDamage;
+
+			return rate;
 
 		}
 
