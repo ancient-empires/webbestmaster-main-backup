@@ -253,9 +253,9 @@
 				view.showAvailableAttackMapWithPath(actions.availableAttackMapWithPath);
 			}
 
-			setTimeout(function () {
-				deferred.resolve();
-			}, 2000); // todo: relative from current speed
+				setTimeout(function () {
+					deferred.resolve();
+				}, 2000); // todo: relative from current speed
 
 			return deferred.promise();
 
@@ -1260,8 +1260,7 @@
 
 			setTimeout(function () { // todo: try to do transitionEnd without this hack
 				$attackNode.css(pre + 'transform', 'translate3d(' + (to.x * squareSize) + 'px, ' + (to.y * squareSize) + 'px, 0)');
-			}, 0);
-
+			}, 50);
 
 			return deferred.promise();
 

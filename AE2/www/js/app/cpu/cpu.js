@@ -47,7 +47,6 @@
 				model = cpu.get('model'),
 				view = model.get('view'),
 				unit = scenario.get('unit'),
-				actionName = scenario.get('action').name,
 				unitX = unit.get('x'),
 				unitY = unit.get('y'),
 				x = scenario.get('x'),
@@ -58,23 +57,31 @@
 				};
 
 			// see view.onClick
-			view.markActiveSquare(xy); // {x: number, y: number}
+			view.markActiveSquare({
+				x: unitX,
+				y: unitY
+			}); // {x: number, y: number}
 			view.autoSetSquareInfo();
 
 			// show available actions
 			view
 				.showAvailableActions(unit.getAvailableActions())
+				// move if needed
 				.then(function () {
 
 					var deferred = $.Deferred();
 
 					if ( unitX !== x || unitY !== y ) {
-						unit
-							.moveTo({
+
+						view.markActiveSquare(xy); // {x: number, y: number}
+						view.autoSetSquareInfo();
+
+						unit.moveTo({
 								x: x,
 								y: y,
 								type: 'move',
-								unit: unit
+								unit: unit,
+								confirmed: true
 							})
 							.then(function () {
 								deferred.resolve();
@@ -86,20 +93,70 @@
 					return deferred.promise();
 
 				})
-
+				// after move
 				.then(function () {
-					console.log('after move !!!');
+
+					setTimeout(function () {
+						cpu.runScenarioAction(scenario);
+					}, 2000); // todo: relative from current speed
+
 				})
 
+		},
+
+		runScenarioAction: function (scenario) {
+
+			var cpu = this,
+				model = cpu.get('model'),
+				action = scenario.get('action'),
+				x = scenario.get('x'),
+				y = scenario.get('y'),
+				xy = {
+					x: x,
+					y: y
+				},
+				unit = scenario.get('unit'),
+				actionName = scenario.get('action').name;
+
+			switch (actionName) {
+
+				case 'move':
+
+					// do nothing, move was in past step
+
+					break;
+
+				case 'attack':
+
+					unit.attackToXy({
+						attackX: action.enemy.x,
+						attackY: action.enemy.y
+					});
+
+					break;
+
+				case 'fixBuilding':
+
+					unit.occupyBuilding({
+						buildingToFix: model.getBuildingByXY(xy)
+					});
+
+					break;
+
+				case 'getBuilding':
+
+					unit.occupyBuilding({
+						buildingToOccupy: model.getBuildingByXY(xy)
+					});
+
+					break;
+
+				case 'raiseSkeleton':
 
 
+					break;
 
-
-
-
-
-
-
+			}
 
 
 		},

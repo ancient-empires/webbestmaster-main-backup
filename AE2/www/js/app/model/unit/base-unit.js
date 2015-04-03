@@ -762,6 +762,7 @@
 				deferred = $.Deferred(),
 				model = unit.get('model'),
 				view = unit.get('view'),
+				playerType = model.get('activePlayer').type,
 
 				x = data.x,
 				y = data.y,
@@ -782,7 +783,7 @@
 
 					var availableActions;
 
-					if ( view.info.get('confirmMove') === 'on' ) {
+					if ( view.info.get('confirmMove') === 'on' && playerType !== 'cpu' ) {
 						availableActions = unit.getConfirmMoveActions({
 							x: x,
 							y: y,
@@ -831,9 +832,10 @@
 				enemyBuilding,
 				model = unit.get('model'),
 				view = unit.get('view'),
+				playerType = model.get('activePlayer').type,
 				availableActions;
 
-			if ( view.info.get('confirmAttack') === 'on' && !action.confirmed ) {
+			if ( view.info.get('confirmAttack') === 'on' && !action.confirmed && playerType !== 'cpu' ) {
 
 				availableActions = unit.getConfirmAttackActions({
 					x: x,
