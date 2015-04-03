@@ -33,11 +33,9 @@
 
 			var cpu = this;
 
-			cpu.buyUnits().then(function () {
+			cpu.buyUnits();
+			cpu.turnUnit();
 
-				cpu.turnUnit();
-
-			});
 
 		},
 
@@ -177,8 +175,7 @@
 				model = cpu.get('model'),
 				player = cpu.get('player'),
 				stores = cpu.getStores(),
-				store,
-				deferred = $.Deferred();
+				store;
 
 			if ( !stores.length ) {
 				return;
@@ -207,10 +204,6 @@
 				store: store,
 				type: 'archer'
 			});
-
-			deferred.resolve();
-
-			return deferred.promise();
 
 		},
 
@@ -562,6 +555,7 @@
 			raiseSkeleton: 500,
 			lowPriority: -1000,
 			highPriority: 1000,
+			killUnit: 40,
 
 			q: {
 				nearestNonOwnedBuilding: -5,
@@ -794,7 +788,12 @@
 			// set current rate
 			rate = rate || pathToBuildingLength * rates.q.nearestNonOwnedBuilding;
 
-			rate += dataByPosition.upHealth * rates.q.upHealth + dataByPosition.placeArmor * rates.q.placeArmor - dataByPosition.availableReceiveDamage * rates.q.availableReceiveDamage;
+			if (dataByPosition.availableReceiveDamage) {
+				rate += dataByPosition.upHealth * rates.q.upHealth + dataByPosition.placeArmor * rates.q.placeArmor - dataByPosition.availableReceiveDamage * rates.q.availableReceiveDamage;
+			} else {
+				rate += dataByPosition.upHealth * rates.q.upHealth;
+			}
+
 
 			// detect scenario where unit get building or raise skeleton
 			_.each(allScenarios, function (sc) {
@@ -836,6 +835,7 @@
 		rateAttack: function (data) {
 
 			var cpu = this,
+				rates = cpu.rates,
 				model = cpu.get('model'),
 				scenario = data.scenario,
 				action = scenario.get('action'),
@@ -867,8 +867,11 @@
 				enemy.silentOff('health');
 			}
 
-
-			rate = availableGivenDamage - availableResponseDamage;
+			if ( availableGivenDamage > enemyHealth ) {
+				rate = rates.killUnit;
+			} else {
+				rate = availableGivenDamage - availableResponseDamage;
+			}
 
 			unit.set('x', unitX);
 			unit.set('y', unitY);
