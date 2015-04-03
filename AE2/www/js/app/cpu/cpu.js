@@ -266,19 +266,18 @@
 
 			});
 
-			if ( !scenarios.length ) {
-				model.newTurn();
-				return;
-			}
-
 			_.each(scenarios, function (scenario) {
 				cpu.setAutoRate(scenario, scenarios);
-
 			});
 
 			scenarios = _.filter(scenarios, function (scenario) {
 				return scenario.get('isAvailable');
 			});
+
+			if ( !scenarios.length ) {
+				model.newTurn();
+				return;
+			}
 
 			scenarios = scenarios.sort(function (sc1, sc2) {
 				return sc2.get('rate') - sc1.get('rate');
@@ -568,7 +567,7 @@
 
 		},
 
-		setAutoIsAvailableScenario: function (scenario) {
+		setAutoIsAvailableScenario: function (scenario, allScenarios) {
 
 			var cpu = this,
 				model = cpu.get('model'),
@@ -598,6 +597,16 @@
 				return;
 			}
 
+			if ( actionName === 'fixBuilding' ) { // do not fix if unit can attack
+				scenario.set('isAvailable', !isUnitOnXY);
+				_.each(allScenarios, function (sc) {
+					if (sc.get('x') === x && sc.get('y') === y && sc.get('action').name === 'attack') {
+						scenario.set('isAvailable', false);
+					}
+				});
+				return;
+			}
+
 			scenario.set('isAvailable', !isUnitOnXY);
 
 		},
@@ -609,7 +618,7 @@
 				rates = cpu.rates,
 				rate = 0;
 
-			cpu.setAutoIsAvailableScenario(scenario);
+			cpu.setAutoIsAvailableScenario(scenario, allScenarios);
 
 			if ( !scenario.get('isAvailable') ) {
 				return;
