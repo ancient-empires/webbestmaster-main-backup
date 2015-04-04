@@ -986,8 +986,6 @@
 
 			mover.init();
 
-			win.mover = mover;
-
 			this.set('mover', mover);
 
 		},
@@ -1511,6 +1509,30 @@
 				$node = view.$el.find(view.selectors.viewCpuDisable);
 
 			return onOff ? $node.removeClass('hidden') : $node.addClass('hidden');
+
+		},
+
+		centerToXY: function (xy) {
+
+			var view = this,
+				map = view.get('map'),
+				mover = view.get('mover'),
+				squareSize = view.getSquareSize(),
+				width = map.size.width,
+				height = map.size.height,
+				x = Math.round((xy.x - width / 2) * squareSize),
+				y = Math.round((xy.y - height / 2) * squareSize);
+
+			if ( !mover.get('edges') ) {
+				mover.detectSizes();
+				mover.detectEdgePositions();
+			}
+
+			mover.showXY({
+				x: -x,
+				y: -y,
+				time: view.info.actionTime()
+			});
 
 		}
 

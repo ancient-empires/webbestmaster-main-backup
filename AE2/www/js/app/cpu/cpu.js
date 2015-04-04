@@ -60,6 +60,7 @@
 				y: unitY
 			}); // {x: number, y: number}
 			view.autoSetSquareInfo();
+			view.centerToXY(xy);
 
 			// show available actions
 			view

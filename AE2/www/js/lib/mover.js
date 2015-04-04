@@ -408,6 +408,19 @@
 
 		},
 
+		showXY: function (xy) {
+
+			var mover = this;
+
+			mover.setStyleByXYZS({
+				x: xy.x,
+				y: xy.y,
+				check: true,
+				time: xy.time
+			});
+
+		},
+
 		detectEdgePositions: function () {
 
 			var wrapper = {
@@ -601,8 +614,9 @@
 
 			data = data || {};
 
-			var edges = this.get('edges'),
-				currentContainerXY = this.get('currentContainerXY'),
+			var mover = this,
+				edges = mover.get('edges'),
+				currentContainerXY = mover.get('currentContainerXY'),
 				x = currentContainerXY.x,
 				y = currentContainerXY.y,
 				time = data.hasOwnProperty('time') ? data.time : 300;
@@ -617,11 +631,18 @@
 				return;
 			}
 
-			this.setStyleByXYZS({
+			mover.setStyleByXYZS({
 				x: x,
 				y: y,
 				time: time
 			});
+
+			if ( !mover.set('isTouch') ) {
+				setTimeout(function () {
+					mover.detectSizes();
+					mover.detectEdgePositions();
+				}, time + 100)
+			}
 
 		}
 
