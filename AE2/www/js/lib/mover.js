@@ -380,9 +380,6 @@
 
 		setStyleByXYZS: function (xyzs) {
 
-			xyzs.x = Math.round(xyzs.x);
-			xyzs.y = Math.round(xyzs.y);
-			xyzs.z = Math.round(xyzs.z || 0);
 			xyzs.scale = xyzs.scale || 1;
 			xyzs.time = xyzs.time || 0;
 
@@ -401,6 +398,10 @@
 				xyzs.y = Math.max(edges.min.y, xyzs.y);
 
 			}
+
+			xyzs.x = Math.round(xyzs.x);
+			xyzs.y = Math.round(xyzs.y);
+			xyzs.z = Math.round(xyzs.z || 0);
 
 			$container
 				.css(pre + 'transition', 'all ' + xyzs.time + 'ms ease-out')
