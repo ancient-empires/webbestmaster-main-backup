@@ -178,15 +178,11 @@
 			var cpu = this,
 				model = cpu.get('model'),
 				player = cpu.get('player'),
-				stores = cpu.getStores(),
-				store;
+				store = cpu.getStore();
 
-			if ( !stores.length ) {
+			if ( !store ) { // no store, no units ))
 				return;
 			}
-
-			// todo: get store closest to enemy store
-			store = stores[0];
 
 			// buy commander if needed and can
 			cpu.buyUnit({
@@ -211,14 +207,32 @@
 
 		},
 
-		getStores: function () {
+		getStore: function () {
 
 			var cpu = this,
 				model = cpu.get('model'),
-				ownerId = cpu.get('player').id,
-				buildings = model.get('buildings');
+				units = model.get('units'),
+				player = cpu.get('player'),
+				teamNumber = player.teamNumber,
+				ownerId = player.id,
+				buildings = model.get('buildings'),
+				unitData = win.APP.unitMaster,
+				commandersList = unitData.commanderList,
+				enemyCommanders = _.filter(units, function (unit) {
+					return unit.get('teamNumber') !== teamNumber && _.contains(commandersList, unit.get('type'));
+				}),
+				stores = _.where(buildings, { ownerId: ownerId, canBeStore: true });
 
-			return _.where(buildings, { ownerId: ownerId, canBeStore: true });
+			if ( !stores.length ) {
+				return false;
+			}
+
+			// todo: see building nearest to enemy commander
+
+
+			debugger
+
+			return stores[0];
 
 		},
 
