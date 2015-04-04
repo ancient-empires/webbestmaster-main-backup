@@ -876,6 +876,7 @@
 					x: scenarioX,
 					y: scenarioY
 				},
+				isStartXY = unitX === scenarioX && unitY === scenarioY,
 				unit = scenario.get('unit'),
 				unitTeamNumber = unit.get('teamNumber'),
 				unitX = unit.get('x'),
@@ -919,23 +920,31 @@
 			});
 
 			// can enemy get building
-			building = model.getBuildingByXY(xy);
+			building = model.getBuildingByXY({ x: unitX, y: unitY });
+
 			if ( building ) {
+
 				_.each(enemyUnits, function (enemy) {
 
 					var path = enemy.getAvailablePathFull(),
-						buildingTypeList = enemy.get('listOccupyBuilding');
+						enemyBuildingTypeList = enemy.get('listOccupyBuilding');
 
-					if (!_.find(path, xy) || !buildingTypeList) {
+					if ( !_.find(path, { x: unitX, y: unitY }) || !enemyBuildingTypeList) {
 						return;
 					}
 
-					if ( _.contains(buildingTypeList, building.type) ) {
-						rate += rates.onCanEnemyGetBuilding;
+					if ( _.contains(enemyBuildingTypeList, building.type) ) {
+						if ( isStartXY ) { // detect attack from building
+							rate += rates.onCanEnemyGetBuilding;
+						} else {
+							rate = rates.lowPriority;
+						}
 					}
 
 				});
+
 			}
+
 
 			if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
 				console.log(' -- attack - maxAvailableReceiveDamage!!!');
