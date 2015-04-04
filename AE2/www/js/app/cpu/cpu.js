@@ -243,6 +243,11 @@
 
 		turnUnit: function () {
 
+			if ( win.APP.bb.battleData.isEndGame === 'yes' ) {
+				console.log('end game from CPU');
+				return;
+			}
+
 			var cpu = this,
 				player = cpu.get('player'),
 				playerTeamNumber = player.teamNumber,
@@ -338,8 +343,8 @@
 
 			cpu.runScenario(bestScenario);
 
-			console.log('scenarios');
-			console.log(scenarios);
+			//console.log('scenarios');
+			//console.log(scenarios);
 
 		},
 
@@ -933,6 +938,11 @@
 
 			if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
 				console.log(' -- attack - maxAvailableReceiveDamage!!!');
+				rate = rates.lowPriority;
+			}
+
+			if ( dataByPosition.availableReceiveDamage >= unit.get('health') * 2 ) {
+				console.log(' -- move - can be die !!!');
 				rate = rates.lowPriority;
 			}
 
