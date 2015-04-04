@@ -412,6 +412,9 @@
 
 			var mover = this;
 
+			mover.detectSizes();
+			mover.detectEdgePositions();
+
 			mover.setStyleByXYZS({
 				x: xy.x,
 				y: xy.y,

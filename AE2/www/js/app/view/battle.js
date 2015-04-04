@@ -1523,11 +1523,6 @@
 				x = Math.round((xy.x - width / 2) * squareSize),
 				y = Math.round((xy.y - height / 2) * squareSize);
 
-			if ( !mover.get('edges') ) {
-				mover.detectSizes();
-				mover.detectEdgePositions();
-			}
-
 			mover.showXY({
 				x: -x,
 				y: -y,
