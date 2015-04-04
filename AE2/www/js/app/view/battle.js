@@ -33,6 +33,7 @@
 			building: '.js-building',
 			smokeWrapper: '.js-smoke-wrapper',
 			viewDisable: '.js-view-disable',
+			viewCpuDisable: '.js-view-cpu-disable',
 			square: '.js-square',
 			statusBar: '.js-battle-view-status-bar',
 			styleSquareSize: '.js-style-square-size',
@@ -1501,6 +1502,15 @@
 			var view = this;
 
 			view.$el.find(view.selectors.unitInfoWrapper).empty();
+
+		},
+
+		cpuMode: function (onOff) {
+
+			var view = this,
+				$node = view.$el.find(view.selectors.viewCpuDisable);
+
+			return onOff ? $node.removeClass('hidden') : $node.addClass('hidden');
 
 		}
 

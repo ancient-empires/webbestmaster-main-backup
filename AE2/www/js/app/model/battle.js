@@ -343,6 +343,9 @@
 				view.hidePopups({ timePadding: win.APP.info.actionTime() * 3 }).then(function () {
 						model.runCpu();
 				});
+				view.cpuMode(true);
+			} else {
+				view.cpuMode(false);
 			}
 
 

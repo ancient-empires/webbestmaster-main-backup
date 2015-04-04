@@ -67,7 +67,7 @@
 			});
 
 			proto.$wrapper.addClass(os);
-			proto.$wrapper.addClass('isMobile' + isTouch);
+			proto.$wrapper.addClass('isMobile_' + isTouch);
 
 		},
 
