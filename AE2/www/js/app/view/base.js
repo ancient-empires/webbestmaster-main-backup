@@ -217,7 +217,9 @@
 
 		},
 
-		hidePopups: function () {
+		hidePopups: function (data) {
+
+			data = data || {};
 
 			var view = this,
 				deferred = $.Deferred();
@@ -230,7 +232,7 @@
 					} else {
 						deferred.resolve();
 					}
-				}, 200); // def se time out for routing is 50
+				}, data.timePadding || 0); // def se time out for routing is 50
 			}());
 
 			return deferred.promise();

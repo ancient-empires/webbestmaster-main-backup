@@ -340,8 +340,8 @@
 			model.get('view').updateStatusBar();
 
 			if (activePlayer.type === 'cpu') {
-				view.hidePopups().then(function () {
-					model.runCpu();
+				view.hidePopups({ timePadding: win.APP.info.actionTime() * 3 }).then(function () {
+						model.runCpu();
 				});
 			}
 
