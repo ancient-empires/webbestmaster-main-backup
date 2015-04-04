@@ -759,7 +759,7 @@
 				rates = cpu.rates,
 				buildingData = win.APP.building,
 				dataByPosition = scenario.get('dataByPosition'),
-				wantedBuildingList = buildingData.wantedBuildingList,
+				wantedBuildingList = unit.get('listOccupyBuilding') || buildingData.wantedBuildingList,
 				x = scenario.get('x'),
 				y = scenario.get('y'),
 				xy = {
