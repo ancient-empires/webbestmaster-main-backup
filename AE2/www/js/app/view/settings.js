@@ -104,7 +104,7 @@
 			var view = this,
 				speed = parseInt(view.info.get('gameSpeed'), 10),
 				time = view.info.actionTime(),
-				$style = view.tmpl['game-speed']({time: time});
+				$style = view.tmpl['game-speed']({time: time - 100});
 
 			view.$wrapper.find(view.selectors.style).remove();
 

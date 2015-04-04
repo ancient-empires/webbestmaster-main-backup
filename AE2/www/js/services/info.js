@@ -223,7 +223,7 @@
 				speed = parseInt(info.get('gameSpeed'), 10),
 				q = 6 - speed; // 6 === maxSpeed'5' + 1
 
-			return 200 + (q - 1) * 100;
+			return 300 + (q - 1) * 100;
 
 		}
 

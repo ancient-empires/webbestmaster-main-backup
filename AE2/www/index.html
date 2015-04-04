@@ -821,11 +821,14 @@
 
 		.unit-image, /* 2 frames */
 
-		.bounce,
-
 		.unit-level-up.move-up {
 			-webkit-animation-duration: <%= time %>ms;
 			animation-duration: <%= time %>ms;
+		}
+
+		.bounce {
+			-webkit-animation-duration: <%= 1.5 * time %>ms;
+			animation-duration: <%= 1.5 * time %>ms;
 		}
 
 		.show-unit-under-attack, /* 3 frames */
