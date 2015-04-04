@@ -640,7 +640,7 @@
 				time: time
 			});
 
-			if ( !mover.set('isTouch') ) {
+			if ( !mover.get('isTouch') ) {
 				setTimeout(function () {
 					mover.detectSizes();
 					mover.detectEdgePositions();
