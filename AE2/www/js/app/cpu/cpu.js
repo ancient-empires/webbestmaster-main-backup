@@ -215,7 +215,8 @@
 					{ type: 'soldier', 		percent: 20, currentPercent: 0 },
 					{ type: 'archer',		percent: 30, currentPercent: 0 },
 					{ type: 'sorceress', 	percent: 15, currentPercent: 0 },
-					{ type: 'catapult', 	percent: 15, currentPercent: 0 }
+					{ type: 'golem',	 	percent: 10, currentPercent: 0 },
+					{ type: 'dire-wolf',	percent: 10, currentPercent: 0 }
 				];
 
 			// do not buy if limit exceed
@@ -745,7 +746,6 @@
 
 			var cpu = this,
 				action = scenario.get('action').name,
-				unit,
 				rates = cpu.rates,
 				rate = 0;
 
@@ -770,18 +770,9 @@
 
 				case 'attack':
 
-					unit = scenario.get('unit');
-
-					if (unit.get('type') === 'catapult') {
-						rate = cpu.rateAttackCatapult({
-							scenario: scenario
-						});
-					} else {
-						rate = cpu.rateAttack({
-							scenario: scenario
-						});
-					}
-
+					rate = cpu.rateAttack({
+						scenario: scenario
+					});
 
 					break;
 
@@ -1088,46 +1079,6 @@
 			unit.set('x', unitX);
 			unit.set('y', unitY);
 			unit.silentOff('x', 'y');
-
-			return rate;
-
-		},
-
-		rateAttackCatapult: function (data) {
-
-			var cpu = this,
-				rates = cpu.rates,
-				model = cpu.get('model'),
-				allUnits = model.get('units'),
-				enemyUnits,
-				scenario = data.scenario,
-				action = scenario.get('action'),
-				scenarioX = scenario.get('x'),
-				scenarioY = scenario.get('y'),
-				xy = {
-					x: scenarioX,
-					y: scenarioY
-				},
-				unit = scenario.get('unit'),
-				unitTeamNumber = unit.get('teamNumber'),
-				unitX = unit.get('x'),
-				unitY = unit.get('y'),
-				isStartXY = unitX === scenarioX && unitY === scenarioY,
-				enemyXY = action.enemy,
-				enemy = model.getUnitByXY(enemyXY),
-				enemyBuilding = model.getBuildingByXY(enemyXY),
-				enemyHealth = enemy ? enemy.get('health') : 0,
-				availableGivenDamage,
-				availableResponseDamage = 0,
-				dataByPosition = scenario.get('dataByPosition'),
-				building,
-				rate = 0;
-
-			if ( enemyHealth ) {
-				return cpu.rateAttack(data);
-			}
-
-
 
 			return rate;
 
