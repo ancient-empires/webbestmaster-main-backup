@@ -1,13 +1,13 @@
 /*jslint white: true, nomen: true */
-(function () {
+(function (win) {
 
 	"use strict";
 	/*global window, document */
 	/*global APP */
 
-	APP.maps = APP.maps || {};
+	win.APP.maps = win.APP.maps || {};
 
-	APP.maps.islandCross = {
+	win.APP.maps.islandCross = {
 		"type": "skirmish",
 		"size": {
 			"width": 15,
@@ -19,7 +19,6 @@
 
 		"units": [
 			{"type": "commander", "x": 13, "y": 1, ownerId: 0},
-			{"type": "soldier", "x": 8, "y": 1, ownerId: 1},
 			{"type": "commander", "x": 1, "y": 13, ownerId: 1}
 		],
 		"buildings": [
@@ -267,4 +266,4 @@
 		}
 	};
 
-}());
+}(window));

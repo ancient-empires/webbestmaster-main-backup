@@ -1,13 +1,13 @@
 /*jslint white: true, nomen: true */
-(function () {
+(function (win) {
 
 	"use strict";
 	/*global window, document */
 	/*global APP */
 
-	APP.maps = APP.maps || {};
+	win.APP.maps = win.APP.maps || {};
 
-	APP.maps.islandCross = {
+	win.APP.maps.islandCross = {
 		"type": "skirmish",
 		"size": {
 			"width": 15,
@@ -266,4 +266,4 @@
 		}
 	};
 
-}());
+}(window));
