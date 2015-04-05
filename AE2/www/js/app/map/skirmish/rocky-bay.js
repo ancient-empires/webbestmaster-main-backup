@@ -1,12 +1,13 @@
-(function () {
+/*jslint white: true, nomen: true */
+(function (win) {
 
 	"use strict";
 	/*global window, document */
 	/*global APP */
 
-	APP.maps = APP.maps || {};
+	win.APP.maps = win.APP.maps || {};
 
-	APP.maps.rockyBay = {
+	win.APP.maps.rockyBay = {
 		"type": "skirmish",
 		"size": {
 			"width": 17,
@@ -17,23 +18,23 @@
 		"maxPlayers": 2,
 
 		"units": [
-			{"type": "Knight", "x": 1, "y": 9, playerId: 0},
-			{"type": "Knight", "x": 15, "y": 9, playerId: 1}
+			{"type": "commander", "x": 1, "y": 9, ownerId: 0},
+			{"type": "commander", "x": 15, "y": 9, ownerId: 1}
 		],
 		"buildings": [
-			{"type": "farm", "x": 0, "y": 2},
-			{"type": "farm", "x": 6, "y": 2},
-			{"type": "castle", "x": 8, "y": 2},
-			{"type": "farm", "x": 10, "y": 2},
-			{"type": "farm", "x": 16, "y": 2},
-			{"type": "farm", "x": 2, "y": 3},
-			{"type": "farm", "x": 14, "y": 3},
-			{"type": "castle", "x": 1, "y": 9},
-			{"type": "farm", "x": 3, "y": 9},
-			{"type": "farm", "x": 13, "y": 9},
-			{"type": "castle", "x": 15, "y": 9},
-			{"type": "farm", "x": 2, "y": 11},
-			{"type": "farm", "x": 14, "y": 11}
+			{"type": "farm", "x": 0, "y": 2, state: 'normal'},
+			{"type": "farm", "x": 6, "y": 2, state: 'normal'},
+			{"type": "castle", "x": 8, "y": 2, state: 'normal'},
+			{"type": "farm", "x": 10, "y": 2, state: 'normal'},
+			{"type": "farm", "x": 16, "y": 2, state: 'normal'},
+			{"type": "farm", "x": 2, "y": 3, state: 'normal'},
+			{"type": "farm", "x": 14, "y": 3, state: 'normal'},
+			{"type": "castle", "x": 1, "y": 9, state: 'normal', ownerId: 0},
+			{"type": "farm", "x": 3, "y": 9, state: 'normal'},
+			{"type": "farm", "x": 13, "y": 9, state: 'normal'},
+			{"type": "castle", "x": 15, "y": 9, state: 'normal', ownerId: 1},
+			{"type": "farm", "x": 2, "y": 11, state: 'normal'},
+			{"type": "farm", "x": 14, "y": 11, state: 'normal'}
 		],
 		"terrain": {
 			"x0y0": "stone-1",
@@ -243,4 +244,4 @@
 		}
 	};
 
-}());
+}(window));
