@@ -996,7 +996,15 @@
 			});
 
 			_.each(wantedBuildings, function (building) {
+
+				var unit = model.getUnitByXY(building);
+
+				if ( unit && unit.get('teamNumber') === unitTeamNumber && _.contains(unit.get('listOccupyBuilding'), building.type) ) {
+					return;
+				}
+
 				pathToBuildingLength = Math.min(pathToBuildingLength, util.getPathSize(building, xy));
+
 			});
 
 			// set current rate
