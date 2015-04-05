@@ -320,7 +320,6 @@
 				_.each(enemyStores, function (enemyStore) {
 					_.each(stores, function (store) {
 						pairs.push({
-							unit: unit,
 							store: store,
 							pathSize: util.getPathSize(store, enemyStore)
 						});
@@ -371,15 +370,15 @@
 
 			var cpu = this,
 				player = cpu.get('player'),
-				playerTeamNumber = player.teamNumber,
+				//playerTeamNumber = player.teamNumber,
 				model = cpu.get('model'),
 				units = model.get('units'),
-				buildings = model.get('building'),
-				enemyUnit = _.filter(units, function (unit) {
-					return unit.get('teamNumber') !== playerTeamNumber;
-				}),
+				//buildings = model.get('building'),
+				//enemyUnit = _.filter(units, function (unit) {
+				//	return unit.get('teamNumber') !== playerTeamNumber;
+				//}),
 				privateUnits = model.getUnitsByOwnerId(player.id),
-				wholes = [], // x, y, and who can ignore this whole
+				//wholes = [], // x, y, and who can ignore this whole
 				scenarios = [],
 				bestScenario;
 
@@ -398,6 +397,8 @@
 			_.each(scenarios, function (scenario) {
 				cpu.setAutoRate(scenario, scenarios);
 			});
+
+			cpu.setAutoRateBuildingWork(scenarios);
 
 			scenarios = _.filter(scenarios, function (scenario) {
 				return scenario.get('isAvailable');
@@ -423,7 +424,6 @@
 			// find best attack scenario
 			bestScenario = false;
 			_.each(scenarios, function (scenario) {
-
 				if ( scenario.get('action').name !== 'attack' ) {
 					return;
 				}
@@ -680,6 +680,7 @@
 		rates: {
 			getBuilding: 1000,
 			fixBuilding: 750,
+			severalBuildings: -20, // if unit can work with several buildings, reduce rate
 			raiseSkeleton: 500,
 			lowPriority: -1000,
 			highPriority: 1000,
@@ -745,7 +746,14 @@
 		setAutoRate: function (scenario, allScenarios) {
 
 			var cpu = this,
-				action = scenario.get('action').name,
+				action = scenario.get('action'),
+				actionName = action.name,
+				xy = {
+					x: scenario.get('x'),
+					y: scenario.get('y')
+				},
+				util = win.APP.util,
+				unit = scenario.get('unit'),
 				rates = cpu.rates,
 				rate = 0;
 
@@ -757,7 +765,7 @@
 
 			cpu.insertDataByPosition(scenario);
 
-			switch (action) {
+			switch (actionName) {
 
 				case 'move':
 
@@ -778,13 +786,13 @@
 
 				case 'fixBuilding':
 
-					rate = rates.fixBuilding;
+					rate = rates.fixBuilding - util.getPathSize(xy, {x: unit.get('x'), y: unit.get('y')});
 
 					break;
 
 				case 'getBuilding':
 
-					rate = rates.getBuilding;
+					rate = rates.getBuilding - util.getPathSize(xy, {x: unit.get('x'), y: unit.get('y')});
 
 					break;
 
@@ -799,6 +807,70 @@
 			}
 
 			scenario.set('rate', rate);
+
+		},
+
+		setAutoRateBuildingWork: function (scenarios) {
+
+			var cpu = this,
+				unitWithScenarios = [];
+
+			// detect unit can fix or build 2 and more buildings
+			_.each(scenarios, function (scenario) {
+				var unit = scenario.get('unit'),
+					actionName = scenario.get('action').name,
+					unitWithScenario = _.find(unitWithScenarios, { unit: unit });
+
+				if ( actionName !== 'fixBuilding' && actionName !== 'getBuilding' ) {
+					return;
+				}
+
+				if ( unitWithScenario ) {
+					unitWithScenario.scenarios.push(scenario);
+				} else {
+					unitWithScenarios.push({
+						unit: unit,
+						scenarios: [scenario],
+						getBuildingCount: 0,
+						fixBuildingCount: 0
+					});
+				}
+			});
+
+			_.each(unitWithScenarios, function (unitWithScenario) {
+				var scenarios = unitWithScenario.scenarios;
+				_.each(scenarios, function (scenario) {
+					var actionName = scenario.get('action').name;
+					switch ( actionName ){
+						case 'fixBuilding':
+							unitWithScenario.fixBuildingCount += 1;
+							break;
+						case 'getBuilding':
+							unitWithScenario.getBuildingCount += 1;
+							break;
+					}
+				});
+			});
+
+			_.each(unitWithScenarios, function (unitWithScenario) {
+				var scenarios = unitWithScenario.scenarios,
+					severalBuildings = cpu.rates.severalBuildings,
+					fixBuildingCount = unitWithScenario.fixBuildingCount,
+					getBuildingCount = unitWithScenario.getBuildingCount;
+				_.each(scenarios, function (scenario) {
+					var actionName = scenario.get('action').name,
+						rate = scenario.get('rate');
+
+					switch ( actionName ){
+						case 'fixBuilding':
+							scenario.set('rate', rate + severalBuildings * fixBuildingCount);
+							break;
+						case 'getBuilding':
+							scenario.set('rate', rate + severalBuildings * getBuildingCount);
+							break;
+					}
+				});
+			});
 
 		},
 
