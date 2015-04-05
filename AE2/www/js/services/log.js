@@ -11,7 +11,7 @@
 		off: function () {
 			this.isEnable = false;
 		},
-		isEnable: true,
+		isEnable: false,
 		log: function () {
 			return this.isEnable && console.log.apply(console, arguments);
 		}
