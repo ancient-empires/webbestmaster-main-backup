@@ -185,6 +185,7 @@
 			}
 
 			// buy commander if needed and can
+			// buy commander, or no any buy
 			cpu.buyUnit({
 				store: store,
 				type: player.commander.name
@@ -194,22 +195,77 @@
 				return;
 			}
 
-			// todo: buy normal units
-			cpu.buyUnit({
-				store: store,
-				type: 'soldier'
+			// buy next needed unit, called him self
+			cpu.buyNextUnit({
+				store: store
 			});
 
-			cpu.buyUnit({
-				store: store,
-				type: 'sorceress'
+		},
+
+		buyNextUnit: function (data) {
+
+			var cpu = this,
+				model = cpu.get('model'),
+				player = cpu.get('player'),
+				units = model.getUnitsByOwnerId(player.id),
+				unitLimit = model.get('unitLimit'),
+				unitTypeToBuy,
+				unitMaster = win.APP.unitMaster,
+				unitPercents = [
+					{ type: 'soldier', 		percent: 20, currentPercent: 0 },
+					{ type: 'archer',		percent: 30, currentPercent: 0 },
+					{ type: 'sorceress', 	percent: 15, currentPercent: 0 }
+					//,{ type: 'catapult', 	percent: 15, currentPercent: 0 }
+				];
+
+			// do not buy if limit exceed
+			if ( unitLimit <= units.length) {
+				return;
+			}
+
+			_.each(unitPercents, function (data) {
+
+				var unitType = data.type;
+
+				_.each(units, function (unit) {
+					if ( unitTypeToBuy ) {
+						return;
+					}
+					if ( unit.get('type') === unitType ) {
+						data.currentPercent += Math.round((unit.get('health') / unit.get('defaultHealth')) / unitLimit * 100);
+					}
+				});
+
+				if ( data.currentPercent < data.percent && !unitTypeToBuy	) {
+					unitTypeToBuy = unitType;
+				}
+
 			});
+
+			if ( unitTypeToBuy && unitMaster.list[unitTypeToBuy].cost <= player.money ) {
+				cpu.buyUnit({
+					store: data.store,
+					type: unitTypeToBuy
+				});
+				cpu.buyNextUnit({
+					store: data.store
+				});
+				return;
+			}
+
+			console.log('buy other units');
+
+			// buy other units
+
+
+
 
 		},
 
 		getStore: function () {
 
 			var cpu = this,
+				util = win.APP.util,
 				model = cpu.get('model'),
 				units = model.get('units'),
 				player = cpu.get('player'),
@@ -218,8 +274,12 @@
 				buildings = model.get('buildings'),
 				unitData = win.APP.unitMaster,
 				commandersList = unitData.commanderList,
+				pairs,
 				enemyCommanders = _.filter(units, function (unit) {
 					return unit.get('teamNumber') !== teamNumber && _.contains(commandersList, unit.get('type'));
+				}),
+				enemyStores = _.filter(buildings, function (building) {
+					return building.canBeStore && building.teamNumber !== teamNumber && building.teamNumber !== null;
 				}),
 				stores = _.where(buildings, { ownerId: ownerId, canBeStore: true });
 
@@ -227,11 +287,56 @@
 				return false;
 			}
 
-			// todo: see building nearest to enemy commander
+			if ( enemyCommanders.length ) {
+				pairs = [];
+				_.each(enemyCommanders, function (unit) {
+					_.each(stores, function (store) {
+						pairs.push({
+							unit: unit,
+							store: store,
+							pathSize: util.getPathSize(store, {
+								x: unit.get('x'),
+								y: unit.get('y')
+							})
+						});
+					});
+				});
 
+				pairs = pairs.sort(function (a, b) {
+					return a.pathSize - b.pathSize;
+				});
 
-			debugger
+				console.log('-- before stores ');
+				console.log(pairs);
 
+				return pairs[0].store;
+
+			}
+
+			if ( enemyStores.length ) {
+				pairs = [];
+
+				_.each(enemyStores, function (enemyStore) {
+					_.each(stores, function (store) {
+						pairs.push({
+							unit: unit,
+							store: store,
+							pathSize: util.getPathSize(store, enemyStore)
+						});
+					});
+				});
+
+				pairs = pairs.sort(function (a, b) {
+					return a.pathSize - b.pathSize;
+				});
+
+				console.log('-- no commanders');
+				console.log(pairs);
+				return pairs[0].store;
+
+			}
+
+			// it non reach code, if enemyCommanders.length === 0 and enemyStores.length === 0 -> end game
 			return stores[0];
 
 		},
@@ -890,11 +995,11 @@
 					x: scenarioX,
 					y: scenarioY
 				},
-				isStartXY = unitX === scenarioX && unitY === scenarioY,
 				unit = scenario.get('unit'),
 				unitTeamNumber = unit.get('teamNumber'),
 				unitX = unit.get('x'),
 				unitY = unit.get('y'),
+				isStartXY = unitX === scenarioX && unitY === scenarioY,
 				enemyXY = action.enemy,
 				enemy = model.getUnitByXY(enemyXY),
 				enemyHealth = enemy.get('health'),
@@ -943,7 +1048,7 @@
 					var path = enemy.getAvailablePathFull(),
 						enemyBuildingTypeList = enemy.get('listOccupyBuilding');
 
-					if ( !_.find(path, { x: unitX, y: unitY }) || !enemyBuildingTypeList) {
+					if ( !_.find(path, { x: unitX, y: unitY }) || !enemyBuildingTypeList ) {
 						return;
 					}
 
