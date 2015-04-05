@@ -413,7 +413,6 @@
 				return sc2.get('rate') - sc1.get('rate');
 			});
 
-
 			// detect no move and no attack scenario
 			bestScenario = scenarios[0];
 			if ( !/move|attack/.test(bestScenario.get('action').name) ) {
@@ -818,12 +817,7 @@
 			// detect unit can fix or build 2 and more buildings
 			_.each(scenarios, function (scenario) {
 				var unit = scenario.get('unit'),
-					actionName = scenario.get('action').name,
 					unitWithScenario = _.find(unitWithScenarios, { unit: unit });
-
-				if ( actionName !== 'fixBuilding' && actionName !== 'getBuilding' ) {
-					return;
-				}
 
 				if ( unitWithScenario ) {
 					unitWithScenario.scenarios.push(scenario);
@@ -867,6 +861,9 @@
 							break;
 						case 'getBuilding':
 							scenario.set('rate', rate + severalBuildings * getBuildingCount);
+							break;
+						case 'move':
+							scenario.set('rate', rate + severalBuildings * (getBuildingCount + fixBuildingCount));
 							break;
 					}
 				});
@@ -1010,6 +1007,8 @@
 			} else {
 				rate += dataByPosition.upHealth * rates.q.upHealth;
 			}
+
+
 
 			if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
 				console.log(' -- move - maxAvailableReceiveDamage!!!');
