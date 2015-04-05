@@ -3,7 +3,7 @@
 
 	"use strict";
 	/*global console, alert, window, document */
-	/*global Backbone, $, _ */
+	/*global Backbone, $, _, log */
 
 	win.APP.bb = win.APP.bb || {};
 
@@ -395,10 +395,10 @@
 						availableActions = unit.getAvailableActions();
 						view.showAvailableActions(availableActions);
 						model.set('availableActions', availableActions);
-						console.log('create and show available action');
+						log('create and show available action');
 					} else {
 						// show available path and available attack (attack only)
-						console.log('show available path and available attack (attack only)');
+						log('show available path and available attack (attack only)');
 						model.clearAvailableActions();
 						view.clearAvailableActions();
 					}
@@ -410,7 +410,7 @@
 					}
 
 					// show terrain info
-					console.log(terrain);
+					log(terrain);
 					model.clearAvailableActions();
 					view.clearAvailableActions();
 
@@ -423,7 +423,7 @@
 			if (building) {
 				// show building / terrain info // see view.autoSetSquareInfo
 				model.tryToOpenStoreByBuilding(building);
-				console.log(building);
+				log(building);
 				model.clearAvailableActions();
 				view.clearAvailableActions();
 				return;
@@ -432,7 +432,7 @@
 			// find terrain
 			if (terrain) {
 				// show terrain info // see view.autoSetSquareInfo
-				console.log(terrain);
+				log(terrain);
 				model.clearAvailableActions();
 				view.clearAvailableActions();
 				return;
@@ -481,8 +481,8 @@
 				buildingToOccupy = actions.buildingToOccupy,
 				openStore = actions.openStore;
 
-			console.log(' -- actions');
-			console.log(actions);
+			log(' -- actions');
+			log(actions);
 
 			move = _.find(availablePathViewWithoutTeamUnit, xy);
 
@@ -734,12 +734,12 @@
 
 				default:
 					debugger
-					console.log('--- undefind unit action');
+					log('--- undefind unit action');
 
 			}
 
-			console.log('do action');
-			console.log(action);
+			log('do action');
+			log(action);
 
 		},
 

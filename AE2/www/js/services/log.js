@@ -4,13 +4,16 @@
 	/*global window, document */
 	/*global */
 
-	var logger = {
+	win.logger = {
+		on: function () {
+			this.isEnable = true;
+		},
+		off: function () {
+			this.isEnable = false;
+		},
 		isEnable: true,
 		log: function () {
-			if ( !this.isEnable ) {
-				return;
-			}
-			return console.log.apply(console, arguments);
+			return this.isEnable && console.log.apply(console, arguments);
 		}
 	};
 

@@ -3,7 +3,7 @@
 
 	"use strict";
 	/*global window */
-	/*global _ */
+	/*global _, log */
 
 	function Cpu(json) { // model, player:'activePlayer'
 
@@ -254,7 +254,7 @@
 				return;
 			}
 
-			console.log('buy other units');
+			log('buy other units');
 
 			// buy other units
 
@@ -307,8 +307,8 @@
 					return a.pathSize - b.pathSize;
 				});
 
-				console.log('-- before stores ');
-				console.log(pairs);
+				log('-- before stores ');
+				log(pairs);
 
 				return pairs[0].store;
 
@@ -330,8 +330,8 @@
 					return a.pathSize - b.pathSize;
 				});
 
-				console.log('-- no commanders');
-				console.log(pairs);
+				log('-- no commanders');
+				log(pairs);
 				return pairs[0].store;
 
 			}
@@ -364,7 +364,7 @@
 		turnUnit: function () {
 
 			if ( win.APP.bb.battleData.isEndGame === 'yes' ) {
-				console.log('end game from CPU');
+				log('end game from CPU');
 				return;
 			}
 
@@ -463,8 +463,8 @@
 
 			cpu.runScenario(bestScenario);
 
-			//console.log('scenarios');
-			//console.log(scenarios);
+			//log('scenarios');
+			//log(scenarios);
 
 		},
 
@@ -1019,7 +1019,7 @@
 
 
 			if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
-				console.log(' -- move - maxAvailableReceiveDamage!!!');
+				log(' -- move - maxAvailableReceiveDamage!!!');
 				rate = rates.lowPriority;
 			}
 
@@ -1146,12 +1146,12 @@
 
 
 			if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
-				console.log(' -- attack - maxAvailableReceiveDamage!!!');
+				log(' -- attack - maxAvailableReceiveDamage!!!');
 				rate = rates.lowPriority;
 			}
 
 			if ( dataByPosition.availableReceiveDamage >= unit.get('health') * 2 ) {
-				console.log(' -- move - can be die !!!');
+				log(' -- move - can be die !!!');
 				rate = rates.lowPriority;
 			}
 

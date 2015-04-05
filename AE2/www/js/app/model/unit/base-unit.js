@@ -958,7 +958,7 @@
 						});
 
 					} else {
-						console.log('-- can NOT strike BACK');
+						log('-- can NOT strike BACK');
 						enemyUnit.setBy('poisonCount', unit.get('poisonPeriod') || 0);
 						unit.autoSetLevel();
 
@@ -966,7 +966,7 @@
 
 				} else {
 					model.addGraveInsteadUnit(enemyUnit);
-					console.log(' -- create grove for enemy unit');
+					log(' -- create grove for enemy unit');
 					unit.autoSetLevel();
 				}
 
