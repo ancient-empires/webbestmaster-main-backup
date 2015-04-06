@@ -129,10 +129,10 @@
 
 		autoSetCommandersName: function () {
 
+
 			var model = this,
 				players = model.get('players'),
-				jsMapKey = model. get('args').jsMapKey,
-				mapUnits = win.APP.maps[jsMapKey].units,
+				mapUnits = model.get('map').units,
 				copyJSON = win.APP.BB.BaseView.prototype.util.copyJSON,
 				util = win.APP.util,
 				commanderList = util.assortArray(copyJSON(win.APP.unitMaster.commanderList));

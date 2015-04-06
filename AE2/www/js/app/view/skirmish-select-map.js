@@ -16,11 +16,19 @@
 
 		initialize: function () {
 
-			this.$el = $(this.tmpl.skirmishSelectMap());
+			var view = this;
+			win.APP.map.db.getMapsInfo().then(function (mapsInfo) {
 
-			this.proto.initialize.apply(this, arguments);
+				view.$el = $(view.tmpl.skirmishSelectMap({
+					mapsInfo: mapsInfo
+				}));
 
-			this.render();
+				view.proto.initialize.apply(view, arguments);
+
+				view.render();
+
+			});
+
 
 		}
 

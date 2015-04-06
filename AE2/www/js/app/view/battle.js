@@ -44,49 +44,56 @@
 
 		initialize: function (data) {
 
-			this.detectClickEvent();
+			var view = this;
 
-			this.$el = $(this.tmpl.battle(data));
+			view.detectClickEvent();
 
-			this.proto.initialize.apply(this, arguments);
+			view.$el = $(view.tmpl.battle());
 
 			// get map
-			this.set('args', this.util.copyJSON(data));
-			this.set('map', this.util.copyJSON(APP.maps[data.jsMapKey]));
+			view.set('args', data);
 
-			this.set('model', new win.APP.BB.BattleModel({
-				view: this,
-				args: this.get('args'),
-				map: this.get('map')
-			}));
+			win.APP.map.db.getMap({
+				jsName: data.jsMapKey
+			}).then(function (map) {
 
-			this.set('markActiveSquare', {}); // {x: number, y: number}
+				view.set('map', map);
 
-			this.set('infoSquareXY', {x: 0, y: 0}); // {x: number, y: number}
+				view.set('model', new win.APP.BB.BattleModel({
+					view: view,
+					args: view.get('args'),
+					map: view.get('map')
+				}));
 
-			// set sizes
-			this.setSize();
+				view.set('markActiveSquare', {}); // {x: number, y: number}
 
-			// draw map
-			this.drawMap();
+				view.set('infoSquareXY', {x: 0, y: 0}); // {x: number, y: number}
 
-			// draw buildings
-			this.drawBuildings();
+				// set sizes
+				view.setSize();
 
-			// draw units
-			this.drawUnits();
+				// draw map
+				view.drawMap();
 
-			// bind move area
-			this.bindMoveArea();
+				// draw buildings
+				view.drawBuildings();
 
-			log(data);
+				// draw units
+				view.drawUnits();
 
-			this.bindEventListeners();
+				// bind move area
+				view.bindMoveArea();
 
-			this.render();
+				view.bindEventListeners();
 
-			// start game from model
-			this.get('model').startGame();
+				view.render();
+
+				// start game from model
+				view.get('model').startGame();
+
+				view.proto.initialize.apply(view, arguments);
+
+			});
 
 		},
 

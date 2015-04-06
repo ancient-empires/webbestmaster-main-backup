@@ -48,6 +48,8 @@
 				history.back();
 				setTimeout(back, 50);
 			} else {
+				// prepare map
+				win.APP.map.db.init();
 				//win.APP.BB.BaseView.prototype.util.loadSavedTheme();
 				win.APP.bb.router = new win.APP.BB.Router();
 				Backbone.history.start();

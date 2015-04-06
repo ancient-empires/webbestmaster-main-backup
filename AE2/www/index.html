@@ -522,7 +522,7 @@
 
 		<% var languageField = 'name-' + window.APP.info.get('language'); %>
 
-		<% _.each(window.APP.maps, function (map, jsKey) { %>
+		<% _.each(mapsInfo, function (map, jsKey) { %>
 		<% if (map.type === 'skirmish') { %>
 		<% var mapName = map[languageField] || map.name; %>
 		<div data-route="skirmish-setup-map/<%= jsKey %>" class="js-setup-skirmish-map">(<%= map.maxPlayers %>) <%= mapName %></div>

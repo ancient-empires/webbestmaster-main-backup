@@ -17,23 +17,25 @@
 
 		initialize: function (jsMapKey) {
 
-			this.set('jsMapKey', jsMapKey);
+			var view = this;
 
-			var viewData = this.createViewData(jsMapKey);
+			view.set('jsMapKey', jsMapKey);
 
-			this.$el = $(this.tmpl.skirmishSetupMap(viewData));
-
-			this.proto.initialize.apply(this, arguments);
-
-			this.render();
+			win.APP.map.db.getMapInfo({
+				jsName: jsMapKey
+			}).then(function (mapInfo) {
+				var viewData = view.createViewData(mapInfo);
+				view.$el = $(view.tmpl.skirmishSetupMap(viewData));
+				view.proto.initialize.apply(view, arguments);
+				view.render();
+			});
 
 		},
 
-		createViewData: function (jsMapKey) {
+		createViewData: function (map) {
 
 			var viewData = {},
 				util = win.APP.util,
-				map = this.util.copyJSON(APP.maps[jsMapKey]),
 				staticMapInfo = this.util.copyJSON(APP.map),
 				i, len,
 				playerData,

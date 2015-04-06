@@ -96,6 +96,8 @@
 
 		initialize: function() {
 
+			this.delegateEvents(); // fix for case -> get html async
+
 		},
 
 		changeSelect: function (e) { // external
