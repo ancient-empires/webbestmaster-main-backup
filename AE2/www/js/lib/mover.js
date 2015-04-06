@@ -212,20 +212,19 @@
 
 		onUp: function (e) {
 
-
 			var events = this.getEvents(e),
 				isTouch = this.get('isTouch');
+
+			if (events.events.length === 0 && isTouch && this.get('pinchIsActive') ) { // 2 fingers -> 0 finger
+				this.set('pinchIsActive', false);
+				this.setContainerSize();
+				return;
+			}
 
 			if ( events.events.length === 0 || !isTouch ) { // if is not touch device - stop moving
 				this.set('isActive', false);
 				this.sliding();
 				this.clearLogMoving();
-				return;
-			}
-
-			if (events.events.length === 0 && isTouch && this.get('pinchIsActive') ) { // 2 fingers -> 0 finger
-				this.set('pinchIsActive', false);
-				this.setContainerSize();
 				return;
 			}
 
