@@ -14,7 +14,7 @@
 			"height": 10
 		},
 		"name": 'River',
-		"name-ru": 'Πεκΰ',
+		"name-ru": 'Π ΠµΠΊΠ°',
 		"maxPlayers": 2,
 
 		"units": [
