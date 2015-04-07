@@ -212,7 +212,9 @@
 
 		},
 
-		updateTools: function () {
+		updateTools: function (data) {
+
+			data = data || {};
 
 			function objToDataURL(obj) {
 				return encodeURI(JSON.stringify(obj).replace(/\s/g, ''));
@@ -255,6 +257,11 @@
 
 			view.delegateEvents();
 
+			if (data.open) {
+
+				view.$el.find('.js-tab-button[data-tab-id="' + data.open + '"]').trigger('click');
+
+			}
 
 		},
 
@@ -281,7 +288,9 @@
 
 			brush.type = $this.attr('data-brush-type');
 
-			view.updateTools();
+			view.updateTools({
+				open: 'map-draw'
+			});
 
 		},
 
@@ -293,7 +302,9 @@
 
 			brush.color = $this.attr('data-brush-color');
 
-			view.updateTools();
+			view.updateTools({
+				open: 'map-draw'
+			});
 
 		},
 
@@ -305,7 +316,9 @@
 
 			brush.form = $this.attr('data-brush-form');
 
-			view.updateTools();
+			view.updateTools({
+				open: 'map-draw'
+			});
 
 		},
 
