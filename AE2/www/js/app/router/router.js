@@ -22,7 +22,8 @@
 			'skirmish-select-map': 'skirmishSelectMap',
 			'skirmish-setup-map/:jsMapKey': 'skirmishSetupMap',
 			'battle': 'battle',
-			'main-battle-menu': 'mainBattleMenu'
+			'main-battle-menu': 'mainBattleMenu',
+			'map-editor': 'mapEditor'
 		},
 
 		title: function () {
@@ -79,6 +80,10 @@
 
 		mainBattleMenu: function () {
 
+		},
+
+		mapEditor: function () {
+			new APP.BB.MapEditorView();
 		},
 
 		constructor: function () {

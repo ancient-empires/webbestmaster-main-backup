@@ -58,6 +58,7 @@
 	<script src="js/app/view/skirmish-select-map.js" type="text/javascript"></script>
 	<script src="js/app/view/skirmish-setup-map.js" type="text/javascript"></script>
 	<script src="js/app/view/battle.js" type="text/javascript"></script>
+	<script src="js/app/view/map-editor.js" type="text/javascript"></script>
 	<script src="js/app/view/battle-menu.js" type="text/javascript"></script>
 	<script src="js/app/view/unit-store.js" type="text/javascript"></script>
 
@@ -123,6 +124,8 @@
 	<div>
 
 		<button data-route="play">{{ play }}</button>
+		<br/>
+		<button data-route="map-editor">{{ mapEditor }}</button>
 		<br/>
 		<button class="opacity50">{{ online }}</button>
 		<br/>
@@ -364,6 +367,27 @@
 
 </script>
 
+<script type="text/x-template" data-name="map-list-popup">
+
+	<div>
+
+			<div class="popup-header">{{ maps }}</div>
+
+			<% var languageField = 'name-' + window.APP.info.get('language'); %>
+
+			<% _.each(mapsInfo, function (map, jsKey) { %>
+			<% if (map.type === 'skirmish') { %>
+			<% var mapName = map[languageField] || map.name; %>
+			<div data-map-name="<%= jsKey %>" class="js-open-map-in-editor">(<%= map.maxPlayers %>) <%= mapName %></div>
+			<% }; %>
+			<% }); %>
+
+	</div>
+
+</script>
+
+
+
 <script type="text/x-template" data-name="between-turn-notification">
 
 	<div>
@@ -562,6 +586,49 @@
 		<div class="js-view-cpu-disable view-cpu-disable js-no-scroll hidden"></div>
 		<style type="text/css" class="js-style-square-size"></style>
 	</div>
+
+</script>
+
+<script type="text/x-template" data-name="map-editor">
+
+
+	<div class="battle-view-wrapper js-map-editor-wrapper">
+		<div class="battle-view-container">
+			<div class="battle-view-inner-container js-move-area-wrapper js-no-scroll">
+				<div class="js-move-area-container">
+					<div class="js-main-event-handler main-event-handler"></div>
+					<div class="js-event-handler-wrapper event-handler-wrapper"></div>
+					<!--<div class="js-smoke-wrapper smoke-wrapper"></div>-->
+					<div class="units-wrapper js-units-wrapper"></div>
+					<div class="building-wrapper js-building-wrapper"></div>
+					<canvas class="js-map-image-wrapper block map-image-wrapper"></canvas>
+				</div>
+			</div>
+		</div>
+		<!--<div class="js-unit-info-wrapper"></div>-->
+		<!--<div class="js-battle-settings-wrapper"></div>-->
+		<!--<div class="js-store-wrapper"></div>-->
+		<!--<div class="js-end-turn end-turn">&gt;|</div>-->
+		<!--<div class="js-battle-menu-button battle-menu-button">-->
+			<!--<div class="battle-menu-button-line">&nbsp;</div>-->
+			<!--<div class="battle-menu-button-line">&nbsp;</div>-->
+		<!--</div>-->
+		<div class="battle-view-status-bar js-battle-view-status-bar">
+
+			<div class="float-left">save</div>
+			<div class="float-left">undo</div>
+			<div class="float-left">redo</div>
+			<div class="float-left js-open-map-popup">open</div>
+			<div class="float-left">delete</div>
+			<div class="float-left">active bush</div>
+
+		</div>
+		<!--<div class="js-battle-menu-static-wrapper"></div>-->
+		<!--<div class="js-view-disable view-disable js-no-scroll hidden"></div>-->
+		<!--<div class="js-view-cpu-disable view-cpu-disable js-no-scroll hidden"></div>-->
+		<style type="text/css" class="js-style-square-size"></style>
+	</div>
+
 
 </script>
 

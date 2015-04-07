@@ -102,6 +102,12 @@
 			//battle menu
 		menu: 'menu',
 
+		// map editor
+		mapEditor: 'map editor',
+		maps: 'maps',
+
+
+
 		aboutText: 'Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
 		instructionsText: [
 			'Ancient Empires is a thrilling strategy game putting you in the role of King Galamar as you fight to reclaim your kingdom.',

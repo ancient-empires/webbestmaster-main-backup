@@ -15,7 +15,8 @@
 			'click .js-popup-container': 'stopEvent',
 			'click .js-confirmed-end-turn': 'confirmedEndTurn',
 			'click .js-restart-battle': 'restartBattle',
-			'click .js-quit-battle': 'quitBattle'
+			'click .js-quit-battle': 'quitBattle',
+			'click .js-open-map-in-editor': 'openMapInEditor'
 		},
 
 		selectors: {
@@ -138,6 +139,29 @@
 			$el.addClass('show-out');
 
 			return deferred.promise();
+
+		},
+
+		openMapInEditor: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget),
+				parentView = view.get('parentView'),
+				jsName = $this.attr('data-map-name');
+
+
+			win.APP.map.db.getMap({
+				jsName: jsName
+			}).then(function (map) {
+
+				parentView.initialize({
+					map: map
+				});
+
+
+			});
+
+
 
 		}
 
