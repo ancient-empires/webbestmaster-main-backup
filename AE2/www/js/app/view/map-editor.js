@@ -131,19 +131,25 @@
 				buildingData;
 
 			if (brush.type === 'terrain' && brush.form) {
-				map.terrain[xyStr] = brush.form;
+				if (brush.form === 'eraser') {
+					map.terrain[xyStr] = 'terra-1';
+				} else {
+					map.terrain[xyStr] = brush.form;
+				}
 				view.drawMap();
 				return;
 			}
 
 			if (brush.type === 'unit' && brush.form) {
 				util.arrayRemoveByValue(map.units, _.find(map.units, xy));
-				map.units.push({
-					x: xy.x,
-					y: xy.y,
-					type: brush.form,
-					ownerId: playerColors.indexOf(brush.color)
-				});
+				if (brush.form !== 'eraser') {
+					map.units.push({
+						x: xy.x,
+						y: xy.y,
+						type: brush.form,
+						ownerId: playerColors.indexOf(brush.color)
+					});
+				}
 				view.reDrawUnits();
 				return;
 			}
@@ -151,28 +157,30 @@
 			if (brush.type === 'building' && brush.form) {
 				util.arrayRemoveByValue(map.buildings, _.find(map.buildings, xy));
 
-				buildingData = {
-					x: xy.x,
-					y: xy.y,
-					type: brush.form,
-					state: 'normal'
-				};
+				if (brush.form !== 'eraser') {
+					buildingData = {
+						x: xy.x,
+						y: xy.y,
+						type: brush.form,
+						state: 'normal'
+					};
 
-				if ( _.contains(buildingMaster.noMansBuildingsList, brush.form) ) {
-					buildingData.color = 'gray';
+					if ( _.contains(buildingMaster.noMansBuildingsList, brush.form) ) {
+						buildingData.color = 'gray';
+					}
+
+					if ( brush.form === 'farm-destroyed' ) {
+						buildingData.type = 'farm';
+						buildingData.state = 'destroyed';
+						buildingData.color = 'gray';
+					}
+
+					if ( buildingData.color !== 'gray' ) {
+						buildingData.ownerId = playerColors.indexOf(brush.color);
+					}
+
+					map.buildings.push(buildingData);
 				}
-
-				if ( brush.form === 'farm-destroyed' ) {
-					buildingData.type = 'farm';
-					buildingData.state = 'destroyed';
-					buildingData.color = 'gray';
-				}
-
-				if ( buildingData.color !== 'gray' ) {
-					buildingData.ownerId = playerColors.indexOf(brush.color);
-				}
-
-				map.buildings.push(buildingData);
 
 				view.reDrawBuildings();
 				return;

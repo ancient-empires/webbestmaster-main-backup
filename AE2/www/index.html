@@ -695,6 +695,13 @@
 				<div class="terrain-<%= terrain %> js-set-brush-form opacity50" data-brush-form="<%= terrain %>">&nbsp;</div>
 				<% }; %>
 			<% }); %>
+
+			<% if ( brush.form === 'eraser' ) { %>
+			<div data-brush-form="eraser" class="js-set-brush-form">eraser</div>
+			<% } else { %>
+			<div data-brush-form="eraser" class="js-set-brush-form opacity50">eraser</div>
+			<% }; %>
+
 		<% }; %>
 
 		<% if ( brush.type === 'unit' && brush.color !== 'gray') { %>
@@ -705,6 +712,13 @@
 				<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form opacity50" data-brush-form="<%= key %>">&nbsp;</div>
 				<% }; %>
 			<% }); %>
+
+			<% if ( brush.form === 'eraser' ) { %>
+			<div data-brush-form="eraser" class="js-set-brush-form">eraser</div>
+			<% } else { %>
+			<div data-brush-form="eraser" class="js-set-brush-form opacity50">eraser</div>
+			<% }; %>
+
 		<% }; %>
 
 		<% if ( brush.type === 'building' ) { %>
@@ -721,6 +735,12 @@
 			<div class="building-farm-destroyed js-set-brush-form" data-brush-form="farm-destroyed">&nbsp;</div>
 			<% } else { %>
 			<div class="building-farm-destroyed js-set-brush-form opacity50" data-brush-form="farm-destroyed">&nbsp;</div>
+			<% }; %>
+
+			<% if ( brush.form === 'eraser' ) { %>
+			<div data-brush-form="eraser" class="js-set-brush-form">eraser</div>
+			<% } else { %>
+			<div data-brush-form="eraser" class="js-set-brush-form opacity50">eraser</div>
 			<% }; %>
 
 		<% }; %>
