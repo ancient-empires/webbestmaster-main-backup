@@ -13,8 +13,7 @@
 
 		events: {
 			'click .js-open-map-popup': 'openMapPopup',
-			'change .js-tool-width': 'changeWidth',
-			'change .js-tool-height': 'changeHeight',
+			'change .js-tool-size': 'changeSize',
 
 			'click .js-set-brush-type': 'setBrushType',
 			'click .js-set-brush-color': 'setBrushColor',
@@ -259,23 +258,19 @@
 
 		},
 
-		changeWidth: function (e) {
+		changeSize: function (e) {
 
 			var view = this,
 				map = view.get('map'),
 				$this = $(e.currentTarget),
 				value = $this.attr('data-value');
 
-			map.size.width = parseInt(value, 10);
+			map.size[$this.attr('data-group-name')] = parseInt(value, 10);
 			view.drawMap();
 			view.setSize();
 
 			view.get('mover').setDefaultContainerState();
 
-		},
-
-		changeHeight: function (e) {
-			console.log(e.currentTarget);
 		},
 
 		setBrushType: function (e) {

@@ -155,7 +155,7 @@
 						<%= view.tmpl.settingsOnOff({ key: 'confirmTurn', info: info }) %>
 						<div class="setting-name">{{ confirmTurn }}</div>
 					</div>
-					<div class="clear"></div>
+<div class="clear"></div>
 					<div class="js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
 						<%= view.tmpl.settingsOnOff({ key: 'confirmMove', info: info }) %>
 						<div class="setting-name">{{ confirmMove }}</div>
@@ -193,13 +193,11 @@
 						<div class="clear-fix">
 							<% _.each(info.availableLanguages, function(lang) { %>
 							<% if ( lang === info.get('language') ) { %>
-							<div class="js-change-select-setting setting-state" data-key="language"
-								 data-value="<%= lang %>">
+							<div class="js-change-select-setting setting-state" data-key="language" data-value="<%= lang %>">
 								<%= window.APP.languages[lang].shortLanguageName %>
 							</div>
 							<% } else { %>
-							<div class="opacity50 js-change-select-setting setting-state" data-key="language"
-								 data-value="<%= lang %>">
+							<div class="opacity50 js-change-select-setting setting-state" data-key="language" data-value="<%= lang %>">
 								<%= window.APP.languages[lang].shortLanguageName %>
 							</div>
 							<% }; %>
@@ -213,13 +211,11 @@
 							<% _.each(['easy', 'normal', 'hard'], function(difficult) { %>
 							<% var gameDifficulty = window.APP.lang.get(difficult); %>
 							<% if ( difficult === info.get('difficult') ) { %>
-							<div class="js-change-select-setting setting-state" data-key="difficult"
-								 data-value="<%= difficult %>">
+							<div class="js-change-select-setting setting-state" data-key="difficult" data-value="<%= difficult %>">
 								<%= gameDifficulty %>
 							</div>
 							<% } else { %>
-							<div class="opacity50 js-change-select-setting setting-state" data-key="difficult"
-								 data-value="<%= difficult %>">
+							<div class="opacity50 js-change-select-setting setting-state" data-key="difficult" data-value="<%= difficult %>">
 								<%= gameDifficulty %>
 							</div>
 							<% }; %>
@@ -234,13 +230,11 @@
 							<% _.each(['1', '2', '3', '4', '5'], function(speed){ %>
 							<% var gameSpeedWord = window.APP.lang.get('gameSpeed-' + speed); %>
 							<% if ( speed === info.get('gameSpeed') ) { %>
-							<div class="js-change-select-setting setting-state" data-key="gameSpeed"
-								 data-value="<%= speed %>">
+							<div class="js-change-select-setting setting-state" data-key="gameSpeed" data-value="<%= speed %>">
 								<%= gameSpeedWord %>
 							</div>
 							<% } else { %>
-							<div class="opacity50 js-change-select-setting setting-state" data-key="gameSpeed"
-								 data-value="<%= speed %>">
+							<div class="opacity50 js-change-select-setting setting-state" data-key="gameSpeed" data-value="<%= speed %>">
 								<%= gameSpeedWord %>
 							</div>
 							<% }; %>
@@ -260,15 +254,11 @@
 
 <script type="text/x-template" data-name="settingsOnOff">
 
-	<% if (info.get(key) === 'on') { %>
-	<div class="js-change-on-off-setting setting-state on-off-enable" data-key="<%= key %>" data-value="on">[<span
-			class="on-off">*</span>]
-	</div>
-	<% } else { %>
-	<div class="js-change-on-off-setting setting-state" data-key="<%= key %>" data-value="off">[<span
-			class="on-off">*</span>]
-	</div>
-	<% }; %>
+		<% if (info.get(key) === 'on') { %>
+		<div class="js-change-on-off-setting setting-state on-off-enable" data-key="<%= key %>" data-value="on">[<span class="on-off">*</span>]</div>
+		<% } else { %>
+		<div class="js-change-on-off-setting setting-state" data-key="<%= key %>" data-value="off">[<span class="on-off">*</span>]</div>
+		<% }; %>
 
 </script>
 
@@ -367,10 +357,10 @@
 	<div>
 		<div class="js-back">
 			<% if ( header ) { %>
-			<div class="popup-header"><%= header %></div>
+				<div class="popup-header"><%= header %></div>
 			<% }; %>
 			<% if ( text ) { %>
-			<div class="popup-text"><%= text %></div>
+				<div class="popup-text"><%= text %></div>
 			<% }; %>
 		</div>
 	</div>
@@ -381,20 +371,21 @@
 
 	<div>
 
-		<div class="popup-header">{{ maps }}</div>
+			<div class="popup-header">{{ maps }}</div>
 
-		<% var languageField = 'name-' + window.APP.info.get('language'); %>
+			<% var languageField = 'name-' + window.APP.info.get('language'); %>
 
-		<% _.each(mapsInfo, function (map, jsKey) { %>
-		<% if (map.type === 'skirmish') { %>
-		<% var mapName = map[languageField] || map.name; %>
-		<div data-map-name="<%= jsKey %>" class="js-open-map-in-editor">(<%= map.maxPlayers %>) <%= mapName %></div>
-		<% }; %>
-		<% }); %>
+			<% _.each(mapsInfo, function (map, jsKey) { %>
+			<% if (map.type === 'skirmish') { %>
+			<% var mapName = map[languageField] || map.name; %>
+			<div data-map-name="<%= jsKey %>" class="js-open-map-in-editor">(<%= map.maxPlayers %>) <%= mapName %></div>
+			<% }; %>
+			<% }); %>
 
 	</div>
 
 </script>
+
 
 
 <script type="text/x-template" data-name="between-turn-notification">
@@ -505,15 +496,13 @@
 
 			<span>
 				<span class="js-list-backward" data-group-name="team-number-<%= index %>"> <- </span>
-				<span class="js-list-changed-item js-player-team-number" data-group-name="team-number-<%= index %>"
-					  data-full-list="<%= list.teamNumber %>" data-key="<%= player.teamNumber %>"> <%= player.teamNumber %> </span>
+				<span class="js-list-changed-item js-player-team-number" data-group-name="team-number-<%= index %>" data-full-list="<%= list.teamNumber %>" data-key="<%= player.teamNumber %>"> <%= player.teamNumber %> </span>
 				<span class="js-list-forward" data-group-name="team-number-<%= index %>"> -> </span>
 			</span>
 
 			<span>
 				<span class="js-list-backward" data-group-name="player-type-<%= index %>"> <- </span>
-				<span class="js-list-changed-item js-player-type" data-group-name="player-type-<%= index %>"
-					  data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
+				<span class="js-list-changed-item js-player-type" data-group-name="player-type-<%= index %>" data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
 				<span class="js-list-forward" data-group-name="player-type-<%= index %>"> -> </span>
 			</span>
 
@@ -526,8 +515,7 @@
 
 			<span>
 				<span class="js-list-backward" data-group-name="money"> <- </span>
-				<span class="js-list-changed-item js-money" data-group-name="money" data-full-list="<%= list.money %>"
-					  data-key="<%= money %>"> <%= money %> </span>
+				<span class="js-list-changed-item js-money" data-group-name="money" data-full-list="<%= list.money %>" data-key="<%= money %>"> <%= money %> </span>
 				<span class="js-list-forward" data-group-name="money"> -> </span>
 			</span>
 
@@ -538,8 +526,7 @@
 
 			<span>
 				<span class="js-list-backward" data-group-name="unit-limit"> <- </span>
-				<span class="js-list-changed-item js-unit-limit" data-group-name="unit-limit"
-					  data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
+				<span class="js-list-changed-item js-unit-limit" data-group-name="unit-limit" data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
 				<span class="js-list-forward" data-group-name="unit-limit"> -> </span>
 			</span>
 
@@ -562,9 +549,7 @@
 		<% _.each(mapsInfo, function (map, jsKey) { %>
 		<% if (map.type === 'skirmish') { %>
 		<% var mapName = map[languageField] || map.name; %>
-		<div data-route="skirmish-setup-map/<%= jsKey %>" class="js-setup-skirmish-map">(<%= map.maxPlayers %>) <%=
-			mapName %>
-		</div>
+		<div data-route="skirmish-setup-map/<%= jsKey %>" class="js-setup-skirmish-map">(<%= map.maxPlayers %>) <%= mapName %></div>
 		<% }; %>
 		<% }); %>
 
@@ -625,8 +610,8 @@
 		<!--<div class="js-store-wrapper"></div>-->
 		<!--<div class="js-end-turn end-turn">&gt;|</div>-->
 		<!--<div class="js-battle-menu-button battle-menu-button">-->
-		<!--<div class="battle-menu-button-line">&nbsp;</div>-->
-		<!--<div class="battle-menu-button-line">&nbsp;</div>-->
+			<!--<div class="battle-menu-button-line">&nbsp;</div>-->
+			<!--<div class="battle-menu-button-line">&nbsp;</div>-->
 		<!--</div>-->
 		<div class="battle-view-status-bar js-battle-view-status-bar">
 
@@ -657,38 +642,33 @@
 
 	<div>
 
-		<div class="js-tab-button tab-button tab-button-close" data-tab-id="map-info" data-tab-state="close">map info
-		</div>
+		<div class="js-tab-button tab-button tab-button-close" data-tab-id="map-info" data-tab-state="close">map info</div>
 
 		<div class="js-tab-block hidden" data-tab-id="map-info">
 			<div>{{ name }}:</div>
 
-			<input type="text" class="input-text"/>
+			<input type="text" class="input-text" />
 
 			<div>{{ width }}:</div>
 			<span>
 				<span class="js-list-backward" data-group-name="width"> <- </span>
-				<span class="js-list-changed-item js-tool-width" data-group-name="width"
-					  data-full-list="<%= mapSizes %>" data-key="<%= mapWidth.key %>"><%= mapWidth.value %></span>
+				<span class="js-list-changed-item js-tool-size" data-group-name="width" data-full-list="<%= mapSizes %>" data-key="<%= mapWidth.key %>"><%= mapWidth.value %></span>
 				<span class="js-list-forward" data-group-name="width"> -> </span>
 			</span>
-
 			<div>{{ height }}:</div>
 			<span>
 				<span class="js-list-backward" data-group-name="height"> <- </span>
-				<span class="js-list-changed-item js-tool-height" data-group-name="height"
-					  data-full-list="<%= mapSizes %>" data-key="<%= mapHeight.key %>"><%= mapHeight.value %></span>
+				<span class="js-list-changed-item js-tool-size" data-group-name="height" data-full-list="<%= mapSizes %>" data-key="<%= mapHeight.key %>"><%= mapHeight.value %></span>
 				<span class="js-list-forward" data-group-name="height"> -> </span>
 			</span>
 		</div>
 
 
-		<div class="js-tab-button tab-button tab-button-close" data-tab-id="map-draw" data-tab-state="close">map draw
-		</div>
+		<div class="js-tab-button tab-button tab-button-close" data-tab-id="map-draw" data-tab-state="close">map draw</div>
 
 		<div class="js-tab-block hidden" data-tab-id="map-draw">
 
-			<% _.each(["terrain", "unit", "building"], function(type) { %>
+		<% _.each(["terrain", "unit", "building"], function(type) { %>
 
 			<% if ( brush.type === type ) { %>
 			<div class="js-set-brush-type" data-brush-type="<%= type %>"><%= type %></div>
@@ -696,44 +676,42 @@
 			<div class="opacity50 js-set-brush-type" data-brush-type="<%= type %>"><%= type %></div>
 			<% }; %>
 
-			<% }); %>
+		<% }); %>
 
-			<% if ( brush.type !== 'terrain' ) { %>
+		<% if ( brush.type !== 'terrain' ) { %>
 			<div>{{ colors }}:</div>
 			<% _.each(window.APP.map.allColors, function(color){ %>
-			<% if ( brush.color === color ) { %>
-			<div class="bg-gradient-color-<%= color %> js-set-brush-color" data-brush-color="<%= color %>">&nbsp;</div>
-			<% } else { %>
-			<div class="bg-gradient-color-<%= color %> opacity50 js-set-brush-color" data-brush-color="<%= color %>">
-				&nbsp;</div>
-			<% }; %>
+				<% if ( brush.color === color ) { %>
+				<div class="bg-gradient-color-<%= color %> js-set-brush-color" data-brush-color="<%= color %>">&nbsp;</div>
+				<% } else { %>
+				<div class="bg-gradient-color-<%= color %> opacity50 js-set-brush-color" data-brush-color="<%= color %>">&nbsp;</div>
+				<% }; %>
 			<% }); %>
-			<% }; %>
+		<% }; %>
 
-			<% if ( brush.type === 'terrain' ) { %>
+		<% if ( brush.type === 'terrain' ) { %>
 			<% _.each(window.APP.map.terrainTypes, function(terrain) { %>
-			<div class="terrain-<%= terrain %> js-set-brush-form" data-brush-form="<%= terrain %>">&nbsp;</div>
+				<div class="terrain-<%= terrain %> js-set-brush-form" data-brush-form="<%= terrain %>">&nbsp;</div>
 			<% }); %>
-			<% }; %>
+		<% }; %>
 
-			<% if ( brush.type === 'unit' && brush.color !== 'gray') { %>
+		<% if ( brush.type === 'unit' && brush.color !== 'gray') { %>
 			<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
-			<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form" data-brush-form="<%= key %>">
-				&nbsp;</div>
+				<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form" data-brush-form="<%= key %>">&nbsp;</div>
 			<% }); %>
-			<% }; %>
+		<% }; %>
 
-			<% if ( brush.type === 'building' ) { %>
+		<% if ( brush.type === 'building' ) { %>
 			<% _.each(window.APP.building.list, function(buildingData, key) { %>
-			<% if ( _.contains(window.APP.building.noMansBuildingsList, key) ) { %>
-			<div class="building-<%= key %>-gray js-set-brush-form" data-brush-form="<%= key %>">&nbsp;</div>
-			<% } else { %>
-			<div class="building-<%= key %>-<%= brush.color %> js-set-brush-form" data-brush-form="<%= key %>">
-				&nbsp;</div>
-			<% }; %>
+				<% if ( _.contains(window.APP.building.noMansBuildingsList, key) ) { %>
+					<div class="building-<%= key %>-gray js-set-brush-form" data-brush-form="<%= key %>">&nbsp;</div>
+				<% } else { %>
+					<div class="building-<%= key %>-<%= brush.color %> js-set-brush-form" data-brush-form="<%= key %>">&nbsp;</div>
+				<% }; %>
 			<% }); %>
-			<% }; %>
+		<% }; %>
 		</div>
+
 
 
 	</div>
@@ -798,8 +776,7 @@
 			</div>
 			<div class="status-bar-units">
 
-				<% arr = ['icon-unit', 'space'].concat(String(unitCount).split('')).concat(['space', 'slash',
-				'space']).concat(String(unitLimit).split('')); %>
+				<% arr = ['icon-unit', 'space'].concat(String(unitCount).split('')).concat(['space', 'slash', 'space']).concat(String(unitLimit).split('')); %>
 				<% _.each(arr, function(sign) { %>
 				<div class="status-bar-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">
 					<img src="i/fonts/numbers-2-<%= sign %>.png" alt="" class="status-bar-sign"/>
@@ -821,8 +798,7 @@
 			<div class="status-bar-sign-square-wrapper">
 				<% arr = ['def', 'space'].concat(String(armor).split('')); %>
 				<% _.each(arr, function(sign) { %>
-				<div class="status-bar-sign-square-info-block"
-					 style="background-image: url(i/fonts/numbers-1-<%= sign %>.png);">
+				<div class="status-bar-sign-square-info-block" style="background-image: url(i/fonts/numbers-1-<%= sign %>.png);">
 					<img src="i/fonts/numbers-1-<%= sign %>.png" alt="" class="square-info-sign"/>
 					<span class="add-more-sharp">&nbsp;</span>
 				</div>
@@ -851,23 +827,20 @@
 					<% var isCommander = _.contains(unitsData.commanderList, key); %>
 
 					<% if ( unitData.canNotBeBuy ) { %>
-					<% return; %>
+						<% return; %>
 					<% }; %>
 
 					<% if ( isCommander && key !== commander.name ) { %>
-					<% return; %>
+						<% return; %>
 					<% }; %>
 
-					<div class="unit-card-wrapper js-unit-card clear-fix disabled-card"
-						 data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
+					<div class="unit-card-wrapper js-unit-card clear-fix disabled-card" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
 
 						<div class="unit-card-header"><%= langUnits[unitData.langKey].name %>
-							<span class="buy-unit-count js-buy-unit-count hidden" data-unit-count="0"
-								  data-unit-key="<%= key %>"></span>
+							<span class="buy-unit-count js-buy-unit-count hidden" data-unit-count="0" data-unit-key="<%= key %>"></span>
 						</div>
 
-						<div class="unit-shot-info-wrapper clear-fix js-show-unit-description"
-							 data-description-is-show="no" data-unit-key="<%= key %>">
+						<div class="unit-shot-info-wrapper clear-fix js-show-unit-description" data-description-is-show="no" data-unit-key="<%= key %>">
 							<div class="unit-shot-info-image">
 								<div class="unit-image unit-image-<%= key %>-<%= playerColor %>">&nbsp;</div>
 							</div>
@@ -969,23 +942,25 @@
 
 		.popup-wrapper,
 		.popup-wrapper.show-out,
+
 		.attack-square.moving,
+
 		.unit-wrapper.moving {
-			-webkit-transition: -webkit-transform <% = time% > ms ease-out;
-			transition: transform <% = time% > ms ease-out;
+			-webkit-transition: -webkit-transform <%= time %>ms ease-out;
+			transition: transform <%= time %>ms ease-out;
 		}
 
 		.unit-image {
-			-webkit-transition: background <% = time% > ms ease-out;
-			transition: background <% = time% > ms ease-out;
+			-webkit-transition: background <%= time %>ms ease-out;
+			transition: background <%= time %>ms ease-out;
 		}
 
 		.building-smoke-mover,
 		.building-smoke {
-			-webkit-animation-duration: <% = 2.6 *time% > ms;
-			animation-duration: <% = 2.6 *time% > ms;
-			-webkit-animation-delay: <% = 5.2 *time% > ms;
-			animation-delay: <% = 5.2 *time% > ms;
+			-webkit-animation-duration: <%= 2.6 * time %>ms;
+			animation-duration: <%= 2.6 * time %>ms;
+			-webkit-animation-delay: <%= 5.2 * time %>ms;
+			animation-delay: <%= 5.2 * time %>ms;
 		}
 
 		.show-available-path,
@@ -995,24 +970,25 @@
 		.show-occupy-building,
 		.show-confirm-attack,
 		.show-open-store,
+
 		.active-square-mark, /* 2 frames */
 
 		.unit-image, /* 2 frames */
 
 		.unit-level-up.move-up {
-			-webkit-animation-duration: <% = time% > ms;
-			animation-duration: <% = time% > ms;
+			-webkit-animation-duration: <%= time %>ms;
+			animation-duration: <%= time %>ms;
 		}
 
 		.bounce {
-			-webkit-animation-duration: <% = 1.5 *time% > ms;
-			animation-duration: <% = 1.5 *time% > ms;
+			-webkit-animation-duration: <%= 1.5 * time %>ms;
+			animation-duration: <%= 1.5 * time %>ms;
 		}
 
 		.show-unit-under-attack, /* 3 frames */
 		.show-raise-skeleton {
-			-webkit-animation-duration: <% = 1.5 *time% > ms;
-			animation-duration: <% = 1.5 *time% > ms;
+			-webkit-animation-duration: <%= 1.5 * time %>ms;
+			animation-duration: <%= 1.5 * time %>ms;
 		}
 
 	</style>
