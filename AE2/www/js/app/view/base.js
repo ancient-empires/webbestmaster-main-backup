@@ -35,7 +35,11 @@
 			// external
 			'click .js-list-backward[data-group-name]': 'changeSelect',
 			'click .js-list-changed-item[data-group-name]': 'changeSelect',
-			'click .js-list-forward[data-group-name]': 'changeSelect'
+			'click .js-list-forward[data-group-name]': 'changeSelect',
+
+			// tabs
+			'click .js-tab-button': 'tabAction'
+
 		},
 
 		popupUrl: 'popup=true',
@@ -311,6 +315,36 @@
 
 			if ( scrollTop >= maxScrollTop ) {
 				$wrapper.scrollTop(maxScrollTop - 1);
+			}
+
+		},
+
+		tabAction: function (e) {
+
+			var view = this,
+				$el = view.$el,
+				$button = $(e.currentTarget),
+				tabId = $button.attr('data-tab-id'),
+				tabState = $button.attr('data-tab-state'),
+				tabButtonClassPrefix = 'tab-button-',
+				tabBlockSelector = '.js-tab-block',
+				tabButtonSelector = '.js-tab-button',
+				$block = $el.find(tabBlockSelector + '[data-tab-id="' + tabId + '"]'),
+				$blocks = $el.find(tabBlockSelector),
+				$buttons = $el.find(tabButtonSelector);
+
+			$blocks.addClass('hidden');
+			$buttons
+				.addClass(tabButtonClassPrefix + 'close')
+				.removeClass(tabButtonClassPrefix + 'open')
+				.attr('data-tab-state', 'close');
+
+			if (tabState === 'close') {
+				$button
+					.attr('data-tab-state', 'open')
+					.removeClass(tabButtonClassPrefix + 'close')
+					.addClass(tabButtonClassPrefix + 'open');
+				$block.removeClass('hidden');
 			}
 
 		}
