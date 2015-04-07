@@ -243,11 +243,7 @@
 
 			parseData.brush = view.get('brush');
 
-
-
-
-
-
+			parseData.mapName = map.name;
 
 			$node = $(view.tmpl['map-editor-tools'](parseData));
 
