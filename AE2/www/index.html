@@ -669,13 +669,11 @@
 		<div class="js-tab-block hidden" data-tab-id="map-draw">
 
 		<% _.each(["terrain", "unit", "building"], function(type) { %>
-
 			<% if ( brush.type === type ) { %>
 			<div class="js-set-brush-type" data-brush-type="<%= type %>"><%= type %></div>
 			<% } else { %>
 			<div class="opacity50 js-set-brush-type" data-brush-type="<%= type %>"><%= type %></div>
 			<% }; %>
-
 		<% }); %>
 
 		<% if ( brush.type !== 'terrain' ) { %>
@@ -691,28 +689,35 @@
 
 		<% if ( brush.type === 'terrain' ) { %>
 			<% _.each(window.APP.map.terrainTypes, function(terrain) { %>
+				<% if ( brush.form === terrain ) { %>
 				<div class="terrain-<%= terrain %> js-set-brush-form" data-brush-form="<%= terrain %>">&nbsp;</div>
+				<% } else { %>
+				<div class="terrain-<%= terrain %> js-set-brush-form opacity50" data-brush-form="<%= terrain %>">&nbsp;</div>
+				<% }; %>
 			<% }); %>
 		<% }; %>
 
 		<% if ( brush.type === 'unit' && brush.color !== 'gray') { %>
 			<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
+				<% if ( brush.form === key ) { %>
 				<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form" data-brush-form="<%= key %>">&nbsp;</div>
+				<% } else { %>
+				<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form opacity50" data-brush-form="<%= key %>">&nbsp;</div>
+				<% }; %>
 			<% }); %>
 		<% }; %>
 
 		<% if ( brush.type === 'building' ) { %>
 			<% _.each(window.APP.building.list, function(buildingData, key) { %>
-				<% if ( _.contains(window.APP.building.noMansBuildingsList, key) ) { %>
-					<div class="building-<%= key %>-gray js-set-brush-form" data-brush-form="<%= key %>">&nbsp;</div>
+				<% var color = _.contains(window.APP.building.noMansBuildingsList, key) ? 'gray' : brush.color; %>
+				<% if ( brush.form === key ) { %>
+				<div class="building-<%= key %>-<%= color %> js-set-brush-form" data-brush-form="<%= key %>">&nbsp;</div>
 				<% } else { %>
-					<div class="building-<%= key %>-<%= brush.color %> js-set-brush-form" data-brush-form="<%= key %>">&nbsp;</div>
+				<div class="building-<%= key %>-<%= color %> js-set-brush-form opacity50" data-brush-form="<%= key %>">&nbsp;</div>
 				<% }; %>
 			<% }); %>
 		<% }; %>
 		</div>
-
-
 
 	</div>
 

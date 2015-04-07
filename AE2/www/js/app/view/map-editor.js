@@ -67,7 +67,7 @@
 			brush: {
 				color: 'blue',
 				type: 'terrain', // terrain, unit, building
-				form: 'terra-1'
+				form: ''
 			}
 		},
 
@@ -119,7 +119,27 @@
 		},
 
 		onClick: function (xy) {
-			console.log(xy);
+
+			var view = this,
+				map = view.get('map'),
+				brush = view.get('brush');
+
+			if (brush.type === 'terrain') {
+
+				return;
+			}
+
+			if (brush.type === 'unit') {
+
+				return;
+			}
+
+			if (brush.type === 'building') {
+
+				return;
+			}
+
+
 		},
 
 		// just overwrite
@@ -171,11 +191,16 @@
 
 			var view = this,
 				map = view.get('map'),
+				maxX = map.size.width - 1,
+				maxY = map.size.height - 1,
 				buildings = map.buildings,
 				mapMaster = win.APP.map,
 				playerColors = mapMaster.playerColors;
 
 			_.each(buildings, function (building) {
+				if (building.x > maxX || building.y > maxY) {
+					return;
+				}
 				building.color = playerColors[building.ownerId] || 'gray';
 				view.appendBuilding(building);
 			});
@@ -186,6 +211,8 @@
 
 			var view = this,
 				map = view.get('map'),
+				maxX = map.size.width - 1,
+				maxY = map.size.height - 1,
 				units = map.units,
 				mapMaster = win.APP.map,
 				playerColors = mapMaster.playerColors,
@@ -193,6 +220,10 @@
 				commanderList = unitMaster.commanderList;
 
 			_.each(units, function (unitData) {
+
+				if (unitData.x > maxX || unitData.y > maxY) {
+					return;
+				}
 
 				var unitType = unitData.type,
 					unit,
@@ -273,6 +304,21 @@
 			view.setSize();
 
 			view.get('mover').setDefaultContainerState();
+
+			view.reDrawUnits();
+			view.reDrawBuildings();
+
+		},
+
+		reDrawUnits: function () {
+			this.$el.find(this.selectors.unitsWrapper).empty();
+			this.drawUnits();
+		},
+
+		reDrawBuildings: function () {
+
+			this.$el.find(this.selectors.buildingWrapper).empty();
+			this.drawBuildings();
 
 		},
 
