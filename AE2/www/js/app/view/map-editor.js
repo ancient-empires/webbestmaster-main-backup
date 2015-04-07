@@ -260,7 +260,16 @@
 		},
 
 		changeWidth: function (e) {
-			console.log(e.currentTarget);
+
+			var view = this,
+				map = view.get('map'),
+				$this = $(e.currentTarget),
+				value = $this.attr('data-value');
+
+			map.size.width = parseInt(value, 10);
+			view.setSize();
+			view.drawMap();
+
 		},
 
 		changeHeight: function (e) {

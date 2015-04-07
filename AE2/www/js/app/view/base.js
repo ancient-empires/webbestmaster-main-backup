@@ -133,6 +133,7 @@
 			followData = listData[followIndex];
 
 			$container.attr('data-key', followData.key);
+			$container.attr('data-value', followData.value);
 			$container.html(followData.value);
 
 			$container.trigger('change');
