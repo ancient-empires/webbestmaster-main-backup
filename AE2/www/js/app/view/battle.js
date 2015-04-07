@@ -514,7 +514,8 @@
 
 		drawMap: function () {
 
-			var $mapImageWrapper = this.$el.find(this.selectors.mapImageWrapper),
+			var view = this,
+				$mapImageWrapper = this.$el.find(this.selectors.mapImageWrapper),
 				canvas = $mapImageWrapper.get(0),
 				ctx = canvas.getContext('2d'),
 				getXYFromStringXY = this.util.getXYFromStringXY,
@@ -548,6 +549,11 @@
 			ctx.webkitImageSmoothingEnabled = false;
 			ctx.mozImageSmoothingEnabled = false;
 			ctx.imageSmoothingEnabled = false; // future
+
+			// prepare buildings
+			_.each(terrains, function (value, xy) {
+				return _.find(map.buildings, getXYFromStringXY(xy)) && (terrains[xy] = 'terra-1');
+			});
 
 			// draw main tiles
 			_.each(terrains, function (value, xy) {

@@ -183,6 +183,7 @@
 				}
 
 				view.reDrawBuildings();
+				view.drawMap();
 				return;
 			}
 
