@@ -36,6 +36,11 @@ output, progress, section, summary, time, video {
 
 }
 
+input:focus,
+button:focus {
+	outline: none;
+}
+
 /* custom classes */
 .clear {
 	display: block;
