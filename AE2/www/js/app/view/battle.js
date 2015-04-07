@@ -980,7 +980,7 @@
 				selectors = view.selectors,
 				$style = $el.find(selectors.styleSquareSize);
 
-			$style.html('.square { width: ' + squareSize + 'px; height: ' + squareSize + 'px; }');
+			$style.html('.square-grid { background-size: ' + squareSize + 'px ' + squareSize + 'px } .square { width: ' + squareSize + 'px; height: ' + squareSize + 'px; }');
 
 		},
 
