@@ -12,10 +12,22 @@
 	APP.BB.MapEditorView = APP.BB.BattleView.extend({
 
 		events: {
-			'click .js-open-map-popup': 'openMapPopup'
+			'click .js-open-map-popup': 'openMapPopup',
+			'change .js-tool-width': 'changeWidth',
+			'change .js-tool-height': 'changeHeight',
+
+			'click .js-set-brush-type': 'setBrushType',
+			'click .js-set-brush-color': 'setBrushColor',
+			'click .js-set-brush-form': 'setBrushForm'
+
 		},
 
 		selectors: {
+
+			// self
+			toolsWrapper: '.js-map-editor-tools-wrapper',
+
+			// nested
 			mapImageWrapper: '.js-map-image-wrapper',
 			moveAreaWrapper: '.js-move-area-wrapper',
 			moveAreaContainer: '.js-move-area-container',
@@ -41,7 +53,7 @@
 			type: 'skirmish',
 			size: {
 				width: 10,
-				height: 5
+				height: 6
 			},
 			name: 'no name',
 
@@ -50,6 +62,14 @@
 			buildings: {},
 			terrain: {}
 
+		},
+
+		defaults: {
+			brush: {
+				color: 'black',
+				type: 'building', // terrain, unit, building
+				form: 'terra-1'
+			}
 		},
 
 		squareSize: win.APP.map.squareSize,
@@ -62,6 +82,8 @@
 
 			var view = this,
 				util = view.util;
+
+			view.set('brush', view.defaults.brush);
 
 			view.set('clickXY', {});
 
@@ -92,6 +114,8 @@
 			view.render();
 
 			view.proto.initialize.apply(view, arguments);
+
+			view.updateTools();
 
 		},
 
@@ -188,6 +212,97 @@
 
 
 		},
+
+		updateTools: function () {
+
+			function objToDataURL(obj) {
+				return encodeURI(JSON.stringify(obj).replace(/\s/g, ''));
+			}
+
+			var view = this,
+				map = view.get('map'),
+				mapWidth = map.size.width,
+				mapHeight = map.size.height,
+				$wrapper = view.$el.find(view.selectors.toolsWrapper),
+				$node,
+				parseData = {},
+				mapMaster = win.APP.map,
+				mapSizes = [];
+
+			_.each(mapMaster.mapSizes, function (value, key) {
+				mapSizes.push({
+					key: key,
+					value: value
+				});
+			});
+
+			parseData.mapSizes = objToDataURL(mapSizes);
+			parseData.mapHeight = _.find(mapSizes, { value: mapHeight });
+			parseData.mapWidth = _.find(mapSizes, { value: mapWidth });
+
+			parseData.brush = view.get('brush');
+
+
+
+
+
+
+
+			$node = $(view.tmpl['map-editor-tools'](parseData));
+
+			$wrapper.empty();
+
+			$wrapper.append($node);
+
+			view.delegateEvents();
+
+
+		},
+
+		changeWidth: function (e) {
+			console.log(e.currentTarget);
+		},
+
+		changeHeight: function (e) {
+			console.log(e.currentTarget);
+		},
+
+		setBrushType: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget),
+				brush = view.get('brush');
+
+			brush.type = $this.attr('data-brush-type');
+
+			view.updateTools();
+
+		},
+
+		setBrushColor: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget),
+				brush = view.get('brush');
+
+			brush.color = $this.attr('data-brush-color');
+
+			view.updateTools();
+
+		},
+
+		setBrushForm: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget),
+				brush = view.get('brush');
+
+			brush.form = $this.attr('data-brush-form');
+
+			view.updateTools();
+
+		},
+
 
 
 

@@ -593,7 +593,7 @@
 
 
 	<div class="battle-view-wrapper js-map-editor-wrapper">
-		<div class="battle-view-container">
+		<div class="battle-view-container map-editor-container">
 			<div class="battle-view-inner-container js-move-area-wrapper js-no-scroll">
 				<div class="js-move-area-container">
 					<div class="js-main-event-handler main-event-handler"></div>
@@ -623,12 +623,88 @@
 			<div class="float-left">active bush</div>
 
 		</div>
+		<div class="map-editor-tools-wrapper">
+			<div class="map-editor-tools-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area js-map-editor-tools-wrapper">
+
+				</div>
+			</div>
+		</div>
 		<!--<div class="js-battle-menu-static-wrapper"></div>-->
 		<!--<div class="js-view-disable view-disable js-no-scroll hidden"></div>-->
 		<!--<div class="js-view-cpu-disable view-cpu-disable js-no-scroll hidden"></div>-->
 		<style type="text/css" class="js-style-square-size"></style>
 	</div>
 
+</script>
+
+<script type="text/x-template" data-name="map-editor-tools">
+
+	<div>
+
+		<div>{{ name }}:</div>
+
+		<input type="text" class="input-text" />
+
+		<div>{{ width }}:</div>
+		<span>
+			<span class="js-list-backward" data-group-name="width"> <- </span>
+			<span class="js-list-changed-item js-tool-width" data-group-name="width" data-full-list="<%= mapSizes %>" data-key="<%= mapWidth.key %>"><%= mapWidth.value %></span>
+			<span class="js-list-forward" data-group-name="width"> -> </span>
+		</span>
+		<div>{{ height }}:</div>
+		<span>
+			<span class="js-list-backward" data-group-name="height"> <- </span>
+			<span class="js-list-changed-item js-tool-height" data-group-name="height" data-full-list="<%= mapSizes %>" data-key="<%= mapHeight.key %>"><%= mapHeight.value %></span>
+			<span class="js-list-forward" data-group-name="height"> -> </span>
+		</span>
+
+		<% _.each(["terrain", "unit", "building"], function(type) { %>
+
+			<% if ( brush.type === type ) { %>
+			<div class="js-set-brush-type" data-brush-type="<%= type %>"><%= type %></div>
+			<% } else { %>
+			<div class="opacity50 js-set-brush-type" data-brush-type="<%= type %>"><%= type %></div>
+			<% }; %>
+
+		<% }); %>
+
+		<% if ( brush.type !== 'terrain' ) { %>
+			<div>{{ colors }}:</div>
+			<% _.each(window.APP.map.allColors, function(color){ %>
+				<% if ( brush.color === color ) { %>
+				<div class="bg-gradient-color-<%= color %> js-set-brush-color" data-brush-color="<%= color %>">&nbsp;</div>
+				<% } else { %>
+				<div class="bg-gradient-color-<%= color %> opacity50 js-set-brush-color" data-brush-color="<%= color %>">&nbsp;</div>
+				<% }; %>
+			<% }); %>
+		<% }; %>
+
+		<% if ( brush.type === 'terrain' ) { %>
+			<% _.each(window.APP.map.terrainTypes, function(terrain) { %>
+				<div class="terrain-<%= terrain %> js-set-brush-form" data-brush-form="<%= terrain %>">&nbsp;</div>
+			<% }); %>
+		<% }; %>
+
+		<% if ( brush.type === 'unit' && brush.color !== 'gray') { %>
+			<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
+				<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form" data-brush-form="<%= key %>">&nbsp;</div>
+			<% }); %>
+		<% }; %>
+
+		<% if ( brush.type === 'building' ) { %>
+			<% _.each(window.APP.building.list, function(buildingData, key) { %>
+				<% if ( _.contains(window.APP.building.noMansBuildingsList, key) ) { %>
+					<div class="building-<%= key %>-gray js-set-brush-form" data-brush-form="<%= key %>">&nbsp;</div>
+				<% } else { %>
+					<div class="building-<%= key %>-<%= brush.color %> js-set-brush-form" data-brush-form="<%= key %>">&nbsp;</div>
+				<% }; %>
+			<% }); %>
+		<% }; %>
+
+
+
+	</div>
 
 </script>
 

@@ -13,6 +13,7 @@
 			teamNumber: null
 		},
 		upHealthList: ['well', 'temple'], // bot only
+		noMansBuildingsList: ['well', 'temple'], // map editor
 		wantedBuildingList: ['castle', 'farm'], // bot only
 		list: {
 			castle: {

@@ -105,8 +105,10 @@
 		// map editor
 		mapEditor: 'map editor',
 		maps: 'maps',
-
-
+		width: 'width',
+		height: 'height',
+		name: 'name',
+		colors: 'colors',
 
 		aboutText: 'Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
 		instructionsText: [

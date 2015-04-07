@@ -56,10 +56,13 @@
 			return dstCanvas.toDataURL();
 
 		},
+		allColors: ['blue', 'red', 'green', 'black', 'gray'],
 		playerColors: ['blue', 'red', 'green', 'black'],
 		playerTypes: ['player', 'cpu', 'none'],
 		money: [500, 1000, 2000, 5000, 10000],
 		unitsLimits: [10, 15, 20, 25],
+		terrainTypes: ['bridge-1', 'bridge-2', 'forest-1', 'forest-2', 'hill-1', 'road-1', 'stone-1', 'stone-2', 'terra-1', 'terra-2', 'terra-3', 'terra-4', 'terra-5', 'water-1', 'water-2', 'water-3'],
+		mapSizes: [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
 		getTypeByTileName: function (tileName) {
 			return tileName.replace(/\-\d+$/,'');
 		},

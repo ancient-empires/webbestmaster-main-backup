@@ -149,19 +149,13 @@
 				parentView = view.get('parentView'),
 				jsName = $this.attr('data-map-name');
 
-
 			win.APP.map.db.getMap({
 				jsName: jsName
 			}).then(function (map) {
-
 				parentView.initialize({
 					map: map
 				});
-
-
 			});
-
-
 
 		}
 

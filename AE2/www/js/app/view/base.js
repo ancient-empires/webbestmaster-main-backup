@@ -135,6 +135,8 @@
 			$container.attr('data-key', followData.key);
 			$container.html(followData.value);
 
+			$container.trigger('change');
+
 		},
 
 		hide: function () {

@@ -102,6 +102,14 @@
 			//battle menu
 		menu: 'меню',
 
+		// map editor
+		mapEditor: 'map editor',
+		maps: 'maps',
+		width: 'width',
+		height: 'height',
+		name: 'name',
+		colors: 'colors',
+
 		aboutText: 'Программист:<br>Дмитрий Туровцов<br><br>Благодарности:<br>Павел Прилуцкий<br>Игорь Купреев<br>Павел Сычиков',
 		instructionsText: [
 			'Античные Империи это захватывающая стратегия, помещающая вас в роли Короля Галамара в битву за свое королевство.',
