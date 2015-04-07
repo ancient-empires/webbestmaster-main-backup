@@ -57,8 +57,8 @@
 			name: 'no name',
 
 			maxPlayers: null, // set automatically
-			units: {},
-			buildings: {},
+			units: [],
+			buildings: [],
 			terrain: {}
 
 		},
@@ -121,21 +121,60 @@
 		onClick: function (xy) {
 
 			var view = this,
+				xyStr = 'x' + xy.x + 'y' + xy.y,
 				map = view.get('map'),
-				brush = view.get('brush');
+				brush = view.get('brush'),
+				util = win.APP.util,
+				buildingMaster = win.APP.building,
+				mapMaster = win.APP.map,
+				playerColors = mapMaster.playerColors,
+				buildingData;
 
-			if (brush.type === 'terrain') {
-
+			if (brush.type === 'terrain' && brush.form) {
+				map.terrain[xyStr] = brush.form;
+				view.drawMap();
 				return;
 			}
 
-			if (brush.type === 'unit') {
-
+			if (brush.type === 'unit' && brush.form) {
+				util.arrayRemoveByValue(map.units, _.find(map.units, xy));
+				map.units.push({
+					x: xy.x,
+					y: xy.y,
+					type: brush.form,
+					ownerId: playerColors.indexOf(brush.color)
+				});
+				view.reDrawUnits();
 				return;
 			}
 
-			if (brush.type === 'building') {
+			if (brush.type === 'building' && brush.form) {
+				util.arrayRemoveByValue(map.buildings, _.find(map.buildings, xy));
 
+				buildingData = {
+					x: xy.x,
+					y: xy.y,
+					type: brush.form,
+					state: 'normal'
+				};
+
+				if ( _.contains(buildingMaster.noMansBuildingsList, brush.form) ) {
+					buildingData.color = 'gray';
+				}
+
+				if ( brush.form === 'farm-destroyed' ) {
+					buildingData.type = 'farm';
+					buildingData.state = 'destroyed';
+					buildingData.color = 'gray';
+				}
+
+				if ( buildingData.color !== 'gray' ) {
+					buildingData.ownerId = playerColors.indexOf(brush.color);
+				}
+
+				map.buildings.push(buildingData);
+
+				view.reDrawBuildings();
 				return;
 			}
 
@@ -202,6 +241,9 @@
 					return;
 				}
 				building.color = playerColors[building.ownerId] || 'gray';
+				if (building.color === 'gray') {
+					delete building.ownerId;
+				}
 				view.appendBuilding(building);
 			});
 
@@ -229,7 +271,7 @@
 					unit,
 					isCommander = unitType === 'commander' || _.contains(win.APP.unitMaster.commanderList, unitType);
 
-				unitData.color = playerColors[unitData.ownerId] || 'gray';
+				unitData.color = playerColors[unitData.ownerId];
 
 				if ( isCommander ) {
 					unitData.type = commanderList[unitData.ownerId];
@@ -285,9 +327,7 @@
 			view.delegateEvents();
 
 			if (data.open) {
-
 				view.$el.find('.js-tab-button[data-tab-id="' + data.open + '"]').trigger('click');
-
 			}
 
 		},
@@ -329,6 +369,7 @@
 				brush = view.get('brush');
 
 			brush.type = $this.attr('data-brush-type');
+			brush.form = '';
 
 			view.updateTools({
 				open: 'map-draw'

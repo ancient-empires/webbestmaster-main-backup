@@ -716,6 +716,13 @@
 				<div class="building-<%= key %>-<%= color %> js-set-brush-form opacity50" data-brush-form="<%= key %>">&nbsp;</div>
 				<% }; %>
 			<% }); %>
+
+			<% if ( brush.form === 'farm-destroyed' ) { %>
+			<div class="building-farm-destroyed js-set-brush-form" data-brush-form="farm-destroyed">&nbsp;</div>
+			<% } else { %>
+			<div class="building-farm-destroyed js-set-brush-form opacity50" data-brush-form="farm-destroyed">&nbsp;</div>
+			<% }; %>
+
 		<% }; %>
 		</div>
 
