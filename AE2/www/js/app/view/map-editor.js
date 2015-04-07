@@ -65,8 +65,8 @@
 
 		defaults: {
 			brush: {
-				color: 'black',
-				type: 'building', // terrain, unit, building
+				color: 'blue',
+				type: 'terrain', // terrain, unit, building
 				form: 'terra-1'
 			}
 		},
