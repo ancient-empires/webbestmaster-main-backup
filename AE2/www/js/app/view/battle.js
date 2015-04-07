@@ -605,19 +605,19 @@
 					}
 
 					// draw 1, 3, 7, 9 - normal
-					if ( !t1 && !t2 && !t4 ) {
+					if ( !t2 && !t4 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-1'].img, xSquareSizeX2, ySquareSizeX2, squareSize, squareSize);
 					}
 
-					if ( !t3 && !t2 && !t6 ) {
+					if ( !t2 && !t6 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-3'].img, xSquareSizeX2Half, ySquareSizeX2, squareSize, squareSize);
 					}
 
-					if ( !t7 && !t4 && !t8 ) {
+					if ( !t4 && !t8 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-7'].img, xSquareSizeX2, ySquareSizeX2Half, squareSize, squareSize);
 					}
 
-					if ( !t9 && !t6 && !t8 ) {
+					if ( !t6 && !t8 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-9'].img, xSquareSizeX2Half, ySquareSizeX2Half, squareSize, squareSize);
 					}
 
