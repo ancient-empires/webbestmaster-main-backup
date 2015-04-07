@@ -63,6 +63,8 @@
 			var view = this,
 				util = view.util;
 
+			view.set('clickXY', {});
+
 			view.battleProto = APP.BB.BattleView.prototype;
 
 			view.detectClickEvent();
@@ -91,6 +93,15 @@
 
 			view.proto.initialize.apply(view, arguments);
 
+		},
+
+		onClick: function (xy) {
+			console.log(xy);
+		},
+
+		// just overwrite
+		detectDblClick: function () {
+			console.log('dbl click is', this.get('clickXY'));
 		},
 
 		openMapPopup: function () {
