@@ -267,8 +267,10 @@
 				value = $this.attr('data-value');
 
 			map.size.width = parseInt(value, 10);
-			view.setSize();
 			view.drawMap();
+			view.setSize();
+
+			view.get('mover').setDefaultContainerState();
 
 		},
 
