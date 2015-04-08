@@ -615,7 +615,7 @@
 		<!--</div>-->
 		<div class="battle-view-status-bar js-battle-view-status-bar">
 
-			<div class="float-left">save</div>
+			<div class="float-left js-save-map">save</div>
 			<div class="float-left">undo</div>
 			<div class="float-left">redo</div>
 			<div class="float-left js-open-map-popup">open</div>
@@ -642,7 +642,7 @@
 
 	<div>
 
-		<div class="js-tab-button tab-button tab-button-close" data-tab-id="map-info" data-tab-state="close">map info</div>
+		<div class="js-tab-button tab-button tab-button-close" data-tab-id="map-info" data-tab-state="close">info <span class="float-right show-if-close">+</span><span class="float-right show-if-open">-</span></div>
 
 		<div class="js-tab-block hidden" data-tab-id="map-info">
 			<div>{{ name }}:</div>
@@ -664,7 +664,7 @@
 		</div>
 
 
-		<div class="js-tab-button tab-button tab-button-close" data-tab-id="map-draw" data-tab-state="close">map draw</div>
+		<div class="js-tab-button tab-button tab-button-close" data-tab-id="map-draw" data-tab-state="close">tiles <span class="float-right show-if-close">+</span><span class="float-right show-if-open">-</span></div>
 
 		<div class="js-tab-block hidden" data-tab-id="map-draw">
 
@@ -680,26 +680,26 @@
 			<div>{{ colors }}:</div>
 			<% _.each(window.APP.map.allColors, function(color){ %>
 				<% if ( brush.color === color ) { %>
-				<div class="bg-gradient-color-<%= color %> js-set-brush-color" data-brush-color="<%= color %>">&nbsp;</div>
+				<div class="bg-gradient-color-<%= color %> js-set-brush-color map-editor-color-tile" data-brush-color="<%= color %>">&nbsp;</div>
 				<% } else { %>
-				<div class="bg-gradient-color-<%= color %> opacity50 js-set-brush-color" data-brush-color="<%= color %>">&nbsp;</div>
+				<div class="bg-gradient-color-<%= color %> opacity50 js-set-brush-color map-editor-color-tile" data-brush-color="<%= color %>">&nbsp;</div>
 				<% }; %>
 			<% }); %>
 		<% }; %>
-
+		<div class="clear"></div>
 		<% if ( brush.type === 'terrain' ) { %>
 			<% _.each(window.APP.map.terrainTypes, function(terrain) { %>
 				<% if ( brush.form === terrain ) { %>
-				<div class="terrain-<%= terrain %> js-set-brush-form" data-brush-form="<%= terrain %>">&nbsp;</div>
+				<div class="terrain-<%= terrain %> js-set-brush-form map-editor-brush-form-type" data-brush-form="<%= terrain %>">&nbsp;</div>
 				<% } else { %>
-				<div class="terrain-<%= terrain %> js-set-brush-form opacity50" data-brush-form="<%= terrain %>">&nbsp;</div>
+				<div class="terrain-<%= terrain %> js-set-brush-form map-editor-brush-form-type opacity50" data-brush-form="<%= terrain %>">&nbsp;</div>
 				<% }; %>
 			<% }); %>
 
 			<% if ( brush.form === 'eraser' ) { %>
-			<div data-brush-form="eraser" class="js-set-brush-form">eraser</div>
+			<div data-brush-form="eraser" class="js-set-brush-form map-editor-brush-form-type map-editor-brush-form-eraser">&nbsp;</div>
 			<% } else { %>
-			<div data-brush-form="eraser" class="js-set-brush-form opacity50">eraser</div>
+			<div data-brush-form="eraser" class="js-set-brush-form map-editor-brush-form-type opacity50 map-editor-brush-form-eraser">&nbsp;</div>
 			<% }; %>
 
 		<% }; %>
@@ -707,16 +707,16 @@
 		<% if ( brush.type === 'unit' && brush.color !== 'gray') { %>
 			<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
 				<% if ( brush.form === key ) { %>
-				<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form" data-brush-form="<%= key %>">&nbsp;</div>
+				<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form map-editor-brush-form-type" data-brush-form="<%= key %>">&nbsp;</div>
 				<% } else { %>
-				<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form opacity50" data-brush-form="<%= key %>">&nbsp;</div>
+				<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form map-editor-brush-form-type opacity50" data-brush-form="<%= key %>">&nbsp;</div>
 				<% }; %>
 			<% }); %>
 
 			<% if ( brush.form === 'eraser' ) { %>
-			<div data-brush-form="eraser" class="js-set-brush-form">eraser</div>
+			<div data-brush-form="eraser" class="js-set-brush-form map-editor-brush-form-type map-editor-brush-form-eraser">&nbsp;</div>
 			<% } else { %>
-			<div data-brush-form="eraser" class="js-set-brush-form opacity50">eraser</div>
+			<div data-brush-form="eraser" class="js-set-brush-form map-editor-brush-form-type opacity50 map-editor-brush-form-eraser">&nbsp;</div>
 			<% }; %>
 
 		<% }; %>
@@ -725,25 +725,28 @@
 			<% _.each(window.APP.building.list, function(buildingData, key) { %>
 				<% var color = _.contains(window.APP.building.noMansBuildingsList, key) ? 'gray' : brush.color; %>
 				<% if ( brush.form === key ) { %>
-				<div class="building-<%= key %>-<%= color %> js-set-brush-form" data-brush-form="<%= key %>">&nbsp;</div>
+				<div class="building-<%= key %>-<%= color %> js-set-brush-form map-editor-brush-form-type" data-brush-form="<%= key %>">&nbsp;</div>
 				<% } else { %>
-				<div class="building-<%= key %>-<%= color %> js-set-brush-form opacity50" data-brush-form="<%= key %>">&nbsp;</div>
+				<div class="building-<%= key %>-<%= color %> js-set-brush-form map-editor-brush-form-type opacity50" data-brush-form="<%= key %>">&nbsp;</div>
 				<% }; %>
 			<% }); %>
 
 			<% if ( brush.form === 'farm-destroyed' ) { %>
-			<div class="building-farm-destroyed js-set-brush-form" data-brush-form="farm-destroyed">&nbsp;</div>
+			<div class="building-farm-destroyed js-set-brush-form map-editor-brush-form-type" data-brush-form="farm-destroyed">&nbsp;</div>
 			<% } else { %>
-			<div class="building-farm-destroyed js-set-brush-form opacity50" data-brush-form="farm-destroyed">&nbsp;</div>
+			<div class="building-farm-destroyed js-set-brush-form map-editor-brush-form-type opacity50" data-brush-form="farm-destroyed">&nbsp;</div>
 			<% }; %>
 
 			<% if ( brush.form === 'eraser' ) { %>
-			<div data-brush-form="eraser" class="js-set-brush-form">eraser</div>
+			<div data-brush-form="eraser" class="js-set-brush-form map-editor-brush-form-type map-editor-brush-form-eraser">&nbsp;</div>
 			<% } else { %>
-			<div data-brush-form="eraser" class="js-set-brush-form opacity50">eraser</div>
+			<div data-brush-form="eraser" class="js-set-brush-form map-editor-brush-form-type opacity50 map-editor-brush-form-eraser">&nbsp;</div>
 			<% }; %>
 
 		<% }; %>
+
+		<div class="clear"></div>
+
 		</div>
 
 	</div>

@@ -17,7 +17,9 @@
 
 			'click .js-set-brush-type': 'setBrushType',
 			'click .js-set-brush-color': 'setBrushColor',
-			'click .js-set-brush-form': 'setBrushForm'
+			'click .js-set-brush-form': 'setBrushForm',
+
+			'click .js-save-map': 'saveMap'
 
 		},
 
@@ -414,7 +416,71 @@
 
 		},
 
+		saveMap: function () {
 
+			var view = this,
+				map = view.get('map'),
+				endMap = view.util.copyJSON(map),
+				maxX = map.size.width - 1,
+				maxY = map.size.height - 1,
+				buildings = map.buildings,
+				units = map.units,
+				getXYFromStringXY = view.util.getXYFromStringXY,
+				terrain = map.terrain;
+
+			endMap.units = [];
+			endMap.buildings = [];
+			endMap.terrain = {};
+
+			_.each(terrain, function (type, xyStr) {
+
+				var xy = getXYFromStringXY(xyStr);
+
+				if ( xy.x > maxX || xy.y > maxY ) {
+					return;
+				}
+
+				endMap.terrain[xyStr] = type;
+
+			});
+
+			_.each(buildings, function (building) {
+
+				if ( building.x > maxX || building.y > maxY ) {
+					return;
+				}
+
+				building = view.util.copyJSON(building);
+
+				delete building.color;
+
+				endMap.buildings.push(building);
+
+			});
+
+			_.each(units, function (unit) {
+
+				if ( unit.x > maxX || unit.y > maxY ) {
+					return;
+				}
+
+				unit = view.util.copyJSON(unit);
+
+				delete unit.color;
+				delete unit.id;
+
+				endMap.units.push(unit);
+
+			});
+
+
+			console.log(JSON.stringify(endMap));
+
+
+
+
+
+		},
 
 
 

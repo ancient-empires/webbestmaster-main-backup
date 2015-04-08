@@ -24,3 +24,35 @@
 	background: -webkit-linear-gradient(right, #888 0%, #888 4%, transparent 4%, transparent 100%), -webkit-linear-gradient(bottom, #888 0%, #888 4%, transparent 4%, transparent 100%);
 	background-position: 0.04% 0.04%;
 }
+
+.show-if-close,
+.show-if-open {
+	display: none;
+}
+
+.tab-button-close .show-if-close {
+	display: block;
+}
+
+.tab-button-open .show-if-open {
+	display: block;
+}
+
+.map-editor-color-tile {
+	width: 2rem;
+	height: 2rem;
+	float: left;
+}
+
+.map-editor-brush-form-type {
+	float: left;
+	width: 2rem;
+	height: 2rem;
+	margin: 0.5rem;
+	background-size: 100% auto;
+	background-position: bottom center;
+}
+
+.map-editor-brush-form-eraser {
+	background-image: url(../i/ui/eraser.png);
+}
