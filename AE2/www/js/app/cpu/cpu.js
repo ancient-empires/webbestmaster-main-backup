@@ -437,7 +437,7 @@
 
 			});
 
-			if ( bestScenario && bestScenario.get('rate') > 10 ) {
+			if ( bestScenario && bestScenario.get('rate') > 0 ) {
 				cpu.runScenario(bestScenario);
 				return;
 			}
