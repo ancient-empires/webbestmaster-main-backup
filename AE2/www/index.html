@@ -378,7 +378,7 @@
 			<% _.each(mapsInfo, function (map, jsKey) { %>
 			<% if (map.type === 'skirmish') { %>
 			<% var mapName = map[languageField] || map.name; %>
-			<div data-map-name="<%= jsKey %>" class="js-open-map-in-editor">(<%= map.maxPlayers %>) <%= mapName %></div>
+			<div data-map-name="<%= jsKey %>" class="js-open-map-in-editor js-back">(<%= map.maxPlayers %>) <%= mapName %></div>
 			<% }; %>
 			<% }); %>
 
