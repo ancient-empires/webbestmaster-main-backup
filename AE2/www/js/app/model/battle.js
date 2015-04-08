@@ -401,6 +401,11 @@
 						log('show available path and available attack (attack only)');
 						model.clearAvailableActions();
 						view.clearAvailableActions();
+
+						if ( building && buildingData[building.type].canBeStore ) { // try to open store
+							model.tryToOpenStoreByBuilding(building);
+						}
+
 					}
 
 				} else {
