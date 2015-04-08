@@ -1246,7 +1246,7 @@
 				pre = view.info.get('pre', true).css,
 				transitionEnd = view.info.get('transitionEnd', true),
 				squareSize = view.getSquareSize(),
-				$attackNode = $('<div class="attack-square square">&nbsp;</div>'),
+				$attackNode = $('<div class="attack-square square js-attack-square"></div>'),
 				$unitsWrapper = view.$el.find(view.selectors.unitsWrapper);
 
 			view.removeActiveSquare();
@@ -1258,7 +1258,9 @@
 
 			$attackNode.one(transitionEnd, function () {
 
-				$(this).remove();
+				//$(this).remove();
+
+				view.$el.find('.js-attack-square').remove();
 
 				model.clearAvailableActions();
 				view.clearAvailableActions();
