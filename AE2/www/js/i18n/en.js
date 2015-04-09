@@ -189,6 +189,16 @@
 				description: 'Saeth (commander) is very strong in attack and defence. Commanders can also occupy castles to produce troops and can be revived in the castle if they fall in battle.'
 			}
 
+		},
+
+		story: {
+			imgPathPrefix: 'img/pathToImg',
+			list: [
+				'asdas_!_asfsadf_!!_asdsad_!_dadasdsad',
+				'asdas_!_asfsadf',
+				'asdas_!_asfsadf',
+				'asdas_!_asfsadf'
+			]
 		}
 
 	};
