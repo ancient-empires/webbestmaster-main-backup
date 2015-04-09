@@ -16,15 +16,16 @@
 
 		initialize: function () {
 
-			this.$el = $(this.tmpl.title());
+			var view = this;
 
-			this.proto.initialize.apply(this, arguments);
+			view.$el = $(view.tmpl.title());
 
-			this.render();
+			view.proto.initialize.apply(view, arguments);
+
+			view.render();
 
 			log('do not show showRateUs');
 			//this.showRateUs();
-
 
 		},
 

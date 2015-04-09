@@ -11,27 +11,24 @@
 
 	APP.BB.StoryView = APP.BB.BaseView.extend({
 
-		events: {
+		events: {},
 
-		},
-
-		initialize: function (data) { // parentView, pages[]
+		initialize: function (data) { // parentView:view, pageIndex:number
 
 			var view = this,
 				story = window.APP.lang.get('story'),
-				text = story.list[data.pageIndex],
+				text = story.list[data.storyNumber],
 				imgPathPrefix = story.imgPathPrefix,
-				pages = text.split('_!!_');
+				pages = text.split('_!!_'),
+				reDetectImg = /\w+\.png$/;
 
 			pages = _.map(pages, function (page) {
-				var parts = page.split('_!_');
-				parts = _.map(parts, function (part) {
-
+				return _.map(page.split('_!_'), function (part) {
+					return reDetectImg.test(part) ? {type: 'img', src: imgPathPrefix + part} : {type: 'text', src: part};
 				});
-
 			});
 
-			view.$el = $(view.tmpl.story({ text: text }));
+			view.$el = $(view.tmpl.story({pages: pages}));
 
 			view.extendFromObj(data);
 
@@ -42,9 +39,10 @@
 
 		render: function () {
 
+			var view = this,
+				parentView = view.get('parentView');
 
-
-
+			parentView.$el.append(view.$el);
 
 		}
 
