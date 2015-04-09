@@ -106,7 +106,7 @@
 			size: 1024 * 1024 * 20, // 1024 x 1024 x 20 = 1MB x 20 = 20MB
 			db: false, // field for db
 			skirmishMaps: 'skirmish',
-			//missionMaps: 'mission',
+			missionMaps: 'mission',
 
 			init: function () {
 
@@ -117,12 +117,26 @@
 
 				// create tablet if needed
 				db.transaction(function(tx) {
-					//tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.missionMaps + ' (id REAL UNIQUE, js_name TEXT, info TEXT, map TEXT)'); //id REAL UNIQUE, label TEXT, timestamp REAL
-					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.skirmishMaps + ' (jsName TEXT, info TEXT, map TEXT)', [], function () {
+
+					var missionDeferred = $.Deferred(),
+						skirmishDeferred = $.Deferred();
+
+					$.when(missionDeferred, skirmishDeferred).done(function () {
 						dbMaster.prepareDefaultMap();
+					});
+
+					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.missionMaps + ' (jsName TEXT, info TEXT, map TEXT)', [], function () {
+						missionDeferred.resolve();
 					}, function (e) {
 						log(e);
 					});
+
+					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.skirmishMaps + ' (jsName TEXT, info TEXT, map TEXT)', [], function () {
+						skirmishDeferred.resolve();
+					}, function (e) {
+						log(e);
+					});
+
 				});
 
 			},
