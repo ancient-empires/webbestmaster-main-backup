@@ -192,6 +192,7 @@
 			view.addGrave(grave);
 
 			model.checkPlayerDefeat();
+			model.checkEndMission();
 
 		},
 
@@ -202,6 +203,8 @@
 				unitIndex = units.indexOf(unit);
 
 			units.splice(unitIndex, 1);
+
+			model.checkEndMission();
 
 		},
 
@@ -885,24 +888,61 @@
 		// unit actions
 		//////////////////
 
-		checkPlayerDefeat: function () {
+		checkEndMission: function () {
 
-			if ( this.get('map').type === 'mission' ) {
-				return this.checkPlayerDefeatMission();
+			if ( this.get('map').type !== 'mission' ) {
+				return;
 			}
 
-			return this.checkPlayerDefeatSkirmish();
+			// todo: use this if mission is end, win or defeat
+			//win.APP.bb.battleData.isEndGame = 'yes';
 
-		},
+			var model = this,
+				//view = model.get('view'),
+				map = model.get('map'),
+				wins = map.win,
+				isWin,
+				defeats = map.defeat,
+				isDefeat,
+				players = model.get('players');
 
-		checkPlayerDefeatMission: function () {
+			// find win state
+			isWin = model.checkState(wins[0]);
+
+			if (isWin) {
+				win.APP.bb.battleData.isEndGame = 'yes';
+
+				// save mission
+				// run end mission briefing (if exist)
+				// show end mission alert
+				alert('end');
+
+				return true;
+			}
+
+
+
+			// find defeat state
+			_.each(defeats, function (defeat) {
+				isDefeat = isDefeat || model.checkState(defeat);
+			});
+
+			if (isDefeat) {
+				//win.APP.bb.battleData.isEndGame = 'yes';
+				return true
+			}
 
 			// check here win and defeat
 
 			return false;
+
 		},
 
-		checkPlayerDefeatSkirmish: function () {
+		checkPlayerDefeat: function () {
+
+			if ( this.get('map').type !== 'skirmish' ) {
+				return;
+			}
 
 			var model = this,
 				view = model.get('view'),
@@ -1062,6 +1102,44 @@
 			});
 
 			cpu.run();
+
+		},
+
+		checkState: function (state) {
+
+			var model = this,
+				buildings = model.get('buildings'),
+				castles = _.where(buildings, { type: 'castle' }),
+				units = model.get('units'),
+				enemyUnits = _.filter(units, function (unit) {
+					return unit.get('ownerId') === 1;
+				});
+
+			switch (state) {
+
+				case 'allCastles':
+
+					break;
+
+				case 'noEnemyUnit':
+					return !enemyUnits.length;
+					break;
+
+				case 'galamarDead':
+
+					break;
+
+				case 'valadornDead':
+
+					break;
+
+
+
+
+
+
+
+			}
 
 		}
 

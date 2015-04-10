@@ -1141,6 +1141,7 @@
 			view.redrawBuilding(building);
 
 			model.checkPlayerDefeat();
+			model.checkEndMission();
 
 		},
 

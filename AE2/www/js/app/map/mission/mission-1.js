@@ -12,7 +12,7 @@
 		"name": "TEMPLE RAIDERS",
 		"name-ru": "RU TEMPLE RAIDERS",
 		"maxPlayers": 2,
-		"win": ['allCastles'], // allCastles, noEnemyUnit
+		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
 		"defeat": ['galamarDead'], // 'galamarDead', 'valadornDead'
 		"cases": [
 			{
