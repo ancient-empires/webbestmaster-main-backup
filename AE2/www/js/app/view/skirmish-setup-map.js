@@ -15,11 +15,52 @@
 			'click .js-go-to-battle': 'goToBattle'
 		},
 
-		initialize: function (jsMapKey) {
+		initialize: function (jsMapKey, data) {
 
-			var view = this;
+			data = data || {};
+
+			var view = this,
+				missionType = data.type || 'skirmish';
 
 			view.set('jsMapKey', jsMapKey);
+
+			if ( data.type === 'mission' ) {
+
+				win.APP.map.db.getMapInfo({
+					jsName: jsMapKey,
+					type: missionType
+				}).then(function (mapInfo) {
+
+					// todo: get data from mapInfo
+
+					new win.APP.BB.BattleView({
+						jsMapKey: jsMapKey,
+						type: missionType,
+						money: 500,
+						unitLimit: 10,
+						players: [
+							{
+								teamNumber: 1,
+								id: 0,
+								type: 'player',
+								color: 'blue'
+
+							},
+							{
+								teamNumber: 2,
+								id: 1,
+								type: 'cpu',
+								color: 'red'
+							}
+						]
+					});
+
+					view.navigate('battle');
+
+				});
+
+				return;
+			}
 
 			win.APP.map.db.getMapInfo({
 				jsName: jsMapKey

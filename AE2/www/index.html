@@ -382,10 +382,8 @@
 			<% var languageField = 'name-' + window.APP.info.get('language'); %>
 
 			<% _.each(mapsInfo, function (map, jsKey) { %>
-			<% if (map.type === 'skirmish') { %>
 			<% var mapName = map[languageField] || map.name; %>
 			<div data-map-name="<%= jsKey %>" class="js-open-map-in-editor js-back">(<%= map.maxPlayers %>) <%= mapName %></div>
-			<% }; %>
 			<% }); %>
 
 	</div>
@@ -553,10 +551,8 @@
 		<% var languageField = 'name-' + window.APP.info.get('language'); %>
 
 		<% _.each(mapsInfo, function (map, jsKey) { %>
-		<% if (map.type === 'skirmish') { %>
 		<% var mapName = map[languageField] || map.name; %>
-		<div data-route="skirmish-setup-map/<%= jsKey %>" class="js-setup-skirmish-map">(<%= map.maxPlayers %>) <%= mapName %></div>
-		<% }; %>
+		<div data-route="skirmish-setup-map/<%= jsKey %>" class="">(<%= map.maxPlayers %>) <%= mapName %></div>
 		<% }); %>
 
 	</div>
@@ -920,12 +916,16 @@
 
 		<h1>{{ selectLevel }}</h1>
 
-		<ul>
-			<li>open level 1</li>
-			<li>open level 2</li>
-			<li>open level 3</li>
-			<li>open level 4</li>
-		</ul>
+		<% var languageField = 'name-' + window.APP.info.get('language'); %>
+
+		<% _.each(mapsInfo, function (map, jsKey) { %>
+		<% var mapName = map[languageField] || map.name; %>
+			<% if (map.isOpen) { %>
+				<div data-route="mission-setup-map/<%= jsKey %>" class=""><%= mapName %></div>
+			<% } else { %>
+				<div data-route="mission-setup-map/<%= jsKey %>" class="disable"><%= mapName %></div>
+			<% }; %>
+		<% }); %>
 
 	</div>
 

@@ -15,11 +15,19 @@
 
 		initialize: function () {
 
-			this.$el = $(this.tmpl.selectLevel());
+			var view = this;
 
-			this.proto.initialize.apply(this, arguments);
+			win.APP.map.db.getMapsInfo({ type: 'mission' }).then(function (mapsInfo) {
 
-			this.render();
+				view.$el = $(view.tmpl.selectLevel({
+					mapsInfo: mapsInfo
+				}));
+
+				view.proto.initialize.apply(view, arguments);
+
+				view.render();
+
+			});
 
 		}
 

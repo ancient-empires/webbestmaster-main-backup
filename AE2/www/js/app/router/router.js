@@ -20,6 +20,7 @@
 			'load-game': 'loadGame',
 			'select-level': 'selectLevel',
 			'skirmish-select-map': 'skirmishSelectMap',
+			'mission-setup-map/:jsMapKey': 'missionSetupMap',
 			'skirmish-setup-map/:jsMapKey': 'skirmishSetupMap',
 			'battle': 'battle',
 			'main-battle-menu': 'mainBattleMenu',
@@ -60,6 +61,10 @@
 
 		skirmishSetupMap: function (jsMapKey) {
 			new APP.BB.SkirmishSetupMapView(jsMapKey);
+		},
+
+		missionSetupMap: function (jsMapKey) {
+			new APP.BB.SkirmishSetupMapView(jsMapKey, {type: 'mission'});
 		},
 
 		battle: function () {
