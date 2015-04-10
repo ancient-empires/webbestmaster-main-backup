@@ -12,6 +12,42 @@
 		"name": "TEMPLE RAIDERS",
 		"name-ru": "RU TEMPLE RAIDERS",
 		"maxPlayers": 2,
+		"win": ['allCastles'], // allCastles, noEnemyUnit
+		"defeat": ['galamarDead'], // 'galamarDead', 'valadornDead'
+		"cases": [
+			{
+				isDone: false,
+				detect: 'noEnemyUnit',
+				do: 'appendUnits',
+				units: [
+					{
+						type: 'archer',
+						ownerId: 1,
+						x: 4,
+						y: 5
+					},
+					{
+						type: 'soldier',
+						ownerId: 1,
+						x: 6,
+						y: 5
+					}
+				]
+			},
+			{
+				isDone: false,
+				detect: 'commanderOnXYs',
+				do: 'appendUnits',
+				units: [
+					{
+						type: 'archer',
+						ownerId: 1,
+						x: 4,
+						y: 5
+					}
+				]
+			}
+		],
 		"units": [
 			{"x": 10, "y": 3, "type": "skeleton", "ownerId": 1},
 			{"x": 8, "y": 3, "type": "skeleton", "ownerId": 1},
