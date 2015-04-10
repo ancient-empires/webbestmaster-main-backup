@@ -269,6 +269,8 @@
 		startGame: function () {
 
 			var model = this,
+				map = model.get('map'),
+				mapType = map.type,
 				view = model.get('view');
 
 			model.set('activePlayer', model.get('players')[0]);
@@ -277,7 +279,14 @@
 
 			model.autoSetWispAura();
 
-			view.showObjective();
+			if (mapType === 'skirmish') {
+				view.showObjective();
+			}
+
+			if (mapType === 'mission') {
+				debugger
+				alert('show start briefing!');
+			}
 
 		},
 

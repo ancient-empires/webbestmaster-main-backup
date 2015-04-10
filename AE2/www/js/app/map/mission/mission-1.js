@@ -14,6 +14,23 @@
 		"maxPlayers": 2,
 		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
 		"defeat": ['galamarDead'], // 'galamarDead', 'valadornDead'
+
+		"objective": '',
+		"startBriefing": [],
+		"n1Briefing": [],
+		"n2Briefing": [],
+		"n3Briefing": [],
+		"n4Briefing": [],
+		"endBriefing": [],
+
+		"objective-ru": '',
+		"startBriefing-ru": [],
+		"n1Briefing-ru": [],
+		"n2Briefing-ru": [],
+		"n3Briefing-ru": [],
+		"n4Briefing-ru": [],
+		"endBriefing-ru": [],
+
 		"cases": [
 			{
 				isDone: false,

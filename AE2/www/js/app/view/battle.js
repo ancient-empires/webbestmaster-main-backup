@@ -1448,15 +1448,31 @@
 		showObjective: function () {
 
 			var view = this,
+				model = view.get('model'),
+				map = model.get('map'),
+				mapType = map.type,
 				lang = win.APP.lang;
 
-			view.showPopup({
-				popupName: 'simple-notification',
-				popupData: {
-					header: lang.get('objective'),
-					text: lang.get('skirmishObjective')
-				}
-			});
+			if ( mapType === 'mission' ) {
+				debugger
+				return view.showPopup({
+					popupName: 'simple-notification',
+					popupData: {
+						header: lang.get('objective'),
+						text: lang.get('skirmishObjective')
+					}
+				});
+			}
+
+			if ( mapType === 'skirmish' ) {
+				return view.showPopup({
+					popupName: 'simple-notification',
+					popupData: {
+						header: lang.get('objective'),
+						text: lang.get('skirmishObjective')
+					}
+				});
+			}
 
 		},
 
