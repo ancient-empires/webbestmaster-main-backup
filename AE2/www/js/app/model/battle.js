@@ -887,14 +887,31 @@
 
 		checkPlayerDefeat: function () {
 
+			if ( this.get('map').type === 'mission' ) {
+				return this.checkPlayerDefeatMission();
+			}
+
+			return this.checkPlayerDefeatSkirmish();
+
+		},
+
+		checkPlayerDefeatMission: function () {
+
+			// check here win and defeat
+
+			return false;
+		},
+
+		checkPlayerDefeatSkirmish: function () {
+
 			var model = this,
 				view = model.get('view'),
 				players = model.get('players'),
 				looser = false,
 				teamsNumbers = [],
 				util = win.APP.util,
-				//winTeam,
-				//looserTeam,
+			//winTeam,
+			//looserTeam,
 				looserBuilding,
 				teamOfLooser;
 
