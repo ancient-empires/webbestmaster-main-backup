@@ -99,8 +99,6 @@
 					args: ['select-level']
 				}
 			}
-
-
 		],
 
 		"objective-ru": 'RU - Stop the raiders, King Galamar must survive.',

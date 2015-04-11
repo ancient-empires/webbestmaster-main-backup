@@ -919,15 +919,13 @@
 			// find win state
 			isWin = model.checkState(wins[0]);
 
-			if (isWin || 1) {
+			if (isWin) {
 				//win.APP.bb.battleData.isEndGame = 'yes'; // will be set after las notification in endBriefing
 				view.showBriefing({
 					briefingName: 'endBriefing'
 				});
 				return true;
 			}
-
-
 
 			// find defeat state
 			_.each(defeats, function (defeat) {
@@ -936,6 +934,14 @@
 
 			if (isDefeat) {
 				//win.APP.bb.battleData.isEndGame = 'yes';
+				win.APP.bb.battleData.isEndGame = 'yes';
+				view.showPopup({
+					popupName: 'win-or-defeat',
+					parentView: view,
+					popupData: {
+						header: win.APP.lang.get('defeat')
+					}
+				});
 				return true
 			}
 
