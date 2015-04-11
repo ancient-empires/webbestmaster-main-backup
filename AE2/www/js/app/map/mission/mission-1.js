@@ -21,7 +21,7 @@
 		"startBriefing": [
 			{
 				popupName: 'briefing',
-				from: 'left',
+				from: 'left bottom',
 				popupData: {
 					text: 'Help us! We are under attack! These skeleton raiders have stolen the Crystal of Courage we swore to protect!',
 					img: 'tamplier.png'
@@ -29,7 +29,7 @@
 			},
 			{
 				popupName: 'briefing',
-				from: 'right',
+				from: 'right bottom',
 				popupData: {
 					text: 'Captain, we must stop this menace at once!',
 					img: 'soldier.png'
@@ -37,7 +37,7 @@
 			},
 			{
 				popupName: 'briefing',
-				from: 'left',
+				from: 'left bottom',
 				popupData: {
 					text: 'Forward troops! Make these raiders pay!',
 					img: 'galamar.png'

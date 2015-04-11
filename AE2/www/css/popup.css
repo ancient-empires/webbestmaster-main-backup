@@ -38,6 +38,16 @@
 	text-align: center;
 }
 
+.popup-wrapper.bottom .popup-container {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+.popup-wrapper.bottom .popup-form {
+	width: 100%;
+}
+
 .popup-form {
 	width: 90%;
 	box-sizing: border-box;
