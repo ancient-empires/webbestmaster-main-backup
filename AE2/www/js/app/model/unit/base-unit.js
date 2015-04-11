@@ -92,12 +92,11 @@
 				silents = unit.get('silents'),
 				model = unit.get('model');
 
-			model.checkCases();
-
 			if ( silents.x || silents.y ) {
 				return;
 			}
 
+			model.checkCases();
 			model.autoSetWispAura();
 
 		},

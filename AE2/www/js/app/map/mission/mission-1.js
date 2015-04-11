@@ -51,10 +51,24 @@
 				}
 			}
 		],
-		"n1Briefing": [],
-		"n2Briefing": [],
-		"n3Briefing": [],
-		"n4Briefing": [],
+		"n1Briefing": [
+			{
+				popupName: 'briefing',
+				from: 'left bottom',
+				popupData: {
+					text: 'More attackers!',
+					img: 'galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right bottom',
+				popupData: {
+					text: 'These are no raiders! They look like enemy troops! Be careful, Captain!',
+					img: 'soldier.png'
+				}
+			}
+		],
 		"endBriefing": [
 			{
 				popupName: 'briefing',
@@ -111,16 +125,13 @@
 			}
 		],
 		"n1Briefing-ru": [],
-		"n2Briefing-ru": [],
-		"n3Briefing-ru": [],
-		"n4Briefing-ru": [],
 		"endBriefing-ru": [],
 
 		"cases": [
 			{
 				isDone: false,
 				detect: 'noEnemyUnit',
-				do: 'appendUnits',
+				do: ['appendUnits', 'showBriefing'],
 				units: [
 					{
 						type: 'archer',
@@ -134,20 +145,8 @@
 						x: 6,
 						y: 5
 					}
-				]
-			},
-			{
-				isDone: false,
-				detect: 'commanderOnXYs',
-				do: 'appendUnits',
-				units: [
-					{
-						type: 'archer',
-						ownerId: 1,
-						x: 4,
-						y: 5
-					}
-				]
+				],
+				briefingName: 'n1Briefing'
 			}
 		],
 		"units": [

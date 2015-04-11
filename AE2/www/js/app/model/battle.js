@@ -127,8 +127,51 @@
 
 		},
 
-		autoSetCommandersName: function () {
+		appendUnitNearFrom: function (unitData) {
+			
+			var model = this,
+				view = model.get('view'),
+				mapSize = model.get('map').size,
+				unitLimit = model.get('unitLimit'),
+				mapWidth = mapSize.width,
+				mapHeight = mapSize.height,
+				getPathSize = win.APP.util.getPathSize,
+				currentXY = {
+					x: unitData.x,
+					y: unitData.y
+				},
+				players = model.get('players'),
+				player = _.find(players, {id: unitData.ownerId}),
+				freeXYs = [],
+				y, x, xy;
 
+			for (x = 0; x < mapWidth; x += 1) {
+				for (y = 0; y < mapHeight; y += 1) {
+					xy = {x: x, y: y};
+					if ( !model.getUnitByXY(xy) ) {
+						freeXYs.push(xy);
+					}
+				}
+			}
+
+			freeXYs = freeXYs.sort(function (xy1, xy2) {
+				return getPathSize(currentXY, xy1) - getPathSize(currentXY, xy2);
+			});
+
+			model.appendUnit({
+				type: unitData.type,
+				ownerId: unitData.ownerId,
+				teamNumber: player.teamNumber,
+				color: player.color,
+				x: freeXYs[0].x,
+				y: freeXYs[0].y
+			});
+
+			view.updateStatusBar();
+
+		},
+		
+		autoSetCommandersName: function () {
 
 			var model = this,
 				players = model.get('players'),
@@ -904,7 +947,9 @@
 				return;
 			}
 
-			this.checkCases();
+			if ( this.checkCases() ) {
+				return false;
+			}
 
 			var model = this,
 				view = model.get('view'),
@@ -916,7 +961,9 @@
 				players = model.get('players');
 
 			// find win state
-			isWin = model.checkState(wins[0]);
+			isWin = model.checkState({
+				detect: wins[0]
+			});
 
 			if (isWin) {
 				//win.APP.bb.battleData.isEndGame = 'yes'; // will be set after las notification in endBriefing
@@ -928,7 +975,9 @@
 
 			// find defeat state
 			_.each(defeats, function (defeat) {
-				isDefeat = isDefeat || model.checkState(defeat);
+				isDefeat = isDefeat || model.checkState({
+					detect: defeat
+				});
 			});
 
 			if (isDefeat) {
@@ -1062,7 +1111,46 @@
 		},
 
 		checkCases: function () {
-			console.log('check cases');
+
+			var model = this,
+				view = model.get('view'),
+				map = model.get('map'),
+				cases = map.cases,
+				theCase = _.find(cases, { isDone: false });
+
+			if ( !theCase ) {
+				return false;
+			}
+
+			if ( !model.checkState(theCase) ) {
+				return false;
+			}
+
+			theCase.isDone = true;
+
+			_.each(theCase.do, function (doIt) {
+				switch (doIt) {
+
+					case 'appendUnits':
+						_.each(theCase.units, function (unit) {
+							model.appendUnitNearFrom(unit);
+						});
+						break;
+
+					case 'showBriefing':
+
+						view.showBriefing({
+							briefingName: theCase.briefingName
+						});
+
+						break;
+
+				}
+
+			});
+
+			return true;
+
 		},
 
 		playerHasCastle: function (player) {
@@ -1121,7 +1209,7 @@
 
 		},
 
-		checkState: function (state) {
+		checkState: function (theCase) {
 
 			var model = this,
 				buildings = model.get('buildings'),
@@ -1131,7 +1219,7 @@
 					return unit.get('ownerId') === 1;
 				});
 
-			switch (state) {
+			switch (theCase.detect) {
 
 				case 'allCastles':
 
