@@ -15,7 +15,7 @@
 		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
 		"defeat": ['galamarDead'], // 'galamarDead', 'valadornDead'
 
-		"objective": '',
+		"objective": 'Stop the raiders, King Galamar must survive.',
 		"startBriefing": [],
 		"n1Briefing": [],
 		"n2Briefing": [],
@@ -23,7 +23,7 @@
 		"n4Briefing": [],
 		"endBriefing": [],
 
-		"objective-ru": '',
+		"objective-ru": 'RU - Stop the raiders, King Galamar must survive.',
 		"startBriefing-ru": [],
 		"n1Briefing-ru": [],
 		"n2Briefing-ru": [],

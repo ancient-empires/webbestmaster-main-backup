@@ -1451,15 +1451,15 @@
 				model = view.get('model'),
 				map = model.get('map'),
 				mapType = map.type,
-				lang = win.APP.lang;
+				lang = win.APP.lang,
+				languageField = 'objective-' + view.info.get('language');
 
 			if ( mapType === 'mission' ) {
-				debugger
 				return view.showPopup({
 					popupName: 'simple-notification',
 					popupData: {
 						header: lang.get('objective'),
-						text: lang.get('skirmishObjective')
+						text: map[languageField] || map.objective
 					}
 				});
 			}
