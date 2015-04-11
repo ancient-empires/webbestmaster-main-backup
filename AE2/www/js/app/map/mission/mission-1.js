@@ -15,7 +15,7 @@
 		"name-ru": "RU TEMPLE RAIDERS",
 		"maxPlayers": 2,
 		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
-		"defeat": ['galamarDead'], // 'galamarDead', 'valadornDead'
+		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
 		"objective": 'Stop the raiders, King Galamar must survive.',
 		"startBriefing": [

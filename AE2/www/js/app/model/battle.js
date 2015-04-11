@@ -1217,7 +1217,12 @@
 				units = model.get('units'),
 				enemyUnits = _.filter(units, function (unit) {
 					return unit.get('ownerId') === 1;
-				});
+				}),
+				playerUnits = _.filter(units, function (unit) {
+					return unit.get('ownerId') === 0;
+				}),
+				players = model.get('players'),
+				player = _.find(players, {id: 0});
 
 			switch (theCase.detect) {
 
@@ -1226,13 +1231,22 @@
 					break;
 
 				case 'noEnemyUnit':
+
 					return !enemyUnits.length;
-					break;
-
-				case 'galamarDead':
 
 					break;
 
+				case 'commanderIsDead':
+
+					if (player.commander.isLive) {
+						return false;
+					}
+
+					return {
+						type: 'commanderIsDead'
+					};
+
+					break;
 				case 'valadornDead':
 
 					break;
