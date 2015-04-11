@@ -5,6 +5,8 @@
 	/*global window */
 	/*global */
 
+	var langEn = win.APP.languages.en;
+
 	win.APP.maps.mission_1 = {
 		"type": "mission",
 		"isOpen": true,
@@ -16,7 +18,39 @@
 		"defeat": ['galamarDead'], // 'galamarDead', 'valadornDead'
 
 		"objective": 'Stop the raiders, King Galamar must survive.',
-		"startBriefing": [],
+		"startBriefing": [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				popupData: {
+					text: 'Help us! We are under attack! These skeleton raiders have stolen the Crystal of Courage we swore to protect!',
+					img: 'tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				popupData: {
+					text: 'Captain, we must stop this menace at once!',
+					img: 'soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				popupData: {
+					text: 'Forward troops! Make these raiders pay!',
+					img: 'galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.objective,
+					text: 'Stop the raiders, King Galamar must survive.'
+				}
+			}
+		],
 		"n1Briefing": [],
 		"n2Briefing": [],
 		"n3Briefing": [],
@@ -24,7 +58,14 @@
 		"endBriefing": [],
 
 		"objective-ru": 'RU - Stop the raiders, King Galamar must survive.',
-		"startBriefing-ru": [],
+		"startBriefing-ru": [
+			{
+				popupName: 'briefing',
+				text: 'ru - Help us! We are under attack! These skeleton raiders have stolen the Crystal of Courage we swore to protect!',
+				from: 'right',
+				img: 'tamplier.png'
+			}
+		],
 		"n1Briefing-ru": [],
 		"n2Briefing-ru": [],
 		"n3Briefing-ru": [],

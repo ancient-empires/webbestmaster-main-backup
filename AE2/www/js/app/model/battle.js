@@ -284,8 +284,9 @@
 			}
 
 			if (mapType === 'mission') {
-				debugger
-				alert('show start briefing!');
+				view.showBriefing({
+					briefingName: 'startBriefing'
+				});
 			}
 
 		},

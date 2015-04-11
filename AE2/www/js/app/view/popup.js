@@ -37,6 +37,8 @@
 
 			view.$el = $(view.tmpl['popup-wrapper']());
 
+			view.$el.addClass(data.from || 'left');
+
 			view.proto.initialize.apply(this, arguments);
 
 			view.render();

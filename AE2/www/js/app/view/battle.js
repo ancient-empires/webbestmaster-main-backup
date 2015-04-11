@@ -1476,6 +1476,33 @@
 
 		},
 
+		showBriefing: function (data) {
+
+			data = data || {};
+
+			var view = this,
+				model = view.get('model'),
+				info = view.info,
+				map = model.get('map'),
+				briefingName = data.briefingName,
+				languageField = briefingName + '-' + info.get('language'),
+				briefingList = map[languageField] || map[briefingName],
+				deferred = $.Deferred(),
+				promise = deferred.promise(),
+				nextFunction;
+
+			_.each(briefingList, function (item) {
+				nextFunction = (nextFunction || promise).then(function () {
+					return view.showPopup(item);
+				});
+			});
+
+			setTimeout(function () {
+				deferred.resolve();
+			}, info.actionTime());
+
+		},
+		
 		openMenu: function () {
 
 			new APP.BB.BattleMenuView({
