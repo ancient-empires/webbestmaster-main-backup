@@ -145,14 +145,14 @@
 					{
 						type: 'archer',
 						ownerId: 1,
-						x: 4,
-						y: 5
+						x: 1,
+						y: 1
 					},
 					{
 						type: 'soldier',
 						ownerId: 1,
-						x: 6,
-						y: 5
+						x: 10,
+						y: 10
 					}
 				],
 				briefingName: 'n1Briefing'
