@@ -955,14 +955,16 @@
 				view = model.get('view'),
 				map = model.get('map'),
 				wins = map.win,
-				isWin,
+				isWin = true,
 				defeats = map.defeat,
-				isDefeat,
+				isDefeat = false,
 				players = model.get('players');
 
 			// find win state
-			isWin = model.checkState({
-				detect: wins[0]
+			_.each(wins, function (win) {
+				isWin = isWin && model.checkState({
+					detect: win
+				});
 			});
 
 			if (isWin) {
