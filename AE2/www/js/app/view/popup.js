@@ -39,6 +39,10 @@
 
 			view.$el.addClass(data.from || 'left');
 
+			if (data.cssClass) {
+				view.$el.addClass(data.cssClass);
+			}
+
 			view.proto.initialize.apply(this, arguments);
 
 			view.render();
