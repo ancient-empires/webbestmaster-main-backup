@@ -13,7 +13,9 @@
 
 		},
 
-		initialize: function () {
+		initialize: function (data) {
+
+			data = data || {};
 
 			var view = this;
 
@@ -24,6 +26,11 @@
 				}));
 
 				view.proto.initialize.apply(view, arguments);
+
+				if (data.newGame) {
+					view.routeByUrl('mission-setup-map/mission_1', { trigger: true });
+					return;
+				}
 
 				view.render();
 

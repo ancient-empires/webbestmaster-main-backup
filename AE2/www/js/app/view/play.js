@@ -9,8 +9,12 @@
 
 	APP.BB.PlayView = APP.BB.BaseView.extend({
 
-		events: {
+		selectors: {
+			startGame: '.js-start-game'
+		},
 
+		events: {
+			'click .js-start-game': 'startGame'
 		},
 
 		initialize: function () {
@@ -20,6 +24,15 @@
 			this.proto.initialize.apply(this, arguments);
 
 			this.render();
+
+		},
+
+		startGame: function () {
+			this.routeByUrl('select-level', {trigger: false});
+
+			new APP.BB.SelectLevelView({
+				newGame: true
+			});
 
 		}
 
