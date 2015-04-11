@@ -904,8 +904,7 @@
 				return;
 			}
 
-			// todo: use this if mission is end, win or defeat
-			//win.APP.bb.battleData.isEndGame = 'yes';
+			this.checkCases();
 
 			var model = this,
 				view = model.get('view'),
@@ -1060,6 +1059,10 @@
 
 			return false;
 
+		},
+
+		checkCases: function () {
+			console.log('check cases');
 		},
 
 		playerHasCastle: function (player) {
