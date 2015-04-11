@@ -203,6 +203,20 @@
 
 		},
 
+		backTo: function (url) {
+
+			(function backTo() {
+				setTimeout(function () {
+					if (Backbone.history.fragment === url) {
+						return;
+					}
+					Backbone.history.history.back();
+					backTo();
+				}, 200);
+			}());
+
+		},
+
 		showPopup: function(data) {
 
 			var view = this,

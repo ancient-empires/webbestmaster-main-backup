@@ -908,7 +908,7 @@
 			//win.APP.bb.battleData.isEndGame = 'yes';
 
 			var model = this,
-				//view = model.get('view'),
+				view = model.get('view'),
 				map = model.get('map'),
 				wins = map.win,
 				isWin,
@@ -919,14 +919,11 @@
 			// find win state
 			isWin = model.checkState(wins[0]);
 
-			if (isWin) {
-				win.APP.bb.battleData.isEndGame = 'yes';
-
-				// save mission
-				// run end mission briefing (if exist)
-				// show end mission alert
-				alert('end');
-
+			if (isWin || 1) {
+				//win.APP.bb.battleData.isEndGame = 'yes'; // will be set after las notification in endBriefing
+				view.showBriefing({
+					briefingName: 'endBriefing'
+				});
 				return true;
 			}
 

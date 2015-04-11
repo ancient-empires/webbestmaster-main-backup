@@ -55,7 +55,53 @@
 		"n2Briefing": [],
 		"n3Briefing": [],
 		"n4Briefing": [],
-		"endBriefing": [],
+		"endBriefing": [
+			{
+				popupName: 'briefing',
+				from: 'right bottom',
+				popupData: {
+					text: 'Thank you, your Majesty, you must help us return the Crystal as quickly as possible. Such an important relic must not fall into the wrong hands!',
+					img: 'tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left bottom',
+				popupData: {
+					text: 'I am at your service. Who could possibly be after the Crystal?',
+					img: 'galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right bottom',
+				popupData: {
+					text: 'I fear these criminals may be allied to a greater evil. It would be wise to consult with the High Priest at the Temple of Wisdom. He may know more of this.',
+					img: 'tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left bottom',
+				popupData: {
+					text: 'I shall send my brother Valadorn there immediately. I will take my troops and follow the attackers who got away.',
+					img: 'galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.victory,
+					text: 'Go to next mission!'
+				},
+				onHide: {
+					fn: 'backTo',
+					args: ['select-level']
+				}
+			}
+
+
+		],
 
 		"objective-ru": 'RU - Stop the raiders, King Galamar must survive.',
 		"startBriefing-ru": [

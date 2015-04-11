@@ -66,6 +66,21 @@
 			view.showOutAnimation().then(function () {
 				view.proto.hide.call(view);
 				view.get('deferred').resolve();
+
+				var onHide = view.get('onHide'),
+					battleData = win.APP.bb.battleData;
+
+				if (!onHide) {
+					return;
+				}
+
+				if ( onHide.fn === 'backTo' ) {
+					battleData.isEndGame = 'yes';
+					battleData.gameTo = 'quit';
+				}
+
+				view[onHide.fn].apply(view, onHide.args);
+
 			});
 
 		},
