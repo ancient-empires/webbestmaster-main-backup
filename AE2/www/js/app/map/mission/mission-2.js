@@ -14,7 +14,7 @@
 		"name": "TO THE RESCUE",
 		"name-ru": "RU TO THE RESCUE",
 		"maxPlayers": 2,
-		"money": [300, 1000],
+		"money": [300, 500],
 		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
