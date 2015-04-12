@@ -1486,7 +1486,7 @@
 				map = model.get('map'),
 				briefingName = data.briefingName,
 				languageField = briefingName + '-' + info.get('language'),
-				briefingList = map[languageField] || map[briefingName],
+				briefingList = map[languageField] || map[briefingName] || [], // [] if map has no needed briefing
 				deferred = $.Deferred(),
 				promise = deferred.promise(),
 				nextFunction;

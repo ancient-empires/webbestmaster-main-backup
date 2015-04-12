@@ -960,6 +960,7 @@
 				isDefeat = false,
 				players = model.get('players');
 
+
 			// find win state
 			_.each(wins, function (win) {
 				isWin = isWin && model.checkState({
@@ -1229,6 +1230,9 @@
 			switch (theCase.detect) {
 
 				case 'allCastles':
+
+
+					return castles.length === _.where(castles, {ownerId: 0}).length;
 
 					break;
 
