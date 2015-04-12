@@ -48,6 +48,7 @@
 	<!-- missions -->
 	<script src="js/app/map/mission/mission-1.js" type="text/javascript"></script>
 	<script src="js/app/map/mission/mission-2.js" type="text/javascript"></script>
+	<script src="js/app/map/mission/mission-3.js" type="text/javascript"></script>
 
 	<!-- views -->
 	<script src="js/app/view/base.js" type="text/javascript"></script>
@@ -377,7 +378,9 @@
 
 	<div>
 		<div class="js-back briefing-content">
+			<% if (obj.img) { %>
 			<div class="briefing-img" style="background-image: url(<%= img %>);">&nbsp;</div>
+			<% }; %>
 			<p class="briefing-text"><%= text %></p>
 		</div>
 	</div>
