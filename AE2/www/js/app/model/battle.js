@@ -15,7 +15,9 @@
 
 			var model = this,
 				args = model.get('args'),
-				players;
+				players,
+				map = model.get('map'),
+				playersMoney = map.money;
 
 			win.APP.bb.battleData = {
 				isEndGame: 'no',
@@ -35,10 +37,16 @@
 			model.set('units', []); // will be filled after append units
 			model.set('graves', []); // will be filled in battle
 
-			// add money to player
-			_.each(model.get('players'), function (player) {
-				player.money = args.money;
-			});
+			if (playersMoney) {
+				_.each(model.get('players'), function (player, index) {
+					player.money = playersMoney[index];
+				});
+			} else {
+				// add money to player
+				_.each(model.get('players'), function (player) {
+					player.money = args.money;
+				});
+			}
 
 			this.clearAvailableActions();
 
