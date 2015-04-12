@@ -945,11 +945,13 @@
 				allBuildings = model.get('buildings'),
 				wantedBuildings,
 				util = win.APP.util,
-				allUnits = model.get('units'),
-				enemyUnits,
 				scenario = data.scenario,
 				unit = scenario.get('unit'),
 				unitTeamNumber = unit.get('teamNumber'),
+				allUnits = model.get('units'),
+				enemyUnits = _.filter(allUnits, function (unit) {
+					return unit.get('teamNumber') !== unitTeamNumber;
+				}),
 				allScenarios = data.allScenarios,
 				rates = cpu.rates,
 				buildingData = win.APP.building,
@@ -963,14 +965,11 @@
 				},
 				building = model.getBuildingByXY(xy),
 				pathToBuildingLength = Infinity,
+				pathToEnemyLength = Infinity,
 				rate = 0;
 
 			// 1 detect: enemy unit get or stay on building
 			if ( building ) {
-
-				enemyUnits = _.filter(allUnits, function (unit) {
-					return unit.get('teamNumber') !== unitTeamNumber;
-				});
 
 				// can enemy get building
 				_.each(enemyUnits, function (enemy) {
@@ -995,17 +994,27 @@
 				return building.teamNumber !== unitTeamNumber && _.contains(wantedBuildingList, building.type);
 			});
 
-			_.each(wantedBuildings, function (building) {
 
-				var unit = model.getUnitByXY(building);
+			if ( wantedBuildings.length ) {
 
-				if ( unit && unit.get('teamNumber') === unitTeamNumber && _.contains(unit.get('listOccupyBuilding'), building.type) ) {
-					return;
-				}
+				_.each(wantedBuildings, function (building) {
 
-				pathToBuildingLength = Math.min(pathToBuildingLength, util.getPathSize(building, xy));
+					var unit = model.getUnitByXY(building);
 
-			});
+					if ( unit && unit.get('teamNumber') === unitTeamNumber && _.contains(unit.get('listOccupyBuilding'), building.type) ) {
+						return;
+					}
+
+					pathToBuildingLength = Math.min(pathToBuildingLength, util.getPathSize(building, xy));
+
+				});
+
+			} else {
+				// if mission or no needed buildings
+				_.each(enemyUnits, function (enemy) {
+					pathToBuildingLength = Math.min(pathToBuildingLength, util.getPathSize({ x: enemy.get('x'), y: enemy.get('y') }, xy));
+				});
+			}
 
 			// set current rate
 			rate = rate || pathToBuildingLength * rates.q.nearestNonOwnedBuilding;
