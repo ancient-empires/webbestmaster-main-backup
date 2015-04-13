@@ -119,6 +119,7 @@
 			{"x": 13, "y": 6, "type": "soldier", "ownerId": 1},
 			{"x": 11, "y": 7, "type": "dire-wolf", "ownerId": 1},
 			{"x": 13, "y": 9, "type": "demon-lord", "ownerId": 1},
+			{"x": 12, "y": 9, "type": "catapult", "ownerId": 1},
 			{"x": 5, "y": 11, "type": "golem", "ownerId": 1},
 			{"x": 6, "y": 10, "type": "catapult", "ownerId": 1},
 			{"x": 9, "y": 11, "type": "soldier", "ownerId": 1},
