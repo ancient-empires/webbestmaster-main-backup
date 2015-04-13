@@ -1525,9 +1525,17 @@
 		showHelp: function (e) {
 
 			var view = this,
+				model = view.get('model'),
+				help = model.get('map').help,
 				$this = $(e.currentTarget);
 
 			$this.removeClass('blink');
+
+			view.showPopup({
+				cssClass: 'full',
+				popupName: 'help',
+				help: help
+			});
 
 		},
 

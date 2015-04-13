@@ -32,7 +32,7 @@
 			{
 				popupName: 'briefing',
 				from: 'left',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Help us! We are under attack! These skeleton raiders have stolen the Crystal of Courage we swore to protect!',
 					img: 'i/face/tamplier.png'
@@ -41,7 +41,7 @@
 			{
 				popupName: 'briefing',
 				from: 'right',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Captain, we must stop this menace at once!',
 					img: 'i/face/soldier.png'
@@ -50,7 +50,7 @@
 			{
 				popupName: 'briefing',
 				from: 'left',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Forward troops! Make these raiders pay!',
 					img: 'i/face/galamar.png'
@@ -71,7 +71,7 @@
 			{
 				popupName: 'briefing',
 				from: 'left',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'More attackers!',
 					img: 'i/face/galamar.png'
@@ -80,7 +80,7 @@
 			{
 				popupName: 'briefing',
 				from: 'right',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'These are no raiders! They look like enemy troops! Be careful, Captain!',
 					img: 'i/face/soldier.png'
@@ -91,7 +91,7 @@
 			{
 				popupName: 'briefing',
 				from: 'right',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Thank you, your Majesty, you must help us return the Crystal as quickly as possible. Such an important relic must not fall into the wrong hands!',
 					img: 'i/face/tamplier.png'
@@ -100,7 +100,7 @@
 			{
 				popupName: 'briefing',
 				from: 'left',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'I am at your service. Who could possibly be after the Crystal?',
 					img: 'i/face/galamar.png'
@@ -109,7 +109,7 @@
 			{
 				popupName: 'briefing',
 				from: 'right',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'I fear these criminals may be allied to a greater evil. It would be wise to consult with the High Priest at the Temple of Wisdom. He may know more of this.',
 					img: 'i/face/tamplier.png'
@@ -118,7 +118,7 @@
 			{
 				popupName: 'briefing',
 				from: 'left',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'I shall send my brother Valadorn there immediately. I will take my troops and follow the attackers who got away.',
 					img: 'i/face/galamar.png'

@@ -23,7 +23,7 @@
 			{
 				popupName: 'briefing',
 				from: 'left',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'How can this be? The Temple of Wisdom is also under attack!',
 					img: 'i/face/valadorn.png'
@@ -32,7 +32,7 @@
 			{
 				popupName: 'briefing',
 				from: 'right',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Well, well... Valadorn, I presume? Prepare to be defeated!',
 					img: 'i/face/demon-lord.png'
@@ -41,7 +41,7 @@
 			{
 				popupName: 'briefing',
 				from: 'left',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Sir, a part of the enemy force is retreating!',
 					img: 'i/face/soldier.png'
@@ -50,7 +50,7 @@
 			{
 				popupName: 'briefing',
 				from: 'right',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'The Crystal of Wisdom! Do not let them escape!',
 					img: 'i/face/tamplier.png'
@@ -59,7 +59,7 @@
 			{
 				popupName: 'briefing',
 				from: 'left',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Sir, we must follow them!',
 					img: 'i/face/soldier.png'
@@ -68,7 +68,7 @@
 			{
 				popupName: 'briefing',
 				from: 'left',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Let us stop this attack first. The temple guards will not stand a chance otherwise!',
 					img: 'i/face/valadorn.png'
@@ -77,7 +77,7 @@
 			{
 				popupName: 'briefing',
 				from: 'right',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Let us make our stand at this castle!',
 					img: 'i/face/soldier.png'
@@ -90,7 +90,7 @@
 			{
 				popupName: 'briefing',
 				from: 'left',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Well done, Captain. But there is no time to rest. The Crystal of Life may also be in danger. We must warn King Galamar!',
 					img: 'i/face/valadorn.png'
@@ -98,7 +98,7 @@
 			},			{
 				popupName: 'briefing',
 				from: 'right',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Yes, Sir. I will ready the troops.',
 					img: 'i/face/soldier.png'

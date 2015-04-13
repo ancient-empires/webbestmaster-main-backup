@@ -21,7 +21,7 @@
 			{
 				popupName: 'briefing',
 				from: 'right',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Your Majesty, this forest is known to be home of spirits, elementals, and other magical creatures. Travelling at night is not safe.',
 					img: 'i/face/soldier.png'
@@ -30,7 +30,7 @@
 			{
 				popupName: 'briefing',
 				from: 'left',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Captain, you heard Valadorn\'s messenger - we must press on! Nothing must stand between us and the Temple of Life.',
 					img: 'i/face/galamar.png'
@@ -39,7 +39,7 @@
 			{
 				popupName: 'briefing',
 				from: 'right',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Understood. Troops, keep your eyes open and protect King Galamar!',
 					img: 'i/face/soldier.png'
@@ -51,7 +51,7 @@
 			{
 				popupName: 'briefing',
 				from: 'right',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'More wolves! Your Majesty, this does not look good...',
 					img: 'i/face/soldier.png'
@@ -60,7 +60,7 @@
 			{
 				popupName: 'briefing',
 				from: 'left',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'By the Creator! What are those things!',
 					img: 'i/face/galamar.png'
@@ -69,7 +69,7 @@
 			{
 				popupName: 'briefing',
 				from: 'right',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'Greetings, men of Thorin! We, the Elementals, have heard of your quest to protect our lands from evil and offer our allegiance to our King.'
 				}
@@ -77,7 +77,7 @@
 			{
 				popupName: 'briefing',
 				from: 'left',
-				cssClass: 'briefing bottom',
+				cssClass: 'briefing',
 				popupData: {
 					text: 'We gladly accept your offer. Your loyalty to the kingdom shall not be forgotten.',
 					img: 'i/face/galamar.png'
