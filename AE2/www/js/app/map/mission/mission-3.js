@@ -45,7 +45,18 @@
 					text: 'Understood. Troops, keep your eyes open and protect King Galamar!',
 					img: 'i/face/soldier.png'
 				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.objective,
+					text: 'Navigate safely through the forest. Destroy all opposition. King Galamar must survive.'
+				},
+				onHide: {
+					fn: 'showHelpButton'
+				}
 			}
+
 		],
 
 		"n1Briefing": [

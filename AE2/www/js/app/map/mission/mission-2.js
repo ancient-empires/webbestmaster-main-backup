@@ -83,8 +83,17 @@
 					text: 'Let us make our stand at this castle!',
 					img: 'i/face/soldier.png'
 				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.objective,
+					text: 'Destroy all attacking enemy troops, occupy both castles.'
+				},
+				onHide: {
+					fn: 'showHelpButton'
+				}
 			}
-
 		],
 
 		"endBriefing": [
