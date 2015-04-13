@@ -661,56 +661,17 @@
 
 		<div class="help-container js-scroll-area-container scroll-touch">
 			<div class="scroll-area">
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
-				help is here<br>
+
+				<% _.each(help, function (item) { %>
+
+				<div class="help-page">
+
+					<p> <%= item.text %> </p>
+
+				</div>
+
+				<% }); %>
+
 			</div>
 		</div>
 

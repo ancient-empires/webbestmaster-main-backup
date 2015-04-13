@@ -1534,7 +1534,9 @@
 			view.showPopup({
 				cssClass: 'full',
 				popupName: 'help',
-				help: help
+				popupData: {
+					help: help
+				}
 			});
 
 		},
