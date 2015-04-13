@@ -104,6 +104,17 @@
 					text: 'Yes, Sir. I will ready the troops.',
 					img: 'i/face/soldier.png'
 				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.victory,
+					text: 'Go to next mission!'
+				},
+				onHide: {
+					fn: 'backTo',
+					args: ['select-level']
+				}
 			}
 		],
 

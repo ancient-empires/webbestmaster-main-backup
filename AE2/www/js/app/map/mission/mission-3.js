@@ -86,6 +86,20 @@
 			}
 		],
 
+		"endBriefing": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.victory,
+					text: 'Go to next mission!'
+				},
+				onHide: {
+					fn: 'backTo',
+					args: ['select-level']
+				}
+			}
+		],
+
 		"cases": [
 			{
 				isDone: false,
