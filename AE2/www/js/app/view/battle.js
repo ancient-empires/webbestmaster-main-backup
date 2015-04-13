@@ -779,7 +779,9 @@
 				cssY = y * squareSize,
 				unitType = unit.get('type'),
 				isCommander = unit.isCommander(),
-				$unitLayerWrapper = view.$el.find(view.selectors.unitsWrapper);
+				$unitLayerWrapper = view.$el.find(view.selectors.unitsWrapper),
+				unitImage,
+				animationEnd = view.info.get('animationEnd', true);
 
 			$unitWrapper.css(pre + 'transform', 'translate3d(' + cssX + 'px, ' + cssY + 'px, 0)');
 
@@ -813,6 +815,13 @@
 
 			// level up
 			$unitWrapper.append('<div class="js-unit-level-up unit-level-up">&nbsp;</div>');
+
+			// show unit appear animation
+			unitImage = $unitWrapper.find('.unit-image');
+			unitImage.one(animationEnd, function () {
+				$(this).removeClass('show-new-unit');
+			}); // work only one time
+			unitImage.addClass('show-new-unit');
 
 			$unitLayerWrapper.append($unitWrapper);
 
@@ -1305,7 +1314,7 @@
 
 			$deltaHealth.one(animationEnd, function () {
 
-				$deltaHealth.removeClass('bounce');
+				$(this).removeClass('bounce');
 
 				view.enable();
 
