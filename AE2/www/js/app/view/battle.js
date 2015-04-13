@@ -15,7 +15,8 @@
 
 		events: {
 			'click .js-end-turn': 'endTurn',
-			'click .js-battle-menu-button': 'openMenu'
+			'click .js-battle-menu-button': 'openMenu',
+			'click .js-help-button': 'showHelp'
 		},
 
 		selectors: {
@@ -37,7 +38,8 @@
 			square: '.js-square',
 			statusBar: '.js-battle-view-status-bar',
 			styleSquareSize: '.js-style-square-size',
-			unitInfoWrapper: '.js-unit-info-wrapper'
+			unitInfoWrapper: '.js-unit-info-wrapper',
+			helpButton: '.js-help-button'
 		},
 
 		squareSize: win.APP.map.squareSize,
@@ -1517,6 +1519,15 @@
 			new APP.BB.BattleMenuView({
 				view: this
 			});
+
+		},
+
+		showHelp: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget);
+
+			$this.removeClass('blink');
 
 		},
 

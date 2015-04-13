@@ -45,9 +45,8 @@
 	overflow: hidden;
 }
 
-
-
-.end-turn {
+.end-turn,
+.show-help-button {
 	font-family: 'big-pixel-font', "Courier New", Courier, monospace;
 	position: absolute;
 	right: 1rem;
@@ -61,6 +60,44 @@
 	box-shadow: 0.2rem 0.2rem 0 #000;
 	border-style: solid;
 	border-width: 0.15rem;
+}
+
+.show-help-button {
+	left: -0.2rem;
+	right: auto;
+	top: 3rem;
+}
+
+.show-help-button:active {
+	top: 3.2rem;
+	left: 0;
+	box-shadow: none;
+}
+
+.blink {
+	-webkit-animation-name: blink;
+	-webkit-animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: normal;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-fill-mode: forwards;
+
+	animation-name: blink;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+	animation-direction: normal;
+	animation-timing-function: linear;
+	animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes blink {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0; }
+}
+
+@keyframes blink {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0; }
 }
 
 .end-turn:active {

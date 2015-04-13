@@ -18,6 +18,16 @@
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
 		"objective": 'Stop the raiders, King Galamar must survive.',
+		"help": [
+			{
+				img: 'i/help/move-unit.png',
+				text: '<span>&nbsp;</span> - the red square...'
+			},
+			{
+				img: 'i/help/move-unit.png',
+				text: 'To attack...'
+			}
+		],
 		"startBriefing": [
 			{
 				popupName: 'briefing',
@@ -51,6 +61,9 @@
 				popupData: {
 					header: langEn.objective,
 					text: 'Stop the raiders, King Galamar must survive.'
+				},
+				onHide: {
+					fn: 'showHelpButton'
 				}
 			}
 		],

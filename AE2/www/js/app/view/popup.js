@@ -178,9 +178,11 @@
 				});
 			});
 
+		},
+
+		showHelpButton: function () {
+			this.$wrapper.find('.js-help-button').removeClass('hidden');
 		}
-
-
 
 	});
 
