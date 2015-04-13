@@ -15,6 +15,7 @@
 		"name-ru": "RU - REINFORCEMENTS",
 		"maxPlayers": 2,
 		"unitLimit": 25,
+		"money": [400, 1000],
 		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 		"objective": 'Protect the Temple of Life - destroy all enemy units, occupy the enemy castle!',
@@ -76,12 +77,37 @@
 			}
 		],
 
-
-
-
-
-
-
+		"endBriefing": [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Your Majesty, We have stopped the attack.',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Well done, Captain! Prepare the troops to march to Thorin!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.victory,
+					text: 'Go to next mission!'
+				},
+				onHide: {
+					fn: 'backTo',
+					args: ['select-level']
+				}
+			}
+		],
 
 		"units": [
 			{"x": 7, "y": 1, "type": "galamar", "ownerId": 0},
