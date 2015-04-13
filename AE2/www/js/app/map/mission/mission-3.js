@@ -14,6 +14,7 @@
 		"name": "PATH OF SHADOWS",
 		"name-ru": "RU - PATH OF SHADOWS",
 		"maxPlayers": 2,
+		"unitLimit": 25,
 		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 		"objective": 'Navigate safely through the forest. Destroy all opposition. King Galamar must survive.',

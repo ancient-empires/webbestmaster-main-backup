@@ -31,13 +31,11 @@
 					type: missionType
 				}).then(function (mapInfo) {
 
-					// todo: get data from mapInfo
-
 					new win.APP.BB.BattleView({
 						jsMapKey: jsMapKey,
 						type: missionType,
 						money: 500,
-						unitLimit: 10,
+						unitLimit: mapInfo.unitLimit || 10,
 						players: [
 							{
 								teamNumber: 1,
