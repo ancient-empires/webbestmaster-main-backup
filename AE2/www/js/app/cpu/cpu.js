@@ -684,6 +684,7 @@
 			lowPriority: -1000,
 			highPriority: 1000,
 			killUnit: 40,
+			destroyEnemyBuilding: 40,
 
 			q: {
 				nearestNonOwnedBuilding: -5,
@@ -1091,12 +1092,17 @@
 				isStartXY = unitX === scenarioX && unitY === scenarioY,
 				enemyXY = action.enemy,
 				enemy = model.getUnitByXY(enemyXY),
-				enemyHealth = enemy.get('health'),
+				enemyHealth = enemy ? enemy.get('health') : 0,
+				enemyBuilding = model.getBuildingByXY(enemyXY),
 				availableGivenDamage,
 				availableResponseDamage = 0,
 				dataByPosition = scenario.get('dataByPosition'),
 				building,
 				rate;
+
+			if ( !enemy && enemyBuilding && unit.get('canDestroyBuilding') ) {
+				return rates.destroyEnemyBuilding;
+			}
 
 			unit.silentOn('x', 'y');
 			unit.set('x', scenarioX);

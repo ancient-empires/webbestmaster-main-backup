@@ -212,7 +212,8 @@
 				modelName: 'CatapultModel',
 				langKey: 'catapult',
 				cost: 700,
-				canNotActionAfterMove: true
+				canNotActionAfterMove: true,
+				canDestroyBuilding: true
 			},
 			dragon: {
 				atk: {
