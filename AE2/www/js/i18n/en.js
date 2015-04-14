@@ -187,8 +187,11 @@
 			'saeth': {
 				name: 'saeth',
 				description: 'Saeth (commander) is very strong in attack and defence. Commanders can also occupy castles to produce troops and can be revived in the castle if they fall in battle.'
+			},
+			'crystal': {
+				name: 'crystal',
+				description: 'These legendary Crystals were originally retrieved from the ruins of the Ancient Citadel. Little is known of their power, except that they are rumoured to protect the kingdom, while also possessing the power to destroy it.'
 			}
-
 		},
 
 		story: {

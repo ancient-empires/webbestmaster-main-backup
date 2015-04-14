@@ -242,7 +242,20 @@
 				langKey: 'skeleton',
 				withoutGrave: true,
 				canNotBeBuy: true,
-				cost: 400
+				cost: 0
+			},
+			crystal: {
+				atk: {
+					min: 0,
+					max: 0
+				},
+				atkRange: 1,
+				def: 15,
+				mov: 4,
+				modelName: 'CrystalModel',
+				langKey: 'crystal',
+				canNotBeBuy: true,
+				cost: 0
 			}
 
 		}
