@@ -62,6 +62,7 @@
 				modelName: 'GalamarModel',
 				langKey: 'galamar',
 				canFixBuilding: true,
+				withoutGrave: true,
 				listOccupyBuilding: ['farm', 'castle'],
 				cost: 400
 			},
@@ -76,6 +77,7 @@
 				modelName: 'ValadornModel',
 				langKey: 'valadorn',
 				canFixBuilding: true,
+				withoutGrave: true,
 				listOccupyBuilding: ['farm', 'castle'],
 				cost: 400
 			},
@@ -90,6 +92,7 @@
 				modelName: 'DemonLordModel',
 				langKey: 'demon-lord',
 				canFixBuilding: true,
+				withoutGrave: true,
 				listOccupyBuilding: ['farm', 'castle'],
 				cost: 400
 			},
@@ -104,6 +107,7 @@
 				modelName: 'SaethModel',
 				langKey: 'saeth',
 				canFixBuilding: true,
+				withoutGrave: true,
 				listOccupyBuilding: ['farm', 'castle'],
 				cost: 400
 			},

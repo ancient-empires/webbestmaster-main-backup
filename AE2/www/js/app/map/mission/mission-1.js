@@ -45,7 +45,7 @@
 				cssClass: 'briefing',
 				popupData: {
 					text: 'Captain, we must stop this menace at once!',
-					img: 'i/face/soldier.png'
+					img: 'i/face/galamar.png'
 				}
 			},
 			{
@@ -54,7 +54,7 @@
 				cssClass: 'briefing',
 				popupData: {
 					text: 'Forward troops! Make these raiders pay!',
-					img: 'i/face/galamar.png'
+					img: 'i/face/soldier.png'
 				}
 			},
 			{
@@ -75,7 +75,7 @@
 				cssClass: 'briefing',
 				popupData: {
 					text: 'More attackers!',
-					img: 'i/face/galamar.png'
+					img: 'i/face/soldier.png'
 				}
 			},
 			{
@@ -84,7 +84,7 @@
 				cssClass: 'briefing',
 				popupData: {
 					text: 'These are no raiders! They look like enemy troops! Be careful, Captain!',
-					img: 'i/face/soldier.png'
+					img: 'i/face/galamar.png'
 				}
 			}
 		],
