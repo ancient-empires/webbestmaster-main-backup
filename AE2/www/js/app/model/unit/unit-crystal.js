@@ -6,7 +6,11 @@
 
 	win.APP.BB.Unit.CrystalModel =  win.APP.BB.Unit.BaseUnitModel.extend({
 
-		defaults: win.APP.unitMaster.list.crystal
+		defaults: win.APP.unitMaster.list.crystal,
+
+		canStrikeBack: function () {
+			return false;
+		}
 
 	});
 
