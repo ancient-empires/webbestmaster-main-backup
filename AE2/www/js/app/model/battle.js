@@ -1121,13 +1121,52 @@
 
 		},
 
+		doCase: function (doIt, theCase) {
+
+			var model = this,
+				view = model.get('view');
+
+			switch (doIt) {
+
+				case 'appendUnits':
+					_.each(theCase.units, function (unit) {
+						model.appendUnitNearFrom(unit);
+					});
+					break;
+
+				case 'showBriefing':
+
+					view.showBriefing({
+						briefingName: theCase.briefingName
+					});
+
+					break;
+
+			}
+
+			theCase.isDone = true;
+
+		},
+
 		checkCases: function () {
 
 			var model = this,
 				view = model.get('view'),
 				map = model.get('map'),
-				cases = map.cases,
-				theCase = _.find(cases, { isDone: false });
+				unorderedCases = _.where(map.unorderedCases, { isDone: false }),
+				theCase = _.find(map.cases, { isDone: false });
+
+			_.each(unorderedCases, function (caseItem) {
+
+				if ( !model.checkState(caseItem) ) {
+					return false;
+				}
+
+				_.each(caseItem.do, function (doIt) {
+					model.doCase(doIt, caseItem);
+				});
+
+			});
 
 			if ( !theCase ) {
 				return false;
@@ -1137,27 +1176,8 @@
 				return false;
 			}
 
-			theCase.isDone = true;
-
 			_.each(theCase.do, function (doIt) {
-				switch (doIt) {
-
-					case 'appendUnits':
-						_.each(theCase.units, function (unit) {
-							model.appendUnitNearFrom(unit);
-						});
-						break;
-
-					case 'showBriefing':
-
-						view.showBriefing({
-							briefingName: theCase.briefingName
-						});
-
-						break;
-
-				}
-
+				model.doCase(doIt, theCase);
 			});
 
 			return true;
@@ -1224,6 +1244,9 @@
 
 			var model = this,
 				buildings = model.get('buildings'),
+				view = model.get('view'),
+				map = model.get('map'),
+				unorderedCases = _.where(map.unorderedCases, { isDone: false }),
 				castles = _.where(buildings, { type: 'castle' }),
 				units = model.get('units'),
 				enemyUnits = _.filter(units, function (unit) {
@@ -1233,12 +1256,12 @@
 					return unit.get('ownerId') === 0;
 				}),
 				players = model.get('players'),
+				isPassed,
 				player = _.find(players, {id: 0});
 
 			switch (theCase.detect) {
 
 				case 'allCastles':
-
 
 					return castles.length === _.where(castles, {ownerId: 0}).length;
 
@@ -1261,15 +1284,57 @@
 					};
 
 					break;
-				case 'valadornDead':
+
+				case 'crystalIsDead':
+
+					isPassed = true;
+
+					_.each(playerUnits, function (unit) {
+
+						if ( !isPassed ) {
+							return;
+						}
+
+						if (unit.get('type') === 'crystal') {
+							isPassed = false;
+						}
+
+					});
+
+					return isPassed && { type: 'crystalIsDead' };
 
 					break;
 
+				case 'unitOnPlace':
 
+					isPassed = false;
 
+					_.each(playerUnits, function (unit) {
+						_.each(theCase.place, function (place) {
 
+							var unitX, unitY;
 
+							if (isPassed) {
+								return;
+							}
 
+							unitX = unit.get('x');
+							unitY = unit.get('y');
+
+							isPassed = unitX >= place.x1 && unitX <= place.x2 && unitY >= place.y1 && unitY <= place.y2;
+
+						});
+					});
+
+					return isPassed;
+
+					break;
+
+				case 'allUnorderedCasesIsDone':
+
+					return !unorderedCases.length;
+
+					break;
 
 			}
 

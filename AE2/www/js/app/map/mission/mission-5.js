@@ -15,12 +15,93 @@
 		"name-ru": "RU ESCORT DUTY",
 		"maxPlayers": 2,
 		"unitLimit": 10,
-		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit, allAnyCasesIsDone
-		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
+		"win": ['noEnemyUnit', 'allUnorderedCasesIsDone'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
+		"defeat": ['commanderIsDead', 'crystalIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
+		"objective": 'Deliver the Crystal south to the city of Thorin. King Galamar must survive.',
+		"startBriefing": [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Your Highness, I do not like the look of this forest, we must be careful!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Very well, Captain. Let us follow this path and stay on our guard.',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.objective,
+					text: 'Deliver the Crystal south to the city of Thorin. King Galamar must survive.'
+				},
+				onHide: {
+					fn: 'showHelpButton'
+				}
+			}
+		],
 
+		"n1Briefing": [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Ambush! Protect the Crystal at all cost!',
+					img: 'i/face/soldier.png'
+				}
+			}
 
+		],
 
+		"endBriefing": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.victory,
+					text: 'Go to next mission!'
+				},
+				onHide: {
+					fn: 'backTo',
+					args: ['select-level']
+				}
+			}
+		],
+
+		"unorderedCases": [
+			{
+				isDone: false,
+				detect: 'unitOnPlace',
+				do: ['appendUnits', 'showBriefing'],
+				place: [
+					{
+						x1: 0,
+						y1: 0,
+						x2: 5,
+						y2: 5
+					}
+				],
+				units: [
+					{
+						type: 'archer',
+						ownerId: 1,
+						x: 1,
+						y: 1
+					}
+				],
+				briefingName: 'n1Briefing'
+			}
+
+		],
 
 		"units": [
 			{"x": 11, "y": 0, "type": "crystal", "ownerId": 0},
@@ -28,7 +109,7 @@
 			{"x": 12, "y": 0, "type": "archer", "ownerId": 0},
 			{"x": 12, "y": 1, "type": "sorceress", "ownerId": 0},
 			{"x": 11, "y": 2, "type": "soldier", "ownerId": 0},
-			{"x": 10, "y": 1, "type": "dire-wolf", "ownerId"	: 0}
+			{"x": 10, "y": 1, "type": "dire-wolf", "ownerId": 0}
 		],
 		"buildings": [
 			{"x": 2, "y": 1, "type": "temple", "state": "normal"},
