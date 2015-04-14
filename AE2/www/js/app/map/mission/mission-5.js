@@ -86,21 +86,138 @@
 					{
 						x1: 0,
 						y1: 0,
-						x2: 5,
-						y2: 5
+						x2: 8,
+						y2: 6
+					}
+				],
+				units: [
+					{
+						type: 'skeleton',
+						ownerId: 1,
+						x: 4,
+						y: 1
+					},
+					{
+						type: 'archer',
+						ownerId: 1,
+						x: 5,
+						y: 2
+					},
+					{
+						type: 'skeleton',
+						ownerId: 1,
+						x: 4,
+						y: 3
+					}
+				],
+				briefingName: 'n1Briefing'
+			},
+
+			{
+				isDone: false,
+				detect: 'unitOnPlace',
+				do: ['appendUnits'],
+				place: [
+					{
+						x1: 0,
+						y1: 7,
+						x2: 7,
+						y2: 11
 					}
 				],
 				units: [
 					{
 						type: 'archer',
 						ownerId: 1,
-						x: 1,
-						y: 1
+						x: 5,
+						y: 10
+					},
+					{
+						type: 'dire-wolf',
+						ownerId: 1,
+						x: 7,
+						y: 9
+					},
+					{
+						type: 'dire-wolf',
+						ownerId: 1,
+						x: 7,
+						y: 8
+					}
+				]
+			},
+			{
+				isDone: false,
+				detect: 'unitOnPlace',
+				do: ['appendUnits'],
+				place: [
+					{
+						x1: 8,
+						y1: 7,
+						x2: 15,
+						y2: 11
 					}
 				],
-				briefingName: 'n1Briefing'
+				units: [
+					{
+						type: 'dire-wolf',
+						ownerId: 1,
+						x: 11,
+						y: 5
+					},
+					{
+						type: 'golem',
+						ownerId: 1,
+						x: 12,
+						y: 6
+					},
+					{
+						type: 'dire-wolf',
+						ownerId: 1,
+						x: 12,
+						y: 7
+					}
+				]
+			},
+			{
+				isDone: false,
+				detect: 'unitOnPlace',
+				do: ['appendUnits'],
+				place: [
+					{
+						x1: 16,
+						y1: 4,
+						x2: 19,
+						y2: 11
+					}
+				],
+				units: [
+					{
+						type: 'dire-wolf',
+						ownerId: 1,
+						x: 16,
+						y: 10
+					},
+					{
+						type: 'golem',
+						ownerId: 1,
+						x: 17,
+						y: 10
+					},
+					{
+						type: 'dire-wolf',
+						ownerId: 1,
+						x: 18,
+						y: 10
+					},
+					{
+						type: 'archer',
+						ownerId: 1,
+						x: 18,
+						y: 9
+					}
+				]
 			}
-
 		],
 
 		"units": [
