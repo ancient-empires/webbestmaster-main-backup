@@ -666,8 +666,12 @@
 				<% _.each(help, function (item) { %>
 
 				<div class="help-page">
+					<img src="<%= item.img %>" alt="" class="help-image"/>
+					<% _.each(item.text, function(text){ %>
 
-					<p> <%= item.text %> </p>
+					<p class="help-text"> <%= text %> </p>
+
+					<% }); %>
 
 				</div>
 

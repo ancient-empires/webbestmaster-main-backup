@@ -21,12 +21,8 @@
 		"objective": 'Stop the raiders, King Galamar must survive.',
 		"help": [
 			{
-				img: 'i/help/move-unit.png',
-				text: '<span>&nbsp;</span> - the red square...'
-			},
-			{
-				img: 'i/help/move-unit.png',
-				text: 'To attack...'
+				img: 'img/help/select-unit.png',
+				text: ['To select unit tap (<img src="img/help/tap-finger.png" class="icon-in-text" />) to unit.', '<img src="img/help/finger-on-red-square.png" class="icon-in-text" /> - The red squares mark the movement range of a unit.', 'A unit\'s range is determined by its type and the terrain it is on.']
 			}
 		],
 		"startBriefing": [
