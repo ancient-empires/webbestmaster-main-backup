@@ -23,6 +23,7 @@
 
 
 		"units": [
+			{"x": 11, "y": 0, "type": "crystal", "ownerId": 0},
 			{"x": 11, "y": 1, "type": "galamar", "ownerId": 0},
 			{"x": 12, "y": 0, "type": "archer", "ownerId": 0},
 			{"x": 12, "y": 1, "type": "sorceress", "ownerId": 0},

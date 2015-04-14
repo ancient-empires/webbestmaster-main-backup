@@ -382,6 +382,13 @@
 .unit-image-catapult-green { background-image: url(../i/unit/unit-catapult-green.png); }
 .unit-image-catapult-red { background-image: url(../i/unit/unit-catapult-red.png); }
 
+/* crystal */
+.unit-image-crystal-black { background-image: url(../i/unit/unit-crystal-black.png); }
+.unit-image-crystal-blue { background-image: url(../i/unit/unit-crystal-blue.png); }
+.unit-image-crystal-gray { background-image: url(../i/unit/unit-crystal-gray.png); }
+.unit-image-crystal-green { background-image: url(../i/unit/unit-crystal-green.png); }
+.unit-image-crystal-red { background-image: url(../i/unit/unit-crystal-red.png); }
+
 /* demon-lord */
 .unit-image-demon-lord-black { background-image: url(../i/unit/unit-demon-lord-black.png); }
 .unit-image-demon-lord-blue { background-image: url(../i/unit/unit-demon-lord-blue.png); }
@@ -480,6 +487,13 @@
 .not-active .unit-image-catapult-gray { background-image: url(../i/unit/unit-catapult-gray.png); }
 .not-active .unit-image-catapult-green { background-image: url(../i/unit/unit-catapult-gray.png); }
 .not-active .unit-image-catapult-red { background-image: url(../i/unit/unit-catapult-gray.png); }
+
+/* crystal */
+.not-active .unit-image-crystal-black { background-image: url(../i/unit/unit-crystal-gray.png); }
+.not-active .unit-image-crystal-blue { background-image: url(../i/unit/unit-crystal-gray.png); }
+.not-active .unit-image-crystal-gray { background-image: url(../i/unit/unit-crystal-gray.png); }
+.not-active .unit-image-crystal-green { background-image: url(../i/unit/unit-crystal-gray.png); }
+.not-active .unit-image-crystal-red { background-image: url(../i/unit/unit-crystal-gray.png); }
 
 /* demon-lord */
 .not-active .unit-image-demon-lord-black { background-image: url(../i/unit/unit-demon-lord-gray.png); }
