@@ -235,15 +235,15 @@
 			model.removeUnit(unit);
 			view.removeUnit(unit);
 
+			model.checkPlayerDefeat();
+			model.checkEndMission();
+
 			if (withoutGrave) {
 				return;
 			}
 
 			model.addGrave(grave);
 			view.addGrave(grave);
-
-			model.checkPlayerDefeat();
-			model.checkEndMission();
 
 		},
 
