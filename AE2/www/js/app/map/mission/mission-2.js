@@ -20,6 +20,17 @@
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
 		"objective": 'Destroy all attacking enemy troops, occupy both castles.',
+		"help": [
+			{
+				img: 'img/help/occupy-castle.png',
+				text: ['Only a Commander can occupy (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />) a castle.', 'Once a castle is occupied you can purchase new units with your gold.', 'The Commander does not need to remain in the castle in order to purchase units.']
+			},
+			{
+				img: 'img/help/occupy-farm.png',
+				text: ['You can occupy buildings by moving a soldier or Commander onto it and selecting \'occupy\' (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />).', 'Once a building is occupied, it changes colour.', 'If a building is damaged you must repair (<img src="img/help/fix-building-icon.png" class="icon-in-text" />) the building before it can be occupied.']
+			}
+		],
+
 		"startBriefing": [
 			{
 				popupName: 'briefing',
