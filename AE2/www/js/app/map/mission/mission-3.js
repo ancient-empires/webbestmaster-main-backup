@@ -17,7 +17,14 @@
 		"unitLimit": 25,
 		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
+
 		"objective": 'Navigate safely through the forest. Destroy all opposition. King Galamar must survive.',
+		"help": [
+			{
+				img: 'img/help/raise.png',
+				text: ['A Sorceress has the power to summon skeleton warriors from the graves of fallen soldiers.', 'After a unit has been defeated, a tombstone appears for 1 turn.', 'Move a Sorceress next to a tombstone and select \'raise\' <img src="img/help/attack-icon.png" class="icon-in-text" />.']
+			}
+		],
 		"startBriefing": [
 			{
 				popupName: 'briefing',
