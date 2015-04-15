@@ -64,7 +64,7 @@
 					text: 'Stop the raiders, King Galamar must survive.'
 				},
 				onHide: {
-					fn: 'showHelpButton'
+					fn: 'autoShowHelpButton'
 				}
 			}
 		],

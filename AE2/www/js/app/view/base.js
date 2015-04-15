@@ -361,6 +361,21 @@
 				$block.removeClass('hidden');
 			}
 
+		},
+
+		autoShowHelpButton: function () {
+
+			var view = this,
+				info = view.info,
+				isShow = info.get('help'),
+				$helpButton = view.$wrapper.find('.js-help-button');
+
+			if (isShow === 'on') {
+				$helpButton.removeClass('hidden');
+			} else {
+				$helpButton.addClass('hidden');
+			}
+
 		}
 
 	});

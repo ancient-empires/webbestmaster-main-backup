@@ -73,6 +73,10 @@
 			$this.attr( 'data-value', value );
 			view.info.set(key, value);
 
+			if (key === 'help') {
+				view.autoShowHelpButton();
+			}
+
 		},
 
 		changeSelectSetting: function (e) {

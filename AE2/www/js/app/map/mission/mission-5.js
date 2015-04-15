@@ -43,9 +43,6 @@
 				popupData: {
 					header: langEn.objective,
 					text: 'Deliver the Crystal south to the city of Thorin. King Galamar must survive.'
-				},
-				onHide: {
-					fn: 'showHelpButton'
 				}
 			}
 		],

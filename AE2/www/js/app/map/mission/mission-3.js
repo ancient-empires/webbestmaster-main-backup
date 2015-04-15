@@ -60,7 +60,7 @@
 					text: 'Navigate safely through the forest. Destroy all opposition. King Galamar must survive.'
 				},
 				onHide: {
-					fn: 'showHelpButton'
+					fn: 'autoShowHelpButton'
 				}
 			}
 

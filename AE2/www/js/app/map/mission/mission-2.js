@@ -102,7 +102,7 @@
 					text: 'Destroy all attacking enemy troops, occupy both castles.'
 				},
 				onHide: {
-					fn: 'showHelpButton'
+					fn: 'autoShowHelpButton'
 				}
 			}
 		],

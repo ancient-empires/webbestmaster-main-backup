@@ -18,6 +18,7 @@
 		"money": [400, 1000],
 		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
+
 		"objective": 'Protect the Temple of Life - destroy all enemy units, occupy the enemy castle!',
 		"startBriefing": [
 			{
@@ -70,9 +71,6 @@
 				popupData: {
 					header: langEn.objective,
 					text: 'Protect the Temple of Life - destroy all enemy units, occupy the enemy castle!'
-				},
-				onHide: {
-					fn: 'showHelpButton'
 				}
 			}
 		],
