@@ -125,6 +125,8 @@
 						dbMaster.prepareDefaultMap();
 					});
 
+					tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.missionMaps); // TODO: comment this for production
+
 					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.missionMaps + ' (jsName TEXT, info TEXT, map TEXT)', [], function () {
 						missionDeferred.resolve();
 					}, function (e) {
