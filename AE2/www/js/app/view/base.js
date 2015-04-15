@@ -293,6 +293,11 @@
 		loadUrl: function () {
 			Backbone.history.loadUrl();
 		},
+
+		changeBy: function (key, delta) {
+			return this.set(key, this.get(key) + delta);
+		},
+
 		set: function (key, value) {
 			this.attr[key] = value;
 			return value;
