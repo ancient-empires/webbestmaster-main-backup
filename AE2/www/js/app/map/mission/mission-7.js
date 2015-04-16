@@ -19,14 +19,14 @@
 		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
-		"objective": 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles!',
+		"objective": 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles! Galamar and Valadorn must survive.',
 
 		"startBriefing": [
 			{
 				popupName: 'simple-notification',
 				popupData: {
 					header: langEn.objective,
-					text: 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles!'
+					text: 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles! Galamar and Valadorn must survive.'
 				}
 			}
 		],
