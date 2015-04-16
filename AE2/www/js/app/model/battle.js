@@ -116,10 +116,16 @@
 				isCommander = unitType === 'commander' || _.contains(win.APP.unitMaster.commanderList, unitType);
 
 			if ( isCommander ) {
+
 				player = _.find( model.get('players'), {id: unitData.ownerId});
-				unitData.type = player.commander.name;
-				unitData.xp = player.commander.xp;
-				player.commander.isLive = true;
+
+				// if player has commander? test only for mission (7th mission)
+				if ( !model.playerHasCommander(player) ) {
+					unitData.type = player.commander.name;
+					unitData.xp = player.commander.xp;
+					player.commander.isLive = true;
+				}
+
 			}
 
 			unit = win.APP.unitMaster.createUnit(unitData);
