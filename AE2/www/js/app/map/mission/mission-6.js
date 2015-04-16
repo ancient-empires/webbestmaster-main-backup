@@ -28,6 +28,11 @@
 				popupData: {
 					text: 'The enemy is planning to attack King Galamar before he reaches Thorin! We must defeat them!',
 					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 5, y: 17 }]
 				}
 			},
 			{
