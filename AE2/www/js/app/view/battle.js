@@ -1505,6 +1505,17 @@
 				nextFunction;
 
 			_.each(briefingList, function (item) {
+
+				var onShow = item.onShow, onHide = item.onHide;
+
+				if (onShow && onShow.context === 'parentView') {
+					onShow.context = view;
+				}
+
+				if (onHide && onHide.context === 'parentView') {
+					onHide.context = view;
+				}
+
 				nextFunction = (nextFunction || promise).then(function () {
 					return view.showPopup(item);
 				});

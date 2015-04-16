@@ -39,6 +39,11 @@
 				popupData: {
 					text: 'How can this be? The Temple of Wisdom is also under attack!',
 					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 9 }]
 				}
 			},
 			{
@@ -48,6 +53,11 @@
 				popupData: {
 					text: 'Well, well... Valadorn, I presume? Prepare to be defeated!',
 					img: 'i/face/demon-lord.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 12, y: 3 }]
 				}
 			},
 			{
@@ -57,6 +67,11 @@
 				popupData: {
 					text: 'Sir, a part of the enemy force is retreating!',
 					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7 , y: 10 }]
 				}
 			},
 			{
@@ -84,6 +99,11 @@
 				popupData: {
 					text: 'Let us stop this attack first. The temple guards will not stand a chance otherwise!',
 					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 9 }]
 				}
 			},
 			{
@@ -93,6 +113,11 @@
 				popupData: {
 					text: 'Let us make our stand at this castle!',
 					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7 , y: 10 }]
 				}
 			},
 			{

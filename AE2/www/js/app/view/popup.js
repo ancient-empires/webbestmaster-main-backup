@@ -56,11 +56,20 @@
 			var view = this,
 				popupData = view.get('popupData') || {},
 				$content = $(view.tmpl[view.get('popupName')](popupData)),
-				$container = view.$el.find(view.selectors.popupContainer);
+				$container = view.$el.find(view.selectors.popupContainer),
+				onShow = view.get('onShow'),
+				context;
 
 			$container.html( $content.html() );
 
 			view.$wrapper.append(view.$el);
+
+			if (!onShow) {
+				return;
+			}
+
+			context = onShow.context || view;
+			context[onShow.fn].apply(context, onShow.args);
 
 		},
 
@@ -72,18 +81,21 @@
 				view.get('deferred').resolve();
 
 				var onHide = view.get('onHide'),
-					battleData = win.APP.bb.battleData;
+					battleData = win.APP.bb.battleData,
+					context;
 
 				if (!onHide) {
 					return;
 				}
+
+				context = onHide.context || view;
 
 				if ( onHide.fn === 'backTo' ) {
 					battleData.isEndGame = 'yes';
 					battleData.gameTo = 'quit';
 				}
 
-				view[onHide.fn].apply(view, onHide.args);
+				context[onHide.fn].apply(context, onHide.args);
 
 			});
 
