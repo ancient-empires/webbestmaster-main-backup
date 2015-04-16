@@ -44,6 +44,8 @@
 
 		function back() {
 
+			var settingsPrototype;
+
 			if ( location.hash ) {
 				history.back();
 				setTimeout(back, 50);
@@ -54,8 +56,10 @@
 				win.APP.bb.router = new win.APP.BB.Router();
 				Backbone.history.start();
 				initTiles();
-				win.APP.BB.SettingsView.prototype.setSpeedStyle();
-				win.APP.BB.SettingsView.prototype.autoShowBuildingSmoke();
+				settingsPrototype = win.APP.BB.SettingsView.prototype;
+				settingsPrototype.setSpeedStyle();
+				settingsPrototype.autoShowBuildingSmoke();
+				settingsPrototype.autoShowUnitAnimation();
 			}
 
 		}

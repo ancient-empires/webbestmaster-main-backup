@@ -343,7 +343,10 @@
 
 }
 
-
+.hide-unit-animation .unit-image {
+	-webkit-animation: none;
+	animation: none;
+}
 
 
 

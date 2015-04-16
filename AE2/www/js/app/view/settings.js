@@ -144,6 +144,16 @@
 
 		autoShowUnitAnimation: function () {
 
+			var view = this,
+				info = view.info,
+				unitAnimationState = info.get('unitAnimation');
+
+			if (unitAnimationState === 'on') {
+				view.$wrapper.removeClass('hide-unit-animation');
+			} else {
+				view.$wrapper.addClass('hide-unit-animation');
+			}
+
 		}
 
 	});
