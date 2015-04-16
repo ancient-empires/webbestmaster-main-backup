@@ -92,18 +92,23 @@
 				detect: 'noEnemyUnit',
 				do: ['appendUnits', 'showBriefing'],
 				units: [
-					{
-						type: 'archer',
-						ownerId: 1,
-						x: 1,
-						y: 1
-					},
-					{
-						type: 'soldier',
-						ownerId: 1,
-						x: 10,
-						y: 10
-					}
+					{"x": 12, "y": 14, "type": "soldier", "ownerId": 1},
+					{"x": 14, "y": 14, "type": "golem", "ownerId": 1},
+					{"x": 13, "y": 12, "type": "elemental", "ownerId": 1},
+					{"x": 13, "y": 15, "type": "sorceress", "ownerId": 1},
+					{"x": 12, "y": 16, "type": "golem", "ownerId": 0},
+					{"x": 13, "y": 16, "type": "valadorn", "ownerId": 0},
+					{"x": 14, "y": 16, "type": "dragon", "ownerId": 0},
+					{"x": 13, "y": 17, "type": "wisp", "ownerId": 0},
+					{"x": 12, "y": 17, "type": "archer", "ownerId": 0},
+					{"x": 0, "y": 8, "type": "demon-lord", "ownerId": 1},
+					{"x": 1, "y": 10, "type": "soldier", "ownerId": 1},
+					{"x": 3, "y": 8, "type": "soldier", "ownerId": 1},
+					{"x": 4, "y": 9, "type": "golem", "ownerId": 1},
+					{"x": 5, "y": 10, "type": "golem", "ownerId": 1},
+					{"x": 2, "y": 10, "type": "dragon", "ownerId": 1},
+					{"x": 4, "y": 8, "type": "dragon", "ownerId": 1},
+					{"x": 2, "y": 9, "type": "wisp", "ownerId": 1}
 				],
 				briefingName: 'n1Briefing'
 			}
@@ -115,7 +120,7 @@
 			{"x": 14, "y": 1, "type": "archer", "ownerId": 0},
 			{"x": 13, "y": 1, "type": "sorceress", "ownerId": 0},
 			{"x": 12, "y": 7, "type": "sorceress", "ownerId": 1},
-			{"x": 13, "y": 8, "type": "archer", "ownerId": 1 },
+			{"x": 13, "y": 8, "type": "archer", "ownerId": 1},
 			{"x": 13, "y": 7, "type": "soldier", "ownerId": 1},
 			{"x": 14, "y": 7, "type": "dire-wolf", "ownerId": 1}
 		],
