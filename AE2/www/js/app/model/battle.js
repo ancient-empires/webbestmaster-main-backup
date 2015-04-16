@@ -393,6 +393,10 @@
 
 			model.clearAvailableActions();
 
+			view.clearAvailableActions();
+
+			view.removeActiveSquare();
+
 			model.setUnitsState();
 
 			model.setGraveState();

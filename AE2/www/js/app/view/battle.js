@@ -431,7 +431,7 @@
 			var view = this,
 				xy = view.get('markActiveSquare'),
 				model = view.get('model'),
-				isNotXY = !xy.hasOwnProperty('x') || !xy.hasOwnProperty('y') || xy.x === null || xy.y === null,
+				isNotXY = typeof xy.x !== 'number' || typeof xy.y !== 'number',
 				building,
 				terrain,
 				infoViewObj = {},
@@ -440,6 +440,8 @@
 
 			if ( isNotXY ) {
 				xy = view.get('infoSquareXY');
+				xy.x = xy.x || 0;
+				xy.y = xy.y || 0;
 			}
 
 			view.set('infoSquareXY', xy);
