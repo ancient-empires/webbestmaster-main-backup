@@ -40,6 +40,11 @@
 				popupData: {
 					text: 'Run, pitiful human, before it is too late!',
 					img: 'i/face/demon-lord.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 0, y: 8 }]
 				}
 			},
 			{
@@ -49,6 +54,11 @@
 				popupData: {
 					text: 'The enemy force looks formidable, I recommend retreat.',
 					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 14, y: 7 }]
 				}
 			},
 			{
@@ -67,6 +77,11 @@
 				popupData: {
 					text: 'Galamar! We came as fast as we could! Let us fight side by side!',
 					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 13, y: 16 }]
 				}
 			}
 
