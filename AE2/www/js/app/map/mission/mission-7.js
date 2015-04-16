@@ -134,9 +134,9 @@
 			{"x": 14, "y": 2, "type": "soldier", "ownerId": 0},
 			{"x": 14, "y": 1, "type": "archer", "ownerId": 0},
 			{"x": 13, "y": 1, "type": "sorceress", "ownerId": 0},
-			//{"x": 12, "y": 7, "type": "sorceress", "ownerId": 1},
-			//{"x": 13, "y": 8, "type": "archer", "ownerId": 1},
-			//{"x": 13, "y": 7, "type": "soldier", "ownerId": 1},
+			{"x": 12, "y": 7, "type": "sorceress", "ownerId": 1},
+			{"x": 13, "y": 8, "type": "archer", "ownerId": 1},
+			{"x": 13, "y": 7, "type": "soldier", "ownerId": 1},
 			{"x": 14, "y": 7, "type": "dire-wolf", "ownerId": 1}
 		],
 		"buildings": [
