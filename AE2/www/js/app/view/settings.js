@@ -73,8 +73,20 @@
 			$this.attr( 'data-value', value );
 			view.info.set(key, value);
 
-			if (key === 'help') {
-				view.autoShowHelpButton();
+			switch (key) {
+
+				case 'help':
+					view.autoShowHelpButton();
+					break;
+
+				case 'buildingSmoke':
+					view.autoShowBuildingSmoke();
+					break;
+
+				case 'unitAnimation':
+					view.autoShowUnitAnimation();
+					break;
+
 			}
 
 		},
@@ -113,6 +125,24 @@
 			view.$wrapper.find(view.selectors.style).remove();
 
 			view.$wrapper.append($style);
+
+		},
+
+		autoShowBuildingSmoke: function () {
+
+			var view = this,
+				info = view.info,
+				smokeState = info.get('buildingSmoke');
+
+			if (smokeState === 'on') {
+				view.$wrapper.removeClass('hide-building-smoke');
+			} else {
+				view.$wrapper.addClass('hide-building-smoke');
+			}
+
+		},
+
+		autoShowUnitAnimation: function () {
 
 		}
 

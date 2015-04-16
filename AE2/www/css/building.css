@@ -165,3 +165,6 @@
 
 /* smoke animation for farm end */
 
+.hide-building-smoke .smoke-wrapper {
+	display: none;
+}

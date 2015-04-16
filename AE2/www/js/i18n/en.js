@@ -45,6 +45,8 @@
 		easy: 'easy',
 		normal: 'normal',
 		hard: 'hard',
+		buildingSmoke: 'house smoke',
+		unitAnimation: 'unit animation',
 
 		// play
 		newGame: 'new game',

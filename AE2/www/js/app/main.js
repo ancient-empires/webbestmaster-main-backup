@@ -55,6 +55,7 @@
 				Backbone.history.start();
 				initTiles();
 				win.APP.BB.SettingsView.prototype.setSpeedStyle();
+				win.APP.BB.SettingsView.prototype.autoShowBuildingSmoke();
 			}
 
 		}

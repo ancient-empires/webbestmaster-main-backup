@@ -45,6 +45,8 @@
 		easy: 'легко',
 		normal: 'нормально',
 		hard: 'трудно',
+		buildingSmoke: 'дым из зданий',
+		unitAnimation: 'анимация юнита',
 
 		// play
 		newGame: 'новая игра',
