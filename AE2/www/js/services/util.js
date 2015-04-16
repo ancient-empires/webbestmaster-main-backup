@@ -10,10 +10,13 @@
 	win.APP.util = {
 		setHTMLStyle: function() {
 
-			var screenSize = docElem.clientWidth * docElem.clientHeight,
-				fontSize = Math.round( 16 * Math.pow(screenSize / 153600, 0.5) );
+			var util = this,
+				screenSize = docElem.clientWidth * docElem.clientHeight,
+				fontSize = Math.round( 16 * Math.pow(screenSize / 153600, 0.5) ); // 153600 = 320 * 480
 
-			fontSize = Math.max(16, fontSize);
+			fontSize = util.getBetween(16, fontSize, 24);
+
+			fontSize = Math.round(fontSize / 2) * 2;
 
 			docElem.style.fontSize = fontSize + 'px';
 
