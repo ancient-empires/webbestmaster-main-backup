@@ -27,6 +27,11 @@
 				popupData: {
 					text: 'Your Highness, I do not like the look of this forest, we must be careful!',
 					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 11 , y: 1 }]
 				}
 			},
 			{
