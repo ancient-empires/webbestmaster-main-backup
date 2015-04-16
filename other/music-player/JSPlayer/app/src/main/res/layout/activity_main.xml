@@ -1,0 +1,82 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <LinearLayout
+        android:background="#DDD"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/sampleButtonsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ToggleButton
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:textOn="pause 0"
+                android:textOff="play 0" />
+
+            <ToggleButton
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:textOn="pause 1"
+                android:textOff="play 1" />
+
+            <ToggleButton
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:textOn="pause 2"
+                android:textOff="play 2" />
+
+            <ToggleButton
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:textOn="pause 3"
+                android:textOff="play 3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/loopContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+
+            <CheckBox
+                android:layout_width="80dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="loop" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
