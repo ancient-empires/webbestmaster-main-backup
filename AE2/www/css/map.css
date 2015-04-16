@@ -105,8 +105,8 @@
 }
 
 
-.show-available-path,
-.show-available-attack,
+/*.show-available-path,*/
+/*.show-available-attack,*/
 .show-confirm-move,
 .show-fix-building,
 .show-occupy-building,
@@ -130,6 +130,14 @@
 	animation-direction: normal;
 	animation-fill-mode: forwards;
 
+}
+
+.show-available-path, /* see prev selector */
+.show-available-attack {
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
 }
 
 .show-unit-under-attack,
