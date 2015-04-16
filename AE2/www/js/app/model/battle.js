@@ -120,11 +120,9 @@
 				player = _.find( model.get('players'), {id: unitData.ownerId});
 
 				// if player has commander? test only for mission (7th mission)
-				if ( !model.playerHasCommander(player) ) {
-					unitData.type = player.commander.name;
-					unitData.xp = player.commander.xp;
-					player.commander.isLive = true;
-				}
+				unitData.type = unitType === 'commander' ? player.commander.name : unitType;
+				unitData.xp = player.commander.xp;
+				player.commander.isLive = true;
 
 			}
 
