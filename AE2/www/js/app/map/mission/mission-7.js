@@ -29,8 +29,49 @@
 					text: 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles!'
 				}
 			}
+		],
+
+		"n1Briefing": [
+
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Run, pitiful human, before it is too late!',
+					img: 'i/face/demon-lord.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'The enemy force looks formidable, I recommend retreat.',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'We have no choice but to attack!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Galamar! We came as fast as we could! Let us fight side by side!',
+					img: 'i/face/valadorn.png'
+				}
+			}
 
 		],
+
 		"endBriefing": [
 			{
 				popupName: 'simple-notification',
@@ -45,53 +86,53 @@
 			}
 		],
 
-		"units": [{"x": 14, "y": 3, "type": "galamar", "ownerId": 0}, {
-			"x": 14,
-			"y": 2,
-			"type": "soldier",
-			"ownerId": 0
-		}, {"x": 14, "y": 1, "type": "archer", "ownerId": 0}, {
-			"x": 13,
-			"y": 1,
-			"type": "sorceress",
-			"ownerId": 0
-		}, {"x": 12, "y": 7, "type": "sorceress", "ownerId": 1}, {
-			"x": 13,
-			"y": 8,
-			"type": "archer",
-			"ownerId": 1
-		}, {"x": 13, "y": 7, "type": "soldier", "ownerId": 1}, {"x": 14, "y": 7, "type": "dire-wolf", "ownerId": 1}],
-		"buildings": [{"x": 0, "y": 8, "type": "castle", "state": "normal"}, {
-			"x": 3,
-			"y": 8,
-			"type": "farm",
-			"state": "destroyed"
-		}, {"x": 1, "y": 10, "type": "farm", "state": "destroyed"}, {
-			"x": 0,
-			"y": 13,
-			"type": "farm",
-			"state": "normal"
-		}, {"x": 3, "y": 14, "type": "farm", "state": "normal"}, {
-			"x": 13,
-			"y": 14,
-			"type": "well",
-			"state": "normal"
-		}, {"x": 14, "y": 9, "type": "farm", "state": "destroyed"}, {
-			"x": 8,
-			"y": 9,
-			"type": "farm",
-			"state": "destroyed"
-		}, {"x": 11, "y": 7, "type": "farm", "state": "destroyed"}, {
-			"x": 8,
-			"y": 4,
-			"type": "farm",
-			"state": "destroyed"
-		}, {"x": 11, "y": 8, "type": "well", "state": "normal"}, {
-			"x": 12,
-			"y": 9,
-			"type": "castle",
-			"state": "normal"
-		}],
+		"cases": [
+			{
+				isDone: false,
+				detect: 'noEnemyUnit',
+				do: ['appendUnits', 'showBriefing'],
+				units: [
+					{
+						type: 'archer',
+						ownerId: 1,
+						x: 1,
+						y: 1
+					},
+					{
+						type: 'soldier',
+						ownerId: 1,
+						x: 10,
+						y: 10
+					}
+				],
+				briefingName: 'n1Briefing'
+			}
+		],
+
+		"units": [
+			{"x": 14, "y": 3, "type": "galamar", "ownerId": 0},
+			{"x": 14, "y": 2, "type": "soldier", "ownerId": 0},
+			{"x": 14, "y": 1, "type": "archer", "ownerId": 0},
+			{"x": 13, "y": 1, "type": "sorceress", "ownerId": 0},
+			{"x": 12, "y": 7, "type": "sorceress", "ownerId": 1},
+			//{"x": 13, "y": 8, "type": "archer", "ownerId": 1 },
+			//{"x": 13, "y": 7, "type": "soldier", "ownerId": 1},
+			{"x": 14, "y": 7, "type": "dire-wolf", "ownerId": 1}
+		],
+		"buildings": [
+			{"x": 0, "y": 8, "type": "castle", "state": "normal"},
+			{"x": 3, "y": 8, "type": "farm", "state": "destroyed"},
+			{"x": 1, "y": 10, "type": "farm", "state": "destroyed"},
+			{"x": 0, "y": 13, "type": "farm", "state": "normal"},
+			{"x": 3, "y": 14, "type": "farm", "state": "normal"},
+			{"x": 13, "y": 14, "type": "well", "state": "normal"},
+			{"x": 14, "y": 9, "type": "farm", "state": "destroyed"},
+			{"x": 8, "y": 9, "type": "farm", "state": "destroyed"},
+			{"x": 11, "y": 7, "type": "farm", "state": "destroyed"},
+			{"x": 8, "y": 4, "type": "farm", "state": "destroyed"},
+			{"x": 11, "y": 8, "type": "well", "state": "normal"},
+			{"x": 12, "y": 9, "type": "castle", "state": "normal"}
+		],
 		"terrain": {
 			"x0y0": "stone-1",
 			"x0y1": "water-1",
