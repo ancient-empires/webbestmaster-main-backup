@@ -33,6 +33,11 @@
 				popupData: {
 					text: 'Your Majesty, this forest is known to be home of spirits, elementals, and other magical creatures. Travelling at night is not safe.',
 					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8 , y: 14 }]
 				}
 			},
 			{
