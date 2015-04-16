@@ -943,6 +943,9 @@
 
 			var cpu = this,
 				model = cpu.get('model'),
+				player = model.get('activePlayer'),
+				hasCastle = model.playerHasCastle(player),
+				hasCommander = model.playerHasCommander(player),
 				allBuildings = model.get('buildings'),
 				wantedBuildings,
 				util = win.APP.util,
@@ -996,7 +999,13 @@
 			});
 
 
-			if ( wantedBuildings.length ) {
+			if ( !wantedBuildings.length || ( !hasCastle && !hasCommander ) ) { // if mission or no needed buildings
+
+				_.each(enemyUnits, function (enemy) {
+					pathToBuildingLength = Math.min(pathToBuildingLength, util.getPathSize({ x: enemy.get('x'), y: enemy.get('y') }, xy));
+				});
+
+			} else {
 
 				_.each(wantedBuildings, function (building) {
 
@@ -1010,11 +1019,6 @@
 
 				});
 
-			} else {
-				// if mission or no needed buildings
-				_.each(enemyUnits, function (enemy) {
-					pathToBuildingLength = Math.min(pathToBuildingLength, util.getPathSize({ x: enemy.get('x'), y: enemy.get('y') }, xy));
-				});
 			}
 
 			// set current rate
@@ -1025,7 +1029,6 @@
 			} else {
 				rate += dataByPosition.upHealth * rates.q.upHealth;
 			}
-
 
 
 			if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
