@@ -28,6 +28,11 @@
 				popupData: {
 					text: 'Your Majesty, thank the Creator you are here! Please help us protect the Crystal!',
 					img: 'i/face/tamplier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7 , y: 1 }]
 				}
 			},
 			{
