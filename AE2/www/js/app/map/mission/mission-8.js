@@ -21,14 +21,14 @@
 		"win": [], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
-		"objective": 'Defeat Saeth and his minions!',
+		"objective": 'Defeat Saeth and his minions! Galamar and Valadorn must survive.',
 
 		"startBriefing": [
 			{
 				popupName: 'simple-notification',
 				popupData: {
 					header: langEn.objective,
-					text: 'Defeat Saeth and his minions!'
+					text: 'Defeat Saeth and his minions! Galamar and Valadorn must survive.'
 				}
 			}
 		],
