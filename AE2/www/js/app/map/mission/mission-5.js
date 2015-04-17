@@ -10,7 +10,7 @@
 	win.APP.maps.mission_001_005 = {
 		"type": "mission",
 		"isOpen": false,
-		"openMap": "mission_001_006",
+		"openMaps": [ { "jsMapKey": 'mission_001_006', "type": "mission" } ],
 		"size": {"width": 20, "height": 12},
 		"name": "ESCORT DUTY",
 		"name-ru": "RU ESCORT DUTY",
@@ -74,8 +74,8 @@
 					text: 'Go to next mission!'
 				},
 				onHide: {
-					fn: 'backTo',
-					args: ['select-level']
+					fn: 'openMap',
+					args: ['mission_001_006', { type: 'mission' }]
 				}
 			}
 		],

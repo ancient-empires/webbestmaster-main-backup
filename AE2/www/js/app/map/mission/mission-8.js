@@ -10,7 +10,7 @@
 	win.APP.maps.mission_001_008 = {
 		"type": "mission",
 		"isOpen": false,
-		//"openMap": "", // last mission - no open map
+		//"openMaps": [ { "jsMapKey": 'mission_001_009', "type": "mission" } ],
 		"size": {"width": 14, "height": 18},
 		"name": "HEAVEN'S FURY",
 		"name-ru": "RU HEAVEN'S FURY",
@@ -39,11 +39,11 @@
 				popupData: {
 					header: langEn.victory,
 					text: 'Go to next mission!'
-				},
-				onHide: {
-					fn: 'backTo',
-					args: ['select-level']
 				}
+				//,onHide: {
+					//fn: 'openMap',
+					//args: ['mission_001_002', { type: 'mission' }]
+				//}
 			}
 		],
 

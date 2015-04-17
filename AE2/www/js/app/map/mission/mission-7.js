@@ -10,7 +10,7 @@
 	win.APP.maps.mission_001_007 = {
 		"type": "mission",
 		"isOpen": false,
-		"openMap": "mission_001_008",
+		"openMaps": [ { "jsMapKey": 'mission_001_008', "type": "mission" } ],
 		"size": {"width": 16, "height": 18},
 		"name": "RENDEZVOUS",
 		"name-ru": "RU RENDEZVOUS",
@@ -96,8 +96,8 @@
 					text: 'Go to next mission!'
 				},
 				onHide: {
-					fn: 'backTo',
-					args: ['select-level']
+					fn: 'openMap',
+					args: ['mission_001_008', { type: 'mission' }]
 				}
 			}
 		],

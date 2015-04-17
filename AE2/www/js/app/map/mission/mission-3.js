@@ -10,7 +10,7 @@
 	win.APP.maps.mission_001_003 = {
 		"type": "mission",
 		"isOpen": false,
-		"openMap": "mission_001_004",
+		"openMaps": [ { "jsMapKey": 'mission_001_004', "type": "mission" } ],
 		"size": {"width": 10, "height": 17},
 		"name": "PATH OF SHADOWS",
 		"name-ru": "RU - PATH OF SHADOWS",
@@ -118,8 +118,8 @@
 					text: 'Go to next mission!'
 				},
 				onHide: {
-					fn: 'backTo',
-					args: ['select-level']
+					fn: 'openMap',
+					args: ['mission_001_004', { type: 'mission' }]
 				}
 			}
 		],

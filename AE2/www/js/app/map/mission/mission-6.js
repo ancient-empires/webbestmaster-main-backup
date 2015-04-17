@@ -10,7 +10,7 @@
 	win.APP.maps.mission_001_006 = {
 		"type": "mission",
 		"isOpen": false,
-		"openMap": "mission_001_007",
+		"openMaps": [ { "jsMapKey": 'mission_001_007', "type": "mission" } ],
 		"size": {"width": 12, "height": 20},
 		"name": "NORTHBOUND",
 		"name-ru": "RU NORTHBOUND",
@@ -62,8 +62,8 @@
 					text: 'Go to next mission!'
 				},
 				onHide: {
-					fn: 'backTo',
-					args: ['select-level']
+					fn: 'openMap',
+					args: ['mission_001_007', { type: 'mission' }]
 				}
 			}
 		],
