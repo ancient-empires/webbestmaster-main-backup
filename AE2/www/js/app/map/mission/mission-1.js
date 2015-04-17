@@ -13,6 +13,7 @@
 		"openMaps": [
 			{ "jsMapKey": 'mission_001_002', "type": "mission" }
 		],
+		"nextMission": "mission_001_002",
 		"size": {"width": 12, "height": 12},
 		"name": "TEMPLE RAIDERS",
 		"name-ru": "RU TEMPLE RAIDERS",
