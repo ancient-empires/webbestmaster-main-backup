@@ -82,6 +82,7 @@
 		yes: 'да',
 		no: 'нет',
 		ok: 'ok',
+		continue: 'продолжить',
 
 			// end game
 		blackDefeat: 'Чёрный игрок повержен!',

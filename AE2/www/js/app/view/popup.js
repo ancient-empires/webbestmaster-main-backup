@@ -190,6 +190,12 @@
 				});
 			});
 
+		},
+
+		openMap: function (jsMapKey, data) {
+
+			new APP.BB.SkirmishSetupMapView(jsMapKey, data);
+
 		}
 
 	});

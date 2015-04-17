@@ -24,7 +24,7 @@
 
 			view.set('jsMapKey', jsMapKey);
 
-			if ( data.type === 'mission' ) {
+			if ( missionType === 'mission' ) {
 
 				win.APP.map.db.getMapInfo({
 					jsMapKey: jsMapKey,
@@ -35,7 +35,7 @@
 						jsMapKey: jsMapKey,
 						type: missionType,
 						money: 500,
-						unitLimit: mapInfo.unitLimit || 10,
+						unitLimit: mapInfo.unitLimit,
 						players: [
 							{
 								teamNumber: 1,
