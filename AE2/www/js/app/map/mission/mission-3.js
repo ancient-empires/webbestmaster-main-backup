@@ -7,10 +7,10 @@
 
 	var langEn = win.APP.languages.en;
 
-	win.APP.maps.mission_3 = {
+	win.APP.maps.mission_001_003 = {
 		"type": "mission",
 		"isOpen": false,
-		"openMap": "mission_4",
+		"openMap": "mission_001_004",
 		"size": {"width": 10, "height": 17},
 		"name": "PATH OF SHADOWS",
 		"name-ru": "RU - PATH OF SHADOWS",

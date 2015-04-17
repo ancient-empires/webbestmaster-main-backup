@@ -7,7 +7,7 @@
 
 	var langEn = win.APP.languages.en;
 
-	win.APP.maps.mission_8 = {
+	win.APP.maps.mission_001_008 = {
 		"type": "mission",
 		"isOpen": false,
 		//"openMap": "", // last mission - no open map

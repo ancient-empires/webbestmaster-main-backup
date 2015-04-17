@@ -7,10 +7,10 @@
 
 	var langEn = win.APP.languages.en;
 
-	win.APP.maps.mission_5 = {
+	win.APP.maps.mission_001_005 = {
 		"type": "mission",
 		"isOpen": false,
-		"openMap": "mission_6",
+		"openMap": "mission_001_006",
 		"size": {"width": 20, "height": 12},
 		"name": "ESCORT DUTY",
 		"name-ru": "RU ESCORT DUTY",

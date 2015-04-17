@@ -7,10 +7,10 @@
 
 	var langEn = win.APP.languages.en;
 
-	win.APP.maps.mission_7 = {
+	win.APP.maps.mission_001_007 = {
 		"type": "mission",
 		"isOpen": false,
-		"openMap": "mission_8",
+		"openMap": "mission_001_008",
 		"size": {"width": 16, "height": 18},
 		"name": "RENDEZVOUS",
 		"name-ru": "RU RENDEZVOUS",

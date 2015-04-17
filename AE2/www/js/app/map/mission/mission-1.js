@@ -7,11 +7,11 @@
 
 	var langEn = win.APP.languages.en;
 
-	win.APP.maps.mission_1 = {
+	win.APP.maps.mission_001_001 = {
 		"type": "mission",
 		"isOpen": true,
 		"openMaps": [
-			{ "jsMapKey": 'mission_2', "type": "mission" }
+			{ "jsMapKey": 'mission_001_002', "type": "mission" }
 		],
 		"size": {"width": 12, "height": 12},
 		"name": "TEMPLE RAIDERS",

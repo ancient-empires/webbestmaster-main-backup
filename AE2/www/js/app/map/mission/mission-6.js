@@ -7,10 +7,10 @@
 
 	var langEn = win.APP.languages.en;
 
-	win.APP.maps.mission_6 = {
+	win.APP.maps.mission_001_006 = {
 		"type": "mission",
 		"isOpen": false,
-		"openMap": "mission_7",
+		"openMap": "mission_001_007",
 		"size": {"width": 12, "height": 20},
 		"name": "NORTHBOUND",
 		"name-ru": "RU NORTHBOUND",

@@ -216,7 +216,7 @@
 				data.type = data.type || dbMaster.skirmishMaps;
 
 				db.transaction(function (tx) {
-					tx.executeSql('SELECT * FROM ' + data.type, [], function (tx, results) {
+					tx.executeSql('SELECT * FROM ' + data.type + ' ORDER BY jsMapKey ASC', [], function (tx, results) {
 						var i, len, row;
 						for (i = 0, len = results.rows.length; i < len; i += 1) {
 							row = results.rows.item(i);
