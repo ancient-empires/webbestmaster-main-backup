@@ -27,7 +27,7 @@
 			if ( data.type === 'mission' ) {
 
 				win.APP.map.db.getMapInfo({
-					jsName: jsMapKey,
+					jsMapKey: jsMapKey,
 					type: missionType
 				}).then(function (mapInfo) {
 
@@ -61,7 +61,7 @@
 			}
 
 			win.APP.map.db.getMapInfo({
-				jsName: jsMapKey
+				jsMapKey: jsMapKey
 			}).then(function (mapInfo) {
 				var viewData = view.createViewData(mapInfo);
 				view.$el = $(view.tmpl.skirmishSetupMap(viewData));

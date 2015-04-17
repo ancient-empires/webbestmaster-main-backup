@@ -9,7 +9,8 @@
 
 	win.APP.maps.mission_5 = {
 		"type": "mission",
-		"isOpen": true,
+		"isOpen": false,
+		"openMap": "mission_6",
 		"size": {"width": 20, "height": 12},
 		"name": "ESCORT DUTY",
 		"name-ru": "RU ESCORT DUTY",

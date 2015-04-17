@@ -9,7 +9,8 @@
 
 	win.APP.maps.mission_8 = {
 		"type": "mission",
-		"isOpen": true,
+		"isOpen": false,
+		//"openMap": "", // last mission - no open map
 		"size": {"width": 14, "height": 18},
 		"name": "HEAVEN'S FURY",
 		"name-ru": "RU HEAVEN'S FURY",

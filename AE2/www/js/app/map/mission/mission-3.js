@@ -9,7 +9,8 @@
 
 	win.APP.maps.mission_3 = {
 		"type": "mission",
-		"isOpen": true,
+		"isOpen": false,
+		"openMap": "mission_4",
 		"size": {"width": 10, "height": 17},
 		"name": "PATH OF SHADOWS",
 		"name-ru": "RU - PATH OF SHADOWS",

@@ -9,7 +9,8 @@
 
 	win.APP.maps.mission_7 = {
 		"type": "mission",
-		"isOpen": true,
+		"isOpen": false,
+		"openMap": "mission_8",
 		"size": {"width": 16, "height": 18},
 		"name": "RENDEZVOUS",
 		"name-ru": "RU RENDEZVOUS",

@@ -10,6 +10,9 @@
 	win.APP.maps.mission_1 = {
 		"type": "mission",
 		"isOpen": true,
+		"openMaps": [
+			{ "jsMapKey": 'mission_2', "type": "mission" }
+		],
 		"size": {"width": 12, "height": 12},
 		"name": "TEMPLE RAIDERS",
 		"name-ru": "RU TEMPLE RAIDERS",
@@ -150,30 +153,30 @@
 		"n1Briefing-ru": [],
 		"endBriefing-ru": [],
 
-		"cases": [
-			{
-				isDone: false,
-				detect: 'noEnemyUnit',
-				do: ['appendUnits', 'showBriefing'],
-				units: [
-					{
-						type: 'archer',
-						ownerId: 1,
-						x: 1,
-						y: 1
-					},
-					{
-						type: 'soldier',
-						ownerId: 1,
-						x: 10,
-						y: 10
-					}
-				],
-				briefingName: 'n1Briefing'
-			}
-		],
+		//"cases": [
+		//	{
+		//		isDone: false,
+		//		detect: 'noEnemyUnit',
+		//		do: ['appendUnits', 'showBriefing'],
+		//		units: [
+		//			{
+		//				type: 'archer',
+		//				ownerId: 1,
+		//				x: 1,
+		//				y: 1
+		//			},
+		//			{
+		//				type: 'soldier',
+		//				ownerId: 1,
+		//				x: 10,
+		//				y: 10
+		//			}
+		//		],
+		//		briefingName: 'n1Briefing'
+		//	}
+		//],
 		"units": [
-			{"x": 10, "y": 3, "type": "skeleton", "ownerId": 1},
+			//{"x": 10, "y": 3, "type": "skeleton", "ownerId": 1},
 			{"x": 8, "y": 3, "type": "skeleton", "ownerId": 1},
 			{"x": 4, "y": 9, "type": "galamar", "ownerId": 0},
 			{"x": 3, "y": 10, "type": "archer", "ownerId": 0},

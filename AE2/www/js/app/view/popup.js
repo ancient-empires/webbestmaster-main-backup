@@ -180,10 +180,10 @@
 			var view = this,
 				$this = $(e.currentTarget),
 				parentView = view.get('parentView'),
-				jsName = $this.attr('data-map-name');
+				jsMapKey = $this.attr('data-map-name');
 
 			win.APP.map.db.getMap({
-				jsName: jsName
+				jsMapKey: jsMapKey
 			}).then(function (map) {
 				parentView.initialize({
 					map: map

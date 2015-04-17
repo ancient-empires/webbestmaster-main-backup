@@ -56,7 +56,7 @@
 			view.set('args', data);
 
 			win.APP.map.db.getMap({
-				jsName: data.jsMapKey,
+				jsMapKey: data.jsMapKey,
 				type: data.type
 			}).then(function (map) {
 

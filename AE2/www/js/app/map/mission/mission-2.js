@@ -9,7 +9,8 @@
 
 	win.APP.maps.mission_2 = {
 		"type": "mission",
-		"isOpen": true,
+		"isOpen": false,
+		"openMap": "mission_3",
 		"size": {"width": 15, "height": 12},
 		"name": "TO THE RESCUE",
 		"name-ru": "RU TO THE RESCUE",

@@ -259,8 +259,6 @@
 
 			units.splice(unitIndex, 1);
 
-			model.checkEndMission();
-
 		},
 
 		addGrave: function (grave) {
@@ -967,6 +965,7 @@
 			}
 
 			var model = this,
+				mapMaster = win.APP.map,
 				view = model.get('view'),
 				map = model.get('map'),
 				wins = map.win,
@@ -974,7 +973,6 @@
 				defeats = map.defeat,
 				isDefeat = false,
 				players = model.get('players');
-
 
 			// find win state
 			_.each(wins, function (win) {
@@ -985,6 +983,9 @@
 
 			if (isWin) {
 				//win.APP.bb.battleData.isEndGame = 'yes'; // will be set after las notification in endBriefing
+
+				mapMaster.db.openMap(map.openMaps); // jsMapKey
+
 				view.showBriefing({
 					briefingName: 'endBriefing'
 				});

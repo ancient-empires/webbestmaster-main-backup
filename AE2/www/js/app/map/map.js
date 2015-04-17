@@ -127,13 +127,13 @@
 
 					tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.missionMaps); // TODO: comment this for production
 
-					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.missionMaps + ' (jsName TEXT, info TEXT, map TEXT)', [], function () {
+					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.missionMaps + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], function () {
 						missionDeferred.resolve();
 					}, function (e) {
 						log(e);
 					});
 
-					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.skirmishMaps + ' (jsName TEXT, info TEXT, map TEXT)', [], function () {
+					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.skirmishMaps + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], function () {
 						skirmishDeferred.resolve();
 					}, function (e) {
 						log(e);
@@ -149,21 +149,21 @@
 					dbMaster = this,
 					db = dbMaster.db;
 
-				_.each(maps, function (map, jsName) {
+				_.each(maps, function (map, jsMapKey) {
 					db.transaction(function (tx) {
-						tx.executeSql('SELECT * FROM ' + map.type + ' WHERE jsName=?', [jsName], function (tx, results) {
+						tx.executeSql('SELECT * FROM ' + map.type + ' WHERE jsMapKey=?', [jsMapKey], function (tx, results) {
 							if (results.rows.length) {
-								delete win.APP.maps[jsName];
+								delete win.APP.maps[jsMapKey];
 								return;
 							}
-							dbMaster.insertMap(map, jsName);
+							dbMaster.insertMap(map, jsMapKey);
 						});
 					});
 				});
 
 			},
 
-			insertMap: function (map, jsName) { // map
+			insertMap: function (map, jsMapKey) { // map
 
 				var maps = win.APP.maps,
 					dbMaster = this,
@@ -177,10 +177,30 @@
 				delete info.terrain;
 
 				db.transaction(function(tx) {
-					tx.executeSql('INSERT INTO ' + map.type + ' (jsName, info, map) values(?, ?, ?)', [jsName, JSON.stringify(info), JSON.stringify(map)], null, null);
+					tx.executeSql('INSERT INTO ' + map.type + ' (jsMapKey, info, map) values(?, ?, ?)', [jsMapKey, JSON.stringify(info), JSON.stringify(map)], null, null);
 				});
 
-				delete maps[jsName];
+				delete maps[jsMapKey];
+
+			},
+
+			removeMap: function (data) {
+
+				var dbMaster = this,
+					db = dbMaster.db,
+					type = data.type,
+					jsMapKey = data.jsMapKey,
+					deferred = $.Deferred();
+
+				db.transaction(function (tx) {
+					tx.executeSql('DELETE FROM ' + type + ' WHERE jsMapKey = ?', [jsMapKey], function () {
+						deferred.resolve();
+					}, function () {
+						deferred.resolve();
+					});
+				});
+
+				return deferred.promise();
 
 			},
 
@@ -200,7 +220,7 @@
 						var i, len, row;
 						for (i = 0, len = results.rows.length; i < len; i += 1) {
 							row = results.rows.item(i);
-							mapsInfo[row.jsName] = JSON.parse(row.info);
+							mapsInfo[row.jsMapKey] = JSON.parse(row.info);
 						}
 						deferred.resolve(mapsInfo);
 					});
@@ -221,7 +241,7 @@
 				data.type = data.type || dbMaster.skirmishMaps;
 
 				db.transaction(function (tx) {
-					tx.executeSql('SELECT * FROM ' + data.type + ' WHERE jsName=?', [data.jsName], function (tx, results) {
+					tx.executeSql('SELECT * FROM ' + data.type + ' WHERE jsMapKey=?', [data.jsMapKey], function (tx, results) {
 
 						var row = results.rows.item(0),
 							mapInfo = JSON.parse(row.info);
@@ -246,7 +266,7 @@
 				data.type = data.type || dbMaster.skirmishMaps;
 
 				db.transaction(function (tx) {
-					tx.executeSql('SELECT * FROM ' + data.type + ' WHERE jsName=?', [data.jsName], function (tx, results) {
+					tx.executeSql('SELECT * FROM ' + data.type + ' WHERE jsMapKey=?', [data.jsMapKey], function (tx, results) {
 
 						var row = results.rows.item(0),
 							map = JSON.parse(row.map);
@@ -258,12 +278,24 @@
 
 				return deferred.promise();
 
+			},
+
+			openMap: function (openMaps) {
+
+				var dbMaster = this;
+
+				_.each(openMaps, function (mapData) {
+					dbMaster.getMap(mapData).then(function (map) {
+						map.isOpen = true;
+						dbMaster.removeMap(mapData).then(function () {
+							dbMaster.insertMap(map, mapData.jsMapKey);
+						});
+					});
+				});
+
 			}
 
-
 		}
-
-
 
 	};
 

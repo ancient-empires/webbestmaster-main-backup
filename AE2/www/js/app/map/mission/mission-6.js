@@ -9,7 +9,8 @@
 
 	win.APP.maps.mission_6 = {
 		"type": "mission",
-		"isOpen": true,
+		"isOpen": false,
+		"openMap": "mission_7",
 		"size": {"width": 12, "height": 20},
 		"name": "NORTHBOUND",
 		"name-ru": "RU NORTHBOUND",
