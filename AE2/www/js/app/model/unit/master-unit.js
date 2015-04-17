@@ -52,16 +52,16 @@
 
 			// commanders
 			galamar: {
-				//atk: {
-				//	min: 55,
-				//	max: 65
-				//},
-				//atkRange: 2,
 				atk: {
-					min: 155,
-					max: 165
+					min: 55,
+					max: 65
 				},
-				atkRange: 7,
+				atkRange: 2,
+				//atk: {
+				//	min: 155,
+				//	max: 165
+				//},
+				//atkRange: 7,
 				def: 20,
 				mov: 5,
 				modelName: 'GalamarModel',
@@ -133,16 +133,16 @@
 				cost: 150
 			},
 			archer: {
-				atk: {
-					min: 150,
-					max: 155
-				},
-				atkRange: 7,
 				//atk: {
-				//	min: 50,
-				//	max: 55
+				//	min: 150,
+				//	max: 155
 				//},
-				//atkRange: 3,
+				//atkRange: 7,
+				atk: {
+					min: 50,
+					max: 55
+				},
+				atkRange: 3,
 				def: 5,
 				mov: 5,
 				modelName: 'ArcherModel',
