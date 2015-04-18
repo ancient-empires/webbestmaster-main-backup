@@ -9,7 +9,7 @@
 
 	win.APP.maps.mission_001_008 = {
 		"type": "mission",
-		"isOpen": false,
+		"isOpen": true,
 		//"openMaps": [ { "jsMapKey": 'mission_001_009', "type": "mission" } ],
 		"size": {"width": 14, "height": 18},
 		"name": "HEAVEN'S FURY",
@@ -24,6 +24,108 @@
 		"objective": 'Defeat Saeth and his minions! Galamar and Valadorn must survive.',
 
 		"startBriefing": [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'The Ruins of the Ancient Citadel... and Saeth! With the Crystals!',
+					img: 'i/face/galamar.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'At last, Galamar and Valadorn! How very brave of you to confront me! All the keys are now in place, and soon the greatest power ever created on this earth will roar and bend to my will. Your destruction will be testimony to its might and glory!',
+					img: 'i/face/saeth.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7, y: 2 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Your ruses can no longer fool us, Saeth!',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 6, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing upper-briefing',
+				popupData: {
+					text: 'TARGET AQUIRED...<br>HEAVEN\'S FURY ACTIVATED',
+					img: ''
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Heaven\'s Fury? What in the name of the Creator is that!',
+					img: 'i/face/galamar.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Pathetic creatures, this is something ancient that you would not understand even if you lived a thousand years! Witness the power of Heaven\'s Fury!',
+					img: 'i/face/saeth.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7, y: 2 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Galamar! We must hurry if our troops are to stand a chance!',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 6, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Sire, we should attack these castles first before we launch an attack on the Saeth and the Ruins.',
+					img: 'i/face/soldier.png'
+				}
+			},
 			{
 				popupName: 'simple-notification',
 				popupData: {
@@ -53,11 +155,16 @@
 			{"x": 3, "y": 9, "type": "demon-lord", "ownerId": 1},
 			{"x": 6, "y": 9, "type": "archer", "ownerId": 1},
 			{"x": 7, "y": 9, "type": "wisp", "ownerId": 1},
+
 			{"x": 7, "y": 2, "type": "saeth", "ownerId": 1},
+
 			{"x": 12, "y": 4, "type": "dragon", "ownerId": 1},
 			{"x": 13, "y": 4, "type": "demon-lord", "ownerId": 1},
+
 			{"x": 6, "y": 15, "type": "valadorn", "ownerId": 0},
+
 			{"x": 8, "y": 15, "type": "galamar", "ownerId": 0},
+
 			{"x": 7, "y": 15, "type": "golem", "ownerId": 0},
 			{"x": 5, "y": 15, "type": "elemental", "ownerId": 0},
 			{"x": 6, "y": 16, "type": "wisp", "ownerId": 0},
