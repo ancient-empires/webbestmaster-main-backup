@@ -32,6 +32,12 @@
 		],
 		"startBriefing": [
 			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'The Temple of Courage'
+				}
+			},
+			{
 				popupName: 'briefing',
 				from: 'left',
 				cssClass: 'briefing',

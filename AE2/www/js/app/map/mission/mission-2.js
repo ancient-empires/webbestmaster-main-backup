@@ -34,6 +34,12 @@
 
 		"startBriefing": [
 			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'The Temple of Wisdom'
+				}
+			},
+			{
 				popupName: 'briefing',
 				from: 'left',
 				cssClass: 'briefing',

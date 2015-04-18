@@ -23,6 +23,12 @@
 		"objective": 'Occupy the enemy castle and destroy all enemy troops. Valadorn must survive.',
 		"startBriefing": [
 			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'The Gates of Thorin'
+				}
+			},
+			{
 				popupName: 'briefing',
 				from: 'left',
 				cssClass: 'briefing',

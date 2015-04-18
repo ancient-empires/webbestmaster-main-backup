@@ -26,6 +26,12 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
+					header: 'Outside the City'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
 					header: langEn.objective,
 					text: 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles! Galamar and Valadorn must survive.'
 				}

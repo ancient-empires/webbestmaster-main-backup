@@ -380,10 +380,10 @@
 
 	<div>
 		<div class="js-back">
-			<% if ( header ) { %>
+			<% if ( obj.header && header ) { %>
 				<div class="popup-header"><%= header %></div>
 			<% }; %>
-			<% if ( text ) { %>
+			<% if ( obj.text && text ) { %>
 				<div class="popup-text"><%= text %></div>
 			<% }; %>
 		</div>

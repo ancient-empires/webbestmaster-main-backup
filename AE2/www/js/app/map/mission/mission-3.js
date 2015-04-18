@@ -28,6 +28,12 @@
 		],
 		"startBriefing": [
 			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Forest of Mists'
+				}
+			},
+			{
 				popupName: 'briefing',
 				from: 'right',
 				cssClass: 'briefing',

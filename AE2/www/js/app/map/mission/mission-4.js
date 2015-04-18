@@ -23,6 +23,12 @@
 		"objective": 'Protect the Temple of Life - destroy all enemy units, occupy the enemy castle!',
 		"startBriefing": [
 			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'The Temple of Life'
+				}
+			},
+			{
 				popupName: 'briefing',
 				from: 'right',
 				cssClass: 'briefing',

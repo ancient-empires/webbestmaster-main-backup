@@ -24,6 +24,12 @@
 
 		"startBriefing": [
 			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'The Ancient Citadel'
+				}
+			},
+			{
 				popupName: 'briefing',
 				from: 'left',
 				cssClass: 'briefing',

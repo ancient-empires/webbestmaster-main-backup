@@ -22,6 +22,12 @@
 		"objective": 'Deliver the Crystal south to the city of Thorin. King Galamar must survive.',
 		"startBriefing": [
 			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Pathway to Thorin'
+				}
+			},
+			{
 				popupName: 'briefing',
 				from: 'right',
 				cssClass: 'briefing',
