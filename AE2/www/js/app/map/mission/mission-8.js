@@ -9,7 +9,7 @@
 
 	win.APP.maps.mission_001_008 = {
 		"type": "mission",
-		"isOpen": true,
+		"isOpen": false,
 		//"openMaps": [ { "jsMapKey": 'mission_001_009', "type": "mission" } ],
 		"size": {"width": 14, "height": 18},
 		"name": "HEAVEN'S FURY",
@@ -17,7 +17,7 @@
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"money": [600, 600],
-		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
+		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
 		"objective": 'Defeat Saeth and his minions! Galamar and Valadorn must survive.',
