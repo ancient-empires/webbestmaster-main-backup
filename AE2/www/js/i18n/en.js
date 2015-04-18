@@ -83,6 +83,7 @@
 		no: 'no',
 		ok: 'ok',
 		continue: 'continue',
+		congratulations: 'congratulations!',
 
 			// end game
 		blackDefeat: 'Black player was defeat!',

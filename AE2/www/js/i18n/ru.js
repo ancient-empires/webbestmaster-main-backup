@@ -78,11 +78,12 @@
 		unitStoreHeader: 'Войска',
 
 		// popups
-		endTurnQuestion: 'Конец Хода?',
+		endTurnQuestion: 'Закончить ход?',
 		yes: 'да',
 		no: 'нет',
 		ok: 'ok',
 		continue: 'продолжить',
+		congratulations: 'Поздравления!',
 
 			// end game
 		blackDefeat: 'Чёрный игрок повержен!',

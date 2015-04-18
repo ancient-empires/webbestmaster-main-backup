@@ -142,16 +142,76 @@
 
 		"endBriefing": [
 			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Pitiful wretches. You will not live long enough to see your precious Kingdom engulfed in shadow...',
+					img: 'i/face/saeth.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Saeth! This time your defeat is complete!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'In your insignificant life and narrow mind, perhaps... Nevertheless everything is now set in motion - the invisible forces that govern time are beyond your knowledge. You cannot stop me from rising again!',
+					img: 'i/face/saeth.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Your Majesty, the Ruins are falling apart! We should leave immediately!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'But the Crystals... They are still in there!',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'The only thing we can save now is ourselves!',
+					img: 'i/face/valadorn.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'You have served me well. Now move!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.victory,
-					text: 'Thanks for your playing!'
+					header: langEn.congratulations,
+					text: 'And thank you for playing AE2 - I very much hope you enjoyed playing it as much as I enjoyed making it!'
 				}
-				//,onHide: {
-					//fn: 'openMap',
-					//args: ['mission_001_002', { type: 'mission' }]
-				//}
 			}
+
 		],
 
 		"units": [
@@ -160,16 +220,11 @@
 			{"x": 3, "y": 9, "type": "demon-lord", "ownerId": 1},
 			{"x": 6, "y": 9, "type": "archer", "ownerId": 1},
 			{"x": 7, "y": 9, "type": "wisp", "ownerId": 1},
-
 			{"x": 7, "y": 2, "type": "saeth-heavens-fury", "ownerId": 1},
-
 			{"x": 12, "y": 4, "type": "dragon", "ownerId": 1},
 			{"x": 13, "y": 4, "type": "demon-lord", "ownerId": 1},
-
 			{"x": 6, "y": 15, "type": "valadorn", "ownerId": 0},
-
 			{"x": 8, "y": 15, "type": "galamar", "ownerId": 0},
-
 			{"x": 7, "y": 15, "type": "golem", "ownerId": 0},
 			{"x": 5, "y": 15, "type": "elemental", "ownerId": 0},
 			{"x": 6, "y": 16, "type": "wisp", "ownerId": 0},
