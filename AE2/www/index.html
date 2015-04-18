@@ -682,7 +682,10 @@
 				<% _.each(help, function (item) { %>
 
 				<div class="help-page">
+					<% if ( item.img ) { %>
 					<img src="<%= item.img %>" alt="" class="help-image"/>
+					<% }; %>
+
 					<% _.each(item.text, function(text){ %>
 
 					<p class="help-text"> <%= text %> </p>
