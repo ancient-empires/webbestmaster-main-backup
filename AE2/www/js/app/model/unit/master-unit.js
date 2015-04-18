@@ -117,6 +117,19 @@
 				cost: 400
 			},
 
+			'saeth-heavens-fury': {
+				atk: {
+					min: 55,
+					max: 65
+				},
+				atkRange: 16,
+				def: 45,
+				mov: 1,
+				modelName: 'SaethHeavensFuryModel',
+				langKey: 'saeth',
+				canNotBeBuy: true
+			},
+
 			// private units
 			soldier: {
 				atk: {

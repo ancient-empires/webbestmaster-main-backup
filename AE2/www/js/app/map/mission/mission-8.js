@@ -17,8 +17,7 @@
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"money": [600, 1200],
-		// todo: kill main commander!!!
-		"win": [], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
+		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
 		"objective": 'Defeat Saeth and his minions! Galamar and Valadorn must survive.',
@@ -54,7 +53,7 @@
 			},
 			{
 				popupName: 'briefing',
-				from: 'right',
+				from: 'left',
 				cssClass: 'briefing',
 				popupData: {
 					text: 'Your ruses can no longer fool us, Saeth!',
@@ -68,10 +67,10 @@
 			},
 			{
 				popupName: 'briefing',
-				from: 'right',
-				cssClass: 'briefing upper-briefing',
+				from: 'right ta-center',
+				cssClass: 'briefing',
 				popupData: {
-					text: 'TARGET AQUIRED...<br>HEAVEN\'S FURY ACTIVATED',
+					text: 'TARGET AQUIRED...<br>HEAVEN\'S FURY ACTIVATED!',
 					img: ''
 				}
 			},
@@ -105,7 +104,7 @@
 			},
 			{
 				popupName: 'briefing',
-				from: 'right',
+				from: 'left',
 				cssClass: 'briefing',
 				popupData: {
 					text: 'Galamar! We must hurry if our troops are to stand a chance!',
@@ -119,7 +118,7 @@
 			},
 			{
 				popupName: 'briefing',
-				from: 'left',
+				from: 'right',
 				cssClass: 'briefing',
 				popupData: {
 					text: 'Sire, we should attack these castles first before we launch an attack on the Saeth and the Ruins.',
@@ -156,7 +155,7 @@
 			{"x": 6, "y": 9, "type": "archer", "ownerId": 1},
 			{"x": 7, "y": 9, "type": "wisp", "ownerId": 1},
 
-			{"x": 7, "y": 2, "type": "saeth", "ownerId": 1},
+			{"x": 7, "y": 2, "type": "saeth-heavens-fury", "ownerId": 1},
 
 			{"x": 12, "y": 4, "type": "dragon", "ownerId": 1},
 			{"x": 13, "y": 4, "type": "demon-lord", "ownerId": 1},
