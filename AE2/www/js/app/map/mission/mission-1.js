@@ -27,7 +27,7 @@
 			},
 			{
 				img: 'img/help/attack.png',
-				text: ['To attack an enemy unit, move your unit within range and select <img src="img/help/attack-icon.png" class="icon-in-text" />', 'If there is more than one enemy in range, select which unit to attack. The success of your attack is determined by unit characteristics and terrain.']
+				text: ['To attack an enemy unit, move your unit within range and select <img src="img/help/attack-icon.png" class="icon-in-text" />.', 'If there is more than one enemy in range, select which unit to attack. The success of your attack is determined by unit characteristics and terrain.']
 			}
 		],
 		"startBriefing": [
