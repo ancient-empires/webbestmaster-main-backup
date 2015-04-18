@@ -16,7 +16,7 @@
 		"name-ru": "RU HEAVEN'S FURY",
 		"maxPlayers": 2,
 		"unitLimit": 25,
-		"money": [600, 1200],
+		"money": [600, 600],
 		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
