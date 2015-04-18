@@ -145,7 +145,7 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langEn.victory,
-					text: 'Go to next mission!'
+					text: 'Thanks for your playing!'
 				}
 				//,onHide: {
 					//fn: 'openMap',
