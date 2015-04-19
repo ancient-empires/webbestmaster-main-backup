@@ -37,9 +37,11 @@
 			model.set('units', []); // will be filled after append units
 			model.set('graves', []); // will be filled in battle
 
+			players = model.get('players');
 			if (playersMoney) {
-				_.each(model.get('players'), function (player, index) {
-					player.money = playersMoney[index];
+				_.each(playersMoney, function (data) {
+					var player = _.find(players, {id: data.playerId});
+					return player && (player.money = data.money);
 				});
 			} else {
 				// add money to player

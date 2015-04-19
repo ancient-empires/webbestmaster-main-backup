@@ -16,7 +16,10 @@
 		"name-ru": "RU RENDEZVOUS",
 		"maxPlayers": 2,
 		"unitLimit": 25,
-		"money": [400, 1000],
+		"money": [
+			{playerId: 0, money: 400},
+			{playerId: 1, money: 400}
+		],
 		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 

@@ -16,7 +16,10 @@
 		"name-ru": "RU NORTHBOUND",
 		"maxPlayers": 2,
 		"unitLimit": 25,
-		"money": [600, 1000],
+		"money": [
+			{playerId: 0, money: 600},
+			{playerId: 1, money: 600}
+		],
 		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
