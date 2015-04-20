@@ -107,7 +107,7 @@
 			db: false, // field for db
 			skirmishMaps: 'skirmish',
 			missionMaps: 'mission',
-			saveGame: 'saveGame',
+			savedGame: 'savedGame',
 
 			init: function () {
 
@@ -140,9 +140,9 @@
 						log(e);
 					});
 
-					//tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.saveGame); // TODO: comment this for production
+					//tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.savedGame); // TODO: comment this for production
 
-					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.saveGame + ' (date TEXT, name TEXT, game TEXT)', [], null, null);
+					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.savedGame + ' (date TEXT, name TEXT, game TEXT)', [], null, null);
 
 				});
 
@@ -199,6 +199,24 @@
 
 				db.transaction(function (tx) {
 					tx.executeSql('DELETE FROM ' + type + ' WHERE jsMapKey = ?', [jsMapKey], function () {
+						deferred.resolve();
+					}, function () {
+						deferred.resolve();
+					});
+				});
+
+				return deferred.promise();
+
+			},
+
+			removeSave: function (name) {
+
+				var dbMaster = this,
+					db = dbMaster.db,
+					deferred = $.Deferred();
+
+				db.transaction(function (tx) {
+					tx.executeSql('DELETE FROM ' + dbMaster.savedGame + ' WHERE name = ?', [name], function () {
 						deferred.resolve();
 					}, function () {
 						deferred.resolve();
@@ -297,6 +315,48 @@
 						});
 					});
 				});
+
+			},
+			
+			saveGame: function (date, name, data) {
+
+				var dbMaster = this,
+					deferred = $.Deferred(),
+					db = dbMaster.db;
+
+				dbMaster
+					.removeSave(name)
+					.then(function () {
+						db.transaction(function(tx) {
+							tx.executeSql('INSERT INTO ' + dbMaster.savedGame + ' (date, name, game) values(?, ?, ?)', [date, name, JSON.stringify(data)], function () {
+								deferred.resolve();
+							}, null);
+						});
+					});
+
+				return deferred.promise();
+
+			},
+
+			getSavedGames: function () {
+
+				var dbMaster = this,
+					deferred = $.Deferred(),
+					db = dbMaster.db,
+					saves = [];
+
+				db.transaction(function (tx) {
+					tx.executeSql('SELECT * FROM ' + dbMaster.savedGame + ' ORDER BY date DESC', [], function (tx, results) {
+						var i, len, row;
+						for (i = 0, len = results.rows.length; i < len; i += 1) {
+							row = results.rows.item(i);
+							saves.push(row.name);
+						}
+						deferred.resolve(saves);
+					});
+				});
+
+				return deferred.promise();
 
 			}
 

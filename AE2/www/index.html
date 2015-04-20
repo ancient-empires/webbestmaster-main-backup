@@ -527,11 +527,7 @@
 		<div class="popup-header">{{ saveGame }}</div>
 
 		<div class="js-scroll-area-container scroll-touch save-list-wrapper">
-			<div class="scroll-area js-saved-list">
-
-				no saved games
-
-			</div>
+			<div class="scroll-area js-saved-list"></div>
 		</div>
 
 		<div class="save-small-form-wrapper clear-fix">
@@ -544,6 +540,24 @@
 	</div>
 
 </script>
+
+<script type="text/x-template" data-name="save-game-items">
+
+	<div>
+
+		<% if ( savedGames.length ) { %>
+			<% _.each(savedGames, function(name){ %>
+
+				<div><%= name %></div>
+
+			<% }); %>
+		<% } else { %>
+			noSavedGames
+		<% }; %>
+	</div>
+
+</script>
+
 
 <script type="text/x-template" data-name="skirmishSetupMap">
 
