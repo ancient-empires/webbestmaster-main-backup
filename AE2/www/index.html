@@ -543,18 +543,19 @@
 
 <script type="text/x-template" data-name="save-game-items">
 
-	<div>
-
-		<% if ( savedGames.length ) { %>
-			<% _.each(savedGames, function(name){ %>
-
-				<div><%= name %></div>
-
-			<% }); %>
-		<% } else { %>
-			noSavedGames
-		<% }; %>
-	</div>
+	<% if ( savedGames.length ) { %>
+		<% _.each(savedGames, function(name){ %>
+			<div class="saved-item-wrapper clear-fix" data-save-name="<%= name %>">
+				<div class="save-input-button ellipsis" data-save-name="<%= name %>">{{ delete }}</div>
+				<div class="save-input-text-wrapper">
+					<div class="saved-item" data-save-name="<%= name %>"><%= name %></div>
+				</div>
+				<div></div>
+			</div>
+		<% }); %>
+	<% } else { %>
+		noSavedGames
+	<% }; %>
 
 </script>
 

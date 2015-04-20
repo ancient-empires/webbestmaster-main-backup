@@ -89,6 +89,7 @@
 					var html = view.tmpl['save-game-items']({ savedGames: savedGames });
 					view.$el.find(view.selectors.savedList).html(html);
 					view.setSaveButtonEnable(true);
+					view.delegateEvents();
 				});
 
 		},

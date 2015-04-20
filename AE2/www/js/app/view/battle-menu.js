@@ -128,7 +128,8 @@
 
 			view.showPopup({
 				popupName: 'simple-notification',
-				append$el: saveGameView.$el
+				append$el: saveGameView.$el,
+				cssClass: 'no-image-border'
 			});
 
 		}

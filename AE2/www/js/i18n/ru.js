@@ -87,6 +87,7 @@
 
 			//save/load popup
 		save: 'сохранить',
+		delete: 'удалить',
 		replace: 'заменить',
 		saveGame: 'сохранить игру',
 

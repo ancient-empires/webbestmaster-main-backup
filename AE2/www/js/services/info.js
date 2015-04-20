@@ -77,7 +77,7 @@
 			this.set('isTouch', 'ontouchstart' in document, true);
 
 			// is phone
-			this.set('isPhone', Math.max(docElem.clientHeight, docElem.clientWidth) < 760, true);
+			this.set('isPhone', Math.max(docElem.clientHeight, docElem.clientWidth) <= 736, true); // 736 msx of iPhone6plus
 
 			this.setOS();
 

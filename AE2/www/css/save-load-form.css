@@ -26,8 +26,27 @@
 
 .save-small-form-wrapper {
 	padding: 0.5rem 0 0;
+	position: relative;
 }
 
 .save-list-wrapper {
 	max-height: 10rem;
 }
+
+.saved-item-wrapper {
+	padding: 0.7rem 0;
+	position: relative;
+}
+
+.saved-item {
+	word-break: break-all;
+}
+
+
+
+
+
+
+
+
+
