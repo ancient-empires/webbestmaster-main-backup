@@ -14,7 +14,10 @@
 		selectors: {
 			saveInputText: '.js-save-input-text',
 			savedList: '.js-saved-list',
-			saveGame: '.js-save-game'
+			saveGame: '.js-save-game',
+			removeSavedGame: '.js-remove-saved-game',
+			savedItemWrapper: '.js-saved-item-wrapper',
+			closeDeleteConfirm: '.js-close-delete-confirm'
 		},
 
 		events: {
@@ -48,9 +51,8 @@
 				var html = view.tmpl['save-game-items']({ savedGames: savedGames });
 				view.$el.find(view.selectors.savedList).html(html);
 				view.undelegateEvents();
+				view.bindEventListeners();
 			});
-
-			view.bindEventListeners();
 
 		},
 
@@ -59,8 +61,22 @@
 			var view = this,
 				selectors = view.selectors;
 
-			view.$el.find(selectors.saveGame).on('click', $.proxy(view, 'saveGame') );
+			view.unbindEventListeners();
 
+			view.$el.find(selectors.saveGame).on('click', $.proxy(view, 'saveGame') );
+			view.$el.find(selectors.removeSavedGame).on('click', $.proxy(view, 'removeSavedGame') );
+			view.$el.find(selectors.closeDeleteConfirm).on('click', $.proxy(view, 'closeDeleteConfirm') );
+
+
+		},
+
+		unbindEventListeners: function () {
+
+			var view = this,
+				selectors = view.selectors;
+
+			view.$el.find(selectors.saveGame).off('click', view.saveGame );
+			view.$el.find(selectors.removeSavedGame).off('click', view.removeSavedGame );
 
 		},
 
@@ -104,7 +120,40 @@
 					view.$el.find(view.selectors.savedList).html(html);
 					view.undelegateEvents();
 					view.setSaveButtonEnable(true);
+					view.bindEventListeners();
 				});
+
+		},
+
+		removeSavedGame: function (e) {
+
+			var view = this,
+				dbMaster = win.APP.map.db,
+				$this = $(e.currentTarget),
+				gameName = $this.attr('data-save-name'),
+				$blocks,
+				$block = view.$el.find(view.selectors.savedItemWrapper + '[data-save-name="' + gameName + '"]');
+
+			$block.remove();
+
+			dbMaster.removeSave(gameName);
+
+			$blocks = view.$el.find(view.selectors.savedItemWrapper);
+
+			if ( !$blocks.length ) {
+				view.$el.find(view.selectors.savedList).html(win.APP.lang.get('noSavedGames'))
+			}
+
+		},
+
+		closeDeleteConfirm: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget),
+				gameName = $this.attr('data-save-name'),
+				$button = view.$el.find('.js-tab-button[data-save-name="' + gameName + '"]');
+
+			$button.trigger('click');
 
 		},
 

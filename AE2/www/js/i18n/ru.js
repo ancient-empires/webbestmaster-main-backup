@@ -91,6 +91,7 @@
 		replace: 'заменить',
 		saveGame: 'сохранить игру',
 		areYouSureToDeleteSavedGame: 'Вы уверены, что хотите удалить сохранение?',
+		noSavedGames: 'нет сохранённых игр',
 
 			// end game
 		blackDefeat: 'Чёрный игрок повержен!',
