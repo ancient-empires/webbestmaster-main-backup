@@ -492,6 +492,8 @@
 
 		<div class="popup-buttons-wrapper ta-center">
 			<div class="popup-button popup-button-single-in-row js-show-objective">{{ objective }}</div>
+			<div class="popup-button popup-button-single-in-row js-show-save-state">{{ saveGame }}</div>
+			<div class="popup-button popup-button-single-in-row js-load-state">{{ loadGame }}</div>
 			<div class="popup-button popup-button-single-in-row js-show-settings">{{ settings }}</div>
 			<div class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
 			<div class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
@@ -513,6 +515,35 @@
 			<li>saved game name 3</li>
 			<li>saved game name 4</li>
 		</ul>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="save-game">
+
+	<div>
+		<div class="popup-header">{{ saveGame }}</div>
+
+		<div class="js-scroll-area-container scroll-touch save-list-wrapper">
+			<div class="scroll-area">
+
+				save 1 <br/>
+				save 1 <br/>
+				save 1 <br/>
+				save 1 <br/>
+				save 1 <br/>
+				save 1 <br/>
+
+			</div>
+		</div>
+
+		<div class="save-small-form-wrapper clear-fix">
+			<div class="save-input-button ellipsis">{{ save }}</div>
+			<div class="save-input-text-wrapper">
+				<input type="text" class="save-input-text"/>
+			</div>
+		</div>
 
 	</div>
 

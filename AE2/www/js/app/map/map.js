@@ -107,6 +107,7 @@
 			db: false, // field for db
 			skirmishMaps: 'skirmish',
 			missionMaps: 'mission',
+			saveGame: 'saveGame',
 
 			init: function () {
 
@@ -138,6 +139,10 @@
 					}, function (e) {
 						log(e);
 					});
+
+					//tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.saveGame); // TODO: comment this for production
+
+					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.saveGame + ' (date TEXT, name TEXT, game TEXT)', [], null, null);
 
 				});
 

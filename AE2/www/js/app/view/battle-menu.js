@@ -25,7 +25,8 @@
 			'click .js-restart-battle': 'restartBattle',
 			'click .js-quit-battle': 'quitBattle',
 			'click .js-show-objective': 'showObjective',
-			'click .js-show-settings': 'showSettings'
+			'click .js-show-settings': 'showSettings',
+			'click .js-show-save-state': 'showSaveState'
 		},
 
 		initialize: function (data) {
@@ -110,10 +111,19 @@
 				view.routeByUrl('battle-settings');
 			}, 50);
 
+		},
+
+		showSaveState: function () {
+
+			var view = this,
+				dbMaster = win.APP.map.db;
+
+			view.showPopup({
+				popupName: 'save-game',
+				parentView: view.get('view')
+			});
 
 		}
-
-
 
 	});
 
