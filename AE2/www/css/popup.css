@@ -52,7 +52,7 @@
 }
 
 .no-image-border .popup-form {
-	border: none;
+	border-image: none;
 	border-top: solid;
 	border-bottom: solid;
 }

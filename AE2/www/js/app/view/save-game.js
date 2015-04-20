@@ -18,7 +18,8 @@
 		},
 
 		events: {
-			'click .js-save-game': 'saveGame'
+			// do not add events here
+			//'click .js-save-game': 'saveGame'
 		},
 
 		initialize: function (data) {
@@ -46,7 +47,10 @@
 			dbMaster.getSavedGames().then(function (savedGames) {
 				var html = view.tmpl['save-game-items']({ savedGames: savedGames });
 				view.$el.find(view.selectors.savedList).html(html);
+				view.undelegateEvents();
 			});
+
+			view.$el.find(view.selectors.saveGame).on('click', $.proxy(view, 'saveGame') );
 
 		},
 
@@ -88,8 +92,8 @@
 				.then(function (savedGames) {
 					var html = view.tmpl['save-game-items']({ savedGames: savedGames });
 					view.$el.find(view.selectors.savedList).html(html);
+					view.undelegateEvents();
 					view.setSaveButtonEnable(true);
-					view.delegateEvents();
 				});
 
 		},
