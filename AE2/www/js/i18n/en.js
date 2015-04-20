@@ -85,6 +85,11 @@
 		continue: 'continue',
 		congratulations: 'congratulations!',
 
+			//save/load popup
+		save: 'save',
+		replace: 'replace',
+		saveGame: 'save game',
+
 			// end game
 		blackDefeat: 'Black player was defeat!',
 		blueDefeat: 'Blue player was defeat!',

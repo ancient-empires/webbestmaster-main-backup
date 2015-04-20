@@ -85,6 +85,11 @@
 		continue: 'продолжить',
 		congratulations: 'Поздравления!',
 
+			//save/load popup
+		save: 'сохранить',
+		replace: 'заменить',
+		saveGame: 'сохранить игру',
+
 			// end game
 		blackDefeat: 'Чёрный игрок повержен!',
 		blueDefeat: 'Синий игрок повержен!',

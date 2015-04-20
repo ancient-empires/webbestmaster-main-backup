@@ -1,0 +1,33 @@
+.save-input-text-wrapper {
+	margin-right: 10rem;
+}
+
+.save-input-text {
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	border: none;
+	padding: 0.2rem 0.1rem 0 0.3rem;
+	font-size: 1rem;
+	line-height: 1rem;
+}
+
+.save-input-button {
+	float: right;
+	width: 9rem;
+	overflow: hidden;
+	font-size: 1rem;
+	box-sizing: border-box;
+	padding: 0 0.4rem;
+	border-style: solid;
+	border-width: 0.15rem;
+	margin-top: -0.15rem;
+}
+
+.save-small-form-wrapper {
+	padding: 0.5rem 0 0;
+}
+
+.save-list-wrapper {
+	max-height: 10rem;
+}
