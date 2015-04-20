@@ -116,11 +116,29 @@
 		showSaveState: function () {
 
 			var view = this,
-				dbMaster = win.APP.map.db;
+				info = view.info,
+				language = info.get('language'),
+				battleView = view.get('view'),
+				battleModel = battleView.get('model'),
+				map = battleModel.get('map'),
+				mapName = map['name-' + language] || map.name,
+				dbMaster = win.APP.map.db,
+				date = new Date(),
+				saveName = mapName + ' ' + [date.getSeconds(), date.getMinutes(), date.getHours(), date.getDate(), date.getMonth() + 1, date.getFullYear()].join('-');
+
+			saveName = saveName.replace(/(\d+)/g, function (match, p1) {
+				if ( p1.length > 1 ) {
+					return p1;
+				}
+				return 0 + p1;
+			});
 
 			view.showPopup({
+				parenView: battleView,
 				popupName: 'save-game',
-				parentView: view.get('view')
+				popupData: {
+					saveName: saveName
+				}
 			});
 
 		}
