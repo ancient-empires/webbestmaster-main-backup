@@ -50,7 +50,17 @@
 				view.undelegateEvents();
 			});
 
-			view.$el.find(view.selectors.saveGame).on('click', $.proxy(view, 'saveGame') );
+			view.bindEventListeners();
+
+		},
+
+		bindEventListeners: function () {
+
+			var view = this,
+				selectors = view.selectors;
+
+			view.$el.find(selectors.saveGame).on('click', $.proxy(view, 'saveGame') );
+
 
 		},
 
