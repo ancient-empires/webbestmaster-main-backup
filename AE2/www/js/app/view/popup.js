@@ -54,6 +54,7 @@
 		render: function () {
 
 			var view = this,
+				append$el = view.get('append$el'),
 				popupData = view.get('popupData') || {},
 				$content = $(view.tmpl[view.get('popupName')](popupData)),
 				$container = view.$el.find(view.selectors.popupContainer),
@@ -61,6 +62,10 @@
 				context;
 
 			$container.html( $content.html() );
+
+			if (append$el) {
+				$container.append(append$el);
+			}
 
 			view.$wrapper.append(view.$el);
 

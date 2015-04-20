@@ -1,5 +1,5 @@
 .save-input-text-wrapper {
-	margin-right: 10rem;
+	margin-right: 7.5rem;
 }
 
 .save-input-text {
@@ -14,14 +14,14 @@
 
 .save-input-button {
 	float: right;
-	width: 9rem;
+	width: 7rem;
 	overflow: hidden;
 	font-size: 1rem;
 	box-sizing: border-box;
 	padding: 0 0.4rem;
 	border-style: solid;
 	border-width: 0.15rem;
-	margin-top: -0.15rem;
+	margin-top: -0.1rem;
 }
 
 .save-small-form-wrapper {
