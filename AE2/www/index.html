@@ -550,11 +550,20 @@
 				<div class="save-input-text-wrapper">
 					<div class="saved-item" data-save-name="<%= name %>"><%= name %></div>
 				</div>
+				<div class="js-tab-block hidden small-confirm-wrapper clear-fix" data-tab-id="delete-save-<%= index%>">
 
-				<div class="js-tab-block hidden" data-tab-id="delete-save-<%= index%>">
-					delete?
+					<div class="small-confirm-header">
+						{{ areYouSureToDeleteSavedGame }}
+					</div>
+
+					<div class="small-confirm-buttons-wrapper">
+
+						<div class="small-confirm-button"> {{ yes }}</div>
+						<div class="small-confirm-button"> {{ no }}</div>
+
+					</div>
+
 				</div>
-
 			</div>
 		<% }); %>
 	<% } else { %>

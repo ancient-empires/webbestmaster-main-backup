@@ -90,6 +90,7 @@
 		delete: 'delete',
 		replace: 'replace',
 		saveGame: 'save game',
+		areYouSureToDeleteSavedGame: 'Are you sure to delete saved game?',
 
 			// end game
 		blackDefeat: 'Black player was defeat!',
