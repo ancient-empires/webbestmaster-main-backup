@@ -59,12 +59,6 @@
 	border-right: none;
 }
 
-@media only screen and (max-width : 736px) {
-	.popup-form {
-		width: 100%;
-	}
-}
-
 .full .popup-form {
 	height: 60%;
 	position: fixed;
@@ -73,6 +67,16 @@
 	box-sizing: border-box;
 	border: none;
 }
+
+@media only screen and (max-width : 736px) {
+	.popup-form {
+		width: 100%;
+	}
+	.full .popup-form {
+		left: 0;
+	}
+}
+
 
 .popup-header {
 	font-size: 1.2rem;
