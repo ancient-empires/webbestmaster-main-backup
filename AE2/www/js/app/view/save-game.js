@@ -77,6 +77,7 @@
 
 			view.$el.find(selectors.saveGame).off('click', view.saveGame );
 			view.$el.find(selectors.removeSavedGame).off('click', view.removeSavedGame );
+			view.$el.find(selectors.closeDeleteConfirm).off('click', view.closeDeleteConfirm );
 
 		},
 
