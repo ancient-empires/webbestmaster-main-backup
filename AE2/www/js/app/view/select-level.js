@@ -28,7 +28,7 @@
 				view.proto.initialize.apply(view, arguments);
 
 				if (data.newGame) {
-					view.routeByUrl('mission-setup-map/mission_1', { trigger: true });
+					view.routeByUrl('mission-setup-map/mission_001_001', { trigger: true });
 					return;
 				}
 
