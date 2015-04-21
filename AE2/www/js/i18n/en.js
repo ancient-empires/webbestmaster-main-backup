@@ -91,7 +91,9 @@
 		replace: 'replace',
 		saveGame: 'save game',
 		areYouSureToDeleteSavedGame: 'Are you sure to delete saved game?',
+		areYouSureToLoadGame: 'Are you sure to load game?',
 		noSavedGames: 'no saved games',
+		load: 'load',
 
 			// end game
 		blackDefeat: 'Black player was defeat!',

@@ -26,7 +26,8 @@
 			'click .js-quit-battle': 'quitBattle',
 			'click .js-show-objective': 'showObjective',
 			'click .js-show-settings': 'showSettings',
-			'click .js-show-save-state': 'showSaveState'
+			'click .js-show-save-state': 'showSaveState',
+			'click .js-show-load-state': 'showLoadState'
 		},
 
 		initialize: function (data) {
@@ -129,6 +130,27 @@
 			view.showPopup({
 				popupName: 'simple-notification',
 				append$el: saveGameView.$el,
+				cssClass: 'no-image-border'
+			});
+
+		},
+
+		showLoadState: function () {
+
+			var view = this,
+				battleView = view.get('view'),
+				battleModel = battleView.get('model'),
+				map = battleModel.get('map'),
+				loadGameView;
+
+			loadGameView = new win.APP.BB.LoadGamePopupView({
+				battleView: battleView,
+				battleModel: battleModel
+			});
+
+			view.showPopup({
+				popupName: 'simple-notification',
+				append$el: loadGameView.$el,
 				cssClass: 'no-image-border'
 			});
 
