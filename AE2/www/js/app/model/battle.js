@@ -41,12 +41,14 @@
 			if (playersMoney) {
 				_.each(playersMoney, function (data) {
 					var player = _.find(players, {id: data.playerId});
-					return player && (player.money = data.money);
+					if (player) {
+						player.money = player.hasOwnProperty('money') ? player.money : data.money
+					}
 				});
 			} else {
 				// add money to player
 				_.each(model.get('players'), function (player) {
-					player.money = args.money;
+					player.money = player.hasOwnProperty('money') ? player.money : args.money;
 				});
 			}
 
@@ -59,12 +61,26 @@
 		appendBuildings: function () {
 
 			var mapBuildings = this.get('map').buildings,
+				savedData = this.get('savedData'),
 				view = this.get('view'),
 				players = this.get('players'),
 				buildingArr = this.get('buildings'),
 				buildingDefaultColor = win.APP.building.defaults.color,
 				buildingMap = win.APP.building.list,
 				buildingDefaultTeamNumber = win.APP.building.defaults.teamNumber;
+
+			if (savedData) {
+
+				mapBuildings = savedData.buildings;
+
+				_.each(mapBuildings, function (building) {
+					buildingArr.push(building);
+					view.appendBuilding(building);
+				});
+
+				return;
+
+			}
 
 			_.each(mapBuildings, function (building) {
 
@@ -86,8 +102,18 @@
 		appendUnits: function () {
 
 			var model = this,
+				savedData = this.get('savedData'),
 				mapUnits = model.get('map').units,
 				players = model.get('players');
+
+
+			if (savedData) {
+				mapUnits = savedData.units;
+				_.each(mapUnits, function (unit) {
+					model.appendUnit(unit);
+				});
+				return;
+			}
 
 			_.each(mapUnits, function (unit) {
 
@@ -197,7 +223,7 @@
 			// set commanders from map
 			_.each(players, function (player) {
 
-				player.commander = {
+				player.commander = player.commander || {
 					isLive: false,
 					name: null,
 					xp: 0
@@ -324,11 +350,17 @@
 		startGame: function () {
 
 			var model = this,
+				savedData = model.get('savedData'),
 				map = model.get('map'),
 				mapType = map.type,
-				view = model.get('view');
+				view = model.get('view'),
+				activePlayer = model.get('players')[0];
 
-			model.set('activePlayer', model.get('players')[0]);
+			if (savedData) {
+				activePlayer = _.find(model.get('players'), { id: savedData.activePlayer.id });
+			}
+
+			model.set('activePlayer', activePlayer);
 
 			model.startTurn();
 

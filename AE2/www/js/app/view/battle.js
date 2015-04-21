@@ -52,6 +52,63 @@
 
 			view.$el = $(view.tmpl.battle());
 
+			if (data.fromSave) {
+
+				var args = {
+					jsMapKey: data.jsMapKey,
+					money: 500,
+					players: data.players,
+					unitLimit: data.unitLimit,
+					difficult: data.difficult,
+					fromSave: true
+				};
+
+				view.set('args', args);
+
+				view.set('map', data.map);
+
+				// see normal load
+				view.set('model', new win.APP.BB.BattleModel({
+					view: view,
+					args: view.get('args'),
+					map: view.get('map'),
+					savedData: data
+				}));
+
+				view.set('markActiveSquare', {}); // {x: number, y: number}
+
+				view.set('infoSquareXY', {x: 0, y: 0}); // {x: number, y: number}
+
+				// set sizes
+				view.setSize();
+
+				// draw map
+				view.drawMap();
+
+				// draw buildings
+				view.drawBuildings(); // +
+
+				// draw units
+				view.drawUnits(); // +
+
+				// bind move area
+				view.bindMoveArea();
+
+				view.bindEventListeners();
+
+				view.render();
+
+				// start game from model
+				view.get('model').startGame();
+
+				view.proto.initialize.apply(view, arguments);
+
+
+
+
+				return;
+			}
+
 			// get map
 			view.set('args', data);
 
@@ -782,7 +839,6 @@
 				cssX = x * squareSize,
 				cssY = y * squareSize,
 				unitType = unit.get('type'),
-				isCommander = unit.isCommander(),
 				$unitLayerWrapper = view.$el.find(view.selectors.unitsWrapper),
 				unitImage,
 				animationEnd = view.info.get('animationEnd', true);
@@ -831,7 +887,7 @@
 
 			view.setUnitHealth({ unit: unit });
 
-			view.setUnitLevel({ unit: unit, doNotShowLevelUp: isCommander });
+			view.setUnitLevel({ unit: unit, doNotShowLevelUp: Boolean(unit.get('xp')) });
 
 		},
 

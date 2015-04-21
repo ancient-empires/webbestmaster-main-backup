@@ -84,10 +84,15 @@
 		loadGame: function (e) {
 
 			var view = this,
+				dbMaster = win.APP.map.db,
 				$this = $(e.currentTarget),
 				gameName = $this.attr('data-save-name');
 
-			console.log(gameName);
+			dbMaster.getSavedGame(gameName).then(function (data) {
+				var game = JSON.parse(data.game);
+				game.fromSave = true;
+				new win.APP.BB.BattleView(game);
+			});
 
 		}
 

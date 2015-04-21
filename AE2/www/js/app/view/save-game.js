@@ -180,8 +180,11 @@
 					units: [],
 					buildings: buildings,
 					jsMapKey: model.get('jsMapKey'),
-					map: model.get('map')
-				};
+					map: model.get('map'),
+					unitLimit: model.get('unitLimit'),
+					difficult: view.info.get('difficult')
+				},
+				doNotSaves = ['model', 'view'];
 
 			// save players - ALL data - done
 			// active player - save ID - done, save full player
@@ -191,16 +194,11 @@
 
 			_.each(units, function (unit) {
 				// toJSON is bad idea, save only needed data
-				save.units.push({
-					x: unit.get('x'),
-					y: unit.get('y'),
-					type: unit.get('type'),
-					ownerId: unit.get('ownerId'),
-					isActive: unit.get('isActive'),
-					teamNumber: unit.get('teamNumber'),
-					xp: unit.get('xp'),
-					color: unit.get('color')
+				var unitData = {};
+				_.each(unit.toJSON(), function (value, key) {
+					return _.contains(doNotSaves, key) || (unitData[key] = value);
 				});
+				save.units.push(unitData);
 			});
 
 			return save;

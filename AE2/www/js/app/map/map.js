@@ -358,6 +358,22 @@
 
 				return deferred.promise();
 
+			},
+
+			getSavedGame: function (gameName) {
+
+				var dbMaster = this,
+					deferred = $.Deferred(),
+					db = dbMaster.db;
+
+				db.transaction(function (tx) {
+					tx.executeSql('SELECT * FROM ' + dbMaster.savedGame + ' WHERE name=?', [gameName], function (tx, results) {
+						deferred.resolve(results.rows.item(0));
+					});
+				});
+
+				return deferred.promise();
+
 			}
 
 		}

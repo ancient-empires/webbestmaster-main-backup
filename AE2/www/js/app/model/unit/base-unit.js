@@ -22,10 +22,10 @@
 			// default state
 			unit.setDefaultState();
 
-			unit.set('health', 100);
+			unit.set('health', data.health || 100);
 			unit.set('defaultHealth', 100);
 			unit.set('xp', data.xp || 0);
-			unit.set('level', 0);
+			unit.set('level', data.level || 0);
 
 			unit.set('silents', {}); // hack for triggering
 
