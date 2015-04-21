@@ -362,18 +362,24 @@
 
 			model.set('activePlayer', activePlayer);
 
-			model.startTurn();
+			model.startTurn({
+				startGame: true
+			});
 
 			model.autoSetWispAura();
 
-			if (mapType === 'skirmish') {
-				view.showObjective();
-			}
+			if (!savedData) {
 
-			if (mapType === 'mission') {
-				view.showBriefing({
-					briefingName: 'startBriefing'
-				});
+				if (mapType === 'skirmish') {
+					view.showObjective();
+				}
+
+				if (mapType === 'mission') {
+					view.showBriefing({
+						briefingName: 'startBriefing'
+					});
+				}
+
 			}
 
 		},
@@ -421,9 +427,13 @@
 
 		},
 
-		startTurn: function () {
+		startTurn: function (data) {
+
+			data = data || {};
 
 			var model = this,
+				savedData = model.get('savedData'),
+				savedUnits,
 				view = model.get('view'),
 				activePlayer = model.get('activePlayer');
 
@@ -435,9 +445,21 @@
 
 			model.setUnitsState();
 
-			model.setGraveState();
+			if (savedData && data.startGame) {
+				savedUnits = savedData.units;
+				_.each(model.get('units'), function (unit) {
+					var savedUnit = _.find(savedUnits, {x: unit.get('x'), y: unit.get('y')});
+					_.each(savedUnit, function (value, key) {
+						unit.set(key, value);
+					});
+				});
+			}
 
-			model.healthByBuildings();
+			if ( !data.startGame ) {
+				model.healthByBuildings();
+			}
+
+			model.setGraveState();
 
 			model.autoSetPoisonCount();
 
