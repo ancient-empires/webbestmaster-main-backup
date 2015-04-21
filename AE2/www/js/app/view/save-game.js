@@ -182,7 +182,8 @@
 					jsMapKey: model.get('jsMapKey'),
 					map: model.get('map'),
 					unitLimit: model.get('unitLimit'),
-					difficult: view.info.get('difficult')
+					difficult: view.info.get('difficult'),
+					graves: model.get('graves')
 				},
 				doNotSaves = ['model', 'view'];
 

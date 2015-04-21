@@ -91,6 +91,8 @@
 				// draw units
 				view.drawUnits(); // +
 
+				view.drawGraves();
+
 				// bind move area
 				view.bindMoveArea();
 
@@ -824,6 +826,11 @@
 		drawUnits: function () {
 			var model = this.get('model');
 			model.appendUnits();
+		},
+
+		drawGraves: function () {
+			var model = this.get('model');
+			model.appendGraves();
 		},
 
 		appendUnit: function (unit) {

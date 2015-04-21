@@ -167,6 +167,28 @@
 
 		},
 
+		appendGraves: function () {
+
+			var model = this,
+				view = model.get('view'),
+				savedData = model.get('savedData'),
+				graves = savedData.graves;
+
+			_.each(graves, function (savedGrave) {
+
+				var grave = win.APP.unitMaster.createGrave({
+					x: savedGrave.x,
+					y: savedGrave.y
+				});
+
+				grave.currentTime = savedGrave.currentTime;
+				model.addGrave(grave);
+				view.addGrave(grave);
+
+			});
+
+		},
+
 		appendUnitNearFrom: function (unitData) {
 			
 			var model = this,
@@ -457,11 +479,9 @@
 
 			if ( !data.startGame ) {
 				model.healthByBuildings();
+				model.setGraveState();
+				model.autoSetPoisonCount();
 			}
-
-			model.setGraveState();
-
-			model.autoSetPoisonCount();
 
 			model.get('view').updateStatusBar();
 
