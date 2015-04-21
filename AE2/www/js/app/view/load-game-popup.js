@@ -12,8 +12,8 @@
 	APP.BB.LoadGamePopupView = APP.BB.BaseView.extend({
 
 		selectors: {
-			closeLoadConfirm: '.js-close-load-confirm'
-
+			closeLoadConfirm: '.js-close-load-confirm',
+			loadGame: '.js-load-game'
 		},
 
 		events: {
@@ -55,10 +55,8 @@
 
 			view.unbindEventListeners();
 
-			//view.$el.find(selectors.saveGame).on('click', $.proxy(view, 'saveGame') );
-			//view.$el.find(selectors.removeSavedGame).on('click', $.proxy(view, 'removeSavedGame') );
+			view.$el.find(selectors.loadGame).on('click', $.proxy(view, 'loadGame') );
 			view.$el.find(selectors.closeLoadConfirm).on('click', $.proxy(view, 'closeLoadConfirm') );
-
 
 		},
 
@@ -67,8 +65,7 @@
 			var view = this,
 				selectors = view.selectors;
 
-			//view.$el.find(selectors.saveGame).off('click', view.saveGame );
-			//view.$el.find(selectors.removeSavedGame).off('click', view.removeSavedGame );
+			view.$el.find(selectors.loadGame).off('click', view.loadGame );
 			view.$el.find(selectors.closeLoadConfirm).off('click', view.closeLoadConfirm );
 
 		},
@@ -82,12 +79,17 @@
 
 			$button.trigger('click');
 
+		},
+
+		loadGame: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget),
+				gameName = $this.attr('data-save-name');
+
+			console.log(gameName);
+
 		}
-
-
-
-
-
 
 	});
 
