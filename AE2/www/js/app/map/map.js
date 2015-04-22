@@ -317,7 +317,25 @@
 				});
 
 			},
-			
+
+			setMapDone: function (mapData) {
+
+				var dbMaster = this,
+					difficultLevel = win.APP.info.get('difficult');
+
+				dbMaster.getMap(mapData).then(function (map) {
+
+					map.isDone = true;
+					map['isDoneByDifficult_' + difficultLevel] = true;
+
+					dbMaster.removeMap(mapData).then(function () {
+						dbMaster.insertMap(map, mapData.jsMapKey);
+					});
+
+				});
+
+			},
+
 			saveGame: function (date, name, data) {
 
 				var dbMaster = this,

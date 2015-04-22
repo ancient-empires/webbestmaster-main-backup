@@ -1062,6 +1062,11 @@
 
 				mapMaster.db.openMap(map.openMaps); // jsMapKey
 
+				mapMaster.db.setMapDone({
+					type: map.type,
+					jsMapKey: model.get('jsMapKey')
+				});
+
 				view.showBriefing({
 					briefingName: 'endBriefing'
 				});
