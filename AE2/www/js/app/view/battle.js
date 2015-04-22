@@ -66,6 +66,7 @@
 				};
 
 				view.set('args', args);
+				view.set('argsForRestart', data.argsForRestart);
 
 				view.set('map', data.map);
 
@@ -107,14 +108,12 @@
 
 				view.proto.initialize.apply(view, arguments);
 
-
-
-
 				return;
 			}
 
 			// get map
 			view.set('args', data);
+			view.set('argsForRestart', view.util.copyJSON(data));
 
 			win.APP.map.db.getMap({
 				jsMapKey: data.jsMapKey,
@@ -164,7 +163,7 @@
 		restart: function () {
 
 			var view = this,
-				args = view.get('args');
+				args = view.get('argsForRestart');
 
 			view.trigger('hide');
 

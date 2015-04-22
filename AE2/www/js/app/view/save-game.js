@@ -170,6 +170,7 @@
 		getDataToSave: function () {
 
 			var view = this,
+				battleView = view.get('battleView'),
 				model = view.get('battleModel'),
 				activePlayer,
 				units = model.get('units'),
@@ -183,7 +184,8 @@
 					map: model.get('map'),
 					unitLimit: model.get('unitLimit'),
 					difficult: view.info.get('difficult'),
-					graves: model.get('graves')
+					graves: model.get('graves'),
+					argsForRestart: battleView.get('argsForRestart')
 				},
 				doNotSaves = ['model', 'view'];
 
