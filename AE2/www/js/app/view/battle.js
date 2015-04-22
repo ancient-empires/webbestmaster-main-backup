@@ -1574,10 +1574,12 @@
 				var onShow = item.onShow, onHide = item.onHide;
 
 				if (onShow && onShow.context === 'parentView') {
+					onShow.default_context = 'parentView';
 					onShow.context = view;
 				}
 
 				if (onHide && onHide.context === 'parentView') {
+					onHide.default_context = 'parentView';
 					onHide.context = view;
 				}
 

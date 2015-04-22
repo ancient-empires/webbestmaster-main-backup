@@ -83,6 +83,11 @@
 				popupData: {
 					text: 'More attackers!',
 					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 1, y: 1 }]
 				}
 			},
 			{
@@ -92,6 +97,11 @@
 				popupData: {
 					text: 'These are no raiders! They look like enemy troops! Be careful, Captain!',
 					img: 'i/face/galamar.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 10, y: 10 }]
 				}
 			}
 		],

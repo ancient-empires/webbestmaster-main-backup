@@ -342,6 +342,23 @@
 					deferred = $.Deferred(),
 					db = dbMaster.db;
 
+				_.each(data.map, function (value, key) {
+					if ( !/briefing/i.test(key) ) { // save briefing only
+						return;
+					}
+					_.each(value, function (briefing) {
+						// detect onShow
+						if (briefing.onShow && briefing.onShow.context && briefing.onShow.default_context) {
+							briefing.onShow.context = briefing.onShow.default_context;
+						}
+
+						// detect onHide
+						if (briefing.onHide && briefing.onHide.context && briefing.onHide.default_context) {
+							briefing.onHide.context = briefing.onHide.default_context;
+						}
+					});
+				});
+
 				dbMaster
 					.removeSave(name)
 					.then(function () {
