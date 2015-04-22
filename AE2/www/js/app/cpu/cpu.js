@@ -769,9 +769,9 @@
 				upHealth: 3
 			},
 
-			maxAvailableReceiveDamage: 80,
-			onCanEnemyGetBuilding: 100, // high priority
-			onHealthUpBuilding: 5
+			maxAvailableReceiveDamage: 800,
+			onCanEnemyGetBuilding: 0, // high priority
+			onHealthUpBuilding: 0
 		},
 
 		setAutoIsAvailableScenario: function (scenario, allScenarios) {
