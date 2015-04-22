@@ -33,9 +33,19 @@
 
 			var cpu = this;
 
+			cpu.setRates();
+
 			cpu.buyUnits();
 			cpu.turnUnit();
 
+		},
+
+		setRates: function () {
+
+			var cpu = this,
+				difficult = win.APP.info.get('difficult');
+
+			cpu.rates = cpu['rates_' + difficult];
 
 		},
 
@@ -696,7 +706,72 @@
 			maxAvailableReceiveDamage: 80,
 			onCanEnemyGetBuilding: 100, // high priority
 			onHealthUpBuilding: 5
+		},
 
+		rates_hard: { // default rates
+			getBuilding: 1000,
+			fixBuilding: 750,
+			severalBuildings: -20, // if unit can work with several buildings, reduce rate
+			raiseSkeleton: 500,
+			lowPriority: -1000,
+			highPriority: 1000,
+			killUnit: 40,
+			destroyEnemyBuilding: 40,
+
+			q: {
+				nearestNonOwnedBuilding: -5,
+				placeArmor: 0.5,
+				availableReceiveDamage: 0.5,
+				upHealth: 3
+			},
+
+			maxAvailableReceiveDamage: 80,
+			onCanEnemyGetBuilding: 100, // high priority
+			onHealthUpBuilding: 5
+		},
+
+		rates_normal: {
+			getBuilding: 1000,
+			fixBuilding: 750,
+			severalBuildings: 0, // if unit can work with several buildings, reduce rate
+			raiseSkeleton: 500,
+			lowPriority: -1000,
+			highPriority: 1000,
+			killUnit: 10,
+			destroyEnemyBuilding: 0,
+
+			q: {
+				nearestNonOwnedBuilding: -5,
+				placeArmor: 0.5,
+				availableReceiveDamage: 0,
+				upHealth: 1
+			},
+
+			maxAvailableReceiveDamage: 80,
+			onCanEnemyGetBuilding: 100, // high priority
+			onHealthUpBuilding: 1
+		},
+
+		rates_easy: {
+			getBuilding: 1000,
+			fixBuilding: 20,
+			severalBuildings: 0, // if unit can work with several buildings, reduce rate
+			raiseSkeleton: 0,
+			lowPriority: -1000,
+			highPriority: 1000,
+			killUnit: 100,
+			destroyEnemyBuilding: 0,
+
+			q: {
+				nearestNonOwnedBuilding: -5,
+				placeArmor: 0,
+				availableReceiveDamage: -5,
+				upHealth: 3
+			},
+
+			maxAvailableReceiveDamage: 80,
+			onCanEnemyGetBuilding: 100, // high priority
+			onHealthUpBuilding: 5
 		},
 
 		setAutoIsAvailableScenario: function (scenario, allScenarios) {
