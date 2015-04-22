@@ -623,7 +623,7 @@
 				enemyQ = enemy.get('health') / enemy.get('defaultHealth'),
 				atk;
 
-			atk = ( unitStartAtk + unitAktBonusByLevel + unitFlowAtkBonus + unitAtkBonusAgainstFly + unitAtkBonusAgainstSkeleton - unitAtkReduceByPoison  + unitAktBonusByWispAura) * unitQ - ( enemyDefBonusByLevel + enemyFlowDefBonus - enemyDefReduceByPoison + enemyDef + enemyDefTerrain) * enemyQ;
+			atk = ( unitStartAtk + unitAktBonusByLevel + unitFlowAtkBonus + unitAtkBonusAgainstFly + unitAtkBonusAgainstSkeleton - unitAtkReduceByPoison  + unitAktBonusByWispAura) * unitQ - ( enemyDefBonusByLevel + enemyFlowDefBonus - enemyDefReduceByPoison + enemyDef + enemyDefTerrain) * unitQ; // * enemyQ;
 
 			atk = Math.max(atk, 1);
 
