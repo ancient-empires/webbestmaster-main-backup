@@ -230,13 +230,13 @@
 						</div>
 					</div>
 
-					<div class="select-setting-wrapper">
+					<div class="select-setting-wrapper <%= isBattleState ? 'disable' : '' %>">
 						<div class="setting-name">{{ gameDifficulty }}:</div>
 						<div class="clear-fix">
 							<% _.each(['easy', 'normal', 'hard'], function(difficult) { %>
 							<% var gameDifficulty = window.APP.lang.get(difficult); %>
 							<% if ( difficult === info.get('difficult') ) { %>
-							<div class="js-change-select-setting setting-state" data-key="difficult" data-value="<%= difficult %>">
+							<div class="js-change-select-setting setting-state selected-in-list" data-key="difficult" data-value="<%= difficult %>">
 								<%= gameDifficulty %>
 							</div>
 							<% } else { %>
@@ -255,7 +255,7 @@
 							<% _.each(['1', '2', '3', '4', '5'], function(speed){ %>
 							<% var gameSpeedWord = window.APP.lang.get('gameSpeed-' + speed); %>
 							<% if ( speed === info.get('gameSpeed') ) { %>
-							<div class="js-change-select-setting setting-state" data-key="gameSpeed" data-value="<%= speed %>">
+							<div class="js-change-select-setting setting-state selected-in-list" data-key="gameSpeed" data-value="<%= speed %>">
 								<%= gameSpeedWord %>
 							</div>
 							<% } else { %>

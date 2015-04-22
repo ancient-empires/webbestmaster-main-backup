@@ -33,4 +33,7 @@
 	padding: 0.5rem 1rem;
 }
 
+.setting-state.selected-in-list {
+	padding-left: 2rem;
+}
 

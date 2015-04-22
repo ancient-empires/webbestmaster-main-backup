@@ -25,9 +25,10 @@
 
 		initialize: function (data) {
 
-			var view = this;
+			var view = this,
+				isBattleState = /^battle/.test(Backbone.history.fragment);
 
-			view.$el = $(this.tmpl.settings({ view: view, info: view.info }));
+			view.$el = $(this.tmpl.settings({ view: view, info: view.info, isBattleState: isBattleState }));
 
 			view.extendFromObj(data);
 
@@ -100,7 +101,10 @@
 				$nodes = view.$el.find('.js-change-select-setting[data-key="' + key + '"]');
 
 			$nodes.addClass('opacity50');
+			$nodes.removeClass('selected-in-list');
+
 			$this.removeClass('opacity50');
+			$this.addClass('selected-in-list');
 
 			view.info.set(key, value);
 
