@@ -94,6 +94,8 @@
 				new win.APP.BB.BattleView(game);
 			});
 
+			view.backTo('battle');
+			
 		}
 
 	});

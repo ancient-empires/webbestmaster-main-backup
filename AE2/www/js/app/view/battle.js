@@ -54,6 +54,8 @@
 
 			if (data.fromSave) {
 
+				view.info.set('difficult', data.difficult);
+
 				var args = {
 					jsMapKey: data.jsMapKey,
 					money: 500,
