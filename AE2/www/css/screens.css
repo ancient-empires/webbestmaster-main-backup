@@ -15,8 +15,59 @@
 	display: block;
 }
 
+.main-button-icon {
+	height: 2.2rem;
+	width: 2.2rem;
+	background-repeat: no-repeat;
+	background-image: url(../i/ui/menu-icons.png);
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
+	float: left;
+	margin: -0.2rem 0 0 -0.2rem;
+}
+
+.main-button-icon-0 {
+	background-position: 0 0;
+}
+
+.main-button-icon-1 {
+	background-position: 11.111% 0;
+}
+
+.main-button-icon-2 {
+	background-position: 22.222% 0;
+}
+
+.main-button-icon-3 {
+	background-position: 33.333% 0;
+}
+
+.main-button-icon-4 {
+	background-position: 44.444% 0;
+}
+
+.main-button-icon-5 {
+	background-position: 55.555% 0;
+}
+
+.main-button-icon-6 {
+	background-position: 66.666% 0;
+}
+
+.main-button-icon-7 {
+	background-position: 77.777% 0;
+}
+
+.main-button-icon-8 {
+	background-position: 88.888% 0;
+}
+
+.main-button-icon-9 {
+	background-position: 100% 0;
+}
+
 .cell-button-wrapper {
-	padding-top: 1.5rem;
+	padding-top: 1rem;
 }
 
 @media screen and (orientation: landscape) {
