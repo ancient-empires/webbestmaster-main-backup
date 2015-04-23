@@ -7,7 +7,7 @@
 	box-sizing: border-box;
 	border-bottom-width: 0.1rem;
 	border-bottom-style: solid;
-	background-color: #242a45;
+	background-color: #000;
 	text-shadow: 0.15rem 0.15rem 0 #000;
 }
 
@@ -50,7 +50,7 @@
 	border-image: url(../i/ui/border-1.png) 25% repeat repeat;
 	padding: 0.5rem 0.25rem;
 	min-height: 100%;
-	background-color: #242a45;
+	background-color: #000;
 }
 
 .on-off {
@@ -82,6 +82,6 @@
 	padding-left: 0.2rem;
 	font-family: 'main-font', "Lucida Grande", monospace;
 	color: #fff;
-	background-color: #242a45;
+	background-color: #000;
 	border-color: #fff;
 }

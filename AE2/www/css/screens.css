@@ -9,7 +9,6 @@
 .main-button {
 	font-size: 1.2rem;
 	line-height: 1.8rem;
-	text-shadow: -1px 0 0 #000, -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000;
 	text-transform: capitalize;
 	text-align: left;
 	padding: 0.2rem;
