@@ -165,7 +165,7 @@
 
 <script type="text/x-template" data-name="settings">
 
-	<div class="js-settings-wrapper settings-wrapper">
+	<div class="js-settings-wrapper settings-wrapper screen-wrapper">
 
 		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('settings') }) %>
 
@@ -296,11 +296,17 @@
 
 <script type="text/x-template" data-name="about">
 
-	<div>
+	<div class="screen-wrapper">
 
-		<h1>{{ about }}</h1>
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('about') }) %>
 
-		<p>{{ aboutText }}</p>
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area ta-center">
+					{{ aboutText }}
+				</div>
+			</div>
+		</div>
 
 	</div>
 
