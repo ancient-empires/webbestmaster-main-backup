@@ -1128,6 +1128,8 @@
 			view.events[view.eventTypes.move + ' ' + selectors.moveAreaContainer] = 'saveMoveEvent';
 			view.events[view.eventTypes.up + ' ' + selectors.mainEventHandler] = 'detectClick';
 			view.events[view.eventTypes.dbl + ' ' + selectors.mainEventHandler] = 'detectDblClick';
+			view.events[view.eventTypes.hold + ' ' + selectors.mainEventHandler] = 'detectDblClick';
+
 		},
 
 		detectClick: function () {

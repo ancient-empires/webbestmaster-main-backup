@@ -53,7 +53,8 @@
 			down: ['mousedown', 'touchstart'],
 			move: ['mousemove', 'touchmove'],
 			up: ['mouseup', 'touchend'],
-			dbl: ['dblclick', 'doubletap']
+			dbl: ['dblclick', 'doubletap'],
+			hold: ['mouseheld', 'press']
 		},
 
 		initStatic: function () {
