@@ -137,20 +137,30 @@
 
 <script type="text/x-template" data-name="title">
 
-	<div>
+	<div class="double-blocks-wrapper js-no-scroll">
 
-		<button data-route="play">{{ play }}</button>
-		<br/>
-		<button data-route="map-editor">{{ mapEditor }}</button>
-		<br/>
-		<button class="opacity50">{{ online }}</button>
-		<br/>
-		<button data-route="settings">{{ settings }}</button>
-		<br/>
-		<button data-route="instructions">{{ instructions }}</button>
-		<br/>
-		<button data-route="about">{{ about }}</button>
-		<br/>
+		<div class="double-block-container title-game-logo">
+			&nbsp;
+		</div>
+
+		<div class="double-block-container text-align-center clear-fix table">
+
+			<div class="table-row">
+
+				<div class="table-cell vertical-align-top land-vertical-align-middle cell-button-wrapper">
+
+					<div class="inline-block">
+						<div class="main-button" data-route="play">{{ play }}</div>
+						<div class="main-button hidden" data-route="map-editor">{{ mapEditor }}</div>
+						<div class="main-button opacity50 hidden">{{ online }}</div>
+						<div class="main-button" data-route="settings">{{ settings }}</div>
+						<div class="main-button" data-route="instructions">{{ instructions }}</div>
+						<div class="main-button" data-route="about">{{ about }}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 
 	</div>
 

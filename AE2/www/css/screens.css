@@ -1,0 +1,35 @@
+.title-game-logo {
+	background-image: url(../img/other/0.jpg);
+	background-repeat: no-repeat;
+	-webkit-background-size: contain;
+	background-size: contain;
+	background-position: center center;
+}
+
+.main-button {
+	font-size: 1.2rem;
+	line-height: 1.8rem;
+	text-shadow: -1px 0 0 #000, -1px -1px 0 #000, 0 -1px 0 #000, 1px -1px 0 #000, 1px 0 0 #000, 1px 1px 0 #000, 0 1px 0 #000, -1px 1px 0 #000;
+	text-transform: capitalize;
+	text-align: left;
+	padding: 0.2rem;
+	display: block;
+}
+
+.cell-button-wrapper {
+	padding-top: 1.5rem;
+}
+
+@media screen and (orientation: landscape) {
+	.cell-button-wrapper {
+		padding-top: 0;
+	}
+}
+
+@media screen and (orientation: landscape) {
+	.land-vertical-align-middle {
+		vertical-align: middle;
+	}
+}
+
+
