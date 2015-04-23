@@ -74,6 +74,8 @@
 			proto.$wrapper.addClass(os);
 			proto.$wrapper.addClass('isMobile_' + isTouch);
 
+			$(doc.body).on('contextmenu', this.stopEvent);
+
 		},
 
 		constructor: function() {
