@@ -465,17 +465,20 @@
 		updateStatusBar: function () {
 
 			var view = this,
+				util = view.util,
+				hideSymbols = util.hideSymbols,
 				model = view.get('model'),
 				activePlayer = model.get('activePlayer'),
 				unitLimit = model.get('unitLimit'),
 				color = activePlayer.color,
 				money = activePlayer.money,
 				playerUnits = model.getUnitsByOwnerId(activePlayer.id),
+				isCpu = activePlayer.type === 'cpu',
 				obj = {
 					color: color,
-					unitLimit: unitLimit,
-					unitCount: playerUnits.length,
-					money: money
+					unitLimit: isCpu ? hideSymbols(unitLimit, '-') : unitLimit,
+					unitCount: isCpu ? hideSymbols(playerUnits.length, '-') : playerUnits.length,
+					money: isCpu ? hideSymbols(money, '-') : money
 				},
 				$node = view.tmpl['battle-view-status-bar'](obj),
 				$statusBarWrapper = view.$el.find(view.selectors.statusBar);

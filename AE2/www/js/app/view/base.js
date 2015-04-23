@@ -407,10 +407,13 @@
 		init: function () {
 			win.addEventListener('resize', this.onResize.bind(this), false);
 		},
-		copyJSON: function (obj) { // extermal
+		copyJSON: function (obj) { // external
 			return JSON.parse(JSON.stringify(obj));
 		},
-
+		hideSymbols: function (str, sign) {
+			sign = sign || '?';
+			return str.toString().replace(/[\d\w]/g, sign);
+		},
 		//themeList: ['coffee', 'black-coffee', 'owl', 'owl owl-black'],
 		//themeDefault: 'coffee',
 		//

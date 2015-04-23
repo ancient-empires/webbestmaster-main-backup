@@ -958,6 +958,7 @@
 
 				<% var arr = ['icon-money', 'space'].concat(String(money).split('')); %>
 				<% _.each(arr, function(sign) { %>
+				<% sign = (sign === '-') ? 'minus' : sign; %>
 				<div class="status-bar-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">
 					<img src="i/fonts/numbers-2-<%= sign %>.png" alt="" class="status-bar-sign"/>
 					<span class="add-more-sharp">&nbsp;</span>
@@ -969,6 +970,7 @@
 
 				<% arr = ['icon-unit', 'space'].concat(String(unitCount).split('')).concat(['space', 'slash', 'space']).concat(String(unitLimit).split('')); %>
 				<% _.each(arr, function(sign) { %>
+				<% sign = (sign === '-') ? 'minus' : sign; %>
 				<div class="status-bar-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">
 					<img src="i/fonts/numbers-2-<%= sign %>.png" alt="" class="status-bar-sign"/>
 					<span class="add-more-sharp">&nbsp;</span>

@@ -410,7 +410,10 @@
 
 			var model = this,
 				view = model.get('view'),
+				util = view.util,
+				hideSymbols = util.hideSymbols,
 				earn, color,
+				isCpu,
 				activePlayer;
 
 			model.setActivePlayer();
@@ -422,11 +425,12 @@
 
 			model.startTurn();
 
+			isCpu = activePlayer.type === 'cpu';
 			view.showPopup({
 				popupName: 'between-turn-notification',
 				popupData: {
 					color: color,
-					earn: earn
+					earn: isCpu ? hideSymbols(earn, '?') : earn
 				}
 			});
 
