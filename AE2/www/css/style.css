@@ -10,14 +10,10 @@
 
 body {
 	font-family: 'main-font', "Lucida Grande", monospace;
-	color: #fff;
+	color: #f0f0f0;
 	background-color: #000;
 	line-height: 135%;
-}
-
-button {
-	padding: 1rem !important;
-	margin: 1rem !important;
+	letter-spacing: 0.05rem;
 }
 
 .add-more-sharp {
