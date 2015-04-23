@@ -510,14 +510,23 @@
 
 	<div>
 
-		<h1>{{ loadGame }}</h1>
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('loadGame') }) %>
 
-		<ul>
-			<li>saved game name 1</li>
-			<li>saved game name 2</li>
-			<li>saved game name 3</li>
-			<li>saved game name 4</li>
-		</ul>
+			<div class="js-scroll-area-container scroll-touch">
+				<div class="scroll-area">
+
+					<% if ( obj.savedGames && obj.savedGames.length ) { %>
+						<% _.each(savedGames, function(name, index){ %>
+							<div class="js-saved-item-wrapper clear-fix" data-save-name="<%= name %>">
+								<div class="js-load-game" data-save-name="<%= name %>">{{ load }}</div>
+								<div><%= name %></div>
+							</div>
+						<% }); %>
+					<% } else { %>
+						{{ noSavedGames }}
+					<% }; %>
+				</div>
+			</div>
 
 	</div>
 

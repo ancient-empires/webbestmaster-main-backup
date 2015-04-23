@@ -10,16 +10,37 @@
 	APP.BB.LoadGameView = APP.BB.BaseView.extend({
 
 		events: {
-
+			'click .js-load-game': 'loadGame'
 		},
 
 		initialize: function () {
 
-			this.$el = $(this.tmpl.loadGame());
+			var view = this,
+				dbMaster = win.APP.map.db;
 
-			this.proto.initialize.apply(this, arguments);
 
-			this.render();
+			dbMaster.getSavedGames().then(function (savedGames) {
+				view.$el = $(view.tmpl.loadGame({ savedGames: savedGames }));
+				view.proto.initialize.apply(view, arguments);
+				view.render();
+			});
+
+		},
+
+		loadGame: function (e) {
+
+			var view = this,
+				dbMaster = win.APP.map.db,
+				$this = $(e.currentTarget),
+				gameName = $this.attr('data-save-name');
+
+			dbMaster.getSavedGame(gameName).then(function (data) {
+				var game = JSON.parse(data.game);
+				game.fromSave = true;
+				new win.APP.BB.BattleView(game);
+			});
+
+			view.routeByUrl('battle', { trigger: true });
 
 		}
 
