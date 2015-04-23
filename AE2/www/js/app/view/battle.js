@@ -1128,7 +1128,7 @@
 			view.events[view.eventTypes.move + ' ' + selectors.moveAreaContainer] = 'saveMoveEvent';
 			view.events[view.eventTypes.up + ' ' + selectors.mainEventHandler] = 'detectClick';
 			view.events[view.eventTypes.dbl + ' ' + selectors.mainEventHandler] = 'detectDblClick';
-			view.events[view.eventTypes.hold + ' ' + selectors.mainEventHandler] = 'detectDblClick';
+			view.events[view.eventTypes.hold + ' ' + selectors.mainEventHandler] = 'detectHeld';
 
 		},
 
@@ -1154,41 +1154,57 @@
 
 		},
 
+		detectHeld: function () {
+
+			var view = this,
+				model = view.get('model'),
+				xy = view.getEventXy(),
+				unit = model.getUnitByXY(xy);
+
+			if ( !unit ) {
+				return;
+			}
+
+
+
+			view.detectDblClick();
+
+		},
+
 		detectDblClick: function () {
 
 			var view = this,
 				model = view.get('model'),
-				markActiveSquareXy = view.get('markActiveSquare'),
+				xy = view.getEventXy(),
 				activePlayer = model.get('activePlayer'),
 				availableActions,
 				availableAttackMapWithPath,
 				//x = markActiveSquareXy.x,
 				//y = markActiveSquareXy.y,
-				unit = model.getUnitByXY(markActiveSquareXy);
+				unit = model.getUnitByXY(xy);
 
-			if ( unit ) {
-
-				availableAttackMapWithPath = unit.getAvailableAttackMapWithPath();
-
-				if ( unit.get('ownerId') === activePlayer.id ) { // 'active' unit
-
-					availableActions = unit.getAvailableActions();
-					availableActions.availableAttackMapWithPath = availableAttackMapWithPath;
-					view.showAvailableActions(availableActions);
-					model.set('availableActions', availableActions);
-
-				} else { // enemy or teams unit
-
-					model.clearAvailableActions();
-					view.clearAvailableActions();
-					view.showAvailableActions({
-						availablePathWithTeamUnit: unit.getAvailablePathWithTeamUnit(),
-						availableAttackMapWithPath: availableAttackMapWithPath
-					});
-
-				}
-
+			if ( !unit ) {
 				return;
+			}
+
+			availableAttackMapWithPath = unit.getAvailableAttackMapWithPath();
+
+			if ( unit.get('ownerId') === activePlayer.id ) { // 'active' unit
+
+				availableActions = unit.getAvailableActions();
+				availableActions.availableAttackMapWithPath = availableAttackMapWithPath;
+				view.showAvailableActions(availableActions);
+				model.set('availableActions', availableActions);
+
+			} else { // enemy or teams unit
+
+				model.clearAvailableActions();
+				view.clearAvailableActions();
+				view.showAvailableActions({
+					availablePathWithTeamUnit: unit.getAvailablePathWithTeamUnit(),
+					availableAttackMapWithPath: availableAttackMapWithPath
+				});
+
 			}
 
 		},
