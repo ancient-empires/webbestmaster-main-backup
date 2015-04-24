@@ -315,12 +315,25 @@
 
 <script type="text/x-template" data-name="play">
 
-	<div>
 
-		<button class="js-start-game">{{ newGame }}</button>
-		<button data-route="load-game">{{ loadGame }}</button>
-		<button data-route="select-level">{{ selectLevel }}</button>
-		<button data-route="skirmish-select-map">{{ skirmish }}</button>
+	<div class="double-blocks-wrapper js-no-scroll">
+
+		<div class="double-block-container title-game-logo">
+			&nbsp;
+		</div>
+
+		<div class="double-block-container text-align-center clear-fix table">
+			<div class="table-row h100">
+				<div class="table-cell land-vertical-align-middle">
+					<div class="inline-block">
+						<div class="main-button js-start-game"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ newGame }}</div>
+						<div class="main-button" data-route="load-game"><div class="main-button-icon main-button-icon-4">&nbsp;</div>{{ loadGame }}</div>
+						<div class="main-button" data-route="select-level"><div class="main-button-icon main-button-icon-6">&nbsp;</div>{{ selectLevel }}</div>
+						<div class="main-button" data-route="skirmish-select-map"><div class="main-button-icon main-button-icon-7">&nbsp;</div>{{ skirmish }}</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</div>
 
@@ -521,11 +534,12 @@
 
 <script type="text/x-template" data-name="loadGame">
 
-	<div>
+	<div class="screen-wrapper">
 
 		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('loadGame') }) %>
 
-			<div class="js-scroll-area-container scroll-touch">
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
 				<div class="scroll-area">
 
 					<% if ( obj.savedGames && obj.savedGames.length ) { %>
@@ -538,8 +552,10 @@
 					<% } else { %>
 						{{ noSavedGames }}
 					<% }; %>
+
 				</div>
 			</div>
+		</div>
 
 	</div>
 
@@ -635,53 +651,62 @@
 
 <script type="text/x-template" data-name="skirmishSetupMap">
 
-	<div>
+	<div class="screen-wrapper">
 
-		<% _.each(playersData, function(player, index){ %>
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('skirmish') }) %>
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area">
 
-		<div class="js-player-info-wrapper">
+					<% _.each(playersData, function(player, index){ %>
 
-			<span class="js-player-color" data-player-color="<%= player.color %>"> <%= window.APP.lang.get(player.color) %> </span>
+					<div class="js-player-info-wrapper">
 
-			<span>
-				<span class="js-list-backward" data-group-name="team-number-<%= index %>"> <- </span>
-				<span class="js-list-changed-item js-player-team-number" data-group-name="team-number-<%= index %>" data-full-list="<%= list.teamNumber %>" data-key="<%= player.teamNumber %>"> <%= player.teamNumber %> </span>
-				<span class="js-list-forward" data-group-name="team-number-<%= index %>"> -> </span>
-			</span>
+						<span class="js-player-color" data-player-color="<%= player.color %>"> <%= window.APP.lang.get(player.color) %> </span>
 
-			<span>
-				<span class="js-list-backward" data-group-name="player-type-<%= index %>"> <- </span>
-				<span class="js-list-changed-item js-player-type" data-group-name="player-type-<%= index %>" data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
-				<span class="js-list-forward" data-group-name="player-type-<%= index %>"> -> </span>
-			</span>
+						<span>
+							<span class="js-list-backward" data-group-name="team-number-<%= index %>"> <- </span>
+							<span class="js-list-changed-item js-player-team-number" data-group-name="team-number-<%= index %>" data-full-list="<%= list.teamNumber %>" data-key="<%= player.teamNumber %>"> <%= player.teamNumber %> </span>
+							<span class="js-list-forward" data-group-name="team-number-<%= index %>"> -> </span>
+						</span>
 
+						<span>
+							<span class="js-list-backward" data-group-name="player-type-<%= index %>"> <- </span>
+							<span class="js-list-changed-item js-player-type" data-group-name="player-type-<%= index %>" data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
+							<span class="js-list-forward" data-group-name="player-type-<%= index %>"> -> </span>
+						</span>
+
+					</div>
+
+					<% }); %>
+
+					<div>
+						<span>{{ money }}</span>
+
+						<span>
+							<span class="js-list-backward" data-group-name="money"> <- </span>
+							<span class="js-list-changed-item js-money" data-group-name="money" data-full-list="<%= list.money %>" data-key="<%= money %>"> <%= money %> </span>
+							<span class="js-list-forward" data-group-name="money"> -> </span>
+						</span>
+
+					</div>
+
+					<div>
+						<span>{{ unitLimit }}</span>
+
+						<span>
+							<span class="js-list-backward" data-group-name="unit-limit"> <- </span>
+							<span class="js-list-changed-item js-unit-limit" data-group-name="unit-limit" data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
+							<span class="js-list-forward" data-group-name="unit-limit"> -> </span>
+						</span>
+
+					</div>
+
+					<button class="js-go-to-battle">{{ fight }}!</button>
+
+				</div>
+			</div>
 		</div>
-
-		<% }); %>
-
-		<div>
-			<span>{{ money }}</span>
-
-			<span>
-				<span class="js-list-backward" data-group-name="money"> <- </span>
-				<span class="js-list-changed-item js-money" data-group-name="money" data-full-list="<%= list.money %>" data-key="<%= money %>"> <%= money %> </span>
-				<span class="js-list-forward" data-group-name="money"> -> </span>
-			</span>
-
-		</div>
-
-		<div>
-			<span>{{ unitLimit }}</span>
-
-			<span>
-				<span class="js-list-backward" data-group-name="unit-limit"> <- </span>
-				<span class="js-list-changed-item js-unit-limit" data-group-name="unit-limit" data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
-				<span class="js-list-forward" data-group-name="unit-limit"> -> </span>
-			</span>
-
-		</div>
-
-		<button class="js-go-to-battle">{{ fight }}!</button>
 
 	</div>
 
@@ -689,17 +714,19 @@
 
 <script type="text/x-template" data-name="skirmishSelectMap">
 
-	<div>
-
-		<h1>{{ skirmish }}</h1>
-
-		<% var languageField = 'name-' + window.APP.info.get('language'); %>
-
-		<% _.each(mapsInfo, function (map, jsKey) { %>
-		<% var mapName = map[languageField] || map.name; %>
-		<div data-route="skirmish-setup-map/<%= jsKey %>" class="">(<%= map.maxPlayers %>) <%= mapName %></div>
-		<% }); %>
-
+	<div class="screen-wrapper">
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('skirmish') }) %>
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area">
+				<% var languageField = 'name-' + window.APP.info.get('language'); %>
+				<% _.each(mapsInfo, function (map, jsKey) { %>
+				<% var mapName = map[languageField] || map.name; %>
+				<div data-route="skirmish-setup-map/<%= jsKey %>" class="">(<%= map.maxPlayers %>) <%= mapName %></div>
+				<% }); %>
+				</div>
+			</div>
+		</div>
 	</div>
 
 </script>
@@ -1091,20 +1118,25 @@
 
 <script type="text/x-template" data-name="selectLevel">
 
-	<div>
+	<div class="screen-wrapper">
 
-		<h1>{{ selectLevel }}</h1>
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('selectLevel') }) %>
 
-		<% var languageField = 'name-' + window.APP.info.get('language'); %>
-
-		<% _.each(mapsInfo, function (map, jsKey) { %>
-		<% var mapName = map[languageField] || map.name; %>
-			<% if (map.isOpen) { %>
-				<div data-route="mission-setup-map/<%= jsKey %>" class=""><%= mapName %></div>
-			<% } else { %>
-				<div data-route="mission-setup-map/<%= jsKey %>" class="disable"><%= mapName %></div>
-			<% }; %>
-		<% }); %>
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area">
+					<% var languageField = 'name-' + window.APP.info.get('language'); %>
+					<% _.each(mapsInfo, function (map, jsKey) { %>
+					<% var mapName = map[languageField] || map.name; %>
+						<% if (map.isOpen) { %>
+							<div data-route="mission-setup-map/<%= jsKey %>" class=""><%= mapName %></div>
+						<% } else { %>
+							<div data-route="mission-setup-map/<%= jsKey %>" class="disable"><%= mapName %></div>
+						<% }; %>
+					<% }); %>
+				</div>
+			</div>
+		</div>
 
 	</div>
 
