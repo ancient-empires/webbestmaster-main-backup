@@ -35,6 +35,11 @@
 	width: 100%;
 }
 
+.w50 {
+	width: 50%;
+	float: left;
+}
+
 /* double-blocks - end */
 
 

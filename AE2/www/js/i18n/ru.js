@@ -61,6 +61,7 @@
 		money: 'деньги',
 		unitLimit: 'лимит войск',
 		fight: 'в бой',
+		team: 'команда',
 
 		// colors
 		blue: 'синий',

@@ -61,6 +61,7 @@
 		money: 'money',
 		unitLimit: 'unit limit',
 		fight: 'fight',
+		team: 'team',
 
 		// colors
 		blue: 'blue',

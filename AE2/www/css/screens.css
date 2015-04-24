@@ -124,6 +124,33 @@
 	text-transform: uppercase;
 }
 
+.team-color-sign {
+	float: left;
+	width: 1rem;
+	height: 1rem;
+	background-repeat: no-repeat;
+	background-image: url(../i/ui/team-color-icons.png);
+	-webkit-background-size: auto 100%;
+	background-size: auto 100%;
+	margin: 0.2rem 0.3rem 0 0.1rem;
+}
+
+.team-color-sign-blue {
+	background-position: 0 0;
+}
+
+.team-color-sign-red {
+	background-position: 33.3333% 0;
+}
+
+.team-color-sign-green {
+	background-position: 66.6666% 0;
+}
+
+.team-color-sign-black {
+	background-position: 100% 0;
+}
+
 @media screen and (orientation: landscape) {
 	.land-vertical-align-middle {
 		vertical-align: middle;

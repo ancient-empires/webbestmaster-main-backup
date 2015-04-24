@@ -91,3 +91,14 @@
 	background-color: #242a45;
 	border-color: #f0f0f0;
 }
+
+.setup-form-wrapper {
+	margin-bottom: 0.5rem;
+	border-bottom-style: solid;
+	border-bottom-width: 0.15rem;
+}
+
+.setup-form-item {
+	padding-bottom: 0.5rem;
+	text-transform: capitalize;
+}
