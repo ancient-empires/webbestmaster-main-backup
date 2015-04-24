@@ -93,7 +93,7 @@
 }
 
 .setup-form-wrapper {
-	margin-bottom: 0.5rem;
+	margin: 0 -0.2rem 0.5rem;
 	border-bottom-style: solid;
 	border-bottom-width: 0.15rem;
 }
