@@ -177,7 +177,8 @@
 						<%= view.tmpl.settingsOnOff({ key: 'confirmTurn', info: info }) %>
 						<div class="setting-name">{{ confirmTurn }}</div>
 					</div>
-<div class="clear"></div>
+					<div class="clear"></div>
+
 					<div class="js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
 						<%= view.tmpl.settingsOnOff({ key: 'confirmMove', info: info }) %>
 						<div class="setting-name">{{ confirmMove }}</div>
@@ -1111,14 +1112,19 @@
 
 <script type="text/x-template" data-name="instructions">
 
-	<div>
-
-		<h1>{{ instructions }}</h1>
-
-		<% _.each(window.APP.lang.get('instructionsText'), function(part) { %>
-		<p><%= part %></p>
-		<% }); %>
-
+	<div class="screen-wrapper">
+		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('instructions') }) %>
+		<div class="main-content-wrapper">
+			<div class="main-content-container js-scroll-area-container scroll-touch">
+				<div class="scroll-area">
+					<% _.each(window.APP.lang.get('instructionsText'), function(part) { %>
+					<p><%= part %></p>
+					<br/>
+					<br/>
+					<% }); %>
+				</div>
+			</div>
+		</div>
 	</div>
 
 </script>
