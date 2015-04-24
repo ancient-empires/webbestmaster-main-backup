@@ -724,7 +724,7 @@
 				<% var languageField = 'name-' + window.APP.info.get('language'); %>
 				<% _.each(mapsInfo, function (map, jsKey) { %>
 				<% var mapName = map[languageField] || map.name; %>
-				<div data-route="skirmish-setup-map/<%= jsKey %>" class="">(<%= map.maxPlayers %>) <%= mapName %></div>
+				<div data-route="skirmish-setup-map/<%= jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
 				<% }); %>
 				</div>
 			</div>
@@ -1132,9 +1132,9 @@
 					<% var mapName = map[languageField] || map.name; %>
 						<% index += 1; %>
 						<% if (map.isOpen) { %>
-							<div data-route="mission-setup-map/<%= jsKey %>" class=""><%= index %>. <%= mapName %></div>
+							<div data-route="mission-setup-map/<%= jsKey %>" class="saved-item-wrapper"><%= index %>. <%= mapName %></div>
 						<% } else { %>
-							<div data-route="mission-setup-map/<%= jsKey %>" class="disable"><%= index %>. <%= mapName.replace(/\w/g, '?') %></div>
+							<div data-route="mission-setup-map/<%= jsKey %>" class="disable saved-item-wrapper"><%= index %>. <%= mapName.replace(/\w/g, '?') %></div>
 						<% }; %>
 					<% }); %>
 				</div>
