@@ -151,6 +151,14 @@
 	background-position: 100% 0;
 }
 
+.single-screen-button {
+	display: inline-block;
+	width: auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	text-transform: capitalize;
+}
+
 @media screen and (orientation: landscape) {
 	.land-vertical-align-middle {
 		vertical-align: middle;
