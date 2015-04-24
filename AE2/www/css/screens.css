@@ -21,6 +21,14 @@
 	text-align: left;
 	padding: 0.2rem;
 	display: block;
+	text-shadow: 0.15rem 0.15rem 0 #000;
+	position: relative;
+}
+
+.main-button:active {
+	top: 0.15rem;
+	left: 0.15rem;
+	text-shadow: none;
 }
 
 .main-button-icon {

@@ -51,7 +51,7 @@
 	position: absolute;
 	right: 1rem;
 	top: 1rem;
-	background-color: #000;
+	background-color: #242a45;
 	padding: 0.5rem 0.7rem 0.3rem 0.3rem;
 	z-index: 1;
 	font-size: 1.8rem;
@@ -111,7 +111,7 @@
 	position: absolute;
 	left: 0.7rem;
 	top: -0.2rem;
-	background-color: #000;
+	background-color: #242a45;
 	z-index: 1;
 	box-shadow: 0.2rem 0.2rem 0 #000;
 	border-style: solid;
