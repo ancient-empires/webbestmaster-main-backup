@@ -31,7 +31,7 @@
 	-webkit-background-size: auto 100%;
 	background-size: auto 100%;
 	float: left;
-	margin: -0.2rem 0 0 -0.2rem;
+	margin: -0.2rem 0.3rem 0 -0.5rem;
 }
 
 .main-button-icon-0 {
@@ -72,16 +72,6 @@
 
 .main-button-icon-9 {
 	background-position: 100% 0;
-}
-
-.cell-button-wrapper {
-	padding-top: 1rem;
-}
-
-@media screen and (orientation: landscape) {
-	.cell-button-wrapper {
-		padding-top: 0;
-	}
 }
 
 @media screen and (orientation: landscape) {
