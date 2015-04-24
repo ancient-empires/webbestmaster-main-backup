@@ -110,6 +110,20 @@
 	text-align: center;
 }
 
+.sticker {
+	font-size: 0.6rem;
+	position: fixed;
+	line-height: 0.9rem;
+	top: 0;
+	right: 0;
+	text-align: right;
+	background-color: #242a45;
+	padding: 0.25rem 0.4rem 0.2rem 0.4rem;
+	border-radius: 0 0 0 0.2rem;
+	text-shadow: 0.15rem 0.15rem 0 #000;
+	text-transform: uppercase;
+}
+
 @media screen and (orientation: landscape) {
 	.land-vertical-align-middle {
 		vertical-align: middle;
