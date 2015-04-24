@@ -97,6 +97,19 @@
 	background-position: 100% 0;
 }
 
+.side-form-button {
+	float: right;
+	width: 7rem;
+	overflow: hidden;
+	font-size: 1rem;
+	box-sizing: border-box;
+	padding: 0.5rem 0.4rem;
+	border-style: solid;
+	border-width: 0.15rem;
+	margin-top: -0.15rem;
+	text-align: center;
+}
+
 @media screen and (orientation: landscape) {
 	.land-vertical-align-middle {
 		vertical-align: middle;

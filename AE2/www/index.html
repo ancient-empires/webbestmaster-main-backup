@@ -546,8 +546,8 @@
 
 					<% if ( obj.savedGames && obj.savedGames.length ) { %>
 						<% _.each(savedGames, function(name, index){ %>
-							<div class="js-saved-item-wrapper clear-fix" data-save-name="<%= name %>">
-								<div class="js-load-game" data-save-name="<%= name %>">{{ load }}</div>
+							<div class="js-saved-item-wrapper saved-item-wrapper clear-fix" data-save-name="<%= name %>">
+								<div class="js-load-game side-form-button" data-save-name="<%= name %>">{{ load }}</div>
 								<div><%= name %></div>
 							</div>
 						<% }); %>
