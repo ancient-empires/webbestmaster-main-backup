@@ -6,7 +6,7 @@
 	height: 100%;
 }
 
-.title-game-logo {
+.title-game-bg {
 	background-image: url(../img/other/1.jpg);
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
