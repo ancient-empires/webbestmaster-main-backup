@@ -1127,13 +1127,14 @@
 		<div class="main-content-wrapper">
 			<div class="main-content-container js-scroll-area-container scroll-touch">
 				<div class="scroll-area">
-					<% var languageField = 'name-' + window.APP.info.get('language'); %>
+					<% var languageField = 'name-' + window.APP.info.get('language'), index = 0; %>
 					<% _.each(mapsInfo, function (map, jsKey) { %>
 					<% var mapName = map[languageField] || map.name; %>
+						<% index += 1; %>
 						<% if (map.isOpen) { %>
-							<div data-route="mission-setup-map/<%= jsKey %>" class=""><%= mapName %></div>
+							<div data-route="mission-setup-map/<%= jsKey %>" class=""><%= index %>. <%= mapName %></div>
 						<% } else { %>
-							<div data-route="mission-setup-map/<%= jsKey %>" class="disable"><%= mapName %></div>
+							<div data-route="mission-setup-map/<%= jsKey %>" class="disable"><%= index %>. <%= mapName.replace(/\w/g, '?') %></div>
 						<% }; %>
 					<% }); %>
 				</div>
