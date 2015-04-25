@@ -1174,8 +1174,9 @@
 		<div class="main-content-wrapper">
 			<div class="main-content-container js-scroll-area-container scroll-touch">
 				<div class="scroll-area">
-					<% _.each(window.APP.lang.get('instructionsText'), function(part) { %>
-					<p><%= part %></p>
+					<% _.each(window.APP.lang.get('instructionsText'), function(part, index) { %>
+					<% var itemIndex = index <= 9 ? '0' + index : index; %>
+					<p><%= itemIndex %>. <%= part %></p>
 					<br/>
 					<br/>
 					<% }); %>
