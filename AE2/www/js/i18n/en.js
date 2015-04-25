@@ -125,9 +125,9 @@
 		name: 'name',
 		colors: 'colors',
 
-		aboutText: 'Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
+		aboutText: 'Ancient Empires II is a thrilling strategy game that lets you control King Galamar and his brother Valadorn as they fight to protect their kingdom from evil.<br><br><br>Credits:<br><br>Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Алексей Данилов<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
 		instructionsText: [
-			'Ancient Empires is a thrilling strategy game putting you in the role of King Galamar as you fight to reclaim your kingdom.',
+			'Next are instructions, hints and tips on how to play which also appear in the game.',
 			'The flashing red/blue marks the movement range of a unit. A unit\'s range is determined by its type and the terrain it is on.',
 			'Different types of terrain affect a unit\'s ability to move, attack and defend. For example, mountains add defence points but slow units down. When you tap to these terrain features appear at the bottom of the screen.',
 			'When a unit has completed a move, unit becomes translucent. This means that it cannot be moved again until your next turn.',
