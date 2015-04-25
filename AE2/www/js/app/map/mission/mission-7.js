@@ -102,7 +102,7 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langEn.victory,
-					text: 'Go to next mission!'
+					text: langEn.continue
 				},
 				onHide: {
 					fn: 'openMap',
