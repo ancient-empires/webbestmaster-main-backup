@@ -31,7 +31,13 @@
 }
 
 .save-list-wrapper {
-	max-height: 10rem;
+	max-height: 20rem;
+}
+
+@media only screen and (orientation: landscape) {
+	.save-list-wrapper {
+		max-height: 10rem;
+	}
 }
 
 .saved-item-wrapper {
