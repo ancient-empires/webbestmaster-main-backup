@@ -1,3 +1,7 @@
+.battle-settings-wrapper .main-content-wrapper {
+	background-image: none;
+}
+
 .settings-wrapper {
 	position: fixed;
 	left: 0;
@@ -6,6 +10,10 @@
 	height: 100%;
 	background-color: #242a45;
 	z-index: 4;
+}
+
+.battle-settings-wrapper .settings-wrapper {
+	background-color: transparent;
 }
 
 .change-on-off-setting-wrapper {
