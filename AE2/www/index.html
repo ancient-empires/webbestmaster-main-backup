@@ -521,13 +521,15 @@
 
 	<div>
 
+		<div class="js-back button-popup-close">&times;</div>
+
 		<div class="popup-header">{{ menu }}</div>
 
 		<div class="popup-buttons-wrapper ta-center">
 			<div class="popup-button popup-button-single-in-row js-show-objective">{{ objective }}</div>
+			<div class="popup-button popup-button-single-in-row js-show-settings">{{ settings }}</div>
 			<div class="popup-button popup-button-single-in-row js-show-save-state">{{ saveGame }}</div>
 			<div class="popup-button popup-button-single-in-row js-show-load-state">{{ loadGame }}</div>
-			<div class="popup-button popup-button-single-in-row js-show-settings">{{ settings }}</div>
 			<div class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
 			<div class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
 		</div>
@@ -568,6 +570,9 @@
 <script type="text/x-template" data-name="save-game">
 
 	<div>
+
+		<div class="js-back button-popup-close">&times;</div>
+
 		<div class="popup-header">{{ saveGame }}</div>
 
 		<div class="js-scroll-area-container scroll-touch save-list-wrapper">
@@ -617,6 +622,9 @@
 <script type="text/x-template" data-name="load-game-popup">
 
 	<div class="js-load-game-popup-wrapper">
+
+		<div class="js-back button-popup-close">&times;</div>
+
 		<div class="popup-header">{{ loadGame }}</div>
 
 		<div class="js-scroll-area-container scroll-touch save-list-wrapper">

@@ -49,6 +49,7 @@
 	margin: 0 auto;
 	box-shadow: 0.2rem 0.2rem 0 #000;
 	padding: 0.6rem;
+	position: relative;
 }
 
 .no-image-border .popup-form {
@@ -77,7 +78,6 @@
 	}
 }
 
-
 .popup-header {
 	font-size: 1.2rem;
 	padding-bottom: 0.3rem;
@@ -103,7 +103,18 @@
 
 .popup-button-single-in-row {
 	width: 80%;
+	max-width: 12rem;
 	margin-bottom: 1rem;
+}
+
+@media only screen and (orientation: landscape) {
+	.popup-button-single-in-row {
+		width: 44%;
+		margin-left: 2%;
+		margin-right: 2%;
+		box-sizing: border-box;
+		max-width: 100%;
+	}
 }
 
 .popup-buttons-wrapper .popup-button-single-in-row:last-child {
@@ -119,3 +130,16 @@
 .popup-text {
 	font-size: 0.8rem;
 }
+
+.button-popup-close {
+	position: absolute;
+	font-size: 2rem;
+	line-height: 0.8rem;
+	right: 0.2rem;
+	border-width: 0.15rem;
+	border-style: solid;
+	padding: 0 0.05rem 0.8rem;
+	top: 0.4rem;
+}
+
+
