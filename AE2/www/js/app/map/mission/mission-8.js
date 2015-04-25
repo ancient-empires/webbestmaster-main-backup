@@ -212,6 +212,10 @@
 				popupData: {
 					header: langEn.congratulations,
 					text: 'And thank you for playing AE2 - I very much hope you enjoyed playing it as much as I enjoyed making it!'
+				},
+				onHide: {
+					fn: 'backTo',
+					args: ['']
 				}
 			}
 
