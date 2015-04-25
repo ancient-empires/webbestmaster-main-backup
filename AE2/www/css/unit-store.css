@@ -9,7 +9,9 @@
 }
 
 .unit-store-wrapper .main-content-wrapper {
+	padding-top: 2.7rem;
 	padding-bottom: 3rem;
+	background-image: none;
 }
 
 .unit-card-header {
