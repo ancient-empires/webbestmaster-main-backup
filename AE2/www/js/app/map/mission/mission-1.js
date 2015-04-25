@@ -149,7 +149,7 @@
 					text: langEn.continue
 				},
 				onHide: {
-					fn: 'openMap',
+					fn: 'openMap', // open next battle map
 					args: ['mission_001_002', { type: 'mission' }]
 				}
 			}
