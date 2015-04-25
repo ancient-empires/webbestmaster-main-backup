@@ -165,4 +165,15 @@
 	}
 }
 
+.credits-link {
+	-webkit-user-select: auto;
+	-moz-user-select: auto;
+	-ms-user-select: auto;
+	user-select: auto;
+	padding: 0.5rem 0;
+	display: block;
+	color: #f0f0f0;
+}
+
+
 
