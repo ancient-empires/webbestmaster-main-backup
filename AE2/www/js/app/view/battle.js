@@ -1624,14 +1624,16 @@
 
 		},
 
-		showHelp: function (e) {
+		showHelp: function () {
 
 			var view = this,
+				language = view.info.get('language'),
 				model = view.get('model'),
-				help = model.get('map').help,
-				$this = $(e.currentTarget);
+				map = model.get('map'),
+				help = map['help-' + language] || map.help || win.APP.lang.get('helpList'),
+				$helpButton = view.$el.find(view.selectors.helpButton);
 
-			$this.removeClass('blink');
+			$helpButton.removeClass('blink');
 
 			view.showPopup({
 				cssClass: 'full',

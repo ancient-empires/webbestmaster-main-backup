@@ -28,3 +28,13 @@
 	padding-bottom: 0.7rem;
 }
 
+.scroll-area .help-page:last-child {
+	border-bottom: none;
+	margin-bottom: 0;
+}
+
+.help-page {
+	border-bottom-style: solid;
+	border-bottom-width: 0.15rem;
+	margin-bottom: 2rem;
+}

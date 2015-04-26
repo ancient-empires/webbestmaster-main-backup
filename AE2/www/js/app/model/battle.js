@@ -393,7 +393,10 @@
 			if (!savedData) {
 
 				if (mapType === 'skirmish') {
-					view.showObjective();
+					view.showObjective().then(function () {
+						view.autoShowHelpButton();
+					});
+
 				}
 
 				if (mapType === 'mission') {

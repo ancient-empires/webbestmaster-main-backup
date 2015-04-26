@@ -148,6 +148,33 @@
 			'The Catapult has the ability to destroy the enemy towns and help disrupt the flow of gold.',
 			'Keep your Dragons away from enemy archers, as they are vulnerable to arrows!'
 		],
+		helpList: [
+			// 0
+			{
+				img: 'img/help/select-unit.png',
+				text: ['To select unit tap (<img src="img/help/tap-finger.png" class="icon-in-text" />) to unit.', '<img src="img/help/finger-on-red-square.png" class="icon-in-text" /> - The red squares mark the movement range of a unit.', 'A unit\'s range is determined by its type and the terrain it is on.']
+			},
+			// 1
+			{
+				img: 'img/help/attack.png',
+				text: ['To attack an enemy unit, move your unit within range and select <img src="img/help/attack-icon.png" class="icon-in-text" />.', 'If there is more than one enemy in range, select which unit to attack. The success of your attack is determined by unit characteristics and terrain.']
+			},
+			// 2
+			{
+				//img: 'img/help/occupy-castle.png',
+				text: ['Only a Commander can occupy (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />) a castle.', 'Once a castle is occupied you can purchase new units with your gold.', 'The Commander does not need to remain in the castle in order to purchase units.']
+			},
+			// 3
+			{
+				//img: 'img/help/occupy-farm.png',
+				text: ['You can occupy buildings by moving a soldier or Commander onto it and selecting \'occupy\' (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />).', 'Once a building is occupied, it changes colour.', 'If a building is damaged you must repair (<img src="img/help/fix-building-icon.png" class="icon-in-text" />) the building before it can be occupied.']
+			},
+			// 4
+			{
+				img: 'img/help/raise.png',
+				text: ['A Sorceress has the power to summon skeleton warriors from the graves of fallen soldiers.', 'After a unit has been defeated, a tombstone appears for 1 turn.', 'Move a Sorceress next to a tombstone and select \'raise\' <img src="img/help/attack-icon.png" class="icon-in-text" />.']
+			}
+		],
 		unitsList: {
 			'soldier': {
 				name: 'soldier',

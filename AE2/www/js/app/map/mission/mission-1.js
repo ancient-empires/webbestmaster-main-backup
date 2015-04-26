@@ -21,14 +21,8 @@
 
 		"objective": 'Stop the raiders, King Galamar must survive.',
 		"help": [
-			{
-				img: 'img/help/select-unit.png',
-				text: ['To select unit tap (<img src="img/help/tap-finger.png" class="icon-in-text" />) to unit.', '<img src="img/help/finger-on-red-square.png" class="icon-in-text" /> - The red squares mark the movement range of a unit.', 'A unit\'s range is determined by its type and the terrain it is on.']
-			},
-			{
-				img: 'img/help/attack.png',
-				text: ['To attack an enemy unit, move your unit within range and select <img src="img/help/attack-icon.png" class="icon-in-text" />.', 'If there is more than one enemy in range, select which unit to attack. The success of your attack is determined by unit characteristics and terrain.']
-			}
+			langEn.helpList[0],
+			langEn.helpList[1]
 		],
 		"startBriefing": [
 			{
