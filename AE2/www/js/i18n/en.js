@@ -125,7 +125,7 @@
 		name: 'name',
 		colors: 'colors',
 
-		aboutText: 'Ancient Empires II - port of original java game.<br><br><br>Credits:<br><br>Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Алексей Данилов<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
+		aboutText: 'Ancient Empires II - port of original java game.<br><br><br>Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Alexey Danilov<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
 		instructionsText: [
 			'Ancient Empires II is a thrilling strategy game that lets you control King Galamar and his brother Valadorn as they fight to protect their kingdom from evil.',
 			'Next are instructions, hints and tips on how to play which also appear in the game.',

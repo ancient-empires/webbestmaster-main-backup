@@ -1411,9 +1411,7 @@
 
 			}); // work only one time
 
-			setTimeout(function () { // todo: hack for samsung s4 android 4.2.2, try to remove it
-				$deltaHealth.addClass('bounce');
-			}, 50);
+			$deltaHealth.addClass('bounce');
 
 			return deferred.promise();
 
