@@ -1091,7 +1091,7 @@
 					<% var unitsData = window.APP.unitMaster, langUnits = window.APP.lang.get('unitsList'); %>
 					<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
 
-					<% var isCommander = _.contains(unitsData.commanderList, key); %>
+					<% var isCommander = _.contains(unitsData.commanderList, key), isAvailable = !(!isCommander && availableStoreUnits && !_.contains(availableStoreUnits, key)); %>
 
 					<% if ( unitData.canNotBeBuy ) { %>
 						<% return; %>
@@ -1101,7 +1101,7 @@
 						<% return; %>
 					<% }; %>
 
-					<div class="unit-card-wrapper js-unit-card clear-fix disabled-card" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
+					<div class="unit-card-wrapper js-unit-card clear-fix disabled-card <%= isAvailable ? '' : 'disable' %>" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
 
 						<div class="unit-card-header"><%= langUnits[unitData.langKey].name %>
 							<span class="buy-unit-count js-buy-unit-count hidden" data-unit-count="0" data-unit-key="<%= key %>"></span>

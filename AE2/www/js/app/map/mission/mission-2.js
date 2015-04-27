@@ -16,6 +16,7 @@
 		"name-ru": "RU TO THE RESCUE",
 		"maxPlayers": 2,
 		"unitLimit": 25,
+		"availableStoreUnits": ["soldier", "archer"],
 		"money": [
 			{playerId: 0, money: 300},
 			{playerId: 1, money: 300}

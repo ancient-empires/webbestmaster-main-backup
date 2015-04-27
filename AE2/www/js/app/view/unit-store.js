@@ -50,6 +50,7 @@
 
 			var view = this,
 				model = view.get('model'),
+				map = model.get('map'),
 				battleView = model.get('view'),
 				player = model.get('activePlayer'),
 				storeWrapper = view.$wrapper.find(view.selectors.storeWrapper);
@@ -58,7 +59,8 @@
 
 			view.$el = $(view.tmpl['unit-store']({
 				commander: player.commander,
-				playerColor: player.color
+				playerColor: player.color,
+				availableStoreUnits: map.availableStoreUnits
 			}));
 
 			view.autoSetCardState();
