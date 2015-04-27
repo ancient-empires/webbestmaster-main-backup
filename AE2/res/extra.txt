@@ -1,1 +1,2 @@
 find * -type f
+chrome://appcache-internals/
