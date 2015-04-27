@@ -16,6 +16,7 @@
 		"name-ru": "RU - REINFORCEMENTS",
 		"maxPlayers": 2,
 		"unitLimit": 25,
+		"availableStoreUnits": ["soldier", "archer", "elemental", "sorceress"],
 		"money": [
 			{playerId: 0, money: 400},
 			{playerId: 1, money: 400}

@@ -16,6 +16,7 @@
 		"name-ru": "RU NORTHBOUND",
 		"maxPlayers": 2,
 		"unitLimit": 25,
+		"availableStoreUnits": ["soldier", "archer", "elemental", "sorceress", "wisp", "dire-wolf", "golem"],
 		"money": [
 			{playerId: 0, money: 600},
 			{playerId: 1, money: 600}
