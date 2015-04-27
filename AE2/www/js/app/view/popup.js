@@ -35,6 +35,7 @@
 
 			view.extendFromObj(data); // popupName, parentView, popupData(objToView)
 
+
 			view.$el = $(view.tmpl['popup-wrapper']());
 
 			view.$el.addClass(data.from || 'left');
@@ -56,10 +57,15 @@
 			var view = this,
 				append$el = view.get('append$el'),
 				popupData = view.get('popupData') || {},
+				playSound = view.get('playSound'),
 				$content = $(view.tmpl[view.get('popupName')](popupData)),
 				$container = view.$el.find(view.selectors.popupContainer),
 				onShow = view.get('onShow'),
 				context;
+
+			if (playSound) {
+				win.APP.soundMaster.play(playSound);
+			}
 
 			$container.html( $content.html() );
 

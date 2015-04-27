@@ -104,6 +104,11 @@
 					header: langEn.victory,
 					text: langEn.continue
 				},
+				playSound: {
+					sound: 'victory',
+					road: 0,
+					isLoop: false
+				},
 				onHide: {
 					fn: 'openMap',
 					args: ['mission_001_008', { type: 'mission' }]

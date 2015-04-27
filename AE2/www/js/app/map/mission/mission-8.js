@@ -148,6 +148,11 @@
 				popupName: 'briefing',
 				from: 'right',
 				cssClass: 'briefing',
+				playSound: {
+					sound: 'game-complete',
+					road: 0,
+					isLoop: true
+				},
 				popupData: {
 					text: 'Pitiful wretches. You will not live long enough to see your precious Kingdom engulfed in shadow...',
 					img: 'i/face/saeth.png'

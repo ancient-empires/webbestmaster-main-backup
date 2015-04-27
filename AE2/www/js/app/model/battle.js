@@ -1110,6 +1110,11 @@
 				view.showPopup({
 					popupName: 'win-or-defeat',
 					parentView: view,
+					playSound: {
+						sound: 'game-over',
+						road: 0,
+						isLoop: false
+					},
 					popupData: {
 						header: win.APP.lang.get('defeat')
 					}
@@ -1183,6 +1188,11 @@
 				view.showPopup({
 					popupName: 'simple-popup',
 					parentView: view,
+					playSound: {
+						sound: 'game-over',
+						road: 0,
+						isLoop: false
+					},
 					popupData: {
 						header: win.APP.lang.get(looser.color + 'Defeat')
 					}
@@ -1209,6 +1219,11 @@
 				view.showPopup({
 					popupName: 'win-or-defeat',
 					parentView: view,
+					playSound: {
+						sound: 'victory',
+						road: 0,
+						isLoop: false
+					},
 					popupData: {
 						header: win.APP.lang.get('victory')
 					}

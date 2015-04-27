@@ -142,6 +142,11 @@
 					header: langEn.victory,
 					text: langEn.continue
 				},
+				playSound: {
+					sound: 'victory',
+					road: 0,
+					isLoop: false
+				},
 				onHide: {
 					fn: 'openMap', // open next battle map
 					args: ['mission_001_002', { type: 'mission' }]
