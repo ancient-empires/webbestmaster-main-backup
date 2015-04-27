@@ -16,6 +16,7 @@
 		events: {
 			// base
 			'click [data-route]': 'routeTo',
+			'click [data-sound]': 'playSound',
 			'click .js-back': 'routeBack',
 			'click .js-external-link': 'toExternalLink',
 			'click .js-stop-event': 'stopEvent',
@@ -367,6 +368,19 @@
 					.addClass(tabButtonClassPrefix + 'open');
 				$block.removeClass('hidden');
 			}
+
+		},
+
+		playSound: function (e) {
+
+			var $this = $(e.currentTarget),
+				sound = $this.attr('data-sound');
+
+			win.APP.soundMaster.play({
+				sound: sound,
+				road: 3,
+				isLoop: false
+			});
 
 		},
 

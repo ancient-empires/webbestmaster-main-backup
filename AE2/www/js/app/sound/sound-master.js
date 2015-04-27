@@ -69,7 +69,7 @@
 				case '':
 				case 'select-level':
 				case 'skirmish-select-map':
-					return 'main-theme.mp3';
+					return 'main-theme'; // file name main-theme.mp3
 
 			}
 
@@ -87,7 +87,7 @@
 				prevStr = JSON.stringify(prevState);
 
 			//save arguments for - do not start play the same sound
-			if (curStr === prevStr) {
+			if (curStr === prevStr && data.isLoop) {
 				console.log('the same state - return');
 				return;
 			}
@@ -95,6 +95,8 @@
 			soundMaster.stop(data);
 
 			soundMaster.roads[data.road] = JSON.parse(curStr);
+
+			data.sound = data.sound + '.mp3';
 
 			player.play(data);
 

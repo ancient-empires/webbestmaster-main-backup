@@ -11,6 +11,8 @@
 
 		roads: new Array(4),
 
+		pathPrefix: 'sounds/',
+
 		init: function () {
 
 			var player = this;
@@ -38,7 +40,7 @@
 				}, false);
 			}
 
-			newAudio.addEventListener('load', function () {
+			newAudio.addEventListener('canplay', function () {
 				var audio = this;
 				audio.play();
 			});
@@ -46,7 +48,7 @@
 			player.roads[roadNumber].src = '';
 			player.roads[roadNumber] = newAudio;
 
-			newAudio.src = sound;
+			newAudio.src = player.pathPrefix + sound;
 
 		},
 

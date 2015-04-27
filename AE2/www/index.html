@@ -134,7 +134,7 @@
 		<div class="main-header"><%= (obj && obj.header) || window.APP.lang.get('appName') %></div>
 
 		<% if ( window.location.hash ) { %>
-		<div class="js-back back">&lt;&lt;</div>
+		<div data-sound="click" class="js-back back">&lt;&lt;</div>
 		<% } else if ( window.APP.info.withAds && window.APP.info.get('isIOS', true) ) { %>
 		<a href="<%= window.APP.info.link.ios.pro %>" class="js-external-link no-ads">&nbsp;</a>
 		<% }; %>
@@ -157,12 +157,12 @@
 			<div class="table-row h100">
 				<div class="table-cell land-vertical-align-middle">
 					<div class="inline-block">
-						<div class="main-button" data-route="play"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ play }}</div>
+						<div class="main-button" data-sound="click" data-route="play"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ play }}</div>
 						<!--<div class="main-button hidden" data-route="map-editor"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ mapEditor }}</div>-->
 						<!--<div class="main-button opacity50 hidden"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ online }}</div>-->
-						<div class="main-button" data-route="settings"><div class="main-button-icon main-button-icon-4">&nbsp;</div>{{ settings }}</div>
-						<div class="main-button" data-route="instructions"><div class="main-button-icon main-button-icon-6">&nbsp;</div>{{ instructions }}</div>
-						<div class="main-button" data-route="about"><div class="main-button-icon main-button-icon-7">&nbsp;</div>{{ about }}</div>
+						<div class="main-button" data-sound="click" data-route="settings"><div class="main-button-icon main-button-icon-4">&nbsp;</div>{{ settings }}</div>
+						<div class="main-button" data-sound="click" data-route="instructions"><div class="main-button-icon main-button-icon-6">&nbsp;</div>{{ instructions }}</div>
+						<div class="main-button" data-sound="click" data-route="about"><div class="main-button-icon main-button-icon-7">&nbsp;</div>{{ about }}</div>
 					</div>
 				</div>
 			</div>
@@ -329,7 +329,6 @@
 
 <script type="text/x-template" data-name="play">
 
-
 	<div class="double-blocks-wrapper js-no-scroll">
 		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('play') }) %>
 		<div class="screen-wrapper">
@@ -341,10 +340,10 @@
 					<div class="table-row h100">
 						<div class="table-cell land-vertical-align-middle">
 							<div class="inline-block">
-								<div class="main-button js-start-game"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ newGame }}</div>
-								<div class="main-button" data-route="load-game"><div class="main-button-icon main-button-icon-1">&nbsp;</div>{{ loadGame }}</div>
-								<div class="main-button" data-route="select-level"><div class="main-button-icon main-button-icon-2">&nbsp;</div>{{ selectLevel }}</div>
-								<div class="main-button" data-route="skirmish-select-map"><div class="main-button-icon main-button-icon-3">&nbsp;</div>{{ skirmish }}</div>
+								<div data-sound="click" class="main-button js-start-game"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ newGame }}</div>
+								<div data-sound="click" class="main-button" data-route="load-game"><div class="main-button-icon main-button-icon-1">&nbsp;</div>{{ loadGame }}</div>
+								<div data-sound="click" class="main-button" data-route="select-level"><div class="main-button-icon main-button-icon-2">&nbsp;</div>{{ selectLevel }}</div>
+								<div data-sound="click" class="main-button" data-route="skirmish-select-map"><div class="main-button-icon main-button-icon-3">&nbsp;</div>{{ skirmish }}</div>
 							</div>
 						</div>
 					</div>
