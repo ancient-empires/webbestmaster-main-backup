@@ -1128,7 +1128,6 @@
 			view.events[view.eventTypes.move + ' ' + selectors.moveAreaContainer] = 'saveMoveEvent';
 			view.events[view.eventTypes.up + ' ' + selectors.mainEventHandler] = 'detectClick';
 			view.events[view.eventTypes.dbl + ' ' + selectors.mainEventHandler] = 'detectDblClick';
-			view.events[view.eventTypes.hold + ' ' + selectors.mainEventHandler] = 'detectHeld';
 
 		},
 
@@ -1151,23 +1150,6 @@
 			xy = view.getEventXy();
 
 			view.onClick(xy);
-
-		},
-
-		detectHeld: function () {
-
-			var view = this,
-				model = view.get('model'),
-				xy = view.getEventXy(),
-				unit = model.getUnitByXY(xy);
-
-			if ( !unit ) {
-				return;
-			}
-
-
-
-			view.detectDblClick();
 
 		},
 
