@@ -1613,7 +1613,13 @@
 				help = map['help-' + language] || map.help || win.APP.lang.get('helpList'),
 				$helpButton = view.$el.find(view.selectors.helpButton);
 
-			$helpButton.removeClass('blink');
+			if ( $helpButton.hasClass('blink') ) {
+				$helpButton.addClass('hidden');
+				$helpButton.removeClass('blink');
+				setTimeout(function () {
+					$helpButton.removeClass('hidden');
+				}, 200);
+			}
 
 			view.showPopup({
 				cssClass: 'full',
