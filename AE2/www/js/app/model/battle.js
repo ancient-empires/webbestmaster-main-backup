@@ -466,6 +466,23 @@
 				view = model.get('view'),
 				activePlayer = model.get('activePlayer');
 
+			switch (activePlayer.type) {
+				case 'cpu':
+					win.APP.soundMaster.play({
+						sound: 'bg-bad',
+						road: 0,
+						isLoop: true
+					});
+					break;
+				case 'player':
+					win.APP.soundMaster.play({
+						sound: 'bg-good',
+						road: 0,
+						isLoop: true
+					});
+					break;
+			}
+
 			model.clearAvailableActions();
 
 			view.clearAvailableActions();

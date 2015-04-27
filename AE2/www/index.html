@@ -360,7 +360,7 @@
 
 		<div class="popup-header"><%= header %></div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div class="popup-button js-back">{{ ok }}</div>
+			<div data-sound="click" class="popup-button js-back">{{ ok }}</div>
 		</div>
 
 	</div>
@@ -373,8 +373,8 @@
 
 		<div class="popup-header">{{ areYouSureToQuitBattle }}</div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div class="popup-button js-quit-battle">{{ yes }}</div>
-			<div class="popup-button js-back">{{ no }}</div>
+			<div data-sound="click" class="popup-button js-quit-battle">{{ yes }}</div>
+			<div data-sound="click" class="popup-button js-back">{{ no }}</div>
 		</div>
 
 	</div>
@@ -387,8 +387,8 @@
 
 		<div class="popup-header"><%= header %></div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
-			<div class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
+			<div data-sound="click" class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
+			<div data-sound="click" class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
 		</div>
 
 	</div>
@@ -400,8 +400,8 @@
 	<div>
 		<div class="popup-header">{{ endTurnQuestion }}</div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div class="popup-button js-confirmed-end-turn">{{ yes }}</div>
-			<div class="popup-button js-back">{{ no }}</div>
+			<div data-sound="click" class="popup-button js-confirmed-end-turn">{{ yes }}</div>
+			<div data-sound="click" class="popup-button js-back">{{ no }}</div>
 		</div>
 	</div>
 
@@ -412,8 +412,8 @@
 	<div>
 		<div class="popup-header">{{ endTurnQuestion }}</div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div class="popup-button js-confirmed-end-turn">{{ yes }}</div>
-			<div class="popup-button js-back">{{ no }}</div>
+			<div data-sound="click" class="popup-button js-confirmed-end-turn">{{ yes }}</div>
+			<div data-sound="click" class="popup-button js-back">{{ no }}</div>
 		</div>
 	</div>
 
@@ -509,8 +509,8 @@
 	<div>
 		<div class="popup-header">{{ areYouSureToRestartBattle }}</div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div class="popup-button js-restart-battle">{{ yes }}</div>
-			<div class="popup-button js-back">{{ no }}</div>
+			<div data-sound="click" class="popup-button js-restart-battle">{{ yes }}</div>
+			<div data-sound="click" class="popup-button js-back">{{ no }}</div>
 		</div>
 	</div>
 
@@ -521,8 +521,8 @@
 	<div>
 		<div class="popup-header">{{ areYouSureToQuitBattle }}</div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div class="popup-button js-quit-battle">{{ yes }}</div>
-			<div class="popup-button js-back">{{ no }}</div>
+			<div data-sound="click" class="popup-button js-quit-battle">{{ yes }}</div>
+			<div data-sound="click" class="popup-button js-back">{{ no }}</div>
 		</div>
 	</div>
 
@@ -532,17 +532,17 @@
 
 	<div>
 
-		<div class="js-back button-popup-close">&times;</div>
+		<div data-sound="click" class="js-back button-popup-close">&times;</div>
 
 		<div class="popup-header">{{ menu }}</div>
 
 		<div class="popup-buttons-wrapper ta-center">
-			<div class="popup-button popup-button-single-in-row js-show-objective">{{ objective }}</div>
-			<div class="popup-button popup-button-single-in-row js-show-settings">{{ settings }}</div>
-			<div class="popup-button popup-button-single-in-row js-show-save-state">{{ saveGame }}</div>
-			<div class="popup-button popup-button-single-in-row js-show-load-state">{{ loadGame }}</div>
-			<div class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
-			<div class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
+			<div data-sound="click" class="popup-button popup-button-single-in-row js-show-objective">{{ objective }}</div>
+			<div data-sound="click" class="popup-button popup-button-single-in-row js-show-settings">{{ settings }}</div>
+			<div data-sound="click" class="popup-button popup-button-single-in-row js-show-save-state">{{ saveGame }}</div>
+			<div data-sound="click" class="popup-button popup-button-single-in-row js-show-load-state">{{ loadGame }}</div>
+			<div data-sound="click" class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
+			<div data-sound="click" class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
 		</div>
 
 	</div>
@@ -562,7 +562,7 @@
 					<% if ( obj.savedGames && obj.savedGames.length ) { %>
 						<% _.each(savedGames, function(name, index){ %>
 							<div class="js-saved-item-wrapper saved-item-wrapper clear-fix" data-save-name="<%= name %>">
-								<div class="js-load-game side-form-button" data-save-name="<%= name %>">{{ load }}</div>
+								<div data-sound="click" class="js-load-game side-form-button" data-save-name="<%= name %>">{{ load }}</div>
 								<div><%= name %></div>
 							</div>
 						<% }); %>
@@ -582,7 +582,7 @@
 
 	<div>
 
-		<div class="js-back button-popup-close">&times;</div>
+		<div data-sound="click" class="js-back button-popup-close">&times;</div>
 
 		<div class="popup-header">{{ saveGame }}</div>
 
@@ -591,7 +591,7 @@
 		</div>
 
 		<div class="save-small-form-wrapper clear-fix">
-			<div class="save-input-button ellipsis js-save-game">{{ save }}</div>
+			<div data-sound="click" class="save-input-button ellipsis js-save-game">{{ save }}</div>
 			<div class="save-input-text-wrapper">
 				<input type="text" class="save-input-text js-save-input-text" value="<%= saveName %>"/>
 			</div>
@@ -606,7 +606,7 @@
 	<% if ( savedGames.length ) { %>
 		<% _.each(savedGames, function(name, index){ %>
 			<div class="saved-item-wrapper js-saved-item-wrapper clear-fix" data-save-name="<%= name %>">
-				<div class="save-input-button ellipsis js-tab-button" data-save-name="<%= name %>" data-tab-id="delete-save-<%= index %>" data-tab-state="close">{{ delete }}</div>
+				<div data-sound="click" class="save-input-button ellipsis js-tab-button" data-save-name="<%= name %>" data-tab-id="delete-save-<%= index %>" data-tab-state="close">{{ delete }}</div>
 				<div class="save-input-text-wrapper">
 					<div class="saved-item" data-save-name="<%= name %>"><%= name %></div>
 				</div>
@@ -616,8 +616,8 @@
 
 					<div class="small-confirm-buttons-wrapper">
 
-						<div class="small-confirm-button js-remove-saved-game" data-save-name="<%= name %>">{{ yes }}</div>
-						<div class="small-confirm-button js-close-delete-confirm" data-save-name="<%= name %>">{{ no }}</div>
+						<div data-sound="click" class="small-confirm-button js-remove-saved-game" data-save-name="<%= name %>">{{ yes }}</div>
+						<div data-sound="click" class="small-confirm-button js-close-delete-confirm" data-save-name="<%= name %>">{{ no }}</div>
 
 					</div>
 
@@ -634,7 +634,7 @@
 
 	<div class="js-load-game-popup-wrapper">
 
-		<div class="js-back button-popup-close">&times;</div>
+		<div data-sound="click" class="js-back button-popup-close">&times;</div>
 
 		<div class="popup-header">{{ loadGame }}</div>
 
@@ -644,7 +644,7 @@
 				<% if ( obj.savedGames && obj.savedGames.length ) { %>
 					<% _.each(savedGames, function(name, index){ %>
 						<div class="saved-item-wrapper js-saved-item-wrapper clear-fix" data-save-name="<%= name %>">
-							<div class="save-input-button ellipsis js-tab-button" data-save-name="<%= name %>" data-tab-id="load-save-<%= index %>" data-tab-state="close">{{ load }}</div>
+							<div data-sound="click" class="save-input-button ellipsis js-tab-button" data-save-name="<%= name %>" data-tab-id="load-save-<%= index %>" data-tab-state="close">{{ load }}</div>
 							<div class="save-input-text-wrapper">
 								<div class="saved-item" data-save-name="<%= name %>"><%= name %></div>
 							</div>
@@ -654,8 +654,8 @@
 
 								<div class="small-confirm-buttons-wrapper">
 
-									<div class="small-confirm-button js-load-game" data-save-name="<%= name %>">{{ yes }}</div>
-									<div class="small-confirm-button js-close-load-confirm" data-save-name="<%= name %>">{{ no }}</div>
+									<div data-sound="click" class="small-confirm-button js-load-game" data-save-name="<%= name %>">{{ yes }}</div>
+									<div data-sound="click" class="small-confirm-button js-close-load-confirm" data-save-name="<%= name %>">{{ no }}</div>
 
 								</div>
 
@@ -777,9 +777,9 @@
 		<div class="js-unit-info-wrapper"></div>
 		<div class="js-battle-settings-wrapper battle-settings-wrapper"></div>
 		<div class="js-store-wrapper"></div>
-		<div class="js-end-turn end-turn">&gt;|</div>
+		<div data-sound="click" class="js-end-turn end-turn">&gt;|</div>
 		<div class="js-help-button show-help-button blink hidden">!</div>
-		<div class="js-battle-menu-button battle-menu-button">
+		<div data-sound="click" class="js-battle-menu-button battle-menu-button">
 			<div class="battle-menu-button-line">&nbsp;</div>
 			<div class="battle-menu-button-line">&nbsp;</div>
 		</div>
@@ -1123,7 +1123,7 @@
 							</div>
 						</div>
 
-						<div class="unit-buy-button js-buy-unit" data-unit-key="<%= key %>">
+						<div data-sound="click" class="unit-buy-button js-buy-unit" data-unit-key="<%= key %>">
 							<%= unitData.cost %>
 						</div>
 						<div class="clear"></div>

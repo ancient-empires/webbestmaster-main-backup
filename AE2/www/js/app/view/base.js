@@ -16,7 +16,6 @@
 		events: {
 			// base
 			'click [data-route]': 'routeTo',
-			'click [data-sound]': 'playSound',
 			'click .js-back': 'routeBack',
 			'click .js-external-link': 'toExternalLink',
 			'click .js-stop-event': 'stopEvent',
@@ -70,6 +69,9 @@
 			_.each(types, function (typesArr, key) {
 				types[key] = typesArr[eventTypesIndex];
 			});
+
+			// sounds
+			proto.events[types['down'] + ' [data-sound]'] = 'playSound';
 
 			proto.$wrapper.addClass(os);
 			proto.$wrapper.addClass('isMobile_' + isTouch);
