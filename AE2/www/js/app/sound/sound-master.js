@@ -28,11 +28,18 @@
 			// todo: detect player type here (web, android, iOS)
 
 			var soundMaster = this,
-				webPlayer = win.APP.soundMaster.webPlayer;
+				isAndroidPlayer = win.AndAud_0,
+				player;
 
-			webPlayer.init();
+			if (isAndroidPlayer) {
+				player = win.APP.soundMaster.androidPlayer;
+			}
 
-			soundMaster.player = webPlayer;
+			player = player || win.APP.soundMaster.webPlayer; // get system player or use web player
+
+			player.init();
+
+			soundMaster.player = player;
 
 		},
 
@@ -100,8 +107,6 @@
 
 			player.play(data);
 
-			console.log('play ', data);
-
 		},
 
 		stop: function (data) {
@@ -111,10 +116,7 @@
 
 			player.stop(data);
 
-			console.log('stop road -', data.road);
-
 		}
-
 
 	};
 
