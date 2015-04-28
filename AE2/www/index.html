@@ -134,7 +134,7 @@
 		<div class="main-header"><%= (obj && obj.header) || window.APP.lang.get('appName') %></div>
 
 		<% if ( window.location.hash ) { %>
-		<div data-sound="click" class="js-back back">&lt;&lt;</div>
+		<div data-sound="click.mp3" class="js-back back">&lt;&lt;</div>
 		<% } else if ( window.APP.info.withAds && window.APP.info.get('isIOS', true) ) { %>
 		<a href="<%= window.APP.info.link.ios.pro %>" class="js-external-link no-ads">&nbsp;</a>
 		<% }; %>
@@ -159,12 +159,12 @@
 			<div class="table-row h100">
 				<div class="table-cell land-padding-top land-vertical-align-middle">
 					<div class="inline-block">
-						<div class="main-button" data-sound="click" data-route="play"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ play }}</div>
+						<div class="main-button" data-sound="click.mp3" data-route="play"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ play }}</div>
 						<!--<div class="main-button hidden" data-route="map-editor"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ mapEditor }}</div>-->
 						<!--<div class="main-button opacity50 hidden"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ online }}</div>-->
-						<div class="main-button" data-sound="click" data-route="settings"><div class="main-button-icon main-button-icon-4">&nbsp;</div>{{ settings }}</div>
-						<div class="main-button" data-sound="click" data-route="instructions"><div class="main-button-icon main-button-icon-6">&nbsp;</div>{{ instructions }}</div>
-						<div class="main-button" data-sound="click" data-route="about"><div class="main-button-icon main-button-icon-7">&nbsp;</div>{{ about }}</div>
+						<div class="main-button" data-sound="click.mp3" data-route="settings"><div class="main-button-icon main-button-icon-4">&nbsp;</div>{{ settings }}</div>
+						<div class="main-button" data-sound="click.mp3" data-route="instructions"><div class="main-button-icon main-button-icon-6">&nbsp;</div>{{ instructions }}</div>
+						<div class="main-button" data-sound="click.mp3" data-route="about"><div class="main-button-icon main-button-icon-7">&nbsp;</div>{{ about }}</div>
 					</div>
 				</div>
 			</div>
@@ -203,7 +203,7 @@
 					</div>
 					<div class="clear"></div>
 
-					<div class="disable js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
+					<div class="js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
 						<%= view.tmpl.settingsOnOff({ key: 'music', info: info }) %>
 						<div class="setting-name">{{ music }}</div>
 					</div>
@@ -344,10 +344,10 @@
 					<div class="table-row h100">
 						<div class="table-cell land-padding-top land-vertical-align-middle">
 							<div class="inline-block">
-								<div data-sound="click" class="main-button js-start-game"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ newGame }}</div>
-								<div data-sound="click" class="main-button" data-route="load-game"><div class="main-button-icon main-button-icon-1">&nbsp;</div>{{ loadGame }}</div>
-								<div data-sound="click" class="main-button" data-route="select-level"><div class="main-button-icon main-button-icon-2">&nbsp;</div>{{ selectLevel }}</div>
-								<div data-sound="click" class="main-button" data-route="skirmish-select-map"><div class="main-button-icon main-button-icon-3">&nbsp;</div>{{ skirmish }}</div>
+								<div data-sound="click.mp3" class="main-button js-start-game"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ newGame }}</div>
+								<div data-sound="click.mp3" class="main-button" data-route="load-game"><div class="main-button-icon main-button-icon-1">&nbsp;</div>{{ loadGame }}</div>
+								<div data-sound="click.mp3" class="main-button" data-route="select-level"><div class="main-button-icon main-button-icon-2">&nbsp;</div>{{ selectLevel }}</div>
+								<div data-sound="click.mp3" class="main-button" data-route="skirmish-select-map"><div class="main-button-icon main-button-icon-3">&nbsp;</div>{{ skirmish }}</div>
 							</div>
 						</div>
 					</div>
@@ -364,7 +364,7 @@
 
 		<div class="popup-header"><%= header %></div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div data-sound="click" class="popup-button js-back">{{ ok }}</div>
+			<div data-sound="click.mp3" class="popup-button js-back">{{ ok }}</div>
 		</div>
 
 	</div>
@@ -377,8 +377,8 @@
 
 		<div class="popup-header">{{ areYouSureToQuitBattle }}</div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div data-sound="click" class="popup-button js-quit-battle">{{ yes }}</div>
-			<div data-sound="click" class="popup-button js-back">{{ no }}</div>
+			<div data-sound="click.mp3" class="popup-button js-quit-battle">{{ yes }}</div>
+			<div data-sound="click.mp3" class="popup-button js-back">{{ no }}</div>
 		</div>
 
 	</div>
@@ -391,8 +391,8 @@
 
 		<div class="popup-header"><%= header %></div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div data-sound="click" class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
-			<div data-sound="click" class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
 		</div>
 
 	</div>
@@ -404,8 +404,8 @@
 	<div>
 		<div class="popup-header">{{ endTurnQuestion }}</div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div data-sound="click" class="popup-button js-confirmed-end-turn">{{ yes }}</div>
-			<div data-sound="click" class="popup-button js-back">{{ no }}</div>
+			<div data-sound="click.mp3" class="popup-button js-confirmed-end-turn">{{ yes }}</div>
+			<div data-sound="click.mp3" class="popup-button js-back">{{ no }}</div>
 		</div>
 	</div>
 
@@ -416,8 +416,8 @@
 	<div>
 		<div class="popup-header">{{ endTurnQuestion }}</div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div data-sound="click" class="popup-button js-confirmed-end-turn">{{ yes }}</div>
-			<div data-sound="click" class="popup-button js-back">{{ no }}</div>
+			<div data-sound="click.mp3" class="popup-button js-confirmed-end-turn">{{ yes }}</div>
+			<div data-sound="click.mp3" class="popup-button js-back">{{ no }}</div>
 		</div>
 	</div>
 
@@ -513,8 +513,8 @@
 	<div>
 		<div class="popup-header">{{ areYouSureToRestartBattle }}</div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div data-sound="click" class="popup-button js-restart-battle">{{ yes }}</div>
-			<div data-sound="click" class="popup-button js-back">{{ no }}</div>
+			<div data-sound="click.mp3" class="popup-button js-restart-battle">{{ yes }}</div>
+			<div data-sound="click.mp3" class="popup-button js-back">{{ no }}</div>
 		</div>
 	</div>
 
@@ -525,8 +525,8 @@
 	<div>
 		<div class="popup-header">{{ areYouSureToQuitBattle }}</div>
 		<div class="popup-buttons-wrapper ta-center">
-			<div data-sound="click" class="popup-button js-quit-battle">{{ yes }}</div>
-			<div data-sound="click" class="popup-button js-back">{{ no }}</div>
+			<div data-sound="click.mp3" class="popup-button js-quit-battle">{{ yes }}</div>
+			<div data-sound="click.mp3" class="popup-button js-back">{{ no }}</div>
 		</div>
 	</div>
 
@@ -536,17 +536,17 @@
 
 	<div>
 
-		<div data-sound="click" class="js-back button-popup-close">&times;</div>
+		<div data-sound="click.mp3" class="js-back button-popup-close">&times;</div>
 
 		<div class="popup-header">{{ menu }}</div>
 
 		<div class="popup-buttons-wrapper ta-center">
-			<div data-sound="click" class="popup-button popup-button-single-in-row js-show-objective">{{ objective }}</div>
-			<div data-sound="click" class="popup-button popup-button-single-in-row js-show-settings">{{ settings }}</div>
-			<div data-sound="click" class="popup-button popup-button-single-in-row js-show-save-state">{{ saveGame }}</div>
-			<div data-sound="click" class="popup-button popup-button-single-in-row js-show-load-state">{{ loadGame }}</div>
-			<div data-sound="click" class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
-			<div data-sound="click" class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-show-objective">{{ objective }}</div>
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-show-settings">{{ settings }}</div>
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-show-save-state">{{ saveGame }}</div>
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-show-load-state">{{ loadGame }}</div>
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-restart-battle">{{ restartBattle }}</div>
+			<div data-sound="click.mp3" class="popup-button popup-button-single-in-row js-quit-battle">{{ quitBattle }}</div>
 		</div>
 
 	</div>
@@ -566,7 +566,7 @@
 					<% if ( obj.savedGames && obj.savedGames.length ) { %>
 						<% _.each(savedGames, function(name, index){ %>
 							<div class="js-saved-item-wrapper saved-item-wrapper clear-fix" data-save-name="<%= name %>">
-								<div data-sound="click" class="js-load-game side-form-button" data-save-name="<%= name %>">{{ load }}</div>
+								<div data-sound="click.mp3" class="js-load-game side-form-button" data-save-name="<%= name %>">{{ load }}</div>
 								<div><%= name %></div>
 							</div>
 						<% }); %>
@@ -586,7 +586,7 @@
 
 	<div>
 
-		<div data-sound="click" class="js-back button-popup-close">&times;</div>
+		<div data-sound="click.mp3" class="js-back button-popup-close">&times;</div>
 
 		<div class="popup-header">{{ saveGame }}</div>
 
@@ -595,7 +595,7 @@
 		</div>
 
 		<div class="save-small-form-wrapper clear-fix">
-			<div data-sound="click" class="save-input-button ellipsis js-save-game">{{ save }}</div>
+			<div data-sound="click.mp3" class="save-input-button ellipsis js-save-game">{{ save }}</div>
 			<div class="save-input-text-wrapper">
 				<input type="text" class="save-input-text js-save-input-text" value="<%= saveName %>"/>
 			</div>
@@ -610,7 +610,7 @@
 	<% if ( savedGames.length ) { %>
 		<% _.each(savedGames, function(name, index){ %>
 			<div class="saved-item-wrapper js-saved-item-wrapper clear-fix" data-save-name="<%= name %>">
-				<div data-sound="click" class="save-input-button ellipsis js-tab-button" data-save-name="<%= name %>" data-tab-id="delete-save-<%= index %>" data-tab-state="close">{{ delete }}</div>
+				<div data-sound="click.mp3" class="save-input-button ellipsis js-tab-button" data-save-name="<%= name %>" data-tab-id="delete-save-<%= index %>" data-tab-state="close">{{ delete }}</div>
 				<div class="save-input-text-wrapper">
 					<div class="saved-item" data-save-name="<%= name %>"><%= name %></div>
 				</div>
@@ -620,8 +620,8 @@
 
 					<div class="small-confirm-buttons-wrapper">
 
-						<div data-sound="click" class="small-confirm-button js-remove-saved-game" data-save-name="<%= name %>">{{ yes }}</div>
-						<div data-sound="click" class="small-confirm-button js-close-delete-confirm" data-save-name="<%= name %>">{{ no }}</div>
+						<div data-sound="click.mp3" class="small-confirm-button js-remove-saved-game" data-save-name="<%= name %>">{{ yes }}</div>
+						<div data-sound="click.mp3" class="small-confirm-button js-close-delete-confirm" data-save-name="<%= name %>">{{ no }}</div>
 
 					</div>
 
@@ -638,7 +638,7 @@
 
 	<div class="js-load-game-popup-wrapper">
 
-		<div data-sound="click" class="js-back button-popup-close">&times;</div>
+		<div data-sound="click.mp3" class="js-back button-popup-close">&times;</div>
 
 		<div class="popup-header">{{ loadGame }}</div>
 
@@ -648,7 +648,7 @@
 				<% if ( obj.savedGames && obj.savedGames.length ) { %>
 					<% _.each(savedGames, function(name, index){ %>
 						<div class="saved-item-wrapper js-saved-item-wrapper clear-fix" data-save-name="<%= name %>">
-							<div data-sound="click" class="save-input-button ellipsis js-tab-button" data-save-name="<%= name %>" data-tab-id="load-save-<%= index %>" data-tab-state="close">{{ load }}</div>
+							<div data-sound="click.mp3" class="save-input-button ellipsis js-tab-button" data-save-name="<%= name %>" data-tab-id="load-save-<%= index %>" data-tab-state="close">{{ load }}</div>
 							<div class="save-input-text-wrapper">
 								<div class="saved-item" data-save-name="<%= name %>"><%= name %></div>
 							</div>
@@ -658,8 +658,8 @@
 
 								<div class="small-confirm-buttons-wrapper">
 
-									<div data-sound="click" class="small-confirm-button js-load-game" data-save-name="<%= name %>">{{ yes }}</div>
-									<div data-sound="click" class="small-confirm-button js-close-load-confirm" data-save-name="<%= name %>">{{ no }}</div>
+									<div data-sound="click.mp3" class="small-confirm-button js-load-game" data-save-name="<%= name %>">{{ yes }}</div>
+									<div data-sound="click.mp3" class="small-confirm-button js-close-load-confirm" data-save-name="<%= name %>">{{ no }}</div>
 
 								</div>
 
@@ -781,9 +781,9 @@
 		<div class="js-unit-info-wrapper"></div>
 		<div class="js-battle-settings-wrapper battle-settings-wrapper"></div>
 		<div class="js-store-wrapper"></div>
-		<div data-sound="click" class="js-end-turn end-turn">&gt;|</div>
+		<div data-sound="click.mp3" class="js-end-turn end-turn">&gt;|</div>
 		<div class="js-help-button show-help-button blink hidden">!</div>
-		<div data-sound="click" class="js-battle-menu-button battle-menu-button">
+		<div data-sound="click.mp3" class="js-battle-menu-button battle-menu-button">
 			<div class="battle-menu-button-line">&nbsp;</div>
 			<div class="battle-menu-button-line">&nbsp;</div>
 		</div>
@@ -1127,7 +1127,7 @@
 							</div>
 						</div>
 
-						<div data-sound="click" class="unit-buy-button js-buy-unit" data-unit-key="<%= key %>">
+						<div data-sound="click.mp3" class="unit-buy-button js-buy-unit" data-unit-key="<%= key %>">
 							<%= unitData.cost %>
 						</div>
 						<div class="clear"></div>

@@ -103,7 +103,11 @@
 
 			soundMaster.roads[data.road] = JSON.parse(curStr);
 
-			data.sound = data.sound + '.mp3';
+			//data.sound = data.sound + '.mp3';
+
+			if (win.APP.info.get('music') === 'off') {
+				return;
+			}
 
 			player.play(data);
 
@@ -115,6 +119,26 @@
 				player = soundMaster.getPlayer();
 
 			player.stop(data);
+
+		},
+
+		stopBgSound: function () {
+
+			var soundMaster = this,
+				state = soundMaster.roads[0]; // 0 is bg sound
+
+			soundMaster.stop(state);
+
+		},
+
+		restoreBgSound: function () {
+
+			var soundMaster = this,
+				state = soundMaster.roads[0]; // 0 is bg sound
+
+			state.force = true;
+
+			soundMaster.play(state);
 
 		}
 

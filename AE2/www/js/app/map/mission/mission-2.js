@@ -162,7 +162,7 @@
 					text: langEn.continue
 				},
 				playSound: {
-					sound: 'victory',
+					sound: 'victory.mp3',
 					road: 0,
 					isLoop: false
 				},

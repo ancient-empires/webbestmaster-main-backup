@@ -88,6 +88,10 @@
 					view.autoShowUnitAnimation();
 					break;
 
+				case 'music':
+					view.autoSetMusic();
+					break;
+
 			}
 
 		},
@@ -156,6 +160,24 @@
 				view.$wrapper.removeClass('hide-unit-animation');
 			} else {
 				view.$wrapper.addClass('hide-unit-animation');
+			}
+
+		},
+
+
+		autoSetMusic: function () {
+
+			var view = this,
+				info = view.info,
+				musicState = info.get('music'),
+				soundMaster = win.APP.soundMaster;
+
+			if (musicState === 'on') {
+				debugger
+				soundMaster.restoreBgSound();
+			} else {
+				debugger
+				soundMaster.stopBgSound();
 			}
 
 		}

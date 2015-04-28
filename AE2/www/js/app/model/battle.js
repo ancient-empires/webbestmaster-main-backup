@@ -469,14 +469,14 @@
 			switch (activePlayer.type) {
 				case 'cpu':
 					win.APP.soundMaster.play({
-						sound: 'bg-bad',
+						sound: 'bg-bad.mp3',
 						road: 0,
 						isLoop: true
 					});
 					break;
 				case 'player':
 					win.APP.soundMaster.play({
-						sound: 'bg-good',
+						sound: 'bg-good.mp3',
 						road: 0,
 						isLoop: true
 					});
@@ -1111,7 +1111,7 @@
 					popupName: 'win-or-defeat',
 					parentView: view,
 					playSound: {
-						sound: 'game-over',
+						sound: 'game-over.mp3',
 						road: 0,
 						isLoop: false
 					},
@@ -1189,7 +1189,7 @@
 					popupName: 'simple-popup',
 					parentView: view,
 					playSound: {
-						sound: 'game-over',
+						sound: 'game-over.mp3',
 						road: 0,
 						isLoop: false
 					},
@@ -1220,7 +1220,7 @@
 					popupName: 'win-or-defeat',
 					parentView: view,
 					playSound: {
-						sound: 'victory',
+						sound: 'victory.mp3',
 						road: 0,
 						isLoop: false
 					},

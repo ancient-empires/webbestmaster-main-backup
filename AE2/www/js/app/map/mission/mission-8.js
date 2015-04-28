@@ -149,7 +149,7 @@
 				from: 'right',
 				cssClass: 'briefing',
 				playSound: {
-					sound: 'game-complete',
+					sound: 'game-complete.mp3',
 					road: 0,
 					isLoop: true
 				},
