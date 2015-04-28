@@ -79,14 +79,14 @@
 	-webkit-animation-duration: 2s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-direction: normal;
-	-webkit-animation-timing-function: linear;
+	-webkit-animation-timing-function: steps(2);
 	-webkit-animation-fill-mode: forwards;
 
 	animation-name: blink;
 	animation-duration: 2s;
 	animation-iteration-count: infinite;
 	animation-direction: normal;
-	animation-timing-function: linear;
+	animation-timing-function: steps(2);
 	animation-fill-mode: forwards;
 }
 
