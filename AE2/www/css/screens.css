@@ -55,6 +55,11 @@
 	margin: -0.2rem 0.3rem 0 -0.2rem;
 }
 
+.main-button-icon.flip {
+	-webkit-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+
 .main-button-icon-0 {
 	background-position: 0 0;
 }
