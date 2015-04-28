@@ -27,6 +27,18 @@
 		"objective": 'Protect the Temple of Life - destroy all enemy units, occupy the enemy castle!',
 		"startBriefing": [
 			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langEn.story.list[3]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
 				popupName: 'simple-notification',
 				popupData: {
 					header: 'The Temple of Life'

@@ -27,6 +27,18 @@
 
 		"startBriefing": [
 			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langEn.story.list[4]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
 				popupName: 'simple-notification',
 				popupData: {
 					header: 'The Ancient Citadel'
@@ -213,10 +225,22 @@
 				}
 			},
 			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langEn.story.list[5]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
 				popupName: 'simple-notification',
 				popupData: {
 					header: langEn.congratulations,
-					text: 'And thank you for playing AE2 - I very much hope you enjoyed playing it as much as I enjoyed making it!'
+					text: 'And thank you for playing AE2 - I very much hope you enjoyed playing it as much as I enjoyed making it!<br><br><br>' + langEn.aboutText
 				},
 				onHide: {
 					fn: 'backTo',
