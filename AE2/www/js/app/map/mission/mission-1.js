@@ -27,14 +27,25 @@
 		"startBriefing": [
 			{
 				popupName: 'story',
+				cssClass: 'full-screen',
 				popupData: {
 					content: langEn.story.list[0]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
 				}
 			},
 			{
 				popupName: 'simple-notification',
 				popupData: {
 					header: 'The Temple of Courage'
+				},
+				playSound: {
+					sound: 'bg-good.mp3',
+					road: 0,
+					isLoop: true
 				}
 			},
 			{

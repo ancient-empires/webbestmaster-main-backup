@@ -239,11 +239,10 @@
 		},
 
 		story: {
-			imgPathPrefix: 'img/story/',
 			list: [
-				'story-1-1.png_!_With the passing of the war against the forces of darkness, the brothers Galamar and Valadorn are reunited in their rule of the kingdom of Thorin. The kingdom is slowly returning to its peace time ways, protected by three ancient crystals safely guarded in the temples of Courage, Wisdom and Life, when rumours of skirmishes in the North reach the palace...',
-				'story-1-2.png_!_\'And three was their number, three to protect, three to destroy. Mercy upon the wielder of their power, mercy upon our souls, for He shall unleash the heavenly fires onto this world.\'<br \/>[Verse 3:7 from the Crystal Prophecies, author unknown, translated from the only surviving transcript from the Age of Darkness]',
-				'story-1-3.png_!_A messenger from the Temple of Courage arrives at the castle gates, pleading for the King\'s assistance - the Temple has fallen prey to brutal attackers, and must be protected...'
+				'img/story/story-1-1.png_!_With the passing of the war against the forces of darkness, the brothers Galamar and Valadorn are reunited in their rule of the kingdom of Thorin. The kingdom is slowly returning to its peace time ways, protected by three ancient crystals safely guarded in the temples of Courage, Wisdom and Life, when rumours of skirmishes in the North reach the palace...',
+				'img/story/story-1-2.png_!_\'And three was their number, three to protect, three to destroy. Mercy upon the wielder of their power, mercy upon our souls, for He shall unleash the heavenly fires onto this world.\'<br \/>[Verse 3:7 from the Crystal Prophecies, author unknown, translated from the only surviving transcript from the Age of Darkness]',
+				'img/story/story-1-3.png_!_A messenger from the Temple of Courage arrives at the castle gates, pleading for the King\'s assistance - the Temple has fallen prey to brutal attackers, and must be protected...'
 			]
 		}
 

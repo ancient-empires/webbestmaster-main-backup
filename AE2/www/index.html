@@ -847,21 +847,21 @@
 
 <script type="text/x-template" data-name="help">
 
-	<div class="help-wrapper">
+	<div>
 
-		<div class="help-container js-scroll-area-container scroll-touch">
+		<div class="h100 js-scroll-area-container scroll-touch">
 			<div class="scroll-area">
 
 				<% _.each(help, function (item) { %>
 
-				<div class="help-page">
+				<div class="popup-page">
 					<% if ( item.img ) { %>
-					<img src="<%= item.img %>" alt="" class="help-image"/>
+					<img src="<%= item.img %>" alt="" class="popup-page-image"/>
 					<% }; %>
 
 					<% _.each(item.text, function(text){ %>
 
-					<p class="help-text"> <%= text %> </p>
+					<p class="popup-page-text"> <%= text %> </p>
 
 					<% }); %>
 
@@ -1229,21 +1229,19 @@
 
 <script type="text/x-template" data-name="story">
 
-	<div class="story-wrapper">
+	<div>
 
-		<div class="js-scroll-area-container scroll-touch">
+		<div class="h100 js-scroll-area-container scroll-touch">
 			<div class="scroll-area">
-
-				<% var arr = content.split('_!_'); %>
-
-				<% _.each(arr, function(part) { %>
-
-				<div class="story-page-wrapper">
-					<%= part %>
-				</div>
-
+				<div class="popup-page">
+				<% _.each(content.split('_!_'), function(part) { %>
+					<% if ( part.indexOf('.png') !== -1  ) { %>
+					<img src="<%= part %>" alt="" class="popup-page-image"/>
+					<% } else { %>
+					<p class="popup-page-text"> <%= part %> </p>
+					<% }; %>
 				<% }); %>
-
+				</div>
 			</div>
 		</div>
 
