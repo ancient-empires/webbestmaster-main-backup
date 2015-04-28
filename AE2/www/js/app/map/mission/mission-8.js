@@ -42,6 +42,11 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: 'The Ancient Citadel'
+				},
+				playSound: {
+					sound: 'bg-good.mp3',
+					road: 0,
+					isLoop: true
 				}
 			},
 			{
@@ -229,11 +234,6 @@
 				cssClass: 'full-screen',
 				popupData: {
 					content: langEn.story.list[5]
-				},
-				playSound: {
-					sound: 'bg-story.mp3',
-					road: 0,
-					isLoop: true
 				}
 			},
 			{

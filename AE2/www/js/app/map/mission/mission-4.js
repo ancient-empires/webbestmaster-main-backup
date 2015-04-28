@@ -42,6 +42,11 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: 'The Temple of Life'
+				},
+				playSound: {
+					sound: 'bg-good.mp3',
+					road: 0,
+					isLoop: true
 				}
 			},
 			{
