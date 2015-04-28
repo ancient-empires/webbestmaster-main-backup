@@ -160,8 +160,8 @@
 }
 
 .full-screen .button-popup-close {
-	right: 1rem;
-	top: 1rem;
+	right: 0.8rem;
+	top: 0.6rem;
 }
 
 .button-popup-close:active {
