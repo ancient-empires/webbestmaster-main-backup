@@ -163,6 +163,19 @@
 	.land-vertical-align-middle {
 		vertical-align: middle;
 	}
+
+	.land-padding-top {
+		padding-top: 3.4rem;
+	}
+
+}
+
+@media screen and (orientation: portrait) {
+
+	.port-padding-top {
+		padding-top: 3.4rem;
+	}
+
 }
 
 .credits-link {

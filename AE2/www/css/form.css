@@ -5,23 +5,31 @@
 	width: 100%;
 	z-index: 1;
 	box-sizing: border-box;
-	border-bottom-width: 0.15rem;
-	border-bottom-style: solid;
 	background-color: #242a45;
+	border-width: 0.75rem;
+	border-style: solid;
+	-webkit-border-image: url(../i/ui/border-1.png) 25% repeat repeat;
+	border-image: url(../i/ui/border-1.png) 25% repeat repeat;
+	padding: 0;
+	height: 3.4rem;
 }
 
 .main-header,
 .back {
 	padding: 0.7rem;
-	line-height: 1.4rem;
+	line-height: 1.2rem;
 	font-size: 1.2rem;
 	text-transform: capitalize;
 	text-shadow: 0.15rem 0.15rem 0 #000;
-	position: relative;
+	position: absolute;
+	left: 0;
+	top: -0.45rem;
 }
 
 .main-header {
 	float: right;
+	left: auto;
+	right: 0;
 }
 
 .back {
