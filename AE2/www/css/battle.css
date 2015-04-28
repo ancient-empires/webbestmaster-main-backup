@@ -76,17 +76,17 @@
 
 .blink {
 	-webkit-animation-name: blink;
-	-webkit-animation-duration: 2s;
+	-webkit-animation-duration: 1s;
 	-webkit-animation-iteration-count: infinite;
 	-webkit-animation-direction: normal;
-	-webkit-animation-timing-function: steps(2);
+	-webkit-animation-timing-function: steps(1);
 	-webkit-animation-fill-mode: forwards;
 
 	animation-name: blink;
-	animation-duration: 2s;
+	animation-duration: 1s;
 	animation-iteration-count: infinite;
 	animation-direction: normal;
-	animation-timing-function: steps(2);
+	animation-timing-function: steps(1);
 	animation-fill-mode: forwards;
 }
 
