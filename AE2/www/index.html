@@ -731,7 +731,7 @@
 					</div>
 
 					<div class="popup-buttons-wrapper ta-center">
-						<div class="js-go-to-battle popup-button popup-button-single-in-row single-screen-button"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ fight }}!</div>
+						<div data-sound="click.mp3" class="js-go-to-battle popup-button popup-button-single-in-row single-screen-button"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ fight }}!</div>
 					</div>
 
 				</div>
@@ -752,7 +752,7 @@
 				<% var languageField = 'name-' + window.APP.info.get('language'); %>
 				<% _.each(mapsInfo, function (map, jsKey) { %>
 				<% var mapName = map[languageField] || map.name; %>
-				<div data-route="skirmish-setup-map/<%= jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
+				<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
 				<% }); %>
 				</div>
 			</div>
@@ -1160,9 +1160,9 @@
 					<% var mapName = map[languageField] || map.name; %>
 						<% index += 1; %>
 						<% if (map.isOpen) { %>
-							<div data-route="mission-setup-map/<%= jsKey %>" class="saved-item-wrapper"><%= index %>. <%= mapName %></div>
+							<div data-sound="click.mp3" data-route="mission-setup-map/<%= jsKey %>" class="saved-item-wrapper"><%= index %>. <%= mapName %></div>
 						<% } else { %>
-							<div data-route="mission-setup-map/<%= jsKey %>" class="disable saved-item-wrapper"><%= index %>. <%= mapName.replace(/\w/g, '?') %></div>
+							<div data-sound="click.mp3" data-route="mission-setup-map/<%= jsKey %>" class="disable saved-item-wrapper"><%= index %>. <%= mapName.replace(/\w/g, '?') %></div>
 						<% }; %>
 					<% }); %>
 				</div>
