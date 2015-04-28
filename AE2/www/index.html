@@ -1234,21 +1234,18 @@
 		<div class="js-scroll-area-container scroll-touch">
 			<div class="scroll-area">
 
+				<% var arr = content.split('_!_'); %>
 
+				<% _.each(arr, function(part) { %>
 
+				<div class="story-page-wrapper">
+					<%= part %>
+				</div>
+
+				<% }); %>
 
 			</div>
 		</div>
-
-	</div>
-
-</script>
-
-<script type="text/x-template" data-name="story-page">
-
-	<div class="story-page-wrapper">
-
-
 
 	</div>
 

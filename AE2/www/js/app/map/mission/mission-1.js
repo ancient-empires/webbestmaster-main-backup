@@ -26,6 +26,12 @@
 		],
 		"startBriefing": [
 			{
+				popupName: 'story',
+				popupData: {
+					content: langEn.story.list[0]
+				}
+			},
+			{
 				popupName: 'simple-notification',
 				popupData: {
 					header: 'The Temple of Courage'
