@@ -67,6 +67,9 @@
 	left: 5%;
 	box-sizing: border-box;
 	border: none;
+	border-width: 0;
+	border-style: none;
+	border-image: none;
 }
 
 .full-screen .popup-form {
@@ -76,6 +79,9 @@
 	left: 0;
 	box-sizing: border-box;
 	border: none;
+	border-width: 0;
+	border-style: none;
+	border-image: none;
 }
 
 @media only screen and (max-width : 736px) {
@@ -153,8 +159,13 @@
 	box-shadow: 0.2rem 0.2rem 0 #000;
 }
 
+.full-screen .button-popup-close {
+	right: 1rem;
+	top: 1rem;
+}
+
 .button-popup-close:active {
-	right: 0;
-	top: 0.6rem;
 	box-shadow: none;
 }
+
+
