@@ -145,10 +145,16 @@
 	font-size: 2rem;
 	line-height: 0.8rem;
 	right: 0.2rem;
+	top: 0.4rem;
 	border-width: 0.15rem;
 	border-style: solid;
 	padding: 0 0.05rem 0.8rem;
-	top: 0.4rem;
+	background-color: #242A45;
+	box-shadow: 0.2rem 0.2rem 0 #000;
 }
 
-
+.button-popup-close:active {
+	right: 0;
+	top: 0.6rem;
+	box-shadow: none;
+}

@@ -734,8 +734,6 @@
 						<div class="js-go-to-battle popup-button popup-button-single-in-row single-screen-button"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ fight }}!</div>
 					</div>
 
-
-
 				</div>
 			</div>
 		</div>
@@ -1232,6 +1230,7 @@
 	<div>
 
 		<div class="h100 js-scroll-area-container scroll-touch">
+			<div data-sound="click.mp3" class="js-back button-popup-close">×</div>
 			<div class="scroll-area">
 				<div class="popup-page">
 				<% _.each(content.split('_!_'), function(part) { %>
@@ -1241,6 +1240,9 @@
 					<p class="popup-page-text"> <%= part %> </p>
 					<% }; %>
 				<% }); %>
+					<div class="popup-buttons-wrapper ta-center">
+						<div data-sound="click.mp3" class="js-back popup-button popup-button-single-in-row single-screen-button">Next -></div>
+					</div>
 				</div>
 			</div>
 		</div>
