@@ -29,7 +29,7 @@
 				popupName: 'story',
 				cssClass: 'full-screen',
 				popupData: {
-					content: langEn.story.list[3]
+					content: langEn.story.list[0]
 				},
 				playSound: {
 					sound: 'bg-story.mp3',
