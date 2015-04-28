@@ -34,6 +34,9 @@
 			newAudio = new Audio();
 			if (isLoop) {
 				newAudio.addEventListener('ended', function() {
+					if ( win.APP.info.get('music') === 'off' ) {
+						return;
+					}
 					var audio = this;
 					audio.currentTime = 0;
 					audio.play();
@@ -41,6 +44,9 @@
 			}
 
 			newAudio.addEventListener('canplay', function () {
+				if ( win.APP.info.get('music') === 'off' ) {
+					return;
+				}
 				var audio = this;
 				audio.play();
 			});

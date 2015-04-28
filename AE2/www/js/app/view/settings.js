@@ -173,10 +173,8 @@
 				soundMaster = win.APP.soundMaster;
 
 			if (musicState === 'on') {
-				debugger
 				soundMaster.restoreBgSound();
 			} else {
-				debugger
 				soundMaster.stopBgSound();
 			}
 

@@ -76,7 +76,7 @@
 				case '':
 				case 'select-level':
 				case 'skirmish-select-map':
-					return 'main-theme'; // file name main-theme.mp3
+					return 'main-theme.mp3'; // file name main-theme.mp3
 
 			}
 
@@ -102,8 +102,6 @@
 			soundMaster.stop(data);
 
 			soundMaster.roads[data.road] = JSON.parse(curStr);
-
-			//data.sound = data.sound + '.mp3';
 
 			if (win.APP.info.get('music') === 'off') {
 				return;
@@ -134,9 +132,9 @@
 		restoreBgSound: function () {
 
 			var soundMaster = this,
-				state = soundMaster.roads[0]; // 0 is bg sound
+				state = JSON.parse(JSON.stringify(soundMaster.roads[0])); // 0 is bg sound
 
-			state.force = true;
+			soundMaster.roads[0] = {}; // wipe previous state to force play sound
 
 			soundMaster.play(state);
 
