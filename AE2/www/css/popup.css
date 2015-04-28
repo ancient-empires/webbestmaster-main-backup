@@ -138,8 +138,6 @@
 
 .popup-button:active {
 	box-shadow: none;
-	left: 0.2rem;
-	top: 0.2rem;
 }
 
 .popup-text {

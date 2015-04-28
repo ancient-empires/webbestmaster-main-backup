@@ -37,8 +37,6 @@
 }
 
 .back:active {
-	top: 0.15rem;
-	left: 0.15rem;
 	text-shadow: none;
 }
 

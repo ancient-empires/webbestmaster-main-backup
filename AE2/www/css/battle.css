@@ -69,8 +69,6 @@
 }
 
 .show-help-button:active {
-	top: 3.2rem;
-	left: 0;
 	box-shadow: none;
 }
 
@@ -102,8 +100,6 @@
 
 .end-turn:active {
 	box-shadow: none;
-	right: 0.8rem;
-	top: 1.2rem;
 }
 
 
@@ -122,8 +118,6 @@
 }
 
 .battle-menu-button:active {
-	left: 0.9rem;
-	top: 0;
 	box-shadow: none;
 }
 
