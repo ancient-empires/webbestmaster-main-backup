@@ -71,7 +71,6 @@
 			view.$el.find(selectors.saveInputText).on('input', $.proxy(view, 'autoSetSaveButtonState') );
 			view.$el.find(selectors.setInputTextValue).on('click', $.proxy(view, 'setInputTextValue') );
 
-
 		},
 
 		unbindEventListeners: function () {
@@ -161,6 +160,11 @@
 					view.setSaveButtonEnable(true);
 					view.bindEventListeners();
 					view.autoSetSaveButtonState();
+					view.showTicket({
+						popupData: {
+							text: win.APP.lang.get('gameSaved') + '<br>' + saveName
+						}
+					});
 				});
 
 		},

@@ -29,6 +29,21 @@
 	transform: translate3d(0, 200%, 0);
 }
 
+.popup-wrapper.ticket-wrapper {
+	width: 100%;
+	height: auto;
+	bottom: 0;
+	top: auto;
+	text-align: center;
+	box-sizing: border-box;
+	border-width: 0.75rem;
+	border-style: solid;
+	-webkit-border-image: url(../i/ui/border-1.png) 25% repeat repeat;
+	border-image: url(../i/ui/border-1.png) 25% repeat repeat;
+	background-color: #242a45;
+	z-index: 11; /* see z-i popup-wrapper */
+}
+
 .popup-protector {
 	position: fixed;
 	left: 0;

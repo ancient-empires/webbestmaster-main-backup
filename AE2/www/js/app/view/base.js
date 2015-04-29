@@ -239,6 +239,20 @@
 
 		},
 
+		showTicket: function (data) {
+
+			var deferred = $.Deferred(),
+				popup;
+
+			setTimeout(function () {
+				popup =	new APP.BB.TicketView(data);
+				popup.set('deferred', deferred);
+			}, 50);
+
+			return deferred.promise();
+
+		},
+
 		hidePopup: function () {
 
 			$('.js-popup-wrapper').trigger('hide');

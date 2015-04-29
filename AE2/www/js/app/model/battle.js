@@ -436,12 +436,11 @@
 					color: color,
 					earn: isCpu ? hideSymbols(earn, '?') : earn
 				}
-			}).then(function () {
-				if (isCpu) {
-					return;
-				}
-				model.autoSave();
 			});
+
+			if ( !isCpu ) {
+				model.autoSave();
+			}
 
 		},
 
@@ -1504,7 +1503,11 @@
 			dbMaster
 				.saveGame(saveDate, saveName, gameData)
 				.then(function () {
-					console.log('game saved', saveDate, saveName);
+					model.get('view').showTicket({
+						popupData: {
+							text: win.APP.lang.get('gameSaved') + '<br>' + saveName
+						}
+					});
 				})
 
 		},

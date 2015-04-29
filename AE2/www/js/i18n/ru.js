@@ -87,6 +87,7 @@
 		ok: 'ok',
 		continue: 'продолжить',
 		congratulations: 'Поздравления!',
+		gameSaved: 'Игра сохранена',
 
 			//save/load popup
 		save: 'сохранить',

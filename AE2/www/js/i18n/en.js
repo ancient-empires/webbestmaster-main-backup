@@ -87,6 +87,7 @@
 		ok: 'ok',
 		continue: 'continue',
 		congratulations: 'congratulations!',
+		gameSaved: 'game saved',
 
 			//save/load popup
 		save: 'save',
