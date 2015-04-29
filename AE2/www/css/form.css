@@ -86,10 +86,14 @@
 	min-height: 100%;
 }
 
-.on-off {
-	opacity: 0.2;
+.on-off,
+.level-star {
 	position: relative;
 	top: 0.3rem;
+}
+
+.on-off {
+	opacity: 0.2;
 }
 
 .on-off-enable .on-off {
