@@ -181,7 +181,8 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langEn.victory,
-					text: langEn.continue
+					text: langEn.continue //"openMaps": [ { "jsMapKey": 'mission_001_002', "type": "mission" }, { "jsMapKey": 'River', type: "skirmish" } ],
+
 				},
 				playSound: {
 					sound: 'victory.mp3',
