@@ -47,6 +47,7 @@
 		hard: 'hard',
 		buildingSmoke: 'house smoke',
 		unitAnimation: 'unit animation',
+		autoSave: 'auto save',
 
 		// play
 		newGame: 'new game',

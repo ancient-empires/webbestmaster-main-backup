@@ -196,6 +196,7 @@
 		setSettings: function () {
 
 			var defaultSettings = {
+					autoSave: 'on', // auto save game after every turn
 					confirmTurn: 'off', // game turn
 					confirmMove: 'off', // move unit
 					confirmAttack: 'off', // attack unit

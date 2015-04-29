@@ -208,6 +208,11 @@
 						<div class="setting-name">{{ music }}</div>
 					</div>
 
+					<div class="js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
+						<%= view.tmpl.settingsOnOff({ key: 'autoSave', info: info }) %>
+						<div class="setting-name">{{ autoSave }}</div>
+					</div>
+
 					<div class="disable hidden js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
 						<%= view.tmpl.settingsOnOff({ key: 'vibrate', info: info }) %>
 						<div class="setting-name">{{ vibrate }}</div>

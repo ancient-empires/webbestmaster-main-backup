@@ -46,7 +46,8 @@
 		normal: 'нормально',
 		hard: 'трудно',
 		buildingSmoke: 'дым из зданий',
-		unitAnimation: 'анимация юнита',
+		unitAnimation: 'анимация юнитов',
+		autoSave: 'автосохранение',
 
 		// play
 		newGame: 'новая игра',
