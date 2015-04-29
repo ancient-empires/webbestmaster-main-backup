@@ -95,7 +95,7 @@
 				var $popupProtector = view.$wrapper.find('.js-popup-protector');
 				setTimeout(function () {
 					$popupProtector.remove();
-				}, 2 * 50);
+				}, view.info.actionTime() + 50);
 
 				view.proto.hide.call(view);
 				view.get('deferred').resolve();
