@@ -54,6 +54,7 @@
 		loadGame: 'load game',
 		selectLevel: 'select level',
 		skirmish: 'skirmish',
+		mission: 'mission',
 
 		// setup skirmish
 		player: 'player',

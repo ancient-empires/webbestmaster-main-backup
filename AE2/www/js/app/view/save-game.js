@@ -149,7 +149,7 @@
 
 			view.setSaveButtonEnable(false);
 
-			win.APP.map.db
+			dbMaster
 				.saveGame(saveDate, saveName, gameData)
 				.then(function () {
 					return dbMaster.getSavedGames()
@@ -207,6 +207,8 @@
 		},
 
 		getDataToSave: function () {
+
+			// see battle model
 
 			var view = this,
 				battleView = view.get('battleView'),

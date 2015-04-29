@@ -393,7 +393,6 @@
 			if (savedData) {
 				view.autoShowHelpButton();
 			} else {
-
 				if (mapType === 'skirmish') {
 					view.showObjective().then(function () {
 						view.autoShowHelpButton();
@@ -406,7 +405,6 @@
 						briefingName: 'startBriefing'
 					});
 				}
-
 			}
 
 		},
@@ -431,12 +429,18 @@
 			model.startTurn();
 
 			isCpu = activePlayer.type === 'cpu';
+
 			view.showPopup({
 				popupName: 'between-turn-notification',
 				popupData: {
 					color: color,
 					earn: isCpu ? hideSymbols(earn, '?') : earn
 				}
+			}).then(function () {
+				if (isCpu) {
+					return;
+				}
+				model.autoSave();
 			});
 
 		},
@@ -1467,6 +1471,82 @@
 					break;
 
 			}
+
+		},
+
+		//////////////////
+		// saving
+		//////////////////
+
+		autoSave: function () {
+
+			var model = this,
+				info = win.APP.info,
+				autoSaveState = info.get('autoSave'),
+				lang,
+				map,
+				saveDate,
+				saveName,
+				gameData,
+				dbMaster;
+
+			if (autoSaveState === 'off') {
+				return;
+			}
+
+			lang = win.APP.lang;
+			map = model.get('map');
+			saveDate = Date.now();
+			saveName = lang.get(map.type) + ' ' + lang.get('autoSave');
+			gameData = model.getDataToSave();
+			dbMaster = win.APP.map.db;
+
+			dbMaster
+				.saveGame(saveDate, saveName, gameData)
+				.then(function () {
+					console.log('game saved', saveDate, saveName);
+				})
+
+		},
+
+		getDataToSave: function () {
+
+			// see save game view
+			var model = this,
+				battleView = model.get('view'),
+				activePlayer,
+				units = model.get('units'),
+				buildings = model.get('buildings'),
+				save = {
+					players: model.get('players'),
+					activePlayer: model.get('activePlayer'),
+					units: [],
+					buildings: buildings,
+					jsMapKey: model.get('jsMapKey'),
+					map: model.get('map'),
+					unitLimit: model.get('unitLimit'),
+					difficult: battleView.info.get('difficult'),
+					graves: model.get('graves'),
+					argsForRestart: battleView.get('argsForRestart')
+				},
+				doNotSaves = ['model', 'view'];
+
+			// save players - ALL data - done
+			// active player - save ID - done, save full player
+			// save units - ALL data.toJSON(), active and no active - done
+			// save buildings - ALL data - done
+			// save map - terrain - full map done
+
+			_.each(units, function (unit) {
+				// toJSON is bad idea, save only needed data
+				var unitData = {};
+				_.each(unit.toJSON(), function (value, key) {
+					return _.contains(doNotSaves, key) || (unitData[key] = value);
+				});
+				save.units.push(unitData);
+			});
+
+			return save;
 
 		}
 
