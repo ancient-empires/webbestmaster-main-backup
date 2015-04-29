@@ -12,6 +12,7 @@
 	APP.BB.SaveGameView = APP.BB.BaseView.extend({
 
 		selectors: {
+			setInputTextValue: '.js-set-input-text-value',
 			saveInputText: '.js-save-input-text',
 			savedList: '.js-saved-list',
 			saveGame: '.js-save-game',
@@ -52,6 +53,7 @@
 				view.$el.find(view.selectors.savedList).html(html);
 				view.undelegateEvents();
 				view.bindEventListeners();
+				view.autoSetSaveButtonState();
 			});
 
 		},
@@ -66,6 +68,8 @@
 			view.$el.find(selectors.saveGame).on('click', $.proxy(view, 'saveGame') );
 			view.$el.find(selectors.removeSavedGame).on('click', $.proxy(view, 'removeSavedGame') );
 			view.$el.find(selectors.closeDeleteConfirm).on('click', $.proxy(view, 'closeDeleteConfirm') );
+			view.$el.find(selectors.saveInputText).on('input', $.proxy(view, 'autoSetSaveButtonState') );
+			view.$el.find(selectors.setInputTextValue).on('click', $.proxy(view, 'setInputTextValue') );
 
 
 		},
@@ -78,6 +82,40 @@
 			view.$el.find(selectors.saveGame).off('click', view.saveGame );
 			view.$el.find(selectors.removeSavedGame).off('click', view.removeSavedGame );
 			view.$el.find(selectors.closeDeleteConfirm).off('click', view.closeDeleteConfirm );
+			view.$el.find(selectors.saveInputText).off('input', view.autoSetSaveButtonState );
+			view.$el.find(selectors.setInputTextValue).off('click', view.setInputTextValue );
+
+		},
+
+		autoSetSaveButtonState: function () {
+
+			var view = this,
+				lang = win.APP.lang,
+				selectors = view.selectors,
+				$inputText = view.$el.find(selectors.saveInputText),
+				saveName = $inputText.val().trim(),
+				$savedGame = view.$el.find(selectors.savedItemWrapper + '[data-save-name="' + saveName + '"]'),
+				$saveGameButton = view.$el.find(selectors.saveGame);
+
+			if ($savedGame.length) {
+				$saveGameButton.html(lang.get('replace'));
+			} else {
+				$saveGameButton.html(lang.get('save'));
+			}
+
+		},
+
+		setInputTextValue: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget),
+				saveName = $this.attr('data-save-name'),
+				selectors = view.selectors,
+				$inputText = view.$el.find(selectors.saveInputText);
+
+			$inputText.val(saveName);
+
+			view.autoSetSaveButtonState();
 
 		},
 
@@ -105,7 +143,7 @@
 
 			var view = this,
 				saveDate = Date.now(),
-				saveName = view.$el.find(view.selectors.saveInputText).val(),
+				saveName = view.$el.find(view.selectors.saveInputText).val().trim(),
 				gameData = view.getDataToSave(),
 				dbMaster = win.APP.map.db;
 
@@ -122,6 +160,7 @@
 					view.undelegateEvents();
 					view.setSaveButtonEnable(true);
 					view.bindEventListeners();
+					view.autoSetSaveButtonState();
 				});
 
 		},
