@@ -73,6 +73,7 @@
 				$container.append(append$el);
 			}
 
+			view.$wrapper.append('<div class="js-popup-protector popup-protector"></div>');
 			view.$wrapper.append(view.$el);
 
 			if (!onShow) {
@@ -87,7 +88,15 @@
 		hide: function () {
 
 			var view = this;
+
+
 			view.showOutAnimation().then(function () {
+
+				var $popupProtector = view.$wrapper.find('.js-popup-protector');
+				setTimeout(function () {
+					$popupProtector.remove();
+				}, 2 * 50);
+
 				view.proto.hide.call(view);
 				view.get('deferred').resolve();
 
