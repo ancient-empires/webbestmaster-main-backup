@@ -145,7 +145,7 @@
 						attackY: action.enemy.y
 					});
 
-					q = 3;
+					q = 3.5;
 
 					break;
 
