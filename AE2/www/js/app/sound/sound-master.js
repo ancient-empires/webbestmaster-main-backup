@@ -53,11 +53,8 @@
 				gbSound = soundMaster.getCurrentBgSound();
 
 			if (!gbSound) {
-				console.log(gbSound, 'do not any');
 				return;
 			}
-
-			console.log('play gbSound -', gbSound, true, 0);
 
 			soundMaster.play({
 				sound: gbSound,
@@ -95,7 +92,6 @@
 
 			//save arguments for - do not start play the same sound
 			if (curStr === prevStr && data.isLoop) {
-				console.log('the same state - return');
 				return;
 			}
 

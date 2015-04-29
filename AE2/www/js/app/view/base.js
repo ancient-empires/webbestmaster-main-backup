@@ -179,7 +179,7 @@
 
 		routeTo: function(e) {
 
-			var $this = $(e.target),
+			var $this = $(e.currentTarget),
 				route = $this.attr('data-route');
 
 			this.navigate(route, true);

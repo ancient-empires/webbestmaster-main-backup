@@ -1171,12 +1171,20 @@
 		<div class="main-content-wrapper">
 			<div class="main-content-container js-scroll-area-container scroll-touch">
 				<div class="scroll-area">
-					<% var languageField = 'name-' + window.APP.info.get('language'), index = 0; %>
+					<% var languageField = 'name-' + window.APP.info.get('language'), index = 0, maxDoneLevel = 'no-level'; %>
 					<% _.each(mapsInfo, function (map, jsKey) { %>
 					<% var mapName = map[languageField] || map.name; %>
 						<% index += 1; %>
 						<% if (map.isOpen) { %>
-							<div data-sound="click.mp3" data-route="mission-setup-map/<%= jsKey %>" class="saved-item-wrapper"><%= index %>. <%= mapName %></div>
+							<% _.each(['easy', 'normal', 'hard'], function(level) { %>
+								<% maxDoneLevel = map['isDoneByDifficult_' + level] ? level : maxDoneLevel; %>
+							<% }); %>
+
+							<div data-sound="click.mp3" data-route="mission-setup-map/<%= jsKey %>" class="saved-item-wrapper">
+								<%= window.APP.templateMaster.tmplFn['level-start']({ level: maxDoneLevel }) %>
+
+								<%= index %>. <%= mapName %>
+							</div>
 						<% } else { %>
 							<div data-sound="click.mp3" data-route="mission-setup-map/<%= jsKey %>" class="disable saved-item-wrapper"><%= index %>. <%= mapName.replace(/\w/g, '?') %></div>
 						<% }; %>
@@ -1186,6 +1194,17 @@
 		</div>
 
 	</div>
+
+</script>
+
+<script type="text/x-template" data-name="level-start">
+
+	<span>
+		<% if (level === 'no-level') { %>[<span class="opacity50 on-off">*</span><span class="opacity50 on-off">*</span><span class="opacity50 on-off">*</span>]<% }; %>
+		<% if (level === 'easy') { %>[<span class="on-off">*</span><span class="opacity50 on-off">*</span><span class="opacity50 on-off">*</span>]<% }; %>
+		<% if (level === 'normal') { %>[<span class="on-off">*</span><span class="on-off">*</span><span class="opacity50 on-off">*</span>]<% }; %>
+		<% if (level === 'hard') { %>[<span class="on-off">*</span><span class="on-off">*</span><span class="on-off">*</span>]<% }; %>
+	</span>
 
 </script>
 

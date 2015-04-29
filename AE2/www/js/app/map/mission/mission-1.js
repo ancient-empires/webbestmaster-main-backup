@@ -19,6 +19,8 @@
 		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
+
+
 		"objective": 'Stop the raiders, King Galamar must survive.',
 		"help": [
 			langEn.helpList[0],
