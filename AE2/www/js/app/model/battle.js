@@ -390,7 +390,9 @@
 
 			model.autoSetWispAura();
 
-			if (!savedData) {
+			if (savedData) {
+				view.autoShowHelpButton();
+			} else {
 
 				if (mapType === 'skirmish') {
 					view.showObjective().then(function () {
