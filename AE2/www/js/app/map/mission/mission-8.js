@@ -154,7 +154,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.objective,
+					header: 'HEAVEN\'S FURY',
 					text: 'Defeat Saeth and his minions! Galamar and Valadorn must survive.'
 				}
 			}

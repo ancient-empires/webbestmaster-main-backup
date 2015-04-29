@@ -102,7 +102,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.objective,
+					header: 'REINFORCEMENTS',
 					text: 'Protect the Temple of Life - destroy all enemy units, occupy the enemy castle!'
 				}
 			}

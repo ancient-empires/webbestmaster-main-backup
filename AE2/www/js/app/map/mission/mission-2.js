@@ -128,7 +128,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.objective,
+					header: 'TO THE RESCUE',
 					text: 'Destroy all attacking enemy troops, occupy both castles.'
 				},
 				onHide: {

@@ -49,7 +49,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.objective,
+					header: 'NORTHBOUND',
 					text: 'Occupy the enemy castle and destroy all enemy troops. Valadorn must survive.'
 				}
 			}

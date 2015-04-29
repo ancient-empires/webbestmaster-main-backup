@@ -65,7 +65,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.objective,
+					header: 'PATH OF SHADOWS',
 					text: 'Navigate safely through the forest. Destroy all opposition. King Galamar must survive.'
 				},
 				onHide: {

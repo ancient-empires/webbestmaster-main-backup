@@ -53,7 +53,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.objective,
+					header: 'ESCORT DUTY',
 					text: 'Deliver the Crystal south to the city of Thorin. King Galamar must survive.'
 				}
 			}

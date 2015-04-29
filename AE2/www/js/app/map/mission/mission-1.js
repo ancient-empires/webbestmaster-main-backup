@@ -19,8 +19,6 @@
 		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
-
-
 		"objective": 'Stop the raiders, King Galamar must survive.',
 		"help": [
 			langEn.helpList[0],
@@ -104,7 +102,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.objective,
+					header: 'TEMPLE RAIDERS',
 					text: 'Stop the raiders, King Galamar must survive.'
 				},
 				onHide: {
