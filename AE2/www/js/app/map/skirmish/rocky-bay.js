@@ -7,7 +7,7 @@
 
 	win.APP.maps = win.APP.maps || {};
 
-	win.APP.maps.rockyBay = {
+	win.APP.maps.skirmish_001_003 = {
 		"type": "skirmish",
 		"size": {
 			"width": 17,

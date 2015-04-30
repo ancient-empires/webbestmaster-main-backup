@@ -7,7 +7,7 @@
 
 	win.APP.maps = win.APP.maps || {};
 
-	win.APP.maps.islandCross = {
+	win.APP.maps.skirmish_001_001 = {
 		"type": "skirmish",
 		"size": {
 			"width": 15,
