@@ -9,10 +9,7 @@
 
 	win.APP.maps.skirmish_001_001 = {
 		"type": "skirmish",
-		"size": {
-			"width": 15,
-			"height": 15
-		},
+		"size": {"width": 15, "height": 15},
 		"name": "Island Cross",
 		"name-ru": "Остров Крест",
 		"maxPlayers": 2,
