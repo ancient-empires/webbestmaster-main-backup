@@ -83,6 +83,11 @@
 				popupData: {
 					text: 'More wolves! Your Majesty, this does not look good...',
 					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 1, y: 8}]
 				}
 			},
 			{
@@ -100,6 +105,11 @@
 				cssClass: 'briefing',
 				popupData: {
 					text: 'Greetings, men of Thorin! We, the Elementals, have heard of your quest to protect our lands from evil and offer our allegiance to our King.'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 4, y: 8}]
 				}
 			},
 			{
