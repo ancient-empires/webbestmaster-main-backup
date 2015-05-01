@@ -15,10 +15,10 @@
 		"maxPlayers": 4,
 
 		"units": [
-			{"x": 1, "y": 3, "type": "galamar", "ownerId": 0},
-			{"x": 9, "y": 3, "type": "valadorn", "ownerId": 1},
-			{"x": 1, "y": 15, "type": "demon-lord", "ownerId": 2},
-			{"x": 9, "y": 15, "type": "saeth", "ownerId": 3}
+			{"x": 1, "y": 3, "type": "commander", "ownerId": 0},
+			{"x": 9, "y": 3, "type": "commander", "ownerId": 1},
+			{"x": 1, "y": 15, "type": "commander", "ownerId": 2},
+			{"x": 9, "y": 15, "type": "commander", "ownerId": 3}
 		],
 		"buildings": [
 			{"x": 3, "y": 9, "type": "farm", "state": "destroyed"},
