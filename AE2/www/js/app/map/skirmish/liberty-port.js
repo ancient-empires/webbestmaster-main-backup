@@ -8,6 +8,7 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_011 = {
+		"version": 1,
 		"type": "skirmish",
 		"size": {"width": 13, "height": 13},
 		"name": "Liberty Port",

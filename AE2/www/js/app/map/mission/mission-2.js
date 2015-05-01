@@ -8,6 +8,7 @@
 	var langEn = win.APP.languages.en;
 
 	win.APP.maps.mission_001_002 = {
+		"version": 1,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [

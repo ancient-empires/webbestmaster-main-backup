@@ -8,11 +8,9 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_003 = {
+		"version": 1,
 		"type": "skirmish",
-		"size": {
-			"width": 17,
-			"height": 12
-		},
+		"size": {"width": 17, "height": 12},
 		"name": "Rocky Bay",
 		"name-ru": "Скалистая Бухта",
 		"maxPlayers": 2,

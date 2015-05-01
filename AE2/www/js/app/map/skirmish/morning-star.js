@@ -8,6 +8,7 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_013 = {
+		"version": 1,
 		"type": "skirmish",
 		"size": {"width": 11, "height": 11},
 		"name": "Morning Star",
