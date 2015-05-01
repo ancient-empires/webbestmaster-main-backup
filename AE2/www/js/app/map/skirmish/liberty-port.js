@@ -13,6 +13,7 @@
 		"name": "Liberty Port",
 		"name-ru": "RU Liberty Port",
 		"maxPlayers": 2,
+		"isOpen": false,
 
 		"units": [
 			{"x": 1, "y": 1, "type": "commander", "ownerId": 0},

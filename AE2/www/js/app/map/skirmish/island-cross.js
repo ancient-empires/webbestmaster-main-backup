@@ -13,6 +13,7 @@
 		"name": "Island Cross",
 		"name-ru": "Остров Крест",
 		"maxPlayers": 2,
+		"isOpen": true,
 
 		"units": [
 			{"type": "commander", "x": 13, "y": 1, ownerId: 0},

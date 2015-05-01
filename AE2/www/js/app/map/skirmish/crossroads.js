@@ -13,6 +13,7 @@
 		"name": "Crossroads",
 		"name-ru": "RU Crossroads",
 		"maxPlayers": 4,
+		"isOpen": false,
 
 		"units": [
 			{"x": 1, "y": 3, "type": "commander", "ownerId": 0},

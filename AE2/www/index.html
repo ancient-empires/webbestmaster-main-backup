@@ -782,7 +782,11 @@
 				<% var languageField = 'name-' + window.APP.info.get('language'); %>
 				<% _.each(mapsInfo, function (map, jsKey) { %>
 				<% var mapName = map[languageField] || map.name; %>
-				<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
+					<% if ( map.isOpen ) { %>
+					<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
+					<% } else { %>
+					<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="disable saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName.replace(/\w/g, '?') %></div>
+					<% }; %>
 				<% }); %>
 				</div>
 			</div>

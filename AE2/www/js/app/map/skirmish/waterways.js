@@ -13,6 +13,7 @@
 		"name": "Waterways",
 		"name-ru": "RU Waterways",
 		"maxPlayers": 4,
+		"isOpen": false,
 
 		"units": [
 			{"x": 2, "y": 2, "type": "commander", "ownerId": 0},

@@ -13,6 +13,7 @@
 		"name": "Frozen Friends",
 		"name-ru": "RU Frozen Friends",
 		"maxPlayers": 3,
+		"isOpen": true,
 
 		"units": [
 			{"x": 2, "y": 1, "type": "commander", "ownerId": 0},

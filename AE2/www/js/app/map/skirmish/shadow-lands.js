@@ -13,6 +13,7 @@
 		"name": "Shadow Lands",
 		"name-ru": "RU Shadow Lands",
 		"maxPlayers": 4,
+		"isOpen": false,
 
 		"units": [
 			{"x": 9, "y": 1, "type": "commander", "ownerId": 0},

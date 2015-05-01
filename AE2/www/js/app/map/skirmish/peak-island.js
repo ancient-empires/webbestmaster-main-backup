@@ -13,6 +13,7 @@
 		"name": "Peak Island",
 		"name-ru": "RU Peak Island",
 		"maxPlayers": 2,
+		"isOpen": false,
 
 		"units": [
 			{"x": 7, "y": 3, "type": "commander", "ownerId": 0},

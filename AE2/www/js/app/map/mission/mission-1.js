@@ -10,7 +10,10 @@
 	win.APP.maps.mission_001_001 = {
 		"type": "mission",
 		"isOpen": true,
-		"openMaps": [ { "jsMapKey": 'mission_001_002', "type": "mission" } ],
+		"openMaps": [
+			{"jsMapKey": 'mission_001_002', "type": "mission"},
+			{"jsMapKey": 'skirmish_001_007', "type": "skirmish"}
+		],
 		"size": {"width": 12, "height": 12},
 		"name": "TEMPLE RAIDERS",
 		"name-ru": "RU TEMPLE RAIDERS",
@@ -180,8 +183,8 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.victory,
-					text: langEn.continue //"openMaps": [ { "jsMapKey": 'mission_001_002', "type": "mission" }, { "jsMapKey": 'River', type: "skirmish" } ],
+					header: langEn.missionComplete,
+					text: '\'Crossroads\' ' + langEn.unlocked //"openMaps": [ { "jsMapKey": 'mission_001_002', "type": "mission" }, { "jsMapKey": 'River', type: "skirmish" } ],
 
 				},
 				playSound: {

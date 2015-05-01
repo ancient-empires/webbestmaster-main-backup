@@ -16,6 +16,7 @@
 		"name": "Rocky Bay",
 		"name-ru": "Скалистая Бухта",
 		"maxPlayers": 2,
+		"isOpen": true,
 
 		"units": [
 			{"type": "commander", "x": 1, "y": 9, ownerId: 0},

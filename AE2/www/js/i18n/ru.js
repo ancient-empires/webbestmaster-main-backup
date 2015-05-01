@@ -88,6 +88,7 @@
 		continue: 'продолжить',
 		congratulations: 'Поздравления!',
 		gameSaved: 'Игра сохранена',
+		unlocked: 'доступна!',
 
 			//save/load popup
 		save: 'сохранить',
@@ -106,6 +107,7 @@
 		redDefeat: 'Красный игрок повержен!',
 		victory: 'Победа!',
 		defeat: 'Поражение!',
+		missionComplete: 'Миссия завершена!',
 		restartBattle: 'Заново',
 		quitBattle: 'Выход',
 		areYouSureToQuitBattle: 'Вы уверены, что хотите покинуть сражение?',

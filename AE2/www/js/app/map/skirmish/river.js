@@ -16,6 +16,7 @@
 		"name": 'River',
 		"name-ru": 'Река',
 		"maxPlayers": 2,
+		"isOpen": true,
 
 		"units": [
 			{"type": "commander", "x": 8, "y": 1, ownerId: 0},

@@ -88,6 +88,7 @@
 		continue: 'continue',
 		congratulations: 'congratulations!',
 		gameSaved: 'game saved',
+		unlocked: 'unlocked!',
 
 			//save/load popup
 		save: 'save',
@@ -106,6 +107,7 @@
 		redDefeat: 'Red player was defeat!',
 		victory: 'Victory!',
 		defeat: 'Defeat!',
+		missionComplete: 'Mission complete!',
 		restartBattle: 'Restart',
 		quitBattle: 'Quit',
 		areYouSureToQuitBattle: 'Are you sure to quit battle?',

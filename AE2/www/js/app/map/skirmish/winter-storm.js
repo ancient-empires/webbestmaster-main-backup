@@ -13,6 +13,7 @@
 		"name": "Winter Storm",
 		"name-ru": "RU Winter Storm",
 		"maxPlayers": 4,
+		"isOpen": false,
 
 		"units": [
 			{"x": 6, "y": 1, "type": "commander", "ownerId": 0},

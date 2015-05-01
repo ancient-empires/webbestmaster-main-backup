@@ -13,6 +13,7 @@
 		"name": "Morning Star",
 		"name-ru": "RU Morning Star",
 		"maxPlayers": 2,
+		"isOpen": false,
 
 		"units": [
 			{"x": 2, "y": 8, "type": "commander", "ownerId": 0},

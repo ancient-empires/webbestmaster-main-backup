@@ -13,6 +13,7 @@
 		"name": "The Crossing",
 		"name-ru": "RU The Crossing",
 		"maxPlayers": 2,
+		"isOpen": true,
 
 		"units": [
 			{"x": 1, "y": 1, "type": "commander", "ownerId": 0},

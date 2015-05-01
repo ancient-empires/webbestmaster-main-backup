@@ -13,6 +13,7 @@
 		"name": "The Crucible",
 		"name-ru": "RU The Crucible",
 		"maxPlayers": 4,
+		"isOpen": false,
 
 		"units": [
 			{"x": 3, "y": 3, "type": "commander", "ownerId": 0},

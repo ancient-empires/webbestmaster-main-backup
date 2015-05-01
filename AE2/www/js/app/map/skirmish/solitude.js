@@ -13,6 +13,7 @@
 		"name": "Solitude",
 		"name-ru": "RU Solitude",
 		"maxPlayers": 4,
+		"isOpen": false,
 
 		"units": [
 			{"x": 2, "y": 7, "type": "commander", "ownerId": 0},
