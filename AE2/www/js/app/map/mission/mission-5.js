@@ -10,7 +10,10 @@
 	win.APP.maps.mission_001_005 = {
 		"type": "mission",
 		"isOpen": false,
-		"openMaps": [ { "jsMapKey": 'mission_001_006', "type": "mission" } ],
+		"openMaps": [
+			{"jsMapKey": 'mission_001_006', "type": "mission"},
+			{"jsMapKey": 'mission_001_011', "type": "skirmish"}
+		],
 		"size": {"width": 20, "height": 12},
 		"name": "ESCORT DUTY",
 		"name-ru": "RU ESCORT DUTY",

@@ -10,7 +10,10 @@
 	win.APP.maps.mission_001_003 = {
 		"type": "mission",
 		"isOpen": false,
-		"openMaps": [ { "jsMapKey": 'mission_001_004', "type": "mission" } ],
+		"openMaps": [
+			{"jsMapKey": 'mission_001_004', "type": "mission" },
+			{"jsMapKey": 'skirmish_001_009', "type": "skirmish"}
+		],
 		"size": {"width": 10, "height": 17},
 		"name": "PATH OF SHADOWS",
 		"name-ru": "RU - PATH OF SHADOWS",

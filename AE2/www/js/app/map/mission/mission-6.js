@@ -10,7 +10,10 @@
 	win.APP.maps.mission_001_006 = {
 		"type": "mission",
 		"isOpen": false,
-		"openMaps": [ { "jsMapKey": 'mission_001_007', "type": "mission" } ],
+		"openMaps": [
+			{"jsMapKey": 'mission_001_007', "type": "mission"},
+			{"jsMapKey": 'mission_001_012', "type": "skirmish"}
+		],
 		"size": {"width": 12, "height": 20},
 		"name": "NORTHBOUND",
 		"name-ru": "RU NORTHBOUND",

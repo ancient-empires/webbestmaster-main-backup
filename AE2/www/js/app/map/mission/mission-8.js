@@ -10,7 +10,10 @@
 	win.APP.maps.mission_001_008 = {
 		"type": "mission",
 		"isOpen": false,
-		//"openMaps": [ { "jsMapKey": 'mission_001_009', "type": "mission" } ],
+		"openMaps": [
+			{"jsMapKey": 'mission_001_014', "type": "skirmish"},
+			{"jsMapKey": 'mission_001_015', "type": "skirmish"}
+		],
 		"size": {"width": 14, "height": 18},
 		"name": "HEAVEN'S FURY",
 		"name-ru": "RU HEAVEN'S FURY",

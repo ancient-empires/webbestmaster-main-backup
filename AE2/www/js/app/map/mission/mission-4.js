@@ -10,7 +10,10 @@
 	win.APP.maps.mission_001_004 = {
 		"type": "mission",
 		"isOpen": false,
-		"openMaps": [ { "jsMapKey": 'mission_001_005', "type": "mission" } ],
+		"openMaps": [
+			{"jsMapKey": 'mission_001_005', "type": "mission"},
+			{"jsMapKey": 'mission_001_010', "type": "skirmish"}
+		],
 		"size": {"width": 16, "height": 16},
 		"name": "REINFORCEMENTS",
 		"name-ru": "RU - REINFORCEMENTS",
