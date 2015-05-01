@@ -10,7 +10,10 @@
 	win.APP.maps.mission_001_002 = {
 		"type": "mission",
 		"isOpen": false,
-		"openMaps": [ { "jsMapKey": 'mission_001_003', "type": "mission" } ],
+		"openMaps": [
+			{"jsMapKey": 'mission_001_003', "type": "mission"},
+			{"jsMapKey": 'skirmish_001_008', "type": "skirmish"}
+		],
 		"size": {"width": 15, "height": 12},
 		"name": "TO THE RESCUE",
 		"name-ru": "RU TO THE RESCUE",
@@ -158,7 +161,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.victory,
+					header: langEn.missionComplete,
 					text: langEn.continue
 				},
 				playSound: {

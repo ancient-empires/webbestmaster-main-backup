@@ -130,7 +130,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.victory,
+					header: langEn.missionComplete,
 					text: langEn.continue
 				},
 				playSound: {
