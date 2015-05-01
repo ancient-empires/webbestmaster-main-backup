@@ -131,7 +131,7 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langEn.missionComplete,
-					text: langEn.continue
+					text: '' + langEn.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',
