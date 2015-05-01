@@ -162,7 +162,7 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langEn.missionComplete,
-					text: '' + langEn.unlocked
+					text: '\'Solitude\' ' + langEn.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',

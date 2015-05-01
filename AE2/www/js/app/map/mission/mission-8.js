@@ -239,6 +239,13 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
+					header: langEn.missionComplete,
+					text: '\'The Crucible\' and \'Shadow Lands\' ' + langEn.unlocked
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
 					header: langEn.congratulations,
 					text: 'And thank you for playing AE2 - I very much hope you enjoyed playing it as much as I enjoyed making it!'
 				},
