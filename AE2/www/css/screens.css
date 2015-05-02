@@ -25,7 +25,6 @@
 .main-button {
 	font-size: 1rem;
 	line-height: 1.4rem;
-	text-transform: capitalize;
 	text-align: left;
 	padding: 0.45rem 0.3rem 0.2rem 0.35rem;
 	display: block;
@@ -38,10 +37,14 @@
 	border-radius: 0.25rem;
 	width: 100%;
 	box-sizing: border-box;
+	-webkit-box-shadow: 0.1rem 0.1rem 0 #000;
+	box-shadow: 0.1rem 0.1rem 0 #000;
 }
 
 .main-button:active {
 	text-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
 
 .main-button-icon {
@@ -111,6 +114,13 @@
 	border-width: 0.15rem;
 	margin-top: -0.15rem;
 	text-align: center;
+	-webkit-box-shadow: 0.2rem 0.2rem 0 #000;
+	box-shadow: 0.2rem 0.2rem 0 #000;
+}
+
+.side-form-button:active {
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
 
 .sticker {
@@ -159,7 +169,6 @@
 	width: auto;
 	padding-left: 1rem;
 	padding-right: 1rem;
-	text-transform: capitalize;
 }
 
 @media screen and (orientation: landscape) {

@@ -10,7 +10,7 @@
 	APP.languages = APP.languages || {};
 
 	APP.languages.en = {
-		language: 'language',
+		language: 'Language',
 		languageName: 'English',
 		shortLanguageName: 'Eng',
 		appName: 'AE2FG',
@@ -19,11 +19,11 @@
 		//share: 'Share',
 
 		// title page
-		play: 'play',
-		online: 'online',
-		settings: 'settings',
-		instructions: 'instructions',
-		about: 'about',
+		play: 'Play',
+		online: 'Online',
+		settings: 'Settings',
+		instructions: 'Instructions',
+		about: 'About',
 
 		// settings
 		on: 'on',
@@ -50,20 +50,20 @@
 		autoSave: 'auto save',
 
 		// play
-		newGame: 'new game',
-		loadGame: 'load game',
-		selectLevel: 'select level',
-		skirmish: 'skirmish',
-		mission: 'mission',
+		newGame: 'New game',
+		loadGame: 'Load game',
+		selectLevel: 'Select level',
+		skirmish: 'Skirmish',
+		mission: 'Mission',
 
 		// setup skirmish
-		player: 'player',
-		cpu: 'cpu',
-		none: 'none',
-		money: 'money',
-		unitLimit: 'unit limit',
-		fight: 'fight',
-		team: 'team',
+		player: 'Player',
+		cpu: 'CPU',
+		none: 'None',
+		money: 'Money',
+		unitLimit: 'Unit limit',
+		fight: 'Fight',
+		team: 'Team',
 
 		// colors
 		blue: 'blue',
@@ -82,23 +82,23 @@
 
 		// popups
 		endTurnQuestion: 'End Turn?',
-		yes: 'yes',
-		no: 'no',
-		ok: 'ok',
+		yes: 'Yes',
+		no: 'No',
+		ok: 'Ok',
 		continue: 'continue',
-		congratulations: 'congratulations!',
-		gameSaved: 'game saved',
+		congratulations: 'Congratulations!',
+		gameSaved: 'Game saved',
 		unlocked: 'unlocked!',
 
 			//save/load popup
-		save: 'save',
-		delete: 'delete',
-		replace: 'replace',
-		saveGame: 'save game',
+		save: 'Save',
+		delete: 'Delete',
+		replace: 'Replace',
+		saveGame: 'Save game',
 		areYouSureToDeleteSavedGame: 'Are you sure to delete saved game?',
 		areYouSureToLoadGame: 'Are you sure to load game?',
-		noSavedGames: 'no saved games',
-		load: 'load',
+		noSavedGames: 'No saved games',
+		load: 'Load',
 
 			// end game
 		blackDefeat: 'Black player was defeat!',
@@ -114,23 +114,23 @@
 		areYouSureToRestartBattle: 'Are you sure to restart the battle?',
 
 			// notification
-		objective: 'objective',
+		objective: 'Objective',
 		skirmishObjective: 'Defeat the enemy commander and occupy all enemy castles!',
-		newTurn: 'new turn',
-		income: 'income',
+		newTurn: 'New turn!',
+		income: 'Income',
 
 			//battle menu
-		menu: 'menu',
+		menu: 'Menu',
 
 		// map editor
-		mapEditor: 'map editor',
-		maps: 'maps',
-		width: 'width',
-		height: 'height',
-		name: 'name',
-		colors: 'colors',
+		mapEditor: 'Map editor',
+		maps: 'Maps',
+		width: 'Width',
+		height: 'Height',
+		name: 'Name',
+		colors: 'Colors',
 
-		aboutText: 'Ancient Empires II - port of original java game.<br><br><br>Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Alexey Danilov<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau',
+		aboutText: 'Ancient Empires II - port of original java game.<br><br><br>Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Alexey Danilov<!--<br>Pavel Prylutski<br>Igor Kupreev--><br>Pavel Sychykau',
 		instructionsText: [
 			'Ancient Empires II is a thrilling strategy game that lets you control King Galamar and his brother Valadorn as they fight to protect their kingdom from evil.',
 			'Next are instructions, hints and tips on how to play which also appear in the game.',
@@ -182,63 +182,63 @@
 		],
 		unitsList: {
 			'soldier': {
-				name: 'soldier',
+				name: 'Soldier',
 				description: 'Soldiers are solid all-round fighters that form the backbone of any army. Soldiers are also the only unit that can capture towns to earn gold.'
 			},
 			'archer': {
-				name: 'archer',
+				name: 'Archer',
 				description: 'With their powerful bows archers can attack from a distance and are especially powerful against airborne enemies.'
 			},
 			'elemental': {
-				name: 'elemental',
+				name: 'Elemental',
 				description: 'Elementals are magical water spirits. When in water, Elementals have greater movement and stronger defence.'
 			},
 			'sorceress': {
-				name: 'sorceress',
+				name: 'Sorceress',
 				description: 'Skilled in the use of magic, Sorceresses are weak in close combat. However, their ability to summon fighting skeletons from dead troops can be decisive in battle.'
 			},
 			'wisp': {
-				name: 'wisp',
+				name: 'Wisp',
 				description: 'These mystical beings of pure light radiate an aura which strengthens the attacking abilities of nearby friendly units. In close combat they are especially deadly against skeletons.'
 			},
 			'dire-wolf': {
-				name: 'dire wolf',
+				name: 'Dire wolf',
 				description: 'Dire Wolves are feared hunters that travel in packs. Beware - their bite is poisonous and reduces both attack and defence levels for one turn.'
 			},
 			'golem': {
-				name: 'golem',
+				name: 'Golem',
 				description: 'Golems are ancient beings - slow but immensely strong in defence. A golem stationed in a building or a well defended mountain is very difficult to defeat.'
 			},
 			'catapult': {
-				name: 'catapult',
+				name: 'Catapult',
 				description: 'Catapults blaze a trail of destruction with their enormous attack range. However, their relative immobility and inability to attack up close make them vulnerable, so guard them well. Catapults can either move or attack during a turn, but not do both.'
 			},
 			'dragon': {
-				name: 'dragon',
+				name: 'Dragon',
 				description: 'These massive flying beasts have ruled over the mountains of mist since ancient times. They are extremely mobile as well as deadly in attack on land, air and sea.'
 			},
 			'skeleton': {
-				name: 'skeleton',
+				name: 'Skeleton',
 				description: 'Summoned by Sorceresses, these lifeless warriors are as strong as soldiers and deadly opponents on any battlefield.'
 			},
 			'galamar': {
-				name: 'galamar',
+				name: 'Galamar',
 				description: 'Galamar (commander) is very strong in attack and defence. Commanders can also occupy castles to produce troops and can be revived in the castle if they fall in battle.'
 			},
 			'valadorn': {
-				name: 'valadorn',
+				name: 'Valadorn',
 				description: 'Valadorn (commander) is very strong in attack and defence. Commanders can also occupy castles to produce troops and can be revived in the castle if they fall in battle.'
 			},
 			'demon-lord': {
-				name: 'demon lord',
+				name: 'Demon Lord',
 				description: 'Demon Lords (commander) is very strong in attack and defence. Commanders can also occupy castles to produce troops and can be revived in the castle if they fall in battle.'
 			},
 			'saeth': {
-				name: 'saeth',
+				name: 'Saeth',
 				description: 'Saeth (commander) is very strong in attack and defence. Commanders can also occupy castles to produce troops and can be revived in the castle if they fall in battle.'
 			},
 			'crystal': {
-				name: 'crystal',
+				name: 'Crystal',
 				description: 'These legendary Crystals were originally retrieved from the ruins of the Ancient Citadel. Little is known of their power, except that they are rumoured to protect the kingdom, while also possessing the power to destroy it.'
 			}
 		},

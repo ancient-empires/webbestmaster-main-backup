@@ -206,7 +206,7 @@
 					fightAnimation: 'off',
 					buildingSmoke: 'off',
 					unitAnimation: 'off',
-					difficult: 'normal', // easy, normal, hard
+					difficult: 'easy', // easy, normal, hard
 					gameSpeed: '3' // 1..5, use string type
 				},
 				key,
