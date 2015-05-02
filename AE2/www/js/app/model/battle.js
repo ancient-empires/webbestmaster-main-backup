@@ -1145,8 +1145,8 @@
 				looser = false,
 				teamsNumbers = [],
 				util = win.APP.util,
-			//winTeam,
-			//looserTeam,
+				//winTeam,
+				//looserTeam,
 				looserBuilding,
 				teamOfLooser;
 
@@ -1171,7 +1171,7 @@
 
 			teamOfLooser = model.getTeamByPlayer(looser);
 
-			if ( teamOfLooser.length ) { // team is empty
+			if ( teamOfLooser.length ) { // team is not empty
 
 				// divide money and farm between team
 				// divide money
@@ -1190,18 +1190,29 @@
 
 				});
 
-				view.showPopup({
-					popupName: 'simple-popup',
-					parentView: view,
-					playSound: {
-						sound: 'game-over.mp3',
-						road: 0,
-						isLoop: false
-					},
-					popupData: {
-						header: win.APP.lang.get(looser.color + 'Defeat')
-					}
-				});
+				if ( _.where(players, {type: 'cpu'}).length === players.length ) { // cpu only
+					win.APP.bb.battleData.isEndGame = 'yes';
+					view.showPopup({
+						popupName: 'win-or-defeat',
+						parentView: view,
+						playSound: {
+							sound: 'game-over.mp3',
+							road: 0,
+							isLoop: false
+						},
+						popupData: {
+							header: win.APP.lang.get('defeat')
+						}
+					});
+				} else {
+					view.showPopup({
+						popupName: 'simple-popup',
+						parentView: view,
+						popupData: {
+							header: win.APP.lang.get(looser.color + 'Defeat')
+						}
+					});
+				}
 
 				return false;
 
@@ -1221,18 +1232,33 @@
 
 				win.APP.bb.battleData.isEndGame = 'yes';
 
-				view.showPopup({
-					popupName: 'win-or-defeat',
-					parentView: view,
-					playSound: {
-						sound: 'victory.mp3',
-						road: 0,
-						isLoop: false
-					},
-					popupData: {
-						header: win.APP.lang.get('victory')
-					}
-				});
+				if ( _.where(players, {type: 'cpu'}).length === players.length ) { // cpu only
+					view.showPopup({
+						popupName: 'win-or-defeat',
+						parentView: view,
+						playSound: {
+							sound: 'game-over.mp3',
+							road: 0,
+							isLoop: false
+						},
+						popupData: {
+							header: win.APP.lang.get('defeat')
+						}
+					});
+				} else {
+					view.showPopup({
+						popupName: 'win-or-defeat',
+						parentView: view,
+						playSound: {
+							sound: 'victory.mp3',
+							road: 0,
+							isLoop: false
+						},
+						popupData: {
+							header: win.APP.lang.get('victory')
+						}
+					});
+				}
 
 				return true; // end game
 
