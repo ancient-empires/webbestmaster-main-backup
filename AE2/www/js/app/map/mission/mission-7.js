@@ -8,7 +8,7 @@
 	var langEn = win.APP.languages.en;
 
 	win.APP.maps.mission_001_007 = {
-		"version": 1,
+		"version": 2,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -17,7 +17,7 @@
 		],
 		"size": {"width": 16, "height": 18},
 		"name": "RENDEZVOUS",
-		"name-ru": "RU RENDEZVOUS",
+		//"name-ru": "RU RENDEZVOUS",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"money": [

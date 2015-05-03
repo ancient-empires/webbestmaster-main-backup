@@ -8,7 +8,7 @@
 	var langEn = win.APP.languages.en;
 
 	win.APP.maps.mission_001_005 = {
-		"version": 1,
+		"version": 2,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -17,7 +17,7 @@
 		],
 		"size": {"width": 20, "height": 12},
 		"name": "ESCORT DUTY",
-		"name-ru": "RU ESCORT DUTY",
+		//"name-ru": "RU ESCORT DUTY",
 		"maxPlayers": 2,
 		"unitLimit": 10,
 		"win": ['noEnemyUnit', 'allUnorderedCasesIsDone'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone

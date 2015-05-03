@@ -8,7 +8,7 @@
 	var langEn = win.APP.languages.en;
 
 	win.APP.maps.mission_001_002 = {
-		"version": 1,
+		"version": 2,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -17,7 +17,7 @@
 		],
 		"size": {"width": 15, "height": 12},
 		"name": "TO THE RESCUE",
-		"name-ru": "RU TO THE RESCUE",
+		//"name-ru": "RU TO THE RESCUE",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"availableStoreUnits": ["soldier", "archer"],

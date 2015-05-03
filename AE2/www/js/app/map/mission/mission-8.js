@@ -8,7 +8,7 @@
 	var langEn = win.APP.languages.en;
 
 	win.APP.maps.mission_001_008 = {
-		"version": 1,
+		"version": 2,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -17,7 +17,7 @@
 		],
 		"size": {"width": 14, "height": 18},
 		"name": "HEAVEN'S FURY",
-		"name-ru": "RU HEAVEN'S FURY",
+		//"name-ru": "RU HEAVEN'S FURY",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"money": [

@@ -8,7 +8,7 @@
 	var langEn = win.APP.languages.en;
 
 	win.APP.maps.mission_001_001 = {
-		"version": 1,
+		"version": 2,
 		"type": "mission",
 		"isOpen": true,
 		"openMaps": [
@@ -17,7 +17,7 @@
 		],
 		"size": {"width": 12, "height": 12},
 		"name": "TEMPLE RAIDERS",
-		"name-ru": "RU TEMPLE RAIDERS",
+		//"name-ru": "RU TEMPLE RAIDERS",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
@@ -200,17 +200,17 @@
 			}
 		],
 
-		"objective-ru": 'RU - Stop the raiders, King Galamar must survive.',
-		"startBriefing-ru": [
-			{
-				popupName: 'briefing',
-				text: 'ru - Help us! We are under attack! These skeleton raiders have stolen the Crystal of Courage we swore to protect!',
-				from: 'right',
-				img: 'i/face/tamplier.png'
-			}
-		],
-		"n1Briefing-ru": [],
-		"endBriefing-ru": [],
+		//"objective-ru": 'RU - Stop the raiders, King Galamar must survive.',
+		//"startBriefing-ru": [
+		//	{
+		//		popupName: 'briefing',
+		//		text: 'ru - Help us! We are under attack! These skeleton raiders have stolen the Crystal of Courage we swore to protect!',
+		//		from: 'right',
+		//		img: 'i/face/tamplier.png'
+		//	}
+		//],
+		//"n1Briefing-ru": [],
+		//"endBriefing-ru": [],
 
 		"cases": [
 			{

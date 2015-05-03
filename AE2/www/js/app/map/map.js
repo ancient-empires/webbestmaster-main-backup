@@ -158,13 +158,50 @@
 					db.transaction(function (tx) {
 						tx.executeSql('SELECT * FROM ' + map.type + ' WHERE jsMapKey=?', [jsMapKey], function (tx, results) {
 							if (results.rows.length) {
-								delete win.APP.maps[jsMapKey];
+								dbMaster.compareMap(results.rows.item(0), map, jsMapKey).then(function () {
+									delete win.APP.maps[jsMapKey];
+								});
 								return;
 							}
 							dbMaster.insertMap(map, jsMapKey);
 						});
 					});
 				});
+
+			},
+
+			compareMap: function (oldMap, newMap, jsMapKey) {
+
+				var maps = win.APP.maps,
+					dbMaster = this,
+					deferred = $.Deferred(),
+					db = dbMaster.db,
+					oldMapData = JSON.parse(oldMap.map),
+					newMapVersion = newMap.version,
+					oldMapVersion = oldMapData.version,
+					savedProperties = ['isDone', 'isDoneByDifficult_easy', 'isDoneByDifficult_normal', 'isDoneByDifficult_hard'];
+
+				if (oldMapVersion >= newMapVersion) {
+					deferred.resolve();
+					return deferred.promise();
+				}
+
+				// get done state
+				_.each(savedProperties, function (property) {
+					if ( !oldMapData.hasOwnProperty(property) ) {
+						return;
+					}
+					newMap[property] = oldMapData[property];
+				});
+
+				dbMaster.removeMap({
+					type: newMap.type,
+					jsMapKey: jsMapKey
+				}).then(function () {
+					dbMaster.insertMap(newMap, jsMapKey);
+					deferred.resolve();
+				});
+				return deferred.promise();
 
 			},
 

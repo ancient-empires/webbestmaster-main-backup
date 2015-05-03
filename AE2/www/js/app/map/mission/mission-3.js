@@ -8,7 +8,7 @@
 	var langEn = win.APP.languages.en;
 
 	win.APP.maps.mission_001_003 = {
-		"version": 1,
+		"version": 2,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -17,7 +17,7 @@
 		],
 		"size": {"width": 10, "height": 17},
 		"name": "PATH OF SHADOWS",
-		"name-ru": "RU - PATH OF SHADOWS",
+		//"name-ru": "RU - PATH OF SHADOWS",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit

@@ -8,7 +8,7 @@
 	var langEn = win.APP.languages.en;
 
 	win.APP.maps.mission_001_004 = {
-		"version": 1,
+		"version": 2,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -17,7 +17,7 @@
 		],
 		"size": {"width": 16, "height": 16},
 		"name": "REINFORCEMENTS",
-		"name-ru": "RU - REINFORCEMENTS",
+		//"name-ru": "RU - REINFORCEMENTS",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"availableStoreUnits": ["soldier", "archer", "elemental", "sorceress"],
