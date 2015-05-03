@@ -200,7 +200,7 @@
 					confirmTurn: 'off', // game turn
 					confirmMove: 'off', // move unit
 					confirmAttack: 'off', // attack unit
-					music: 'on',
+					music: 'off',
 					vibrate: 'off',
 					help: 'on',
 					fightAnimation: 'off',

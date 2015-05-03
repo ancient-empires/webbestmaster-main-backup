@@ -46,11 +46,14 @@
 	width: 100%;
 	height: 100%;
 	/* see .title-game-bg */
-	background-image: url(../img/other/1.jpg);
+	/*background-image: url(../img/other/1.jpg);*/
 	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-position: top center;
+	background-color: #333C57;
+	background-image: -webkit-linear-gradient(top, #7F8598, #333C57);
+	background-image: linear-gradient(top, #7F8598, #333C57);
 }
 
 @media only screen and (orientation: landscape) {
