@@ -620,7 +620,19 @@
 
 			// prepare buildings
 			_.each(terrains, function (value, xy) {
-				return _.find(map.buildings, getXYFromStringXY(xy)) && (terrains[xy] = 'terra-1');
+
+				var building = _.find(map.buildings, getXYFromStringXY(xy));
+
+				if ( !building ) {
+					return;
+				}
+
+				if ( /farm/.test(building.type) ) {
+					terrains[xy] = 'terra-1';
+				} else {
+					terrains[xy] = 'road-1';
+				}
+
 			});
 
 			// draw main tiles
@@ -711,6 +723,10 @@
 					if ( t6 && t8 && !t9 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-9-s'].img, xSquareSizeX2Half, ySquareSizeX2Half, squareSize, squareSize);
 					}
+
+					// fix building
+
+
 
 				});
 
