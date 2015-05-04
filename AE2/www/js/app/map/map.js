@@ -179,7 +179,7 @@
 					oldMapData = JSON.parse(oldMap.map),
 					newMapVersion = newMap.version,
 					oldMapVersion = oldMapData.version,
-					savedProperties = ['isDone', 'isDoneByDifficult_easy', 'isDoneByDifficult_normal', 'isDoneByDifficult_hard'];
+					savedProperties = ['isOpen', 'isDone', 'isDoneByDifficult_easy', 'isDoneByDifficult_normal', 'isDoneByDifficult_hard'];
 
 				if (oldMapVersion >= newMapVersion) {
 					deferred.resolve();
