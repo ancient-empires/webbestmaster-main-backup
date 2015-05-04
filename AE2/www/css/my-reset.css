@@ -73,6 +73,14 @@ button:focus {
 	pointer-events: none;
 }
 
+.disable-event {
+	-o-pointer-events: none;
+	-ms-pointer-events: none;
+	-moz-pointer-events: none;
+	-webkit-pointer-events: none;
+	pointer-events: none;
+}
+
 .block {
 	display: block;
 }

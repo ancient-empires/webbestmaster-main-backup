@@ -430,15 +430,26 @@
 
 			isCpu = activePlayer.type === 'cpu';
 
-			view.showPopup({
-				popupName: 'between-turn-notification',
-				popupData: {
-					color: color,
-					earn: isCpu ? hideSymbols(earn, '?') : earn
-				}
-			});
 
-			if ( !isCpu ) {
+
+
+			if ( isCpu ) {
+				view.showPopup({
+					popupName: 'between-turn-notification',
+					cssClass: 'disable-event',
+					popupData: {
+						color: color,
+						earn: hideSymbols(earn, '?')
+					}
+				});
+			} else {
+				view.showPopup({
+					popupName: 'between-turn-notification',
+					popupData: {
+						color: color,
+						earn: earn
+					}
+				});
 				model.autoSave();
 			}
 
