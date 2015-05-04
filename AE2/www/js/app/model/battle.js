@@ -430,9 +430,6 @@
 
 			isCpu = activePlayer.type === 'cpu';
 
-
-
-
 			if ( isCpu ) {
 				view.showPopup({
 					popupName: 'between-turn-notification',
