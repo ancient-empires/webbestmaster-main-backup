@@ -1666,7 +1666,8 @@
 				return;
 			}
 
-			var level = unit.get('level'),
+			var placeArmor = model.getArmorByXY(xy),
+				level = unit.get('level'),
 				atk = unit.get('atk'),
 				atkMax = atk.max,
 				atkMin = atk.min,
@@ -1685,6 +1686,7 @@
 			viewObj.level = level;
 			viewObj.underWispAura = underWispAura;
 			viewObj.poisonCount = poisonCount;
+			viewObj.placeArmor = placeArmor;
 
 			view.$el.find(view.selectors.unitInfoWrapper).html(view.tmpl['unit-info'](viewObj));
 

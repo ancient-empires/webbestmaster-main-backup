@@ -1027,35 +1027,36 @@
 
 	<div class="unit-info-wrapper">
 		<div class="unit-info-icon unit-info-icon-attack">&nbsp;</div>
-		<% var arr = String(atk).split('').concat(['space', 'space']); %>
-		<% _.each(arr, function(sign) { %>
-		<% sign = (sign === '-') ? 'minus' : sign; %>
-		<div class="unit-info-sign-block" style="background-image: url(i/fonts/numbers-1-<%= sign %>.png);">
-			<img src="i/fonts/numbers-1-<%= sign %>.png" alt="" class="unit-info-sign"/>
-			<span class="add-more-sharp">&nbsp;</span>
-		</div>
-		<% }); %>
+		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: String(atk).split('') }) %>
 
+		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: ['space', 'space'] }) %>
 		<div class="unit-info-icon unit-info-icon-defence">&nbsp;</div>
-		<% arr = String(def).split('').concat(['space', 'space']); %>
-		<% _.each(arr, function(sign) { %>
-		<div class="unit-info-sign-block" style="background-image: url(i/fonts/numbers-1-<%= sign %>.png);">
-			<img src="i/fonts/numbers-1-<%= sign %>.png" alt="" class="unit-info-sign"/>
-			<span class="add-more-sharp">&nbsp;</span>
-		</div>
-		<% }); %>
+		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: String(def).split('') }) %>
+
+		<% if (placeArmor) { %>
+			<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: ['plus'].concat(String(placeArmor).split('')) }) %>
+		<% }; %>
+
+		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: ['space', 'space'] }) %>
 
 		<% if (level) { %>
-		<div class="unit-info-icon unit-info-icon-level">&nbsp;</div>
-		<% arr = [level, 'space', 'space']; %>
-		<% _.each(arr, function(sign) { %>
-		<div class="unit-info-sign-block" style="background-image: url(i/fonts/numbers-1-<%= sign %>.png);">
-			<img src="i/fonts/numbers-1-<%= sign %>.png" alt="" class="unit-info-sign"/>
-			<span class="add-more-sharp">&nbsp;</span>
-		</div>
-		<% }); %>
+			<div class="unit-info-icon unit-info-icon-level">&nbsp;</div>
+			<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: [level, 'space', 'space'] }) %>
 		<% }; %>
+
 	</div>
+
+</script>
+
+<script type="text/x-template" data-name="short-unit-info-sign">
+
+	<% _.each(signs, function(sign) { %>
+	<% sign = (sign === '-') ? 'minus' : sign; %>
+	<div class="unit-info-sign-block" style="background-image: url(i/fonts/numbers-1-<%= sign %>.png);">
+		<img src="i/fonts/numbers-1-<%= sign %>.png" alt="" class="unit-info-sign"/>
+		<span class="add-more-sharp">&nbsp;</span>
+	</div>
+	<% }); %>
 
 </script>
 
