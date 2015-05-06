@@ -132,7 +132,7 @@
 				onShow: {
 					fn: 'centerToXY',
 					context: 'parentView',
-					args: [{ x: 7 , y: 10 }]
+					args: [{ x: 3 , y: 5 }]
 				}
 			},
 			{
@@ -239,7 +239,7 @@
 				onShow: {
 					fn: 'centerToXY',
 					context: 'parentView',
-					args: [{ x: 7 , y: 10 }]
+					args: [{ x: 3 , y: 5 }]
 				}
 			},
 			{
