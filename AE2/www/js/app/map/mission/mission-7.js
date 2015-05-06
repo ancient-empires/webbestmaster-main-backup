@@ -14,7 +14,7 @@
 		"isOpen": false,
 		"openMaps": [
 			{"jsMapKey": 'mission_001_008', "type": "mission"},
-			{"jsMapKey": 'mission_001_013', "type": "skirmish"}
+			{"jsMapKey": 'skirmish_001_013', "type": "skirmish"}
 		],
 		"size": {"width": 16, "height": 18},
 		"name": "RENDEZVOUS",

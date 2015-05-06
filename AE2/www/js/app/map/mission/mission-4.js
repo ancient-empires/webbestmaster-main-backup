@@ -14,7 +14,7 @@
 		"isOpen": false,
 		"openMaps": [
 			{"jsMapKey": 'mission_001_005', "type": "mission"},
-			{"jsMapKey": 'mission_001_010', "type": "skirmish"}
+			{"jsMapKey": 'skirmish_001_010', "type": "skirmish"}
 		],
 		"size": {"width": 16, "height": 16},
 		"name": "REINFORCEMENTS",

@@ -14,7 +14,7 @@
 		"isOpen": false,
 		"openMaps": [
 			{"jsMapKey": 'mission_001_006', "type": "mission"},
-			{"jsMapKey": 'mission_001_011', "type": "skirmish"}
+			{"jsMapKey": 'skirmish_001_011', "type": "skirmish"}
 		],
 		"size": {"width": 20, "height": 12},
 		"name": "ESCORT DUTY",

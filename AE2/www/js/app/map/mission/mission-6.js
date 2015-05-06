@@ -14,7 +14,7 @@
 		"isOpen": false,
 		"openMaps": [
 			{"jsMapKey": 'mission_001_007', "type": "mission"},
-			{"jsMapKey": 'mission_001_012', "type": "skirmish"}
+			{"jsMapKey": 'skirmish_001_012', "type": "skirmish"}
 		],
 		"size": {"width": 12, "height": 20},
 		"name": "NORTHBOUND",

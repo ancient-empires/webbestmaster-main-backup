@@ -13,8 +13,8 @@
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
-			{"jsMapKey": 'mission_001_014', "type": "skirmish"},
-			{"jsMapKey": 'mission_001_015', "type": "skirmish"}
+			{"jsMapKey": 'skirmish_001_014', "type": "skirmish"},
+			{"jsMapKey": 'skirmish_001_015', "type": "skirmish"}
 		],
 		"size": {"width": 14, "height": 18},
 		"name": "HEAVEN'S FURY",
