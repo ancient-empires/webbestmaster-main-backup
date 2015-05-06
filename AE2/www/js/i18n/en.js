@@ -131,8 +131,8 @@
 		name: 'Name',
 		colors: 'Colors',
 
-		//aboutText: '<br><br><br>Ancient Empire: strike back.<br><br><br><!--Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Alexey Danilov<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau-->',
-		aboutText: '<br><br><br>Ancient Empire: strike back.<br><br><br>',
+		//aboutText: '<br><br><br>Ancient Empire: Strike Back.<br><br><br><!--Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Alexey Danilov<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau-->',
+		aboutText: '<br><br><br>Ancient Empire: Strike Back.<br><br><br>',
 		instructionsText: [
 			'\'Ancient Empire: strike back\' is a thrilling strategy game that lets you control King Galamar and his brother Valadorn as they fight to protect their kingdom from evil.',
 			'Next are instructions, hints and tips on how to play which also appear in the game.',

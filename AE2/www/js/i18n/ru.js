@@ -83,23 +83,23 @@
 
 		// popups
 		endTurnQuestion: 'Закончить ход?',
-		yes: 'да',
-		no: 'нет',
-		ok: 'ok',
+		yes: 'Да',
+		no: 'Нет',
+		ok: 'Ок',
 		continue: 'продолжить',
 		congratulations: 'Поздравления!',
 		gameSaved: 'Игра сохранена',
 		unlocked: 'доступна!',
 
 			//save/load popup
-		save: 'сохранить',
-		delete: 'удалить',
-		replace: 'заменить',
-		saveGame: 'сохранить игру',
+		save: 'Сохранить',
+		delete: 'Удалить',
+		replace: 'Заменить',
+		saveGame: 'Сохранить игру',
 		areYouSureToDeleteSavedGame: 'Вы уверены, что хотите удалить сохранение?',
 		areYouSureToLoadGame: 'Вы уверены, что хотите загрузить сохранение?',
-		noSavedGames: 'нет сохранённых игр',
-		load: 'загрузить',
+		noSavedGames: 'Нет сохранённых игр',
+		load: 'Загрузить',
 
 			// end game
 		blackDefeat: 'Чёрный игрок повержен!',
@@ -115,44 +115,73 @@
 		areYouSureToRestartBattle: 'Вы уверены, что хотите перезапустить сражение?',
 
 			// notification
-		objective: 'цель',
-		skirmishObjective: 'Убить вражеского командира и захватить все вражеские замки!',
-		newTurn: 'смена хода',
-		income: 'доход',
+		objective: 'Цель',
+		skirmishObjective: 'Поразить вражеского командира и захватить все вражеские замки!',
+		newTurn: 'Смена хода',
+		income: 'Доход',
 
 			//battle menu
-		menu: 'меню',
+		menu: 'Меню',
 
 		// map editor
-		mapEditor: 'map editor',
-		maps: 'maps',
-		width: 'width',
-		height: 'height',
-		name: 'name',
-		colors: 'colors',
+		mapEditor: 'Редактор карт',
+		maps: 'Карты',
+		width: 'Ширина',
+		height: 'Высота',
+		name: 'Имя',
+		colors: 'Цвета',
 
-		aboutText: 'Ancient Empire: strike back.<br><br><br>Программист:<br>Дмитрий Туровцов<br><br>Благодарности:<br>Алексей Данилов<br>Павел Прилуцкий<br>Игорь Купреев<br>Павел Сычиков',
+		//aboutText: 'Ancient Empire: strike back.<br><br><br>Программист:<br>Дмитрий Туровцов<br><br>Благодарности:<br>Алексей Данилов<br>Павел Прилуцкий<br>Игорь Купреев<br>Павел Сычиков',
+		aboutText: '<br><br><br>Ancient Empire: Strike Back.<br><br><br>Древняя Империя: Ответный Удар.<br><br><br>',
 		instructionsText: [
-			'Античные Империи это захватывающая стратегия, помещающая вас в роли Короля Галамара в битву за свое королевство.',
-			'Синие или красные квадратики показывают возможной путь единицы. Размер пути единицы определяется ее типом и местностью, на которой она стоит.',
-			'Разные типы местности влияют на способности единиц к передвижению, атаке и защите. Например, горы добавляют единицам очки защиты, но замедляют скорость передвижения. При нажатии на них особенности местности отображаются в нижней части экрана.',
-			'Когда единица завершила движение, то она становится полупрозрачной. Это означает, что он не может быть перемещена снова до следующего хода.',
-			'Вы можете перемещать единицу только один раз за ход.',
-			'Используйте \'+\' и \'-\' (в правом нижнем углу) чтобы масштабировать карту.',
-			'Вы можете посмотреть характеристики воинов в магазине. Единицы становятся более сильными, получая опыт в битвах.',
-			'Чтобы атаковать вражескую единицу, передвиньте вашу единицу в пределы атаки и выберите \'Атака\'. Если в пределах находятся несколько врагов, выберите, какую единицу атаковать. Успех атаки определяется характеристиками единиц и местностью.',
-			'Только рыцарь может занять замок. В замке Вы покупать новые единицы за золото.',
-			'Вы можете занять здание, переместив солдата на него и выбрав \'Занять\'. Как только здание будет занято, оно сменит цвет.',
-			'Как только здание будет занято, оно начнет приносить золото. Чем больше зданий вы займете, тем больше заработаете.',
-			'Единицы могут быть вылечены, заняв здание. Чем больше единица находится в здании, тем больше жизни восстановится.',
-			'Ящерицы - земноводные, это увеличивает им передвижение и защиту в воде.',
-			'Атака паука ядовита. Отравленная единица замедляется и слабеет до своего следующего хода.',
-			'Надгробие показывает, где единица была повержена. Оно исчезает после одного хода.',
-			'У волшебников есть сила для вызова скелетов-воинов из могил поверженных солдат.',
-			'Используйте виспов для обеспечения ближайшим дружественным единицам ауры, которая прибавляет им очки атаки.',
-			'Держите ваших вайвернов вдали от вражеских лучников, так как они уязвимы для стрел!'
+			'\'Ancient Empire: strike back\' is a thrilling strategy game that lets you control King Galamar and his brother Valadorn as they fight to protect their kingdom from evil.',
+			'Next are instructions, hints and tips on how to play which also appear in the game.',
+			'The red squares mark the movement range of a unit. A unit\'s range is determined by its type and the terrain it is on.',
+			'Different types of terrain affect a unit\'s ability to move, attack and defend. For example, mountains add defence points but reduce movement. When you move the cursor these terrain features appear at the bottom of the screen.',
+			'When a unit has completed a move, it will change to grey. This means that it cannot be used again until your next turn.',
+			'You can move each unit only once each turn. When you have finished moving all your units tap \'end turn\'.',
+			'Units get more powerful as they gain battle experience and are upgraded in rank.',
+			'You can view the attack range of any unit by double tap when it is selected.',
+			'To attack an enemy unit, move your unit within range and select \'attack\'. If there is more than one enemy in range, select which unit to attack. The success of your attack is determined by unit characteristics and terrain.',
+			'Only a Commander can occupy a castle. Once a castle is occupied you can purchase new units with your gold. The Commander does not need to remain in the castle in order to purchase units.',
+			'You can occupy buildings by moving a soldier or Commander onto it and selecting \'occupy\'. Once a building is occupied, it changes colour. If a building is damaged you must repair the building before it can be occupied.',
+			'Once a building has been occupied, it earns gold. The more buildings you occupy, the more gold you earn.',
+			'Units can be healed by occupying buildings. The longer a unit stays, the more life it regains.',
+			'If a Commander is defeated in battle, he can be resurrected in a castle. The more times a Commander is defeated, the more expensive he is to resurrect.',
+			'Water Elementals are amphibious, giving them increased movement, attack and defence when in water.',
+			'An attack by Dire Wolves is poisonous. A poisoned unit is slow and weak for its next turn.',
+			'A Sorceress has the power to summon skeleton warriors from the graves of fallen soldiers. After a unit has been defeated, a tombstone appears for 1 turn. Move a Sorceress next to a tombstone and select \'raise\'.',
+			'Use Wisps to provide nearby friendly units with an aura that augments their attack points.',
+			'The Catapult has the ability to destroy the enemy towns and help disrupt the flow of gold.',
+			'Keep your Dragons away from enemy archers, as they are vulnerable to arrows!'
 		],
-		helpList: [],
+		helpList: [
+			// 0
+			{
+				img: 'img/help/select-unit.png',
+				text: ['To select unit tap (<img src="img/help/tap-finger.png" class="icon-in-text" />) to unit.', '<img src="img/help/finger-on-red-square.png" class="icon-in-text" /> - The red squares mark the movement range of a unit.', 'A unit\'s range is determined by its type and the terrain it is on.']
+			},
+			// 1
+			{
+				img: 'img/help/attack.png',
+				text: ['To attack an enemy unit, move your unit within range and select <img src="img/help/attack-icon.png" class="icon-in-text" />.', 'If there is more than one enemy in range, select which unit to attack. The success of your attack is determined by unit characteristics and terrain.']
+			},
+			// 2
+			{
+				//img: 'img/help/occupy-castle.png',
+				text: ['Only a Commander can occupy (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />) a castle.', 'Once a castle is occupied you can purchase new units with your gold.', 'The Commander does not need to remain in the castle in order to purchase units.']
+			},
+			// 3
+			{
+				//img: 'img/help/occupy-farm.png',
+				text: ['You can occupy buildings by moving a soldier or Commander onto it and selecting \'occupy\' (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />).', 'Once a building is occupied, it changes colour.', 'If a building is damaged you must repair (<img src="img/help/fix-building-icon.png" class="icon-in-text" />) the building before it can be occupied.']
+			},
+			// 4
+			{
+				img: 'img/help/raise.png',
+				text: ['A Sorceress has the power to summon skeleton warriors from the graves of fallen soldiers.', 'After a unit has been defeated, a tombstone appears for 1 turn.', 'Move a Sorceress next to a tombstone and select \'raise\' <img src="img/help/attack-icon.png" class="icon-in-text" />.']
+			}
+		],
 		unitsList: {
 			'soldier': {
 				name: 'солдат',
@@ -214,6 +243,29 @@
 				name: 'crystal',
 				description: 'Эти легендарные кристаллы были изначально выкопаны из руин Античной Цитадели. Мало что известно об их силе, за исключением того, что они, по слухам, могут защитить королевство, а также обладают силой, чтобы уничтожить его.'
 			}
+		},
+
+		story: {
+			list: [
+				// 0
+				//'With the passing of the war against the forces of darkness, the brothers Galamar and Valadorn are reunited in their rule of the kingdom of Thorin. The kingdom is slowly returning to its peace time ways, protected by three ancient crystals safely guarded in the temples of Courage, Wisdom and Life, when rumours of skirmishes in the North reach the palace...',
+				'img/story/story-1-1.png_!_With the passing of the war against the forces of darkness, the brothers Galamar and Valadorn are reunited in their rule of the kingdom of Thorin. The kingdom is slowly returning to its peace time ways, protected by three ancient crystals safely guarded in the temples of Courage, Wisdom and Life, when rumours of skirmishes in the North reach the palace...',
+				// 1
+				//'\'And three was their number, three to protect, three to destroy. Mercy upon the wielder of their power, mercy upon our souls, for He shall unleash the heavenly fires onto this world.\'<br \/>[Verse 3:7 from the Crystal Prophecies, author unknown, translated from the only surviving transcript from the Age of Darkness]',
+				'img/story/story-1-2.png_!_\'And three was their number, three to protect, three to destroy. Mercy upon the wielder of their power, mercy upon our souls, for He shall unleash the heavenly fires onto this world.\'<br \/>[Verse 3:7 from the Crystal Prophecies, author unknown, translated from the only surviving transcript from the Age of Darkness]',
+				// 2
+				//'A messenger from the Temple of Courage arrives at the castle gates, pleading for the King\'s assistance - the Temple has fallen prey to brutal attackers, and must be protected...',
+				'img/story/story-1-3.png_!_A messenger from the Temple of Courage arrives at the castle gates, pleading for the King\'s assistance - the Temple has fallen prey to brutal attackers, and must be protected...',
+				// 3
+				//'With the help of the Elementals, King Galamar finally reaches the Temple of Life one step before the enemy...',
+				'img/story/story-4-1.png_!_With the help of the Elementals, King Galamar finally reaches the Temple of Life one step before the enemy...',
+				// 4
+				//'Galamar and Valadorn follow the path of destruction left behind by the dragon and find themselves at the ruins of the Ancient Citadel...',
+				'img/story/story-8-1.png_!_Galamar and Valadorn follow the path of destruction left behind by the dragon and find themselves at the ruins of the Ancient Citadel...',
+				// 5
+				//'\'And the Earth shall tremble, and the skies shall weep. For He who is the destroyer shall be destroyed, for the He who is the taker shall be taken. And a new age, free of evil and darkness shall dawn.\'<br>[Final verse from the Crystal Prophecies, author unknown, never translated, lost during the age of darkness]'
+				'img/story/story-8-2.png_!_\'And the Earth shall tremble, and the skies shall weep. For He who is the destroyer shall be destroyed, for the He who is the taker shall be taken. And a new age, free of evil and darkness shall dawn.\'<br>[Final verse from the Crystal Prophecies, author unknown, never translated, lost during the age of darkness]'
+			]
 		}
 
 	};
