@@ -5,10 +5,11 @@
 	/*global window */
 	/*global */
 
-	var langEn = win.APP.languages.en;
+	var langEn = win.APP.languages.en,
+		langRu = win.APP.languages.ru;
 
 	win.APP.maps.mission_001_003 = {
-		"version": 2,
+		"version": 3,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -17,16 +18,21 @@
 		],
 		"size": {"width": 10, "height": 17},
 		"name": "PATH OF SHADOWS",
-		//"name-ru": "RU - PATH OF SHADOWS",
+		"name-ru": "ПУТЬ ТЕНЕЙ",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
 		"objective": 'Navigate safely through the forest. Destroy all opposition. King Galamar must survive.',
+		"objective-ru": 'Проследовать через лес. Уничтожить все сопротивление. Король Галамар должен выжить.',
 		"help": [
 			langEn.helpList[4]
 		],
+		"help-ru": [
+			langRu.helpList[4]
+		],
+
 		"startBriefing": [
 			{
 				popupName: 'simple-notification',
@@ -71,6 +77,58 @@
 				popupData: {
 					header: 'PATH OF SHADOWS',
 					text: 'Navigate safely through the forest. Destroy all opposition. King Galamar must survive.'
+				},
+				onHide: {
+					fn: 'autoShowHelpButton'
+				}
+			}
+
+		],
+
+		"startBriefing-ru": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Лес Мистов'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Ваше величество, лес известен как обитель духов, элементалов, и других магических созданий. Путешествовать по нему ночью небезопасно.',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8 , y: 14 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Капитан, вы слышали посланника от Валадорна - мы должны поднажать! Ничего не должно стоять между нами и Храмом Жизни.',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Понял. Войска, держите глаза открытыми и защитите Короля Галамара!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'ПУТЬ ТЕНЕЙ',
+					text: 'Проследовать через лес. Уничтожить все сопротивление. Король Галамар должен выжить.'
 				},
 				onHide: {
 					fn: 'autoShowHelpButton'
@@ -127,12 +185,79 @@
 			}
 		],
 
+		"n1Briefing-ru": [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Еще волки! Ваше величество, это выглядит плохо...',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 1, y: 8}]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Именем Создателя! Что это такое!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Здраствуйте, люди Торина! Мы, Элементалы, слышали  о вашем задании по защите наших земель от зла, и предлагаем нашу верность нашему Королю.'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 4, y: 8}]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Мы рады принять ваше предложение. Ваша преданность королевству не будет забыта.',
+					img: 'i/face/galamar.png'
+				}
+			}
+		],
+
 		"endBriefing": [
 			{
 				popupName: 'simple-notification',
 				popupData: {
 					header: langEn.missionComplete,
 					text: '\'Peak Island\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_004', { type: 'mission' }]
+				}
+			}
+		],
+
+		"endBriefing-ru": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langRu.missionComplete,
+					text: '\'Пик Остров\' ' + langRu.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',
