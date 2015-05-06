@@ -8,11 +8,11 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_010 = {
-		"version": 1,
+		"version": 2,
 		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
 		"name": "Waterways",
-		"name-ru": "RU Waterways",
+		"name-ru": "Водоемы",
 		"maxPlayers": 4,
 		"isOpen": false,
 

@@ -8,11 +8,11 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_014 = {
-		"version": 1,
+		"version": 2,
 		"type": "skirmish",
 		"size": {"width": 19, "height": 19},
 		"name": "The Crucible",
-		"name-ru": "RU The Crucible",
+		"name-ru": "Суровое испытание",
 		"maxPlayers": 4,
 		"isOpen": false,
 

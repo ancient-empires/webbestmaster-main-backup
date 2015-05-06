@@ -8,11 +8,11 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_015 = {
-		"version": 1,
+		"version": 2,
 		"type": "skirmish",
 		"size": {"width": 19, "height": 19},
 		"name": "Shadow Lands",
-		"name-ru": "RU Shadow Lands",
+		"name-ru": "Теневые земли",
 		"maxPlayers": 4,
 		"isOpen": false,
 

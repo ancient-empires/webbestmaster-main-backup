@@ -8,11 +8,11 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_008 = {
-		"version": 1,
+		"version": 2,
 		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
 		"name": "Solitude",
-		"name-ru": "RU Solitude",
+		"name-ru": "Одиночество",
 		"maxPlayers": 4,
 		"isOpen": false,
 

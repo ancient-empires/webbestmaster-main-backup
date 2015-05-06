@@ -8,11 +8,11 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_009 = {
-		"version": 1,
+		"version": 2,
 		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
 		"name": "Peak Island",
-		"name-ru": "RU Peak Island",
+		"name-ru": "Пик Остров",
 		"maxPlayers": 2,
 		"isOpen": false,
 

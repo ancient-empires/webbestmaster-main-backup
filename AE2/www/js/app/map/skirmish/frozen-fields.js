@@ -8,11 +8,11 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_006 = {
-		"version": 1,
+		"version": 2,
 		"type": "skirmish",
 		"size": {"width": 15, "height": 12},
 		"name": "Frozen Friends",
-		"name-ru": "RU Frozen Friends",
+		"name-ru": "Замороженные Друзья",
 		"maxPlayers": 3,
 		"isOpen": true,
 

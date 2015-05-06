@@ -8,7 +8,7 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_004 = {
-		"version": 1,
+		"version": 2,
 		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
 		"name": "Icy Path",
