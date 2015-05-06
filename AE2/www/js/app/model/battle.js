@@ -436,7 +436,7 @@
 					cssClass: 'disable-event',
 					popupData: {
 						color: color,
-						earn: hideSymbols(earn, '?')
+						earn: '?'
 					}
 				});
 			} else {
