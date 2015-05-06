@@ -134,7 +134,7 @@
 		//aboutText: '<br><br><br>Ancient Empire: Strike Back.<br><br><br><!--Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Alexey Danilov<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau-->',
 		aboutText: '<br><br><br>Ancient Empire: Strike Back.<br><br><br>',
 		instructionsText: [
-			'\'Ancient Empire: strike back\' is a thrilling strategy game that lets you control King Galamar and his brother Valadorn as they fight to protect their kingdom from evil.',
+			'\'Ancient Empire: Strike Back\' is a thrilling strategy game that lets you control King Galamar and his brother Valadorn as they fight to protect their kingdom from evil.',
 			'Next are instructions, hints and tips on how to play which also appear in the game.',
 			'The red squares mark the movement range of a unit. A unit\'s range is determined by its type and the terrain it is on.',
 			'Different types of terrain affect a unit\'s ability to move, attack and defend. For example, mountains add defence points but reduce movement. When you move the cursor these terrain features appear at the bottom of the screen.',
@@ -147,7 +147,7 @@
 			'You can occupy buildings by moving a soldier or Commander onto it and selecting \'occupy\'. Once a building is occupied, it changes colour. If a building is damaged you must repair the building before it can be occupied.',
 			'Once a building has been occupied, it earns gold. The more buildings you occupy, the more gold you earn.',
 			'Units can be healed by occupying buildings. The longer a unit stays, the more life it regains.',
-			'If a Commander is defeated in battle, he can be resurrected in a castle. The more times a Commander is defeated, the more expensive he is to resurrect.',
+			'If a Commander is defeated in battle, he can be resurrected in a castle.',
 			'Water Elementals are amphibious, giving them increased movement, attack and defence when in water.',
 			'An attack by Dire Wolves is poisonous. A poisoned unit is slow and weak for its next turn.',
 			'A Sorceress has the power to summon skeleton warriors from the graves of fallen soldiers. After a unit has been defeated, a tombstone appears for 1 turn. Move a Sorceress next to a tombstone and select \'raise\'.',
