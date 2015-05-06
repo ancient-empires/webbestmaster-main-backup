@@ -30,6 +30,7 @@
 
 			// nested
 			mapImageWrapper: '.js-map-image-wrapper',
+			mapImage: '.js-map-image',
 			moveAreaWrapper: '.js-move-area-wrapper',
 			moveAreaContainer: '.js-move-area-container',
 			mainEventHandler: '.js-main-event-handler',

@@ -21,6 +21,7 @@
 
 		selectors: {
 			mapImageWrapper: '.js-map-image-wrapper',
+			mapImage: '.js-map-image',
 			moveAreaWrapper: '.js-move-area-wrapper',
 			moveAreaContainer: '.js-move-area-container',
 			mainEventHandler: '.js-main-event-handler',
@@ -86,7 +87,9 @@
 				view.setSize();
 
 				// draw map
-				view.drawMap();
+				setTimeout(function () {
+					view.drawMap();
+				}, 50);
 
 				// draw buildings
 				view.drawBuildings(); // +
@@ -136,7 +139,9 @@
 				view.setSize();
 
 				// draw map
-				view.drawMap();
+				setTimeout(function () {
+					view.drawMap();
+				}, 50);
 
 				// draw buildings
 				view.drawBuildings();
@@ -583,13 +588,14 @@
 		drawMap: function () {
 
 			var view = this,
-				$mapImageWrapper = this.$el.find(this.selectors.mapImageWrapper),
-				canvas = $mapImageWrapper.get(0),
+				//$mapImageWrapper = view.$el.find(view.selectors.mapImageWrapper),
+				canvas = doc.createElement('canvas'),
+				//canvas = $mapImageWrapper.get(0),
 				ctx = canvas.getContext('2d'),
-				getXYFromStringXY = this.util.getXYFromStringXY,
-				xyStr = this.util.getStringFromXY,
-				map = this.get('map'),
-				squareSize = this.squareSize.max,
+				getXYFromStringXY = view.util.getXYFromStringXY,
+				xyStr = view.util.getStringFromXY,
+				map = view.get('map'),
+				squareSize = view.squareSize.max,
 				squareSizeX2,
 				mapTiles = win.APP.mapTiles,
 				terrains = map.terrain,
@@ -605,13 +611,15 @@
 
 			// adjust square size
 			while ( mapWidth * mapHeight * squareSize * squareSize * 4 > maxCanvasSize ) {
-				squareSize -= 12;
+				squareSize -= 6;
 			}
+
+			squareSize -= 6;
 
 			squareSizeX2 = squareSize * 2;
 
-			canvas.width = mapWidth * 2 * squareSize;
-			canvas.height = mapHeight * 2 * squareSize;
+			canvas.width = mapWidth * squareSizeX2;
+			canvas.height = mapHeight * squareSizeX2;
 
 			// reduce blur for ios devices
 			ctx.webkitImageSmoothingEnabled = false;
@@ -726,11 +734,11 @@
 
 					// fix building
 
-
-
 				});
 
 			});
+
+			view.$el.find(view.selectors.mapImage)[0].src = canvas.toDataURL();
 
 		},
 

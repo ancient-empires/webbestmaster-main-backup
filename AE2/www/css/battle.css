@@ -32,6 +32,12 @@
 	left: -0.6rem;
 }
 
+.map-image {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
 .battle-view-container {
 	width: 100%;
 	height: 100%;
