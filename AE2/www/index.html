@@ -789,7 +789,7 @@
 					<% if ( map.isOpen ) { %>
 					<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
 					<% } else { %>
-					<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="disable saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName.replace(/\w/g, '?') %></div>
+					<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="disable saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName.replace(/[\s\S]/g, '?') %></div>
 					<% }; %>
 				<% }); %>
 				</div>
@@ -1205,7 +1205,7 @@
 								<%= index %>. <%= window.APP.templateMaster.tmplFn['level-start']({ level: maxDoneLevel }) %>&nbsp;<%= mapName %>
 							</div>
 						<% } else { %>
-							<div data-sound="click.mp3" data-route="mission-setup-map/<%= jsKey %>" class="disable saved-item-wrapper"><%= index %>. <%= mapName.replace(/\w/g, '?') %></div>
+							<div data-sound="click.mp3" data-route="mission-setup-map/<%= jsKey %>" class="disable saved-item-wrapper"><%= index %>. <%= mapName.replace(/[\s\S]/g, '?') %></div>
 						<% }; %>
 					<% }); %>
 				</div>
