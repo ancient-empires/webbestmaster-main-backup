@@ -87,7 +87,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'NORTHBOUND',
+					header: 'ИДУЩИЙ НА СЕВЕР',
 					text: 'Занять вражеский замок и уничтожить все вражеские войска. Король Валадорн должен выжить.'
 				}
 			}
