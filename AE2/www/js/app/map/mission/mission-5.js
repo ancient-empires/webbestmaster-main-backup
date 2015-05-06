@@ -5,10 +5,11 @@
 	/*global window */
 	/*global */
 
-	var langEn = win.APP.languages.en;
+	var langEn = win.APP.languages.en,
+		langRu = win.APP.languages.ru;
 
 	win.APP.maps.mission_001_005 = {
-		"version": 2,
+		"version": 3,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -17,13 +18,15 @@
 		],
 		"size": {"width": 20, "height": 12},
 		"name": "ESCORT DUTY",
-		//"name-ru": "RU ESCORT DUTY",
+		"name-ru": "СЛУЖБА ЭСКОРТА",
 		"maxPlayers": 2,
 		"unitLimit": 10,
 		"win": ['noEnemyUnit', 'allUnorderedCasesIsDone'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
 		"defeat": ['commanderIsDead', 'crystalIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
 		"objective": 'Deliver the Crystal south to the city of Thorin. King Galamar must survive.',
+		"objective-ru": 'Доставить Кристалл на юг в город Торин. Король Галамар должен выжить.',
+
 		"startBriefing": [
 			{
 				popupName: 'simple-notification',
@@ -63,6 +66,45 @@
 			}
 		],
 
+		"startBriefing-ru": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Путь в Торин'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Ваше Высочество, мне не нравится, как выглядит этот лес, мы должны быть осторожны!',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 11 , y: 1 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Очень хорошо, Капитан. Давайте проследуем этим путем и останемся под защитой нашей охраны.',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'СЛУЖБА ЭСКОРТА',
+					text: 'Доставить Кристалл на юг в город Торин. Король Галамар должен выжить.'
+				}
+			}
+		],
+
 		"n1Briefing": [
 			{
 				popupName: 'briefing',
@@ -76,12 +118,44 @@
 
 		],
 
+		"n1Briefing-ru": [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Засада! Защитите Кристалл любой ценой!',
+					img: 'i/face/soldier.png'
+				}
+			}
+
+		],
+
 		"endBriefing": [
 			{
 				popupName: 'simple-notification',
 				popupData: {
 					header: langEn.missionComplete,
 					text: '\'Liberty Port\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_006', { type: 'mission' }]
+				}
+			}
+		],
+
+		"endBriefing-ru": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langRu.missionComplete,
+					text: '\'Свобода Порт\' ' + langRu.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',
