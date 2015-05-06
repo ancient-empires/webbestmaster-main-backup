@@ -5,10 +5,11 @@
 	/*global window */
 	/*global */
 
-	var langEn = win.APP.languages.en;
+	var langEn = win.APP.languages.en,
+		langRu = win.APP.languages.ru;
 
 	win.APP.maps.mission_001_006 = {
-		"version": 2,
+		"version": 3,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -17,7 +18,7 @@
 		],
 		"size": {"width": 12, "height": 20},
 		"name": "NORTHBOUND",
-		//"name-ru": "RU NORTHBOUND",
+		"name-ru": "ИДУЩИЙ НА СЕВЕР",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"availableStoreUnits": ["soldier", "archer", "elemental", "sorceress", "wisp", "dire-wolf", "golem"],
@@ -29,6 +30,8 @@
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
 		"objective": 'Occupy the enemy castle and destroy all enemy troops. Valadorn must survive.',
+		"objective-ru": 'Занять вражеский замок и уничтожить все вражеские войска. Король Валадорн должен выжить.',
+
 		"startBriefing": [
 			{
 				popupName: 'simple-notification',
@@ -59,6 +62,38 @@
 			}
 
 		],
+
+		"startBriefing-ru": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Ворота Торина'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Враг планирует атаковать Короля Галамара, пока он не достигнет Торина. Мы должны уничтожить их!',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 5, y: 17 }]
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'NORTHBOUND',
+					text: 'Занять вражеский замок и уничтожить все вражеские войска. Король Валадорн должен выжить.'
+				}
+			}
+
+		],
+
 		"endBriefing": [
 			{
 				popupName: 'briefing',
@@ -74,6 +109,34 @@
 				popupData: {
 					header: langEn.missionComplete,
 					text: '\'Winter Storm\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_007', { type: 'mission' }]
+				}
+			}
+		],
+
+		"endBriefing-ru": [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Давайте поспешим на Север, чтобы встретиться с Галамаром. Враги знают о его планах и ему может потребоваться наша помощь!',
+					img: 'i/face/valadorn.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langRu.missionComplete,
+					text: '\'Зимний Шторм\' ' + langRu.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',
