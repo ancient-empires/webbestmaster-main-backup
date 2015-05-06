@@ -32,6 +32,10 @@
 	padding-top: 0.8rem;
 }
 
+.list-setting-wrapper .setting-name {
+	padding-bottom: 0.4rem;
+}
+
 .select-setting-wrapper .setting-name {
 	padding-bottom: 0.2rem;
 }

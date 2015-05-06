@@ -10,7 +10,7 @@
 	APP.languages = APP.languages || {};
 
 	APP.languages.ru = {
-		language: 'язык',
+		language: 'Язык',
 		languageName: 'Русский',
 		shortLanguageName: 'Рус',
 		appName: 'AE2FG',
@@ -19,11 +19,11 @@
 		//share: 'Share',
 
 		// title page
-		play: 'играть',
-		online: 'по сети',
-		settings: 'настройки',
-		instructions: 'инструкции',
-		about: 'о программе',
+		play: 'Играть',
+		online: 'По сети',
+		settings: 'Настройки',
+		instructions: 'Инструкции',
+		about: 'О программе',
 
 		// settings
 		on: 'вкл',
@@ -36,34 +36,35 @@
 		confirmTurn: 'подтверждение хода',
 		confirmMove: 'подтверждение движения юнита',
 		confirmAttack: 'подтверждение атаки',
-		'gameSpeed-1': 'оч.медленно',
+		'gameSpeed-1': 'оч. медленно',
 		'gameSpeed-2': 'медленно',
 		'gameSpeed-3': 'обычная',
 		'gameSpeed-4': 'быстро',
-		'gameSpeed-5': 'оч.быстро',
-		gameDifficulty: 'сложность игры',
+		'gameSpeed-5': 'оч. быстро',
+		mainSettings: 'Основные настройки',
+		gameDifficulty: 'Сложность игры',
 		easy: 'легко',
 		normal: 'нормально',
 		hard: 'трудно',
-		buildingSmoke: 'дым из зданий',
+		buildingSmoke: 'дым из труб',
 		unitAnimation: 'анимация юнитов',
 		autoSave: 'автосохранение',
 
 		// play
-		newGame: 'новая игра',
-		loadGame: 'загрузить игру',
-		selectLevel: 'выбор уровня',
-		skirmish: 'схватка',
-		mission: 'миссия',
+		newGame: 'Новая игра',
+		loadGame: 'Загрузить игру',
+		selectLevel: 'Выбор уровня',
+		skirmish: 'Схватка',
+		mission: 'Миссия',
 
 		// setup skirmish
-		player: 'игрок',
+		player: 'Игрок',
 		cpu: 'ЦПУ',
-		none: 'нет',
-		money: 'деньги',
-		unitLimit: 'лимит войск',
-		fight: 'в бой',
-		team: 'команда',
+		none: 'Нет',
+		money: 'Деньги',
+		unitLimit: 'Лимит войск',
+		fight: 'В бой',
+		team: 'Команда',
 
 		// colors
 		blue: 'синий',

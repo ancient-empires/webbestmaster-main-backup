@@ -200,6 +200,10 @@
 			<div class="main-content-container js-scroll-area-container scroll-touch">
 				<div class="scroll-area">
 
+					<div class="list-setting-wrapper">
+						<div class="setting-name">{{ mainSettings }}:</div>
+					</div>
+
 					<div class="js-change-on-off-setting-wrapper change-on-off-setting-wrapper clear-fix">
 						<%= view.tmpl.settingsOnOff({ key: 'confirmTurn', info: info }) %>
 						<div class="setting-name">{{ confirmTurn }}</div>
@@ -253,17 +257,17 @@
 						<div class="setting-name">{{ fightAnimation }}</div>
 					</div>
 
-					<div class="select-setting-wrapper hidden">
+					<div class="select-setting-wrapper">
 						<div class="setting-name">{{ language }}:</div>
 						<div class="clear-fix">
 							<% _.each(info.availableLanguages, function(lang) { %>
 							<% if ( lang === info.get('language') ) { %>
 							<div class="js-change-select-setting setting-state" data-key="language" data-value="<%= lang %>">
-								<%= window.APP.languages[lang].shortLanguageName %>
+								<%= window.APP.languages[lang].languageName %>
 							</div>
 							<% } else { %>
 							<div class="opacity50 js-change-select-setting setting-state" data-key="language" data-value="<%= lang %>">
-								<%= window.APP.languages[lang].shortLanguageName %>
+								<%= window.APP.languages[lang].languageName %>
 							</div>
 							<% }; %>
 							<% }); %>

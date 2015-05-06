@@ -60,8 +60,8 @@
 		attr: {},
 		systemAttr: {},
 		defaultLanguage: 'en',
-		availableLanguages: ['en'],
-		//availableLanguages: ['ru', 'en'],
+		//availableLanguages: ['en'],
+		availableLanguages: ['ru', 'en'],
 
 		init: function () {
 
