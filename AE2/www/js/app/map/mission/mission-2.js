@@ -5,10 +5,11 @@
 	/*global window */
 	/*global */
 
-	var langEn = win.APP.languages.en;
+	var langEn = win.APP.languages.en,
+		langRu = win.APP.languages.ru;
 
 	win.APP.maps.mission_001_002 = {
-		"version": 2,
+		"version": 3,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -17,7 +18,7 @@
 		],
 		"size": {"width": 15, "height": 12},
 		"name": "TO THE RESCUE",
-		//"name-ru": "RU TO THE RESCUE",
+		"name-ru": "К СПАСЕНИЮ",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"availableStoreUnits": ["soldier", "archer"],
@@ -29,9 +30,14 @@
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
 		"objective": 'Destroy all attacking enemy troops, occupy both castles.',
+		"objective-ru": 'Уничтожить все вражеские войска, занять оба замка.',
 		"help": [
 			langEn.helpList[2],
 			langEn.helpList[3]
+		],
+		"help-ru": [
+			langRu.helpList[2],
+			langRu.helpList[3]
 		],
 
 		"startBriefing": [
@@ -141,6 +147,113 @@
 			}
 		],
 
+		"startBriefing-ru": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Храм Мудрости'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Как это может быть? Храм Мудрости тоже атакован!',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 9 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Так, так... Валадорн, предполагаю? Приготовься к поражению!',
+					img: 'i/face/demon-lord.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 12, y: 3 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Сэр, часть вражеских сил отступает!',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7 , y: 10 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Кристалл Мудрости! Не дайте им уйти!',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Сэр, мы должны преследовать их!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Давайте сначала остановим атаку. Охрана храма не даст другого шанса!',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 9 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Давайте разобьем лагерь в том замке!',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7 , y: 10 }]
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'К СПАСЕНИЮ',
+					text: 'Уничтожить все вражеские войска, занять оба замка.'
+				},
+				onHide: {
+					fn: 'autoShowHelpButton'
+				}
+			}
+		],
+
 		"endBriefing": [
 			{
 				popupName: 'briefing',
@@ -164,6 +277,42 @@
 				popupData: {
 					header: langEn.missionComplete,
 					text: '\'Solitude\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_003', { type: 'mission' }]
+				}
+			}
+		],
+
+		"endBriefing-ru": [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Хорошая работа, Капитан. Но у нас нет времени на отдых. Кристалл Жизни все еще в опасности. Мы должны предупредить Короля Галамара!',
+					img: 'i/face/valadorn.png'
+				}
+			},			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Да, Сэр. Я приготовлю войска.',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langRu.missionComplete,
+					text: '\'Одиночество\' ' + langEn.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',
