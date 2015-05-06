@@ -136,7 +136,7 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete,
-					text: '\'Зимний Шторм\' ' + langRu.unlocked
+					text: '\'Зимний шторм\' ' + langRu.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',

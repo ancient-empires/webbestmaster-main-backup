@@ -12,7 +12,7 @@
 		"type": "skirmish",
 		"size": {"width": 17, "height": 12},
 		"name": "Rocky Bay",
-		"name-ru": "Скалистая Бухта",
+		"name-ru": "Скалистая бухта",
 		"maxPlayers": 2,
 		"isOpen": true,
 

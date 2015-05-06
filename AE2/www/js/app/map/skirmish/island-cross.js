@@ -12,7 +12,7 @@
 		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
 		"name": "Island Cross",
-		"name-ru": "Остров Крест",
+		"name-ru": "Остров крест",
 		"maxPlayers": 2,
 		"isOpen": true,
 

@@ -12,7 +12,7 @@
 		"type": "skirmish",
 		"size": {"width": 13, "height": 13},
 		"name": "Liberty Port",
-		"name-ru": "Свобода Порт",
+		"name-ru": "Порт свободы",
 		"maxPlayers": 2,
 		"isOpen": false,
 

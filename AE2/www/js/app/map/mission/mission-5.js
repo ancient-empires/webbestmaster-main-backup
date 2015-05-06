@@ -155,7 +155,7 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete,
-					text: '\'Свобода Порт\' ' + langRu.unlocked
+					text: '\'Порт свободы\' ' + langRu.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',

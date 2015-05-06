@@ -257,7 +257,7 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete,
-					text: '\'Пик Остров\' ' + langRu.unlocked
+					text: '\'Остров пик\' ' + langRu.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',

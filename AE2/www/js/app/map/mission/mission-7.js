@@ -199,7 +199,7 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete,
-					text: '\'”тренн€€ «везда\' ' + langRu.unlocked
+					text: '\'”тренн€€ звезда\' ' + langRu.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',

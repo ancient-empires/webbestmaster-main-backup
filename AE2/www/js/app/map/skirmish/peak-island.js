@@ -12,7 +12,7 @@
 		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
 		"name": "Peak Island",
-		"name-ru": "Пик Остров",
+		"name-ru": "Остров пик",
 		"maxPlayers": 2,
 		"isOpen": false,
 

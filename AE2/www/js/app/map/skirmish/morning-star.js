@@ -12,7 +12,7 @@
 		"type": "skirmish",
 		"size": {"width": 11, "height": 11},
 		"name": "Morning Star",
-		"name-ru": "”тренн€€ «везда",
+		"name-ru": "”тренн€€ звезда",
 		"maxPlayers": 2,
 		"isOpen": false,
 

@@ -12,7 +12,7 @@
 		"type": "skirmish",
 		"size": {"width": 15, "height": 12},
 		"name": "Frozen Friends",
-		"name-ru": "Замороженные Друзья",
+		"name-ru": "Холодные друзья",
 		"maxPlayers": 3,
 		"isOpen": true,
 
