@@ -5,10 +5,11 @@
 	/*global window */
 	/*global */
 
-	var langEn = win.APP.languages.en;
+	var langEn = win.APP.languages.en,
+		langRu = win.APP.languages.ru;
 
 	win.APP.maps.mission_001_007 = {
-		"version": 2,
+		"version": 3,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -17,7 +18,7 @@
 		],
 		"size": {"width": 16, "height": 18},
 		"name": "RENDEZVOUS",
-		//"name-ru": "RU RENDEZVOUS",
+		"name-ru": "ВСТРЕЧА",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"money": [
@@ -28,6 +29,7 @@
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
 		"objective": 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles! Galamar and Valadorn must survive.',
+		"objective-ru": 'Пробить путь на запад через вражеские войска, убить их командира и занять все замки! Король Галамар и Король Валадорн должны выжить.',
 
 		"startBriefing": [
 			{
@@ -41,6 +43,22 @@
 				popupData: {
 					header: 'RENDEZVOUS',
 					text: 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles! Galamar and Valadorn must survive.'
+				}
+			}
+		],
+
+		"startBriefing-ru": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'За Городом'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'ВСТРЕЧА',
+					text: 'Пробить путь на запад через вражеские войска, убить их командира и занять все замки! Король Галамар и Король Валадорн должны выжить.'
 				}
 			}
 		],
@@ -101,12 +119,87 @@
 
 		],
 
+		"n1Briefing-ru": [
+
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Беги, жалкий человечишко, пока еще не слишком поздно!',
+					img: 'i/face/demon-lord.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 0, y: 8 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Вражеские войска выглядят угрожающе, я рекомендую отступить.',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 14, y: 7 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'У нас нет иного выбора кроме атаки!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Галамар! Мы пришли так быстро как могли! Будем сражаться бок о бок!',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 13, y: 16 }]
+				}
+			}
+
+		],
+
 		"endBriefing": [
 			{
 				popupName: 'simple-notification',
 				popupData: {
 					header: langEn.missionComplete,
 					text: '\'Morning Star\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_008', { type: 'mission' }]
+				}
+			}
+		],
+
+		"endBriefing-ru": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langRu.missionComplete,
+					text: '\'Утренняя Звезда\' ' + langRu.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',
