@@ -5,10 +5,11 @@
 	/*global window */
 	/*global */
 
-	var langEn = win.APP.languages.en;
+	var langEn = win.APP.languages.en,
+		langRu = win.APP.languages.ru;
 
 	win.APP.maps.mission_001_004 = {
-		"version": 2,
+		"version": 3,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -17,7 +18,7 @@
 		],
 		"size": {"width": 16, "height": 16},
 		"name": "REINFORCEMENTS",
-		//"name-ru": "RU - REINFORCEMENTS",
+		"name-ru": "ПОДКРЕПЛЕНИЕ",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"availableStoreUnits": ["soldier", "archer", "elemental", "sorceress"],
@@ -29,6 +30,8 @@
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
 		"objective": 'Protect the Temple of Life - destroy all enemy units, occupy the enemy castle!',
+		"objective-ru": 'Защитить Храм Жизни - уничтожить все вражеские единицы, занять вражеский замок!',
+
 		"startBriefing": [
 			{
 				popupName: 'story',
@@ -112,6 +115,89 @@
 			}
 		],
 
+		"startBriefing-ru": [
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langRu.story.list[3]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Храм Жизни'
+				},
+				playSound: {
+					sound: 'bg-good.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Ваше Величество, благодаря Создателю вы здесь! Пожалуйста, помогите нам защитить Кристалл!',
+					img: 'i/face/tamplier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7 , y: 1 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Только в хорошо защищенных крепостях Торина Кристалл будет в безопасности. Мы должны принести его туда.',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Ваше Величество, наши разведчики докладывают, что вражеские войска неподалеку!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Они разрушают наши здания, чтобы нанести ущерб нашим поставкам золота! Она должны быть остановлены!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Капитан, мы должны спасти Кристалл, готовьте войска к битве!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'ПОДКРЕПЛЕНИЕ',
+					text: 'Защитить Храм Жизни - уничтожить все вражеские единицы, занять вражеский замок!'
+				}
+			}
+		],
+
 		"endBriefing": [
 			{
 				popupName: 'briefing',
@@ -136,6 +222,43 @@
 				popupData: {
 					header: langEn.missionComplete,
 					text: '\'Waterways\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_005', { type: 'mission' }]
+				}
+			}
+		],
+
+		"endBriefing-ru": [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Ваше величество, мы остановили атаку.',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Хорошая работа, Капитан! Приготовьте войска к маршу в Торин!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langRu.missionComplete,
+					text: '\'Водоемы\' ' + langRu.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',
