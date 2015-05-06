@@ -248,17 +248,17 @@
 		story: {
 			list: [
 				// 0
-				'img/story/story-1-1.png_!_With the passing of the war against the forces of darkness, the brothers Galamar and Valadorn are reunited in their rule of the kingdom of Thorin. The kingdom is slowly returning to its peace time ways, protected by three ancient crystals safely guarded in the temples of Courage, Wisdom and Life, when rumours of skirmishes in the North reach the palace...',
+				'img/story/story-1-1.png_!_После завершения войны против сил тьмы, братья Галамар и Валадорн воссоединились в правлениии королевства Торин. Королевство медленно возвращалось к мирной жизни, защищенное тремя античными кристаллами, защищенными в храмах Отваги, Мудрости и Жизни, когда достигли дворца слухи о схватках на Севере...',
 				// 1
-				'img/story/story-1-2.png_!_\'And three was their number, three to protect, three to destroy. Mercy upon the wielder of their power, mercy upon our souls, for He shall unleash the heavenly fires onto this world.\'<br \/>[Verse 3:7 from the Crystal Prophecies, author unknown, translated from the only surviving transcript from the Age of Darkness]',
+				'img/story/story-1-2.png_!_\'И три было их числом, три для защиты, три для уничтожения. Сжалься над их силой, сжалься над нашими душами, пусть Он спустит небесные огни на наш мир.\'<br \/>[Стих 3:7 из  Предсказаний Кристаллов, автор неизвестен, был переведен из единственного уцелевшего манускрипта Времен Тьмы]',
 				// 2
-				'img/story/story-1-3.png_!_A messenger from the Temple of Courage arrives at the castle gates, pleading for the King\'s assistance - the Temple has fallen prey to brutal attackers, and must be protected...',
+				'img/story/story-1-3.png_!_Посланник из Храма Отваги прибыл к воротам замка, с мольбой о поддержке Короля - Храм пал под натиском зверских атакующих, и должен быть защищен...',
 				// 3
-				'img/story/story-4-1.png_!_With the help of the Elementals, King Galamar finally reaches the Temple of Life one step before the enemy...',
+				'img/story/story-4-1.png_!_С помощью Элементалов, Король Галамар в конце концов достиг Храма Жизни, в одном шаге от врагов...',
 				// 4
-				'img/story/story-8-1.png_!_Galamar and Valadorn follow the path of destruction left behind by the dragon and find themselves at the ruins of the Ancient Citadel...',
+				'img/story/story-8-1.png_!_Галамар и Валадорн проследовали по пути разрушений, оставленных драконом и обнаружили руины Античной Цитадели...',
 				// 5
-				'img/story/story-8-2.png_!_\'And the Earth shall tremble, and the skies shall weep. For He who is the destroyer shall be destroyed, for the He who is the taker shall be taken. And a new age, free of evil and darkness shall dawn.\'<br>[Final verse from the Crystal Prophecies, author unknown, never translated, lost during the age of darkness]'
+				'img/story/story-8-2.png_!_\'И Земля задрожит, и небеса заплачут. За Него, который разрушит разрушителя, за Него, который заберет берущего. И новая эра, свободная он зла и тьмы наступит.\'<br>[Последний стих из  Предсказаний Кристаллов, автор неизвестен, никогда не переводился, был потерян в веках тьмы]'
 			]
 		}
 
