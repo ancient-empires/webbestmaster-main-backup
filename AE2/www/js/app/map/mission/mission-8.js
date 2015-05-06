@@ -5,10 +5,11 @@
 	/*global window */
 	/*global */
 
-	var langEn = win.APP.languages.en;
+	var langEn = win.APP.languages.en,
+		langRu = win.APP.languages.ru;
 
 	win.APP.maps.mission_001_008 = {
-		"version": 2,
+		"version": 3,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -17,7 +18,7 @@
 		],
 		"size": {"width": 14, "height": 18},
 		"name": "HEAVEN'S FURY",
-		//"name-ru": "RU HEAVEN'S FURY",
+		"name-ru": "НЕБЕСНЫЕ ФУРИИ",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"money": [
@@ -28,6 +29,7 @@
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
 		"objective": 'Defeat Saeth and his minions! Galamar and Valadorn must survive.',
+		"objective-ru": 'Порвать Саефа и его приспешников! Король Галамар и Король Валадорн должны выжить.',
 
 		"startBriefing": [
 			{
@@ -158,8 +160,143 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'HEAVEN\'S FURY',
-					text: 'Defeat Saeth and his minions! Galamar and Valadorn must survive.'
+					header: 'НЕБЕСНЫЕ ФУРИИ',
+					text: 'Порвать Саефа и его приспешников! Король Галамар и Король Валадорн должны выжить.'
+				}
+			}
+		],
+
+		"startBriefing-ru": [
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langRu.story.list[4]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Античная цитадель'
+				},
+				playSound: {
+					sound: 'bg-good.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Руины Античной Цитадели... и Саеф! С Кристаллами!',
+					img: 'i/face/galamar.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Наконец-то, Галамар и Валадорн! Как вы храбры, чтобы противостоять мне! Все ключи на местах, и скоро величайшая сила из свех, когда либо созранных на земле подчинится моей воле. Ваше уничтожение будет доказательством этой силы!',
+					img: 'i/face/saeth.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7, y: 2 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Твои уловки больше не будут вводить нас в заблуждение, Саеф!',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 6, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right ta-center',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'ЦЕЛЬ ДОСТИГНУТА...<br>НЕБЕСНЫЕ ФУРИИ АКТИВИРОВАНЫ!',
+					img: ''
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Небесные фурии? Что, именем Создателя, это такое!',
+					img: 'i/face/galamar.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Жалкие создания, это что-то настолько древнее, чего вы не сможете понять, даже если проживете тысячи лет! Будьте свидетелями силы Небесных Фурий!',
+					img: 'i/face/saeth.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7, y: 2 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Галамар! Вы должны поторопиться, чтобы наши войска получили шанс.',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 6, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Сэр, мы должны атаковать эти замки перед тем, как мы начнем нападение на Саефа и Руины.',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'НЕБЕСНЫЕ ФУРИИ',
+					text: 'Порвать Саефа и его приспешников! Король Галамар и Король Валадорн должны выжить.'
 				}
 			}
 		],
@@ -252,6 +389,103 @@
 				popupData: {
 					header: langEn.congratulations,
 					text: 'And thank you for playing AE2 - I very much hope you enjoyed playing it as much as I enjoyed making it!'
+				},
+				onHide: {
+					fn: 'backTo',
+					args: ['']
+				}
+			}
+
+		],
+
+		"endBriefing-ru": [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				playSound: {
+					sound: 'game-complete.mp3',
+					road: 0,
+					isLoop: true
+				},
+				popupData: {
+					text: 'Жалкие негодяи! Вы не проживете столько, чтобы увидеть, как ваше драгоценное Королевство поглотиться тьмой...',
+					img: 'i/face/saeth.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Саеф! Пришло время твоего поражения!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'В твоей незначительной жизни и ограниченных мозгах, возможно...Тем не менее все сейчас в движении - невидимые силы, которые управляют временем за пределами твоих знаний. Ты не сможешь остановить меня от воскрешения!',
+					img: 'i/face/saeth.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Ваше Величество, Руины разваливаются! Мы должны уйти немедленно!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Но Кристаллы... Они все еще там!',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Все что мы можем сейчас спасти - это наши жизни!',
+					img: 'i/face/valadorn.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Вы хорошо служили мне. А сейчас уходите!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langRu.story.list[5]
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langRu.missionComplete,
+					text: '\'Суровое испытание\' и \'Теневые земли\' ' + langRu.unlocked
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langRu.congratulations,
+					text: 'И благодарим вас за игру в \'Ancient Empire: Strike Back\' - я очень надеюсь, что вы насладились игрой также как я наслаждался, создавая ее!'
 				},
 				onHide: {
 					fn: 'backTo',
