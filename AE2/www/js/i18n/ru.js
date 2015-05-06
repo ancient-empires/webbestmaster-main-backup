@@ -144,7 +144,7 @@
 			'Вы можете увидеть пределы атаки любой единицы нажатием двойным нажатием на неё, когда она выбрана.',
 			'Чтобы атаковать вражескую единицу, сдвиньте вашу единицу в пределы атаки и выберите \'атака\'. Если в пределах атаки находятся несколько врагов, выберите, какую единицу атаковать. Успех атаки определяется характеристиками единиц и местностью.',
 			'Только командир может занять замок. Как только замок оккупирован, вы можете покупать новые единицы за золото. Командиру не обязательно оставаться в замке, чтобы покупать единицы.',
-			'Вы можете занимать здания, переместив солдата или Командира на него и выбрав \'занять\'. Как только здание будет занято, оно сменит цвет. Если здание повреждено, вам придется отремонтировать его, перед тем как занять.',
+			'Вы можете занимать здания, переместив Солдата или Командира на него и выбрав \'занять\'. Как только здание будет занято, оно сменит цвет. Если здание повреждено, вам придется отремонтировать его, перед тем как занять.',
 			'Как только здание будет занято, оно начнет приносить золото. Чем больше зданий вы займете, тем больше заработаете.',
 			'Единицы могут лечиться в занятых зданиях. Чем больше единица находится в здании, тем больше жизни восстановится.',
 			'Если Командир погибнет в битве, его можно будет оживить в замке.',
@@ -159,27 +159,27 @@
 			// 0
 			{
 				img: 'img/help/select-unit.png',
-				text: ['To select unit tap (<img src="img/help/tap-finger.png" class="icon-in-text" />) to unit.', '<img src="img/help/finger-on-red-square.png" class="icon-in-text" /> - The red squares mark the movement range of a unit.', 'A unit\'s range is determined by its type and the terrain it is on.']
+				text: ['Что бы выбрать еденицу нажмите (<img src="img/help/tap-finger.png" class="icon-in-text" />) на неё.', '<img src="img/help/finger-on-red-square.png" class="icon-in-text" /> - Красные квадраты помечают область перемещения единицы.', 'Границы единицы определяется ее типом и местностью, на которой она стоит.']
 			},
 			// 1
 			{
 				img: 'img/help/attack.png',
-				text: ['To attack an enemy unit, move your unit within range and select <img src="img/help/attack-icon.png" class="icon-in-text" />.', 'If there is more than one enemy in range, select which unit to attack. The success of your attack is determined by unit characteristics and terrain.']
+				text: ['Чтобы атаковать вражескую единицу, сдвиньте вашу единицу в пределы атаки и выберите <img src="img/help/attack-icon.png" class="icon-in-text" />.', 'Если в пределах атаки находятся несколько врагов, выберите, какую единицу атаковать. Успех атаки определяется характеристиками единиц и местностью.']
 			},
 			// 2
 			{
 				//img: 'img/help/occupy-castle.png',
-				text: ['Only a Commander can occupy (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />) a castle.', 'Once a castle is occupied you can purchase new units with your gold.', 'The Commander does not need to remain in the castle in order to purchase units.']
+				text: ['Только командир может занять (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />) замок.', 'Как только замок оккупирован, вы можете покупать новые единицы за золото.', 'Командиру не обязательно оставаться в замке, чтобы покупать единицы.']
 			},
 			// 3
 			{
 				//img: 'img/help/occupy-farm.png',
-				text: ['You can occupy buildings by moving a soldier or Commander onto it and selecting \'occupy\' (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />).', 'Once a building is occupied, it changes colour.', 'If a building is damaged you must repair (<img src="img/help/fix-building-icon.png" class="icon-in-text" />) the building before it can be occupied.']
+				text: ['Вы можете занимать здания, переместив Солдата или Командира на него и выбрав \'занять\' (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />).', 'Как только здание будет занято, оно сменит цвет.', 'Если здание повреждено, вам придется отремонтировать (<img src="img/help/fix-building-icon.png" class="icon-in-text" />) его, перед тем как занять.']
 			},
 			// 4
 			{
 				img: 'img/help/raise.png',
-				text: ['A Sorceress has the power to summon skeleton warriors from the graves of fallen soldiers.', 'After a unit has been defeated, a tombstone appears for 1 turn.', 'Move a Sorceress next to a tombstone and select \'raise\' <img src="img/help/attack-icon.png" class="icon-in-text" />.']
+				text: ['Ведьма имеет силу поднимать скелетов-воинов из могил павших солдат.', 'После поражения единицы на ее месте на 1 ход появится надгробие.', 'Переместите Ведьму к надгробию и выберите \'поднять\' <img src="img/help/attack-icon.png" class="icon-in-text" />.']
 			}
 		],
 		unitsList: {

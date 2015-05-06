@@ -144,13 +144,13 @@
 			'You can view the attack range of any unit by double tap when it is selected.',
 			'To attack an enemy unit, move your unit within range and select \'attack\'. If there is more than one enemy in range, select which unit to attack. The success of your attack is determined by unit characteristics and terrain.',
 			'Only a Commander can occupy a castle. Once a castle is occupied you can purchase new units with your gold. The Commander does not need to remain in the castle in order to purchase units.',
-			'You can occupy buildings by moving a soldier or Commander onto it and selecting \'occupy\'. Once a building is occupied, it changes colour. If a building is damaged you must repair the building before it can be occupied.',
+			'You can occupy buildings by moving a Soldier or Commander onto it and selecting \'occupy\'. Once a building is occupied, it changes colour. If a building is damaged you must repair the building before it can be occupied.',
 			'Once a building has been occupied, it earns gold. The more buildings you occupy, the more gold you earn.',
 			'Units can be healed by occupying buildings. The longer a unit stays, the more life it regains.',
 			'If a Commander is defeated in battle, he can be resurrected in a castle.',
 			'Water Elementals are amphibious, giving them increased movement, attack and defence when in water.',
 			'An attack by Dire Wolves is poisonous. A poisoned unit is slow and weak for its next turn.',
-			'A Sorceress has the power to summon skeleton warriors from the graves of fallen soldiers. After a unit has been defeated, a tombstone appears for 1 turn. Move a Sorceress next to a tombstone and select \'raise\'.',
+			'A Sorceress has the power to summon skeleton warriors from the graves of fallen units. After a unit has been defeated, a tombstone appears for 1 turn. Move a Sorceress next to a tombstone and select \'raise\'.',
 			'Use Wisps to provide nearby friendly units with an aura that augments their attack points.',
 			'The Catapult has the ability to destroy the enemy towns and help disrupt the flow of gold.',
 			'Keep your Dragons away from enemy archers, as they are vulnerable to arrows!'
@@ -174,12 +174,12 @@
 			// 3
 			{
 				//img: 'img/help/occupy-farm.png',
-				text: ['You can occupy buildings by moving a soldier or Commander onto it and selecting \'occupy\' (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />).', 'Once a building is occupied, it changes colour.', 'If a building is damaged you must repair (<img src="img/help/fix-building-icon.png" class="icon-in-text" />) the building before it can be occupied.']
+				text: ['You can occupy buildings by moving a Soldier or Commander onto it and selecting \'occupy\' (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />).', 'Once a building is occupied, it changes colour.', 'If a building is damaged you must repair (<img src="img/help/fix-building-icon.png" class="icon-in-text" />) the building before it can be occupied.']
 			},
 			// 4
 			{
 				img: 'img/help/raise.png',
-				text: ['A Sorceress has the power to summon skeleton warriors from the graves of fallen soldiers.', 'After a unit has been defeated, a tombstone appears for 1 turn.', 'Move a Sorceress next to a tombstone and select \'raise\' <img src="img/help/attack-icon.png" class="icon-in-text" />.']
+				text: ['A Sorceress has the power to summon Skeleton warriors from the graves of fallen units.', 'After a unit has been defeated, a tombstone appears for 1 turn.', 'Move a Sorceress next to a tombstone and select \'raise\' <img src="img/help/attack-icon.png" class="icon-in-text" />.']
 			}
 		],
 		unitsList: {
