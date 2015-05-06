@@ -5,10 +5,11 @@
 	/*global window */
 	/*global */
 
-	var langEn = win.APP.languages.en;
+	var langEn = win.APP.languages.en,
+		langRu = win.APP.languages.ru;
 
 	win.APP.maps.mission_001_001 = {
-		"version": 2,
+		"version": 3,
 		"type": "mission",
 		"isOpen": true,
 		"openMaps": [
@@ -17,16 +18,21 @@
 		],
 		"size": {"width": 12, "height": 12},
 		"name": "TEMPLE RAIDERS",
-		//"name-ru": "RU TEMPLE RAIDERS",
+		"name-ru": "ХРАМОВЫЕ НАЛЕТЧИКИ",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
 		"objective": 'Stop the raiders, King Galamar must survive.',
+		"objective-ru": 'Остановить налетчиков, Король Галамар должен выжить.',
 		"help": [
 			langEn.helpList[0],
 			langEn.helpList[1]
+		],
+		"help-ru": [
+			langRu.helpList[0],
+			langRu.helpList[1]
 		],
 		"startBriefing": [
 			{
@@ -114,6 +120,94 @@
 				}
 			}
 		],
+
+		"startBriefing-ru": [
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langRu.story.list[0]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langRu.story.list[1]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langRu.story.list[2]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Храм Отваги'
+				},
+				playSound: {
+					sound: 'bg-good.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Помогите! Нас атакуют! Эти скелеты-налетчики украли Кристалл Отваги, который мы поклялись защищать!',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Капитан, мы должны остановить эту угрозу немедленно!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Вперед, войска! Заставим этих налетчиков заплатить!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'ХРАМОВЫЕ НАЛЕТЧИКИ',
+					text: 'Остановить налетчиков, Король Галамар должен выжить.'
+				},
+				onHide: {
+					fn: 'autoShowHelpButton'
+				}
+			}
+		],
+
 		"n1Briefing": [
 			{
 				popupName: 'briefing',
@@ -144,6 +238,38 @@
 				}
 			}
 		],
+
+		"n1Briefing-ru": [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Еще атакующие!',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 1, y: 1 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Там не налетчики! Они похожи на вражеские войска! Будьте осторожны, Капитан!',
+					img: 'i/face/galamar.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 10, y: 10 }]
+				}
+			}
+		],
+
 		"endBriefing": [
 			{
 				popupName: 'briefing',
@@ -200,17 +326,63 @@
 			}
 		],
 
-		//"objective-ru": 'RU - Stop the raiders, King Galamar must survive.',
-		//"startBriefing-ru": [
-		//	{
-		//		popupName: 'briefing',
-		//		text: 'ru - Help us! We are under attack! These skeleton raiders have stolen the Crystal of Courage we swore to protect!',
-		//		from: 'right',
-		//		img: 'i/face/tamplier.png'
-		//	}
-		//],
-		//"n1Briefing-ru": [],
-		//"endBriefing-ru": [],
+		"endBriefing-ru": [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Благодарю, ваше Величество, вы должны помочь нам возвратить Кристалл как можно быстрее. Такая важная реликвия не должна попасть в плохие руки!',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Я в вашем распоряжении. Кто сможет проследить за Кристаллом?',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Боюсь, эти злоумышленники могут быть связаны с еще большим злом. Было бы умно посоветоваться с Высщим Священником из Храма Мудрости. Он может знать больше об этом.',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Я пошлю брата Валадорна немедленно. Я возьму свои войска и буду преследовать атакующих.',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langRu.missionComplete,
+					text: '\'Перекресток\' ' + langRu.unlocked //"openMaps": [ { "jsMapKey": 'mission_001_002', "type": "mission" }, { "jsMapKey": 'River', type: "skirmish" } ],
+
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap', // open next battle map
+					args: ['mission_001_002', { type: 'mission' }]
+				}
+			}
+		],
+
+
 
 		"cases": [
 			{
