@@ -108,6 +108,7 @@
 			skirmishMaps: 'skirmish',
 			missionMaps: 'mission',
 			savedGame: 'savedGame',
+			userMap: 'userMap',
 
 			init: function () {
 
@@ -143,6 +144,8 @@
 					//tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.savedGame); // TODO: comment this for production
 
 					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.savedGame + ' (date TEXT, name TEXT, game TEXT)', [], null, null);
+
+					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.userMap + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], null, null);
 
 				});
 
