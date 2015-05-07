@@ -12,7 +12,7 @@
 		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
 		"name": "Solitude",
-		"name-ru": "Одиночество",
+		"name-ru": "РћРґРёРЅРѕС‡РµСЃС‚РІРѕ",
 		"maxPlayers": 4,
 		"isOpen": false,
 

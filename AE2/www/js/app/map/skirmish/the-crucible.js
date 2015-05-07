@@ -12,7 +12,7 @@
 		"type": "skirmish",
 		"size": {"width": 19, "height": 19},
 		"name": "The Crucible",
-		"name-ru": "Суровое испытание",
+		"name-ru": "РЎСѓСЂРѕРІРѕРµ РёСЃРїС‹С‚Р°РЅРёРµ",
 		"maxPlayers": 4,
 		"isOpen": false,
 

@@ -12,7 +12,7 @@
 		"type": "skirmish",
 		"size": {"width": 19, "height": 19},
 		"name": "Shadow Lands",
-		"name-ru": "Теневые земли",
+		"name-ru": "РўРµРЅРµРІС‹Рµ Р·РµРјР»Рё",
 		"maxPlayers": 4,
 		"isOpen": false,
 

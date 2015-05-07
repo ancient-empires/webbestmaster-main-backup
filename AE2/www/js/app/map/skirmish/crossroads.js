@@ -12,7 +12,7 @@
 		"type": "skirmish",
 		"size": {"width": 11, "height": 19},
 		"name": "Crossroads",
-		"name-ru": "Перекресток",
+		"name-ru": "РџРµСЂРµРєСЂРµСЃС‚РѕРє",
 		"maxPlayers": 4,
 		"isOpen": false,
 

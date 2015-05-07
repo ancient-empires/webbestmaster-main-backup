@@ -12,7 +12,7 @@
 		"type": "skirmish",
 		"size": {"width": 13, "height": 13},
 		"name": "Winter Storm",
-		"name-ru": "Зимний шторм",
+		"name-ru": "Р—РёРјРЅРёР№ С€С‚РѕСЂРј",
 		"maxPlayers": 4,
 		"isOpen": false,
 

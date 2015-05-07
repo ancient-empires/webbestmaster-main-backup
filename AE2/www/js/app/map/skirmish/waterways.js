@@ -12,7 +12,7 @@
 		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
 		"name": "Waterways",
-		"name-ru": "Водоемы",
+		"name-ru": "Р’РѕРґРѕРµРјС‹",
 		"maxPlayers": 4,
 		"isOpen": false,
 

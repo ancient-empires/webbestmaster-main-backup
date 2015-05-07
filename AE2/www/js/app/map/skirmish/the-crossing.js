@@ -12,7 +12,7 @@
 		"type": "skirmish",
 		"size": {"width": 16, "height": 10},
 		"name": "The Crossing",
-		"name-ru": "Οεπερεχενθε",
+		"name-ru": "ΠΠµΡ€ΠµΡΠµΡ‡ΠµΠ½ΠΈΠµ",
 		"maxPlayers": 2,
 		"isOpen": true,
 
