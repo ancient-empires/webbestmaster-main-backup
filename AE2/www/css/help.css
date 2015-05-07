@@ -24,6 +24,10 @@
 	padding-bottom: 0.7rem;
 }
 
+.popup-page-text.ta-center {
+	text-align: center;
+}
+
 .scroll-area .popup-page:last-child {
 	border-bottom: none;
 	margin-bottom: 0;

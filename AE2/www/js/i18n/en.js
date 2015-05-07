@@ -31,6 +31,7 @@
 		music: 'music',
 		vibrate: 'vibrate',
 		help: 'help',
+		youCanDisableHelpNotification: 'You can disable help notification from \'Settings\'',
 		fightAnimation: 'fight animation',
 		gameSpeed: 'game speed',
 		confirmTurn: 'confirm turn',
