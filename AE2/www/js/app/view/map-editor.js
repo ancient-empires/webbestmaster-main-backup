@@ -19,7 +19,8 @@
 			'click .js-set-brush-color': 'setBrushColor',
 			'click .js-set-brush-form': 'setBrushForm',
 
-			'click .js-save-map': 'saveMap'
+			'click .js-save-map': 'saveMap',
+			'click .js-size-button': 'setMapSize'
 
 		},
 
@@ -67,6 +68,12 @@
 		},
 
 		defaults: {
+			map: {
+				size: {
+					min: 4,
+					max: 24
+				}
+			},
 			brush: {
 				color: 'blue',
 				type: 'terrain', // terrain, unit, building
@@ -340,24 +347,6 @@
 
 		},
 
-		//changeSize: function (e) {
-		//
-		//	var view = this,
-		//		map = view.get('map'),
-		//		$this = $(e.currentTarget),
-		//		value = $this.attr('data-value');
-		//
-		//	map.size[$this.attr('data-group-name')] = parseInt(value, 10);
-		//	view.drawMap();
-		//	view.setSize();
-		//
-		//	view.get('mover').setDefaultContainerState();
-		//
-		//	view.reDrawUnits();
-		//	view.reDrawBuildings();
-		//
-		//},
-
 		reDrawUnits: function () {
 			this.$el.find(this.selectors.unitsWrapper).empty();
 			this.drawUnits();
@@ -464,16 +453,126 @@
 
 			});
 
-
 			console.log(JSON.stringify(endMap));
+
+		},
+
+		//changeSize: function (e) {
+		//
+		//	var view = this,
+		//		map = view.get('map'),
+		//		$this = $(e.currentTarget),
+		//		value = $this.attr('data-value');
+		//
+		//	map.size[$this.attr('data-group-name')] = parseInt(value, 10);
+		//	view.drawMap();
+		//	view.setSize();
+		//
+		//	view.get('mover').setDefaultContainerState();
+		//
+		//	view.reDrawUnits();
+		//	view.reDrawBuildings();
+		//
+		//},
+
+		setMapSize: function (e) {
+
+			var view = this,
+				defaults = view.defaults,
+				max = defaults.map.size.max,
+				min = defaults.map.size.min,
+				//util = view.util,
+				appUtil = win.APP.util,
+				getBetween = appUtil.getBetween,
+				map = view.get('map'),
+				terrain = map.terrain,
+				units = map.units || [],
+				buildings = map.buildings || [],
+				newTerrain = {},
+				$button = $(e.currentTarget),
+				delta = $button.attr('data-delta'),
+				deltaNumber = parseInt(delta, 10),
+				position = $button.attr('data-position');
+
+			if (position === 'up' || position === 'down') {
+
+				if (map.size.height + deltaNumber !== getBetween(min, map.size.height + deltaNumber, max)) {
+					console.log('wrong height');
+					return;
+				}
+
+				map.size.height += deltaNumber;
+
+				if (position === 'up') {
+
+					_.each(terrain, function (value, key) {
+						var xy = key.match(/\-?\d+/g),
+							x = xy[0],
+							y = parseInt(xy[1], 10) + deltaNumber;
+						newTerrain['x' + x + 'y' + y] = value;
+					});
+
+					_.each(units, function (unit) {
+						unit.y += deltaNumber;
+					});
+
+					_.each(buildings, function (building) {
+						building.y += deltaNumber;
+					});
+
+					map.terrain = newTerrain;
+
+				}
+
+			}
+
+			if (position === 'left' || position === 'right') {
+
+				if (map.size.width + deltaNumber !== getBetween(min, map.size.width + deltaNumber, max)) {
+					console.log('wrong width');
+					return;
+				}
+
+				map.size.width += deltaNumber;
+
+				if (position === 'left') {
+
+					_.each(terrain, function (value, key) {
+						var xy = key.match(/\-?\d+/g),
+							x = parseInt(xy[0], 10) + deltaNumber,
+							y = xy[1];
+						newTerrain['x' + x + 'y' + y] = value;
+					});
+
+					_.each(units, function (unit) {
+						unit.x += deltaNumber;
+					});
+
+					_.each(buildings, function (building) {
+						building.x += deltaNumber;
+					});
+
+					map.terrain = newTerrain;
+
+				}
+
+			}
+
+
+			view.drawMap();
+			view.setSize();
+
+			view.get('mover').setDefaultContainerState();
+
+			view.reDrawUnits();
+			view.reDrawBuildings();
+
 
 
 
 
 
 		},
-
-
 
 
 

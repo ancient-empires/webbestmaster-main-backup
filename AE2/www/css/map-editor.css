@@ -56,3 +56,55 @@
 .map-editor-brush-form-eraser {
 	background-image: url(../i/ui/eraser.png);
 }
+
+
+.size-tools-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.size-buttons-wrapper {
+	position: fixed;
+}
+
+.size-buttons-wrapper-up {
+	top: 0;
+	left: 50%;
+}
+
+.size-buttons-wrapper-right {
+	right: 8rem;
+	top: 50%;
+}
+
+.size-buttons-wrapper-down {
+	bottom: 3rem;
+	left: 50%;
+}
+
+.size-buttons-wrapper-left {
+	left: 0;
+	top: 50%;
+}
+
+.size-button {
+	font-size: 0.5rem;
+	width: 1rem;
+	height: 1rem;
+	background-color: #000;
+	float: left;
+	line-height: 1rem;
+	text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
