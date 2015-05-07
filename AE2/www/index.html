@@ -175,9 +175,9 @@
 				<div class="table-cell land-padding-top land-vertical-align-middle">
 					<div class="inline-block">
 						<div class="main-button" data-sound="click.mp3" data-route="play"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ play }}</div>
-						<!--<div class="main-button" data-route="map-editor"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ mapEditor }}</div>-->
 						<!--<div class="main-button opacity50 hidden"><div class="main-button-icon main-button-icon-0">&nbsp;</div>{{ online }}</div>-->
 						<div class="main-button" data-sound="click.mp3" data-route="settings"><div class="main-button-icon main-button-icon-4">&nbsp;</div>{{ settings }}</div>
+						<div class="main-button" data-sound="click.mp3" data-route="map-editor"><div class="main-button-icon main-button-icon-5">&nbsp;</div>{{ mapEditor }}</div>
 						<div class="main-button" data-sound="click.mp3" data-route="instructions"><div class="main-button-icon main-button-icon-6">&nbsp;</div>{{ instructions }}</div>
 						<div class="main-button" data-sound="click.mp3" data-route="about"><div class="main-button-icon main-button-icon-7">&nbsp;</div>{{ about }}</div>
 					</div>
@@ -890,7 +890,7 @@
 		<div class="h100 js-scroll-area-container scroll-touch">
 			<div class="scroll-area">
 
-				<p class="popup-page-text ta-center"> {{ youCanDisableHelpNotification }} </p>
+				<p class="popup-page-text ta-center">{{ youCanDisableHelpNotification }}</p>
 
 				<% _.each(help, function (item) { %>
 
@@ -920,6 +920,7 @@
 
 	<div>
 
+<!--
 		<div class="js-tab-button tab-button tab-button-close" data-tab-id="map-info" data-tab-state="close">info <span class="float-right show-if-close">+</span><span class="float-right show-if-open">-</span></div>
 
 		<div class="js-tab-block hidden" data-tab-id="map-info">
@@ -941,10 +942,11 @@
 			</span>
 		</div>
 
+-->
 
-		<div class="js-tab-button tab-button tab-button-close" data-tab-id="map-draw" data-tab-state="close">tiles <span class="float-right show-if-close">+</span><span class="float-right show-if-open">-</span></div>
+		<!--<div class="js-tab-button tab-button tab-button-close" data-tab-id="map-draw" data-tab-state="close">tiles <span class="float-right show-if-close">+</span><span class="float-right show-if-open">-</span></div>-->
 
-		<div class="js-tab-block hidden" data-tab-id="map-draw">
+		<!--<div class="js-tab-block hidden" data-tab-id="map-draw">-->
 
 		<% _.each(["terrain", "unit", "building"], function(type) { %>
 			<% if ( brush.type === type ) { %>
@@ -1027,7 +1029,7 @@
 
 		</div>
 
-	</div>
+	<!--</div>-->
 
 </script>
 

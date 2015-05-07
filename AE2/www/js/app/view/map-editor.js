@@ -13,7 +13,7 @@
 
 		events: {
 			'click .js-open-map-popup': 'openMapPopup',
-			'change .js-tool-size': 'changeSize',
+			//'change .js-tool-size': 'changeSize',
 
 			'click .js-set-brush-type': 'setBrushType',
 			'click .js-set-brush-color': 'setBrushColor',
@@ -52,12 +52,12 @@
 		},
 
 		defaultMap: {
-			type: 'skirmish',
+			type: 'userMap',
 			size: {
-				width: 10,
-				height: 6
+				width: 11,
+				height: 11
 			},
-			name: 'no name',
+			name: 'user map 0',
 
 			maxPlayers: null, // set automatically
 			units: [],
@@ -279,15 +279,17 @@
 					return;
 				}
 
-				var unitType = unitData.type,
-					unit,
-					isCommander = unitType === 'commander' || _.contains(win.APP.unitMaster.commanderList, unitType);
+				var
+					// unitType = unitData.type,
+					unit
+					//,isCommander = unitType === 'commander' || _.contains(win.APP.unitMaster.commanderList, unitType)
+					;
 
 				unitData.color = playerColors[unitData.ownerId];
 
-				if ( isCommander ) {
-					unitData.type = commanderList[unitData.ownerId];
-				}
+				//if ( isCommander ) {
+				//	unitData.type = commanderList[unitData.ownerId];
+				//}
 
 				unit = win.APP.unitMaster.createUnit(unitData);
 				view.appendUnit(unit);
@@ -297,9 +299,7 @@
 
 		},
 
-		updateTools: function (data) {
-
-			data = data || {};
+		updateTools: function () {
 
 			function objToDataURL(obj) {
 				return encodeURI(JSON.stringify(obj).replace(/\s/g, ''));
@@ -338,29 +338,25 @@
 
 			view.delegateEvents();
 
-			if (data.open) {
-				view.$el.find('.js-tab-button[data-tab-id="' + data.open + '"]').trigger('click');
-			}
-
 		},
 
-		changeSize: function (e) {
-
-			var view = this,
-				map = view.get('map'),
-				$this = $(e.currentTarget),
-				value = $this.attr('data-value');
-
-			map.size[$this.attr('data-group-name')] = parseInt(value, 10);
-			view.drawMap();
-			view.setSize();
-
-			view.get('mover').setDefaultContainerState();
-
-			view.reDrawUnits();
-			view.reDrawBuildings();
-
-		},
+		//changeSize: function (e) {
+		//
+		//	var view = this,
+		//		map = view.get('map'),
+		//		$this = $(e.currentTarget),
+		//		value = $this.attr('data-value');
+		//
+		//	map.size[$this.attr('data-group-name')] = parseInt(value, 10);
+		//	view.drawMap();
+		//	view.setSize();
+		//
+		//	view.get('mover').setDefaultContainerState();
+		//
+		//	view.reDrawUnits();
+		//	view.reDrawBuildings();
+		//
+		//},
 
 		reDrawUnits: function () {
 			this.$el.find(this.selectors.unitsWrapper).empty();
@@ -383,9 +379,7 @@
 			brush.type = $this.attr('data-brush-type');
 			brush.form = '';
 
-			view.updateTools({
-				open: 'map-draw'
-			});
+			view.updateTools();
 
 		},
 
@@ -397,9 +391,7 @@
 
 			brush.color = $this.attr('data-brush-color');
 
-			view.updateTools({
-				open: 'map-draw'
-			});
+			view.updateTools();
 
 		},
 
@@ -411,9 +403,7 @@
 
 			brush.form = $this.attr('data-brush-form');
 
-			view.updateTools({
-				open: 'map-draw'
-			});
+			view.updateTools();
 
 		},
 
