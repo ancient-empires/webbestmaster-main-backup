@@ -1676,6 +1676,12 @@
 
 			var placeArmor = model.getArmorByXY(xy),
 				level = unit.get('level'),
+				unitMoveType = unit.get('moveType'),
+				unitXY = {
+					x: unit.get('x'),
+					y: unit.get('y')
+				},
+				unitTerrain = model.getTerrainByXY(unitXY),
 				atk = unit.get('atk'),
 				atkMax = atk.max,
 				atkMin = atk.min,
@@ -1695,6 +1701,11 @@
 			viewObj.underWispAura = underWispAura;
 			viewObj.poisonCount = poisonCount;
 			viewObj.placeArmor = placeArmor;
+
+			// detect armor for elementals
+			if (unitMoveType === 'flow' && unitTerrain.terrainType === 'water') {
+				viewObj.placeArmor = unitMaster.bonusDefByWater;
+			}
 
 			view.$el.find(view.selectors.unitInfoWrapper).html(view.tmpl['unit-info'](viewObj));
 
