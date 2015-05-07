@@ -9,7 +9,7 @@
 		langRu = win.APP.languages.ru;
 
 	win.APP.maps.mission_001_001 = {
-		"version": 3,
+		"version": 4,
 		"type": "mission",
 		"isOpen": true,
 		"openMaps": [
