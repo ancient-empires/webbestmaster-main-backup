@@ -9,7 +9,7 @@
 		langRu = win.APP.languages.ru;
 
 	win.APP.maps.mission_001_007 = {
-		"version": 3,
+		"version": 4,
 		"type": "mission",
 		"isOpen": false,
 		"openMaps": [
@@ -18,7 +18,7 @@
 		],
 		"size": {"width": 16, "height": 18},
 		"name": "RENDEZVOUS",
-		"name-ru": "ВСТРЕЧА",
+		"name-ru": "Р’РЎРўР Р•Р§Рђ",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"money": [
@@ -29,7 +29,7 @@
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
 		"objective": 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles! Galamar and Valadorn must survive.',
-		"objective-ru": 'Пробить путь на запад через вражеские войска, убить их командира и занять все замки! Король Галамар и Король Валадорн должны выжить.',
+		"objective-ru": 'РџСЂРѕР±РёС‚СЊ РїСѓС‚СЊ РЅР° Р·Р°РїР°Рґ С‡РµСЂРµР· РІСЂР°Р¶РµСЃРєРёРµ РІРѕР№СЃРєР°, СѓР±РёС‚СЊ РёС… РєРѕРјР°РЅРґРёСЂР° Рё Р·Р°РЅСЏС‚СЊ РІСЃРµ Р·Р°РјРєРё! РљРѕСЂРѕР»СЊ Р“Р°Р»Р°РјР°СЂ Рё РљРѕСЂРѕР»СЊ Р’Р°Р»Р°РґРѕСЂРЅ РґРѕР»Р¶РЅС‹ РІС‹Р¶РёС‚СЊ.',
 
 		"startBriefing": [
 			{
@@ -51,14 +51,14 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'За Городом'
+					header: 'Р—Р° Р“РѕСЂРѕРґРѕРј'
 				}
 			},
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'ВСТРЕЧА',
-					text: 'Пробить путь на запад через вражеские войска, убить их командира и занять все замки! Король Галамар и Король Валадорн должны выжить.'
+					header: 'Р’РЎРўР Р•Р§Рђ',
+					text: 'РџСЂРѕР±РёС‚СЊ РїСѓС‚СЊ РЅР° Р·Р°РїР°Рґ С‡РµСЂРµР· РІСЂР°Р¶РµСЃРєРёРµ РІРѕР№СЃРєР°, СѓР±РёС‚СЊ РёС… РєРѕРјР°РЅРґРёСЂР° Рё Р·Р°РЅСЏС‚СЊ РІСЃРµ Р·Р°РјРєРё! РљРѕСЂРѕР»СЊ Р“Р°Р»Р°РјР°СЂ Рё РљРѕСЂРѕР»СЊ Р’Р°Р»Р°РґРѕСЂРЅ РґРѕР»Р¶РЅС‹ РІС‹Р¶РёС‚СЊ.'
 				}
 			}
 		],
@@ -126,7 +126,7 @@
 				from: 'left',
 				cssClass: 'briefing',
 				popupData: {
-					text: 'Беги, жалкий человечишко, пока еще не слишком поздно!',
+					text: 'Р‘РµРіРё, Р¶Р°Р»РєРёР№ С‡РµР»РѕРІРµС‡РёС€РєРѕ, РїРѕРєР° РµС‰Рµ РЅРµ СЃР»РёС€РєРѕРј РїРѕР·РґРЅРѕ!',
 					img: 'i/face/demon-lord.png'
 				},
 				onShow: {
@@ -140,7 +140,7 @@
 				from: 'right',
 				cssClass: 'briefing',
 				popupData: {
-					text: 'Вражеские войска выглядят угрожающе, я рекомендую отступить.',
+					text: 'Р’СЂР°Р¶РµСЃРєРёРµ РІРѕР№СЃРєР° РІС‹РіР»СЏРґСЏС‚ СѓРіСЂРѕР¶Р°СЋС‰Рµ, СЏ СЂРµРєРѕРјРµРЅРґСѓСЋ РѕС‚СЃС‚СѓРїРёС‚СЊ.',
 					img: 'i/face/soldier.png'
 				},
 				onShow: {
@@ -154,7 +154,7 @@
 				from: 'left',
 				cssClass: 'briefing',
 				popupData: {
-					text: 'У нас нет иного выбора кроме атаки!',
+					text: 'РЈ РЅР°СЃ РЅРµС‚ РёРЅРѕРіРѕ РІС‹Р±РѕСЂР° РєСЂРѕРјРµ Р°С‚Р°РєРё!',
 					img: 'i/face/galamar.png'
 				}
 			},
@@ -163,7 +163,7 @@
 				from: 'right',
 				cssClass: 'briefing',
 				popupData: {
-					text: 'Галамар! Мы пришли так быстро как могли! Будем сражаться бок о бок!',
+					text: 'Р“Р°Р»Р°РјР°СЂ! РњС‹ РїСЂРёС€Р»Рё С‚Р°Рє Р±С‹СЃС‚СЂРѕ РєР°Рє РјРѕРіР»Рё! Р‘СѓРґРµРј СЃСЂР°Р¶Р°С‚СЊСЃСЏ Р±РѕРє Рѕ Р±РѕРє!',
 					img: 'i/face/valadorn.png'
 				},
 				onShow: {
@@ -199,7 +199,7 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete,
-					text: '\'Утренняя звезда\' ' + langRu.unlocked
+					text: '\'РЈС‚СЂРµРЅРЅСЏСЏ Р·РІРµР·РґР°\' ' + langRu.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',
