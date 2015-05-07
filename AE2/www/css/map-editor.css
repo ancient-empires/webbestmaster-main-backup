@@ -99,7 +99,12 @@
 	text-align: center;
 }
 
-
+.map-name {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 8rem;
+}
 
 
 

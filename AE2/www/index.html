@@ -836,6 +836,9 @@
 <script type="text/x-template" data-name="map-editor">
 
 	<div class="battle-view-wrapper js-map-editor-wrapper">
+
+		<input type="text" class="map-name input-text js-map-name" value="<%= mapName %>" />
+
 		<div class="size-tools-wrapper">
 
 			<div class="size-buttons-wrapper size-buttons-wrapper-up">
@@ -945,7 +948,6 @@
 		<div class="js-tab-block hidden" data-tab-id="map-info">
 			<div>{{ name }}:</div>
 
-			<input type="text" class="input-text js-map-name" value="<%= mapName %>" />
 
 			<div>{{ width }}:</div>
 			<span>

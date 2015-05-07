@@ -100,7 +100,9 @@
 
 			view.detectClickEvent();
 
-			view.$el = $(view.tmpl['map-editor']());
+			view.$el = $(view.tmpl['map-editor']({
+				mapName: view.defaultMap.name
+			}));
 
 			view.set('map', util.copyJSON(data.map || view.defaultMap));
 
@@ -567,15 +569,7 @@
 			view.reDrawUnits();
 			view.reDrawBuildings();
 
-
-
-
-
-
 		},
-
-
-
 
 		test: function () {
 
