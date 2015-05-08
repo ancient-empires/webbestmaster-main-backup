@@ -414,8 +414,8 @@
 				endMap = view.util.copyJSON(map),
 				maxX = map.size.width - 1,
 				maxY = map.size.height - 1,
-				buildings = map.buildings,
-				units = map.units,
+				buildings = map.buildings || [],
+				units = map.units || [],
 				getXYFromStringXY = view.util.getXYFromStringXY,
 				terrain = map.terrain;
 
@@ -425,9 +425,11 @@
 
 			_.each(terrain, function (type, xyStr) {
 
-				var xy = getXYFromStringXY(xyStr);
+				var xy = getXYFromStringXY(xyStr),
+					x = xy.x,
+					y = xy.y;
 
-				if ( xy.x > maxX || xy.y > maxY ) {
+				if ( x > maxX || y > maxY || x < 0 || y < 0 ) {
 					return;
 				}
 
@@ -437,7 +439,10 @@
 
 			_.each(buildings, function (building) {
 
-				if ( building.x > maxX || building.y > maxY ) {
+				var x = building.x,
+					y = building.y;
+
+				if ( x > maxX || y > maxY || x < 0 || y < 0 ) {
 					return;
 				}
 
@@ -451,7 +456,10 @@
 
 			_.each(units, function (unit) {
 
-				if ( unit.x > maxX || unit.y > maxY ) {
+				var x = unit.x,
+					y = unit.y;
+
+				if ( x > maxX || y > maxY || x < 0 || y < 0 ) {
 					return;
 				}
 
@@ -464,7 +472,7 @@
 
 			});
 
-			console.log(JSON.stringify(endMap));
+			//console.log(JSON.stringify(endMap));
 
 		},
 

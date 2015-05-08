@@ -476,8 +476,8 @@
 		},
 		getXYFromStringXY: function (xy) {
 			return {
-				x: parseInt(xy.replace(/^x(\d+)y\d+$/, '$1'), 10),
-				y: parseInt(xy.replace(/^x\d+y(\d+)$/, '$1'), 10)
+				x: parseInt(xy.replace(/^x(\-?\d+)y\d+$/, '$1'), 10),
+				y: parseInt(xy.replace(/^x\d+y(\-?\d+)$/, '$1'), 10)
 			};
 		},
 		getStringFromXY: function (x, y) {
