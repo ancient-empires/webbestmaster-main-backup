@@ -258,9 +258,16 @@
 				playerColors = mapMaster.playerColors;
 
 			_.each(buildings, function (building) {
-				if (building.x > maxX || building.y > maxY) {
+
+				var x, y;
+
+				x = building.x;
+				y = building.y;
+
+				if (x > maxX || y > maxY || x < 0 || y < 0) {
 					return;
 				}
+
 				building.color = playerColors[building.ownerId] || 'gray';
 				if (building.color === 'gray') {
 					delete building.ownerId;
