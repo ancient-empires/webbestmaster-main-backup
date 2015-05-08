@@ -942,33 +942,6 @@
 
 	<div>
 
-<!--
-		<div class="js-tab-button tab-button tab-button-close" data-tab-id="map-info" data-tab-state="close">info <span class="float-right show-if-close">+</span><span class="float-right show-if-open">-</span></div>
-
-		<div class="js-tab-block hidden" data-tab-id="map-info">
-			<div>{{ name }}:</div>
-
-
-			<div>{{ width }}:</div>
-			<span>
-				<span class="js-list-backward" data-group-name="width"> <- </span>
-				<span class="js-list-changed-item js-tool-size" data-group-name="width" data-full-list="<%= mapSizes %>" data-key="<%= mapWidth.key %>"><%= mapWidth.value %></span>
-				<span class="js-list-forward" data-group-name="width"> -> </span>
-			</span>
-			<div>{{ height }}:</div>
-			<span>
-				<span class="js-list-backward" data-group-name="height"> <- </span>
-				<span class="js-list-changed-item js-tool-size" data-group-name="height" data-full-list="<%= mapSizes %>" data-key="<%= mapHeight.key %>"><%= mapHeight.value %></span>
-				<span class="js-list-forward" data-group-name="height"> -> </span>
-			</span>
-		</div>
-
--->
-
-		<!--<div class="js-tab-button tab-button tab-button-close" data-tab-id="map-draw" data-tab-state="close">tiles <span class="float-right show-if-close">+</span><span class="float-right show-if-open">-</span></div>-->
-
-		<!--<div class="js-tab-block hidden" data-tab-id="map-draw">-->
-
 		<% _.each(["terrain", "unit", "building"], function(type) { %>
 			<% if ( brush.type === type ) { %>
 			<div class="js-set-brush-type" data-brush-type="<%= type %>"><%= type %></div>
@@ -1006,12 +979,21 @@
 		<% }; %>
 
 		<% if ( brush.type === 'unit' && brush.color !== 'gray') { %>
+
+			<% var noInEditor = window.APP.unitMaster.noInEditor, commanderList = window.APP.unitMaster.commanderList, allColors = window.APP.map.allColors; %>
+
 			<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
+
+				<% if ( _.contains(noInEditor, key) ) { return; }; %>
+
+				<% if ( _.contains(commanderList, key) && allColors.indexOf(brush.color) !== commanderList.indexOf(key) || hasCommander ) { return; }; %>
+
 				<% if ( brush.form === key ) { %>
 				<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form map-editor-brush-form-type" data-brush-form="<%= key %>">&nbsp;</div>
 				<% } else { %>
 				<div class="unit-image-<%= key %>-<%= brush.color %> js-set-brush-form map-editor-brush-form-type opacity50" data-brush-form="<%= key %>">&nbsp;</div>
 				<% }; %>
+
 			<% }); %>
 
 			<% if ( brush.form === 'eraser' ) { %>
@@ -1049,8 +1031,6 @@
 		<div class="clear"></div>
 
 		</div>
-
-	<!--</div>-->
 
 </script>
 

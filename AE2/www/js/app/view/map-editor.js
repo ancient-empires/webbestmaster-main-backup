@@ -139,8 +139,11 @@
 				util = win.APP.util,
 				buildingMaster = win.APP.building,
 				mapMaster = win.APP.map,
+				unitMaster = win.APP.unitMaster,
 				playerColors = mapMaster.playerColors,
-				buildingData;
+				buildingData,
+				unitType = brush.form,
+				unitForRemove;
 
 			if (brush.type === 'terrain' && brush.form) {
 				if (brush.form === 'eraser') {
@@ -152,9 +155,17 @@
 				return;
 			}
 
-			if (brush.type === 'unit' && brush.form) {
+			if (brush.type === 'unit' && unitType) {
 				util.arrayRemoveByValue(map.units, _.find(map.units, xy));
 				if (brush.form !== 'eraser') {
+
+					if ( _.contains(unitMaster.commanderList, unitType) ) {
+						unitForRemove = _.find(map.units, {type: unitType});
+						if (unitForRemove) {
+							win.APP.util.arrayRemoveByValue(map.units, unitForRemove);
+						}
+					}
+
 					map.units.push({
 						x: xy.x,
 						y: xy.y,
@@ -319,34 +330,17 @@
 
 		updateTools: function () {
 
-			function objToDataURL(obj) {
-				return encodeURI(JSON.stringify(obj).replace(/\s/g, ''));
-			}
-
 			var view = this,
 				map = view.get('map'),
-				mapWidth = map.size.width,
-				mapHeight = map.size.height,
 				$wrapper = view.$el.find(view.selectors.toolsWrapper),
 				$node,
-				parseData = {},
-				mapMaster = win.APP.map,
-				mapSizes = [];
-
-			_.each(mapMaster.mapSizes, function (value, key) {
-				mapSizes.push({
-					key: key,
-					value: value
-				});
-			});
-
-			parseData.mapSizes = objToDataURL(mapSizes);
-			parseData.mapHeight = _.find(mapSizes, { value: mapHeight });
-			parseData.mapWidth = _.find(mapSizes, { value: mapWidth });
+				parseData = {};
 
 			parseData.brush = view.get('brush');
 
 			parseData.mapName = map.name;
+
+			parseData.hasCommander = false;
 
 			$node = $(view.tmpl['map-editor-tools'](parseData));
 
@@ -390,6 +384,8 @@
 				brush = view.get('brush');
 
 			brush.color = $this.attr('data-brush-color');
+
+			brush.form = undefined;
 
 			view.updateTools();
 
@@ -472,7 +468,7 @@
 
 			});
 
-			//console.log(JSON.stringify(endMap));
+			console.log(endMap);
 
 		},
 
