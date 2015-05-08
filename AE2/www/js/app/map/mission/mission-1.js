@@ -6,7 +6,15 @@
 	/*global */
 
 	var langEn = win.APP.languages.en,
-		langRu = win.APP.languages.ru;
+		langRu = win.APP.languages.ru,
+		langEnExtra = {
+			name: "TEMPLE RAIDERS",
+			objective: 'Stop the raiders, King Galamar must survive.'
+		},
+		langRuExtra = {
+			name: "ХРАМОВЫЕ НАЛЕТЧИКИ",
+			objective: 'Остановить налетчиков, Король Галамар должен выжить.'
+		};
 
 	win.APP.maps.mission_001_001 = {
 		"version": 4,
@@ -17,22 +25,17 @@
 			{"jsMapKey": 'skirmish_001_007', "type": "skirmish"}
 		],
 		"size": {"width": 12, "height": 12},
-		"name": "TEMPLE RAIDERS",
-		"name-ru": "ХРАМОВЫЕ НАЛЕТЧИКИ",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
-		"objective": 'Stop the raiders, King Galamar must survive.',
-		"objective-ru": 'Остановить налетчиков, Король Галамар должен выжить.',
+		// en
+		"name": langEnExtra.name,
+		"objective": langEnExtra.objective,
 		"help": [
 			langEn.helpList[0],
 			langEn.helpList[1]
-		],
-		"help-ru": [
-			langRu.helpList[0],
-			langRu.helpList[1]
 		],
 		"startBriefing": [
 			{
@@ -112,15 +115,107 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'TEMPLE RAIDERS',
-					text: 'Stop the raiders, King Galamar must survive.'
+					header: langEnExtra.name,
+					text: langEnExtra.objective
 				},
 				onHide: {
 					fn: 'autoShowHelpButton'
 				}
 			}
 		],
+		"n1Briefing": [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'More attackers!',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 1, y: 1 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'These are no raiders! They look like enemy troops! Be careful, Captain!',
+					img: 'i/face/galamar.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 10, y: 10 }]
+				}
+			}
+		],
+		"endBriefing": [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Thank you, your Majesty, you must help us return the Crystal as quickly as possible. Such an important relic must not fall into the wrong hands!',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'I am at your service. Who could possibly be after the Crystal?',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'I fear these criminals may be allied to a greater evil. It would be wise to consult with the High Priest at the Temple of Wisdom. He may know more of this.',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'I shall send my brother Valadorn there immediately. I will take my troops and follow the attackers who got away.',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.missionComplete,
+					text: '\'Crossroads\' ' + langEn.unlocked //"openMaps": [ { "jsMapKey": 'mission_001_002', "type": "mission" }, { "jsMapKey": 'River', type: "skirmish" } ],
 
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap', // open next battle map
+					args: ['mission_001_002', { type: 'mission' }]
+				}
+			}
+		],
+
+		// ru
+		"name-ru": langRuExtra.name,
+		"objective-ru": langRuExtra.objective,
+		"help-ru": [
+			langRu.helpList[0],
+			langRu.helpList[1]
+		],
 		"startBriefing-ru": [
 			{
 				popupName: 'story',
@@ -199,46 +294,14 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'ХРАМОВЫЕ НАЛЕТЧИКИ',
-					text: 'Остановить налетчиков, Король Галамар должен выжить.'
+					header: langRuExtra.name,
+					text: langRuExtra.objective
 				},
 				onHide: {
 					fn: 'autoShowHelpButton'
 				}
 			}
 		],
-
-		"n1Briefing": [
-			{
-				popupName: 'briefing',
-				from: 'left',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'More attackers!',
-					img: 'i/face/soldier.png'
-				},
-				onShow: {
-					fn: 'centerToXY',
-					context: 'parentView',
-					args: [{ x: 1, y: 1 }]
-				}
-			},
-			{
-				popupName: 'briefing',
-				from: 'right',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'These are no raiders! They look like enemy troops! Be careful, Captain!',
-					img: 'i/face/galamar.png'
-				},
-				onShow: {
-					fn: 'centerToXY',
-					context: 'parentView',
-					args: [{ x: 10, y: 10 }]
-				}
-			}
-		],
-
 		"n1Briefing-ru": [
 			{
 				popupName: 'briefing',
@@ -269,63 +332,6 @@
 				}
 			}
 		],
-
-		"endBriefing": [
-			{
-				popupName: 'briefing',
-				from: 'right',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'Thank you, your Majesty, you must help us return the Crystal as quickly as possible. Such an important relic must not fall into the wrong hands!',
-					img: 'i/face/tamplier.png'
-				}
-			},
-			{
-				popupName: 'briefing',
-				from: 'left',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'I am at your service. Who could possibly be after the Crystal?',
-					img: 'i/face/galamar.png'
-				}
-			},
-			{
-				popupName: 'briefing',
-				from: 'right',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'I fear these criminals may be allied to a greater evil. It would be wise to consult with the High Priest at the Temple of Wisdom. He may know more of this.',
-					img: 'i/face/tamplier.png'
-				}
-			},
-			{
-				popupName: 'briefing',
-				from: 'left',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'I shall send my brother Valadorn there immediately. I will take my troops and follow the attackers who got away.',
-					img: 'i/face/galamar.png'
-				}
-			},
-			{
-				popupName: 'simple-notification',
-				popupData: {
-					header: langEn.missionComplete,
-					text: '\'Crossroads\' ' + langEn.unlocked //"openMaps": [ { "jsMapKey": 'mission_001_002', "type": "mission" }, { "jsMapKey": 'River', type: "skirmish" } ],
-
-				},
-				playSound: {
-					sound: 'victory.mp3',
-					road: 0,
-					isLoop: false
-				},
-				onHide: {
-					fn: 'openMap', // open next battle map
-					args: ['mission_001_002', { type: 'mission' }]
-				}
-			}
-		],
-
 		"endBriefing-ru": [
 			{
 				popupName: 'briefing',
@@ -381,8 +387,6 @@
 				}
 			}
 		],
-
-
 
 		"cases": [
 			{
