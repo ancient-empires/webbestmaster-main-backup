@@ -279,22 +279,22 @@
 				units = map.units,
 				mapMaster = win.APP.map,
 				playerColors = mapMaster.playerColors,
-				unitMaster = win.APP.unitMaster,
-				commanderList = unitMaster.commanderList;
+				unitMaster = win.APP.unitMaster;
 
 			_.each(units, function (unitData) {
 
-				if (unitData.x > maxX || unitData.y > maxY) {
+				var unit, x, y;
+
+				x = unitData.x;
+				y = unitData.y;
+
+				if (x > maxX || y > maxY || x < 0 || y < 0) {
 					return;
 				}
 
-				var tt = 11|0
-
-				var
-					// unitType = unitData.type,
-					unit
-					//,isCommander = unitType === 'commander' || _.contains(win.APP.unitMaster.commanderList, unitType)
-					;
+				// unitType = unitData.type,
+				//,isCommander = unitType === 'commander' || _.contains(win.APP.unitMaster.commanderList, unitType)
+				//	;
 
 				unitData.color = playerColors[unitData.ownerId];
 
@@ -302,9 +302,7 @@
 				//	unitData.type = commanderList[unitData.ownerId];
 				//}
 
-				console.log('draw unit');
-
-				unit = win.APP.unitMaster.createUnit(unitData);
+				unit = unitMaster.createUnit(unitData);
 				view.appendUnit(unit);
 
 			});
