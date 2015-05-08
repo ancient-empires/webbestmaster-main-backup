@@ -288,6 +288,8 @@
 					return;
 				}
 
+				var tt = 11|0
+
 				var
 					// unitType = unitData.type,
 					unit
@@ -299,6 +301,8 @@
 				//if ( isCommander ) {
 				//	unitData.type = commanderList[unitData.ownerId];
 				//}
+
+				console.log('draw unit');
 
 				unit = win.APP.unitMaster.createUnit(unitData);
 				view.appendUnit(unit);
