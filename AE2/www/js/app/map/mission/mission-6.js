@@ -8,12 +8,12 @@
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
 		langEnExtra = {
-			name: "",
-			objective: ''
+			name: "NORTHBOUND",
+			objective: 'Occupy the enemy castle and destroy all enemy troops. Valadorn must survive.'
 		},
 		langRuExtra = {
-			name: "",
-			objective: ''
+			name: "ИДУЩИЙ НА СЕВЕР",
+			objective: 'Занять вражеский замок и уничтожить все вражеские войска. Король Валадорн должен выжить.'
 		};
 
 	win.APP.maps.mission_001_006 = {
@@ -25,8 +25,6 @@
 			{"jsMapKey": 'skirmish_001_012', "type": "skirmish"}
 		],
 		"size": {"width": 12, "height": 20},
-		"name": "NORTHBOUND",
-		"name-ru": "ИДУЩИЙ НА СЕВЕР",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"availableStoreUnits": ["soldier", "archer", "elemental", "sorceress", "wisp", "dire-wolf", "golem"],
@@ -37,9 +35,9 @@
 		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
-		"objective": 'Occupy the enemy castle and destroy all enemy troops. Valadorn must survive.',
-		"objective-ru": 'Занять вражеский замок и уничтожить все вражеские войска. Король Валадорн должен выжить.',
-
+		// en
+		"name": langEnExtra.name,
+		"objective": langEnExtra.objective,
 		"startBriefing": [
 			{
 				popupName: 'simple-notification',
@@ -64,44 +62,11 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'NORTHBOUND',
-					text: 'Occupy the enemy castle and destroy all enemy troops. Valadorn must survive.'
+					header: langEnExtra.name,
+					text: langEnExtra.objective
 				}
 			}
-
 		],
-
-		"startBriefing-ru": [
-			{
-				popupName: 'simple-notification',
-				popupData: {
-					header: 'Ворота Торина'
-				}
-			},
-			{
-				popupName: 'briefing',
-				from: 'left',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'Враг планирует атаковать Короля Галамара, пока он не достигнет Торина. Мы должны уничтожить их!',
-					img: 'i/face/valadorn.png'
-				},
-				onShow: {
-					fn: 'centerToXY',
-					context: 'parentView',
-					args: [{ x: 5, y: 17 }]
-				}
-			},
-			{
-				popupName: 'simple-notification',
-				popupData: {
-					header: 'ИДУЩИЙ НА СЕВЕР',
-					text: 'Занять вражеский замок и уничтожить все вражеские войска. Король Валадорн должен выжить.'
-				}
-			}
-
-		],
-
 		"endBriefing": [
 			{
 				popupName: 'briefing',
@@ -130,6 +95,39 @@
 			}
 		],
 
+		// ru
+		"name-ru": langRuExtra.name,
+		"objective-ru": langRuExtra.objective,
+		"startBriefing-ru": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Ворота Торина'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Враг планирует атаковать Короля Галамара, пока он не достигнет Торина. Мы должны уничтожить их!',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 5, y: 17 }]
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langRuExtra.name,
+					text: langRuExtra.objective
+				}
+			}
+
+		],
 		"endBriefing-ru": [
 			{
 				popupName: 'briefing',
