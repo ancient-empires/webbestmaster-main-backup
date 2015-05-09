@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 19, "height": 19},
-		"name": "Shadow Lands",
-		"name-ru": "Теневые земли",
 		"maxPlayers": 4,
 		"isOpen": false,
+
+		// en
+		"name": "Shadow Lands",
+
+		// ru
+		"name-ru": "Теневые земли",
 
 		"units": [
 			{"x": 9, "y": 1, "type": "commander", "ownerId": 0},

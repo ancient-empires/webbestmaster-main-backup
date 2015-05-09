@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 15, "height": 12},
-		"name": "Frozen Friends",
-		"name-ru": "Холодные друзья",
 		"maxPlayers": 3,
 		"isOpen": true,
+
+		// en
+		"name": "Frozen Friends",
+
+		// ru
+		"name-ru": "Холодные друзья",
 
 		"units": [
 			{"x": 2, "y": 1, "type": "commander", "ownerId": 0},

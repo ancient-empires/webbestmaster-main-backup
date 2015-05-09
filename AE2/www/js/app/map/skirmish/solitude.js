@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
-		"name": "Solitude",
-		"name-ru": "Одиночество",
 		"maxPlayers": 4,
 		"isOpen": false,
+
+		// en
+		"name": "Solitude",
+
+		// ru
+		"name-ru": "Одиночество",
 
 		"units": [
 			{"x": 2, "y": 7, "type": "commander", "ownerId": 0},

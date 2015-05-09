@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
-		"name": "Island Cross",
-		"name-ru": "Остров крест",
 		"maxPlayers": 2,
 		"isOpen": true,
+
+		// en
+		"name": "Island Cross",
+
+		// ru
+		"name-ru": "Остров крест",
 
 		"units": [
 			{"type": "commander", "x": 13, "y": 1, ownerId: 0},

@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 13, "height": 13},
-		"name": "Liberty Port",
-		"name-ru": "Порт свободы",
 		"maxPlayers": 2,
 		"isOpen": false,
+
+		// en
+		"name": "Liberty Port",
+
+		// ru
+		"name-ru": "Порт свободы",
 
 		"units": [
 			{"x": 1, "y": 1, "type": "commander", "ownerId": 0},

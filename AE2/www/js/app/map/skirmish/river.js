@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 10, "height": 10},
-		"name": 'River',
-		"name-ru": 'Река',
 		"maxPlayers": 2,
 		"isOpen": true,
+
+		// en
+		"name": 'River',
+
+		// ru
+		"name-ru": 'Река',
 
 		"units": [
 			{"type": "commander", "x": 8, "y": 1, ownerId: 0},

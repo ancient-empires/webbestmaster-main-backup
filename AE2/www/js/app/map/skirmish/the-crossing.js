@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 16, "height": 10},
-		"name": "The Crossing",
-		"name-ru": "Пересечение",
 		"maxPlayers": 2,
 		"isOpen": true,
+
+		// en
+		"name": "The Crossing",
+
+		// ru
+		"name-ru": "Пересечение",
 
 		"units": [
 			{"x": 1, "y": 1, "type": "commander", "ownerId": 0},

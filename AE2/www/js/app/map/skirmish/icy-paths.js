@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
-		"name": "Icy Path",
-		"name-ru": "Ледяной путь",
 		"maxPlayers": 2,
 		"isOpen": true,
+
+		// en
+		"name": "Icy Path",
+
+		// ru
+		"name-ru": "Ледяной путь",
 
 		"units": [
 			{"x": 1, "y": 1, "type": "commander", "ownerId": 0},

@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 13, "height": 13},
-		"name": "Winter Storm",
-		"name-ru": "Зимний шторм",
 		"maxPlayers": 4,
 		"isOpen": false,
+
+		// en
+		"name": "Winter Storm",
+
+		// ru
+		"name-ru": "Зимний шторм",
 
 		"units": [
 			{"x": 6, "y": 1, "type": "commander", "ownerId": 0},

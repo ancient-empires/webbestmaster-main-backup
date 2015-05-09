@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 19, "height": 19},
-		"name": "The Crucible",
-		"name-ru": "Суровое испытание",
 		"maxPlayers": 4,
 		"isOpen": false,
+
+		// en
+		"name": "The Crucible",
+
+		// ru
+		"name-ru": "Суровое испытание",
 
 		"units": [
 			{"x": 3, "y": 3, "type": "commander", "ownerId": 0},

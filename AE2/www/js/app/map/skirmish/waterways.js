@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
-		"name": "Waterways",
-		"name-ru": "Водоемы",
 		"maxPlayers": 4,
 		"isOpen": false,
+
+		// en
+		"name": "Waterways",
+
+		// ru
+		"name-ru": "Водоемы",
 
 		"units": [
 			{"x": 2, "y": 2, "type": "commander", "ownerId": 0},

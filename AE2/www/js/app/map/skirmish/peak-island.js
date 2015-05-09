@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 15, "height": 15},
-		"name": "Peak Island",
-		"name-ru": "Остров пик",
 		"maxPlayers": 2,
 		"isOpen": false,
+
+		// en
+		"name": "Peak Island",
+
+		// ru
+		"name-ru": "Остров пик",
 
 		"units": [
 			{"x": 7, "y": 3, "type": "commander", "ownerId": 0},

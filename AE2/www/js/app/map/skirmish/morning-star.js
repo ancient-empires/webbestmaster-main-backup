@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 11, "height": 11},
-		"name": "Morning Star",
-		"name-ru": "Утренняя звезда",
 		"maxPlayers": 2,
 		"isOpen": false,
+
+		// en
+		"name": "Morning Star",
+
+		// ru
+		"name-ru": "Утренняя звезда",
 
 		"units": [
 			{"x": 2, "y": 8, "type": "commander", "ownerId": 0},

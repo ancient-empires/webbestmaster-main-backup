@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 11, "height": 19},
-		"name": "Crossroads",
-		"name-ru": "Перекресток",
 		"maxPlayers": 4,
 		"isOpen": false,
+
+		// en
+		"name": "Crossroads",
+
+		// ru
+		"name-ru": "Перекресток",
 
 		"units": [
 			{"x": 1, "y": 3, "type": "commander", "ownerId": 0},

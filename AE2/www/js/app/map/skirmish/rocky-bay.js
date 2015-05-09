@@ -11,10 +11,14 @@
 		"version": 3,
 		"type": "skirmish",
 		"size": {"width": 17, "height": 12},
-		"name": "Rocky Bay",
-		"name-ru": "Скалистая бухта",
 		"maxPlayers": 2,
 		"isOpen": true,
+
+		// en
+		"name": "Rocky Bay",
+
+		// ru
+		"name-ru": "Скалистая бухта",
 
 		"units": [
 			{"type": "commander", "x": 1, "y": 9, ownerId: 0},
