@@ -8,12 +8,12 @@
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
 		langEnExtra = {
-			name: "",
-			objective: ''
+			name: "RENDEZVOUS",
+			objective: 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles! Galamar and Valadorn must survive.'
 		},
 		langRuExtra = {
-			name: "",
-			objective: ''
+			name: "ВСТРЕЧА",
+			objective: 'Пробить путь на запад через вражеские войска, убить их командира и занять все замки! Король Галамар и Король Валадорн должны выжить.'
 		};
 
 	win.APP.maps.mission_001_007 = {
@@ -25,8 +25,6 @@
 			{"jsMapKey": 'skirmish_001_013', "type": "skirmish"}
 		],
 		"size": {"width": 16, "height": 18},
-		"name": "RENDEZVOUS",
-		"name-ru": "ВСТРЕЧА",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"money": [
@@ -36,9 +34,9 @@
 		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
-		"objective": 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles! Galamar and Valadorn must survive.',
-		"objective-ru": 'Пробить путь на запад через вражеские войска, убить их командира и занять все замки! Король Галамар и Король Валадорн должны выжить.',
-
+		// en
+		"name": langEnExtra.name,
+		"objective": langEnExtra.objective,
 		"startBriefing": [
 			{
 				popupName: 'simple-notification',
@@ -49,30 +47,12 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'RENDEZVOUS',
-					text: 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles! Galamar and Valadorn must survive.'
+					header: langEnExtra.name,
+					text: langEnExtra.objective
 				}
 			}
 		],
-
-		"startBriefing-ru": [
-			{
-				popupName: 'simple-notification',
-				popupData: {
-					header: 'За Городом'
-				}
-			},
-			{
-				popupName: 'simple-notification',
-				popupData: {
-					header: 'ВСТРЕЧА',
-					text: 'Пробить путь на запад через вражеские войска, убить их командира и занять все замки! Король Галамар и Король Валадорн должны выжить.'
-				}
-			}
-		],
-
 		"n1Briefing": [
-
 			{
 				popupName: 'briefing',
 				from: 'left',
@@ -124,11 +104,45 @@
 					args: [{ x: 13, y: 16 }]
 				}
 			}
-
+		],
+		"endBriefing": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.missionComplete,
+					text: '\'Morning Star\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_008', { type: 'mission' }]
+				}
+			}
 		],
 
+		// ru
+		"name-ru": langRuExtra.name,
+		"objective-ru": langRuExtra.objective,
+		"startBriefing-ru": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'За Городом'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langRuExtra.name,
+					text: langRuExtra.objective
+				}
+			}
+		],
 		"n1Briefing-ru": [
-
 			{
 				popupName: 'briefing',
 				from: 'left',
@@ -182,26 +196,6 @@
 			}
 
 		],
-
-		"endBriefing": [
-			{
-				popupName: 'simple-notification',
-				popupData: {
-					header: langEn.missionComplete,
-					text: '\'Morning Star\' ' + langEn.unlocked
-				},
-				playSound: {
-					sound: 'victory.mp3',
-					road: 0,
-					isLoop: false
-				},
-				onHide: {
-					fn: 'openMap',
-					args: ['mission_001_008', { type: 'mission' }]
-				}
-			}
-		],
-
 		"endBriefing-ru": [
 			{
 				popupName: 'simple-notification',
