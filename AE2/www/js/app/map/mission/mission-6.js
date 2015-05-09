@@ -156,7 +156,7 @@
 			}
 		],
 
-		"units": [
+		units: [
 			{x: 5, y: 5, type: "demon-lord", ownerId: 1},
 			{x: 6, y: 5, type: "wisp", ownerId: 1},
 			{x: 4, y: 6, type: "golem", ownerId: 1},
@@ -172,17 +172,17 @@
 			{x: 3, y: 17, type: "catapult", ownerId: 0}
 		],
 		"buildings": [
-			{x: 5, y: 5, type: "castle", "state": "normal", ownerId: 1},
-			{x: 5, y: 7, type: "farm", "state": "normal", ownerId: 1},
-			{x: 7, y: 8, type: "farm", "state": "normal", ownerId: 1},
-			{x: 10, y: 6, type: "farm", "state": "normal"},
-			{x: 2, y: 7, type: "farm", "state": "normal"},
-			{x: 10, y: 10, type: "farm", "state": "destroyed"},
-			{x: 2, y: 14, type: "farm", "state": "normal", ownerId: 0},
-			{x: 9, y: 13, type: "farm", "state": "destroyed"},
-			{x: 4, y: 12, type: "farm", "state": "normal"},
-			{x: 8, y: 17, type: "farm", "state": "normal", ownerId: 0},
-			{x: 5, y: 17, type: "castle", "state": "normal", ownerId: 0}
+			{x: 5, y: 5, type: 'castle', state: "normal", ownerId: 1},
+			{x: 5, y: 7, type: 'farm', state: "normal", ownerId: 1},
+			{x: 7, y: 8, type: 'farm', state: "normal", ownerId: 1},
+			{x: 10, y: 6, type: 'farm', state: "normal"},
+			{x: 2, y: 7, type: 'farm', state: "normal"},
+			{x: 10, y: 10, type: 'farm', state: "destroyed"},
+			{x: 2, y: 14, type: 'farm', state: "normal", ownerId: 0},
+			{x: 9, y: 13, type: 'farm', state: "destroyed"},
+			{x: 4, y: 12, type: 'farm', state: "normal"},
+			{x: 8, y: 17, type: 'farm', state: "normal", ownerId: 0},
+			{x: 5, y: 17, type: 'castle', state: "normal", ownerId: 0}
 		],
 		"terrain": {
 			"x0y0": "water-1",

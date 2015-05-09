@@ -20,25 +20,25 @@
 		// ru
 		"name-ru": "Перекресток",
 
-		"units": [
+		units: [
 			{x: 1, y: 3, type: "commander", ownerId: 0},
 			{x: 9, y: 3, type: "commander", ownerId: 1},
 			{x: 1, y: 15, type: "commander", ownerId: 2},
 			{x: 9, y: 15, type: "commander", ownerId: 3}
 		],
 		"buildings": [
-			{x: 3, y: 9, type: "farm", "state": "destroyed"},
-			{x: 7, y: 9, type: "farm", "state": "destroyed"},
-			{x: 5, y: 7, type: "farm", "state": "destroyed"},
-			{x: 5, y: 11, type: "farm", "state": "destroyed"},
-			{x: 1, y: 3, type: "castle", "state": "normal", ownerId: 0},
-			{x: 0, y: 5, type: "farm", "state": "normal", ownerId: 0},
-			{x: 9, y: 3, type: "castle", "state": "normal", ownerId: 1},
-			{x: 10, y: 5, type: "farm", "state": "normal", ownerId: 1},
-			{x: 0, y: 13, type: "farm", "state": "normal", ownerId: 2},
-			{x: 1, y: 15, type: "castle", "state": "normal", ownerId: 2},
-			{x: 9, y: 15, type: "castle", "state": "normal", ownerId: 3},
-			{x: 10, y: 13, type: "farm", "state": "normal", ownerId: 3}
+			{x: 3, y: 9, type: 'farm', state: "destroyed"},
+			{x: 7, y: 9, type: 'farm', state: "destroyed"},
+			{x: 5, y: 7, type: 'farm', state: "destroyed"},
+			{x: 5, y: 11, type: 'farm', state: "destroyed"},
+			{x: 1, y: 3, type: 'castle', state: "normal", ownerId: 0},
+			{x: 0, y: 5, type: 'farm', state: "normal", ownerId: 0},
+			{x: 9, y: 3, type: 'castle', state: "normal", ownerId: 1},
+			{x: 10, y: 5, type: 'farm', state: "normal", ownerId: 1},
+			{x: 0, y: 13, type: 'farm', state: "normal", ownerId: 2},
+			{x: 1, y: 15, type: 'castle', state: "normal", ownerId: 2},
+			{x: 9, y: 15, type: 'castle', state: "normal", ownerId: 3},
+			{x: 10, y: 13, type: 'farm', state: "normal", ownerId: 3}
 		],
 		"terrain": {
 			"x0y0": "water-1",

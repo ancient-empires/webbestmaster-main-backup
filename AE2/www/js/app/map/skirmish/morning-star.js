@@ -20,21 +20,21 @@
 		// ru
 		"name-ru": "Утренняя звезда",
 
-		"units": [
+		units: [
 			{x: 2, y: 8, type: "commander", ownerId: 0},
 			{x: 8, y: 2, type: "commander", ownerId: 1}
 		],
 		"buildings": [
-			{x: 0, y: 2, type: "farm", "state": "normal"},
-			{x: 5, y: 0, type: "farm", "state": "normal"},
-			{x: 2, y: 5, type: "farm", "state": "normal"},
-			{x: 8, y: 5, type: "farm", "state": "normal"},
-			{x: 5, y: 10, type: "farm", "state": "normal"},
-			{x: 0, y: 10, type: "farm", "state": "normal"},
-			{x: 10, y: 0, type: "farm", "state": "normal"},
-			{x: 10, y: 8, type: "farm", "state": "normal"},
-			{x: 2, y: 8, type: "castle", "state": "normal", ownerId: 0},
-			{x: 8, y: 2, type: "castle", "state": "normal", ownerId: 1}
+			{x: 0, y: 2, type: 'farm', state: "normal"},
+			{x: 5, y: 0, type: 'farm', state: "normal"},
+			{x: 2, y: 5, type: 'farm', state: "normal"},
+			{x: 8, y: 5, type: 'farm', state: "normal"},
+			{x: 5, y: 10, type: 'farm', state: "normal"},
+			{x: 0, y: 10, type: 'farm', state: "normal"},
+			{x: 10, y: 0, type: 'farm', state: "normal"},
+			{x: 10, y: 8, type: 'farm', state: "normal"},
+			{x: 2, y: 8, type: 'castle', state: "normal", ownerId: 0},
+			{x: 8, y: 2, type: 'castle', state: "normal", ownerId: 1}
 		],
 		"terrain": {
 			"x0y0": "water-1",
