@@ -8,12 +8,12 @@
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
 		langEnExtra = {
-			name: "",
-			objective: ''
+			name: "REINFORCEMENTS",
+			objective: 'Protect the Temple of Life - destroy all enemy units, occupy the enemy castle!'
 		},
 		langRuExtra = {
-			name: "",
-			objective: ''
+			name: "ПОДКРЕПЛЕНИЕ",
+			objective: 'Защитить Храм Жизни - уничтожить все вражеские единицы, занять вражеский замок!'
 		};
 
 	win.APP.maps.mission_001_004 = {
@@ -25,8 +25,6 @@
 			{"jsMapKey": 'skirmish_001_010', "type": "skirmish"}
 		],
 		"size": {"width": 16, "height": 16},
-		"name": "REINFORCEMENTS",
-		"name-ru": "ПОДКРЕПЛЕНИЕ",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"availableStoreUnits": ["soldier", "archer", "elemental", "sorceress"],
@@ -37,9 +35,9 @@
 		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
-		"objective": 'Protect the Temple of Life - destroy all enemy units, occupy the enemy castle!',
-		"objective-ru": 'Защитить Храм Жизни - уничтожить все вражеские единицы, занять вражеский замок!',
-
+		// en
+		"name": langEnExtra.name,
+		"objective": langEnExtra.objective,
 		"startBriefing": [
 			{
 				popupName: 'story',
@@ -117,12 +115,51 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'REINFORCEMENTS',
-					text: 'Protect the Temple of Life - destroy all enemy units, occupy the enemy castle!'
+					header: langEnExtra.name,
+					text: langEnExtra.objective
+				}
+			}
+		],
+		"endBriefing": [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Your Majesty, We have stopped the attack.',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Well done, Captain! Prepare the troops to march to Thorin!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.missionComplete,
+					text: '\'Waterways\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_005', { type: 'mission' }]
 				}
 			}
 		],
 
+		// ru
+		"name-ru": langRuExtra.name,
+		"objective-ru": langRuExtra.objective,
 		"startBriefing-ru": [
 			{
 				popupName: 'story',
@@ -200,49 +237,11 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'ПОДКРЕПЛЕНИЕ',
-					text: 'Защитить Храм Жизни - уничтожить все вражеские единицы, занять вражеский замок!'
+					header: langRuExtra.name,
+					text: langRuExtra.objective
 				}
 			}
 		],
-
-		"endBriefing": [
-			{
-				popupName: 'briefing',
-				from: 'right',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'Your Majesty, We have stopped the attack.',
-					img: 'i/face/soldier.png'
-				}
-			},
-			{
-				popupName: 'briefing',
-				from: 'left',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'Well done, Captain! Prepare the troops to march to Thorin!',
-					img: 'i/face/galamar.png'
-				}
-			},
-			{
-				popupName: 'simple-notification',
-				popupData: {
-					header: langEn.missionComplete,
-					text: '\'Waterways\' ' + langEn.unlocked
-				},
-				playSound: {
-					sound: 'victory.mp3',
-					road: 0,
-					isLoop: false
-				},
-				onHide: {
-					fn: 'openMap',
-					args: ['mission_001_005', { type: 'mission' }]
-				}
-			}
-		],
-
 		"endBriefing-ru": [
 			{
 				popupName: 'briefing',
