@@ -6,7 +6,15 @@
 	/*global */
 
 	var langEn = win.APP.languages.en,
-		langRu = win.APP.languages.ru;
+		langRu = win.APP.languages.ru,
+		langEnExtra = {
+			name: "",
+			objective: ''
+		},
+		langRuExtra = {
+			name: "",
+			objective: ''
+		};
 
 	win.APP.maps.mission_001_008 = {
 		"version": 4,

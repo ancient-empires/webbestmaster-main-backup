@@ -6,7 +6,15 @@
 	/*global */
 
 	var langEn = win.APP.languages.en,
-		langRu = win.APP.languages.ru;
+		langRu = win.APP.languages.ru,
+		langEnExtra = {
+			name: "TO THE RESCUE",
+			objective: 'Destroy all attacking enemy troops, occupy both castles.'
+		},
+		langRuExtra = {
+			name: "К СПАСЕНИЮ",
+			objective: 'Уничтожить все вражеские войска, занять оба замка.'
+		};
 
 	win.APP.maps.mission_001_002 = {
 		"version": 4,
@@ -17,8 +25,6 @@
 			{"jsMapKey": 'skirmish_001_008', "type": "skirmish"}
 		],
 		"size": {"width": 15, "height": 12},
-		"name": "TO THE RESCUE",
-		"name-ru": "К СПАСЕНИЮ",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"availableStoreUnits": ["soldier", "archer"],
@@ -29,17 +35,13 @@
 		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
-		"objective": 'Destroy all attacking enemy troops, occupy both castles.',
-		"objective-ru": 'Уничтожить все вражеские войска, занять оба замка.',
+		// en
+		"name": langEnExtra.name,
+		"objective": langEnExtra.objective,
 		"help": [
 			langEn.helpList[2],
 			langEn.helpList[3]
 		],
-		"help-ru": [
-			langRu.helpList[2],
-			langRu.helpList[3]
-		],
-
 		"startBriefing": [
 			{
 				popupName: 'simple-notification',
@@ -138,15 +140,57 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'TO THE RESCUE',
-					text: 'Destroy all attacking enemy troops, occupy both castles.'
+					header: langEnExtra.name,
+					text: langEnExtra.objective
 				},
 				onHide: {
 					fn: 'autoShowHelpButton'
 				}
 			}
 		],
+		"endBriefing": [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Well done, Captain. But there is no time to rest. The Crystal of Life may also be in danger. We must warn King Galamar!',
+					img: 'i/face/valadorn.png'
+				}
+			},			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Yes, Sir. I will ready the troops.',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.missionComplete,
+					text: '\'Solitude\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_003', { type: 'mission' }]
+				}
+			}
+		],
 
+		// ru
+		"name-ru": langRuExtra.name,
+		"objective-ru": langRuExtra.objective,
+		"help-ru": [
+			langRu.helpList[2],
+			langRu.helpList[3]
+		],
 		"startBriefing-ru": [
 			{
 				popupName: 'simple-notification',
@@ -245,51 +289,14 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'К СПАСЕНИЮ',
-					text: 'Уничтожить все вражеские войска, занять оба замка.'
+					header: langRuExtra.name,
+					text: langRuExtra.objective
 				},
 				onHide: {
 					fn: 'autoShowHelpButton'
 				}
 			}
 		],
-
-		"endBriefing": [
-			{
-				popupName: 'briefing',
-				from: 'left',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'Well done, Captain. But there is no time to rest. The Crystal of Life may also be in danger. We must warn King Galamar!',
-					img: 'i/face/valadorn.png'
-				}
-			},			{
-				popupName: 'briefing',
-				from: 'right',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'Yes, Sir. I will ready the troops.',
-					img: 'i/face/soldier.png'
-				}
-			},
-			{
-				popupName: 'simple-notification',
-				popupData: {
-					header: langEn.missionComplete,
-					text: '\'Solitude\' ' + langEn.unlocked
-				},
-				playSound: {
-					sound: 'victory.mp3',
-					road: 0,
-					isLoop: false
-				},
-				onHide: {
-					fn: 'openMap',
-					args: ['mission_001_003', { type: 'mission' }]
-				}
-			}
-		],
-
 		"endBriefing-ru": [
 			{
 				popupName: 'briefing',
@@ -312,7 +319,7 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete,
-					text: '\'Одиночество\' ' + langEn.unlocked
+					text: '\'Одиночество\' ' + langRu.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',
