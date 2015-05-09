@@ -20,26 +20,26 @@
 		// ru
 		"name-ru": "Одиночество",
 
-		"units": [
+		units: [
 			{x: 2, y: 7, type: "commander", ownerId: 0},
 			{x: 7, y: 2, type: "commander", ownerId: 1},
 			{x: 12, y: 7, type: "commander", ownerId: 2},
 			{x: 7, y: 12, type: "commander", ownerId: 3}
 		],
 		"buildings": [
-			{x: 7, y: 7, type: "farm", "state": "normal"},
-			{x: 6, y: 2, type: "farm", "state": "normal"},
-			{x: 4, y: 4, type: "farm", "state": "normal"},
-			{x: 4, y: 10, type: "farm", "state": "normal"},
-			{x: 10, y: 10, type: "farm", "state": "normal"},
-			{x: 10, y: 4, type: "farm", "state": "normal"},
-			{x: 2, y: 8, type: "farm", "state": "normal"},
-			{x: 8, y: 12, type: "farm", "state": "normal"},
-			{x: 12, y: 6, type: "farm", "state": "normal"},
-			{x: 2, y: 7, type: "castle", "state": "normal", ownerId: 0},
-			{x: 7, y: 2, type: "castle", "state": "normal", ownerId: 1},
-			{x: 12, y: 7, type: "castle", "state": "normal", ownerId: 2},
-			{x: 7, y: 12, type: "castle", "state": "normal", ownerId: 3}
+			{x: 7, y: 7, type: 'farm', state: "normal"},
+			{x: 6, y: 2, type: 'farm', state: "normal"},
+			{x: 4, y: 4, type: 'farm', state: "normal"},
+			{x: 4, y: 10, type: 'farm', state: "normal"},
+			{x: 10, y: 10, type: 'farm', state: "normal"},
+			{x: 10, y: 4, type: 'farm', state: "normal"},
+			{x: 2, y: 8, type: 'farm', state: "normal"},
+			{x: 8, y: 12, type: 'farm', state: "normal"},
+			{x: 12, y: 6, type: 'farm', state: "normal"},
+			{x: 2, y: 7, type: 'castle', state: "normal", ownerId: 0},
+			{x: 7, y: 2, type: 'castle', state: "normal", ownerId: 1},
+			{x: 12, y: 7, type: 'castle', state: "normal", ownerId: 2},
+			{x: 7, y: 12, type: 'castle', state: "normal", ownerId: 3}
 		],
 		"terrain": {
 			"x0y0": "water-3",

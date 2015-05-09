@@ -317,7 +317,7 @@
 			}
 		],
 
-		"units": [
+		units: [
 			{x: 11, y: 0, type: "crystal", ownerId: 0},
 			{x: 11, y: 1, type: "galamar", ownerId: 0},
 			{x: 12, y: 0, type: "archer", ownerId: 0},
@@ -326,13 +326,13 @@
 			{x: 10, y: 1, type: "dire-wolf", ownerId: 0}
 		],
 		"buildings": [
-			{x: 2, y: 1, type: "temple", "state": "normal"},
-			{x: 7, y: 5, type: "temple", "state": "normal"},
-			{x: 6, y: 10, type: "well", "state": "normal"},
-			{x: 4, y: 4, type: "well", "state": "normal"},
-			{x: 12, y: 5, type: "well", "state": "normal"},
-			{x: 18, y: 8, type: "well", "state": "normal"},
-			{x: 12, y: 8, type: "temple", "state": "normal"}
+			{x: 2, y: 1, type: 'temple', state: "normal"},
+			{x: 7, y: 5, type: 'temple', state: "normal"},
+			{x: 6, y: 10, type: 'well', state: "normal"},
+			{x: 4, y: 4, type: 'well', state: "normal"},
+			{x: 12, y: 5, type: 'well', state: "normal"},
+			{x: 18, y: 8, type: 'well', state: "normal"},
+			{x: 12, y: 8, type: 'temple', state: "normal"}
 		],
 		"terrain": {
 			"x0y0": "stone-1",

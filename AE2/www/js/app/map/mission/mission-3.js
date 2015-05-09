@@ -344,7 +344,7 @@
 			}
 		],
 
-		"units": [
+		units: [
 			{x: 7, y: 14, type: "soldier", ownerId: 0},
 			{x: 8, y: 14, type: "galamar", ownerId: 0},
 			{x: 7, y: 15, type: "archer", ownerId: 0},
@@ -353,7 +353,7 @@
 			{x: 8, y: 11, type: "dire-wolf", ownerId: 1}
 		],
 		"buildings": [
-			{x: 4, y: 8, type: "well", "state": "normal"}
+			{x: 4, y: 8, type: 'well', state: "normal"}
 		],
 		"terrain": {
 			"x0y0": "forest-1",

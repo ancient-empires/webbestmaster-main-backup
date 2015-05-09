@@ -410,7 +410,7 @@
 				briefingName: 'n1Briefing'
 			}
 		],
-		"units": [
+		units: [
 			{x: 10, y: 3, type: "skeleton", ownerId: 1},
 			{x: 8, y: 3, type: "skeleton", ownerId: 1},
 			{x: 4, y: 9, type: "galamar", ownerId: 0},
@@ -418,13 +418,13 @@
 			{x: 3, y: 8, type: "soldier", ownerId: 0}
 		],
 		"buildings": [
-			{x: 1, y: 1, type: "well", "state": "normal"},
-			{x: 4, y: 8, type: "farm", "state": "normal", ownerId: 0},
-			{x: 8, y: 8, type: "farm", "state": "normal", ownerId: 0},
-			{x: 6, y: 1, type: "farm", "state": "normal", ownerId: 1},
-			{x: 8, y: 1, type: "farm", "state": "normal", ownerId: 1},
-			{x: 9, y: 3, type: "temple", "state": "normal"},
-			{x: 10, y: 10, type: "well", "state": "normal"}
+			{x: 1, y: 1, type: 'well', state: "normal"},
+			{x: 4, y: 8, type: 'farm', state: "normal", ownerId: 0},
+			{x: 8, y: 8, type: 'farm', state: "normal", ownerId: 0},
+			{x: 6, y: 1, type: 'farm', state: "normal", ownerId: 1},
+			{x: 8, y: 1, type: 'farm', state: "normal", ownerId: 1},
+			{x: 9, y: 3, type: 'temple', state: "normal"},
+			{x: 10, y: 10, type: 'well', state: "normal"}
 		],
 		"terrain": {
 			"x0y0": "stone-1",

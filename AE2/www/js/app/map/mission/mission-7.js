@@ -243,7 +243,7 @@
 			}
 		],
 
-		"units": [
+		units: [
 			{x: 14, y: 3, type: "galamar", ownerId: 0},
 			{x: 14, y: 2, type: "soldier", ownerId: 0},
 			{x: 14, y: 1, type: "archer", ownerId: 0},
@@ -254,18 +254,18 @@
 			{x: 14, y: 7, type: "dire-wolf", ownerId: 1}
 		],
 		"buildings": [
-			{x: 0, y: 8, type: "castle", "state": "normal"},
-			{x: 3, y: 8, type: "farm", "state": "destroyed"},
-			{x: 1, y: 10, type: "farm", "state": "destroyed"},
-			{x: 0, y: 13, type: "farm", "state": "normal"},
-			{x: 3, y: 14, type: "farm", "state": "normal"},
-			{x: 13, y: 14, type: "well", "state": "normal"},
-			{x: 14, y: 9, type: "farm", "state": "destroyed"},
-			{x: 8, y: 9, type: "farm", "state": "destroyed"},
-			{x: 11, y: 7, type: "farm", "state": "destroyed"},
-			{x: 8, y: 4, type: "farm", "state": "destroyed"},
-			{x: 11, y: 8, type: "well", "state": "normal"},
-			{x: 12, y: 9, type: "castle", "state": "normal"}
+			{x: 0, y: 8, type: 'castle', state: "normal"},
+			{x: 3, y: 8, type: 'farm', state: "destroyed"},
+			{x: 1, y: 10, type: 'farm', state: "destroyed"},
+			{x: 0, y: 13, type: 'farm', state: "normal"},
+			{x: 3, y: 14, type: 'farm', state: "normal"},
+			{x: 13, y: 14, type: 'well', state: "normal"},
+			{x: 14, y: 9, type: 'farm', state: "destroyed"},
+			{x: 8, y: 9, type: 'farm', state: "destroyed"},
+			{x: 11, y: 7, type: 'farm', state: "destroyed"},
+			{x: 8, y: 4, type: 'farm', state: "destroyed"},
+			{x: 11, y: 8, type: 'well', state: "normal"},
+			{x: 12, y: 9, type: 'castle', state: "normal"}
 		],
 		"terrain": {
 			"x0y0": "stone-1",

@@ -333,7 +333,7 @@
 			}
 		],
 
-		"units": [
+		units: [
 			{x: 8, y: 9, type: "valadorn", ownerId: 0},
 			{x: 9, y: 10, type: "archer", ownerId: 0},
 			{x: 7, y: 10, type: "soldier", ownerId: 0},
@@ -342,16 +342,16 @@
 			{x: 6, y: 1, type: "soldier", ownerId: 1}
 		],
 		"buildings": [
-			{x: 7, y: 3, type: "temple", "state": "normal"},
-			{x: 3, y: 5, type: "castle", "state": "normal"},
-			{x: 1, y: 4, type: "farm", "state": "normal"},
-			{x: 5, y: 2, type: "farm", "state": "normal"},
-			{x: 5, y: 7, type: "farm", "state": "destroyed"},
-			{x: 7,y: 7,type: "farm", "state": "normal"},
-			{x: 10, y: 2, type: "farm", "state": "normal"},
-			{x: 9, y: 5, type: "farm", "state": "destroyed"},
-			{x: 13, y: 6, type: "farm", "state": "normal"},
-			{x: 12, y: 3, type: "castle", "state": "normal"}
+			{x: 7, y: 3, type: 'temple', state: "normal"},
+			{x: 3, y: 5, type: 'castle', state: "normal"},
+			{x: 1, y: 4, type: 'farm', state: "normal"},
+			{x: 5, y: 2, type: 'farm', state: "normal"},
+			{x: 5, y: 7, type: 'farm', state: "destroyed"},
+			{x: 7,y: 7,type: 'farm', state: "normal"},
+			{x: 10, y: 2, type: 'farm', state: "normal"},
+			{x: 9, y: 5, type: 'farm', state: "destroyed"},
+			{x: 13, y: 6, type: 'farm', state: "normal"},
+			{x: 12, y: 3, type: 'castle', state: "normal"}
 		],
 		"terrain": {
 			"x0y0": "water-1",

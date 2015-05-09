@@ -279,7 +279,7 @@
 			}
 		],
 
-		"units": [
+		units: [
 			{x: 7, y: 1, type: "galamar", ownerId: 0},
 			{x: 3, y: 3, type: "sorceress", ownerId: 0},
 			{x: 7, y: 5, type: "elemental", ownerId: 0},
@@ -296,20 +296,20 @@
 			{x: 14, y: 5, type: "elemental", ownerId: 1}
 		],
 		"buildings": [
-			{x: 7, y: 1, type: "castle", "state": "normal", ownerId: 0},
-			{x: 3, y: 3, type: "temple", "state": "normal"},
-			{x: 7, y: 5, type: "farm", "state": "normal", ownerId: 0},
-			{x: 1, y: 8, type: "farm", "state": "normal", ownerId: 0},
-			{x: 5, y: 11, type: "farm", "state": "normal", ownerId: 1},
-			{x: 4, y: 9, type: "farm", "state": "destroyed"},
-			{x: 9, y: 1, type: "farm", "state": "normal", ownerId: 0},
-			{x: 12, y: 3, type: "farm", "state": "normal", ownerId: 0},
-			{x: 13, y: 6, type: "farm", "state": "normal", ownerId: 1},
-			{x: 13, y: 9, type: "castle", "state": "normal", ownerId: 1},
-			{x: 9, y: 11, type: "farm", "state": "normal", ownerId: 1},
-			{x: 14, y: 11, type: "farm", "state": "normal", ownerId: 1},
-			{x: 12, y: 13, type: "farm", "state": "normal", ownerId: 1},
-			{x: 5, y: 4, type: "farm", "state": "normal", ownerId: 0}
+			{x: 7, y: 1, type: 'castle', state: "normal", ownerId: 0},
+			{x: 3, y: 3, type: 'temple', state: "normal"},
+			{x: 7, y: 5, type: 'farm', state: "normal", ownerId: 0},
+			{x: 1, y: 8, type: 'farm', state: "normal", ownerId: 0},
+			{x: 5, y: 11, type: 'farm', state: "normal", ownerId: 1},
+			{x: 4, y: 9, type: 'farm', state: "destroyed"},
+			{x: 9, y: 1, type: 'farm', state: "normal", ownerId: 0},
+			{x: 12, y: 3, type: 'farm', state: "normal", ownerId: 0},
+			{x: 13, y: 6, type: 'farm', state: "normal", ownerId: 1},
+			{x: 13, y: 9, type: 'castle', state: "normal", ownerId: 1},
+			{x: 9, y: 11, type: 'farm', state: "normal", ownerId: 1},
+			{x: 14, y: 11, type: 'farm', state: "normal", ownerId: 1},
+			{x: 12, y: 13, type: 'farm', state: "normal", ownerId: 1},
+			{x: 5, y: 4, type: 'farm', state: "normal", ownerId: 0}
 		],
 		"terrain": {
 			"x0y0": "stone-1",

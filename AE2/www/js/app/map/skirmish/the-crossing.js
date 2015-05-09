@@ -20,22 +20,22 @@
 		// ru
 		"name-ru": "Пересечение",
 
-		"units": [
+		units: [
 			{x: 1, y: 1, type: "commander", ownerId: 0},
 			{x: 14, y: 6, type: "commander", ownerId: 1}
 		],
 		"buildings": [
-			{x: 1, y: 1, type: "castle", "state": "normal", ownerId: 0},
-			{x: 3, y: 1, type: "farm", "state": "normal"},
-			{x: 4, y: 8, type: "castle", "state": "normal"},
-			{x: 2, y: 4, type: "farm", "state": "normal"},
-			{x: 6, y: 6, type: "farm", "state": "normal"},
-			{x: 8, y: 5, type: "farm", "state": "normal"},
-			{x: 8, y: 2, type: "farm", "state": "normal"},
-			{x: 10, y: 0, type: "castle", "state": "normal"},
-			{x: 13, y: 3, type: "farm", "state": "normal"},
-			{x: 12, y: 6, type: "farm", "state": "normal"},
-			{x: 14, y: 6, type: "castle", "state": "normal", ownerId: 1}
+			{x: 1, y: 1, type: 'castle', state: "normal", ownerId: 0},
+			{x: 3, y: 1, type: 'farm', state: "normal"},
+			{x: 4, y: 8, type: 'castle', state: "normal"},
+			{x: 2, y: 4, type: 'farm', state: "normal"},
+			{x: 6, y: 6, type: 'farm', state: "normal"},
+			{x: 8, y: 5, type: 'farm', state: "normal"},
+			{x: 8, y: 2, type: 'farm', state: "normal"},
+			{x: 10, y: 0, type: 'castle', state: "normal"},
+			{x: 13, y: 3, type: 'farm', state: "normal"},
+			{x: 12, y: 6, type: 'farm', state: "normal"},
+			{x: 14, y: 6, type: 'castle', state: "normal", ownerId: 1}
 		],
 		"terrain": {
 			"x0y0": "forest-1",
