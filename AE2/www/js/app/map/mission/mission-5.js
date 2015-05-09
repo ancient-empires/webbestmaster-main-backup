@@ -8,12 +8,12 @@
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
 		langEnExtra = {
-			name: "",
-			objective: ''
+			name: "ESCORT DUTY",
+			objective: 'Deliver the Crystal south to the city of Thorin. King Galamar must survive.'
 		},
 		langRuExtra = {
-			name: "",
-			objective: ''
+			name: "СЛУЖБА ЭСКОРТА",
+			objective: 'Доставить Кристалл на юг в город Торин. Король Галамар должен выжить.'
 		};
 
 	win.APP.maps.mission_001_005 = {
@@ -25,16 +25,14 @@
 			{"jsMapKey": 'skirmish_001_011', "type": "skirmish"}
 		],
 		"size": {"width": 20, "height": 12},
-		"name": "ESCORT DUTY",
-		"name-ru": "СЛУЖБА ЭСКОРТА",
 		"maxPlayers": 2,
 		"unitLimit": 10,
 		"win": ['noEnemyUnit', 'allUnorderedCasesIsDone'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
 		"defeat": ['commanderIsDead', 'crystalIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
-		"objective": 'Deliver the Crystal south to the city of Thorin. King Galamar must survive.',
-		"objective-ru": 'Доставить Кристалл на юг в город Торин. Король Галамар должен выжить.',
-
+		// en
+		"name": langEnExtra.name,
+		"objective": langEnExtra.objective,
 		"startBriefing": [
 			{
 				popupName: 'simple-notification',
@@ -68,12 +66,45 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'ESCORT DUTY',
-					text: 'Deliver the Crystal south to the city of Thorin. King Galamar must survive.'
+					header: langEnExtra.name,
+					text: langEnExtra.objective
+				}
+			}
+		],
+		"n1Briefing": [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Ambush! Protect the Crystal at all cost!',
+					img: 'i/face/soldier.png'
+				}
+			}
+
+		],
+		"endBriefing": [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.missionComplete,
+					text: '\'Liberty Port\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_006', { type: 'mission' }]
 				}
 			}
 		],
 
+		// ru
+		"name-ru": langRuExtra.name,
+		"objective-ru": langRuExtra.objective,
 		"startBriefing-ru": [
 			{
 				popupName: 'simple-notification',
@@ -107,25 +138,11 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'СЛУЖБА ЭСКОРТА',
-					text: 'Доставить Кристалл на юг в город Торин. Король Галамар должен выжить.'
+					header: langRuExtra.name,
+					text: langRuExtra.objective
 				}
 			}
 		],
-
-		"n1Briefing": [
-			{
-				popupName: 'briefing',
-				from: 'left',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'Ambush! Protect the Crystal at all cost!',
-					img: 'i/face/soldier.png'
-				}
-			}
-
-		],
-
 		"n1Briefing-ru": [
 			{
 				popupName: 'briefing',
@@ -138,26 +155,6 @@
 			}
 
 		],
-
-		"endBriefing": [
-			{
-				popupName: 'simple-notification',
-				popupData: {
-					header: langEn.missionComplete,
-					text: '\'Liberty Port\' ' + langEn.unlocked
-				},
-				playSound: {
-					sound: 'victory.mp3',
-					road: 0,
-					isLoop: false
-				},
-				onHide: {
-					fn: 'openMap',
-					args: ['mission_001_006', { type: 'mission' }]
-				}
-			}
-		],
-
 		"endBriefing-ru": [
 			{
 				popupName: 'simple-notification',
