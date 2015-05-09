@@ -8,12 +8,12 @@
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
 		langEnExtra = {
-			name: "",
-			objective: ''
+			name: "HEAVEN'S FURY",
+			objective: 'Defeat Saeth and his minions! Galamar and Valadorn must survive.'
 		},
 		langRuExtra = {
-			name: "",
-			objective: ''
+			name: "НЕБЕСНЫЕ ФУРИИ",
+			objective: 'Порвать Саефа и его приспешников! Король Галамар и Король Валадорн должны выжить.'
 		};
 
 	win.APP.maps.mission_001_008 = {
@@ -25,8 +25,6 @@
 			{"jsMapKey": 'skirmish_001_015', "type": "skirmish"}
 		],
 		"size": {"width": 14, "height": 18},
-		"name": "HEAVEN'S FURY",
-		"name-ru": "НЕБЕСНЫЕ ФУРИИ",
 		"maxPlayers": 2,
 		"unitLimit": 25,
 		"money": [
@@ -36,9 +34,9 @@
 		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
 		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
-		"objective": 'Defeat Saeth and his minions! Galamar and Valadorn must survive.',
-		"objective-ru": 'Порвать Саефа и его приспешников! Король Галамар и Король Валадорн должны выжить.',
-
+		// en
+		"name": langEnExtra.name,
+		"objective": langEnExtra.objective,
 		"startBriefing": [
 			{
 				popupName: 'story',
@@ -168,12 +166,111 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'НЕБЕСНЫЕ ФУРИИ',
-					text: 'Порвать Саефа и его приспешников! Король Галамар и Король Валадорн должны выжить.'
+					header: langEnExtra.name,
+					text: langEnExtra.objective
 				}
 			}
 		],
+		"endBriefing": [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				playSound: {
+					sound: 'game-complete.mp3',
+					road: 0,
+					isLoop: true
+				},
+				popupData: {
+					text: 'Pitiful wretches. You will not live long enough to see your precious Kingdom engulfed in shadow...',
+					img: 'i/face/saeth.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Saeth! This time your defeat is complete!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'In your insignificant life and narrow mind, perhaps... Nevertheless everything is now set in motion - the invisible forces that govern time are beyond your knowledge. You cannot stop me from rising again!',
+					img: 'i/face/saeth.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Your Majesty, the Ruins are falling apart! We should leave immediately!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'But the Crystals... They are still in there!',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'The only thing we can save now is ourselves!',
+					img: 'i/face/valadorn.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'You have served me well. Now move!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langEn.story.list[5]
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.missionComplete,
+					text: '\'The Crucible\' and \'Shadow Lands\' ' + langEn.unlocked
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEn.congratulations,
+					text: 'And thank you for playing AE2 - I very much hope you enjoyed playing it as much as I enjoyed making it!'
+				},
+				onHide: {
+					fn: 'backTo',
+					args: ['']
+				}
+			}
 
+		],
+
+		// ru
+		"name-ru": langRuExtra.name,
+		"objective-ru": langRuExtra.objective,
 		"startBriefing-ru": [
 			{
 				popupName: 'story',
@@ -303,109 +400,11 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'НЕБЕСНЫЕ ФУРИИ',
-					text: 'Порвать Саефа и его приспешников! Король Галамар и Король Валадорн должны выжить.'
+					header: langRuExtra.name,
+					text: langRuExtra.objective
 				}
 			}
 		],
-
-		"endBriefing": [
-			{
-				popupName: 'briefing',
-				from: 'right',
-				cssClass: 'briefing',
-				playSound: {
-					sound: 'game-complete.mp3',
-					road: 0,
-					isLoop: true
-				},
-				popupData: {
-					text: 'Pitiful wretches. You will not live long enough to see your precious Kingdom engulfed in shadow...',
-					img: 'i/face/saeth.png'
-				}
-			},
-			{
-				popupName: 'briefing',
-				from: 'left',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'Saeth! This time your defeat is complete!',
-					img: 'i/face/galamar.png'
-				}
-			},
-			{
-				popupName: 'briefing',
-				from: 'right',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'In your insignificant life and narrow mind, perhaps... Nevertheless everything is now set in motion - the invisible forces that govern time are beyond your knowledge. You cannot stop me from rising again!',
-					img: 'i/face/saeth.png'
-				}
-			},
-			{
-				popupName: 'briefing',
-				from: 'left',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'Your Majesty, the Ruins are falling apart! We should leave immediately!',
-					img: 'i/face/soldier.png'
-				}
-			},
-			{
-				popupName: 'briefing',
-				from: 'right',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'But the Crystals... They are still in there!',
-					img: 'i/face/tamplier.png'
-				}
-			},
-			{
-				popupName: 'briefing',
-				from: 'left',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'The only thing we can save now is ourselves!',
-					img: 'i/face/valadorn.png'
-				}
-			},
-			{
-				popupName: 'briefing',
-				from: 'right',
-				cssClass: 'briefing',
-				popupData: {
-					text: 'You have served me well. Now move!',
-					img: 'i/face/galamar.png'
-				}
-			},
-			{
-				popupName: 'story',
-				cssClass: 'full-screen',
-				popupData: {
-					content: langEn.story.list[5]
-				}
-			},
-			{
-				popupName: 'simple-notification',
-				popupData: {
-					header: langEn.missionComplete,
-					text: '\'The Crucible\' and \'Shadow Lands\' ' + langEn.unlocked
-				}
-			},
-			{
-				popupName: 'simple-notification',
-				popupData: {
-					header: langEn.congratulations,
-					text: 'And thank you for playing AE2 - I very much hope you enjoyed playing it as much as I enjoyed making it!'
-				},
-				onHide: {
-					fn: 'backTo',
-					args: ['']
-				}
-			}
-
-		],
-
 		"endBriefing-ru": [
 			{
 				popupName: 'briefing',
@@ -500,7 +499,6 @@
 					args: ['']
 				}
 			}
-
 		],
 
 		"units": [
