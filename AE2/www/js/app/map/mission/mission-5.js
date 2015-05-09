@@ -17,23 +17,23 @@
 		};
 
 	win.APP.maps.mission_001_005 = {
-		"version": 4,
-		"type": "mission",
-		"isOpen": false,
-		"openMaps": [
-			{"jsMapKey": 'mission_001_006', "type": "mission"},
-			{"jsMapKey": 'skirmish_001_011', "type": "skirmish"}
+		version: 4,
+		type: 'mission',
+		isOpen: false,
+		openMaps: [
+			{jsMapKey: 'mission_001_006', type: 'mission'},
+			{jsMapKey: 'skirmish_001_011', type: 'skirmish'}
 		],
-		"size": {"width": 20, "height": 12},
-		"maxPlayers": 2,
-		"unitLimit": 10,
-		"win": ['noEnemyUnit', 'allUnorderedCasesIsDone'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
-		"defeat": ['commanderIsDead', 'crystalIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
+		size: {width: 20, height: 12},
+		maxPlayers: 2,
+		unitLimit: 25,
+		win: ['noEnemyUnit', 'allUnorderedCasesIsDone'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
+		defeat: ['commanderIsDead', 'crystalIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
 		// en
-		"name": langEnExtra.name,
-		"objective": langEnExtra.objective,
-		"startBriefing": [
+		name: langEnExtra.name,
+		objective: langEnExtra.objective,
+		startBriefing: [
 			{
 				popupName: 'simple-notification',
 				popupData: {
@@ -71,7 +71,7 @@
 				}
 			}
 		],
-		"n1Briefing": [
+		n1Briefing: [
 			{
 				popupName: 'briefing',
 				from: 'left',
@@ -83,7 +83,7 @@
 			}
 
 		],
-		"endBriefing": [
+		endBriefing: [
 			{
 				popupName: 'simple-notification',
 				popupData: {
@@ -318,21 +318,21 @@
 		],
 
 		"units": [
-			{"x": 11, "y": 0, "type": "crystal", "ownerId": 0},
-			{"x": 11, "y": 1, "type": "galamar", "ownerId": 0},
-			{"x": 12, "y": 0, "type": "archer", "ownerId": 0},
-			{"x": 12, "y": 1, "type": "sorceress", "ownerId": 0},
-			{"x": 11, "y": 2, "type": "soldier", "ownerId": 0},
-			{"x": 10, "y": 1, "type": "dire-wolf", "ownerId": 0}
+			{x: 11, y: 0, type: "crystal", ownerId: 0},
+			{x: 11, y: 1, type: "galamar", ownerId: 0},
+			{x: 12, y: 0, type: "archer", ownerId: 0},
+			{x: 12, y: 1, type: "sorceress", ownerId: 0},
+			{x: 11, y: 2, type: "soldier", ownerId: 0},
+			{x: 10, y: 1, type: "dire-wolf", ownerId: 0}
 		],
 		"buildings": [
-			{"x": 2, "y": 1, "type": "temple", "state": "normal"},
-			{"x": 7, "y": 5, "type": "temple", "state": "normal"},
-			{"x": 6, "y": 10, "type": "well", "state": "normal"},
-			{"x": 4, "y": 4, "type": "well", "state": "normal"},
-			{"x": 12, "y": 5, "type": "well", "state": "normal"},
-			{"x": 18, "y": 8, "type": "well", "state": "normal"},
-			{"x": 12, "y": 8, "type": "temple", "state": "normal"}
+			{x: 2, y: 1, type: "temple", "state": "normal"},
+			{x: 7, y: 5, type: "temple", "state": "normal"},
+			{x: 6, y: 10, type: "well", "state": "normal"},
+			{x: 4, y: 4, type: "well", "state": "normal"},
+			{x: 12, y: 5, type: "well", "state": "normal"},
+			{x: 18, y: 8, type: "well", "state": "normal"},
+			{x: 12, y: 8, type: "temple", "state": "normal"}
 		],
 		"terrain": {
 			"x0y0": "stone-1",

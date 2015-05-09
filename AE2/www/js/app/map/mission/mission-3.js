@@ -17,26 +17,26 @@
 		};
 
 	win.APP.maps.mission_001_003 = {
-		"version": 4,
-		"type": "mission",
-		"isOpen": false,
-		"openMaps": [
-			{"jsMapKey": 'mission_001_004', "type": "mission" },
-			{"jsMapKey": 'skirmish_001_009', "type": "skirmish"}
+		version: 4,
+		type: 'mission',
+		isOpen: false,
+		openMaps: [
+			{jsMapKey: 'mission_001_004', type: 'mission' },
+			{jsMapKey: 'skirmish_001_009', type: 'skirmish'}
 		],
-		"size": {"width": 10, "height": 17},
-		"maxPlayers": 2,
-		"unitLimit": 25,
-		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
-		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
+		size: {width: 10, height: 17},
+		maxPlayers: 2,
+		unitLimit: 25,
+		win: ['noEnemyUnit'], // allCastles, noEnemyUnit
+		defeat: ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
 		// en
-		"name": langEnExtra.name,
-		"objective": langEnExtra.objective,
-		"help": [
+		name: langEnExtra.name,
+		objective: langEnExtra.objective,
+		help: [
 			langEn.helpList[4]
 		],
-		"startBriefing": [
+		startBriefing: [
 			{
 				popupName: 'simple-notification',
 				popupData: {
@@ -86,7 +86,7 @@
 				}
 			}
 		],
-		"n1Briefing": [
+		n1Briefing: [
 			{
 				popupName: 'briefing',
 				from: 'right',
@@ -133,7 +133,7 @@
 				}
 			}
 		],
-		"endBriefing": [
+		endBriefing: [
 			{
 				popupName: 'simple-notification',
 				popupData: {
@@ -345,15 +345,15 @@
 		],
 
 		"units": [
-			{"x": 7, "y": 14, "type": "soldier", "ownerId": 0},
-			{"x": 8, "y": 14, "type": "galamar", "ownerId": 0},
-			{"x": 7, "y": 15, "type": "archer", "ownerId": 0},
-			{"x": 8, "y": 15, "type": "sorceress", "ownerId": 0},
-			{"x": 6, "y": 13, "type": "dire-wolf", "ownerId": 1},
-			{"x": 8, "y": 11, "type": "dire-wolf", "ownerId": 1}
+			{x: 7, y: 14, type: "soldier", ownerId: 0},
+			{x: 8, y: 14, type: "galamar", ownerId: 0},
+			{x: 7, y: 15, type: "archer", ownerId: 0},
+			{x: 8, y: 15, type: "sorceress", ownerId: 0},
+			{x: 6, y: 13, type: "dire-wolf", ownerId: 1},
+			{x: 8, y: 11, type: "dire-wolf", ownerId: 1}
 		],
 		"buildings": [
-			{"x": 4, "y": 8, "type": "well", "state": "normal"}
+			{x: 4, y: 8, type: "well", "state": "normal"}
 		],
 		"terrain": {
 			"x0y0": "forest-1",

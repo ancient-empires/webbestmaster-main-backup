@@ -8,36 +8,36 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_006 = {
-		"version": 3,
-		"type": "skirmish",
-		"size": {"width": 15, "height": 12},
-		"maxPlayers": 3,
-		"isOpen": true,
+		version: 3,
+		type: 'skirmish',
+		size: {width: 15, height: 12},
+		maxPlayers: 3,
+		isOpen: true,
 
 		// en
-		"name": "Frozen Friends",
+		name: "Frozen Friends",
 
 		// ru
 		"name-ru": "Холодные друзья",
 
 		"units": [
-			{"x": 2, "y": 1, "type": "commander", "ownerId": 0},
-			{"x": 7, "y": 10, "type": "commander", "ownerId": 1},
-			{"x": 13, "y": 1, "type": "commander", "ownerId": 2}
+			{x: 2, y: 1, type: "commander", ownerId: 0},
+			{x: 7, y: 10, type: "commander", ownerId: 1},
+			{x: 13, y: 1, type: "commander", ownerId: 2}
 		],
 		"buildings": [
-			{"x": 2, "y": 1, "type": "castle", "state": "normal", "ownerId": 0},
-			{"x": 7, "y": 10, "type": "castle", "state": "normal", "ownerId": 1},
-			{"x": 13, "y": 1, "type": "castle", "state": "normal", "ownerId": 2},
-			{"x": 4, "y": 2, "type": "farm", "state": "normal"},
-			{"x": 1, "y": 4, "type": "farm", "state": "normal"},
-			{"x": 5, "y": 8, "type": "farm", "state": "normal"},
-			{"x": 5, "y": 5, "type": "farm", "state": "destroyed"},
-			{"x": 7, "y": 4, "type": "farm", "state": "destroyed"},
-			{"x": 10, "y": 2, "type": "farm", "state": "normal"},
-			{"x": 13, "y": 4, "type": "farm", "state": "normal"},
-			{"x": 9, "y": 8, "type": "farm", "state": "normal"},
-			{"x": 9, "y": 5, "type": "farm", "state": "destroyed"}
+			{x: 2, y: 1, type: "castle", "state": "normal", ownerId: 0},
+			{x: 7, y: 10, type: "castle", "state": "normal", ownerId: 1},
+			{x: 13, y: 1, type: "castle", "state": "normal", ownerId: 2},
+			{x: 4, y: 2, type: "farm", "state": "normal"},
+			{x: 1, y: 4, type: "farm", "state": "normal"},
+			{x: 5, y: 8, type: "farm", "state": "normal"},
+			{x: 5, y: 5, type: "farm", "state": "destroyed"},
+			{x: 7, y: 4, type: "farm", "state": "destroyed"},
+			{x: 10, y: 2, type: "farm", "state": "normal"},
+			{x: 13, y: 4, type: "farm", "state": "normal"},
+			{x: 9, y: 8, type: "farm", "state": "normal"},
+			{x: 9, y: 5, type: "farm", "state": "destroyed"}
 		],
 		"terrain": {
 			"x0y0": "stone-1",

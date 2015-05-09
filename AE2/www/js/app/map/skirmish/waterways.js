@@ -8,39 +8,39 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_010 = {
-		"version": 3,
-		"type": "skirmish",
-		"size": {"width": 15, "height": 15},
-		"maxPlayers": 4,
-		"isOpen": false,
+		version: 3,
+		type: 'skirmish',
+		size: {width: 15, height: 15},
+		maxPlayers: 4,
+		isOpen: false,
 
 		// en
-		"name": "Waterways",
+		name: "Waterways",
 
 		// ru
 		"name-ru": "Водоемы",
 
 		"units": [
-			{"x": 2, "y": 2, "type": "commander", "ownerId": 0},
-			{"x": 12, "y": 3, "type": "commander", "ownerId": 1},
-			{"x": 2, "y": 12, "type": "commander", "ownerId": 2},
-			{"x": 12, "y": 12, "type": "commander", "ownerId": 3}
+			{x: 2, y: 2, type: "commander", ownerId: 0},
+			{x: 12, y: 3, type: "commander", ownerId: 1},
+			{x: 2, y: 12, type: "commander", ownerId: 2},
+			{x: 12, y: 12, type: "commander", ownerId: 3}
 		],
 		"buildings": [
-			{"x": 2, "y": 2, "type": "castle", "state": "normal", "ownerId": 0},
-			{"x": 4, "y": 3, "type": "farm", "state": "normal"},
-			{"x": 2, "y": 4, "type": "farm", "state": "normal"},
-			{"x": 6, "y": 7, "type": "farm", "state": "destroyed"},
-			{"x": 7, "y": 12, "type": "farm", "state": "destroyed"},
-			{"x": 1, "y": 9, "type": "farm", "state": "normal"},
-			{"x": 3, "y": 10, "type": "farm", "state": "normal"},
-			{"x": 2, "y": 12, "type": "castle", "state": "normal", "ownerId": 2},
-			{"x": 10, "y": 3, "type": "farm", "state": "normal"},
-			{"x": 13, "y": 5, "type": "farm", "state": "normal"},
-			{"x": 11, "y": 9, "type": "farm", "state": "normal"},
-			{"x": 12, "y": 3, "type": "castle", "state": "normal", "ownerId": 1},
-			{"x": 12, "y": 12, "type": "castle", "state": "normal", "ownerId": 3},
-			{"x": 13, "y": 10, "type": "farm", "state": "normal"}
+			{x: 2, y: 2, type: "castle", "state": "normal", ownerId: 0},
+			{x: 4, y: 3, type: "farm", "state": "normal"},
+			{x: 2, y: 4, type: "farm", "state": "normal"},
+			{x: 6, y: 7, type: "farm", "state": "destroyed"},
+			{x: 7, y: 12, type: "farm", "state": "destroyed"},
+			{x: 1, y: 9, type: "farm", "state": "normal"},
+			{x: 3, y: 10, type: "farm", "state": "normal"},
+			{x: 2, y: 12, type: "castle", "state": "normal", ownerId: 2},
+			{x: 10, y: 3, type: "farm", "state": "normal"},
+			{x: 13, y: 5, type: "farm", "state": "normal"},
+			{x: 11, y: 9, type: "farm", "state": "normal"},
+			{x: 12, y: 3, type: "castle", "state": "normal", ownerId: 1},
+			{x: 12, y: 12, type: "castle", "state": "normal", ownerId: 3},
+			{x: 13, y: 10, type: "farm", "state": "normal"}
 		],
 		"terrain": {
 			"x0y0": "water-1",

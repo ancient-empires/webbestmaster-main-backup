@@ -17,32 +17,32 @@
 		};
 
 	win.APP.maps.mission_001_002 = {
-		"version": 4,
-		"type": "mission",
-		"isOpen": false,
-		"openMaps": [
-			{"jsMapKey": 'mission_001_003', "type": "mission"},
-			{"jsMapKey": 'skirmish_001_008', "type": "skirmish"}
+		version: 4,
+		type: 'mission',
+		isOpen: false,
+		openMaps: [
+			{jsMapKey: 'mission_001_003', type: 'mission'},
+			{jsMapKey: 'skirmish_001_008', type: 'skirmish'}
 		],
-		"size": {"width": 15, "height": 12},
-		"maxPlayers": 2,
-		"unitLimit": 25,
-		"availableStoreUnits": ["soldier", "archer"],
-		"money": [
+		size: {width: 15, height: 12},
+		maxPlayers: 2,
+		unitLimit: 25,
+		availableStoreUnits: ["soldier", "archer"],
+		money: [
 			{playerId: 0, money: 300},
 			{playerId: 1, money: 300}
 		],
-		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit
-		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
+		win: ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit
+		defeat: ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
 		// en
-		"name": langEnExtra.name,
-		"objective": langEnExtra.objective,
-		"help": [
+		name: langEnExtra.name,
+		objective: langEnExtra.objective,
+		help: [
 			langEn.helpList[2],
 			langEn.helpList[3]
 		],
-		"startBriefing": [
+		startBriefing: [
 			{
 				popupName: 'simple-notification',
 				popupData: {
@@ -148,7 +148,7 @@
 				}
 			}
 		],
-		"endBriefing": [
+		endBriefing: [
 			{
 				popupName: 'briefing',
 				from: 'left',
@@ -334,24 +334,24 @@
 		],
 
 		"units": [
-			{"x": 8, "y": 9, "type": "valadorn", "ownerId": 0},
-			{"x": 9, "y": 10, "type": "archer", "ownerId": 0},
-			{"x": 7, "y": 10, "type": "soldier", "ownerId": 0},
-			{"x": 12, "y": 3, "type": "demon-lord", "ownerId": 1},
-			{"x": 13, "y": 4, "type": "archer", "ownerId": 1},
-			{"x": 6, "y": 1, "type": "soldier", "ownerId": 1}
+			{x: 8, y: 9, type: "valadorn", ownerId: 0},
+			{x: 9, y: 10, type: "archer", ownerId: 0},
+			{x: 7, y: 10, type: "soldier", ownerId: 0},
+			{x: 12, y: 3, type: "demon-lord", ownerId: 1},
+			{x: 13, y: 4, type: "archer", ownerId: 1},
+			{x: 6, y: 1, type: "soldier", ownerId: 1}
 		],
 		"buildings": [
-			{"x": 7, "y": 3, "type": "temple", "state": "normal"},
-			{"x": 3, "y": 5, "type": "castle", "state": "normal"},
-			{"x": 1, "y": 4, "type": "farm", "state": "normal"},
-			{"x": 5, "y": 2, "type": "farm", "state": "normal"},
-			{"x": 5, "y": 7, "type": "farm", "state": "destroyed"},
-			{"x": 7,"y": 7,"type": "farm", "state": "normal"},
-			{"x": 10, "y": 2, "type": "farm", "state": "normal"},
-			{"x": 9, "y": 5, "type": "farm", "state": "destroyed"},
-			{"x": 13, "y": 6, "type": "farm", "state": "normal"},
-			{"x": 12, "y": 3, "type": "castle", "state": "normal"}
+			{x: 7, y: 3, type: "temple", "state": "normal"},
+			{x: 3, y: 5, type: "castle", "state": "normal"},
+			{x: 1, y: 4, type: "farm", "state": "normal"},
+			{x: 5, y: 2, type: "farm", "state": "normal"},
+			{x: 5, y: 7, type: "farm", "state": "destroyed"},
+			{x: 7,y: 7,type: "farm", "state": "normal"},
+			{x: 10, y: 2, type: "farm", "state": "normal"},
+			{x: 9, y: 5, type: "farm", "state": "destroyed"},
+			{x: 13, y: 6, type: "farm", "state": "normal"},
+			{x: 12, y: 3, type: "castle", "state": "normal"}
 		],
 		"terrain": {
 			"x0y0": "water-1",

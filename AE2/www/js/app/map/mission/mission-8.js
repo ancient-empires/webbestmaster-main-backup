@@ -17,27 +17,27 @@
 		};
 
 	win.APP.maps.mission_001_008 = {
-		"version": 4,
-		"type": "mission",
-		"isOpen": false,
-		"openMaps": [
-			{"jsMapKey": 'skirmish_001_014', "type": "skirmish"},
-			{"jsMapKey": 'skirmish_001_015', "type": "skirmish"}
+		version: 4,
+		type: 'mission',
+		isOpen: false,
+		openMaps: [
+			{jsMapKey: 'skirmish_001_014', type: 'skirmish'},
+			{jsMapKey: 'skirmish_001_015', type: 'skirmish'}
 		],
-		"size": {"width": 14, "height": 18},
-		"maxPlayers": 2,
-		"unitLimit": 25,
-		"money": [
+		size: {width: 14, height: 18},
+		maxPlayers: 2,
+		unitLimit: 25,
+		money: [
 			{playerId: 0, money: 600},
 			{playerId: 1, money: 600}
 		],
-		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
-		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
+		win: ['noEnemyUnit'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
+		defeat: ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
 		// en
-		"name": langEnExtra.name,
-		"objective": langEnExtra.objective,
-		"startBriefing": [
+		name: langEnExtra.name,
+		objective: langEnExtra.objective,
+		startBriefing: [
 			{
 				popupName: 'story',
 				cssClass: 'full-screen',
@@ -171,7 +171,7 @@
 				}
 			}
 		],
-		"endBriefing": [
+		endBriefing: [
 			{
 				popupName: 'briefing',
 				from: 'right',
@@ -502,38 +502,38 @@
 		],
 
 		"units": [
-			{"x": 2, "y": 9, "type": "catapult", "ownerId": 1},
-			{"x": 4, "y": 9, "type": "elemental", "ownerId": 1},
-			{"x": 3, "y": 9, "type": "demon-lord", "ownerId": 1},
-			{"x": 6, "y": 9, "type": "archer", "ownerId": 1},
-			{"x": 7, "y": 9, "type": "wisp", "ownerId": 1},
-			{"x": 7, "y": 2, "type": "saeth-heavens-fury", "ownerId": 1},
-			{"x": 12, "y": 4, "type": "dragon", "ownerId": 1},
-			{"x": 13, "y": 4, "type": "demon-lord", "ownerId": 1},
-			{"x": 6, "y": 15, "type": "valadorn", "ownerId": 0},
-			{"x": 8, "y": 15, "type": "galamar", "ownerId": 0},
-			{"x": 7, "y": 15, "type": "golem", "ownerId": 0},
-			{"x": 5, "y": 15, "type": "elemental", "ownerId": 0},
-			{"x": 6, "y": 16, "type": "wisp", "ownerId": 0},
-			{"x": 7, "y": 16, "type": "catapult", "ownerId": 0},
-			{"x": 10, "y": 14, "type": "dragon", "ownerId": 0}
+			{x: 2, y: 9, type: "catapult", ownerId: 1},
+			{x: 4, y: 9, type: "elemental", ownerId: 1},
+			{x: 3, y: 9, type: "demon-lord", ownerId: 1},
+			{x: 6, y: 9, type: "archer", ownerId: 1},
+			{x: 7, y: 9, type: "wisp", ownerId: 1},
+			{x: 7, y: 2, type: "saeth-heavens-fury", ownerId: 1},
+			{x: 12, y: 4, type: "dragon", ownerId: 1},
+			{x: 13, y: 4, type: "demon-lord", ownerId: 1},
+			{x: 6, y: 15, type: "valadorn", ownerId: 0},
+			{x: 8, y: 15, type: "galamar", ownerId: 0},
+			{x: 7, y: 15, type: "golem", ownerId: 0},
+			{x: 5, y: 15, type: "elemental", ownerId: 0},
+			{x: 6, y: 16, type: "wisp", ownerId: 0},
+			{x: 7, y: 16, type: "catapult", ownerId: 0},
+			{x: 10, y: 14, type: "dragon", ownerId: 0}
 		],
 		"buildings": [
-			{"x": 0, "y": 12, "type": "farm", "state": "normal"},
-			{"x": 3, "y": 16, "type": "farm", "state": "normal"},
-			{"x": 3, "y": 9, "type": "castle", "state": "normal", "ownerId": 1},
-			{"x": 4, "y": 3, "type": "farm", "state": "normal", "ownerId": 1},
-			{"x": 7, "y": 4, "type": "farm", "state": "normal", "ownerId": 1},
-			{"x": 9, "y": 1, "type": "farm", "state": "normal", "ownerId": 1},
-			{"x": 12, "y": 3, "type": "farm", "state": "normal", "ownerId": 1},
-			{"x": 13, "y": 4, "type": "castle", "state": "normal", "ownerId": 1},
-			{"x": 6, "y": 9, "type": "farm", "state": "normal", "ownerId": 1},
-			{"x": 4, "y": 11, "type": "farm", "state": "normal"},
-			{"x": 12, "y": 15, "type": "farm", "state": "normal", "ownerId": 0},
-			{"x": 8, "y": 17, "type": "farm", "state": "normal", "ownerId": 0},
-			{"x": 8, "y": 15, "type": "castle", "state": "normal", "ownerId": 0},
-			{"x": 10, "y": 9, "type": "farm", "state": "destroyed"},
-			{"x": 12, "y": 6, "type": "farm", "state": "destroyed"}
+			{x: 0, y: 12, type: "farm", "state": "normal"},
+			{x: 3, y: 16, type: "farm", "state": "normal"},
+			{x: 3, y: 9, type: "castle", "state": "normal", ownerId: 1},
+			{x: 4, y: 3, type: "farm", "state": "normal", ownerId: 1},
+			{x: 7, y: 4, type: "farm", "state": "normal", ownerId: 1},
+			{x: 9, y: 1, type: "farm", "state": "normal", ownerId: 1},
+			{x: 12, y: 3, type: "farm", "state": "normal", ownerId: 1},
+			{x: 13, y: 4, type: "castle", "state": "normal", ownerId: 1},
+			{x: 6, y: 9, type: "farm", "state": "normal", ownerId: 1},
+			{x: 4, y: 11, type: "farm", "state": "normal"},
+			{x: 12, y: 15, type: "farm", "state": "normal", ownerId: 0},
+			{x: 8, y: 17, type: "farm", "state": "normal", ownerId: 0},
+			{x: 8, y: 15, type: "castle", "state": "normal", ownerId: 0},
+			{x: 10, y: 9, type: "farm", "state": "destroyed"},
+			{x: 12, y: 6, type: "farm", "state": "destroyed"}
 		],
 		"terrain": {
 			"x0y0": "water-1",

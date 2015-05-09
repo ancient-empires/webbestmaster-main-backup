@@ -8,41 +8,41 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_012 = {
-		"version": 3,
-		"type": "skirmish",
-		"size": {"width": 13, "height": 13},
-		"maxPlayers": 4,
-		"isOpen": false,
+		version: 3,
+		type: 'skirmish',
+		size: {width: 13, height: 13},
+		maxPlayers: 4,
+		isOpen: false,
 
 		// en
-		"name": "Winter Storm",
+		name: "Winter Storm",
 
 		// ru
 		"name-ru": "Зимний шторм",
 
 		"units": [
-			{"x": 6, "y": 1, "type": "commander", "ownerId": 0},
-			{"x": 1, "y": 6, "type": "commander", "ownerId": 1},
-			{"x": 11, "y": 6, "type": "commander", "ownerId": 2},
-			{"x": 6, "y": 11, "type": "commander", "ownerId": 3}
+			{x: 6, y: 1, type: "commander", ownerId: 0},
+			{x: 1, y: 6, type: "commander", ownerId: 1},
+			{x: 11, y: 6, type: "commander", ownerId: 2},
+			{x: 6, y: 11, type: "commander", ownerId: 3}
 		],
 		"buildings": [
-			{"x": 0, "y": 4, "type": "farm", "state": "destroyed"},
-			{"x": 0, "y": 8, "type": "farm", "state": "destroyed"},
-			{"x": 4, "y": 0, "type": "farm", "state": "destroyed"},
-			{"x": 8, "y": 0, "type": "farm", "state": "destroyed"},
-			{"x": 12, "y": 4, "type": "farm", "state": "destroyed"},
-			{"x": 12, "y": 8, "type": "farm", "state": "destroyed"},
-			{"x": 8, "y": 12, "type": "farm", "state": "destroyed"},
-			{"x": 4, "y": 12, "type": "farm", "state": "destroyed"},
-			{"x": 5, "y": 5, "type": "farm", "state": "normal"},
-			{"x": 5, "y": 7, "type": "farm", "state": "normal"},
-			{"x": 7, "y": 7, "type": "farm", "state": "normal"},
-			{"x": 7, "y": 5, "type": "farm", "state": "normal"},
-			{"x": 6, "y": 1, "type": "castle", "state": "normal", "ownerId": 0},
-			{"x": 1, "y": 6, "type": "castle", "state": "normal", "ownerId": 1},
-			{"x": 11, "y": 6, "type": "castle", "state": "normal", "ownerId": 2},
-			{"x": 6, "y": 11, "type": "castle", "state": "normal", "ownerId": 3}
+			{x: 0, y: 4, type: "farm", "state": "destroyed"},
+			{x: 0, y: 8, type: "farm", "state": "destroyed"},
+			{x: 4, y: 0, type: "farm", "state": "destroyed"},
+			{x: 8, y: 0, type: "farm", "state": "destroyed"},
+			{x: 12, y: 4, type: "farm", "state": "destroyed"},
+			{x: 12, y: 8, type: "farm", "state": "destroyed"},
+			{x: 8, y: 12, type: "farm", "state": "destroyed"},
+			{x: 4, y: 12, type: "farm", "state": "destroyed"},
+			{x: 5, y: 5, type: "farm", "state": "normal"},
+			{x: 5, y: 7, type: "farm", "state": "normal"},
+			{x: 7, y: 7, type: "farm", "state": "normal"},
+			{x: 7, y: 5, type: "farm", "state": "normal"},
+			{x: 6, y: 1, type: "castle", "state": "normal", ownerId: 0},
+			{x: 1, y: 6, type: "castle", "state": "normal", ownerId: 1},
+			{x: 11, y: 6, type: "castle", "state": "normal", ownerId: 2},
+			{x: 6, y: 11, type: "castle", "state": "normal", ownerId: 3}
 		],
 		"terrain": {
 			"x0y0": "stone-1",

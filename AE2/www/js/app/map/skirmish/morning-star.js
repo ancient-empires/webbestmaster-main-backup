@@ -8,33 +8,33 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_013 = {
-		"version": 3,
-		"type": "skirmish",
-		"size": {"width": 11, "height": 11},
-		"maxPlayers": 2,
-		"isOpen": false,
+		version: 3,
+		type: 'skirmish',
+		size: {width: 11, height: 11},
+		maxPlayers: 2,
+		isOpen: false,
 
 		// en
-		"name": "Morning Star",
+		name: "Morning Star",
 
 		// ru
 		"name-ru": "Утренняя звезда",
 
 		"units": [
-			{"x": 2, "y": 8, "type": "commander", "ownerId": 0},
-			{"x": 8, "y": 2, "type": "commander", "ownerId": 1}
+			{x: 2, y: 8, type: "commander", ownerId: 0},
+			{x: 8, y: 2, type: "commander", ownerId: 1}
 		],
 		"buildings": [
-			{"x": 0, "y": 2, "type": "farm", "state": "normal"},
-			{"x": 5, "y": 0, "type": "farm", "state": "normal"},
-			{"x": 2, "y": 5, "type": "farm", "state": "normal"},
-			{"x": 8, "y": 5, "type": "farm", "state": "normal"},
-			{"x": 5, "y": 10, "type": "farm", "state": "normal"},
-			{"x": 0, "y": 10, "type": "farm", "state": "normal"},
-			{"x": 10, "y": 0, "type": "farm", "state": "normal"},
-			{"x": 10, "y": 8, "type": "farm", "state": "normal"},
-			{"x": 2, "y": 8, "type": "castle", "state": "normal", "ownerId": 0},
-			{"x": 8, "y": 2, "type": "castle", "state": "normal", "ownerId": 1}
+			{x: 0, y: 2, type: "farm", "state": "normal"},
+			{x: 5, y: 0, type: "farm", "state": "normal"},
+			{x: 2, y: 5, type: "farm", "state": "normal"},
+			{x: 8, y: 5, type: "farm", "state": "normal"},
+			{x: 5, y: 10, type: "farm", "state": "normal"},
+			{x: 0, y: 10, type: "farm", "state": "normal"},
+			{x: 10, y: 0, type: "farm", "state": "normal"},
+			{x: 10, y: 8, type: "farm", "state": "normal"},
+			{x: 2, y: 8, type: "castle", "state": "normal", ownerId: 0},
+			{x: 8, y: 2, type: "castle", "state": "normal", ownerId: 1}
 		],
 		"terrain": {
 			"x0y0": "water-1",

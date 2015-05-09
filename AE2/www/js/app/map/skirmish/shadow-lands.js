@@ -8,49 +8,49 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_015 = {
-		"version": 3,
-		"type": "skirmish",
-		"size": {"width": 19, "height": 19},
-		"maxPlayers": 4,
-		"isOpen": false,
+		version: 3,
+		type: 'skirmish',
+		size: {width: 19, height: 19},
+		maxPlayers: 4,
+		isOpen: false,
 
 		// en
-		"name": "Shadow Lands",
+		name: "Shadow Lands",
 
 		// ru
 		"name-ru": "Теневые земли",
 
 		"units": [
-			{"x": 9, "y": 1, "type": "commander", "ownerId": 0},
-			{"x": 2, "y": 7, "type": "commander", "ownerId": 1},
-			{"x": 16, "y": 7, "type": "commander", "ownerId": 2},
-			{"x": 9, "y": 15, "type": "commander", "ownerId": 3}
+			{x: 9, y: 1, type: "commander", ownerId: 0},
+			{x: 2, y: 7, type: "commander", ownerId: 1},
+			{x: 16, y: 7, type: "commander", ownerId: 2},
+			{x: 9, y: 15, type: "commander", ownerId: 3}
 		],
 		"buildings": [
-			{"x": 1, "y": 6, "type": "farm", "state": "normal"},
-			{"x": 2, "y": 4, "type": "farm", "state": "normal"},
-			{"x": 6, "y": 0, "type": "farm", "state": "normal"},
-			{"x": 3, "y": 9, "type": "farm", "state": "normal"},
-			{"x": 5, "y": 11, "type": "castle", "state": "normal"},
-			{"x": 12, "y": 0, "type": "farm", "state": "normal"},
-			{"x": 15, "y": 9, "type": "farm", "state": "normal"},
-			{"x": 16, "y": 4, "type": "farm", "state": "normal"},
-			{"x": 17, "y": 6, "type": "farm", "state": "normal"},
-			{"x": 9, "y": 3, "type": "farm", "state": "normal"},
-			{"x": 5, "y": 3, "type": "castle", "state": "normal"},
-			{"x": 13, "y": 3, "type": "castle", "state": "normal"},
-			{"x": 7, "y": 7, "type": "castle", "state": "normal"},
-			{"x": 11, "y": 7, "type": "castle", "state": "normal"},
-			{"x": 9, "y": 8, "type": "farm", "state": "destroyed"},
-			{"x": 9, "y": 6, "type": "farm", "state": "destroyed"},
-			{"x": 13, "y": 11, "type": "castle", "state": "normal"},
-			{"x": 6, "y": 17, "type": "farm", "state": "normal"},
-			{"x": 9, "y": 17, "type": "farm", "state": "normal"},
-			{"x": 12, "y": 17, "type": "farm", "state": "normal"},
-			{"x": 9, "y": 1, "type": "castle", "state": "normal", "ownerId": 0},
-			{"x": 2, "y": 7, "type": "castle", "state": "normal", "ownerId": 1},
-			{"x": 16, "y": 7, "type": "castle", "state": "normal", "ownerId": 2},
-			{"x": 9, "y": 15, "type": "castle", "state": "normal", "ownerId": 3}
+			{x: 1, y: 6, type: "farm", "state": "normal"},
+			{x: 2, y: 4, type: "farm", "state": "normal"},
+			{x: 6, y: 0, type: "farm", "state": "normal"},
+			{x: 3, y: 9, type: "farm", "state": "normal"},
+			{x: 5, y: 11, type: "castle", "state": "normal"},
+			{x: 12, y: 0, type: "farm", "state": "normal"},
+			{x: 15, y: 9, type: "farm", "state": "normal"},
+			{x: 16, y: 4, type: "farm", "state": "normal"},
+			{x: 17, y: 6, type: "farm", "state": "normal"},
+			{x: 9, y: 3, type: "farm", "state": "normal"},
+			{x: 5, y: 3, type: "castle", "state": "normal"},
+			{x: 13, y: 3, type: "castle", "state": "normal"},
+			{x: 7, y: 7, type: "castle", "state": "normal"},
+			{x: 11, y: 7, type: "castle", "state": "normal"},
+			{x: 9, y: 8, type: "farm", "state": "destroyed"},
+			{x: 9, y: 6, type: "farm", "state": "destroyed"},
+			{x: 13, y: 11, type: "castle", "state": "normal"},
+			{x: 6, y: 17, type: "farm", "state": "normal"},
+			{x: 9, y: 17, type: "farm", "state": "normal"},
+			{x: 12, y: 17, type: "farm", "state": "normal"},
+			{x: 9, y: 1, type: "castle", "state": "normal", ownerId: 0},
+			{x: 2, y: 7, type: "castle", "state": "normal", ownerId: 1},
+			{x: 16, y: 7, type: "castle", "state": "normal", ownerId: 2},
+			{x: 9, y: 15, type: "castle", "state": "normal", ownerId: 3}
 		],
 		"terrain": {
 			"x0y0": "water-2",

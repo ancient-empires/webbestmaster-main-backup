@@ -8,35 +8,35 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_011 = {
-		"version": 3,
-		"type": "skirmish",
-		"size": {"width": 13, "height": 13},
-		"maxPlayers": 2,
-		"isOpen": false,
+		version: 3,
+		type: 'skirmish',
+		size: {width: 13, height: 13},
+		maxPlayers: 2,
+		isOpen: false,
 
 		// en
-		"name": "Liberty Port",
+		name: "Liberty Port",
 
 		// ru
 		"name-ru": "Порт свободы",
 
 		"units": [
-			{"x": 1, "y": 1, "type": "commander", "ownerId": 0},
-			{"x": 11, "y": 1, "type": "commander", "ownerId": 1}
+			{x: 1, y: 1, type: "commander", ownerId: 0},
+			{x: 11, y: 1, type: "commander", ownerId: 1}
 		],
 		"buildings": [
-			{"x": 6, "y": 5, "type": "farm", "state": "normal"},
-			{"x": 2, "y": 3, "type": "farm", "state": "normal"},
-			{"x": 0, "y": 6, "type": "farm", "state": "normal"},
-			{"x": 3, "y": 8, "type": "farm", "state": "normal"},
-			{"x": 1, "y": 1, "type": "castle", "state": "normal", "ownerId": 0},
-			{"x": 1, "y": 11, "type": "farm", "state": "normal"},
-			{"x": 6, "y": 10, "type": "castle", "state": "normal"},
-			{"x": 11, "y": 11, "type": "farm", "state": "normal"},
-			{"x": 9, "y": 9, "type": "farm", "state": "normal"},
-			{"x": 10, "y": 6, "type": "farm", "state": "normal"},
-			{"x": 12, "y": 3, "type": "farm", "state": "normal"},
-			{"x": 11, "y": 1, "type": "castle", "state": "normal", "ownerId": 1}
+			{x: 6, y: 5, type: "farm", "state": "normal"},
+			{x: 2, y: 3, type: "farm", "state": "normal"},
+			{x: 0, y: 6, type: "farm", "state": "normal"},
+			{x: 3, y: 8, type: "farm", "state": "normal"},
+			{x: 1, y: 1, type: "castle", "state": "normal", ownerId: 0},
+			{x: 1, y: 11, type: "farm", "state": "normal"},
+			{x: 6, y: 10, type: "castle", "state": "normal"},
+			{x: 11, y: 11, type: "farm", "state": "normal"},
+			{x: 9, y: 9, type: "farm", "state": "normal"},
+			{x: 10, y: 6, type: "farm", "state": "normal"},
+			{x: 12, y: 3, type: "farm", "state": "normal"},
+			{x: 11, y: 1, type: "castle", "state": "normal", ownerId: 1}
 		],
 		"terrain": {
 			"x0y0": "forest-1",

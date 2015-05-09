@@ -8,32 +8,32 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_002 = {
-		"version": 3,
-		"type": "skirmish",
-		"size": {"width": 10, "height": 10},
-		"maxPlayers": 2,
-		"isOpen": true,
+		version: 3,
+		type: 'skirmish',
+		size: {width: 10, height: 10},
+		maxPlayers: 2,
+		isOpen: true,
 
 		// en
-		"name": 'River',
+		name: 'River',
 
 		// ru
 		"name-ru": 'Река',
 
 		"units": [
-			{"type": "commander", "x": 8, "y": 1, ownerId: 0},
-			{"type": "commander", "x": 1, "y": 8, ownerId: 1}
+			{type: "commander", x: 8, y: 1, ownerId: 0},
+			{type: "commander", x: 1, y: 8, ownerId: 1}
 		],
 
 		"buildings": [
-			{"type": "farm", "x": 9, "y": 0, state: 'normal'},
-			{"type": "farm", "x": 1, "y": 1, state: 'destroyed'},
-			{"type": "castle", "x": 8, "y": 1, state: 'normal', ownerId: 0},
-			{"type": "farm", "x": 2, "y": 4, state: 'destroyed'},
-			{"type": "farm", "x": 7, "y": 5, state: 'destroyed'},
-			{"type": "castle", "x": 1, "y": 8, state: 'normal', ownerId: 1},
-			{"type": "farm", "x": 8, "y": 8, state: 'destroyed'},
-			{"type": "farm", "x": 0, "y": 9, state: 'normal'}
+			{type: "farm", x: 9, y: 0, state: 'normal'},
+			{type: "farm", x: 1, y: 1, state: 'destroyed'},
+			{type: "castle", x: 8, y: 1, state: 'normal', ownerId: 0},
+			{type: "farm", x: 2, y: 4, state: 'destroyed'},
+			{type: "farm", x: 7, y: 5, state: 'destroyed'},
+			{type: "castle", x: 1, y: 8, state: 'normal', ownerId: 1},
+			{type: "farm", x: 8, y: 8, state: 'destroyed'},
+			{type: "farm", x: 0, y: 9, state: 'normal'}
 		],
 
 		"terrain": {

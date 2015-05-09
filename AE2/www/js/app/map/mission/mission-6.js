@@ -17,28 +17,28 @@
 		};
 
 	win.APP.maps.mission_001_006 = {
-		"version": 4,
-		"type": "mission",
-		"isOpen": false,
-		"openMaps": [
-			{"jsMapKey": 'mission_001_007', "type": "mission"},
-			{"jsMapKey": 'skirmish_001_012', "type": "skirmish"}
+		version: 4,
+		type: 'mission',
+		isOpen: false,
+		openMaps: [
+			{jsMapKey: 'mission_001_007', type: 'mission'},
+			{jsMapKey: 'skirmish_001_012', type: 'skirmish'}
 		],
-		"size": {"width": 12, "height": 20},
-		"maxPlayers": 2,
-		"unitLimit": 25,
-		"availableStoreUnits": ["soldier", "archer", "elemental", "sorceress", "wisp", "dire-wolf", "golem"],
-		"money": [
+		size: {width: 12, height: 20},
+		maxPlayers: 2,
+		unitLimit: 25,
+		availableStoreUnits: ["soldier", "archer", "elemental", "sorceress", "wisp", "dire-wolf", "golem"],
+		money: [
 			{playerId: 0, money: 600},
 			{playerId: 1, money: 600}
 		],
-		"win": ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
-		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
+		win: ['noEnemyUnit', 'allCastles'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
+		defeat: ['commanderIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
 		// en
-		"name": langEnExtra.name,
-		"objective": langEnExtra.objective,
-		"startBriefing": [
+		name: langEnExtra.name,
+		objective: langEnExtra.objective,
+		startBriefing: [
 			{
 				popupName: 'simple-notification',
 				popupData: {
@@ -67,7 +67,7 @@
 				}
 			}
 		],
-		"endBriefing": [
+		endBriefing: [
 			{
 				popupName: 'briefing',
 				from: 'left',
@@ -157,32 +157,32 @@
 		],
 
 		"units": [
-			{"x": 5, "y": 5, "type": "demon-lord", "ownerId": 1},
-			{"x": 6, "y": 5, "type": "wisp", "ownerId": 1},
-			{"x": 4, "y": 6, "type": "golem", "ownerId": 1},
-			{"x": 5, "y": 6, "type": "catapult", "ownerId": 1},
-			{"x": 6, "y": 6, "type": "soldier", "ownerId": 1},
-			{"x": 7, "y": 6, "type": "dire-wolf", "ownerId": 1},
-			{"x": 5, "y": 7, "type": "soldier", "ownerId": 1},
-			{"x": 5, "y": 17, "type": "valadorn", "ownerId": 0},
-			{"x": 7, "y": 17, "type": "archer", "ownerId": 0},
-			{"x": 8, "y": 17, "type": "soldier", "ownerId": 0},
-			{"x": 8, "y": 16, "type": "golem", "ownerId": 0},
-			{"x": 4, "y": 16, "type": "dire-wolf", "ownerId": 0},
-			{"x": 3, "y": 17, "type": "catapult", "ownerId": 0}
+			{x: 5, y: 5, type: "demon-lord", ownerId: 1},
+			{x: 6, y: 5, type: "wisp", ownerId: 1},
+			{x: 4, y: 6, type: "golem", ownerId: 1},
+			{x: 5, y: 6, type: "catapult", ownerId: 1},
+			{x: 6, y: 6, type: "soldier", ownerId: 1},
+			{x: 7, y: 6, type: "dire-wolf", ownerId: 1},
+			{x: 5, y: 7, type: "soldier", ownerId: 1},
+			{x: 5, y: 17, type: "valadorn", ownerId: 0},
+			{x: 7, y: 17, type: "archer", ownerId: 0},
+			{x: 8, y: 17, type: "soldier", ownerId: 0},
+			{x: 8, y: 16, type: "golem", ownerId: 0},
+			{x: 4, y: 16, type: "dire-wolf", ownerId: 0},
+			{x: 3, y: 17, type: "catapult", ownerId: 0}
 		],
 		"buildings": [
-			{"x": 5, "y": 5, "type": "castle", "state": "normal", "ownerId": 1},
-			{"x": 5, "y": 7, "type": "farm", "state": "normal", "ownerId": 1},
-			{"x": 7, "y": 8, "type": "farm", "state": "normal", "ownerId": 1},
-			{"x": 10, "y": 6, "type": "farm", "state": "normal"},
-			{"x": 2, "y": 7, "type": "farm", "state": "normal"},
-			{"x": 10, "y": 10, "type": "farm", "state": "destroyed"},
-			{"x": 2, "y": 14, "type": "farm", "state": "normal", "ownerId": 0},
-			{"x": 9, "y": 13, "type": "farm", "state": "destroyed"},
-			{"x": 4, "y": 12, "type": "farm", "state": "normal"},
-			{"x": 8, "y": 17, "type": "farm", "state": "normal", "ownerId": 0},
-			{"x": 5, "y": 17, "type": "castle", "state": "normal", "ownerId": 0}
+			{x: 5, y: 5, type: "castle", "state": "normal", ownerId: 1},
+			{x: 5, y: 7, type: "farm", "state": "normal", ownerId: 1},
+			{x: 7, y: 8, type: "farm", "state": "normal", ownerId: 1},
+			{x: 10, y: 6, type: "farm", "state": "normal"},
+			{x: 2, y: 7, type: "farm", "state": "normal"},
+			{x: 10, y: 10, type: "farm", "state": "destroyed"},
+			{x: 2, y: 14, type: "farm", "state": "normal", ownerId: 0},
+			{x: 9, y: 13, type: "farm", "state": "destroyed"},
+			{x: 4, y: 12, type: "farm", "state": "normal"},
+			{x: 8, y: 17, type: "farm", "state": "normal", ownerId: 0},
+			{x: 5, y: 17, type: "castle", "state": "normal", ownerId: 0}
 		],
 		"terrain": {
 			"x0y0": "water-1",

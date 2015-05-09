@@ -8,36 +8,36 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_003 = {
-		"version": 3,
-		"type": "skirmish",
-		"size": {"width": 17, "height": 12},
-		"maxPlayers": 2,
-		"isOpen": true,
+		version: 3,
+		type: 'skirmish',
+		size: {width: 17, height: 12},
+		maxPlayers: 2,
+		isOpen: true,
 
 		// en
-		"name": "Rocky Bay",
+		name: "Rocky Bay",
 
 		// ru
 		"name-ru": "Скалистая бухта",
 
 		"units": [
-			{"type": "commander", "x": 1, "y": 9, ownerId: 0},
-			{"type": "commander", "x": 15, "y": 9, ownerId: 1}
+			{type: "commander", x: 1, y: 9, ownerId: 0},
+			{type: "commander", x: 15, y: 9, ownerId: 1}
 		],
 		"buildings": [
-			{"type": "farm", "x": 0, "y": 2, state: 'normal'},
-			{"type": "farm", "x": 6, "y": 2, state: 'normal'},
-			{"type": "castle", "x": 8, "y": 2, state: 'normal'},
-			{"type": "farm", "x": 10, "y": 2, state: 'normal'},
-			{"type": "farm", "x": 16, "y": 2, state: 'normal'},
-			{"type": "farm", "x": 2, "y": 3, state: 'normal'},
-			{"type": "farm", "x": 14, "y": 3, state: 'normal'},
-			{"type": "castle", "x": 1, "y": 9, state: 'normal', ownerId: 0},
-			{"type": "farm", "x": 3, "y": 9, state: 'normal'},
-			{"type": "farm", "x": 13, "y": 9, state: 'normal'},
-			{"type": "castle", "x": 15, "y": 9, state: 'normal', ownerId: 1},
-			{"type": "farm", "x": 2, "y": 11, state: 'normal'},
-			{"type": "farm", "x": 14, "y": 11, state: 'normal'}
+			{type: "farm", x: 0, y: 2, state: 'normal'},
+			{type: "farm", x: 6, y: 2, state: 'normal'},
+			{type: "castle", x: 8, y: 2, state: 'normal'},
+			{type: "farm", x: 10, y: 2, state: 'normal'},
+			{type: "farm", x: 16, y: 2, state: 'normal'},
+			{type: "farm", x: 2, y: 3, state: 'normal'},
+			{type: "farm", x: 14, y: 3, state: 'normal'},
+			{type: "castle", x: 1, y: 9, state: 'normal', ownerId: 0},
+			{type: "farm", x: 3, y: 9, state: 'normal'},
+			{type: "farm", x: 13, y: 9, state: 'normal'},
+			{type: "castle", x: 15, y: 9, state: 'normal', ownerId: 1},
+			{type: "farm", x: 2, y: 11, state: 'normal'},
+			{type: "farm", x: 14, y: 11, state: 'normal'}
 		],
 		"terrain": {
 			"x0y0": "stone-1",

@@ -17,27 +17,27 @@
 		};
 
 	win.APP.maps.mission_001_001 = {
-		"version": 4,
-		"type": "mission",
-		"isOpen": true,
-		"openMaps": [
-			{"jsMapKey": 'mission_001_002', "type": "mission"},
-			{"jsMapKey": 'skirmish_001_007', "type": "skirmish"}
+		version: 4,
+		type: 'mission',
+		isOpen: true,
+		openMaps: [
+			{jsMapKey: 'mission_001_002', type: 'mission'},
+			{jsMapKey: 'skirmish_001_007', type: 'skirmish'}
 		],
-		"size": {"width": 12, "height": 12},
-		"maxPlayers": 2,
-		"unitLimit": 25,
-		"win": ['noEnemyUnit'], // allCastles, noEnemyUnit
-		"defeat": ['commanderIsDead'], // 'galamarDead', 'valadornDead'
+		size: {width: 12, height: 12},
+		maxPlayers: 2,
+		unitLimit: 25,
+		win: ['noEnemyUnit'], // allCastles, noEnemyUnit
+		defeat: ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
 		// en
-		"name": langEnExtra.name,
-		"objective": langEnExtra.objective,
-		"help": [
+		name: langEnExtra.name,
+		objective: langEnExtra.objective,
+		help: [
 			langEn.helpList[0],
 			langEn.helpList[1]
 		],
-		"startBriefing": [
+		startBriefing: [
 			{
 				popupName: 'story',
 				cssClass: 'full-screen',
@@ -123,7 +123,7 @@
 				}
 			}
 		],
-		"n1Briefing": [
+		n1Briefing: [
 			{
 				popupName: 'briefing',
 				from: 'left',
@@ -153,7 +153,7 @@
 				}
 			}
 		],
-		"endBriefing": [
+		endBriefing: [
 			{
 				popupName: 'briefing',
 				from: 'right',
@@ -194,7 +194,7 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langEn.missionComplete,
-					text: '\'Crossroads\' ' + langEn.unlocked //"openMaps": [ { "jsMapKey": 'mission_001_002', "type": "mission" }, { "jsMapKey": 'River', type: "skirmish" } ],
+					text: '\'Crossroads\' ' + langEn.unlocked //openMaps: [ { jsMapKey: 'mission_001_002', type: 'mission' }, { jsMapKey: 'River', type: 'skirmish' } ],
 
 				},
 				playSound: {
@@ -373,7 +373,7 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete,
-					text: '\'Перекресток\' ' + langRu.unlocked //"openMaps": [ { "jsMapKey": 'mission_001_002', "type": "mission" }, { "jsMapKey": 'River', type: "skirmish" } ],
+					text: '\'Перекресток\' ' + langRu.unlocked //openMaps: [ { jsMapKey: 'mission_001_002', type: 'mission' }, { jsMapKey: 'River', type: 'skirmish' } ],
 
 				},
 				playSound: {
@@ -411,20 +411,20 @@
 			}
 		],
 		"units": [
-			{"x": 10, "y": 3, "type": "skeleton", "ownerId": 1},
-			{"x": 8, "y": 3, "type": "skeleton", "ownerId": 1},
-			{"x": 4, "y": 9, "type": "galamar", "ownerId": 0},
-			{"x": 3, "y": 10, "type": "archer", "ownerId": 0},
-			{"x": 3, "y": 8, "type": "soldier", "ownerId": 0}
+			{x: 10, y: 3, type: "skeleton", ownerId: 1},
+			{x: 8, y: 3, type: "skeleton", ownerId: 1},
+			{x: 4, y: 9, type: "galamar", ownerId: 0},
+			{x: 3, y: 10, type: "archer", ownerId: 0},
+			{x: 3, y: 8, type: "soldier", ownerId: 0}
 		],
 		"buildings": [
-			{"x": 1, "y": 1, "type": "well", "state": "normal"},
-			{"x": 4, "y": 8, "type": "farm", "state": "normal", "ownerId": 0},
-			{"x": 8, "y": 8, "type": "farm", "state": "normal", "ownerId": 0},
-			{"x": 6, "y": 1, "type": "farm", "state": "normal", "ownerId": 1},
-			{"x": 8, "y": 1, "type": "farm", "state": "normal", "ownerId": 1},
-			{"x": 9, "y": 3, "type": "temple", "state": "normal"},
-			{"x": 10, "y": 10, "type": "well", "state": "normal"}
+			{x: 1, y: 1, type: "well", "state": "normal"},
+			{x: 4, y: 8, type: "farm", "state": "normal", ownerId: 0},
+			{x: 8, y: 8, type: "farm", "state": "normal", ownerId: 0},
+			{x: 6, y: 1, type: "farm", "state": "normal", ownerId: 1},
+			{x: 8, y: 1, type: "farm", "state": "normal", ownerId: 1},
+			{x: 9, y: 3, type: "temple", "state": "normal"},
+			{x: 10, y: 10, type: "well", "state": "normal"}
 		],
 		"terrain": {
 			"x0y0": "stone-1",
