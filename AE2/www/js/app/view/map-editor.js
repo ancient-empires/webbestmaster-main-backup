@@ -3,7 +3,7 @@
 
 	"use strict";
 	/*global window */
-	/*global _ */
+	/*global _, $ */
 
 	win.APP = win.APP || {};
 
@@ -20,7 +20,8 @@
 			'click .js-set-brush-form': 'setBrushForm',
 
 			'click .js-save-map': 'saveMap',
-			'click .js-size-button': 'setMapSize'
+			'click .js-size-button': 'setMapSize',
+			'change .js-map-name': 'onChangeMapName'
 
 		},
 
@@ -102,7 +103,7 @@
 			view.detectClickEvent();
 
 			view.$el = $(view.tmpl['map-editor']({
-				mapName: view.defaultMap.name
+				mapName: (data.map && data.map.name) || view.defaultMap.name
 			}));
 
 			view.set('map', util.copyJSON(data.map || view.defaultMap));
@@ -128,6 +129,12 @@
 			view.proto.initialize.apply(view, arguments);
 
 			view.updateTools();
+
+		},
+
+		onChangeMapName: function () {
+
+
 
 		},
 
