@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */
 (function (win) {
 
 	"use strict";
@@ -14,14 +15,23 @@
 
 		},
 
-		initialize: function () {
+		initialize: function (data) {
+
+			data = data || {};
 
 			var view = this;
-			win.APP.map.db.getMapsInfo().then(function (mapsInfo) {
+			win.APP.map.db.getMapsInfo(data).then(function (mapsInfo) {
 
 				view.$el = $(view.tmpl.skirmishSelectMap({
 					mapsInfo: mapsInfo
 				}));
+
+				if (data.type === 'userMap') {
+					view.$el.find('[data-route]').each(function (index, node) {
+						var $this = $(node);
+						$this.attr('data-route', $this.attr('data-route').replace(/^skirmish-setup-map\//gi, 'user-map-setup-map/'));
+					});
+				}
 
 				view.proto.initialize.apply(view, arguments);
 

@@ -56,6 +56,7 @@
 		loadGame: 'Загрузить игру',
 		selectLevel: 'Выбор уровня',
 		skirmish: 'Схватка',
+		userMap: 'Юзер мап',
 		mission: 'Миссия',
 
 		// setup skirmish

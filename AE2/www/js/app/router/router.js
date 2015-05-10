@@ -20,8 +20,10 @@
 			'load-game': 'loadGame',
 			'select-level': 'selectLevel',
 			'skirmish-select-map': 'skirmishSelectMap',
+			'user-map-select-map': 'userMapSelectMap',
 			'mission-setup-map/:jsMapKey': 'missionSetupMap',
 			'skirmish-setup-map/:jsMapKey': 'skirmishSetupMap',
+			'user-map-setup-map/:jsMapKey': 'userMapSetupMap',
 			'battle': 'battle',
 			'main-battle-menu': 'mainBattleMenu',
 			'map-editor': 'mapEditor'
@@ -59,8 +61,18 @@
 			new APP.BB.SkirmishSelectMapView();
 		},
 
+		userMapSelectMap: function () {
+			new APP.BB.SkirmishSelectMapView({
+				type: 'userMap'
+			});
+		},
+
 		skirmishSetupMap: function (jsMapKey) {
 			new APP.BB.SkirmishSetupMapView(jsMapKey);
+		},
+
+		userMapSetupMap: function (jsMapKey) {
+			new APP.BB.SkirmishSetupMapView(jsMapKey, { type: 'userMap' });
 		},
 
 		missionSetupMap: function (jsMapKey) {

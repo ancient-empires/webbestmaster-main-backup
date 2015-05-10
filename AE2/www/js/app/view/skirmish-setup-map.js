@@ -20,20 +20,21 @@
 			data = data || {};
 
 			var view = this,
-				missionType = data.type || 'skirmish';
+				mapType = data.type || 'skirmish';
 
 			view.set('jsMapKey', jsMapKey);
+			view.set('mapType', mapType);
 
-			if ( missionType === 'mission' ) {
+			if ( mapType === 'mission' ) {
 
 				win.APP.map.db.getMapInfo({
 					jsMapKey: jsMapKey,
-					type: missionType
+					type: mapType
 				}).then(function (mapInfo) {
 
 					new win.APP.BB.BattleView({
 						jsMapKey: jsMapKey,
-						type: missionType,
+						type: mapType,
 						money: 500,
 						unitLimit: mapInfo.unitLimit,
 						players: [
@@ -61,7 +62,8 @@
 			}
 
 			win.APP.map.db.getMapInfo({
-				jsMapKey: jsMapKey
+				jsMapKey: jsMapKey,
+				type: view.get('mapType')
 			}).then(function (mapInfo) {
 				var viewData = view.createViewData(mapInfo);
 				view.$el = $(view.tmpl.skirmishSetupMap(viewData));
@@ -160,6 +162,7 @@
 				$unitLimit = this.$el.find('.js-unit-limit');
 
 			data.jsMapKey = this.get('jsMapKey');
+			data.type = this.get('mapType');
 
 			data.money = parseInt($money.attr('data-key'), 10);
 
