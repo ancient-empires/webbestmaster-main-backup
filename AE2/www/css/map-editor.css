@@ -102,9 +102,9 @@
 .map-name {
 	position: fixed;
 	left: 0;
-	top: 0;
 	width: 8rem;
 	z-index: 1;
+	bottom: 3rem;
 }
 
 
