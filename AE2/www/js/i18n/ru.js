@@ -33,7 +33,7 @@
 		help: 'помощь',
 		youCanDisableHelpNotification: 'Вы можете отключить подсказки из \'Настройки\'',
 		fightAnimation: 'анимация боя',
-		gameSpeed: 'скорость игры',
+		gameSpeed: 'Скорость игры',
 		confirmTurn: 'подтверждение хода',
 		confirmMove: 'подтверждение движения юнита',
 		confirmAttack: 'подтверждение атаки',
@@ -133,7 +133,7 @@
 		colors: 'Цвета',
 
 		//aboutText: 'Ancient Empire: strike back.<br><br><br>Программист:<br>Дмитрий Туровцов<br><br>Благодарности:<br>Алексей Данилов<br>Павел Прилуцкий<br>Игорь Купреев<br>Павел Сычиков',
-		aboutText: '<br><br><br>Ancient Empire: Strike Back.<br><br><br>Древняя Империя: Ответный Удар.<br><br><br>',
+		aboutText: '<br>Ancient Empire:<br>Strike Back.<br><br>Древняя Империя:<br>Ответный Удар.<br><br><br>',
 		instructionsText: [
 			'\'Ancient Empire: Strike Back\' - это захватывающая стратегия, которая позволяет вам управлять Королем Галамаром и его братом Валадорном в попытках защитить их королевство от зла.',
 			'Далее последуют инструкции, подсказки и советы о том, как играть, которые также будут появляться в игре.',

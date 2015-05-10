@@ -188,6 +188,7 @@
 .full-screen .button-popup-close {
 	right: 0.8rem;
 	top: 0.6rem;
+	z-index: 1;
 }
 
 .button-popup-close:active {
