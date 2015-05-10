@@ -3,7 +3,7 @@
 
 	"use strict";
 	/*global window */
-	/*global */
+	/*global _ */
 
 	win.APP = win.APP || {};
 
@@ -48,7 +48,8 @@
 			//viewCpuDisable: '.js-view-cpu-disable',
 			square: '.js-square',
 			statusBar: '.js-battle-view-status-bar',
-			styleSquareSize: '.js-style-square-size'
+			styleSquareSize: '.js-style-square-size',
+			mapNameInput: '.js-map-name'
 			//unitInfoWrapper: '.js-unit-info-wrapper',
 		},
 
@@ -58,9 +59,9 @@
 				width: 11,
 				height: 11
 			},
-			name: 'user map 0',
-
-			maxPlayers: null, // set automatically
+			name: 'user map',
+			isOpen: true,
+			maxPlayers: 0, // set automatically
 			units: [],
 			buildings: [],
 			terrain: {}
@@ -413,11 +414,28 @@
 				buildings = map.buildings || [],
 				units = map.units || [],
 				getXYFromStringXY = view.util.getXYFromStringXY,
-				terrain = map.terrain;
+				terrain = map.terrain,
+				mapName = view.$el.find(view.selectors.mapNameInput).val().trim(),
+				unitMaster = win.APP.unitMaster,
+				commanderList = unitMaster.commanderList,
+				ids = {
+					'0': false,
+					'1': false,
+					'2': false,
+					'3': false
+				},
+				i, j,
+				detectGap = function () {
+					_.each(ids, function (value, key) {
+						key = Number(key);
+						ids[key] = Boolean(_.find(units, {ownerId: key}) || _.find(buildings, {ownerId: key}));
+					});
+				};
 
 			endMap.units = [];
 			endMap.buildings = [];
 			endMap.terrain = {};
+			endMap.name = mapName;
 
 			_.each(terrain, function (type, xyStr) {
 
@@ -464,8 +482,37 @@
 				delete unit.color;
 				delete unit.id;
 
+				if ( _.contains(commanderList, unit.type) ) {
+					unit.type = 'commander';
+				}
+
 				endMap.units.push(unit);
 
+			});
+
+			detectGap();
+			for (i = 0; i < 4; i += 1) {
+				if ( !ids[String(i)] ) {
+					for (j = i; j < 4; j += 1) {
+						_.each(endMap.units, function (unit) {
+							if (unit.ownerId > j) {
+								unit.ownerId -= 1;
+							}
+						});
+						_.each(endMap.buildings, function (building) {
+							if (building.ownerId > j) {
+								building.ownerId -= 1;
+							}
+						});
+					}
+				}
+				detectGap();
+			}
+
+			detectGap();
+
+			_.each(ids, function (value) {
+				endMap.maxPlayers += value ? 1 : 0;
 			});
 
 			console.log(endMap);
