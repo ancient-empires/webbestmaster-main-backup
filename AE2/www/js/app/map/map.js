@@ -449,6 +449,22 @@
 
 				return deferred.promise();
 
+			},
+
+			mapIsExist: function (data) {
+
+				var dbMaster = this,
+					deferred = $.Deferred(),
+					db = dbMaster.db;
+
+				db.transaction(function (tx) {
+					tx.executeSql('SELECT * FROM ' + data.type + ' WHERE jsMapKey=?', [data.jsMapKey], function (tx, results) {
+						deferred.resolve( Boolean(results.rows.length) );
+					});
+				});
+
+				return deferred.promise();
+
 			}
 
 		}

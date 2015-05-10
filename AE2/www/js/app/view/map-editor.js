@@ -21,7 +21,7 @@
 
 			'click .js-save-map': 'saveMap',
 			'click .js-size-button': 'setMapSize',
-			'change .js-map-name': 'onChangeMapName'
+			'input .js-map-name': 'onChangeMapName'
 
 		},
 
@@ -50,7 +50,8 @@
 			square: '.js-square',
 			statusBar: '.js-battle-view-status-bar',
 			styleSquareSize: '.js-style-square-size',
-			mapNameInput: '.js-map-name'
+			mapNameInput: '.js-map-name',
+			saveButton: '.js-save-map'
 			//unitInfoWrapper: '.js-unit-info-wrapper',
 		},
 
@@ -62,7 +63,7 @@
 			},
 			name: 'user map',
 			isOpen: true,
-			maxPlayers: 0, // set automatically
+			maxPlayers: null, // set automatically
 			units: [],
 			buildings: [],
 			terrain: {}
@@ -130,10 +131,34 @@
 
 			view.updateTools();
 
+			view.onChangeMapName();
+
 		},
 
 		onChangeMapName: function () {
 
+			var view = this,
+				dbMaster = win.APP.map.db,
+				$mapNameInput = view.$el.find(view.selectors.mapNameInput),
+				mapName = $mapNameInput.val().trim(),
+				$saveButton = view.$el.find(view.selectors.saveButton),
+				jsMapKey = 'userMap_' + mapName,
+				mapType = 'userMap';
+
+			dbMaster.mapIsExist({
+				jsMapKey: jsMapKey,
+				type: mapType
+			}).then(function (isExist) {
+
+				var lang = win.APP.lang;
+
+				if (isExist) {
+					$saveButton.html(lang.get('replace'));
+				} else {
+					$saveButton.html(lang.get('save'));
+				}
+
+			});
 
 
 		},
@@ -522,6 +547,7 @@
 
 			detectGap();
 
+			endMap.maxPlayers = 0;
 			_.each(ids, function (value) {
 				endMap.maxPlayers += value ? 1 : 0;
 			});
