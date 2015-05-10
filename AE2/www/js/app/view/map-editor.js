@@ -223,8 +223,9 @@
 
 			var view = this;
 
-			win.APP.map.db.getMapsInfo().then(function (mapsInfo) {
-
+			win.APP.map.db.getMapsInfo({
+				type: 'userMap'
+			}).then(function (mapsInfo) {
 				view.showPopup({
 					popupName: 'map-list-popup',
 					parentView: view,
@@ -298,28 +299,29 @@
 				units = map.units,
 				mapMaster = win.APP.map,
 				playerColors = mapMaster.playerColors,
-				unitMaster = win.APP.unitMaster;
+				unitMaster = win.APP.unitMaster,
+				commanderList = unitMaster.commanderList;
 
 			_.each(units, function (unitData) {
 
-				var unit, x, y;
-
-				x = unitData.x;
-				y = unitData.y;
+				var unit,
+					x = unitData.x,
+					y = unitData.y,
+					unitType,
+					isCommander;
 
 				if (x > maxX || y > maxY || x < 0 || y < 0) {
 					return;
 				}
 
-				// unitType = unitData.type,
-				//,isCommander = unitType === 'commander' || _.contains(win.APP.unitMaster.commanderList, unitType)
-				//	;
+				unitType = unitData.type;
+				isCommander = unitType === 'commander' || _.contains(commanderList, unitType);
 
 				unitData.color = playerColors[unitData.ownerId];
 
-				//if ( isCommander ) {
-				//	unitData.type = commanderList[unitData.ownerId];
-				//}
+				if ( isCommander ) {
+					unitData.type = commanderList[unitData.ownerId];
+				}
 
 				unit = unitMaster.createUnit(unitData);
 				view.appendUnit(unit);
@@ -418,6 +420,8 @@
 				mapName = view.$el.find(view.selectors.mapNameInput).val().trim(),
 				unitMaster = win.APP.unitMaster,
 				commanderList = unitMaster.commanderList,
+				dbMaster = win.APP.map.db,
+				jsMapKey = 'userMap_' + mapName,
 				ids = {
 					'0': false,
 					'1': false,
@@ -515,7 +519,19 @@
 				endMap.maxPlayers += value ? 1 : 0;
 			});
 
-			console.log(endMap);
+			// put map to db
+			dbMaster.removeMap({
+				jsMapKey: jsMapKey,
+				type: endMap.type
+			}).then(function () {
+				dbMaster.insertMap(endMap, jsMapKey);
+			});
+
+			view.showTicket({
+				popupData: {
+					text: 'EN map \'' + endMap.name + '\' has been saved.'
+				}
+			});
 
 		},
 

@@ -203,7 +203,8 @@
 				jsMapKey = $this.attr('data-map-name');
 
 			win.APP.map.db.getMap({
-				jsMapKey: jsMapKey
+				jsMapKey: jsMapKey,
+				type: 'userMap'
 			}).then(function (map) {
 				parentView.initialize({
 					map: map

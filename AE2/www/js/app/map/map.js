@@ -1,9 +1,9 @@
 /*jslint white: true, nomen: true */
-(function (win) {
+(function (win, doc) {
 
 	'use strict';
-	/*global console, alert, window, document */
-	/*global */
+	/*global console, alert, window, document, openDatabase */
+	/*global $ */
 
 	win.APP.map = {
 		squareSize: {
@@ -24,7 +24,7 @@
 				offset,
 				x, y, r, g, b, a;
 
-			srcCanvas = document.createElement('canvas');
+			srcCanvas = doc.createElement('canvas');
 			srcCanvas.width = imgWidth;
 			srcCanvas.height = imgHeight;
 
@@ -32,7 +32,7 @@
 			srcCtx.drawImage(img, 0, 0);
 			srcData = srcCtx.getImageData(0, 0, img.width, img.height).data;
 
-			dstCanvas = document.createElement('canvas');
+			dstCanvas = doc.createElement('canvas');
 			dstCanvas.width = imgWidth * scale;
 			dstCanvas.height = imgHeight * scale;
 			dstCtx = dstCanvas.getContext('2d');
@@ -455,4 +455,4 @@
 
 	};
 
-}(window));
+}(window, window.document));
