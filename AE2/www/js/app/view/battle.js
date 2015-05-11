@@ -87,9 +87,9 @@
 				view.setSize();
 
 				// draw map
-				setTimeout(function () {
-					view.drawMap();
-				}, 50);
+				//setTimeout(function () {
+				view.drawMap();
+				//}, 50);
 
 				// draw buildings
 				view.drawBuildings(); // +
@@ -586,9 +586,9 @@
 		drawMap: function () {
 
 			var view = this,
-				//$mapImageWrapper = view.$el.find(view.selectors.mapImageWrapper),
-				canvas = doc.createElement('canvas'),
-				//canvas = $mapImageWrapper.get(0),
+				$mapImageWrapper = view.$el.find(view.selectors.mapImageWrapper),
+				//canvas = doc.createElement('canvas'),
+				canvas = $mapImageWrapper.get(0),
 				ctx = canvas.getContext('2d'),
 				getXYFromStringXY = view.util.getXYFromStringXY,
 				xyStr = view.util.getStringFromXY,
@@ -736,7 +736,7 @@
 
 			});
 
-			view.$el.find(view.selectors.mapImage)[0].src = canvas.toDataURL();
+			$mapImageWrapper.removeClass('hidden');
 
 		},
 
