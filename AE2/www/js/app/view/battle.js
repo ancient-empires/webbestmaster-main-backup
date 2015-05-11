@@ -138,10 +138,8 @@
 				// set sizes
 				view.setSize();
 
-				// draw map
-				setTimeout(function () {
-					view.drawMap();
-				}, 50);
+				 //draw map
+				view.drawMap();
 
 				// draw buildings
 				view.drawBuildings();

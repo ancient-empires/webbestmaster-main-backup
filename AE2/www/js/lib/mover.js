@@ -240,7 +240,7 @@
 
 			var style = this.get('$container').attr('style'),
 				xyzs = this.getXYZSFromStyle(style),
-				scale = 1 + e.deltaY/5;
+				scale = 1 + e.deltaY/300;
 
 			this.setStyleByXYZS({
 				x: xyzs.x * scale,
