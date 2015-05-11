@@ -586,6 +586,27 @@
 				view.onChangeMapName();
 			});
 
+		},
+
+		deleteMap: function (data) {
+
+			var view = this,
+				type = data.type,
+				dbMaster = win.APP.map.db,
+				jsMapKey = data.jsMapKey;
+
+			dbMaster.removeMap({
+				jsMapKey: jsMapKey,
+				type: type
+			}).then(function () {
+				return view.showTicket({
+					popupData: {
+						text: 'EN map \'' + data.mapName + '\' has been deleted.'
+					}
+				});
+			}).then(function () {
+				view.onChangeMapName();
+			});
 
 		},
 

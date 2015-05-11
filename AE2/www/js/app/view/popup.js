@@ -16,7 +16,8 @@
 			'click .js-confirmed-end-turn': 'confirmedEndTurn',
 			'click .js-restart-battle': 'restartBattle',
 			'click .js-quit-battle': 'quitBattle',
-			'click .js-open-map-in-editor': 'openMapInEditor'
+			'click .js-open-map-in-editor': 'openMapInEditor',
+			'click .js-delete-user-map': 'deleteUserMap'
 		},
 
 		selectors: {
@@ -216,6 +217,28 @@
 		openMap: function (jsMapKey, data) {
 
 			new APP.BB.SkirmishSetupMapView(jsMapKey, data);
+
+		},
+
+		deleteUserMap: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget),
+				parentView = view.get('parentView'),
+				mapType = 'userMap',
+				mapName = $this.attr('data-user-map-name');
+
+			parentView.deleteMap({
+				mapName: mapName,
+				jsMapKey: 'userMap_' + mapName,
+				type: mapType
+			});
+
+			view.$el.find('.js-user-map-wrapper[data-user-map-name="' + mapName + '"]').remove();
+
+			if ( !view.$el.find('.js-user-map-wrapper').length ) {
+				view.$el.find('.js-popup-header').html('EN no saved maps');
+			}
 
 		}
 
