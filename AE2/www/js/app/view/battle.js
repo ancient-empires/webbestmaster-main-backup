@@ -1566,7 +1566,7 @@
 				});
 			}
 
-			if ( mapType === 'skirmish' ) {
+			if ( /skirmish|userMap/.test(mapType) ) {
 				return view.showPopup({
 					popupName: 'simple-notification',
 					popupData: {

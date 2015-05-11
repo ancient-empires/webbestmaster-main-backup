@@ -42,7 +42,7 @@
 
 			timeoutId = setTimeout(function () {
 				view.hide();
-			}, view.info.actionTime() * 4);
+			}, view.info.actionTime() * 6);
 
 			view.set('timeoutId', timeoutId);
 

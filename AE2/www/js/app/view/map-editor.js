@@ -582,6 +582,16 @@
 				endMap.maxPlayers += value ? 1 : 0;
 			});
 
+			if (endMap.maxPlayers < 2) {
+				view.showTicket({
+					popupData: {
+						text: 'EN Need more Units or Buildings.'
+					},
+					cssClass: 'error'
+				});
+				return;
+			}
+
 			// put map to db
 			dbMaster.removeMap({
 				jsMapKey: jsMapKey,

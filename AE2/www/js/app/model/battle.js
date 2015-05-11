@@ -393,11 +393,10 @@
 			if (savedData) {
 				view.autoShowHelpButton();
 			} else {
-				if (mapType === 'skirmish') {
+				if ( /skirmish|userMap/.test(mapType) ) {
 					view.showObjective().then(function () {
 						view.autoShowHelpButton();
 					});
-
 				}
 
 				if (mapType === 'mission') {
@@ -1143,7 +1142,7 @@
 
 		checkPlayerDefeat: function () {
 
-			if ( this.get('map').type !== 'skirmish' ) {
+			if ( !/skirmish|userMap/.test(this.get('map').type) ) { // detect skirmish and user map
 				return;
 			}
 
