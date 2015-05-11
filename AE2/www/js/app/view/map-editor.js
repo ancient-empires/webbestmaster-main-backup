@@ -62,7 +62,7 @@
 				width: 11,
 				height: 11
 			},
-			name: 'user map',
+			name: '',
 			isOpen: true,
 			maxPlayers: null, // set automatically
 			units: [],
