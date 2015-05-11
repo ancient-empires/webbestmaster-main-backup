@@ -209,11 +209,17 @@
 
 		},
 
-		backTo: function (url) {
+		backTo: function (url, data) {
+
+			data = data || {};
+
+			var router = win.APP.bb.router;
+			router.isForce = data.isForce;
 
 			(function backTo() {
 				setTimeout(function () {
 					if (Backbone.history.fragment === url) {
+						router.isForce = false;
 						return;
 					}
 					Backbone.history.history.back();

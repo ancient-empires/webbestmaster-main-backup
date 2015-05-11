@@ -16,6 +16,7 @@
 			'click .js-confirmed-end-turn': 'confirmedEndTurn',
 			'click .js-restart-battle': 'restartBattle',
 			'click .js-quit-battle': 'quitBattle',
+			'click .js-quit-map-editor': 'quitMapEditor',
 			'click .js-open-map-in-editor': 'openMapInEditor',
 			'click .js-delete-user-map': 'deleteUserMap'
 		},
@@ -161,12 +162,14 @@
 			battleData.isEndGame = 'yes';
 			battleData.gameTo = 'quit';
 
-
-
 			view.hide();
 			view.routeBack();
 
+		},
 
+		quitMapEditor: function () {
+
+			this.backTo('', { isForce: true });
 
 		},
 

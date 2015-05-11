@@ -105,7 +105,8 @@
 
 		constructor: function () {
 
-			var originalFunctions = {},
+			var router = this,
+				originalFunctions = {},
 				proto = APP.BB.Router.prototype;
 
 			function getAction() {
@@ -114,6 +115,7 @@
 					newURL = e.newURL || '',
 					oldURL = e.oldURL || '',
 					reBattle = /#battle$/,
+					reMapEditor = /#map-editor$/,
 					popupPart = APP.BB.BaseView.prototype.popupUrl,
 					viewAction;
 
@@ -125,8 +127,16 @@
 					viewAction = 'hidePopup';
 				}
 
+				if ( router.isForce ) {
+					return viewAction;
+				}
+
 				if ( reBattle.test(oldURL) ) {
 					viewAction = 'routeFromBattle';
+				}
+
+				if ( reMapEditor.test(oldURL) ) {
+					viewAction = 'routeFromMapEditor';
 				}
 
 				return viewAction;
@@ -168,6 +178,15 @@
 									popupName: 'route-from-battle'
 								});
 							}
+
+							break;
+
+						case 'routeFromMapEditor':
+
+							baseProto.routeByUrl('map-editor');
+							baseProto.showPopup({
+								popupName: 'route-from-map-editor'
+							});
 
 							break;
 
