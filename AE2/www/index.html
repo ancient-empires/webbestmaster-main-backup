@@ -481,11 +481,11 @@
 	<div>
 
 		<% if ( _.keys(mapsInfo).length ) { %>
-			<div class="popup-header">{{ maps }}</div>
+			<div class="popup-header">EN Unsaved map progress will be lost!</div>
 			<% var languageField = 'name-' + window.APP.info.get('language'); %>
 			<% _.each(mapsInfo, function (map, jsKey) { %>
 				<% var mapName = map[languageField] || map.name; %>
-				<div data-map-name="<%= jsKey %>" class="js-open-map-in-editor js-back">(<%= map.maxPlayers %>) <%= mapName %></div>
+				<div data-map-name="<%= jsKey %>" class="saved-item-wrapper js-open-map-in-editor js-back">(<%= map.maxPlayers %>) <%= mapName %></div>
 			<% }); %>
 		<% } else { %>
 			<div class="popup-header">EN no saved maps</div>
