@@ -211,6 +211,7 @@
 			insertMap: function (map, jsMapKey) { // map
 
 				var maps = win.APP.maps,
+					deferred = $.Deferred(),
 					dbMaster = this,
 					db = dbMaster.db,
 					info;
@@ -222,10 +223,14 @@
 				delete info.terrain;
 
 				db.transaction(function(tx) {
-					tx.executeSql('INSERT INTO ' + map.type + ' (jsMapKey, info, map) values(?, ?, ?)', [jsMapKey, JSON.stringify(info), JSON.stringify(map)], null, null);
+					tx.executeSql('INSERT INTO ' + map.type + ' (jsMapKey, info, map) values(?, ?, ?)', [jsMapKey, JSON.stringify(info), JSON.stringify(map)], function () {
+						deferred.resolve();
+					}, null);
 				});
 
 				delete maps[jsMapKey];
+
+				return deferred.promise();
 
 			},
 

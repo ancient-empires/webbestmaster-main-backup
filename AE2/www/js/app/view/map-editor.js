@@ -160,7 +160,6 @@
 
 			});
 
-
 		},
 
 		onClick: function (xy) {
@@ -557,14 +556,17 @@
 				jsMapKey: jsMapKey,
 				type: endMap.type
 			}).then(function () {
-				dbMaster.insertMap(endMap, jsMapKey);
+				return dbMaster.insertMap(endMap, jsMapKey);
+			}).then(function () {
+				return view.showTicket({
+					popupData: {
+						text: 'EN map \'' + endMap.name + '\' has been saved.'
+					}
+				});
+			}).then(function () {
+				view.onChangeMapName();
 			});
 
-			view.showTicket({
-				popupData: {
-					text: 'EN map \'' + endMap.name + '\' has been saved.'
-				}
-			});
 
 		},
 
