@@ -22,7 +22,8 @@
 
 			'click .js-save-map': 'saveMap',
 			'click .js-size-button': 'setMapSize',
-			'input .js-map-name': 'onChangeMapName'
+			'input .js-map-name': 'onChangeMapName',
+			'click .js-clear-map-popup': 'popupClearMap'
 
 		},
 
@@ -742,6 +743,22 @@
 			view.reDrawUnits();
 			view.reDrawBuildings();
 
+		},
+
+		popupClearMap: function () {
+
+			var view = this;
+
+			view.showPopup({
+				popupName: 'clear-map',
+				parentView: view,
+				popupData: {}
+			});
+
+		},
+
+		clearMap: function () {
+			this.initialize();
 		},
 
 		test: function () {

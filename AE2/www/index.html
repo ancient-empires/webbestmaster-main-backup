@@ -450,6 +450,18 @@
 
 </script>
 
+<script type="text/x-template" data-name="clear-map">
+
+	<div>
+		<div class="popup-header">EN Clear map? Not saved data will be lost.</div>
+		<div class="popup-buttons-wrapper ta-center">
+			<div data-sound="click.mp3" class="popup-button js-clear-map">{{ yes }}</div>
+			<div data-sound="click.mp3" class="popup-button js-back">{{ no }}</div>
+		</div>
+	</div>
+
+</script>
+
 <script type="text/x-template" data-name="end-turn-popup">
 
 	<div>
@@ -941,6 +953,7 @@
 			<div class="float-left js-save-map">{{ save }}</div>
 			<div class="float-left js-open-map-popup">{{ open }}</div>
 			<div class="float-left js-delete-map-popup">{{ delete }}</div>
+			<div class="float-left js-clear-map-popup">EN clear</div>
 			<div class="float-left js-back">EN exit</div>
 
 		</div>

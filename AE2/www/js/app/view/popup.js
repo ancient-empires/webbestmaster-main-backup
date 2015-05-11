@@ -18,7 +18,8 @@
 			'click .js-quit-battle': 'quitBattle',
 			'click .js-quit-map-editor': 'quitMapEditor',
 			'click .js-open-map-in-editor': 'openMapInEditor',
-			'click .js-delete-user-map': 'deleteUserMap'
+			'click .js-delete-user-map': 'deleteUserMap',
+			'click .js-clear-map': 'clearMap'
 		},
 
 		selectors: {
@@ -242,6 +243,18 @@
 			if ( !view.$el.find('.js-user-map-wrapper').length ) {
 				view.$el.find('.js-popup-header').html('EN no saved maps');
 			}
+
+		},
+
+		clearMap: function () {
+
+			var view = this,
+				parentView = view.get('parentView');
+
+			parentView.clearMap();
+
+			view.routeBack();
+
 
 		}
 
