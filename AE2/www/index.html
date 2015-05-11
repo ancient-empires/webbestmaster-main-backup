@@ -495,6 +495,47 @@
 
 </script>
 
+<script type="text/x-template" data-name="map-list-popup-delete">
+
+	<div>
+
+		<% if ( _.keys(mapsInfo).length ) { %>
+			<div class="popup-header">{{ maps }}</div>
+			<% var languageField = 'name-' + window.APP.info.get('language'); %>
+			<% _.each(mapsInfo, function (map, jsKey) { %>
+				<% var mapName = map[languageField] || map.name; %>
+
+				<div class="saved-item-wrapper js-user-map-wrapper clear-fix" data-user-map-name="<%= mapName %>">
+
+					<div data-sound="click.mp3" class="save-input-button ellipsis js-tab-button" data-user-map-name="<%= name %>" data-tab-id="delete-user-map-<%= jsKey %>" data-tab-state="close">{{ delete }}</div>
+					<div class="save-input-text-wrapper">
+						<div class="saved-item js-set-input-text-value" data-user-map-name="<%= mapName %>">(<%= map.maxPlayers %>) <%= mapName %></div>
+					</div>
+
+					<div class="js-tab-block hidden small-confirm-wrapper clear-fix" data-tab-id="delete-user-map-<%= jsKey %>">
+
+						<div class="small-confirm-header">EN You are sure to delete map?</div>
+
+						<div class="small-confirm-buttons-wrapper">
+
+							<div data-sound="click.mp3" class="small-confirm-button js-delete-user-map" data-user-map-name="<%= mapName %>">{{ yes }}</div>
+							<div data-sound="click.mp3" class="small-confirm-button js-tab-close" data-tab-id="delete-user-map-<%= jsKey %>" data-user-map-name="<%= mapName %>">{{ no }}</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			<% }); %>
+		<% } else { %>
+			<div class="popup-header">EN no saved maps</div>
+		<% }; %>
+
+	</div>
+
+</script>
+
 <script type="text/x-template" data-name="between-turn-notification">
 
 	<div>
@@ -885,6 +926,7 @@
 
 			<div class="float-left js-save-map">{{ save }}</div>
 			<div class="float-left js-open-map-popup">{{ open }}</div>
+			<div class="float-left js-delete-map-popup">{{ delete }}</div>
 
 		</div>
 		<div class="map-editor-tools-wrapper">

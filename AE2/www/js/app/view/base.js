@@ -38,7 +38,8 @@
 			'click .js-list-forward[data-group-name]': 'changeSelect',
 
 			// tabs
-			'click .js-tab-button': 'tabAction'
+			'click .js-tab-button': 'tabAction',
+			'click .js-tab-close': 'tabClose'
 
 		},
 
@@ -384,6 +385,24 @@
 					.addClass(tabButtonClassPrefix + 'open');
 				$block.removeClass('hidden');
 			}
+
+		},
+
+		tabClose: function () {
+
+			var view = this,
+				$el = view.$el,
+				tabButtonClassPrefix = 'tab-button-',
+				tabBlockSelector = '.js-tab-block',
+				tabButtonSelector = '.js-tab-button',
+				$blocks = $el.find(tabBlockSelector),
+				$buttons = $el.find(tabButtonSelector);
+
+			$blocks.addClass('hidden');
+			$buttons
+				.addClass(tabButtonClassPrefix + 'close')
+				.removeClass(tabButtonClassPrefix + 'open')
+				.attr('data-tab-state', 'close');
 
 		},
 

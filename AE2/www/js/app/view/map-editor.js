@@ -13,6 +13,7 @@
 
 		events: {
 			'click .js-open-map-popup': 'openMapPopup',
+			'click .js-delete-map-popup': 'deleteMapPopup',
 			//'change .js-tool-size': 'changeSize',
 
 			'click .js-set-brush-type': 'setBrushType',
@@ -265,6 +266,24 @@
 					}
 				});
 
+			});
+
+		},
+
+		deleteMapPopup: function () {
+
+			var view = this;
+
+			win.APP.map.db.getMapsInfo({
+				type: 'userMap'
+			}).then(function (mapsInfo) {
+				view.showPopup({
+					popupName: 'map-list-popup-delete',
+					parentView: view,
+					popupData: {
+						mapsInfo: mapsInfo
+					}
+				});
 			});
 
 		},
