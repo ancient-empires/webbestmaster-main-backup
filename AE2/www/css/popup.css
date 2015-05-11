@@ -40,8 +40,15 @@
 	border-style: solid;
 	-webkit-border-image: url(../i/ui/border-1.png) 25% repeat repeat;
 	border-image: url(../i/ui/border-1.png) 25% repeat repeat;
-	background-color: #242a45;
 	z-index: 11; /* see z-i popup-wrapper */
+}
+
+.ticket-wrapper {
+	background-color: #242a45;
+}
+
+.ticket-wrapper.error {
+	background-color: #c00;
 }
 
 .popup-protector {
@@ -194,5 +201,4 @@
 .button-popup-close:active {
 	box-shadow: none;
 }
-
 

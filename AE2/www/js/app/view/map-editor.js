@@ -491,6 +491,18 @@
 			endMap.terrain = {};
 			endMap.name = mapName;
 
+			if ( !endMap.name.length ) {
+
+				view.showTicket({
+					popupData: {
+						text: 'EN Please, enter map name.'
+					},
+					cssClass: 'error'
+				});
+
+				return;
+			}
+
 			_.each(terrain, function (type, xyStr) {
 
 				var xy = getXYFromStringXY(xyStr),
