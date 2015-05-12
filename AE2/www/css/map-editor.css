@@ -21,8 +21,7 @@
 }
 
 .square-grid {
-	background: -webkit-linear-gradient(right, #888 0%, #888 4%, transparent 4%, transparent 100%), -webkit-linear-gradient(bottom, #888 0%, #888 4%, transparent 4%, transparent 100%);
-	background-position: 0.04% 0.04%;
+	background-image: -webkit-linear-gradient(left, #888 0%, #888 2%, transparent 2%, transparent 100%), -webkit-linear-gradient(bottom, #888 0%, #888 2%, transparent 2%, transparent 100%), -webkit-linear-gradient(right, #888 0%, #888 2%, transparent 2%, transparent 100%), -webkit-linear-gradient(top, #888 0%, #888 2%, transparent 2%, transparent 100%);
 }
 
 .show-if-close,
