@@ -587,8 +587,8 @@
 
 			var view = this,
 				$mapImageWrapper = view.$el.find(view.selectors.mapImageWrapper),
-				//canvas = doc.createElement('canvas'),
-				canvas = $mapImageWrapper.get(0),
+				canvas = doc.createElement('canvas'),
+				//canvas = $mapImageWrapper.get(0),
 				ctx = canvas.getContext('2d'),
 				getXYFromStringXY = view.util.getXYFromStringXY,
 				xyStr = view.util.getStringFromXY,
@@ -736,7 +736,7 @@
 
 			});
 
-			$mapImageWrapper.removeClass('hidden');
+			$mapImageWrapper.find('img')[0].src = canvas.toDataURL();
 
 		},
 
@@ -1017,7 +1017,8 @@
 				map = this.get('map'),
 				pre = this.info.get('pre', true).css,
 				width = map.size.width * squareSize,
-				height = map.size.height * squareSize;
+				height = map.size.height * squareSize,
+				$innerBlocks = this.$el.find(selectors.moveAreaContainer + '> div');
 
 			this.info.set('squareSize', squareSize);
 
@@ -1033,8 +1034,14 @@
 					height: height + 'px'
 				});
 
-			//set event handler wrapper
+			// set event handler wrapper
 			$eventHandlerWrapper.css({
+					width: width + 'px',
+					height: height + 'px'
+				});
+
+			// set .building-wrapper, units-wrapper and etc.
+			$innerBlocks.css({
 					width: width + 'px',
 					height: height + 'px'
 				});
