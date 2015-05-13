@@ -90,7 +90,7 @@
 
 		initialize: function (data) {
 
-			win.APP.bb.battleData = {};
+			//win.APP.bb.battleData = {};
 
 			$('.js-map-editor-wrapper').trigger('hide'); // remove previous map editor
 

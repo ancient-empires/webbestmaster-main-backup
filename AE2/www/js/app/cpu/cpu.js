@@ -373,15 +373,16 @@
 
 		turnUnit: function () {
 
-			if ( win.APP.bb.battleData.isEndGame === 'yes' ) {
+			var cpu = this,
+				model = cpu.get('model');
+
+			if ( model.get('isEndGame') ) {
 				log('end game from CPU');
 				return;
 			}
 
-			var cpu = this,
-				player = cpu.get('player'),
+			var player = cpu.get('player'),
 				//playerTeamNumber = player.teamNumber,
-				model = cpu.get('model'),
 				units = model.get('units'),
 				//buildings = model.get('building'),
 				//enemyUnit = _.filter(units, function (unit) {

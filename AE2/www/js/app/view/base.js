@@ -213,7 +213,8 @@
 
 			data = data || {};
 
-			var router = win.APP.bb.router;
+			var view = this,
+				router = win.APP.bb.router;
 			router.isForce = data.isForce;
 
 			(function backTo() {
@@ -222,7 +223,7 @@
 						router.isForce = false;
 						return;
 					}
-					Backbone.history.history.back();
+					view.routeBack();
 					backTo();
 				}, 200);
 			}());

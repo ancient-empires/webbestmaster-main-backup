@@ -104,7 +104,7 @@
 				view.get('deferred').resolve();
 
 				var onHide = view.get('onHide'),
-					battleData = win.APP.bb.battleData,
+					//battleData = win.APP.bb.battleData,
 					context;
 
 				if (!onHide) {
@@ -113,10 +113,10 @@
 
 				context = onHide.context || view;
 
-				if ( onHide.fn === 'backTo' ) {
-					battleData.isEndGame = 'yes';
-					battleData.gameTo = 'quit';
-				}
+				//if ( onHide.fn === 'backTo' ) {
+					//battleData.isEndGame = 'yes';
+					//battleData.gameTo = 'quit';
+				//}
 
 				context[onHide.fn].apply(context, onHide.args);
 
@@ -138,14 +138,18 @@
 
 		},
 
-		restartBattle: function () {
+		restartBattle: function (e) {
 
 			var view = this,
-				parentView = view.get('parentView'),
-				battleData = win.APP.bb.battleData;
+				parentView = view.get('parentView');
 
-			battleData.isEndGame = 'yes';
-			battleData.gameTo = 'restart';
+			//battleData = win.APP.bb.battleData;
+			if (e && e.currentTarget && $(e.currentTarget).attr('data-on-hide') === 'none') {
+				view.set('onHide', false);
+			}
+
+			//battleData.isEndGame = 'yes';
+			//battleData.gameTo = 'restart';
 
 			view.hide();
 			view.routeBack();
@@ -155,16 +159,24 @@
 
 		},
 
-		quitBattle: function () {
+		quitBattle: function (e) {
 
-			var view = this,
-				battleData = win.APP.bb.battleData;
+			var view = this;
 
-			battleData.isEndGame = 'yes';
-			battleData.gameTo = 'quit';
+			if (e && e.currentTarget && $(e.currentTarget).attr('data-on-hide') === 'none') {
+				view.set('onHide', false);
+			}
 
-			view.hide();
-			view.routeBack();
+			//battleData = win.APP.bb.battleData;
+
+			//battleData.isEndGame = 'yes';
+			//battleData.gameTo = 'quit';
+
+			//debugger
+			//view.hide();
+			//view.routeBack();
+
+			view.backTo('play', { isForce: true });
 
 		},
 

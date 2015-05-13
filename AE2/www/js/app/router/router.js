@@ -150,7 +150,8 @@
 					var router = this,
 						viewAction = getAction(),
 						baseProto = win.APP.BB.BaseView.prototype,
-						battleData = win.APP.bb.battleData;
+						d;
+						//battleData = win.APP.bb.battleData;
 
 					if ( !viewAction ) {
 						return originalFunctions[value].apply(router, arguments);
@@ -160,9 +161,9 @@
 						
 						case 'hidePopup':
 							baseProto.hidePopup();
-							if ( battleData.isEndGame === 'yes' && battleData.gameTo === 'quit') {
-								router.routeFromBattle();
-							}
+							//if ( battleData.isEndGame === 'yes' && battleData.gameTo === 'quit') {
+							//	router.routeFromBattle();
+							//}
 
 							break;							
 							
@@ -172,12 +173,12 @@
 							
 						case 'routeFromBattle':
 
-							if ( battleData.isEndGame !== 'yes' ) {
+							//if ( battleData.isEndGame !== 'yes' ) {
 								baseProto.routeByUrl('battle');
 								baseProto.showPopup({
 									popupName: 'route-from-battle'
 								});
-							}
+							//}
 
 							break;
 
@@ -198,16 +199,17 @@
 
 			return Backbone.Router.prototype.constructor.apply(this, arguments);
 
-		},
-
-		routeFromBattle: function () {
-			var baseProto = win.APP.BB.BaseView.prototype;
-			baseProto.routeBack();
-			setTimeout(function () {
-				baseProto.routeBack();
-			}, 50);
-
 		}
+		//,
+		//
+		//routeFromBattle: function () {
+		//	var baseProto = win.APP.BB.BaseView.prototype;
+		//	baseProto.routeBack();
+		//	setTimeout(function () {
+		//		baseProto.routeBack();
+		//	}, 50);
+		//
+		//}
 
 	});
 

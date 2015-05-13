@@ -262,7 +262,7 @@
 				},
 				onHide: {
 					fn: 'backTo',
-					args: ['']
+					args: ['', { isForce: true }]
 				}
 			}
 
@@ -496,7 +496,7 @@
 				},
 				onHide: {
 					fn: 'backTo',
-					args: ['']
+					args: ['', { isForce: true }]
 				}
 			}
 		],

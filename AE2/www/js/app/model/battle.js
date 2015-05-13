@@ -7,7 +7,7 @@
 
 	win.APP.bb = win.APP.bb || {};
 
-	win.APP.bb.battleData = {};
+	//win.APP.bb.battleData = {};
 
 	win.APP.BB.BattleModel = Backbone.Model.extend({
 
@@ -19,10 +19,10 @@
 				map = model.get('map'),
 				playersMoney = map.money;
 
-			win.APP.bb.battleData = {
-				isEndGame: 'no',
-				gameTo: 'quit'
-			};
+			//win.APP.bb.battleData = {
+			//	isEndGame: 'no',
+			//	gameTo: 'quit'
+			//};
 
 			players = JSON.parse(JSON.stringify(args.players));
 
@@ -1094,6 +1094,9 @@
 			});
 
 			if (isWin) {
+
+				model.set('isEndGame', true);
+
 				//win.APP.bb.battleData.isEndGame = 'yes'; // will be set after las notification in endBriefing
 
 				mapMaster.db.openMap(map.openMaps); // jsMapKey
@@ -1117,8 +1120,11 @@
 			});
 
 			if (isDefeat) {
+
+				model.set('isEndGame', true);
+
 				//win.APP.bb.battleData.isEndGame = 'yes';
-				win.APP.bb.battleData.isEndGame = 'yes';
+				//win.APP.bb.battleData.isEndGame = 'yes';
 				view.showPopup({
 					popupName: 'win-or-defeat',
 					parentView: view,
@@ -1129,6 +1135,9 @@
 					},
 					popupData: {
 						header: win.APP.lang.get('defeat')
+					},
+					onHide: {
+						fn: 'restartBattle'
 					}
 				});
 				return true
@@ -1198,7 +1207,8 @@
 				});
 
 				if ( _.where(players, {type: 'cpu'}).length === players.length ) { // cpu only
-					win.APP.bb.battleData.isEndGame = 'yes';
+					//win.APP.bb.battleData.isEndGame = 'yes';
+					model.set('isEndGame', true);
 					view.showPopup({
 						popupName: 'win-or-defeat',
 						parentView: view,
@@ -1209,6 +1219,10 @@
 						},
 						popupData: {
 							header: win.APP.lang.get('defeat')
+						},
+						onHide: { // can be disabled from popup view
+							fn: 'backTo',
+							args: ['play', { isForce: true }]
 						}
 					});
 				} else {
@@ -1237,7 +1251,9 @@
 				//looserTeam = looser.teamNumber;
 				//winTeam = teamsNumbers[0];
 
-				win.APP.bb.battleData.isEndGame = 'yes';
+				//win.APP.bb.battleData.isEndGame = 'yes';
+
+				model.set('isEndGame', true);
 
 				if ( _.where(players, {type: 'cpu'}).length === players.length ) { // cpu only
 					view.showPopup({
@@ -1250,6 +1266,10 @@
 						},
 						popupData: {
 							header: win.APP.lang.get('defeat')
+						},
+						onHide: { // can be disabled from popup view
+							fn: 'backTo',
+							args: ['play', { isForce: true }]
 						}
 					});
 				} else {
@@ -1263,6 +1283,10 @@
 						},
 						popupData: {
 							header: win.APP.lang.get('victory')
+						},
+						onHide: { // can be disabled from popup view
+							fn: 'backTo',
+							args: ['play', { isForce: true }]
 						}
 					});
 				}

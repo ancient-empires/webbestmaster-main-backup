@@ -17,6 +17,10 @@
 
 		initialize: function (jsMapKey, data) {
 
+			if (win.APP.bb.router.isForce) {
+				return;
+			}
+
 			data = data || {};
 
 			var view = this,
