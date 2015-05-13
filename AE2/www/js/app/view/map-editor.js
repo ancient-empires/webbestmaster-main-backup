@@ -157,9 +157,15 @@
 				var lang = win.APP.lang;
 
 				if (isExist) {
-					$saveButton.html(lang.get('replace'));
+					$saveButton
+						.html(lang.get('replace'))
+						.removeClass('map-editor-status-save')
+						.addClass('map-editor-status-replace');
 				} else {
-					$saveButton.html(lang.get('save'));
+					$saveButton
+						.html(lang.get('save'))
+						.addClass('map-editor-status-save')
+						.removeClass('map-editor-status-replace');
 				}
 
 			});

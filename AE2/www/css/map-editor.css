@@ -159,6 +159,10 @@
 	background-image: url(../i/ui/map-editor/save.png);
 }
 
+.map-editor-status-replace {
+	background-image: url(../i/ui/map-editor/replace.png);
+}
+
 .map-editor-status-open {
 	background-image: url(../i/ui/map-editor/open.png);
 }
