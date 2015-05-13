@@ -108,6 +108,14 @@
 }
 
 .map-editor-wrapper {
+
+}
+
+.map-editor-wrapper .battle-view-status-bar {
+	background-color: #242A45;
+	border-top-style: solid;
+	border-top-width: 0.15rem;
+	box-sizing: border-box;
 }
 
 .map-editor-brush-type-icon {
@@ -130,6 +138,61 @@
 .map-editor-brush-type-icon-building {
 	background-image: url(../i/ui/map-editor/building.png);
 }
+
+.map-editor-status-bap-icon {
+	width: 20%;
+	height: 100%;
+	float: left;
+	-webkit-background-size: auto 50%;
+	background-size: auto 50%;
+	background-position: center 0.4rem;
+	background-repeat: no-repeat;
+	box-sizing: border-box;
+	font-size: 0.5rem;
+	line-height: 0.5rem;
+	padding-top: 2.15rem;
+	text-align: center;
+	color: #ccc;
+}
+
+.map-editor-status-save {
+	background-image: url(../i/ui/map-editor/save.png);
+}
+
+.map-editor-status-open {
+	background-image: url(../i/ui/map-editor/open.png);
+}
+
+.map-editor-status-delete {
+	background-image: url(../i/ui/map-editor/delete.png);
+}
+
+.map-editor-status-clean {
+	background-image: url(../i/ui/map-editor/clean.png);
+}
+
+.map-editor-status-exit {
+	background-image: url(../i/ui/map-editor/exit.png);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

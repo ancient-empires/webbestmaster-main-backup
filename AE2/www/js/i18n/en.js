@@ -133,6 +133,8 @@
 		name: 'Name',
 		colors: 'Colors',
 		open: 'Open',
+		clean: 'Clean',
+		exit: 'Exit',
 
 		//aboutText: '<br><br><br>Ancient Empire: Strike Back.<br><br><br><!--Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Alexey Danilov<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau-->',
 		aboutText: '<br><br><br>Ancient Empire:<br>Strike Back.<br><br><br>',
