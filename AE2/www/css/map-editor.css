@@ -1,6 +1,6 @@
 .map-editor-tools-wrapper {
 	background-color: #242a45;
-	width: 8rem;
+	width: 6rem;
 	box-sizing: border-box;
 	position: absolute;
 	right: 0;
@@ -17,7 +17,7 @@
 }
 
 .map-editor-container {
-	padding-right: 8rem;
+	padding-right: 6rem;
 }
 
 .square-grid {
@@ -38,9 +38,10 @@
 }
 
 .map-editor-color-tile {
+	float: left;
 	width: 2rem;
 	height: 2rem;
-	float: left;
+	margin: 0.5rem;
 }
 
 .map-editor-brush-form-type {
@@ -53,7 +54,7 @@
 }
 
 .map-editor-brush-form-eraser {
-	background-image: url(../i/ui/eraser.png);
+	background-image: url(../i/ui/map-editor/eraser.png);
 }
 
 
@@ -106,9 +107,29 @@
 	z-index: 1;
 }
 
+.map-editor-wrapper {
+}
 
+.map-editor-brush-type-icon {
+	background-repeat: no-repeat;
+	float: left;
+	width: 33.3333%;
+	height: 2rem;
+	background-size: 75%;
+	background-position: center center;
+}
 
+.map-editor-brush-type-icon-terrain {
+	background-image: url(../i/ui/map-editor/terrain.png);
+}
 
+.map-editor-brush-type-icon-unit {
+	background-image: url(../i/ui/map-editor/unit.png);
+}
+
+.map-editor-brush-type-icon-building {
+	background-image: url(../i/ui/map-editor/building.png);
+}
 
 
 

@@ -903,7 +903,7 @@
 
 <script type="text/x-template" data-name="map-editor">
 
-	<div class="battle-view-wrapper js-map-editor-wrapper">
+	<div class="battle-view-wrapper map-editor-wrapper js-map-editor-wrapper">
 
 		<input type="text" class="map-name input-text js-map-name" placeholder="EN Enter Map name" value="<%= mapName %>" />
 
@@ -959,7 +959,6 @@
 		</div>
 		<div class="map-editor-tools-wrapper">
 			<div class="map-editor-tools-container js-scroll-area-container scroll-touch">
-				<div class="scroll-area js-map-editor-tools-wrapper">
 
 				</div>
 			</div>
@@ -1011,14 +1010,15 @@
 
 		<% _.each(["terrain", "unit", "building"], function(type) { %>
 			<% if ( brush.type === type ) { %>
-			<div class="js-set-brush-type" data-brush-type="<%= type %>"><%= type %></div>
+			<div class="js-set-brush-type map-editor-brush-type-icon map-editor-brush-type-icon-<%= type %>" data-brush-type="<%= type %>">&nbsp;</div>
 			<% } else { %>
-			<div class="opacity50 js-set-brush-type" data-brush-type="<%= type %>"><%= type %></div>
+			<div class="opacity50 js-set-brush-type map-editor-brush-type-icon map-editor-brush-type-icon-<%= type %>" data-brush-type="<%= type %>">&nbsp;</div>
 			<% }; %>
 		<% }); %>
 
 		<% if ( brush.type !== 'terrain' ) { %>
 			<% _.each(window.APP.map.allColors, function(color){ %>
+				<% if ( brush.type === 'unit' && color === 'gray') { return; }; %>
 				<% if ( brush.color === color ) { %>
 				<div class="bg-gradient-color-<%= color %> js-set-brush-color map-editor-color-tile" data-brush-color="<%= color %>">&nbsp;</div>
 				<% } else { %>
@@ -1044,11 +1044,13 @@
 
 		<% }; %>
 
-		<% if ( brush.type === 'unit' && brush.color !== 'gray') { %>
+		<% if ( brush.type === 'unit' ) { %>
 
 			<% var noInEditor = window.APP.unitMaster.noInEditor, commanderList = window.APP.unitMaster.commanderList, allColors = window.APP.map.allColors; %>
 
 			<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
+
+				<% if ( brush.color === 'gray') { return; }; %>
 
 				<% if ( _.contains(noInEditor, key) ) { return; }; %>
 
