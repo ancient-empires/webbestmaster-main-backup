@@ -141,7 +141,7 @@
 		youAreSureToDeleteMap: 'Вы уверены что хотите удалить карту?',
 		mapHasBeenSaved: 'карта была сохранена.',
 		mapHasBeenDeleted: 'карта была удалена',
-		clearMapNotSavedDataWillBeLost: 'Очистить карту? Не сохранённые данные будут потеряны!',
+		cleanMapNotSavedDataWillBeLost: 'Очистить карту? Не сохранённые данные будут потеряны!',
 		needMoreUnitsOrBuildings: 'Нужно больше Юнитов или Зданий',
 		enterMapName: 'Введите имя карты',
 

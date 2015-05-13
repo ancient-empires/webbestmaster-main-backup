@@ -141,7 +141,7 @@
 		youAreSureToDeleteMap: 'You are sure to delete map?',
 		mapHasBeenSaved: 'map has been saved.',
 		mapHasBeenDeleted: 'map has been deleted',
-		clearMapNotSavedDataWillBeLost: 'Clear map? Not saved data will be lost.',
+		cleanMapNotSavedDataWillBeLost: 'Clean map? Not saved data will be lost.',
 		needMoreUnitsOrBuildings: 'Need more Units or Buildings',
 		enterMapName: 'Enter Map name',
 
