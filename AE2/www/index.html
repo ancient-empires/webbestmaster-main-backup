@@ -372,7 +372,7 @@
 								<div data-sound="click.mp3" class="main-button" data-route="load-game"><div class="main-button-icon main-button-icon-1">&nbsp;</div>{{ loadGame }}</div>
 								<div data-sound="click.mp3" class="main-button" data-route="select-level"><div class="main-button-icon main-button-icon-2">&nbsp;</div>{{ selectLevel }}</div>
 								<div data-sound="click.mp3" class="main-button" data-route="skirmish-select-map"><div class="main-button-icon main-button-icon-3">&nbsp;</div>{{ skirmish }}</div>
-								<div data-sound="click.mp3" class="main-button" data-route="user-map-select-map"><div class="main-button-icon main-button-icon-3">&nbsp;</div> EN user map </div>
+								<div data-sound="click.mp3" class="main-button" data-route="user-map-select-map"><div class="main-button-icon main-button-icon-3">&nbsp;</div> {{ userMaps }}</div>
 							</div>
 						</div>
 					</div>
@@ -414,7 +414,7 @@
 
 	<div>
 
-		<div class="popup-header"> EN Are you sure to leave map editor? </div>
+		<div class="popup-header">{{ areYouSureToLeaveMapEditor }}</div>
 		<div class="popup-buttons-wrapper ta-center">
 			<div data-sound="click.mp3" class="popup-button js-quit-map-editor">{{ yes }}</div>
 			<div data-sound="click.mp3" class="popup-button js-back">{{ no }}</div>
@@ -453,7 +453,7 @@
 <script type="text/x-template" data-name="clear-map">
 
 	<div>
-		<div class="popup-header">EN Clear map? Not saved data will be lost.</div>
+		<div class="popup-header">{{ clearMapNotSavedDataWillBeLost }}</div>
 		<div class="popup-buttons-wrapper ta-center">
 			<div data-sound="click.mp3" class="popup-button js-clear-map">{{ yes }}</div>
 			<div data-sound="click.mp3" class="popup-button js-back">{{ no }}</div>
@@ -507,14 +507,14 @@
 	<div>
 
 		<% if ( _.keys(mapsInfo).length ) { %>
-			<div class="popup-header">EN Unsaved map progress will be lost!</div>
+			<div class="popup-header">{{ unsavedMapProgressWillBeLost }}</div>
 			<% var languageField = 'name-' + window.APP.info.get('language'); %>
 			<% _.each(mapsInfo, function (map, jsKey) { %>
 				<% var mapName = map[languageField] || map.name; %>
 				<div data-map-name="<%= jsKey %>" class="saved-item-wrapper js-open-map-in-editor js-back">(<%= map.maxPlayers %>) <%= mapName %></div>
 			<% }); %>
 		<% } else { %>
-			<div class="popup-header">EN no saved maps</div>
+			<div class="popup-header">{{ noSavedMaps }}</div>
 		<% }; %>
 
 	</div>
@@ -540,7 +540,7 @@
 
 					<div class="js-tab-block hidden small-confirm-wrapper clear-fix" data-tab-id="delete-user-map-<%= jsKey %>">
 
-						<div class="small-confirm-header">EN You are sure to delete map?</div>
+						<div class="small-confirm-header">{{ youAreSureToDeleteMap }}</div>
 
 						<div class="small-confirm-buttons-wrapper">
 
@@ -555,7 +555,7 @@
 
 			<% }); %>
 		<% } else { %>
-			<div class="popup-header">EN no saved maps</div>
+			<div class="popup-header">{{ noSavedMaps }}</div>
 		<% }; %>
 
 	</div>
@@ -851,15 +851,19 @@
 		<div class="main-content-wrapper">
 			<div class="main-content-container js-scroll-area-container scroll-touch">
 				<div class="scroll-area">
-				<% var languageField = 'name-' + window.APP.info.get('language'); %>
-				<% _.each(mapsInfo, function (map, jsKey) { %>
-				<% var mapName = map[languageField] || map.name; %>
-					<% if ( map.isOpen ) { %>
-					<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
-					<% } else { %>
-					<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="disable saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName.replace(/[\s\S]/g, '?') %></div>
-					<% }; %>
-				<% }); %>
+				<% if ( _.keys(mapsInfo).length ) { %>
+					<% var languageField = 'name-' + window.APP.info.get('language'); %>
+					<% _.each(mapsInfo, function (map, jsKey) { %>
+						<% var mapName = map[languageField] || map.name; %>
+						<% if ( map.isOpen ) { %>
+							<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
+						<% } else { %>
+							<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="disable saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName.replace(/[\s\S]/g, '?') %></div>
+						<% }; %>
+					<% }); %>
+				<% } else { %>
+					{{ noSavedMaps }}
+				<% }; %>
 				</div>
 			</div>
 		</div>
@@ -905,7 +909,7 @@
 
 	<div class="battle-view-wrapper map-editor-wrapper js-map-editor-wrapper">
 
-		<input type="text" class="map-name input-text js-map-name" placeholder="EN Enter Map name" value="<%= mapName %>" />
+		<input type="text" class="map-name input-text js-map-name" placeholder="{{ enterMapName }}" value="<%= mapName %>" />
 
 		<div class="size-tools-wrapper">
 

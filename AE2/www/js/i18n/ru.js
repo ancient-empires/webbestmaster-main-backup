@@ -56,7 +56,7 @@
 		loadGame: 'Загрузить игру',
 		selectLevel: 'Выбор уровня',
 		skirmish: 'Схватка',
-		userMap: 'Юзер мап',
+		userMaps: 'Свои карты',
 		mission: 'Миссия',
 
 		// setup skirmish
@@ -135,6 +135,15 @@
 		open: 'Открыть',
 		clean: 'Очистить',
 		exit: 'Выход',
+		areYouSureToLeaveMapEditor: 'Вы уверены что хотите выйти из редактора карт?',
+		unsavedMapProgressWillBeLost: 'Не сохранённые данные будут потеряны!',
+		noSavedMaps: 'Нет сохранённых карт',
+		youAreSureToDeleteMap: 'Вы уверены что хотите удалить карту?',
+		mapHasBeenSaved: 'карта была сохранена.',
+		mapHasBeenDeleted: 'карта была удалена',
+		clearMapNotSavedDataWillBeLost: 'Очистить карту? Не сохранённые данные будут потеряны!',
+		needMoreUnitsOrBuildings: 'Нужно больше Юнитов или Зданий',
+		enterMapName: 'Введите имя карты',
 
 		//aboutText: 'Ancient Empire: strike back.<br><br><br>Программист:<br>Дмитрий Туровцов<br><br>Благодарности:<br>Алексей Данилов<br>Павел Прилуцкий<br>Игорь Купреев<br>Павел Сычиков',
 		aboutText: '<br>Ancient Empire:<br>Strike Back.<br><br>Древняя Империя:<br>Ответный Удар.<br><br><br>',

@@ -242,6 +242,7 @@
 				$this = $(e.currentTarget),
 				parentView = view.get('parentView'),
 				mapType = 'userMap',
+				lang = win.APP.lang,
 				mapName = $this.attr('data-user-map-name');
 
 			parentView.deleteMap({
@@ -253,7 +254,7 @@
 			view.$el.find('.js-user-map-wrapper[data-user-map-name="' + mapName + '"]').remove();
 
 			if ( !view.$el.find('.js-user-map-wrapper').length ) {
-				view.$el.find('.js-popup-header').html('EN no saved maps');
+				view.$el.find('.js-popup-header').html(lang.get('noSavedMaps'));
 			}
 
 		},

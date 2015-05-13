@@ -56,7 +56,7 @@
 		loadGame: 'Load game',
 		selectLevel: 'Select level',
 		skirmish: 'Skirmish',
-		userMap: 'User map',
+		userMaps: 'User maps',
 		mission: 'Mission',
 
 		// setup skirmish
@@ -135,6 +135,16 @@
 		open: 'Open',
 		clean: 'Clean',
 		exit: 'Exit',
+		areYouSureToLeaveMapEditor: 'Are you sure to leave map editor?',
+		unsavedMapProgressWillBeLost: 'Unsaved map progress will be lost!',
+		noSavedMaps: 'No saved maps',
+		youAreSureToDeleteMap: 'You are sure to delete map?',
+		mapHasBeenSaved: 'map has been saved.',
+		mapHasBeenDeleted: 'map has been deleted',
+		clearMapNotSavedDataWillBeLost: 'Clear map? Not saved data will be lost.',
+		needMoreUnitsOrBuildings: 'Need more Units or Buildings',
+		enterMapName: 'Enter Map name',
+
 
 		//aboutText: '<br><br><br>Ancient Empire: Strike Back.<br><br><br><!--Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Alexey Danilov<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau-->',
 		aboutText: '<br><br><br>Ancient Empire:<br>Strike Back.<br><br><br>',

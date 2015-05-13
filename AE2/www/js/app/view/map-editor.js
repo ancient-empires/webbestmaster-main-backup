@@ -258,7 +258,7 @@
 
 		// just overwrite
 		detectDblClick: function () {
-			console.log('dbl click is', this.get('clickXY'));
+			win.log('dbl click is');
 		},
 
 		openMapPopup: function () {
@@ -653,6 +653,7 @@
 					'3': false
 				},
 				i, j,
+				lang = win.APP.lang,
 				detectGap = function () {
 					_.each(ids, function (value, key) {
 						key = Number(key);
@@ -669,7 +670,7 @@
 
 				view.showTicket({
 					popupData: {
-						text: 'EN Please, enter map name.'
+						text: lang.get('enterMapName')
 					},
 					cssClass: 'error'
 				});
@@ -759,7 +760,7 @@
 			if (endMap.maxPlayers < 2) {
 				view.showTicket({
 					popupData: {
-						text: 'EN Need more Units or Buildings.'
+						text: lang.get('needMoreUnitsOrBuildings')
 					},
 					cssClass: 'error'
 				});
@@ -775,7 +776,7 @@
 			}).then(function () {
 				return view.showTicket({
 					popupData: {
-						text: 'EN map \'' + endMap.name + '\' has been saved.'
+						text: endMap.name + ' - ' + win.APP.lang.get('mapHasBeenSaved')
 					}
 				});
 			}).then(function () {
@@ -797,7 +798,7 @@
 			}).then(function () {
 				return view.showTicket({
 					popupData: {
-						text: 'EN map \'' + data.mapName + '\' has been deleted.'
+						text: data.mapName + ' - ' + win.APP.lang.get('mapHasBeenDeleted')
 					}
 				});
 			}).then(function () {
