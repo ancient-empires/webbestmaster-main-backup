@@ -220,6 +220,7 @@
 
 			info.set('help', 'off');
 			view.autoShowHelpButton();
+			view.routeBack();
 
 		},
 
