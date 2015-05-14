@@ -17,7 +17,7 @@
 		};
 
 	win.APP.maps.mission_001_008 = {
-		version: 4,
+		version: 5,
 		type: 'mission',
 		isOpen: false,
 		openMaps: [
@@ -28,7 +28,7 @@
 		maxPlayers: 2,
 		unitLimit: 25,
 		money: [
-			{playerId: 0, money: 600},
+			{playerId: 0, money: 900}, // default {playerId: 0, money: 900}
 			{playerId: 1, money: 600}
 		],
 		win: ['noEnemyUnit'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
