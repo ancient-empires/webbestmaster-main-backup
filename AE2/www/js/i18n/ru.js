@@ -144,6 +144,7 @@
 		cleanMapNotSavedDataWillBeLost: 'Очистить карту? Не сохранённые данные будут потеряны!',
 		needMoreUnitsOrBuildings: 'Нужно больше Юнитов или Зданий',
 		enterMapName: 'Введите имя карты',
+		mapName: 'Имя карты',
 
 		//aboutText: 'Ancient Empire: strike back.<br><br><br>Программист:<br>Дмитрий Туровцов<br><br>Благодарности:<br>Алексей Данилов<br>Павел Прилуцкий<br>Игорь Купреев<br>Павел Сычиков',
 		aboutText: '<br>Ancient Empire:<br>Strike Back.<br><br>Древняя Империя:<br>Ответный Удар.<br><br><br>',
