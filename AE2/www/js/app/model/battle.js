@@ -399,8 +399,6 @@
 				startGame: true
 			});
 
-			model.autoSetWispAura();
-
 			if (savedData) {
 				view.autoShowHelpButton();
 			} else {
@@ -416,6 +414,12 @@
 					});
 				}
 			}
+
+			_.each(model.get('players'), function (player) {
+				model.autoSetWispAura({
+					playerId: player.id
+				});
+			});
 
 		},
 
