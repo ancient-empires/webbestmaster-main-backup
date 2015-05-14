@@ -146,6 +146,9 @@
 		enterMapName: 'Введите имя карты',
 		mapName: 'Имя карты',
 
+		// other
+		disableAllTips: 'Отключить ВСЕ подсказки',
+
 		//aboutText: 'Ancient Empire: strike back.<br><br><br>Программист:<br>Дмитрий Туровцов<br><br>Благодарности:<br>Алексей Данилов<br>Павел Прилуцкий<br>Игорь Купреев<br>Павел Сычиков',
 		aboutText: '<br>Ancient Empire:<br>Strike Back.<br><br>Древняя Империя:<br>Ответный Удар.<br><br><br>',
 		instructionsText: [

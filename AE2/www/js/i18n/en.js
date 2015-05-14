@@ -146,6 +146,9 @@
 		enterMapName: 'Enter map name',
 		mapName: 'Map name',
 
+		// other
+		disableAllTips: 'Disable ALL tips',
+
 		//aboutText: '<br><br><br>Ancient Empire: Strike Back.<br><br><br><!--Programmer:<br>Dmitry Turovtsov<br><br>Thanks:<br>Alexey Danilov<br>Pavel Prylutski<br>Igor Kupreev<br>Pavel Sychykau-->',
 		aboutText: '<br><br><br>Ancient Empire:<br>Strike Back.<br><br><br>',
 		instructionsText: [
