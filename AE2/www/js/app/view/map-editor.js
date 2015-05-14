@@ -23,6 +23,9 @@
 			'click .js-save-map': 'saveMap',
 			'click .js-size-button': 'setMapSize',
 			'input .js-map-name': 'onChangeMapName',
+			'focus .js-map-name': 'disableMapEditor',
+			'blur .js-map-name': 'enableMapEditor',
+			'click .js-map-editor-disable-screen': 'enableMapEditor',
 			'click .js-clear-map-popup': 'popupClearMap'
 
 		},
@@ -31,6 +34,7 @@
 
 			// self
 			toolsWrapper: '.js-map-editor-tools-wrapper',
+			disableScreen: '.js-map-editor-disable-screen',
 
 			// nested
 			mapImageWrapper: '.js-map-image-wrapper',
@@ -935,12 +939,15 @@
 			this.initialize();
 		},
 
-		test: function () {
+		disableMapEditor: function () {
+			this.$el.find(this.selectors.disableScreen).removeClass('hidden');
+		},
 
+		enableMapEditor: function () {
+			this.$el.find(this.selectors.disableScreen).addClass('hidden');
 		}
 
-
-	})
+	});
 
 
 }(window));

@@ -126,7 +126,7 @@
 
 .map-name:focus {
 	width: 12rem;
-	z-index: 2;
+	z-index: 5;
 	font-size: 1.2rem;
 }
 
@@ -203,7 +203,15 @@
 	background-image: url(../i/ui/map-editor/exit.png);
 }
 
-
+.map-editor-disable-screen {
+	position: fixed;
+	background-color: rgba(0, 0, 0, 0.5);
+	top: 0;
+	left: 0;
+	z-index: 4;
+	width: 100%;
+	height: 100%;
+}
 
 
 
