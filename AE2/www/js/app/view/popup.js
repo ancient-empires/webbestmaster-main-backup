@@ -19,7 +19,8 @@
 			'click .js-quit-map-editor': 'quitMapEditor',
 			'click .js-open-map-in-editor': 'openMapInEditor',
 			'click .js-delete-user-map': 'deleteUserMap',
-			'click .js-clear-map': 'clearMap'
+			'click .js-clear-map': 'clearMap',
+			'click .js-disable-all-tips': 'disableAllTips'
 		},
 
 		selectors: {
@@ -209,6 +210,16 @@
 			$el.addClass('show-out');
 
 			return deferred.promise();
+
+		},
+
+		disableAllTips: function () {
+
+			var view = this,
+				info = view.info;
+
+			info.set('help', 'off');
+			view.autoShowHelpButton();
 
 		},
 

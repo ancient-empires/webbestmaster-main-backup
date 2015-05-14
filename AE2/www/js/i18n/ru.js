@@ -31,7 +31,7 @@
 		music: 'музыка',
 		vibrate: 'вибро',
 		help: 'помощь',
-		youCanDisableHelpNotification: 'Вы можете отключить подсказки из \'Настройки\'',
+		youCanDisableHelpNotification: 'Вы можете включить/отключить подсказки из \'Настройки\'',
 		fightAnimation: 'анимация боя',
 		gameSpeed: 'Скорость игры',
 		confirmTurn: 'подтверждение хода',
