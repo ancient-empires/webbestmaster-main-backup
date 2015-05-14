@@ -11,7 +11,8 @@
 			max: 96, // 192
 			default: 48 // 24 * 2
 		},
-		maxCanvasSize: 2048 * 768 * 2,
+		//maxCanvasSize: 3145728 - 1, // 2048 * 768 * 2 - 1 - default version
+		maxCanvasSize: 1536 * 768 * 2, // 1536 * 768 * 2 - 1
 		scaleImage: function (img, scale) {
 
 			var imgWidth = img.width,
