@@ -309,6 +309,11 @@
 
 			units.splice(unitIndex, 1);
 
+			// set wisp aura for attacked team
+			model.autoSetWispAura({
+				playerId: unit.get('ownerId')
+			});
+
 		},
 
 		addGrave: function (grave) {
@@ -330,7 +335,9 @@
 
 		},
 
-		autoSetWispAura: function () {
+		autoSetWispAura: function (data) {
+
+			data = data || {};
 
 			var model = this,
 				activePlayer = model.get('activePlayer'),
@@ -341,6 +348,10 @@
 
 			if ( !activePlayer ) {
 				return;
+			}
+
+			if (data.hasOwnProperty('playerId')) {
+				activePlayer = _.find(model.get('players'), { id: data.playerId });
 			}
 
 			allTeamUnits = model.getUnitsByTeamNumber(activePlayer.teamNumber);
