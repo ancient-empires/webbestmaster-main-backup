@@ -68,6 +68,9 @@
 
 			if (road && road.pause) {
 				road.pause();
+			}
+
+			if (road && road.currentTime && road.currentTime < 0.1) {
 				road.currentTime = 0;
 			}
 
