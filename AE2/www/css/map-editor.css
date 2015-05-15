@@ -132,7 +132,6 @@
 .map-name:focus {
 	width: 12rem;
 	z-index: 5;
-	font-size: 1.2rem;
 }
 
 .map-size {
