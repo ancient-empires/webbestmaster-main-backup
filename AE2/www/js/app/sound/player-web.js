@@ -31,6 +31,8 @@
 				sound = data.sound,
 				newAudio;
 
+			player.stop(data);
+
 			newAudio = new Audio();
 			if (isLoop) {
 				newAudio.addEventListener('ended', function() {
@@ -64,8 +66,10 @@
 				roadNumber = data.road,
 				road = player.roads[roadNumber];
 
-			road.pause();
-			road.currentTime = 0;
+			if (road && road.pause) {
+				road.pause();
+				road.currentTime = 0;
+			}
 
 		}
 

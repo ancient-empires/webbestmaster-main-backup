@@ -29,10 +29,15 @@
 
 			var soundMaster = this,
 				isAndroidPlayer = win.AndAud_0,
+				isIosPlayer = win.Media, // detect cordova Media
 				player;
 
 			if (isAndroidPlayer) {
 				player = win.APP.soundMaster.androidPlayer;
+			}
+
+			if (isIosPlayer) {
+				player = win.APP.soundMaster.iosPlayer;
 			}
 
 			player = player || win.APP.soundMaster.webPlayer; // get system player or use web player
