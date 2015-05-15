@@ -35,6 +35,7 @@
 			// self
 			toolsWrapper: '.js-map-editor-tools-wrapper',
 			disableScreen: '.js-map-editor-disable-screen',
+			mapSize: '.js-map-size',
 
 			// nested
 			mapImageWrapper: '.js-map-image-wrapper',
@@ -140,6 +141,8 @@
 			view.updateTools();
 
 			view.onChangeMapName();
+
+			view.updateMapSize();
 
 		},
 
@@ -921,6 +924,8 @@
 			view.reDrawUnits();
 			view.reDrawBuildings();
 
+			view.updateMapSize();
+
 		},
 
 		popupClearMap: function () {
@@ -945,6 +950,16 @@
 
 		enableMapEditor: function () {
 			this.$el.find(this.selectors.disableScreen).addClass('hidden');
+		},
+
+		updateMapSize: function () {
+
+			var view = this,
+				map = view.get('map'),
+				$mapSize = view.$el.find(view.selectors.mapSize);
+
+			$mapSize.html(map.size.width + '&times;' + map.size.height)
+
 		}
 
 	});
