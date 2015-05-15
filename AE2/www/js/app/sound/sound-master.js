@@ -71,6 +71,7 @@
 			switch (state) {
 
 				case '':
+				case 'play':
 				case 'select-level':
 				case 'skirmish-select-map':
 					return 'main-theme.mp3'; // file name main-theme.mp3
