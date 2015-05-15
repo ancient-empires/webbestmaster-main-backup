@@ -603,16 +603,16 @@
 				mapHeight = map.size.height,
 				maxCanvasSize = win.APP.map.maxCanvasSize;
 
-			if ( !this.info.get('isAndroid', true) ) { // for NOT android set size 24
-				squareSize = 48; // see tiles image size 24 * 2
-			}
+			//if ( !this.info.get('isAndroid', true) ) { // for NOT android set size 24
+			//	squareSize = 48; // see tiles image size 24 * 2
+			//}
 
 			// adjust square size
-			while ( mapWidth * mapHeight * squareSize * squareSize * 4 > maxCanvasSize ) {
+			while ( mapWidth * mapHeight * squareSize * squareSize * 4 >= maxCanvasSize ) {
 				squareSize -= 6;
 			}
 
-			squareSize -= 6;
+			//squareSize -= 6;
 
 			squareSizeX2 = squareSize * 2;
 

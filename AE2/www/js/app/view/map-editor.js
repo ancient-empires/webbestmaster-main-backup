@@ -81,7 +81,7 @@
 			map: {
 				size: {
 					min: 4,
-					max: 24
+					max: 17
 				}
 			},
 			brush: {
