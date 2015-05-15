@@ -114,14 +114,19 @@
 	left: 0;
 	top: 0;
 	width: 6rem;
+	height: 1.4rem;
 	z-index: 1;
-	border-color: #888;
 	background-color: #f0f0f0;
 	color: #333;
 	font-size: 0.8rem;
+	line-height: 1.2rem;
 	padding-left: 0.3rem;
-	box-sizing: border-box;
 	max-width: 100%;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	border-width: 0.1rem;
+	border-color: #888;
+	border-style: solid;
 }
 
 .map-name:focus {

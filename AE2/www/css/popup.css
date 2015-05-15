@@ -115,6 +115,10 @@
 	border-image: none;
 }
 
+.full-screen {
+	outline: 0.1rem solid #242a45;
+}
+
 @media only screen and (max-width : 736px) {
 
 	.popup-form {
