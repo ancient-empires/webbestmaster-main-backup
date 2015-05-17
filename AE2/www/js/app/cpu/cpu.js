@@ -705,7 +705,7 @@
 			},
 
 			maxAvailableReceiveDamage: 80,
-			onCanEnemyGetBuilding: 100, // high priority
+			onCanEnemyGetBuilding: 200, // high priority
 			onHealthUpBuilding: 5
 		},
 
@@ -727,7 +727,7 @@
 			},
 
 			maxAvailableReceiveDamage: 80,
-			onCanEnemyGetBuilding: 100, // high priority
+			onCanEnemyGetBuilding: 200, // high priority
 			onHealthUpBuilding: 5
 		},
 
@@ -749,7 +749,7 @@
 			},
 
 			maxAvailableReceiveDamage: 80,
-			onCanEnemyGetBuilding: 100, // high priority
+			onCanEnemyGetBuilding: 200, // high priority
 			onHealthUpBuilding: 1
 		},
 
@@ -807,11 +807,12 @@
 
 			if ( actionName === 'fixBuilding' ) { // do not fix if unit can attack
 				scenario.set('isAvailable', !isUnitOnXY);
-				_.each(allScenarios, function (sc) {
-					if (sc.get('x') === x && sc.get('y') === y && sc.get('action').name === 'attack') {
-						scenario.set('isAvailable', false);
-					}
-				});
+				// todo: why need disable attack of all scenarios
+				//_.each(allScenarios, function (sc) {
+				//	if (sc.get('x') === x && sc.get('y') === y && sc.get('action').name === 'attack') {
+				//		scenario.set('isAvailable', false);
+				//	}
+				//});
 				return;
 			}
 
@@ -1048,7 +1049,7 @@
 				pathToEnemyLength = Infinity,
 				rate = 0;
 
-			// 1 detect: enemy unit get or stay on building
+			// 1 detect: enemy unit which can get or stay on building
 			if ( building ) {
 
 				// can enemy get building
@@ -1202,11 +1203,14 @@
 			if ( availableGivenDamage >= enemyHealth ) {
 				rate = rates.killUnit;
 			} else {
-				rate = availableGivenDamage - availableResponseDamage;
+				if ( availableResponseDamage < unit.get('health') - 10) { // detect: unit will be alive after attack
+					rate = availableGivenDamage;
+				} else {
+					rate = availableGivenDamage - availableResponseDamage;
+				}
 			}
 
 			rate += dataByPosition.onHealthUpBuilding;
-
 
 			enemyUnits = _.filter(allUnits, function (unit) {
 				return unit.get('teamNumber') !== unitTeamNumber;

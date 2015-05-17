@@ -1,14 +1,16 @@
 (function (win) {
 
 	"use strict";
-	/*global window, document */
+	/*global window, document, console */
 	/*global */
 
 	win.logger = {
 		on: function () {
+			console.log('Logger is Enabled');
 			this.isEnable = true;
 		},
 		off: function () {
+			console.log('Logger is Disabled');
 			this.isEnable = false;
 		},
 		isEnable: false,
