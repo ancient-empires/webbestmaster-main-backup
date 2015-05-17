@@ -221,36 +221,39 @@
 				unitLimit = model.get('unitLimit'),
 				unitTypeToBuy,
 				unitMaster = win.APP.unitMaster,
-				unitPercents = [
-					{ type: 'soldier', 		percent: 20, currentPercent: 0 },
-					{ type: 'archer',		percent: 30, currentPercent: 0 },
-					{ type: 'sorceress', 	percent: 15, currentPercent: 0 },
-					{ type: 'golem',	 	percent: 10, currentPercent: 0 },
-					{ type: 'dire-wolf',	percent: 10, currentPercent: 0 }
-				];
+				unitCounts = [
+					{ type: 'soldier', 		count: 3, currentCount: 0 },
+					{ type: 'archer',		count: 3, currentCount: 0 },
+					{ type: 'sorceress', 	count: 1, currentCount: 0 }
+					//{ type: 'golem',	 	count: 1, currentCount: 0 },
+					//{ type: 'dire-wolf',	count: 1, currentCount: 0 }
+				],
+				otherUnits = ['golem', 'dire-wolf', 'dragon'];
+
+			if ( model.isUnitsTooMuch() ) {
+				console.log('too much units CPU');
+				return;
+			}
 
 			// do not buy if limit exceed
 			if ( unitLimit <= units.length) {
 				return;
 			}
 
-			_.each(unitPercents, function (data) {
-
-				var unitType = data.type;
+			_.each(unitCounts, function (data) {
 
 				_.each(units, function (unit) {
-					if ( unitTypeToBuy ) {
-						return;
-					}
-					if ( unit.get('type') === unitType ) {
-						data.currentPercent += Math.round((unit.get('health') / unit.get('defaultHealth')) / unitLimit * 100);
+					if ( unit.get('type') === data.type ) {
+						data.currentCount += 1;
 					}
 				});
 
-				if ( data.currentPercent < data.percent && !unitTypeToBuy	) {
-					unitTypeToBuy = unitType;
-				}
+			});
 
+			_.each(unitCounts, function (data) {
+				if ( data.currentCount < data.count && !unitTypeToBuy ) {
+					unitTypeToBuy = data.type;
+				}
 			});
 
 			if ( unitTypeToBuy && unitMaster.list[unitTypeToBuy].cost <= player.money ) {
@@ -263,6 +266,20 @@
 				});
 				return;
 			}
+
+			unitTypeToBuy = win.APP.util.assortArray(otherUnits)[0];
+
+			if ( unitTypeToBuy && unitMaster.list[unitTypeToBuy].cost <= player.money ) {
+				cpu.buyUnit({
+					store: data.store,
+					type: unitTypeToBuy
+				});
+				cpu.buyNextUnit({
+					store: data.store
+				});
+				return;
+			}
+
 
 			log('buy other units');
 

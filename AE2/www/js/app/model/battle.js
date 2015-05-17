@@ -1580,7 +1580,7 @@
 							text: win.APP.lang.get('gameSaved') + '<br>' + saveName
 						}
 					});
-				})
+				});
 
 		},
 
@@ -1622,6 +1622,16 @@
 			});
 
 			return save;
+
+		},
+
+		isUnitsTooMuch: function () {
+
+			var model = this,
+				map = model.get('map'),
+				allUnits = model.get('units');
+
+			return map.size.height * map.size.width / 2 < allUnits.length;
 
 		}
 

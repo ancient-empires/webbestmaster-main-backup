@@ -57,6 +57,7 @@
 		selectLevel: 'Select level',
 		skirmish: 'Skirmish',
 		userMaps: 'User maps',
+		userMap: 'User map',
 		mission: 'Mission',
 
 		// setup skirmish
@@ -121,6 +122,7 @@
 		skirmishObjective: 'Defeat the enemy commander and occupy all enemy castles!',
 		newTurn: 'New turn!',
 		income: 'Income',
+		tooMuchUnits: 'Too much units!',
 
 			//battle menu
 		menu: 'Menu',

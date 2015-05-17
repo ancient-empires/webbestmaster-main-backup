@@ -57,6 +57,7 @@
 		selectLevel: 'Выбор уровня',
 		skirmish: 'Схватка',
 		userMaps: 'Свои карты',
+		userMap: 'Своя карта',
 		mission: 'Миссия',
 
 		// setup skirmish
@@ -121,6 +122,7 @@
 		skirmishObjective: 'Поразить вражеского командира и захватить все вражеские замки!',
 		newTurn: 'Смена хода',
 		income: 'Доход',
+		tooMuchUnits: 'Слишком много юнитов!',
 
 			//battle menu
 		menu: 'Меню',

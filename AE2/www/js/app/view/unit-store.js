@@ -37,6 +37,18 @@
 
 			var view = this;
 
+			if ( data.model.isUnitsTooMuch() ) {
+
+				view.showTicket({
+					popupData: {
+						text: win.APP.lang.get('tooMuchUnits')
+					},
+					cssClass: 'error'
+				});
+
+				return;
+			}
+
 			view.set('createTime', Date.now());
 
 			if (Backbone.history.fragment !== view.settings.url) {
@@ -169,6 +181,17 @@
 				view.autoSetCardState();
 				view.get('view').updateStatusBar();
 				view.setUnitCounter(unitType);
+
+				if ( model.isUnitsTooMuch() ) {
+					view.routeBack();
+					view.showTicket({
+						popupData: {
+							text: win.APP.lang.get('tooMuchUnits')
+						},
+						cssClass: 'error'
+					});
+				}
+
 			}
 
 
