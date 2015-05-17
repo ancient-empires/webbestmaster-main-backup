@@ -26,8 +26,7 @@
 		events: {
 			'hide-unit-store': 'hide',
 			'click .js-buy-unit': 'buyUnit',
-			'click .js-show-unit-description': 'showUnitDescription',
-			'click .js-disable-unit-store': 'removeDisableUnitStoreScreen'
+			'click .js-show-unit-description': 'showUnitDescription'
 			//'click .js-change-on-off-setting': 'changeOnOffSetting',
 			//'click .js-change-select-setting': 'changeSelectSetting'
 		},
@@ -46,10 +45,6 @@
 
 			view.render();
 
-		},
-
-		removeDisableUnitStoreScreen: function () {
-			this.$el.find(this.selectors.disableUnitStore).remove();
 		},
 
 		render: function () {
@@ -71,10 +66,6 @@
 
 			view.autoSetCardState();
 			storeWrapper.append(view.$el);
-
-			setTimeout(function () {
-				view.$el.find(view.selectors.disableUnitStore).remove();
-			}, 400);
 
 		},
 
