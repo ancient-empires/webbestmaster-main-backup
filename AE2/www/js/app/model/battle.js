@@ -1628,10 +1628,14 @@
 		isUnitsTooMuch: function () {
 
 			var model = this,
+				players = model.get('players'),
 				map = model.get('map'),
-				allUnits = model.get('units');
+				allUnits = model.get('units'),
+				maxUnits = Math.round(map.size.height * map.size.width / 2);
 
-			return map.size.height * map.size.width / 2 < allUnits.length;
+			maxUnits += maxUnits % players.length;
+
+			return  maxUnits <= allUnits.length;
 
 		}
 
