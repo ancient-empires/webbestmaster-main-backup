@@ -19,6 +19,10 @@
 
 		play: function (data) {
 
+			if (data.road) {
+				return;
+			}
+
 			var player = this,
 				roadNumber = data.road,
 				isLoop = data.isLoop,
