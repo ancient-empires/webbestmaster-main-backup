@@ -31,9 +31,13 @@
 			//'click .js-change-select-setting': 'changeSelectSetting'
 		},
 
+		deltaActionTime: 360,
+
 		initialize: function (data) {
 
 			var view = this;
+
+			view.set('createTime', Date.now());
 
 			if (Backbone.history.fragment !== view.settings.url) {
 				view.navigate(view.settings.url);
@@ -93,6 +97,10 @@
 
 				view = this;
 				model = view.get('model');
+
+				if (Date.now() - view.get('createTime') < view.deltaActionTime) {
+					return;
+				}
 
 				currentXY = {
 					x: view.get('x'),
@@ -224,6 +232,10 @@
 				unitKey = $button.attr('data-unit-key'),
 				state = $button.attr('data-description-is-show'),
 				$description = view.$el.find(view.selectors.descriptionUnitInfo + '[data-unit-key="' + unitKey + '"]');
+
+			if (Date.now() - view.get('createTime') < view.deltaActionTime) {
+				return;
+			}
 
 			if ( state === 'no' ) {
 				$description.removeClass('hidden');
