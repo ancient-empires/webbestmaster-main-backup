@@ -2,8 +2,8 @@
 (function (win) {
 
 	"use strict";
-	/*global window */
-	/*global _, log */
+	/*global window, setTimeout */
+	/*global _, log, $ */
 
 	function Cpu(json) { // model, player:'activePlayer'
 
@@ -109,7 +109,7 @@
 						cpu.runScenarioAction(scenario);
 					}, win.APP.info.actionTime());
 
-				})
+				});
 
 		},
 
