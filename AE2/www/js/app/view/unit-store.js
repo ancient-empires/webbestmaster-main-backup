@@ -74,6 +74,7 @@
 
 			setTimeout(function () {
 				view.$el.find(view.selectors.disableUnitStore).remove();
+			}, 400);
 
 		},
 
