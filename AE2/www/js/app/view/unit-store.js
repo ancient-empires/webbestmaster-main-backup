@@ -2,7 +2,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window */
+	/*global window, setTimeout */
 	/*global $, templateMaster, APP, Backbone, _ */
 
 	win.APP = win.APP || {};
@@ -15,7 +15,8 @@
 			storeWrapper: '.js-store-wrapper',
 			card: '.js-unit-card',
 			buyUnitCount: '.js-buy-unit-count',
-			descriptionUnitInfo: '.js-description-unit-info'
+			descriptionUnitInfo: '.js-description-unit-info',
+			disableUnitStore: '.js-disable-unit-store'
 		},
 
 		settings: {
@@ -25,7 +26,8 @@
 		events: {
 			'hide-unit-store': 'hide',
 			'click .js-buy-unit': 'buyUnit',
-			'click .js-show-unit-description': 'showUnitDescription'
+			'click .js-show-unit-description': 'showUnitDescription',
+			'click .js-disable-unit-store': 'removeDisableUnitStoreScreen'
 			//'click .js-change-on-off-setting': 'changeOnOffSetting',
 			//'click .js-change-select-setting': 'changeSelectSetting'
 		},
@@ -44,6 +46,10 @@
 
 			view.render();
 
+		},
+
+		removeDisableUnitStoreScreen: function () {
+			this.$el.find(this.selectors.disableUnitStore).remove();
 		},
 
 		render: function () {
@@ -65,6 +71,9 @@
 
 			view.autoSetCardState();
 			storeWrapper.append(view.$el);
+
+			setTimeout(function () {
+				view.$el.find(view.selectors.disableUnitStore).remove();
 
 		},
 

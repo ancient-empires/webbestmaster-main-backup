@@ -162,6 +162,22 @@ button:focus {
 	display: inline-block;
 }
 
+.pos-rel {
+	position: relative;
+}
+
+.pos-fix {
+	position: fixed;
+}
+
+.pos-abs {
+	position: absolute;
+}
+
+.pos-stat {
+	position: static;
+}
+
 /* draw */
 
 /*canvas,*/

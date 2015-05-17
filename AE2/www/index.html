@@ -1211,7 +1211,9 @@
 
 		<div class="main-content-wrapper">
 			<div class="main-content-container js-scroll-area-container scroll-touch">
-				<div class="scroll-area">
+				<div class="scroll-area pos-rel">
+
+					<div class="disable-unit-store js-disable-unit-store"></div>
 
 					<% var unitsData = window.APP.unitMaster, langUnits = window.APP.lang.get('unitsList'); %>
 					<% _.each(window.APP.unitMaster.list, function(unitData, key) { %>
