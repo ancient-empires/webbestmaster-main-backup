@@ -218,7 +218,8 @@
 		cases: [
 			{
 				isDone: false,
-				detect: 'noEnemyUnit',
+				detect: 'turnCount',
+				turnCount: 9,
 				do: ['appendUnits', 'showBriefing'],
 				units: [
 					{x: 12, y: 14, type: 'soldier', ownerId: 1},

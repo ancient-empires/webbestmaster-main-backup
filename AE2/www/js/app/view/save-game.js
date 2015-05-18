@@ -221,6 +221,8 @@
 				units = model.get('units'),
 				buildings = model.get('buildings'),
 				save = {
+					turnCount: model.get('turnCount'),
+					turnPartCount: model.get('turnPartCount'),
 					players: model.get('players'),
 					activePlayer: model.get('activePlayer'),
 					units: [],

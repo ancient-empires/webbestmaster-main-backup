@@ -380,6 +380,19 @@
 
 		},
 
+		increaseTurnCounter: function () {
+
+			var model = this,
+				players = model.get('players'),
+				currentCount = model.get('turnCount') || 0,
+				currentPartCount = model.get('turnPartCount') || 0;
+
+			model.set('turnCount', currentCount + 1);
+
+			model.set('turnPartCount', currentPartCount + 1 / players.length);
+
+		},
+
 		startGame: function () {
 
 			var model = this,
@@ -396,7 +409,8 @@
 			model.set('activePlayer', activePlayer);
 
 			model.startTurn({
-				startGame: true
+				startGame: true,
+				isSavedData: Boolean(savedData)
 			});
 
 			if (savedData) {
@@ -427,8 +441,6 @@
 
 			var model = this,
 				view = model.get('view'),
-				util = view.util,
-				hideSymbols = util.hideSymbols,
 				earn, color,
 				isCpu,
 				activePlayer;
@@ -454,14 +466,32 @@
 					}
 				});
 			} else {
-				view.showPopup({
-					popupName: 'between-turn-notification',
-					popupData: {
-						color: color,
-						earn: earn
-					}
-				});
-				model.autoSave();
+
+				// if has cases to do
+				if ( model.hasCasesToDo() ) {
+
+					view.showPopup({
+						popupName: 'between-turn-notification',
+						popupData: {
+							color: color,
+							earn: earn
+						}
+					}).then(function () {
+						model.checkCases();
+					});
+
+				} else {
+					view.showPopup({
+						popupName: 'between-turn-notification',
+						popupData: {
+							color: color,
+							earn: earn
+						}
+					});
+					model.autoSave();
+
+				}
+
 			}
 
 		},
@@ -492,6 +522,13 @@
 				savedUnits,
 				view = model.get('view'),
 				activePlayer = model.get('activePlayer');
+
+			if (data.isSavedData) {
+				model.set('turnCount', savedData.turnCount);
+				model.set('turnPartCount', savedData.turnPartCount);
+			} else {
+				model.increaseTurnCounter();
+			}
 
 			switch (activePlayer.type) {
 				case 'cpu':
@@ -1389,6 +1426,25 @@
 
 		},
 
+		hasCasesToDo: function () {
+
+			var model = this,
+				view = model.get('view'),
+				map = model.get('map'),
+				unorderedCases = _.where(map.unorderedCases, { isDone: false }),
+				theCase = _.find(map.cases, { isDone: false }),
+				hasCaseToDo = false;
+
+			_.each(unorderedCases, function (caseItem) {
+				hasCaseToDo = hasCaseToDo || model.checkState(caseItem);
+			});
+
+			hasCaseToDo = hasCaseToDo || model.checkState(theCase);
+
+			return hasCaseToDo;
+
+		},
+
 		playerHasCastle: function (player) {
 
 			var model = this,
@@ -1447,6 +1503,10 @@
 
 		checkState: function (theCase) {
 
+			if (!theCase) {
+				return false;
+			}
+
 			var model = this,
 				buildings = model.get('buildings'),
 				view = model.get('view'),
@@ -1465,6 +1525,12 @@
 				player = _.find(players, {id: 0});
 
 			switch (theCase.detect) {
+
+				case 'turnCount':
+
+					return model.get('turnCount') >= theCase.turnCount;
+
+					break;
 
 				case 'allCastles':
 
@@ -1593,6 +1659,8 @@
 				units = model.get('units'),
 				buildings = model.get('buildings'),
 				save = {
+					turnCount: model.get('turnCount'),
+					turnPartCount: model.get('turnPartCount'),
 					players: model.get('players'),
 					activePlayer: model.get('activePlayer'),
 					units: [],
