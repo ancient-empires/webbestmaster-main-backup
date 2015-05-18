@@ -17,7 +17,7 @@
 		};
 
 	win.APP.maps.mission_001_004 = {
-		version: 4,
+		version: 5,
 		type: 'mission',
 		isOpen: false,
 		openMaps: [
@@ -27,7 +27,7 @@
 		size: {width: 16, height: 16},
 		maxPlayers: 2,
 		unitLimit: 25,
-		availableStoreUnits: ['soldier', 'archer', 'elemental', 'sorceress'],
+		availableStoreUnits: ['soldier', 'archer', 'elemental', 'sorceress', 'wisp', 'dire-wolf', 'golem', 'catapult'],
 		money: [
 			{playerId: 0, money: 400},
 			{playerId: 1, money: 400}
