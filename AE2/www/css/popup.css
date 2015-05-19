@@ -192,6 +192,7 @@
 	padding: 0 0.05rem 0.8rem;
 	background-color: #242A45;
 	box-shadow: 0.2rem 0.2rem 0 #000;
+	width: 1.5rem;
 }
 
 .full-screen .button-popup-close {

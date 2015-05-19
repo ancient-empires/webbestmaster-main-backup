@@ -225,6 +225,11 @@
 	width: auto;
 	height: auto;
 	box-shadow: 0.2rem 0.2rem 0 #000;
+	box-sizing: border-box;
+	border-color: #666;
+	border-width: 0.15rem;
+	border-style: solid;
+	margin: 0 auto;
 }
 
 
