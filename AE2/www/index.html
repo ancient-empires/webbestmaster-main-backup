@@ -635,6 +635,20 @@
 
 </script>
 
+<script type="text/x-template" data-name="popup-map-preview">
+
+	<div>
+		<div data-sound="click.mp3" class="js-back button-popup-close">×</div>
+		<div class="h100 js-scroll-area-container scroll-touch">
+			<div class="scroll-area">
+				<div class="popup-header"><%= mapName %></div>
+				<img class="map-preview-image" src="<%= imgSrc %>" alt=""/>
+			</div>
+		</div>
+	</div>
+
+</script>
+
 <script type="text/x-template" data-name="battle-menu">
 
 	<div>
@@ -857,7 +871,10 @@
 					<% _.each(mapsInfo, function (map, jsKey) { %>
 						<% var mapName = map[languageField] || map.name; %>
 						<% if ( map.isOpen ) { %>
-							<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
+							<div class="map-name-list-item">
+								<div data-map-preview-header="(<%= map.maxPlayers %>) <%= mapName %>" data-js-map-key="<%= jsKey %>" data-map-type="<%= map.type %>" class="map-preview-button popup-button js-map-preview"></div>
+								<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
+							</div>
 						<% } else { %>
 							<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="disable saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName.replace(/[\s\S]/g, '?') %></div>
 						<% }; %>
