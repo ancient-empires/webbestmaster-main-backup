@@ -222,6 +222,15 @@
 	background-size: 100% 100%;
 }
 
+.map-preview-button:after {
+	content: '';
+	position: absolute;
+	width: 150%;
+	height: 150%;
+	top: -25%;
+	left: -25%;
+}
+
 .map-preview-image {
 	display: block;
 	max-width: 100%;
@@ -236,7 +245,9 @@
 	margin: 0 auto 0.6rem;
 }
 
-
+.apply-map-to-fight {
+	margin-top: 1rem;
+}
 
 
 

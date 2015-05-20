@@ -24,6 +24,8 @@
 			data = data || {};
 
 			var view = this;
+			view.set('mapUrl', 'skirmish-setup-map/');
+
 			win.APP.map.db.getMapsInfo(data).then(function (mapsInfo) {
 
 				view.$el = $(view.tmpl.skirmishSelectMap({
@@ -31,6 +33,7 @@
 				}));
 
 				if (data.type === 'userMap') {
+					view.set('mapUrl', 'user-map-setup-map/');
 					view.$el.find('[data-route]').each(function (index, node) {
 						var $this = $(node);
 						$this.attr('data-route', $this.attr('data-route').replace(/^skirmish-setup-map\//gi, 'user-map-setup-map/'));
@@ -69,7 +72,9 @@
 					popupData: {
 						imgSrc: imgSrc,
 						mapName: mapName,
-						text: text
+						text: text,
+						jsMapKey: jsMapKey,
+						mapUrl: view.get('mapUrl')
 					}
 				});
 

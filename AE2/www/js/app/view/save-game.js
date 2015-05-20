@@ -16,6 +16,7 @@
 			saveInputText: '.js-save-input-text',
 			savedList: '.js-saved-list',
 			saveGame: '.js-save-game',
+			scrollAreaContainer: '.js-scroll-area-container',
 			removeSavedGame: '.js-remove-saved-game',
 			savedItemWrapper: '.js-saved-item-wrapper',
 			closeDeleteConfirm: '.js-close-delete-confirm'
@@ -69,6 +70,8 @@
 			view.$el.find(selectors.removeSavedGame).on('click', $.proxy(view, 'removeSavedGame') );
 			view.$el.find(selectors.closeDeleteConfirm).on('click', $.proxy(view, 'closeDeleteConfirm') );
 			view.$el.find(selectors.saveInputText).on('input', $.proxy(view, 'autoSetSaveButtonState') );
+			view.$el.find(selectors.saveInputText).on('focus', $.proxy(view, 'onFocusSaveInputText') );
+			view.$el.find(selectors.saveInputText).on('blur', $.proxy(view, 'onBlurSaveInputText') );
 			view.$el.find(selectors.setInputTextValue).on('click', $.proxy(view, 'setInputTextValue') );
 
 		},
@@ -82,7 +85,27 @@
 			view.$el.find(selectors.removeSavedGame).off('click', view.removeSavedGame );
 			view.$el.find(selectors.closeDeleteConfirm).off('click', view.closeDeleteConfirm );
 			view.$el.find(selectors.saveInputText).off('input', view.autoSetSaveButtonState );
+			view.$el.find(selectors.saveInputText).off('focus',view.onFocusSaveInputText );
+			view.$el.find(selectors.saveInputText).off('blur', view.onBlurSaveInputText );
 			view.$el.find(selectors.setInputTextValue).off('click', view.setInputTextValue );
+
+		},
+
+		onFocusSaveInputText: function () {
+
+			var view = this,
+				$container = view.$el.find(view.selectors.scrollAreaContainer);
+
+			$container.addClass('small-area-container');
+
+		},
+
+		onBlurSaveInputText: function () {
+
+			var view = this,
+				$container = view.$el.find(view.selectors.scrollAreaContainer);
+
+			$container.removeClass('small-area-container');
 
 		},
 

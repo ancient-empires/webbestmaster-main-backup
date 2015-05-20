@@ -41,6 +41,10 @@
 	max-height: 20rem;
 }
 
+.small-area-container.save-list-wrapper {
+	max-height: 4rem;
+}
+
 @media only screen and (orientation: landscape) {
 	.save-list-wrapper {
 		max-height: 10rem;
