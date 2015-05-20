@@ -140,6 +140,16 @@
 	text-transform: uppercase;
 }
 
+.game-version {
+	font-size: 0.5rem;
+	position: fixed;
+	line-height: 0.5rem;
+	bottom: 0;
+	right: 0;
+	padding: 0.2rem 0.1rem;
+	text-shadow: 0.1rem 0.1rem 0 #000;
+}
+
 .team-color-sign {
 	float: left;
 	width: 1rem;
