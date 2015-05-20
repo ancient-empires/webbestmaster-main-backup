@@ -11,26 +11,33 @@
 
 	function initTiles() {
 
-		_.each(win.APP.mapTiles, function (base64, key) {
-			var img = new Image(),
-				scale = 8;
+		function prepareTiles(tiles) {
 
-			$(img).one('load', function () {
+			_.each(tiles, function (base64, key) {
+				var img = new Image(),
+					scale = 8;
 
-				var base64Scaled = win.APP.map.scaleImage(this, scale);
+				$(img).one('load', function () {
 
-				win.APP.mapTiles[key] = {
-					base64: base64Scaled,
-					img: img
-				};
+					var base64Scaled = win.APP.map.scaleImage(this, scale);
 
-				img.src = base64Scaled;
+					tiles[key] = {
+						base64: base64Scaled,
+						img: img
+					};
 
-			}.bind(img, scale, key));
+					img.src = base64Scaled;
 
-			img.src = base64;
+				}.bind(img, scale, key));
 
-		});
+				img.src = base64;
+
+			});
+
+		}
+
+		prepareTiles(win.APP.mapTiles);
+		prepareTiles(win.APP.mapTilesPreview);
 
 	}
 

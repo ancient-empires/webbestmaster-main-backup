@@ -16,7 +16,7 @@
 		},
 
 		squareSize: {
-			max: 12
+			max: 24
 		},
 
 		initialize: function (data) {
@@ -60,19 +60,20 @@
 				jsMapKey: jsMapKey
 			}).then(function (data) {
 
-				var imgSrc = view.getPreviewFromData(data);
+				var imgSrc = view.getPreviewFromData(data),
+					text = '(' + data.maxPlayers + ') ' + data.size.width + '&times;' + data.size.height;
 
 				view.showPopup({
 					popupName: 'popup-map-preview',
 					cssClass: 'full-screen',
 					popupData: {
 						imgSrc: imgSrc,
-						mapName: mapName
+						mapName: mapName,
+						text: text
 					}
 				});
 
 			});
-
 
 		},
 
@@ -86,8 +87,16 @@
 				terrains = data.terrain,
 				mapWidth = data.size.width,
 				mapHeight = data.size.height,
-				mapTiles = win.APP.mapTiles,
-				getXYFromStringXY = view.util.getXYFromStringXY;
+				mapTilesPreview = win.APP.mapTilesPreview,
+				getXYFromStringXY = view.util.getXYFromStringXY,
+				buildings = data.buildings,
+				allColors = win.APP.map.allColors,
+				noMansBuildingsList = win.APP.building.noMansBuildingsList,
+				maxCanvasSize = win.APP.map.maxCanvasSize;
+
+			while ( mapWidth * mapHeight * squareSize * squareSize * 4 >= maxCanvasSize ) {
+				squareSize -= 4;
+			}
 
 			canvas.width = mapWidth * squareSizeX2;
 			canvas.height = mapHeight * squareSizeX2;
@@ -100,10 +109,36 @@
 			// draw main tiles
 			_.each(terrains, function (value, xy) {
 				xy = getXYFromStringXY(xy);
-				ctx.drawImage(mapTiles[value].img, xy.x * squareSizeX2, xy.y * squareSizeX2, squareSizeX2, squareSizeX2);
+				ctx.drawImage(mapTilesPreview[value].img, xy.x * squareSizeX2, xy.y * squareSizeX2, squareSizeX2, squareSizeX2);
 			});
 
-			// todo: draw buildings
+			_.each(buildings, function (building) {
+
+				var type = building.type,
+					xy = {
+						x: building.x,
+						y: building.y
+					},
+					color = building.hasOwnProperty('ownerId') ? allColors[building.ownerId] : 'gray',
+					state = building.state;
+
+				if (state === 'destroyed') { // destroyed farm
+					ctx.drawImage(mapTilesPreview[type + '-' + state].img, xy.x * squareSizeX2, xy.y * squareSizeX2, squareSizeX2, squareSizeX2);
+					return;
+				}
+
+				if ( _.contains(noMansBuildingsList, type) ) { // well or temple
+					ctx.drawImage(mapTilesPreview[type].img, xy.x * squareSizeX2, xy.y * squareSizeX2, squareSizeX2, squareSizeX2);
+					return;
+				}
+
+				if (type === 'castle') {
+					ctx.drawImage(mapTilesPreview[type + '-' + color].img, xy.x * squareSizeX2, (xy.y - 1) * squareSizeX2, squareSizeX2, squareSizeX2 * 2);
+				} else {
+					ctx.drawImage(mapTilesPreview[type + '-' + color].img, xy.x * squareSizeX2, xy.y * squareSizeX2, squareSizeX2, squareSizeX2);
+				}
+
+			});
 
 			return canvas.toDataURL();
 
