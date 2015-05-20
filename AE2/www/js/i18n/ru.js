@@ -89,7 +89,7 @@
 		yes: 'Да',
 		no: 'Нет',
 		ok: 'Ок',
-		continue: 'продолжить',
+		continue: 'Продолжить',
 		congratulations: 'Поздравления!',
 		gameSaved: 'Игра сохранена',
 		unlocked: 'доступна!',

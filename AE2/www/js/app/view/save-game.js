@@ -96,7 +96,10 @@
 			var view = this,
 				$container = view.$el.find(view.selectors.scrollAreaContainer);
 
-			$container.addClass('small-area-container');
+			setTimeout(function () {
+				$container.addClass('small-area-container');
+			}, 400);
+
 
 		},
 

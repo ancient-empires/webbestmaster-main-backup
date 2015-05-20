@@ -89,7 +89,7 @@
 		yes: 'Yes',
 		no: 'No',
 		ok: 'Ok',
-		continue: 'continue',
+		continue: 'Continue',
 		congratulations: 'Congratulations!',
 		gameSaved: 'Game saved',
 		unlocked: 'unlocked!',
