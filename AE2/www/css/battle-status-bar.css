@@ -71,10 +71,7 @@
 
 .status-bar-money,
 .status-bar-units {
-	height: 100%;
-	box-sizing: border-box;
-	padding-top: 0.1rem;
-	padding-bottom: 0.1rem;
+	padding-top: 0.15rem;
 }
 
 .status-bar-money {
