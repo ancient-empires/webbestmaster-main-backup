@@ -117,11 +117,13 @@
 }
 
 .status-bar-sign-square-info-block {
-	height: 100%;
 	float: left;
-	-webkit-background-size: 100% 100%;
-	background-size: 100% 100%;
-	position: relative;
+	-webkit-background-size: contain;
+	background-size: contain;
+	height: 0.75rem;
+	width: 0.55rem;
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 
 .square-info-sign {

@@ -1209,12 +1209,9 @@
 		<div class="<%= className %> status-bar-square-info-image">
 			&nbsp;
 			<div class="status-bar-sign-square-wrapper">
-				<% arr = ['def', 'space'].concat(String(armor).split('')); %>
+				<% arr = ['def'].concat(String(armor).split('')); %>
 				<% _.each(arr, function(sign) { %>
-				<div class="status-bar-sign-square-info-block" style="background-image: url(i/fonts/numbers-1-<%= sign %>.png);">
-					<img src="i/fonts/numbers-1-<%= sign %>.png" alt="" class="square-info-sign"/>
-					<span class="add-more-sharp">&nbsp;</span>
-				</div>
+				<div class="status-bar-sign-square-info-block" style="background-image: url(i/fonts/numbers-1-<%= sign %>.png);">&nbsp;</div>
 				<% }); %>
 			</div>
 		</div>
