@@ -140,12 +140,19 @@
 
 			var view = this,
 				info = view.info,
-				smokeState = info.get('buildingSmoke');
+				smokeState = info.get('buildingSmoke'),
+				battleView = $('.js-battle-view-wrapper');
+
+			// todo: do the same for autoShowUnitAnimation
+
+			if (!battleView.length) {
+				return;
+			}
 
 			if (smokeState === 'on') {
-				view.$wrapper.removeClass('hide-building-smoke');
+				battleView.trigger('showHouseSmoke');
 			} else {
-				view.$wrapper.addClass('hide-building-smoke');
+				battleView.trigger('hideHouseSmoke');
 			}
 
 		},

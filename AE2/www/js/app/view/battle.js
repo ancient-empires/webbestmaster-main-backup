@@ -16,7 +16,9 @@
 		events: {
 			'click .js-end-turn': 'endTurn',
 			'click .js-battle-menu-button': 'openMenu',
-			'click .js-help-button': 'showHelp'
+			'click .js-help-button': 'showHelp',
+			'hideHouseSmoke': 'hideHouseSmoke',
+			'showHouseSmoke': 'showHouseSmoke'
 		},
 
 		selectors: {
@@ -741,8 +743,48 @@
 		},
 
 		drawBuildings: function () {
-			var model = this.get('model');
+
+			var view = this,
+				model = view.get('model'),
+				info = view.info,
+				smokeState = info.get('buildingSmoke');
+
 			model.appendBuildings();
+
+			if (smokeState === 'on') {
+				view.showHouseSmoke();
+			} else {
+				view.hideHouseSmoke();
+			}
+
+		},
+
+		hideHouseSmoke: function () {
+
+			this.$el.find(this.selectors.smokeWrapper).remove();
+
+		},
+
+		showHouseSmoke: function () {
+
+			var view = this,
+				model = view.get('model'),
+				buildings = model.get('buildings'),
+				$el = view.$el,
+				selectors = view.selectors,
+				$eventHandleWrapper = $el.find(selectors.eventHandlerWrapper),
+				$smokeWrapper = $('<div/>').attr('class', 'js-smoke-wrapper smoke-wrapper').attr('style', $eventHandleWrapper.attr('style'));
+
+			view.hideHouseSmoke();
+
+			$eventHandleWrapper.after($smokeWrapper);
+
+			_.each(buildings, function (building) {
+				if ( building.type === 'farm' && building.hasOwnProperty('ownerId') ) {
+					view.addSmokeToBuilding(building);
+				}
+			});
+
 		},
 
 		appendBuilding: function (building) {
@@ -824,6 +866,10 @@
 				$wrapper = this.$el.find(this.selectors.smokeWrapper),
 				$smokeContainer = $('<div class="square js-square"><div class="building-smoke-mover"><div class="building-smoke">&nbsp;</div></div></div>');
 
+			if (!$wrapper.length) {
+				return;
+			}
+
 			$wrapper.find('[data-xy="x' + x +'y' + y + '"]').remove();
 
 			$smokeContainer.attr('data-xy', 'x' + x + 'y' + y).attr('data-x', x).attr('data-y', y);
@@ -844,6 +890,10 @@
 				y = building.y,
 				$wrapper = this.$el.find(this.selectors.smokeWrapper),
 				$smokeContainer = $wrapper.find('[data-xy="x' + x + 'y' + y + '"]');
+
+			if (!$wrapper.length) {
+				return;
+			}
 
 			$smokeContainer.remove();
 
