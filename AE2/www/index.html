@@ -1136,7 +1136,7 @@
 		<div class="unit-info-icon unit-info-icon-attack">&nbsp;</div>
 		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: String(atk).split('') }) %>
 
-		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: ['space', 'space'] }) %>
+		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: ['space'] }) %>
 		<div class="unit-info-icon unit-info-icon-defence">&nbsp;</div>
 		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: String(def).split('') }) %>
 
@@ -1144,11 +1144,11 @@
 			<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: ['plus'].concat(String(placeArmor).split('')) }) %>
 		<% }; %>
 
-		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: ['space', 'space'] }) %>
+		<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: ['space'] }) %>
 
 		<% if (level) { %>
 			<div class="unit-info-icon unit-info-icon-level">&nbsp;</div>
-			<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: [level, 'space', 'space'] }) %>
+			<%= window.APP.templateMaster.tmplFn['short-unit-info-sign']({ signs: [level, 'space'] }) %>
 		<% }; %>
 
 	</div>
@@ -1158,11 +1158,12 @@
 <script type="text/x-template" data-name="short-unit-info-sign">
 
 	<% _.each(signs, function(sign) { %>
-	<% sign = (sign === '-') ? 'minus' : sign; %>
-	<div class="unit-info-sign-block" style="background-image: url(i/fonts/numbers-1-<%= sign %>.png);">
-		<img src="i/fonts/numbers-1-<%= sign %>.png" alt="" class="unit-info-sign"/>
-		<span class="add-more-sharp">&nbsp;</span>
-	</div>
+		<% sign = (sign === '-') ? 'minus' : sign; %>
+		<% if (sign === 'space') { %>
+		<div class="unit-info-sign-block unit-info-sign-block-space">&nbsp;</div>
+		<% } else { %>
+		<div class="unit-info-sign-block" style="background-image: url(i/fonts/numbers-1-<%= sign %>.png);">&nbsp;</div>
+		<% }; %>
 	<% }); %>
 
 </script>
