@@ -1175,28 +1175,21 @@
 	<div class="status-bar-player-info-wrapper bg-gradient-color-<%= color %>">
 		<div class="status-bar-player-info-container">
 			<div class="status-bar-money">
-
-				<% var arr = ['icon-money', 'space'].concat(String(money).split('')); %>
+				<div class="status-bar-sign-block status-bar-sign-block-icon-money" style="background-image: url(i/fonts/numbers-2-icon-money.png);">&nbsp;</div>
+				<% var arr = String(money).split(''); %>
 				<% _.each(arr, function(sign) { %>
 				<% sign = (sign === '-') ? 'minus' : sign; %>
-				<div class="status-bar-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">
-					<img src="i/fonts/numbers-2-<%= sign %>.png" alt="" class="status-bar-sign"/>
-					<span class="add-more-sharp">&nbsp;</span>
-				</div>
+				<div class="status-bar-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">&nbsp;</div>
 				<% }); %>
-
 			</div>
+
+
 			<div class="status-bar-units">
-
-				<% arr = ['icon-unit', 'space'].concat(String(unitCount).split('')).concat(['space', 'slash', 'space']).concat(String(unitLimit).split('')); %>
+				<div class="status-bar-sign-block status-bar-sign-block-unit-icon" style="background-image: url(i/fonts/numbers-2-icon-unit.png);">&nbsp;</div>
+				<% arr = (String(unitCount).split('')).concat(['slash']).concat(String(unitLimit).split('')); %>
 				<% _.each(arr, function(sign) { %>
-				<% sign = (sign === '-') ? 'minus' : sign; %>
-				<div class="status-bar-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">
-					<img src="i/fonts/numbers-2-<%= sign %>.png" alt="" class="status-bar-sign"/>
-					<span class="add-more-sharp">&nbsp;</span>
-				</div>
+				<div class="status-bar-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">&nbsp;</div>
 				<% }); %>
-
 			</div>
 		</div>
 	</div>

@@ -58,6 +58,7 @@
 	border-style: solid;
 	-webkit-border-image: url(../i/ui/border-1.png) 25% repeat repeat;
 	border-image: url(../i/ui/border-1.png) 25% repeat repeat;
+	text-align: center;
 }
 
 .status-bar-sign {
@@ -82,16 +83,28 @@
 }
 
 .status-bar-units {
-	text-align: center;
-	padding-right: 1.5rem;
+	width: 5.5rem;
+	display: inline-block;
 }
 
 .status-bar-sign-block {
-	height: 100%;
-	-webkit-background-size: 100% 100%;
-	background-size: 100% 100%;
+	-webkit-background-size: contain;
+	background-size: contain;
 	position: relative;
-	display: inline-block;
+	height: 1.25rem;
+	width: 0.84rem;
+	background-repeat: no-repeat;
+	background-position: center center;
+	float: left;
+}
+
+.status-bar-sign-block-unit-icon {
+	width: 1rem;
+	margin-right: 0.1rem;
+}
+
+.status-bar-sign-block-icon-money {
+	margin-right: 0.15rem;
 }
 
 .status-bar-info-square-container {
