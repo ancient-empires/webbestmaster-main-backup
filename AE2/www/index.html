@@ -646,7 +646,7 @@
 				<div class="popup-header"><%= mapName %></div>
 				<img class="map-preview-image" src="<%= imgSrc %>" alt=""/>
 				<div class="popup-text"><%= text %></div>
-				<div data-map-url="<%= mapUrl %>" data-js-map-key="<%= jsMapKey %>" class="popup-button popup-button-single-in-row apply-map-to-fight js-apply-map-to-fight"> {{ continue }} </div>
+				<div data-sound="click.mp3" data-map-url="<%= mapUrl %>" data-js-map-key="<%= jsMapKey %>" class="popup-button popup-button-single-in-row apply-map-to-fight js-apply-map-to-fight"> {{ continue }} </div>
 			</div>
 		</div>
 	</div>
@@ -876,7 +876,7 @@
 						<% var mapName = map[languageField] || map.name; %>
 						<% if ( map.isOpen ) { %>
 							<div class="map-name-list-item">
-								<div data-map-preview-header="<%= mapName %>" data-js-map-key="<%= jsKey %>" data-map-type="<%= map.type %>" class="map-preview-button popup-button js-map-preview"></div>
+								<div data-sound="click.mp3" data-map-preview-header="<%= mapName %>" data-js-map-key="<%= jsKey %>" data-map-type="<%= map.type %>" class="map-preview-button popup-button js-map-preview">&nbsp;</div>
 								<div data-sound="click.mp3" data-route="skirmish-setup-map/<%= jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
 							</div>
 						<% } else { %>
