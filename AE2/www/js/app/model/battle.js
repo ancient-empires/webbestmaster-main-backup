@@ -354,6 +354,10 @@
 				activePlayer = _.find(model.get('players'), { id: data.playerId });
 			}
 
+			if (!activePlayer) {
+				return;
+			}
+
 			allTeamUnits = model.getUnitsByTeamNumber(activePlayer.teamNumber);
 			wisps = [];
 			wispAuraMap = [];
@@ -1258,6 +1262,23 @@
 
 				});
 
+				_.each(model.getUnitsByOwnerId(looser.id), function (unit) {
+
+					// see building
+					var teamPlayer = teamOfLooser[0],
+						color = teamPlayer.color,
+						teamNumber = teamPlayer.teamNumber,
+						ownerId = teamPlayer.id;
+
+					unit.set('color', color);
+					unit.set('teamNumber', teamNumber);
+					unit.set('ownerId', ownerId);
+
+					view.redrawUnit(unit);
+
+				});
+
+
 				if ( _.where(players, {type: 'cpu'}).length === players.length ) { // cpu only
 					//win.APP.bb.battleData.isEndGame = 'yes';
 					model.set('isEndGame', true);
@@ -1347,15 +1368,26 @@
 
 			}
 
-			// adjust building
-			looserBuilding = model.getBuildingsByOwnerId(looser.id);
-			_.each(looserBuilding, function (building) {
+			// adjust loser's building
+			_.each(model.getBuildingsByOwnerId(looser.id), function (building) {
 
 				delete building.ownerId;
 				building.teamNumber = null;
 				delete building.color;
 
 				view.redrawBuilding(building);
+
+			});
+
+			// adjust loser's units
+			_.each(model.getUnitsByOwnerId(looser.id), function (unit) {
+
+				// see building
+				unit.set('color', 'gray');
+				unit.set('teamNumber', null);
+				unit.set('ownerId', null);
+
+				view.redrawUnit(unit);
 
 			});
 

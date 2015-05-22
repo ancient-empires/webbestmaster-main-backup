@@ -857,6 +857,26 @@
 
 		},
 
+		redrawUnit: function (unit) {
+
+			var view = this,
+				x = unit.get('x'),
+				y = unit.get('y'),
+				color = unit.get('color'),
+				$unitWrapper = view.$el.find(view.selectors.unitsWrapper),
+				allColors = win.APP.map.allColors,
+				type = unit.get('type'),
+				$unit = $unitWrapper.find('[data-xy="x' + x + 'y' + y + '"]'),
+				$unitImage = $unit.find('.js-unit-image');
+
+			_.each(allColors, function (color) {
+				$unitImage.removeClass('unit-image-' + type + '-' + color);
+			});
+
+			$unitImage.addClass('unit-image-' + type + '-' + color);
+
+		},
+
 		addSmokeToBuilding: function (building) {
 
 			var x = building.x,
@@ -939,7 +959,7 @@
 
 			$unitWrapper.append($unitBlock);
 
-			$unitBlock.addClass('unit-image unit-image-' + unitType + '-' + unitInfo.color);
+			$unitBlock.addClass('js-unit-image unit-image unit-image-' + unitType + '-' + unitInfo.color);
 
 			// health
 			$unitWrapper.append('<div class="js-unit-health unit-health"><div class="js-unit-health-ten unit-health-ten">&nbsp;</div><div class="js-unit-health-one unit-health-one">&nbsp;</div></div>');
