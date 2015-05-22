@@ -92,7 +92,7 @@
 			defence: 15
 		},
 		water: {
-			pathResistance: 4,
+			pathResistance: 3,
 			flowPathResistance: 1,
 			defence: 0
 		},
