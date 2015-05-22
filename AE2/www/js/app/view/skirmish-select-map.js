@@ -24,20 +24,34 @@
 			data = data || {};
 
 			var view = this;
-			view.set('mapUrl', 'skirmish-setup-map/');
 
-			win.APP.map.db.getMapsInfo(data).then(function (mapsInfo) {
+			win.APP.map.db.getMapsInfo(data).then(function (mapsData) {
 
-				view.$el = $(view.tmpl.skirmishSelectMap({
-					mapsInfo: mapsInfo
-				}));
+				var mapsInfo = [];
+
+				_.each(mapsData, function (item, key) {
+					item.jsKey = key;
+					mapsInfo.push(item);
+				});
 
 				if (data.type === 'userMap') {
-					view.set('mapUrl', 'user-map-setup-map/');
-					view.$el.find('[data-route]').each(function (index, node) {
-						var $this = $(node);
-						$this.attr('data-route', $this.attr('data-route').replace(/^skirmish-setup-map\//gi, 'user-map-setup-map/'));
+
+					mapsInfo = mapsInfo.sort(function (a, b) {
+						return ((a.maxPlayers + a.name) > (b.maxPlayers + b.name)) ? 1 : -1;
 					});
+
+					view.$el = $(view.tmpl.skirmishSelectMap({
+						mapsInfo: mapsInfo,
+						urlPrefix: 'user-map-setup-map'
+					}));
+
+				} else { // skirmish
+
+					view.$el = $(view.tmpl.skirmishSelectMap({
+						mapsInfo: mapsInfo,
+						urlPrefix: 'skirmish-setup-map'
+					}));
+
 				}
 
 				view.proto.initialize.apply(view, arguments);
@@ -56,7 +70,8 @@
 				$this = $(e.currentTarget),
 				jsMapKey = $this.attr('data-js-map-key'),
 				mapType = $this.attr('data-map-type'),
-				mapName = $this.attr('data-map-preview-header');
+				mapName = $this.attr('data-map-preview-header'),
+				mapUrl = $this.attr('data-map-route');
 
 			dbMaster.getMap({
 				type: mapType,
@@ -74,7 +89,7 @@
 						mapName: mapName,
 						text: text,
 						jsMapKey: jsMapKey,
-						mapUrl: view.get('mapUrl')
+						mapUrl: mapUrl
 					}
 				});
 

@@ -294,7 +294,7 @@
 			view.routeBack();
 
 			setTimeout(function () {
-				view.routeByUrl(mapUrl + jsMapKey, { trigger: true });
+				view.routeByUrl(mapUrl, { trigger: true });
 			}, 50);
 
 		}
