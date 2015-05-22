@@ -48,7 +48,7 @@
 		bonusDefByWater: 15,
 		levelList: [0, 84, 172, 265, 362, 464, 571, 684, 802, 926], // prev + (prev +5%) for every level
 		commanderList: ['galamar', 'valadorn', 'demon-lord', 'saeth'],
-		noInEditor: ['saeth-heavens-fury', 'crystal', 'skeleton'],
+		noInEditor: ['saeth-heavens-fury', 'crystal'],
 		list: {
 
 			// commanders
