@@ -215,6 +215,8 @@
 		buyNextUnit: function (data) {
 
 			var cpu = this,
+				util = win.APP.util,
+				assortArray = util.assortArray,
 				model = cpu.get('model'),
 				player = cpu.get('player'),
 				units = model.getUnitsByOwnerId(player.id),
@@ -222,16 +224,17 @@
 				unitTypeToBuy,
 				unitMaster = win.APP.unitMaster,
 				unitCounts = [
-					{ type: 'soldier', 		count: 3, currentCount: 0 },
-					{ type: 'archer',		count: 3, currentCount: 0 },
+					{ type: 'soldier', 		count: 2, currentCount: 0 },
+					{ type: 'archer',		count: 2, currentCount: 0 },
 					{ type: 'sorceress', 	count: 1, currentCount: 0 }
 					//{ type: 'golem',	 	count: 1, currentCount: 0 },
 					//{ type: 'dire-wolf',	count: 1, currentCount: 0 }
 				],
-				otherUnits = ['golem', 'dire-wolf', 'dragon'];
+
+			unitCounts = assortArray(unitCounts);
 
 			if ( model.isUnitsTooMuch() ) {
-				console.log('too much units CPU');
+				log('too much units CPU');
 				return;
 			}
 
