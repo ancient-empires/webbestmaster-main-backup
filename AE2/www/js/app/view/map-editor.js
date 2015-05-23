@@ -274,7 +274,19 @@
 
 			win.APP.map.db.getMapsInfo({
 				type: 'userMap'
-			}).then(function (mapsInfo) {
+			}).then(function (mapsData) {
+
+				var mapsInfo = [];
+
+				_.each(mapsData, function (item, key) {
+					item.jsKey = key;
+					mapsInfo.push(item);
+				});
+
+				mapsInfo = mapsInfo.sort(function (a, b) {
+					return ((a.maxPlayers + a.name) > (b.maxPlayers + b.name)) ? 1 : -1;
+				});
+
 				view.showPopup({
 					popupName: 'map-list-popup',
 					parentView: view,
