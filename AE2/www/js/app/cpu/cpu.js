@@ -230,6 +230,7 @@
 					//{ type: 'golem',	 	count: 1, currentCount: 0 },
 					//{ type: 'dire-wolf',	count: 1, currentCount: 0 }
 				],
+				otherUnits = ['soldier', 'archer', 'sorceress', 'golem', 'dire-wolf', 'dragon', 'catapult', 'golem', 'dire-wolf', 'dragon', 'catapult'];
 
 			unitCounts = assortArray(unitCounts);
 
