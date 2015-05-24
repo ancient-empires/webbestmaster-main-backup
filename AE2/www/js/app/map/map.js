@@ -348,6 +348,32 @@
 
 			},
 
+			getMapList: function (data) {
+
+				data = data || {};
+
+				var dbMaster = this,
+					deferred = $.Deferred(),
+					db = dbMaster.db,
+					mapsInfo = {};
+
+				data.type = data.type || dbMaster.skirmishMaps;
+
+				db.transaction(function (tx) {
+					tx.executeSql('SELECT * FROM ' + data.type + ' ORDER BY jsMapKey ASC', [], function (tx, results) {
+						var i, len, row;
+						for (i = 0, len = results.rows.length; i < len; i += 1) {
+							row = results.rows.item(i);
+							mapsInfo[row.jsMapKey] = JSON.parse(row.info);
+						}
+						deferred.resolve(mapsInfo);
+					});
+				});
+
+				return deferred.promise();
+
+			},
+
 			openMap: function (openMaps) {
 
 				var dbMaster = this;

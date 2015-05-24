@@ -635,22 +635,6 @@
 
 </script>
 
-<script type="text/x-template" data-name="popup-map-preview">
-
-	<div>
-		<div data-sound="click.mp3" class="js-back button-popup-close">×</div>
-		<div class="h100 js-scroll-area-container scroll-touch">
-			<div class="scroll-area">
-				<div class="popup-header"><%= mapName %></div>
-				<img class="map-preview-image" src="<%= imgSrc %>" alt=""/>
-				<div class="popup-text"><%= text %></div>
-				<div data-sound="click.mp3" data-map-url="<%= mapUrl %>" data-js-map-key="<%= jsMapKey %>" class="popup-button popup-button-single-in-row apply-map-to-fight js-apply-map-to-fight"> {{ continue }} </div>
-			</div>
-		</div>
-	</div>
-
-</script>
-
 <script type="text/x-template" data-name="battle-menu">
 
 	<div>
@@ -876,6 +860,10 @@
 							<div class="map-name-list-item">
 								<div data-sound="click.mp3" data-map-route="<%= urlPrefix %>/<%= map.jsKey %>" data-map-preview-header="<%= mapName %>" data-js-map-key="<%= map.jsKey %>" data-map-type="<%= map.type %>" class="map-preview-button popup-button js-map-preview">&nbsp;</div>
 								<div data-sound="click.mp3" data-route="<%= urlPrefix %>/<%= map.jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
+								<div data-preview-wrapper-for="<%= map.jsKey %>" class="hidden js-map-preview-wrapper map-preview-wrapper">
+									<img data-preview-image-for="<%= map.jsKey %>" class="map-preview-image js-map-preview-image" src="" alt=""/>
+									<div class="map-preview-text"><%= map.size.width %>&times;<%= map.size.height %></div>
+								</div>
 							</div>
 						<% } else { %>
 							<div data-sound="click.mp3" data-route="<%= urlPrefix %>/<%= map.jsKey %>" class="disable saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName.replace(/[\s\S]/g, '?') %></div>

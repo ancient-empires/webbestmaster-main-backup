@@ -20,8 +20,7 @@
 			'click .js-open-map-in-editor': 'openMapInEditor',
 			'click .js-delete-user-map': 'deleteUserMap',
 			'click .js-clear-map': 'clearMap',
-			'click .js-disable-all-tips': 'disableAllTips',
-			'click .js-apply-map-to-fight': 'applyMapToFight'
+			'click .js-disable-all-tips': 'disableAllTips'
 		},
 
 		selectors: {
@@ -281,21 +280,6 @@
 
 			view.routeBack();
 
-
-		},
-
-		applyMapToFight: function (e) {
-
-			var view = this,
-				$this = $(e.currentTarget),
-				jsMapKey = $this.attr('data-js-map-key'),
-				mapUrl = $this.attr('data-map-url');
-
-			view.routeBack();
-
-			setTimeout(function () {
-				view.routeByUrl(mapUrl, { trigger: true });
-			}, 50);
 
 		}
 

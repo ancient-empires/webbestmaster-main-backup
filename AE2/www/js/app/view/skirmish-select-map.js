@@ -1,4 +1,4 @@
-/*jslint white: true, nomen: true */
+/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
 (function (win) {
 
 	"use strict";
@@ -66,34 +66,29 @@
 		showMapPreview: function (e) {
 
 			var view = this,
+				$el = view.$el,
 				dbMaster = win.APP.map.db,
 				$this = $(e.currentTarget),
 				jsMapKey = $this.attr('data-js-map-key'),
 				mapType = $this.attr('data-map-type'),
-				mapName = $this.attr('data-map-preview-header'),
-				mapUrl = $this.attr('data-map-route');
+				$previewWrapper = $el.find('[data-preview-wrapper-for="' + jsMapKey + '"]'),
+				$previewImage = $el.find('[data-preview-image-for="' + jsMapKey + '"]');
 
-			dbMaster.getMap({
-				type: mapType,
-				jsMapKey: jsMapKey
-			}).then(function (data) {
-
-				var imgSrc = view.getPreviewFromData(data),
-					text = '(' + data.maxPlayers + ') ' + data.size.width + '&times;' + data.size.height;
-
-				view.showPopup({
-					popupName: 'popup-map-preview',
-					cssClass: 'full-screen',
-					popupData: {
-						imgSrc: imgSrc,
-						mapName: mapName,
-						text: text,
-						jsMapKey: jsMapKey,
-						mapUrl: mapUrl
-					}
+			if ($previewWrapper.hasClass('hidden')) {
+				$previewWrapper.removeClass('hidden');
+				if ($previewImage.attr('src')) {
+					return;
+				}
+				dbMaster.getMap({
+					type: mapType,
+					jsMapKey: jsMapKey
+				}).then(function (data) {
+					$previewImage.attr('src', view.getPreviewFromData(data));
 				});
 
-			});
+			} else {
+				$previewWrapper.addClass('hidden');
+			}
 
 		},
 

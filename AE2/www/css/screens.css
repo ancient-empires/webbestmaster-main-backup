@@ -252,16 +252,19 @@
 	border-color: #666;
 	border-width: 0.15rem;
 	border-style: solid;
-	margin: 0 auto 0.6rem;
+	margin: -0.3rem auto 0.1rem;
 }
 
-.apply-map-to-fight {
-	margin-top: 1rem;
+.map-preview-text {
+	font-size: 0.65rem;
+	line-height: 0.65rem;
+	text-align: center;
+	margin-top: 0.4rem;
 }
 
-
-
-
+.map-preview-wrapper {
+	padding-bottom: 0.8rem;
+}
 
 
 
