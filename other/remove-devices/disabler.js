@@ -77,6 +77,7 @@
 				}
 
 				if (checkbox.getAttribute('aria-checked') === 'true') {
+					console.log(deviceName + ' - disabled by user');
 					return;
 				}
 

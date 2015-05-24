@@ -20,6 +20,8 @@
 				return;
 			}
 
+			APP.showAds();
+
 			APP.titleView = new APP.TitleView({el: $(APP.templateMaster.tmplFn.title())});
 
 		},
@@ -33,6 +35,7 @@
 			if ( APP.$wrapper.find('.js-air-fresh').length ) {
 				return;
 			}
+			APP.showAds();
 
 			APP.airFreshView = new APP.AirFreshView({el: $(APP.templateMaster.tmplFn['air-fresh']())});
 
@@ -43,6 +46,7 @@
 			if ( APP.$wrapper.find('.js-how-it-works').length ) {
 				return;
 			}
+			APP.showAds();
 
 			APP.howItWorks = new APP.HowItWorksView({el: $(APP.templateMaster.tmplFn['how-it-works']())});
 
@@ -51,6 +55,15 @@
 	});
 
 	APP.router = new APP.Router();
+
+	var adsId;
+
+	APP.showAds = function () {
+		clearTimeout(adsId);
+		adsId = setTimeout(function () {
+			Android && Android.displayInterstitial();
+		}, 5000);
+	};
 
 	// start of app here
 	function main() {
