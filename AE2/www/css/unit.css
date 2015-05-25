@@ -81,10 +81,6 @@
 .delta-unit-health {
 	position: absolute;
 	z-index: 2;
-	opacity: 0;
-}
-
-.delta-unit-health {
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -152,10 +148,6 @@
 
 @-webkit-keyframes bounce {
 
-	0.1% {
-		opacity: 1;
-	}
-
 	0%, 20%, 53%, 80%, 100% {
 		/*-webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);*/
 		/*transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);*/
@@ -182,21 +174,9 @@
 		/*transform: translate3d(0, 0, 0);*/
 	}
 
-	99.8% {
-		opacity: 1;
-	}
-
-	99.9% {
-		opacity: 0;
-	}
-
 }
 
 @keyframes bounce {
-
-	0.1% {
-		opacity: 1;
-	}
 
 	0%, 20%, 53%, 80%, 100% {
 		/*-webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);*/
@@ -228,19 +208,7 @@
 		transform: translate3d(0, 0, 0);
 	}
 
-	99.8% {
-		opacity: 1;
-	}
-
-	99.9% {
-		opacity: 0;
-	}
-
 }
-
-
-
-
 
 .attack-square { /* above from units */
 	background-image: url(../i/unit/attack-action.png);

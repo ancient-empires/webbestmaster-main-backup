@@ -965,7 +965,7 @@
 			//$unitWrapper.append('<div class="js-unit-health unit-health"><div class="js-unit-health-ten unit-health-ten">&nbsp;</div><div class="js-unit-health-one unit-health-one">&nbsp;</div></div>');
 
 			// delta health
-			$unitWrapper.append('<div class="js-delta-unit-health delta-unit-health"><div class="js-delta-unit-health-sign delta-unit-health-sign">&nbsp;</div><div class="js-delta-unit-health-ten delta-unit-health-ten">&nbsp;</div><div class="js-delta-unit-health-one delta-unit-health-one">&nbsp;</div></div>');
+			//$unitWrapper.append('<div class="js-delta-unit-health delta-unit-health"><div class="js-delta-unit-health-sign delta-unit-health-sign">&nbsp;</div><div class="js-delta-unit-health-ten delta-unit-health-ten">&nbsp;</div><div class="js-delta-unit-health-one delta-unit-health-one">&nbsp;</div></div>');
 
 			// wisp aura
 			//$unitWrapper.append('<div class="js-under-wisp-aura-image under-wisp-aura-image">&nbsp;</div>');
@@ -1489,8 +1489,10 @@
 				differentHealth = data.differentHealth,
 				deferred = $.Deferred(),
 				$unitWrapper = view.getUnitByUnit(unit),
-				$deltaHealth = $unitWrapper.find('.js-delta-unit-health'),
+				$deltaHealth = $('<div class="js-delta-unit-health delta-unit-health"><div class="js-delta-unit-health-sign delta-unit-health-sign">&nbsp;</div><div class="js-delta-unit-health-ten delta-unit-health-ten">&nbsp;</div><div class="js-delta-unit-health-one delta-unit-health-one">&nbsp;</div></div>'),
 				animationEnd = view.info.get('animationEnd', true);
+
+			$unitWrapper.append($deltaHealth);
 
 			view.disable();
 
@@ -1503,7 +1505,7 @@
 
 			$deltaHealth.one(animationEnd, function () {
 
-				$(this).removeClass('bounce');
+				$(this).remove();
 
 				view.enable();
 
@@ -1529,7 +1531,6 @@
 		setUnitHealth: function (data) {
 
 			var view = this,
-				charsList = view.chars.charsList,
 				unit = data.unit,
 				health = unit.get('health'),
 				defaultHealth = unit.get('defaultHealth'),
@@ -1574,7 +1575,6 @@
 		setUnitDifferentHealth: function (data) {
 
 			var view = this,
-				charsList = view.chars.charsList,
 				$unitWrapper = view.getUnitByUnit(data.unit),
 				sign = 'none',
 				one = 'none',
@@ -1591,12 +1591,6 @@
 			if ( differentHealth < 0 ) {
 				sign = 'minus';
 			}
-
-			_.each(charsList, function (char) {
-				$deltaHealthSign.removeClass('number-2-' + char);
-				$deltaHealthOne.removeClass('number-2-' + char);
-				$deltaHealthTen.removeClass('number-2-' + char);
-			});
 
 			differentHealth = Math.abs(differentHealth).toString();
 
