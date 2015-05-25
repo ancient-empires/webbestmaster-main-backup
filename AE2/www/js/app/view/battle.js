@@ -977,7 +977,7 @@
 			//$unitWrapper.append('<div class="js-unit-level unit-level">&nbsp;</div>');
 
 			// level up
-			$unitWrapper.append('<div class="js-unit-level-up unit-level-up">&nbsp;</div>');
+			//$unitWrapper.append('<div class="js-unit-level-up unit-level-up">&nbsp;</div>');
 
 			// show unit appear animation
 			unitImage = $unitWrapper.find('.unit-image');
@@ -1646,11 +1646,13 @@
 			var view = this,
 				unit = data.unit,
 				$unitWrapper = view.getUnitByUnit(unit),
-				$levelUp = $unitWrapper.find('.js-unit-level-up'),
+				$levelUp = $('<div class="js-unit-level-up unit-level-up">&nbsp;</div>'),
 				animationEnd = view.info.get('animationEnd', true);
 
+			$unitWrapper.append($levelUp);
+
 			$levelUp.one(animationEnd, function () {
-				$(this).removeClass('move-up');
+				$(this).remove();
 			}); // work only one time
 
 			$levelUp.addClass('move-up');

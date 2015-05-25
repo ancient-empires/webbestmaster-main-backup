@@ -286,7 +286,6 @@
 	bottom: 0;
 	height: 50%;
 	background-image: url(../i/ux/level-up.png);
-	opacity: 0;
 }
 
 .unit-level-up.move-up {
@@ -307,16 +306,10 @@
 @-webkit-keyframes level-up {
 
 	0% {
-		opacity: 1;
 		-webkit-transform: translate3d(0, 0, 0);
 	}
 
-	95% {
-		opacity: 1;
-	}
-
 	100% {
-		opacity: 0;
 		-webkit-transform: translate3d(0, -200% ,0);
 	}
 
@@ -325,16 +318,10 @@
 @keyframes level-up {
 
 	0% {
-		opacity: 1;
 		transform: translate3d(0, 0, 0);
 	}
 
-	95% {
-		opacity: 1;
-	}
-
 	100% {
-		opacity: 0;
 		transform: translate3d(0, -200% ,0);
 	}
 
