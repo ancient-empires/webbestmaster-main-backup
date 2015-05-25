@@ -1017,7 +1017,7 @@
 
 			var view = this,
 				pre = view.info.get('pre', true).css,
-				$graveWrapper = $('<div></div>'),
+				$graveWrapper = $('<div>&nbsp;</div>'),
 				squareSize = view.getSquareSize(),
 				x = grave.x,
 				y = grave.y,
