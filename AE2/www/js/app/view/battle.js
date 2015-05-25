@@ -962,7 +962,7 @@
 			$unitBlock.addClass('js-unit-image unit-image unit-image-' + unitType + '-' + unitInfo.color);
 
 			// health
-			$unitWrapper.append('<div class="js-unit-health unit-health"><div class="js-unit-health-ten unit-health-ten">&nbsp;</div><div class="js-unit-health-one unit-health-one">&nbsp;</div></div>');
+			//$unitWrapper.append('<div class="js-unit-health unit-health"><div class="js-unit-health-ten unit-health-ten">&nbsp;</div><div class="js-unit-health-one unit-health-one">&nbsp;</div></div>');
 
 			// delta health
 			$unitWrapper.append('<div class="js-delta-unit-health delta-unit-health"><div class="js-delta-unit-health-sign delta-unit-health-sign">&nbsp;</div><div class="js-delta-unit-health-ten delta-unit-health-ten">&nbsp;</div><div class="js-delta-unit-health-one delta-unit-health-one">&nbsp;</div></div>');
@@ -1539,19 +1539,35 @@
 				$healthOne = $unitWrapper.find('.js-unit-health-one'),
 				$healthTen = $unitWrapper.find('.js-unit-health-ten');
 
-			_.each(charsList, function (char) {
-				$healthOne.removeClass('number-1-' + char);
-				$healthTen.removeClass('number-1-' + char);
-			});
-
-			if (health !== defaultHealth) {
-				health = health.toString().split('');
-				one = health.pop() || one;
-				ten = health.pop() || ten;
+			if (health === defaultHealth) {
+				$healthOne.remove();
+				$healthTen.remove();
+				return;
 			}
 
-			$healthOne.addClass('number-1-' + one);
-			$healthTen.addClass('number-1-' + ten);
+			health = health.toString().split('');
+			one = health.pop() || one;
+			ten = health.pop() || ten;
+
+			if (one === 'none') {
+				$healthOne.remove();
+			} else {
+				if ($healthOne.length) {
+					$healthOne.attr('class', 'js-unit-health-one unit-health-one number-1-' + one);
+				} else {
+					$unitWrapper.append('<div class="js-unit-health-one unit-health-one number-1-' + one + '">&nbsp;</div>')
+				}
+			}
+
+			if (ten === 'none') {
+				$healthTen.remove();
+			} else {
+				if ($healthTen.length) {
+					$healthTen.attr('class', 'js-unit-health-ten unit-health-ten number-1-' + ten);
+				} else {
+					$unitWrapper.append('<div class="js-unit-health-ten unit-health-ten number-1-' + ten + '">&nbsp;</div>')
+				}
+			}
 
 		},
 

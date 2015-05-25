@@ -78,18 +78,12 @@
 	to { background-position: 0 200%; }
 }
 
-.unit-health {
-	position: absolute;
-	z-index: 1;
-}
-
 .delta-unit-health {
 	position: absolute;
 	z-index: 2;
 	opacity: 0;
 }
 
-.unit-health,
 .delta-unit-health {
 	left: 0;
 	top: 0;
@@ -104,8 +98,17 @@
 	background-size: 100% 100%;
 	width: 25%;
 	height: 33.666666%;
-	float: left;
-	margin-top: 66.666666%;
+	position: absolute;
+	bottom: 0;
+	z-index: 1;
+}
+
+.unit-health-ten {
+	left: 0;
+}
+
+.unit-health-one {
+	left: 25%;
 }
 
 .delta-unit-health-sign,
