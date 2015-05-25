@@ -255,7 +255,6 @@
 .under-wisp-aura-image,
 .under-poison-image {
 	width: 33.333333%;
-	display: none;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
@@ -272,11 +271,6 @@
 .under-poison-image {
 	background-image: url(../i/unit/under-poison.png);
 	height: 50%;
-}
-
-.under-wisp-aura .under-wisp-aura-image,
-.under-poison .under-poison-image {
-	display: block;
 }
 
 .unit-level-up {

@@ -968,10 +968,10 @@
 			$unitWrapper.append('<div class="js-delta-unit-health delta-unit-health"><div class="js-delta-unit-health-sign delta-unit-health-sign">&nbsp;</div><div class="js-delta-unit-health-ten delta-unit-health-ten">&nbsp;</div><div class="js-delta-unit-health-one delta-unit-health-one">&nbsp;</div></div>');
 
 			// wisp aura
-			$unitWrapper.append('<div class="js-under-wisp-aura-image under-wisp-aura-image">&nbsp;</div>');
+			//$unitWrapper.append('<div class="js-under-wisp-aura-image under-wisp-aura-image">&nbsp;</div>');
 
 			// poisoned
-			$unitWrapper.append('<div class="js-under-poison-image under-poison-image">&nbsp;</div>');
+			//$unitWrapper.append('<div class="js-under-poison-image under-poison-image">&nbsp;</div>');
 
 			// level
 			$unitWrapper.append('<div class="js-unit-level unit-level">&nbsp;</div>');
@@ -1054,9 +1054,19 @@
 			var view = this,
 				unit = data.unit,
 				wispAuraState = data.wispAuraState,
-				$unitNode = view.getUnitByUnit(unit);
+				$unitNode = view.getUnitByUnit(unit),
+				$wispAura;
 
-			return wispAuraState ? $unitNode.addClass('under-wisp-aura') : $unitNode.removeClass('under-wisp-aura');
+			if (wispAuraState) {
+				// do not add node if node exist
+				$wispAura = $unitNode.find('.js-under-wisp-aura-image');
+				if (!$wispAura.length) {
+					$unitNode.append('<div class="js-under-wisp-aura-image under-wisp-aura-image">&nbsp;</div>')
+				}
+			} else {
+				//remove wist aura
+				$unitNode.find('.js-under-wisp-aura-image').remove();
+			}
 
 		},
 
@@ -1065,9 +1075,18 @@
 			var view = this,
 				unit = data.unit,
 				poisonCount = data.poisonCount,
-				$unitNode = view.getUnitByUnit(unit);
+				$unitNode = view.getUnitByUnit(unit),
+				$poison;
 
-			return poisonCount ? $unitNode.addClass('under-poison') : $unitNode.removeClass('under-poison');
+			if (poisonCount) {
+				// do not add node if node exist
+				$poison = $unitNode.find('.js-under-poison-image');
+				if (!$poison.length) {
+					$unitNode.append('<div class="js-under-poison-image under-poison-image">&nbsp;</div>')
+				}
+			} else {
+				$unitNode.find('.js-under-poison-image').remove();
+			}
 
 		},
 
