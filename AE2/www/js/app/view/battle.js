@@ -974,7 +974,7 @@
 			//$unitWrapper.append('<div class="js-under-poison-image under-poison-image">&nbsp;</div>');
 
 			// level
-			$unitWrapper.append('<div class="js-unit-level unit-level">&nbsp;</div>');
+			//$unitWrapper.append('<div class="js-unit-level unit-level">&nbsp;</div>');
 
 			// level up
 			$unitWrapper.append('<div class="js-unit-level-up unit-level-up">&nbsp;</div>');
@@ -1618,21 +1618,20 @@
 		setUnitLevel: function (data) {
 
 			var view = this,
-				charsList = view.chars.charsList,
 				unit = data.unit,
 				level = unit.get('level'),
 				$unitWrapper = view.getUnitByUnit(unit),
 				$level = $unitWrapper.find('.js-unit-level');
 
-			_.each(charsList, function (char) {
-				$level.removeClass('number-1-' + char);
-			});
-
 			if ( !level ) {
 				return;
 			}
 
-			$level.addClass('number-1-' + level);
+			if ($level.length) {
+				$level.attr('class', 'js-unit-level unit-level number-1-' + level);
+			} else {
+				$unitWrapper.append('<div class="js-unit-level unit-level number-1-' + level + '">&nbsp;</div>')
+			}
 
 			if ( !data.doNotShowLevelUp ) { // when commander was killed and was buy in unit store
 				view.showLevelUp({
