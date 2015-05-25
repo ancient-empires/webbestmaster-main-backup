@@ -1,0 +1,145 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i,
+center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,
+tfoot, thead, tr, th, td, article, aside, audio, canvas, details, figcaption, figure, footer,
+header, hgroup, mark, menu, meter, nav, output, progress, section, summary, time, video,
+.clear {
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	text-decoration: none;
+	vertical-align: baseline;
+	background: transparent;
+	margin: 0;
+	padding: 0;
+
+	-webkit-tap-highlight-color: transparent;
+	-moz-tap-highlight-color: transparent;
+	-ms-tap-highlight-color: transparent;
+	-o-tap-highlight-color: transparent;
+	tap-highlight-color: transparent;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+body {
+	line-height: 1;
+}
+
+article, aside, dialog, figure, footer, header, hgroup, nav, section, blockquote {
+	display: block;
+}
+
+nav ul {
+	list-style: none;
+}
+
+ol {
+	list-style: decimal;
+}
+
+ul {
+	list-style: disc;
+}
+
+ul ul {
+	list-style: circle;
+}
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: none;
+}
+
+mark {
+	background: none;
+}
+
+abbr[title], dfn[title] {
+	border-bottom: 1px dotted #000;
+	cursor: help;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid #ccc;
+	margin: 1em 0;
+	padding: 0;
+}
+
+input, button {
+	margin: 0;
+	padding: 0;
+}
+
+input, select, a img {
+	vertical-align: middle;
+}
+
+/* custom classes */
+@font-face {
+	font-family: 'Comic Sans';
+	src: url('Comic%20Sans.ttf');
+}
+
+body {
+	font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+}
+
+.clear {
+	display: block;
+	clear: both;
+	float: none;
+}
+
+.clear-fix {
+	display: block;
+}
+
+.clear-fix:after {
+	content: '';
+	display: block;
+	clear: both;
+	width: 0;
+	height: 0;
+}
+
+.hidden {
+	display: none;
+}
+
+.disable {
+	opacity: 0.15;
+}
+
+.table {
+	display: table;
+}
+
+.table-row {
+	display: table-row;
+}
+
+.table-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+/* custom classes */
+
+
+
