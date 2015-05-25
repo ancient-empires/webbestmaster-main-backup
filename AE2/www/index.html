@@ -1175,6 +1175,7 @@
 				<div class="status-bar-sign-block status-bar-sign-block-unit-icon" style="background-image: url(i/fonts/numbers-2-icon-unit.png);">&nbsp;</div>
 				<% arr = (String(unitCount).split('')).concat(['slash']).concat(String(unitLimit).split('')); %>
 				<% _.each(arr, function(sign) { %>
+				<% sign = (sign === '-') ? 'minus' : sign; %>
 				<div class="status-bar-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">&nbsp;</div>
 				<% }); %>
 			</div>
