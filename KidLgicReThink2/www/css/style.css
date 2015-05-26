@@ -1,0 +1,24 @@
+.screen {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	-webkit-transition: -webkit-transform ease-in 5s;
+	transition: transform ease-in 5s;
+}
+
+.show-view-animation {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+.hide-view-animation {
+	-webkit-transition: -webkit-transform ease-in 5s;
+	transition: transform ease-in 5s;
+	-webkit-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
+}
