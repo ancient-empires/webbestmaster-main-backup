@@ -13,11 +13,16 @@
 
 		routes: {
 			'': 'title',
-			'about': 'about'
+			'about': 'about',
+			'section/:jsKey': 'section'
 		},
 
 		title: function () {
 			new APP.BB.TitleView();
+		},
+
+		section: function (jsKey) {
+			new APP.BB.SectionView({jsKey: jsKey});
 		},
 
 		about: function () {

@@ -12,22 +12,14 @@
 	APP.BB.PopupView = APP.BB.BaseView.extend({
 
 		events: {
-			'click .js-popup-container': 'stopEvent',
-			'click .js-confirmed-end-turn': 'confirmedEndTurn',
-			'click .js-restart-battle': 'restartBattle',
-			'click .js-quit-battle': 'quitBattle',
-			'click .js-quit-map-editor': 'quitMapEditor',
-			'click .js-open-map-in-editor': 'openMapInEditor',
-			'click .js-delete-user-map': 'deleteUserMap',
-			'click .js-clear-map': 'clearMap',
-			'click .js-disable-all-tips': 'disableAllTips'
+			'click .js-popup-container': 'stopEvent'
 		},
 
 		selectors: {
 			popupContainer: '.js-popup-container'
 		},
 
-		initialize: function(data) {
+		initialize: function(data) { // cssClass, from, popupData {text, header ...}, append$el, playSound, onShow {context, fn}, onHide {context, fn}
 
 			var view = this,
 				popupUrl = view.popupUrl,
@@ -38,7 +30,6 @@
 			}
 
 			view.extendFromObj(data); // popupName, parentView, popupData(objToView)
-
 
 			view.$el = $(view.tmpl['popup-wrapper']());
 
@@ -114,11 +105,6 @@
 
 				context = onHide.context || view;
 
-				//if ( onHide.fn === 'backTo' ) {
-					//battleData.isEndGame = 'yes';
-					//battleData.gameTo = 'quit';
-				//}
-
 				context[onHide.fn].apply(context, onHide.args);
 
 			});
@@ -126,66 +112,6 @@
 		},
 
 		// actions
-
-		confirmedEndTurn: function (e) {
-
-			var view = this,
-				parentView = view.get('parentView');
-
-			view.stopEvent(e);
-			view.routeBack();
-
-			parentView.confirmedEndTurn();
-
-		},
-
-		restartBattle: function (e) {
-
-			var view = this,
-				parentView = view.get('parentView');
-
-			//battleData = win.APP.bb.battleData;
-			if (e && e.currentTarget && $(e.currentTarget).attr('data-on-hide') === 'none') {
-				view.set('onHide', false);
-			}
-
-			//battleData.isEndGame = 'yes';
-			//battleData.gameTo = 'restart';
-
-			view.hide();
-			view.routeBack();
-			setTimeout(function () {
-				parentView.restart();
-			}, 50);
-
-		},
-
-		quitBattle: function (e) {
-
-			var view = this;
-
-			if (e && e.currentTarget && $(e.currentTarget).attr('data-on-hide') === 'none') {
-				view.set('onHide', false);
-			}
-
-			//battleData = win.APP.bb.battleData;
-
-			//battleData.isEndGame = 'yes';
-			//battleData.gameTo = 'quit';
-
-			//debugger
-			//view.hide();
-			//view.routeBack();
-
-			view.backTo('play', { isForce: true });
-
-		},
-
-		quitMapEditor: function () {
-
-			this.backTo('', { isForce: true });
-
-		},
 
 		showInAnimation: function () {
 
@@ -211,77 +137,8 @@
 
 			return deferred.promise();
 
-		},
-
-		disableAllTips: function () {
-
-			var view = this,
-				info = view.info;
-
-			info.set('help', 'off');
-			view.autoShowHelpButton();
-			view.routeBack();
-
-		},
-
-		openMapInEditor: function (e) {
-
-			var view = this,
-				$this = $(e.currentTarget),
-				parentView = view.get('parentView'),
-				jsMapKey = $this.attr('data-map-name');
-
-			win.APP.map.db.getMap({
-				jsMapKey: jsMapKey,
-				type: 'userMap'
-			}).then(function (map) {
-				parentView.initialize({
-					map: map
-				});
-			});
-
-		},
-
-		openMap: function (jsMapKey, data) {
-
-			new APP.BB.SkirmishSetupMapView(jsMapKey, data);
-
-		},
-
-		deleteUserMap: function (e) {
-
-			var view = this,
-				$this = $(e.currentTarget),
-				parentView = view.get('parentView'),
-				mapType = 'userMap',
-				lang = win.APP.lang,
-				mapName = $this.attr('data-user-map-name');
-
-			parentView.deleteMap({
-				mapName: mapName,
-				jsMapKey: 'userMap_' + mapName,
-				type: mapType
-			});
-
-			view.$el.find('.js-user-map-wrapper[data-user-map-name="' + mapName + '"]').remove();
-
-			if ( !view.$el.find('.js-user-map-wrapper').length ) {
-				view.$el.find('.js-popup-header').html(lang.get('noSavedMaps'));
-			}
-
-		},
-
-		clearMap: function () {
-
-			var view = this,
-				parentView = view.get('parentView');
-
-			parentView.clearMap();
-
-			view.routeBack();
-
-
 		}
+
 
 	});
 

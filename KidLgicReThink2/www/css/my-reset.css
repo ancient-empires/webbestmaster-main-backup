@@ -178,6 +178,14 @@ button:focus {
 	position: static;
 }
 
+.h100 {
+	height: 100%;
+}
+
+.w100 {
+	width: 100%;
+}
+
 /* draw */
 
 /*canvas,*/

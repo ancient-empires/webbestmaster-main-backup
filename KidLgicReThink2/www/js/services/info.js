@@ -56,7 +56,7 @@
 		},
 
 		ls: win.localStorage,
-		saveItem: 'ae2-ls-item',
+		saveItem: 'kid-logic',
 		attr: {},
 		systemAttr: {},
 		defaultLanguage: 'en',
@@ -89,7 +89,7 @@
 			this.set('language', lang);
 
 			//set settings
-			this.setSettings();
+			//this.setSettings();
 
 			this.detectTransitionEndEventName();
 			this.detectAnimationEndEventName();
@@ -191,45 +191,46 @@
 
 			return key;
 
-		},
-
-		setSettings: function () {
-
-			var defaultSettings = {
-					//autoSave: 'on', // auto save game after every turn
-					//confirmTurn: 'off', // game turn
-					//confirmMove: 'off', // move unit
-					//confirmAttack: 'off', // attack unit
-					//music: 'on',
-					//vibrate: 'off',
-					//help: 'on',
-					//fightAnimation: 'off',
-					//buildingSmoke: 'off',
-					//unitAnimation: 'off',
-					//difficult: 'easy', // easy, normal, hard
-					//gameSpeed: '3' // 1..5, use string type
-				},
-				key,
-				value;
-
-			for (key in defaultSettings) {
-				if (defaultSettings.hasOwnProperty(key)) {
-					value = this.get(key) || defaultSettings[key];
-					this.set(key, value);
-				}
-			}
-
-		},
-
-		actionTime: function () {
-
-			var info = this,
-				speed = parseInt(info.get('gameSpeed'), 10),
-				q = 6 - speed; // 6 === maxSpeed'5' + 1
-
-			return 300 + (q - 1) * 100;
-
 		}
+		//,
+		//
+		//setSettings: function () {
+		//
+		//	var defaultSettings = {
+		//			//autoSave: 'on', // auto save game after every turn
+		//			//confirmTurn: 'off', // game turn
+		//			//confirmMove: 'off', // move unit
+		//			//confirmAttack: 'off', // attack unit
+		//			//music: 'on',
+		//			//vibrate: 'off',
+		//			//help: 'on',
+		//			//fightAnimation: 'off',
+		//			//buildingSmoke: 'off',
+		//			//unitAnimation: 'off',
+		//			//difficult: 'easy', // easy, normal, hard
+		//			//gameSpeed: '3' // 1..5, use string type
+		//		},
+		//		key,
+		//		value;
+		//
+		//	for (key in defaultSettings) {
+		//		if (defaultSettings.hasOwnProperty(key)) {
+		//			value = this.get(key) || defaultSettings[key];
+		//			this.set(key, value);
+		//		}
+		//	}
+		//
+		//},
+		//
+		//actionTime: function () {
+		//
+		//	var info = this,
+		//		speed = parseInt(info.get('gameSpeed'), 10),
+		//		q = 6 - speed; // 6 === maxSpeed'5' + 1
+		//
+		//	return 300 + (q - 1) * 100;
+		//
+		//}
 
 	};
 

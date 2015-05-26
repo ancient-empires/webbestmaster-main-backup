@@ -250,10 +250,10 @@
 
 			view.hidePopup();
 
-			setTimeout(function () {
+			//setTimeout(function () {
 				popup =	new APP.BB.PopupView(data);
 				popup.set('deferred', deferred);
-			}, 50);
+			//}, 50);
 
 			return deferred.promise();
 
@@ -279,27 +279,27 @@
 
 		},
 
-		hidePopups: function (data) {
-
-			data = data || {};
-
-			var view = this,
-				deferred = $.Deferred();
-
-			(function hidePopups () {
-				setTimeout(function () {
-					if (view.isPopupExist()) {
-						view.routeBack();
-						hidePopups();
-					} else {
-						deferred.resolve();
-					}
-				}, data.timePadding || 0); // def se time out for routing is 50
-			}());
-
-			return deferred.promise();
-
-		},
+		//hidePopups: function (data) {
+		//
+		//	data = data || {};
+		//
+		//	var view = this,
+		//		deferred = $.Deferred();
+		//
+		//	(function hidePopups () {
+		//		setTimeout(function () {
+		//			if (view.isPopupExist()) {
+		//				view.routeBack();
+		//				hidePopups();
+		//			} else {
+		//				deferred.resolve();
+		//			}
+		//		}, data.timePadding || 0); // def se time out for routing is 50
+		//	}());
+		//
+		//	return deferred.promise();
+		//
+		//},
 
 		isPopupExist: function () {
 			var view = this,
@@ -465,29 +465,7 @@
 		copyJSON: function (obj) { // external
 			return JSON.parse(JSON.stringify(obj));
 		},
-		//themeList: ['coffee', 'black-coffee', 'owl', 'owl owl-black'],
-		//themeDefault: 'coffee',
-		//
-		//setTheme: function (themeName) {
-		//
-		//	var $body = $(doc.body);
-		//
-		//	_.each(this.themeList, function (themeName) {
-		//		$body.removeClass(themeName);
-		//	});
-		//
-		//	$body.addClass(themeName);
-		//
-		//	win.APP.info.set('theme', themeName);
-		//
-		//},
-		//loadSavedTheme: function () {
-		//
-		//	var themeName = win.APP.info.get('theme') || this.themeDefault;
-		//
-		//	this.setTheme(themeName);
-		//
-		//},
+
 		runIfConnect: function (calback, context) {
 			var img = new Image();
 			img.addEventListener('load', calback.call(context), false);

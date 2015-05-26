@@ -90,6 +90,10 @@
 
 		play: function (data) {
 
+			console.log(data);
+
+			return
+
 			var soundMaster = this,
 				player = soundMaster.getPlayer(),
 				prevState = soundMaster.roads[data.road],

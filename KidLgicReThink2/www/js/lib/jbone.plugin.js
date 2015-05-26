@@ -5,6 +5,10 @@
 	/*global window */
 	/*global */
 
+	// add deferred to jBone
+	Deferred.installInto(jBone);
+	console.log(jBone);
+
 	/*
 
 	Example
