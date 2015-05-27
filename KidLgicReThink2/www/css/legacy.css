@@ -114,6 +114,14 @@
 	background-color: rgba(255, 255, 255, 0.8);
 }
 
+.bad-answer-clicked {
+	opacity: 0.5;
+	-webkit-transition: all 0.5s ease-out;
+	-webkit-transform: scale(0.5);
+	transition: all 0.5s ease-out;
+	transform: scale(0.5);
+}
+
 .section-button, .answer-image-type-1, .question-type-2, .answer-wrapper-type-2 {
 	-webkit-animation-iteration-count: 1;
 	-webkit-animation-timing-function: ease-out;

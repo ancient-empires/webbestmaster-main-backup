@@ -17,6 +17,13 @@
 
 		},
 
+		selectors: {
+
+			badAnswer: '.js-bad-answer',
+			goodAnswer: '.js-good-answer'
+
+		},
+
 		initialize: function (data) {
 
 			var view = this,
@@ -64,6 +71,14 @@
 		},
 
 		badAnswer: function (e) {
+
+			var view = this;
+
+			$(e.currentTarget).addClass('bad-answer-clicked');
+
+			view.showPopup({
+				name: 'bad-answer'
+			});
 
 		}
 

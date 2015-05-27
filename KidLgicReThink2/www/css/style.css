@@ -96,15 +96,22 @@
 	background-color: #fff;
 }
 
-.good-answer-popup {
-	width: 80%;
-	height: 80%;
-	background-color: #ff4a7a;
-	background-image: url(../i/good.svg);
+.good-answer-popup,
+.bad-answer-popup {
+	width: 90%;
+	height: 90%;
 	background-repeat: no-repeat;
 	background-position: center center;
 	-webkit-background-size: contain;
 	background-size: contain;
 	margin: 0 auto;
+}
+
+.good-answer-popup {
+	background-image: url(../i/good.svg);
+}
+
+.bad-answer-popup {
+	background-image: url(../i/bad.svg);
 }
 
