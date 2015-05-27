@@ -163,9 +163,59 @@
 	}
 }
 
+.answer-wrapper-type-2 {
+	width: 100%;
+	height: 33%;
+	text-align: center;
+	box-sizing: border-box;
+	border-top: 2px solid #FFF;
+	background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(131, 182, 216, 0.9));
+	background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(131, 182, 216, 0.9));
+}
 
+.question-type-2 {
+	width: 100%;
+	height: 67%;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	border: 14px solid transparent;
+	border-bottom-width: 3em;
+	box-sizing: border-box;
+	position: relative;
+	background-color: rgba(255, 255, 255, 0.8);
+}
 
+.question-type-2-text {
+	position: absolute;
+	bottom: -2em;
+	font-size: 20px;
+	line-height: 20px;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+	text-align: center;
+	width: 100%;
+	color: #2CAA21;
+}
 
+.answer-div-type-2 {
+	height: 100%;
+	width: 25%;
+	float: left;
+	background-size: contain;
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: inline-block;
+	box-sizing: border-box;
+	border: 10px solid transparent;
+}
+
+@media screen and (orientation: portrait) {
+	.answer-div-type-2 {
+		width: 50%;
+		height: 50%;
+	}
+}
 
 
 
