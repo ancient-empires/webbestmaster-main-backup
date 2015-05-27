@@ -1,3 +1,7 @@
+@font-face {
+	font-family: 'Comic Sans MS';
+	src: url('../font/Comic%20Sans%20MS.ttf');
+}
 .wrapper {
 	position: fixed;
 	width: 100%;
@@ -115,24 +119,32 @@
 	background-image: url(../i/bad.svg);
 }
 
-.title-remove-ads {
-	position: fixed;
-	z-index: 1;
-	height: 1.8rem;
-	width: 1.8rem;
-	left: 0;
-	top: 0;
-	background-color: #ff4645;
-}
-
+.title-remove-ads,
 .section-remove-ads {
 	position: fixed;
 	z-index: 1;
-	height: 64px;
-	width: 64px;
-	right: 0;
-	top: 0;
-	background-color: #ff4645;
+	background-color: rgba(0, 0, 0, 0.5);
+	top: 3px;
+	background-repeat: no-repeat;
+	background-image: url(../i/ads-free.svg);
+	-webkit-background-size: 80% auto;
+	background-size: 80% auto;
+	background-position: center center;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+}
+
+.title-remove-ads {
+	height: 1.8rem;
+	width: 1.8rem;
+	left: 3px;
+}
+
+.section-remove-ads {
+	height: 44px;
+	width: 44px;
+	right: 3px;
 }
 
 

@@ -47,8 +47,7 @@
 	}
 
 	.section-button img {
-		max-width: 35%;
-		max-height: 200%;
+		width: 34%;
 		float: left;
 	}
 
