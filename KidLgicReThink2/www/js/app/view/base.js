@@ -47,7 +47,8 @@
 		popupUrl: 'popup=true',
 
 		selectors: {
-			wrapper: '.js-wrapper'
+			wrapper: '.js-wrapper',
+			viewWrapper: '.js-view-wrapper'
 		},
 
 		// will be change after initStatic
@@ -161,29 +162,33 @@
 				view.unbindEventListeners();
 			}
 
-			$el.one(transitionEnd, function () {
-				$(this).remove();
-			});
-
-			$el.addClass('hide-view-animation');
+			if ($el.hasClass('show-view-animation')) {
+				$el.one(transitionEnd, function () {
+					$(this).remove();
+				});
+				$el.addClass('hide-view-animation');
+			} else {
+				$el.remove();
+			}
 
 		},
 
 		render: function () {
 
-			var $oldContainer = this.$wrapper.find(':scope > div');
+			var view = this,
+				$oldContainer = $(view.$wrapper[0].querySelectorAll(view.selectors.viewWrapper));
 			$oldContainer.trigger('hide');
 
-			this.$wrapper.append(this.$el);
+			view.$el.addClass(view.classNames.viewWrapper);
+
+			this.$wrapper.append(view.$el);
 			this.util.setSizes();
 			this.util.toTop();
 
 		},
 
 		showAppearAnimation: function () {
-
 			this.$el.addClass('show-view-animation');
-
 		},
 
 		navigate: function() { //url, options
@@ -250,28 +255,26 @@
 
 			view.hidePopup();
 
-			//setTimeout(function () {
-				popup =	new APP.BB.PopupView(data);
-				popup.set('deferred', deferred);
-			//}, 50);
+			popup =	new APP.BB.PopupView(data);
+			popup.set('deferred', deferred);
 
 			return deferred.promise();
 
 		},
 
-		showTicket: function (data) {
-
-			var deferred = $.Deferred(),
-				popup;
-
-			setTimeout(function () {
-				popup =	new APP.BB.TicketView(data);
-				popup.set('deferred', deferred);
-			}, 50);
-
-			return deferred.promise();
-
-		},
+		//showTicket: function (data) {
+		//
+		//	var deferred = $.Deferred(),
+		//		popup;
+		//
+		//	setTimeout(function () {
+		//		popup =	new APP.BB.TicketView(data);
+		//		popup.set('deferred', deferred);
+		//	}, 50);
+		//
+		//	return deferred.promise();
+		//
+		//},
 
 		hidePopup: function () {
 
@@ -312,10 +315,12 @@
 
 		stopEvent: function(e) {
 
-			if (e && e.preventDefault) {
-				e.preventDefault();
-				e.stopPropagation();
+			if (!e) {
+				return;
 			}
+
+			e.preventDefault();
+			e.stopPropagation();
 
 		},
 

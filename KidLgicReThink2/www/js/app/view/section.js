@@ -48,7 +48,7 @@
 			var view = this;
 
 			view.showPopup({
-
+				name: 'good-answer'
 			});
 
 		},

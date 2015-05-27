@@ -63,7 +63,6 @@
 	float: left;
 	margin: 0.2rem 0.2rem 0;
 	border-radius: 0.2rem;
-	box-shadow: 0 0 0 0.1rem #818181;
 }
 
 .active-flag {
@@ -97,5 +96,15 @@
 	background-color: #fff;
 }
 
-
+.good-answer-popup {
+	width: 80%;
+	height: 80%;
+	background-color: #ff4a7a;
+	background-image: url(../i/good.svg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: contain;
+	background-size: contain;
+	margin: 0 auto;
+}
 

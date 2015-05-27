@@ -55,6 +55,7 @@
 					return viewAction;
 				}
 
+				// other action is here
 				return viewAction;
 
 			}
@@ -75,12 +76,10 @@
 						
 						case 'hidePopup':
 							baseProto.hidePopup();
-
-							break;							
+							break;
 							
 						case 'showPopup':
-
-							break;							
+							break;
 							
 					}
 
