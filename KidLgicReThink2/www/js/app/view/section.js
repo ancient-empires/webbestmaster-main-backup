@@ -58,6 +58,7 @@
 
 			view.showPopup({
 				name: 'good-answer',
+				timeout: 4000,
 				onHide: {
 					fn: 'newQuestion',
 					context: view
@@ -77,7 +78,8 @@
 			$(e.currentTarget).addClass('bad-answer-clicked');
 
 			view.showPopup({
-				name: 'bad-answer'
+				name: 'bad-answer',
+				timeout: 4000
 			});
 
 		}

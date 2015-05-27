@@ -19,7 +19,7 @@
 			popupContainer: '.js-popup-container'
 		},
 
-		initialize: function(data) { // cssClass, from, data {text, header ...}, append$el, sound, onShow {context, fn}, onHide {context, fn}
+		initialize: function(data) { // timeout, cssClass, from, data {text, header ...}, append$el, sound, onShow {context, fn}, onHide {context, fn}
 
 			var view = this,
 				popupUrl = view.popupUrl,
@@ -44,6 +44,33 @@
 			view.render();
 
 			view.showInAnimation();
+
+			view.bindEventListeners();
+
+		},
+
+		bindEventListeners: function () {
+
+			var view = this,
+				timeout = view.get('timeout'),
+				timeoutId;
+
+			if (timeout) {
+				timeoutId = setTimeout(function () {
+					view.hide();
+				}, timeout);
+				view.set('timeoutId', timeoutId);
+			}
+
+		},
+
+		unbindEventListeners: function () {
+			var view = this,
+				timeout = view.get('timeout');
+
+			if (timeout) {
+				clearTimeout(view.get('timeoutId'))
+			}
 
 		},
 
