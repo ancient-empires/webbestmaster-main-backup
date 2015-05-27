@@ -128,7 +128,7 @@
 
 		<% var info = window.APP.info, lang = info.get('language'), answer = question.answer; %>
 		<% _.each(question.list, function(item, index){ %>
-		<div class="answer-image-type-1 <%= index === answer ? 'js-good-answer' : 'js-bad-answer' %>" style="background-image: url(<%= section.imgPath + item %>)"></div>
+		<div class="answer-image-type-1 <%= index === answer ? 'js-good-answer' : 'js-bad-answer' %>" style="background-image: url(<%= section.imgPath + item %>)">&nbsp;</div>
 		<% }); %>
 
 		<% for (var i = question.list.length; i < 6; i += 1) { %>
@@ -156,7 +156,7 @@
 
 		<div class="answer-wrapper-type-2">
 			<% _.each(question.list, function(item, index){ %>
-			<div class="answer-div-type-2 <%= index === answer ? 'js-good-answer' : 'js-bad-answer' %>" style="background-image: url(<%= section.imgPath + item %>)"></div>
+			<div class="answer-div-type-2 <%= index === answer ? 'js-good-answer' : 'js-bad-answer' %>" style="background-image: url(<%= section.imgPath + item %>)">&nbsp;</div>
 			<% }); %>
 
 			<% for (var i = question.list.length; i < 4; i += 1) { %>
