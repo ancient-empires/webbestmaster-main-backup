@@ -78,6 +78,11 @@
 			<% }); %>
 		</div>
 
+		<% var info = window.APP.info, os = info.get('os', true); %>
+		<% if (info.withAds) { %>
+		<div class="title-remove-ads js-no-scroll js-external-link" data-need-confirm="yes" data-href="<%= info.link[os].pro %>">&nbsp;</div>
+		<% }; %>
+
 		<div class="section-buttons-wrapper js-no-scroll ">
 
 			<div class="table h100 w100 side-padding">
@@ -118,6 +123,12 @@
 		<div class="js-back status-bar-back">
 			<span>&nbsp;</span>
 		</div>
+
+		<% var info = window.APP.info, os = info.get('os', true); %>
+		<% if (info.withAds) { %>
+		<div class="section-remove-ads js-no-scroll js-external-link" data-need-confirm="yes" data-href="<%= info.link[os].pro %>">&nbsp;</div>
+		<% }; %>
+
 	</div>
 
 </script>

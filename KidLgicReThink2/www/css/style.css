@@ -115,3 +115,30 @@
 	background-image: url(../i/bad.svg);
 }
 
+.title-remove-ads {
+	position: fixed;
+	z-index: 1;
+	height: 1.8rem;
+	width: 1.8rem;
+	left: 0;
+	top: 0;
+	background-color: #ff4645;
+}
+
+.section-remove-ads {
+	position: fixed;
+	z-index: 1;
+	height: 64px;
+	width: 64px;
+	right: 0;
+	top: 0;
+	background-color: #ff4645;
+}
+
+
+
+
+
+
+
+

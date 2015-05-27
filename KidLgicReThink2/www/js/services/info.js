@@ -42,16 +42,16 @@
 
 	info = {
 
-		withAds: false,
+		withAds: true,
 
 		link: {
 			ios: {
 				normal: '',
-				pro: ''
+				pro: 'https://itunes.apple.com/us/app/statlex-improve-kids-logic/id737629745?mt=8'
 			},
 			android: {
-				normal: '',
-				pro: ''
+				normal: 'https://play.google.com/store/apps/details?id=com.statlex.kidlogic',
+				pro: 'https://play.google.com/store/apps/details?id=com.statlex.kidlogicadsfree'
 			}
 		},
 

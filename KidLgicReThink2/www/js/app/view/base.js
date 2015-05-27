@@ -326,14 +326,44 @@
 
 		toExternalLink: function(e) {
 
-			this.stopEvent(e);
+			var view = this,
+				$this = $(e.currentTarget),
+				needConfirm = $this.attr('data-need-confirm'),
+				url = $this.attr('data-href');
 
-			var $this = $(e.currentTarget),
-				url = $this.attr('href');
+			view.stopEvent(e);
 
-			win.open(url);
+			if (needConfirm === 'yes') {
+
+				view.prompt({
+					url: url
+				});
+
+			} else {
+				win.open(url);
+			}
 
 		},
+
+		prompt: function (data) {
+
+			var view = this,
+				a = view.util.getRandomBetween(4, 14),
+				b = view.util.getRandomBetween(4, 14),
+				result = prompt(a + ' + ' + b + ' = ?');
+
+			if ( result === null || result === '') {
+				return;
+			}
+
+			if (Number(result) === a + b) {
+				win.open(data.url);
+			} else {
+				view.prompt(data);
+			}
+
+		},
+
 		loadUrl: function () {
 			Backbone.history.loadUrl();
 		},
@@ -452,6 +482,11 @@
 	proto.info = win.APP.info;
 
 	proto.util = {
+
+		getRandomBetween: function (min, max) {
+			return Math.round(Math.random() * (max - min) + min);
+		},
+
 		toTop: function () {
 			win.scrollTo(0, 0);
 		},
