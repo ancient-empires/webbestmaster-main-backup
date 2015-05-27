@@ -58,7 +58,7 @@
 
 			view.showPopup({
 				name: 'good-answer',
-				timeout: 4000,
+				timeout: 2.5e3,
 				onHide: {
 					fn: 'newQuestion',
 					context: view
@@ -79,7 +79,7 @@
 
 			view.showPopup({
 				name: 'bad-answer',
-				timeout: 4000
+				timeout: 2.5e3
 			});
 
 		}
