@@ -23,9 +23,11 @@
 				section = win.APP.sectionList[data.jsKey],
 				util = win.APP.util,
 				assortArray = util.assortArray,
-				question = assortArray(section.items)[0];
+				question = assortArray(section.items)[0],
+				answer = question.list[question.answer];
 
 			question.list = assortArray(question.list);
+			question.answer = question.list.indexOf(answer);
 
 			view.$el = $(view.tmpl.section({
 				section: section,
@@ -48,12 +50,20 @@
 			var view = this;
 
 			view.showPopup({
-				name: 'good-answer'
+				name: 'good-answer',
+				onHide: {
+					fn: 'newQuestion',
+					context: view
+				}
 			});
 
 		},
 
-		badAnswer: function () {
+		newQuestion: function () {
+			this.loadUrl();
+		},
+
+		badAnswer: function (e) {
 
 		}
 
