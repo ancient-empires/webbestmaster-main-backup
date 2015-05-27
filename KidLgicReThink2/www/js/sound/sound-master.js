@@ -71,17 +71,17 @@
 
 		getCurrentBgSound: function () {
 
-			var state = Backbone.history.fragment;
+			//var state = Backbone.history.fragment;
 
-			switch (state) {
-
-				case '':
-				case 'play':
-				case 'select-level':
-				case 'skirmish-select-map':
-					return 'main-theme.mp3'; // file name main-theme.mp3
-
-			}
+			//switch (state) {
+			//
+			//	case '':
+			//	case 'play':
+			//	case 'select-level':
+			//	case 'skirmish-select-map':
+			//		return 'main-theme.mp3'; // file name main-theme.mp3
+			//
+			//}
 
 			// if false - do not anything
 			return false;
@@ -89,10 +89,6 @@
 		},
 
 		play: function (data) {
-
-			console.log(data);
-
-			return
 
 			var soundMaster = this,
 				player = soundMaster.getPlayer(),

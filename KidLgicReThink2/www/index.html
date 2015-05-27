@@ -74,13 +74,13 @@
 		<div class="title-setting-wrapper js-no-scroll">
 			<% var info = window.APP.info, currentLang = info.get('language'); %>
 			<% _.each(info.availableLanguages, function(lang){ %>
-			<div class="flag<%= currentLang === lang ? ' active-flag' : ' js-set-lang' %>" data-lang="<%= lang %>" style="background-image: url(i/flag/flag-<%=  lang %>.svg)">&nbsp;</div>
+			<div class="flag<%= currentLang === lang ? ' active-flag' : ' js-set-lang' %>" data-sound="click.mp3" data-lang="<%= lang %>" style="background-image: url(i/flag/flag-<%=  lang %>.svg)">&nbsp;</div>
 			<% }); %>
 		</div>
 
 		<% var info = window.APP.info, os = info.get('os', true); %>
 		<% if (info.withAds) { %>
-		<div class="title-remove-ads js-no-scroll js-external-link" data-need-confirm="yes" data-href="<%= info.link[os].pro %>">&nbsp;</div>
+		<div data-sound="click.mp3" class="title-remove-ads js-no-scroll js-external-link" data-need-confirm="yes" data-href="<%= info.link[os].pro %>">&nbsp;</div>
 		<% }; %>
 
 		<div class="section-buttons-wrapper js-no-scroll ">
@@ -95,7 +95,7 @@
 
 						<div class="section-button-wrapper">
 
-							<div data-route="section/<%= key %>" class="section-button clear-fix">
+							<div data-sound="click.mp3" data-route="section/<%= key %>" class="section-button clear-fix">
 
 								<img src="<%= section.imgPath + section.img %>" alt=""/>
 								<span><%= section['name_' + lang] %></span>
@@ -120,13 +120,13 @@
 <script type="text/x-template" data-name="section-header">
 
 	<div class="status-bar">
-		<div class="js-back status-bar-back">
+		<div data-sound="click.mp3" class="js-back status-bar-back">
 			<span>&nbsp;</span>
 		</div>
 
 		<% var info = window.APP.info, os = info.get('os', true); %>
 		<% if (info.withAds) { %>
-		<div class="section-remove-ads js-no-scroll js-external-link" data-need-confirm="yes" data-href="<%= info.link[os].pro %>">&nbsp;</div>
+		<div data-sound="click.mp3" class="section-remove-ads js-no-scroll js-external-link" data-need-confirm="yes" data-href="<%= info.link[os].pro %>">&nbsp;</div>
 		<% }; %>
 
 	</div>
@@ -139,7 +139,7 @@
 
 		<% var info = window.APP.info, lang = info.get('language'), answer = question.answer; %>
 		<% _.each(question.list, function(item, index){ %>
-		<div class="answer-image-type-1 <%= index === answer ? 'js-good-answer' : 'js-bad-answer' %>" style="background-image: url(<%= section.imgPath + item %>)">&nbsp;</div>
+		<div data-sound="click.mp3" class="answer-image-type-1 <%= index === answer ? 'js-good-answer' : 'js-bad-answer' %>" style="background-image: url(<%= section.imgPath + item %>)">&nbsp;</div>
 		<% }); %>
 
 		<% for (var i = question.list.length; i < 6; i += 1) { %>
@@ -167,11 +167,11 @@
 
 		<div class="answer-wrapper-type-2">
 			<% _.each(question.list, function(item, index){ %>
-			<div class="answer-div-type-2 <%= index === answer ? 'js-good-answer' : 'js-bad-answer' %>" style="background-image: url(<%= section.imgPath + item %>)">&nbsp;</div>
+			<div data-sound="click.mp3" class="answer-div-type-2 <%= index === answer ? 'js-good-answer' : 'js-bad-answer' %>" style="background-image: url(<%= section.imgPath + item %>)">&nbsp;</div>
 			<% }); %>
 
 			<% for (var i = question.list.length; i < 4; i += 1) { %>
-			<div class="answer-div-type-2 white-bg"></div>
+			<div data-sound="click.mp3" class="answer-div-type-2 white-bg"></div>
 			<% }; %>
 		</div>
 

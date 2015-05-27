@@ -11,7 +11,7 @@
 
 		roads: new Array(4),
 
-		pathPrefix: 'sounds/',
+		pathPrefix: 'sound/',
 
 		init: function () {
 

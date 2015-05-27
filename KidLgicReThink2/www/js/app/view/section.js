@@ -59,6 +59,11 @@
 			view.showPopup({
 				name: 'good-answer',
 				timeout: 2.5e3,
+				sound: {
+					sound: 'good-answer.mp3',
+					isLoop: false,
+					road: 3
+				},
 				onHide: {
 					fn: 'newQuestion',
 					context: view
@@ -79,7 +84,12 @@
 
 			view.showPopup({
 				name: 'bad-answer',
-				timeout: 2.5e3
+				timeout: 2.5e3,
+				sound: {
+					sound: 'bad-answer.mp3',
+					isLoop: false,
+					road: 3
+				}
 			});
 
 		}
