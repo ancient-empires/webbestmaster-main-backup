@@ -57,7 +57,7 @@
 
 			if (timeout) {
 				timeoutId = setTimeout(function () {
-					view.hide();
+					view.hidePopupByRouter();
 				}, timeout);
 				view.set('timeoutId', timeoutId);
 			}
