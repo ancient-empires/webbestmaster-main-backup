@@ -61,7 +61,7 @@
 	APP.showAds = function () {
 		clearTimeout(adsId);
 		adsId = setTimeout(function () {
-			Android && Android.displayInterstitial();
+			typeof Android !== 'undefined' && Android.displayInterstitial();
 		}, 5000);
 	};
 
