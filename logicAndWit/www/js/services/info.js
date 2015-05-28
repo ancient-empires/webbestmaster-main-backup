@@ -4,6 +4,9 @@
 	/*global window, document, navigator, localStorage */
 	/*global APP */
 
+	var info,
+		WITH_ADS = true;
+
 	win.APP = win.APP || {};
 
 	function getPrefix() {
@@ -37,11 +40,10 @@
 
 	}
 
-	var info;
 
 	info = {
 
-		withAds: true,
+		withAds: WITH_ADS,
 
 		link: {
 			ios: {

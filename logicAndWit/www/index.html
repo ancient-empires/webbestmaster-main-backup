@@ -69,6 +69,7 @@
 	<script src="js/services/lang.js" type="text/javascript"></script>
 	<script src="js/services/template-master.js" type="text/javascript"></script>
 	<script src="js/services/util.js" type="text/javascript"></script>
+	<script src="js/services/android-ads.js" type="text/javascript"></script>
 
 	<!-- router -->
 	<script src="js/app/extra/router.js" type="text/javascript"></script>
@@ -102,8 +103,9 @@
 
 		<% if ( window.location.hash ) { %>
 			<div class="js-back back">&nbsp;</div>
-		<% } else if ( window.APP.info.withAds && window.APP.info.get('isIOS', true) ) { %>
-			<a href="<%= window.APP.info.link.ios.pro %>" class="js-external-link no-ads">&nbsp;</a>
+			<a href="<%= window.APP.info.link[window.APP.info.get('os', true)].pro %>" class="js-external-link no-ads no-ads-right">&nbsp;</a>
+		<% } else if ( window.APP.info.withAds ) { %>
+			<a href="<%= window.APP.info.link[window.APP.info.get('os', true)].pro %>" class="js-external-link no-ads">&nbsp;</a>
 		<% }; %>
 
 		<% if ( obj && obj.showSetting ) { %>

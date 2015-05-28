@@ -77,6 +77,11 @@ body {
 	text-decoration: none;
 }
 
+.no-ads-right {
+	left: auto;
+	right: 0;
+}
+
 .setting {
 	background-image: url('../i/white/setting.svg');
 	right: 0;
