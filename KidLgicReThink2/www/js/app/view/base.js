@@ -23,6 +23,7 @@
 
 			// hide view
 			'hide': 'hide',
+			'click .js-hide-popup': 'hidePopupByRouter',
 
 			// no scroll
 			'touchmove .js-no-scroll': 'stopEvent',
@@ -262,6 +263,24 @@
 
 		},
 
+		hidePopupByRouter: function () {
+
+			var view = this,
+				oldURL = Backbone.history.fragment,
+				popupPart = win.APP.BB.BaseView.prototype.popupUrl;
+
+			if ( oldURL.indexOf(popupPart) !== -1 ) {
+				view.routeBack();
+			}
+
+		},
+
+		hidePopup: function () {
+
+			$('.js-popup-wrapper').trigger('hide');
+
+		},
+
 		//showTicket: function (data) {
 		//
 		//	var deferred = $.Deferred(),
@@ -275,12 +294,6 @@
 		//	return deferred.promise();
 		//
 		//},
-
-		hidePopup: function () {
-
-			$('.js-popup-wrapper').trigger('hide');
-
-		},
 
 		//hidePopups: function (data) {
 		//
