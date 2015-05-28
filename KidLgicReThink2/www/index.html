@@ -79,7 +79,7 @@
 		</div>
 
 		<% var info = window.APP.info, os = info.get('os', true); %>
-		<% if (info.withAds) { %>
+		<% if (info.withAds && os === 'android') { %>
 		<div data-sound="click.mp3" class="title-remove-ads js-no-scroll js-external-link" data-need-confirm="yes" data-href="<%= info.link[os].pro %>">&nbsp;</div>
 		<% }; %>
 
@@ -88,24 +88,25 @@
 			<div class="table h100 w100 side-padding">
 				<div class="table-row">
 
-					<% var info = window.APP.info, lang = info.get('language'); %>
+					<% var info = window.APP.info, lang = info.get('language'), index = 0; %>
 					<% _.each(window.APP.sectionList, function(section, key) { %>
-
-					<div class="table-cell">
-
-						<div class="section-button-wrapper">
-
-							<div data-sound="click.mp3" data-route="section/<%= key %>" class="section-button clear-fix">
-
-								<img src="<%= section.imgPath + section.img %>" alt=""/>
-								<span><%= section['name_' + lang] %></span>
-
+						<div class="table-cell">
+							<div class="section-button-wrapper">
+								<% if (os === 'ios' && info.withAds && index ) { %>
+								<div data-sound="click.mp3" class="section-button clear-fix js-external-link" data-need-confirm="yes" data-href="<%= info.link[os].pro %>">
+									<img class="opacity50" src="<%= section.imgPath + section.img %>" alt=""/>
+									<span class="opacity50" ><%= section['name_' + lang] %></span>
+									<div class="app-store-link">&nbsp;</div>
+								</div>
+								<% } else { %>
+								<div data-sound="click.mp3" data-route="section/<%= key %>" class="section-button clear-fix">
+									<img src="<%= section.imgPath + section.img %>" alt=""/>
+									<span><%= section['name_' + lang] %></span>
+								</div>
+								<% }; %>
 							</div>
-
 						</div>
-
-					</div>
-
+						<% index += 1; %>
 					<% }); %>
 
 				</div>
@@ -125,7 +126,7 @@
 		</div>
 
 		<% var info = window.APP.info, os = info.get('os', true); %>
-		<% if (info.withAds) { %>
+		<% if (info.withAds && os === 'android') { %>
 		<div data-sound="click.mp3" class="section-remove-ads js-no-scroll js-external-link" data-need-confirm="yes" data-href="<%= info.link[os].pro %>">&nbsp;</div>
 		<% }; %>
 
