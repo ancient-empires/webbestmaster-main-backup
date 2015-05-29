@@ -647,7 +647,7 @@
 
 				} else {
 
-					if ( unitOwnerId === activePlayer.id && building && buildingData[building.type].canBeStore ) { // try to open store
+					if ( unitOwnerId === activePlayer.id && building && buildingData[building.type].canBeStore && building.ownerId === activePlayer.id) { // try to open store
 						model.openStore(xy);
 					}
 
