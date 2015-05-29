@@ -567,6 +567,8 @@
 				prevNode = util.findIn(view.$el[0], view.selectors.eventSquares + '[data-xy="x' + x + 'y' + y + '"]'),
 				wrapper;
 
+			node.innerHTML = '&nbsp;';
+
 			if ( prevNode ) {
 				prevNode.parentNode.removeChild(prevNode);
 			}

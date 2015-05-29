@@ -1225,9 +1225,9 @@
 				rate = rates.killUnit;
 			} else {
 				if ( availableResponseDamage < unit.get('health') - 10) { // detect: unit will be alive after attack
-					rate = availableGivenDamage;
+					rate = availableGivenDamage - availableResponseDamage * 0.3; // unit alive
 				} else {
-					rate = availableGivenDamage - availableResponseDamage;
+					rate = rates.lowPriority;  // unit die
 				}
 			}
 
