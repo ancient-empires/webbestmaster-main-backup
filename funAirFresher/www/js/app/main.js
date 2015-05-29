@@ -87,6 +87,10 @@
 
 		back();
 
+		setTimeout(function () {
+			typeof Android !== 'undefined' && Android.displayInterstitial();
+		}, 10e3);
+
 	}
 
 	$(main);
