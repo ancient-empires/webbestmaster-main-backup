@@ -1447,8 +1447,15 @@
 				pre = view.info.get('pre', true).css,
 				transitionEnd = view.info.get('transitionEnd', true),
 				squareSize = view.getSquareSize(),
-				$attackNode = $('<div class="attack-square square js-attack-square"></div>'),
+				attackNode = doc.createElement('div'),
+				$attackNode,
+				//$attackNode = $('<div class="attack-square square js-attack-square">&nbsp;</div>'),
 				$unitsWrapper = view.$el.find(view.selectors.unitsWrapper);
+
+			attackNode.className = 'attack-square square js-attack-square';
+			attackNode.innerHTML = '&nbsp;';
+
+			$attackNode = $(attackNode);
 
 			view.removeActiveSquare();
 
