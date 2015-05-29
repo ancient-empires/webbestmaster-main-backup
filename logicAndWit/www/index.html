@@ -103,9 +103,10 @@
 
 		<% if ( window.location.hash ) { %>
 			<div class="js-back back">&nbsp;</div>
-			<a href="<%= window.APP.info.link[window.APP.info.get('os', true)].pro %>" class="js-external-link no-ads no-ads-right">&nbsp;</a>
-		<% } else if ( window.APP.info.withAds ) { %>
-			<a href="<%= window.APP.info.link[window.APP.info.get('os', true)].pro %>" class="js-external-link no-ads">&nbsp;</a>
+		<% }; %>
+
+		<% if ( window.APP.info.withAds ) { %>
+			<a href="<%= window.APP.info.link[window.APP.info.get('os', true)].pro %>" class="js-external-link no-ads<%= window.location.hash ? ' no-ads-right' : '' %>">&nbsp;</a>
 		<% }; %>
 
 		<% if ( obj && obj.showSetting ) { %>

@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */
 (function (win) {
 
 	"use strict";
@@ -24,6 +25,9 @@
 				win.APP.BB.BaseView.prototype.util.loadSavedTheme();
 				win.APP.bb.router = new win.APP.BB.Router();
 				Backbone.history.start();
+				if (win.APP.info.withAds) {
+					setTimeout(win.APP.ad.showAd, 10e3);
+				}
 			}
 
 		}

@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */
 (function (win, doc, docElem) {
 
 	"use strict";
@@ -5,7 +6,7 @@
 	/*global APP */
 
 	var info,
-		WITH_ADS = true;
+		WITH_ADS = false;
 
 	win.APP = win.APP || {};
 

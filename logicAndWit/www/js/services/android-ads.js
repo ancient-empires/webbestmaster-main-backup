@@ -13,7 +13,7 @@
 
 	var ad = {
 		attr: {},
-		period: 20e3,
+		period: 3e3 * 60,
 		set: function (key, value) {
 			return this.attr[key] = value;
 		},
@@ -29,8 +29,6 @@
 		}
 
 	};
-
-	console.log('ANDROID ADS');
 
 	win.APP.ad = ad;
 
