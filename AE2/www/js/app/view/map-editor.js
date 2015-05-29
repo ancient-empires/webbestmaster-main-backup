@@ -866,7 +866,6 @@
 			if (position === 'up' || position === 'down') {
 
 				if (map.size.height + deltaNumber !== getBetween(min, map.size.height + deltaNumber, max)) {
-					console.log('wrong height');
 					return;
 				}
 
@@ -898,7 +897,6 @@
 			if (position === 'left' || position === 'right') {
 
 				if (map.size.width + deltaNumber !== getBetween(min, map.size.width + deltaNumber, max)) {
-					console.log('wrong width');
 					return;
 				}
 

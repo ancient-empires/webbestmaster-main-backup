@@ -1,6 +1,6 @@
 .unit-info-wrapper {
 	position: fixed;
-	top: 0;
+	top: -1px;
 	left: 3.8rem;
 	background-color: rgba(0, 0, 0, 0.5);
 	height: 1rem;
