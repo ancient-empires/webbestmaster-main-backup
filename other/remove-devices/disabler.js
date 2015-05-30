@@ -8,7 +8,7 @@
 	var disabler = {
 
 		selectors: {
-			searchInput: '.HBBEXCD-Zb-d'
+			searchInput: '.DIMX0JB-jc-d'
 		},
 
 		findAll: function (selector, context) {
