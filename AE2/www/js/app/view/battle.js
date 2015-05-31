@@ -1453,7 +1453,7 @@
 				$unitsWrapper = view.$el.find(view.selectors.unitsWrapper);
 
 			attackNode.className = 'attack-square square js-attack-square';
-			attackNode.innerHTML = '&nbsp;';
+			attackNode.innerHTML = '<div class="spark">&nbsp;</div>';
 
 			$attackNode = $(attackNode);
 
@@ -1467,7 +1467,6 @@
 			$attackNode.one(transitionEnd, function () {
 
 				//$(this).remove();
-
 				view.$el.find('.js-attack-square').remove();
 
 				model.clearAvailableActions();

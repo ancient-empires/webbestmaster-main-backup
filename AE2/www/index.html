@@ -186,7 +186,7 @@
 			</div>
 		</div>
 
-		<div class="game-version js-no-scroll">v1.4.3</div>
+		<!--<div class="game-version js-no-scroll">v1.4.3</div>-->
 
 	</div>
 
@@ -1395,6 +1395,11 @@
 		.unit-wrapper.moving {
 			-webkit-transition: -webkit-transform <%= time %>ms ease-out;
 			transition: transform <%= time %>ms ease-out;
+		}
+
+		.spark {
+			-webkit-animation-duration: <%= time %>ms;
+			animation-duration: <%= time %>ms;
 		}
 
 		.unit-image {
