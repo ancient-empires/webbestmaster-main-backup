@@ -1,0 +1,9 @@
+.fight-animation-wrapper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	background-color: rgba(255, 125, 84, 0.56);
+}

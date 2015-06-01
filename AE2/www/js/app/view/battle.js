@@ -1437,7 +1437,34 @@
 
 		},
 
+		showFightScreen: function (data) {
+
+			var view = this,
+				info = view.info,
+				deferred = $.Deferred(),
+				fightAnimationView;
+
+			if (info.get('fightAnimation') === 'on') {
+				fightAnimationView = new win.APP.BB.FightAnimationView({
+					parentView: view,
+					parentDeferred: deferred,
+					attacker: data.attacker,
+					defender: data.defender
+				});
+
+				view.set('fightAnimationView', fightAnimationView);
+
+			} else {
+				deferred.resolve();
+			}
+
+			return deferred.promise();
+
+		},
+
 		showAttack: function (data) {
+
+			console.log('show attack!!!!');
 
 			var view = this,
 				model = view.get('model'),

@@ -882,96 +882,107 @@
 			var unit = this,
 				view = unit.get('view');
 
-			view.showAttack({
-				from: {
-					x: unit.get('x'),
-					y: unit.get('y')
-				},
-				to: {
-					x: enemyUnit.get('x'),
-					y: enemyUnit.get('y')
-				}
+			view.showFightScreen({
+				attacker: unit,
+				defender: enemyUnit
 			}).then(function () {
 
-				unit.set('isActive', false);
+				view.showAttack({
+					attacker: unit,
+					defender: enemyUnit,
+					from: {
+						x: unit.get('x'),
+						y: unit.get('y')
+					},
+					to: {
+						x: enemyUnit.get('x'),
+						y: enemyUnit.get('y')
+					}
+				}).then(function () {
 
-				var atk = unit.getAttackToUnit(enemyUnit);
+					unit.set('isActive', false);
 
-				enemyUnit.setBy('health', -atk);
+					var atk = unit.getAttackToUnit(enemyUnit);
 
-				//enemyUnit.setBy('poisonCount', unit.get('poisonPeriod') || 0);
+					enemyUnit.setBy('health', -atk);
 
-				unit.setBy('xp', atk);
+					//enemyUnit.setBy('poisonCount', unit.get('poisonPeriod') || 0);
 
-				return view.showDifferentUnitHealth({
-					unit: enemyUnit,
-					differentHealth: -atk
-				});
+					unit.setBy('xp', atk);
 
-			}).then(function () {
+					return view.showDifferentUnitHealth({
+						unit: enemyUnit,
+						differentHealth: -atk
+					});
 
-				var enemyUnitHealth = enemyUnit.get('health'),
-					model = enemyUnit.get('model');
+				}).then(function () {
 
-				if (enemyUnitHealth > 0) {
+					var enemyUnitHealth = enemyUnit.get('health'),
+						model = enemyUnit.get('model');
 
-					if ( enemyUnit.canStrikeBack(unit) ) {
+					if (enemyUnitHealth > 0) {
 
-						view.showAttack({
-							from: {
-								x: enemyUnit.get('x'),
-								y: enemyUnit.get('y')
-							},
-							to: {
-								x: unit.get('x'),
-								y: unit.get('y')
-							}
-						}).then(function () {
+						if ( enemyUnit.canStrikeBack(unit) ) {
 
-							var atk = enemyUnit.getAttackToUnit(unit);
+							view.showAttack({
+								from: {
+									x: enemyUnit.get('x'),
+									y: enemyUnit.get('y')
+								},
+								to: {
+									x: unit.get('x'),
+									y: unit.get('y')
+								}
+							}).then(function () {
 
-							unit.setBy('health', -atk);
+								var atk = enemyUnit.getAttackToUnit(unit);
 
-							enemyUnit.setBy('xp', atk);
+								unit.setBy('health', -atk);
 
-							return view.showDifferentUnitHealth({
-								unit: unit,
-								differentHealth: -atk
+								enemyUnit.setBy('xp', atk);
+
+								return view.showDifferentUnitHealth({
+									unit: unit,
+									differentHealth: -atk
+								});
+
+							}).then(function () {
+
+								var unitHealth = unit.get('health'),
+									model = unit.get('model');
+
+								if ( unitHealth <= 0 ) {
+
+									model.addGraveInsteadUnit(unit);
+									//uni
+									enemyUnit.autoSetLevel();
+								} else {
+									enemyUnit.autoSetLevel();
+									unit.autoSetLevel();
+								}
+
+								enemyUnit.setBy('poisonCount', unit.get('poisonPeriod') || 0);
+
 							});
 
-						}).then(function () {
-
-							var unitHealth = unit.get('health'),
-								model = unit.get('model');
-
-							if ( unitHealth <= 0 ) {
-
-								model.addGraveInsteadUnit(unit);
-								//uni
-								enemyUnit.autoSetLevel();
-							} else {
-								enemyUnit.autoSetLevel();
-								unit.autoSetLevel();
-							}
-
+						} else {
+							log('-- can NOT strike BACK');
 							enemyUnit.setBy('poisonCount', unit.get('poisonPeriod') || 0);
+							unit.autoSetLevel();
 
-						});
+						}
 
 					} else {
-						log('-- can NOT strike BACK');
-						enemyUnit.setBy('poisonCount', unit.get('poisonPeriod') || 0);
+						model.addGraveInsteadUnit(enemyUnit);
+						log(' -- create grove for enemy unit');
 						unit.autoSetLevel();
-
 					}
 
-				} else {
-					model.addGraveInsteadUnit(enemyUnit);
-					log(' -- create grove for enemy unit');
-					unit.autoSetLevel();
-				}
+				});
+
 
 			});
+
 
 		},
 
