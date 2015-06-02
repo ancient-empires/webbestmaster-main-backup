@@ -1520,6 +1520,7 @@
 		showDifferentUnitHealth: function (data) {
 
 			var view = this,
+				info = view.info,
 				unit = data.unit,
 				differentHealth = data.differentHealth,
 				deferred = $.Deferred(),
@@ -1547,6 +1548,10 @@
 				deferred.resolve();
 
 			}); // work only one time
+
+			if (info.get('fightAnimation') === 'on') {
+				view.get('fightAnimationView').refreshStatusBar();
+			}
 
 			$deltaHealth.addClass('bounce');
 

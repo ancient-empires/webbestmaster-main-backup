@@ -11,7 +11,9 @@
 
 		events: {},
 
-		selectors: {},
+		selectors: {
+			statusBarWrapper: '.js-fight-animation-status-bar'
+		},
 
 		initialize: function (data) { // parentView, parentDeferred, attacker, defender
 
@@ -32,7 +34,25 @@
 
 			parentView.$el.append(view.$el);
 
-			view.get('parentDeferred').resolve();
+			setTimeout(function () {
+				view.get('parentDeferred').resolve();
+			}, 2e3);
+
+
+		},
+
+		refreshStatusBar: function () {
+
+			var view = this,
+				selectors = view.selectors,
+				$el = view.$el,
+				$statusBar = $el.find(selectors.statusBarWrapper),
+				$newStatusBar = $(view.tmpl['fight-animation-status-bar']({
+					attacker: view.get('attacker'),
+					defender: view.get('defender')
+				}));
+
+			$statusBar.empty().html($newStatusBar.html());
 
 		}
 
