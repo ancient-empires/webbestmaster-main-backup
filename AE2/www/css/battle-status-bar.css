@@ -70,8 +70,24 @@
 }
 
 .status-bar-money,
-.status-bar-units {
+.status-bar-units,
+.status-bar-health {
 	padding-top: 0.15rem;
+}
+
+.status-bar-health {
+	text-align: center;
+	font-size: 0;
+	line-height: 0;
+}
+
+.status-bar-health-container {
+	width: 50%;
+}
+
+.status-bar-health-container-defender {
+	left: auto;
+	right: 0;
 }
 
 .status-bar-money {
@@ -93,6 +109,13 @@
 	background-repeat: no-repeat;
 	background-position: center center;
 	float: left;
+}
+
+.status-bar-health-block {
+	display: inline-block;
+	float: none;
+	font-size: 0;
+	line-height: 0;
 }
 
 .status-bar-sign-block-unit-icon {

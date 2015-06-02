@@ -1381,7 +1381,39 @@
 <script type="text/x-template" data-name="fight-animation">
 
 	<div class="fight-animation-wrapper js-fight-animation-wrapper">
-		fight animation is here
+
+
+
+
+		<!-- status bar -->
+
+		<% var arr; %>
+
+		<% [attacker, defender].forEach(function(unit, index){ %>
+
+		<% var unitActionType = index ? 'defender' : 'attacker'; %>
+
+
+		<div class="battle-view-status-bar status-bar-health-container status-bar-health-container-<%= unitActionType %> bg-gradient-color-<%= unit.get('color') %>">
+
+			<div class="status-bar-player-info-container">
+
+				<div class="status-bar-health clear-fix">
+					<% arr = [].concat(unit.get('health').toString().split(''), ['slash'], unit.get('defaultHealth').toString().split('')); %>
+					<% _.each(arr, function(sign) { %>
+					<div class="status-bar-sign-block status-bar-health-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">&nbsp;</div>
+					<% }); %>
+				</div>
+
+			</div>
+
+		</div>
+
+		<% }); %>
+
+
+
+
 	</div>
 
 </script>
