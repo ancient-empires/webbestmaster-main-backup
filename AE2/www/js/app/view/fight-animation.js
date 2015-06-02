@@ -47,12 +47,12 @@
 				selectors = view.selectors,
 				$el = view.$el,
 				$statusBar = $el.find(selectors.statusBarWrapper),
-				$newStatusBar = $(view.tmpl['fight-animation-status-bar']({
+				newStatusBarHtml = $(view.tmpl['fight-animation-status-bar']({
 					attacker: view.get('attacker'),
 					defender: view.get('defender')
 				}));
 
-			$statusBar.empty().html($newStatusBar.html());
+			$statusBar.html(newStatusBarHtml);
 
 		}
 
