@@ -7,3 +7,38 @@
 	z-index: 5;
 	background-color: rgba(255, 125, 84, 0.56);
 }
+
+.fighters-wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	padding-bottom: 3rem;
+}
+
+.fighter-wrapper-attacker,
+.fighter-wrapper-defender {
+	width: 50%;
+	height: 100%;
+	position: relative;
+	float: left;
+}
+
+.fighter-wrapper-defender {
+	-webkit-transform: scaleX(-1);
+}
+
+.fighter-terrain {
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+}
+
+.fighter-terrain-terra {
+	background-image: url(../i/big-terrain/terra.png);
+}
+
+
+
+

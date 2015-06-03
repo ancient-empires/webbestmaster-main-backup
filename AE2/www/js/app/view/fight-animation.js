@@ -21,9 +21,32 @@
 
 			view.extendFromObj(data);
 
+			view.setTerrain(data);
+
 			view.$el = $(view.tmpl['fight-animation'](data));
 
 			view.render();
+
+		},
+
+		setTerrain: function (data) {
+
+			var view = this,
+				parentView = view.get('parentView'),
+				model = parentView.get('model'),
+				attacker = data.attacker,
+				defender = data.defender,
+				attackerTerrain = model.getTerrainByXY({
+					x: attacker.get('x'),
+					y: attacker.get('y')
+				}),
+				defenderTerrain = model.getTerrainByXY({
+					x: defender.get('x'),
+					y: defender.get('y')
+				});
+
+			data.attackerTerrain = attackerTerrain.terrainType;
+			data.defenderTerrain = defenderTerrain.terrainType;
 
 		},
 
@@ -47,12 +70,12 @@
 				selectors = view.selectors,
 				$el = view.$el,
 				$statusBar = $el.find(selectors.statusBarWrapper),
-				newStatusBarHtml = view.tmpl['fight-animation-status-bar']({
+				newStatusBarHtml = $(view.tmpl['fight-animation-status-bar']({
 					attacker: view.get('attacker'),
 					defender: view.get('defender')
-				});
+				}));
 
-			$statusBar.html(newStatusBarHtml);
+			$statusBar.html(newStatusBarHtml.html());
 
 		}
 

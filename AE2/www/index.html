@@ -1382,8 +1382,20 @@
 
 	<div class="fight-animation-wrapper js-fight-animation-wrapper">
 
+		<div class="fighters-wrapper">
+
+			<% [attacker, defender].forEach(function(unit, index){ %>
+
+				<% var unitActionType = index ? 'defender' : 'attacker'; %>
+
+				<div class="js-<%= unitActionType %>-fighter-wrapper fighter-wrapper-<%= unitActionType %> fighter-terrain fighter-terrain-<%= obj[unitActionType + 'Terrain'] %>">
+					<%= unitActionType %>
+				</div>
+
+			<% }); %>
 
 
+		</div>
 
 		<!-- status bar -->
 		<%= window.APP.templateMaster.tmplFn['fight-animation-status-bar'](obj) %>
