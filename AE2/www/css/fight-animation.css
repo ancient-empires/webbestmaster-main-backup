@@ -22,6 +22,7 @@
 	height: 100%;
 	position: relative;
 	float: left;
+	opacity: 0.5;
 }
 
 .fighter-wrapper-defender {
@@ -38,6 +39,36 @@
 .fighter-terrain-terra {
 	background-image: url(../i/big-terrain/terra.png);
 }
+
+.fighter-terrain-road {
+	background-image: url(../i/big-terrain/terra.png);
+}
+
+.fighter-terrain-bridge {
+	background-image: url(../i/big-terrain/terra.png);
+}
+
+.fighter-terrain-hill {
+	background-image: url(../i/big-terrain/terra.png);
+}
+
+.fighter-terrain-forest {
+	background-image: url(../i/big-terrain/terra.png);
+}
+
+.fighter-terrain-stone {
+	background-image: url(../i/big-terrain/terra.png);
+}
+
+.fighter-terrain-water {
+	background-image: url(../i/big-terrain/terra.png);
+}
+
+.fighter-terrain-building {
+	background-image: url(../i/big-terrain/terra.png);
+}
+
+
 
 
 

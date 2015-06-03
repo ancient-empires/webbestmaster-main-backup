@@ -45,6 +45,8 @@
 					y: defender.get('y')
 				});
 
+			// todo: detect building add 'building' type
+
 			data.attackerTerrain = attackerTerrain.terrainType;
 			data.defenderTerrain = defenderTerrain.terrainType;
 
