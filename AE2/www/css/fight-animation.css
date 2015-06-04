@@ -41,31 +41,31 @@
 }
 
 .fighter-terrain-road {
-	background-image: url(../i/big-terrain/terra.png);
+	background-image: url(../i/big-terrain/road.png);
 }
 
 .fighter-terrain-bridge {
-	background-image: url(../i/big-terrain/terra.png);
+	background-image: url(../i/big-terrain/bridge-1.png);
 }
 
 .fighter-terrain-hill {
-	background-image: url(../i/big-terrain/terra.png);
+	background-image: url(../i/big-terrain/hill-1.png);
 }
 
 .fighter-terrain-forest {
-	background-image: url(../i/big-terrain/terra.png);
+	background-image: url(../i/big-terrain/forest-1.png);
 }
 
 .fighter-terrain-stone {
-	background-image: url(../i/big-terrain/terra.png);
+	background-image: url(../i/big-terrain/stone-1.png);
 }
 
 .fighter-terrain-water {
-	background-image: url(../i/big-terrain/terra.png);
+	background-image: url(../i/big-terrain/water.png);
 }
 
 .fighter-terrain-building {
-	background-image: url(../i/big-terrain/terra.png);
+	background-image: url(../i/big-terrain/building-1.png);
 }
 
 
