@@ -15,6 +15,12 @@
 			statusBarWrapper: '.js-fight-animation-status-bar'
 		},
 
+		fighters: {
+			soldier: {
+				count: 5
+			}
+		},
+
 		initialize: function (data) { // parentView, parentDeferred, attacker, defender
 
 			var view = this;
@@ -22,6 +28,8 @@
 			view.extendFromObj(data);
 
 			view.setTerrain(data);
+
+			view.setUnits(data);
 
 			view.$el = $(view.tmpl['fight-animation'](data));
 
@@ -34,8 +42,8 @@
 			var view = this,
 				parentView = view.get('parentView'),
 				model = parentView.get('model'),
-				attacker = data.attacker,
-				defender = data.defender,
+				attacker = data.attacker.unit,
+				defender = data.defender.unit,
 				attackerTerrain = model.getTerrainByXY({
 					x: attacker.get('x'),
 					y: attacker.get('y')
@@ -47,8 +55,14 @@
 
 			// todo: detect building add 'building' type
 
-			data.attackerTerrain = attackerTerrain.terrainType;
-			data.defenderTerrain = defenderTerrain.terrainType;
+			data.attacker.terrain = attackerTerrain.terrainType;
+			data.defender.terrain = defenderTerrain.terrainType;
+
+		},
+
+		setUnits: function (data) {
+
+
 
 		},
 

@@ -1448,8 +1448,12 @@
 				fightAnimationView = new win.APP.BB.FightAnimationView({
 					parentView: view,
 					parentDeferred: deferred,
-					attacker: data.attacker,
-					defender: data.defender
+					attacker: {
+						unit: data.attacker
+					},
+					defender: {
+						unit: data.defender
+					}
 				});
 
 				view.set('fightAnimationView', fightAnimationView);

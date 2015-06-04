@@ -1384,13 +1384,13 @@
 
 		<div class="fighters-wrapper">
 
-			<% [attacker, defender].forEach(function(unit, index){ %>
+			<% [attacker, defender].forEach(function(data, index){ %>
 
-				<% var unitActionType = index ? 'defender' : 'attacker'; %>
+			<% var unitActionType = index ? 'defender' : 'attacker'; %>
 
-				<div class="js-<%= unitActionType %>-fighter-wrapper fighter-wrapper-<%= unitActionType %> fighter-terrain fighter-terrain-<%= obj[unitActionType + 'Terrain'] %>">
-					<%= unitActionType %>
-				</div>
+			<div class="js-<%= unitActionType %>-fighter-wrapper fighter-wrapper-<%= unitActionType %> fighter-terrain fighter-terrain-<%= data.terrain %>">
+				<%= unitActionType %>
+			</div>
 
 			<% }); %>
 
@@ -1408,16 +1408,16 @@
 
 	<div class="js-fight-animation-status-bar">
 
-		<% [attacker, defender].forEach(function(unit, index){ %>
+		<% [attacker, defender].forEach(function(data, index){ %>
 
 			<% var unitActionType = index ? 'defender' : 'attacker'; %>
 
-			<div class="js-<%= unitActionType %>-status-bar-wrapper battle-view-status-bar status-bar-health-container status-bar-health-container-<%= unitActionType %> bg-gradient-color-<%= unit.get('color') %>">
+			<div class="js-<%= unitActionType %>-status-bar-wrapper battle-view-status-bar status-bar-health-container status-bar-health-container-<%= unitActionType %> bg-gradient-color-<%= data.unit.get('color') %>">
 
 				<div class="status-bar-player-info-container">
 
 					<div class="status-bar-health clear-fix">
-						<% var arr = [].concat(unit.get('health').toString().split(''), ['slash'], unit.get('defaultHealth').toString().split('')); %>
+						<% var arr = [].concat(data.unit.get('health').toString().split(''), ['slash'], data.unit.get('defaultHealth').toString().split('')); %>
 						<% _.each(arr, function(sign) { %>
 						<div class="status-bar-sign-block status-bar-health-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">&nbsp;</div>
 						<% }); %>
