@@ -3,7 +3,7 @@
 
 	"use strict";
 	/*global window */
-	/*global */
+	/*global _ */
 
 	win.APP = win.APP || {};
 
@@ -18,6 +18,15 @@
 		fighters: {
 			soldier: {
 				count: 5
+			},
+			archer: {
+				count: 5
+			},
+			golem: {
+				count: 3
+			},
+			valadorn: {
+				count: 3
 			}
 		},
 
@@ -62,7 +71,28 @@
 
 		setUnits: function (data) {
 
+			var view = this;
 
+			_.each(['attacker', 'defender'], function (warriorType) {
+
+				var unitData = data[warriorType],
+					unit = unitData.unit,
+					type = unit.get('type'),
+					health = unit.get('health'),
+					defaultHealth = unit.get('defaultHealth'),
+					fullCount = view.fighters[type].count,
+					count = Math.ceil(health / defaultHealth * fullCount),
+					fighters = [],
+					i, len;
+
+				for (i = 0, len = fullCount; i < len; i += 1) {
+					fighters[i] = i < count;
+				}
+
+				unitData.fullCount = fullCount;
+				unitData.fighters = fighters;
+
+			});
 
 		},
 

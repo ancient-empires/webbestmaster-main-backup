@@ -1386,11 +1386,20 @@
 
 			<% [attacker, defender].forEach(function(data, index){ %>
 
-			<% var unitActionType = index ? 'defender' : 'attacker'; %>
+				<% var unitActionType = index ? 'defender' : 'attacker'; %>
 
-			<div class="js-<%= unitActionType %>-fighter-wrapper fighter-wrapper-<%= unitActionType %> fighter-terrain fighter-terrain-<%= data.terrain %>">
-				<%= unitActionType %>
-			</div>
+				<div class="js-<%= unitActionType %>-fighter-wrapper fighter-wrapper-<%= unitActionType %> fighter-terrain fighter-terrain-<%= data.terrain %>">
+
+					<% _.each(data.fighters, function(value, index){ %>
+						<!-- position animation -->
+						<div class="fighter-position-animation-wrapper-<%= data.unit.get('type') %> fighter-wrapper-<%= data.fullCount %>-<%= index + 1 %><%= value ? '' : ' hidden' %>">
+							<!-- background animation -->
+							<div class="fighter-unit-animation-wrapper-<%= data.unit.get('type') %>">&nbsp;</div>
+
+						</div>
+					<% }); %>
+
+				</div>
 
 			<% }); %>
 
