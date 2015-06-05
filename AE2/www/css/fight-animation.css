@@ -36,7 +36,14 @@
 	background-position: center center;
 }
 
-
+.fighter-unit {
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: contain;
+	background-size: contain;
+	width: 100%;
+	height: 100%;
+}
 
 
 

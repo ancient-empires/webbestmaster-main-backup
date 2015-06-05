@@ -1391,18 +1391,18 @@
 				<div class="js-<%= unitActionType %>-fighter-wrapper fighter-wrapper-<%= unitActionType %> fighter-terrain fighter-terrain-<%= data.terrain %>">
 
 					<% _.each(data.fighters, function(value, index){ %>
-						<!-- position animation -->
-						<div class="fighter-position-animation-wrapper-<%= data.unit.get('type') %> fighter-wrapper-<%= data.fullCount %>-<%= index + 1 %><%= value ? '' : ' hidden' %>">
-							<!-- background animation -->
-							<div class="fighter-unit-animation-wrapper-<%= data.unit.get('type') %>">&nbsp;</div>
 
+					<% var unit = data.unit, unitType = unit.get('type'), unitColor = unit.get('color'); %>
+						<!-- position animation -->
+						<div class="fighter-position-animation-wrapper-<%= unitType %> fighter-wrapper-<%= data.fullCount %>-<%= index + 1 %><%= value ? '' : ' hidden' %>">
+							<!-- background animation -->
+							<div class="fighter-unit-animation-wrapper-<%= unitType %> fighter-unit" style="background-image: url(i/unit-fighter/unit-<%= unitType %>-<%= unitColor %>.png);">&nbsp;</div>
 						</div>
 					<% }); %>
 
 				</div>
 
 			<% }); %>
-
 
 		</div>
 
