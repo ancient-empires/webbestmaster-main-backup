@@ -16,18 +16,56 @@
 		},
 
 		fighters: {
-			soldier: {
+
+			'galamar': {
+				count: 1
+			},
+			'valadorn': {
+				count: 1
+			},
+			'demon-lord': {
+				count: 1
+			},
+			'saeth': {
+				count: 1
+			},
+			'saeth-heavens-fury': {
+				count: 1
+			},
+			'soldier': {
 				count: 5
 			},
-			archer: {
+			'archer': {
 				count: 5
 			},
-			golem: {
+			'elemental': {
+				count: 5
+			},
+			'sorceress': {
+				count: 5
+			},
+			'wisp': {
+				count: 5
+			},
+			'dire-wolf': {
 				count: 3
 			},
-			valadorn: {
+			'golem': {
 				count: 3
+			},
+			'catapult': {
+				count: 3
+			},
+			'dragon': {
+				count: 1
+			},
+			'skeleton': {
+				count: 5
+			},
+			'crystal': {
+				count: 5
 			}
+
 		},
 
 		initialize: function (data) { // parentView, parentDeferred, attacker, defender
