@@ -858,5 +858,9 @@ window.devices = [
   {
     "product": null,
     "deviceName": "cooper"
+  },
+  {
+    "product": null,
+    "deviceName": "md706"
   }
 ]
