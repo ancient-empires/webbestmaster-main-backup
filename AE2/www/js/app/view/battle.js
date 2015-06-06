@@ -1437,34 +1437,34 @@
 
 		},
 
-		showFightScreen: function (data) {
-
-			var view = this,
-				info = view.info,
-				deferred = $.Deferred(),
-				fightAnimationView;
-
-			if (info.get('fightAnimation') === 'on') {
-				fightAnimationView = new win.APP.BB.FightAnimationView({
-					parentView: view,
-					parentDeferred: deferred,
-					attacker: {
-						unit: data.attacker
-					},
-					defender: {
-						unit: data.defender
-					}
-				});
-
-				view.set('fightAnimationView', fightAnimationView);
-
-			} else {
-				deferred.resolve();
-			}
-
-			return deferred.promise();
-
-		},
+		//showFightScreen: function (data) {
+		//
+		//	var view = this,
+		//		info = view.info,
+		//		deferred = $.Deferred(),
+		//		fightAnimationView;
+		//
+		//	if (info.get('fightAnimation') === 'on') {
+		//		fightAnimationView = new win.APP.BB.FightAnimationView({
+		//			parentView: view,
+		//			parentDeferred: deferred,
+		//			attacker: {
+		//				unit: data.attacker
+		//			},
+		//			defender: {
+		//				unit: data.defender
+		//			}
+		//		});
+		//
+		//		view.set('fightAnimationView', fightAnimationView);
+		//
+		//	} else {
+		//		deferred.resolve();
+		//	}
+		//
+		//	return deferred.promise();
+		//
+		//},
 
 		showAttack: function (data) {
 
@@ -1553,9 +1553,9 @@
 
 			}); // work only one time
 
-			if (info.get('fightAnimation') === 'on') {
-				view.get('fightAnimationView').refreshStatusBar();
-			}
+			//if (info.get('fightAnimation') === 'on') {
+			//	view.get('fightAnimationView').refreshStatusBar();
+			//}
 
 			$deltaHealth.addClass('bounce');
 

@@ -882,10 +882,10 @@
 			var unit = this,
 				view = unit.get('view');
 
-			view.showFightScreen({
-				attacker: unit,
-				defender: enemyUnit
-			}).then(function () {
+			//view.showFightScreen({
+			//	attacker: unit,
+			//	defender: enemyUnit
+			//}).then(function () {
 
 				view.showAttack({
 					attacker: unit,
@@ -981,7 +981,7 @@
 				});
 
 
-			});
+			//});
 
 
 		},
