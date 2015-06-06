@@ -1378,6 +1378,7 @@
 
 </script>
 
+<!--
 <script type="text/x-template" data-name="fight-animation">
 
 	<div class="fight-animation-wrapper js-fight-animation-wrapper">
@@ -1393,9 +1394,7 @@
 					<% _.each(data.fighters, function(value, index){ %>
 
 					<% var unit = data.unit, unitType = unit.get('type'), unitColor = unit.get('color'); %>
-						<!-- position animation -->
 						<div class="fighter-position-animation-wrapper-<%= unitType %> fighter-wrapper-<%= data.fullCount %>-<%= index + 1 %><%= value ? '' : ' hidden' %>">
-							<!-- background animation -->
 							<div class="fighter-unit-animation-wrapper-<%= unitType %> fighter-unit" style="background-image: url(i/unit-fighter/unit-<%= unitType %>-<%= unitColor %>.png);">&nbsp;</div>
 						</div>
 					<% }); %>
@@ -1406,7 +1405,6 @@
 
 		</div>
 
-		<!-- status bar -->
 		<%= window.APP.templateMaster.tmplFn['fight-animation-status-bar'](obj) %>
 
 	</div>
@@ -1441,6 +1439,8 @@
 	</div>
 
 </script>
+
+ -->
 
 <script type="text/x-template" data-name="game-speed">
 
