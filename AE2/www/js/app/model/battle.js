@@ -284,13 +284,18 @@
 				grave = win.APP.unitMaster.createGrave({
 					x: unit.get('x'),
 					y: unit.get('y')
-				});
+				}),
+				activePlayer = model.get('activePlayer');
 
 			model.removeUnit(unit);
 			view.removeUnit(unit);
 
 			model.checkPlayerDefeat();
 			model.checkEndMission();
+
+			if (unit.get('ownerId') === activePlayer.id) {
+				view.updateStatusBar();
+			}
 
 			if (withoutGrave) {
 				return;
