@@ -64,6 +64,10 @@
 					return;
 				}
 
+				if ( null === building.teamNumber ) { // do not destroy no man's building
+					return;
+				}
+
 				if ( _.find(underAttackXYs, xy) ) { // do not add the same XY twice
 					return;
 				}
@@ -135,7 +139,15 @@
 					return true;
 				}
 
-				return building.teamNumber === unitTeamNumber;
+				if ( building.teamNumber === unitTeamNumber ) {
+					return true;
+				}
+
+				//if ( null === building.teamNumber ) {
+				//	return true;
+				//}
+				//return false;
+				return null === building.teamNumber;
 
 			});
 
