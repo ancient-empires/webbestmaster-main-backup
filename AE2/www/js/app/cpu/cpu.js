@@ -595,7 +595,7 @@
 
 					case 'attack':
 
-						// todo: add IF for cristal, cristal can not attack
+						// todo: add IF for cristal, cristal can not attack - needless for CPU
 
 						if ( !(unit.get('canNotActionAfterMove') && ( unitX !== x || unitY !== y )) ) { // detect moved catapult
 
@@ -826,16 +826,16 @@
 				return;
 			}
 
-			if ( actionName === 'fixBuilding' ) { // do not fix if unit can attack
-				scenario.set('isAvailable', !isUnitOnXY);
+			//if ( actionName === 'fixBuilding' ) { // do not fix if unit can attack
+				//scenario.set('isAvailable', !isUnitOnXY);
 				// todo: why need disable attack of all scenarios
 				//_.each(allScenarios, function (sc) {
 				//	if (sc.get('x') === x && sc.get('y') === y && sc.get('action').name === 'attack') {
 				//		scenario.set('isAvailable', false);
 				//	}
 				//});
-				return;
-			}
+				//return;
+			//}
 
 			scenario.set('isAvailable', !isUnitOnXY);
 
