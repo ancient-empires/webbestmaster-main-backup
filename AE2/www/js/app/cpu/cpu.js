@@ -1018,7 +1018,10 @@
 			});
 
 			building = model.getBuildingByXY({ x: x, y: y });
-			if ( building && (building.ownerId === unit.get('ownerId') || _.contains(buildingUpHealthList, building.type) ) ) {
+			if ( building &&
+				building.ownerId === unit.get('ownerId') ||
+				_.contains(buildingUpHealthList, building.type) ||
+				building.teamNumber === unit.get('teamNumber') ) {
 				upHealth = buildingList[building.type].healthUp;
 				upHealth = Math.min(upHealth, unit.get('defaultHealth') - unit.get('health'));
 				onHealthUpBuilding = rates.onHealthUpBuilding;
