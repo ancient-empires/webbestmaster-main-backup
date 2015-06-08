@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+	<!-- mobile device -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+</head>
+<body>
+
+<h1>parent window</h1>
+
+<iframe src="http://statlex.com/add/iframe.html" frameborder="0"></iframe>
+
+<button onclick="javascript: document.querySelector('iframe').contentWindow.postMessage('from parent', 'http://statlex.com');">click me</button>
+
+<script type="text/javascript">
+
+
+	var handleSizingResponse = function(e) {
+//		alert('from - iframe ' + JSON.stringify(e.data));
+
+//		if(e.origin == 'http://remote-domain.com') {
+//			var action = e.data.split(':')[0]
+//			if(action == 'sizing') {
+//				resizeCanvas(e.data.split(':')[1]);
+//			} else {
+//				console.log("Unknown message: "+e.data);
+//			}
+//		}
+	}
+
+	window.addEventListener('message', handleSizingResponse, false);
+
+</script>
+
+
+<!--
+<div id="fb-root"></div>
+
+<div class="fb-login-button">Login with Facebook</div>
+
+<div
+		class="fb-like"
+		data-share="true"
+		data-width="450"
+		data-show-faces="true">
+</div>
+
+<script>
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId      : '1617325145216800',
+			xfbml      : true,
+			version    : 'v2.3'
+		});
+	};
+
+	(function(d, s, id){
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+-->
+
+
+</body>
+</html>
