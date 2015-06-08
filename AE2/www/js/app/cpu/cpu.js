@@ -430,6 +430,8 @@
 				cpu.setAutoRate(scenario, scenarios);
 			});
 
+			// todo: do all simple rate before here
+
 			cpu.setAutoRateBuildingWork(scenarios);
 
 			scenarios = _.filter(scenarios, function (scenario) {
@@ -726,7 +728,6 @@
 			},
 
 			maxAvailableReceiveDamage: 80,
-			onCanEnemyGetBuilding: 200, // high priority
 			onHealthUpBuilding: 5
 		},
 
@@ -748,7 +749,6 @@
 			},
 
 			maxAvailableReceiveDamage: 80,
-			onCanEnemyGetBuilding: 200, // high priority
 			onHealthUpBuilding: 5
 		},
 
@@ -770,7 +770,6 @@
 			},
 
 			maxAvailableReceiveDamage: 80,
-			onCanEnemyGetBuilding: 200, // high priority
 			onHealthUpBuilding: 1
 		},
 
@@ -792,7 +791,6 @@
 			},
 
 			maxAvailableReceiveDamage: 800,
-			onCanEnemyGetBuilding: 0, // high priority
 			onHealthUpBuilding: 0
 		},
 
@@ -855,13 +853,15 @@
 				rates = cpu.rates,
 				rate = 0;
 
-			cpu.setAutoIsAvailableScenario(scenario, allScenarios);
+			cpu.setAutoIsAvailableScenario(scenario, allScenarios); // detect raise sceleton
 
 			if ( !scenario.get('isAvailable') ) {
 				return;
 			}
 
 			cpu.insertDataByPosition(scenario);
+
+			// todo: I stay here
 
 			switch (actionName) {
 
@@ -1019,9 +1019,9 @@
 
 			building = model.getBuildingByXY({ x: x, y: y });
 			if ( building &&
-				building.ownerId === unit.get('ownerId') ||
+				(building.ownerId === unit.get('ownerId') ||
 				_.contains(buildingUpHealthList, building.type) ||
-				building.teamNumber === unit.get('teamNumber') ) {
+				building.teamNumber === unit.get('teamNumber')) ) {
 				upHealth = buildingList[building.type].healthUp;
 				upHealth = Math.min(upHealth, unit.get('defaultHealth') - unit.get('health'));
 				onHealthUpBuilding = rates.onHealthUpBuilding;
@@ -1084,10 +1084,6 @@
 
 					if ( !_.find(path, xy) || !buildingTypeList ) {
 						return;
-					}
-
-					if ( _.contains(buildingTypeList, building.type) ) {
-						rate = rates.onCanEnemyGetBuilding;
 					}
 
 				});
@@ -1242,30 +1238,6 @@
 
 			// can enemy get building
 			building = model.getBuildingByXY({ x: unitX, y: unitY });
-
-			if ( building ) {
-
-				_.each(enemyUnits, function (enemy) {
-
-					var path = enemy.getAvailablePathFull(),
-						enemyBuildingTypeList = enemy.get('listOccupyBuilding');
-
-					if ( !_.find(path, { x: unitX, y: unitY }) || !enemyBuildingTypeList ) {
-						return;
-					}
-
-					if ( _.contains(enemyBuildingTypeList, building.type) ) {
-						if ( isStartXY ) { // detect attack from building
-							rate += rates.onCanEnemyGetBuilding;
-						} else {
-							rate = rates.lowPriority;
-						}
-					}
-
-				});
-
-			}
-
 
 			if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
 				log(' -- attack - maxAvailableReceiveDamage!!!');
