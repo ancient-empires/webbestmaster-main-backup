@@ -225,12 +225,12 @@
 				unitMaster = win.APP.unitMaster,
 				unitCounts = [
 					{ type: 'soldier', 		count: 2, currentCount: 0 },
-					{ type: 'archer',		count: 2, currentCount: 0 },
-					{ type: 'sorceress', 	count: 1, currentCount: 0 }
+					{ type: 'archer',		count: 2, currentCount: 0 }
+					//{ type: 'sorceress', 	count: 1, currentCount: 0 }
 					//{ type: 'golem',	 	count: 1, currentCount: 0 },
 					//{ type: 'dire-wolf',	count: 1, currentCount: 0 }
 				],
-				otherUnits = ['soldier', 'archer', 'sorceress', 'golem', 'dire-wolf', 'dragon', 'catapult', 'golem', 'dire-wolf', 'dragon', 'catapult'];
+				otherUnits = ['soldier', 'archer', 'sorceress', 'sorceress', 'golem', 'dire-wolf', 'dragon', 'catapult', 'sorceress', 'golem', 'dire-wolf', 'dragon'];
 
 			unitCounts = assortArray(unitCounts);
 
