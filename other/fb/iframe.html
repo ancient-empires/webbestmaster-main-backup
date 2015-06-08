@@ -19,6 +19,9 @@
 	})();
 </script>
 
+<button onclick="javscript: gapi.auth.signOut();">logout</button>
+<button onclick="javscript: getEmail();">get e-mail</button>
+
 <script type="text/javascript">
 
 	function signinCallback(authResult) {
@@ -34,6 +37,7 @@
 			getEmail();
 
 		} else if (authResult['error']) {
+			alert('log out');
 			// Произошла ошибка.
 			// Возможные коды ошибок:
 			//   "access_denied" – пользователь отказался предоставить приложению доступ к данным
@@ -58,15 +62,16 @@
 
 
 <span id="signinButton">
+
   <span
 		  class="g-signin"
 		  data-callback="signinCallback"
-		  data-approvalprompt="force"
 		  data-clientid="318371264940-fm4d2matpc7kei3a0kf5rko51c3kvcot.apps.googleusercontent.com"
 		  data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email"
 		  data-height="short"
 		  data-cookiepolicy="http://statlex.com/">
   </span>
+
 </span>
 
 
@@ -119,7 +124,7 @@
 				// the user is logged in to Facebook,
 				// but has not authenticated your app
 			} else {
-				alert('isn\'t logged in to Facebook');
+//				alert('isn\'t logged in to Facebook');
 				// the user isn't logged in to Facebook.
 			}
 		});
