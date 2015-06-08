@@ -35,7 +35,7 @@
 
 			underAttackXYs = unit.filterExtraXYs(underAttackXYs);
 
-			availableAttackMap = unit.getAvailableAttackMap();
+			availableAttackMap = unit.filterExtraXYs(unit.getAvailableAttackMap());
 
 			_.each(buildings, function (building) {
 
@@ -48,7 +48,7 @@
 					availableStates = win.APP.building.list[type].availableStates,
 					unitOnXY = model.getUnitByXY(xy);
 
-				if ( !_.find(availableAttackMap, xy) ) { // do not ad extra buildings
+				if ( !_.find(availableAttackMap, xy) ) { // do not add extra buildings
 					return;
 				}
 
