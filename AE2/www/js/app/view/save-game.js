@@ -16,10 +16,10 @@
 			saveInputText: '.js-save-input-text',
 			savedList: '.js-saved-list',
 			saveGame: '.js-save-game',
-			scrollAreaContainer: '.js-scroll-area-container',
 			removeSavedGame: '.js-remove-saved-game',
 			savedItemWrapper: '.js-saved-item-wrapper',
-			closeDeleteConfirm: '.js-close-delete-confirm'
+			closeDeleteConfirm: '.js-close-delete-confirm',
+			container: '.js-popup-container'
 		},
 
 		events: {
@@ -94,21 +94,22 @@
 		onFocusSaveInputText: function () {
 
 			var view = this,
-				$container = view.$el.find(view.selectors.scrollAreaContainer);
+				$container = view.$el.closest(view.selectors.container);
 
 			setTimeout(function () {
 				$container.addClass('small-area-container');
 			}, 400);
-
 
 		},
 
 		onBlurSaveInputText: function () {
 
 			var view = this,
-				$container = view.$el.find(view.selectors.scrollAreaContainer);
+				$container = view.$el.closest(view.selectors.container);
 
-			$container.removeClass('small-area-container');
+			setTimeout(function () {
+				$container.removeClass('small-area-container');
+			}, 200);
 
 		},
 
