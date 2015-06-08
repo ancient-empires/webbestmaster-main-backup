@@ -358,4 +358,42 @@
 		return false;
 	};
 
+	////////////////////////
+	// EVENTS
+	////////////////////////
+
+	fn.on = function(types, selector, data, fn) {
+		var length = this.length,
+			i = 0;
+
+		if (data == null && fn == null) {
+			// (types, fn)
+			fn = selector;
+			data = selector = undefined;
+		} else if (fn == null) {
+			if (typeof selector === "string") {
+				// (types, selector, fn)
+				fn = data;
+				data = undefined;
+			} else {
+				// (types, data, fn)
+				fn = data;
+				data = selector;
+				selector = undefined;
+			}
+		}
+
+		if (!fn) {
+			return this;
+		}
+
+		for (; i < length; i++) {
+			console.warn('ADD EVENT HERE!!');
+			//jBone.event.add(this[i], types, fn, data, selector);
+		}
+
+		return this;
+	};
+
+
 }(window, window.document));
