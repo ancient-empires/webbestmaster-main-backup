@@ -43,22 +43,27 @@
 /* castles */
 .building-castle-gray {
 	background-image: url(../i/map/building/castle-gray.png);
+	z-index: 1;
 }
 
 .building-castle-green {
 	background-image: url(../i/map/building/castle-green.png);
+	z-index: 1;
 }
 
 .building-castle-blue {
 	background-image: url(../i/map/building/castle-blue.png);
+	z-index: 1;
 }
 
 .building-castle-red {
 	background-image: url(../i/map/building/castle-red.png);
+	z-index: 1;
 }
 
 .building-castle-black {
 	background-image: url(../i/map/building/castle-black.png);
+	z-index: 1;
 }
 /* end castles */
 
