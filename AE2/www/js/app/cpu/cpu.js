@@ -400,6 +400,7 @@
 			}
 
 			var cpu = this,
+				rates = cpu.rates,
 				model = cpu.get('model'),
 				player = cpu.get('player'),
 				//playerTeamNumber = player.teamNumber,
@@ -411,7 +412,8 @@
 				privateUnits = model.getUnitsByOwnerId(player.id),
 				//wholes = [], // x, y, and who can ignore this whole
 				scenarios = [],
-				bestScenario;
+				bestScenario,
+				scenarioIsDone = false;
 
 			// get ALL scenarios, except nonActive units
 			_.each(privateUnits, function (unit) {
@@ -426,82 +428,112 @@
 			});
 
 			_.each(scenarios, function (scenario) {
-				cpu.setAutoRate(scenario, scenarios);
+				cpu.setAutoAvailableByPosition(scenario); // detect available position TODO: need implement
+				cpu.setAutoAvailableByCanEnemyGetBuilding(scenario); // detect available position
+				cpu.setAutoAvailableByRaiseSkeleton(scenario); // detect raise skeleton
 			});
-
-			_.each(scenarios, function (scenario) {
-				cpu.setAutoIsAvailableByRaiseSkeleton(scenario); // detect raise skeleton
-
-			});
-
-
-			cpu.setAutoRateBuildingWork(scenarios);
 
 			scenarios = _.filter(scenarios, function (scenario) {
 				return scenario.get('isAvailable');
 			});
+
+			_.each(scenarios, function (scenario) {
+				cpu.setAutoRate(scenario, scenarios);
+			});
+
+			cpu.setAutoRateBuildingWork(scenarios);
+
 
 			if ( !scenarios.length ) {
 				model.newTurn();
 				return;
 			}
 
+			// find get building - 1
+			// find raise skeleton - 2
+			// find attack - 3
+			// find fix building - 4
+			// find move - 5
+
 			scenarios = scenarios.sort(function (sc1, sc2) {
 				return sc2.get('rate') - sc1.get('rate');
 			});
 
-			// detect no move and no attack scenario
-			bestScenario = scenarios[0];
-			if ( !/move|attack/.test(bestScenario.get('action').name) ) {
-				cpu.runScenario(bestScenario);
+			// find get building - 1
+			(function () {
+				var getBuildingScenarios = _.filter(scenarios, function (scenario) {
+					return scenario.get('action').name === 'getBuilding';
+				});
+				if ( !getBuildingScenarios.length ) {
+					return;
+				}
+				cpu.runScenario( getBuildingScenarios[0] );
+				scenarioIsDone = true;
+			}());
+
+			if ( scenarioIsDone ) {
 				return;
 			}
 
-			// find best attack scenario
-			bestScenario = false;
-			_.each(scenarios, function (scenario) {
-				if ( scenario.get('action').name !== 'attack' ) {
+			// find raise skeleton - 2
+			(function () {
+				var raiseSkeletonScenarios = _.filter(scenarios, function (scenario) {
+					return scenario.get('action').name === 'raiseSkeleton';
+				});
+				if ( !raiseSkeletonScenarios.length ) {
 					return;
 				}
+				cpu.runScenario( raiseSkeletonScenarios[0] );
+				scenarioIsDone = true;
+			}());
 
-				if ( !bestScenario ) {
-					bestScenario = scenario;
-				}
-
-				if ( scenario.get('rate') > bestScenario.get('rate') ) {
-					bestScenario = scenario;
-				}
-
-			});
-
-			if ( bestScenario && bestScenario.get('rate') > 0 ) {
-				cpu.runScenario(bestScenario);
+			if ( scenarioIsDone ) {
 				return;
 			}
 
-
-			// find best move scenario
-			bestScenario = false;
-			_.each(scenarios, function (scenario) {
-
-				if ( scenario.get('action').name !== 'move' ) {
+			// find attack - 3
+			(function () {
+				var attackScenarios = _.filter(scenarios, function (scenario) {
+					return scenario.get('action').name === 'attack' && scenario.get('rate') !== rates.lowPriority;
+				});
+				if ( !attackScenarios.length ) {
 					return;
 				}
+				cpu.runScenario( attackScenarios[0] );
+				scenarioIsDone = true;
+			}());
 
-				if ( !bestScenario ) {
-					bestScenario = scenario;
+			if ( scenarioIsDone ) {
+				return;
+			}
+
+			// find fix building - 4
+			(function () {
+				var fixBuildingScenarios = _.filter(scenarios, function (scenario) {
+					return scenario.get('action').name === 'fixBuilding';
+				});
+				if ( !fixBuildingScenarios.length ) {
+					return;
 				}
+				cpu.runScenario( fixBuildingScenarios[0] );
+				scenarioIsDone = true;
+			}());
 
-				if ( scenario.get('rate') > bestScenario.get('rate') ) {
-					bestScenario = scenario;
+			if ( scenarioIsDone ) {
+				return;
+			}
+
+			// find move - 5
+			(function () {
+				var moveScenarios = _.filter(scenarios, function (scenario) {
+					return scenario.get('action').name === 'move' && scenario.get('rate') !== rates.lowPriority;
+				});
+				if ( !moveScenarios.length ) {
+					return;
 				}
-
-			});
-
-			cpu.runScenario(bestScenario);
-
-			//log('scenarios');
-			//log(scenarios);
+				cpu.runScenario( moveScenarios[0] );
+				scenarioIsDone = true;
+			}());
 
 		},
 
@@ -789,7 +821,7 @@
 			onHealthUpBuilding: 0
 		},
 
-		setAutoIsAvailableByRaiseSkeleton: function (scenario) {
+		setAutoAvailableByRaiseSkeleton: function (scenario) {
 
 			var cpu = this,
 				model = cpu.get('model'),
@@ -810,27 +842,130 @@
 
 			// raise
 			if ( actionName === 'raiseSkeleton' ) {
-
 				graveXY = action.grave;
 				unitOnGraveXY = model.getUnitByXY(graveXY);
 				isUnitOnGraveXY = unitOnGraveXY && unitOnGraveXY !== unit;
-
-				scenario.set('isAvailable', !(isUnitOnXY || isUnitOnGraveXY));
-				return;
+				if ( isUnitOnXY || isUnitOnGraveXY ) {
+					scenario.set('isAvailable', false);
+				}
 			}
 
-			//if ( actionName === 'fixBuilding' ) { // do not fix if unit can attack
-				//scenario.set('isAvailable', !isUnitOnXY);
-				// todo: why need disable attack of all scenarios
-				//_.each(allScenarios, function (sc) {
-				//	if (sc.get('x') === x && sc.get('y') === y && sc.get('action').name === 'attack') {
-				//		scenario.set('isAvailable', false);
-				//	}
-				//});
-				//return;
-			//}
+
+		},
+
+		setAutoAvailableByPosition: function (scenario) {
+			var cpu = this,
+				model = cpu.get('model'),
+				unit = scenario.get('unit'),
+				x = scenario.get('x'),
+				y = scenario.get('y'),
+				xy = {
+					x: x,
+					y: y
+				},
+				unitOnXY = model.getUnitByXY(xy),
+				isUnitOnXY = unitOnXY && unitOnXY !== unit;
 
 			scenario.set('isAvailable', !isUnitOnXY);
+
+		},
+
+		// detect enemy can get your building
+		setAutoAvailableByCanEnemyGetBuilding: function (scenario) {
+
+			var cpu = this,
+				model = cpu.get('model'),
+				allUnits = model.get('units'),
+				unit = scenario.get('unit'),
+				unitTeamNumber = unit.get('teamNumber'),
+				nearestUnitBuilding = [],
+				nearestEnemyBuilding = [],
+				enemyUnits = [],
+				teamUnits = [],
+				x = scenario.get('x'),
+				y = scenario.get('y'),
+				xy = {
+					x: x,
+					y: y
+				},
+				availablePathWithTeamUnit,
+				availablePathViewWithoutTeamUnit
+				;
+
+			// get team and enemy units
+			_.each(allUnits, function (unit) {
+				if ( unit.get('teamNumber') === unitTeamNumber ) {
+					teamUnits.push(unit);
+				} else {
+					enemyUnits.push(unit);
+				}
+			});
+
+			enemyUnits = _.filter(enemyUnits, function (enemyUnit) {
+				return enemyUnit.get('listOccupyBuilding');
+			});
+
+			availablePathWithTeamUnit = unit.getAvailablePathWithTeamUnit();
+
+			// get available path view withOUT team unit
+			availablePathViewWithoutTeamUnit = _.filter(availablePathWithTeamUnit, function (xy) {
+				var founded = false;
+				_.each(teamUnits, function (unit) {
+					if ( unit.get('x') === xy.x && unit.get('y') === xy.y ) {
+						founded = true;
+					}
+				});
+				return !founded;
+			});
+
+			availablePathViewWithoutTeamUnit.push({
+				x: unit.get('x'),
+				y: unit.get('y')
+			});
+
+			_.each(enemyUnits, function (enemyUnit) {
+
+				var availablePath = enemyUnit.getAvailablePathWithTeamUnit();
+
+				_.each(availablePath, function (xy) {
+
+					var building = model.getBuildingByXY(xy);
+
+					if (!building) {
+						return;
+					}
+
+					if (enemyUnit.get('listOccupyBuilding').indexOf(building.type) === -1) {
+						return;
+					}
+
+					nearestEnemyBuilding.push(building);
+
+				});
+
+			});
+
+			_.each(availablePathViewWithoutTeamUnit, function (xy) {
+
+				var building = model.getBuildingByXY(xy);
+
+				if ( !building ) {
+					return;
+				}
+
+				if ( nearestEnemyBuilding.indexOf(building) === -1 ) {
+					return;
+				}
+
+				nearestUnitBuilding.push(building);
+
+			});
+
+			//if ( _.find(nearestUnitBuilding, xy) ) {
+				log('DETECT WHEN ENEMY CAN GET BUILDING');
+				log(nearestUnitBuilding);
+			//}
+
 
 		},
 
