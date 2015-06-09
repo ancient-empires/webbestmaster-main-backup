@@ -394,17 +394,16 @@
 
 		turnUnit: function () {
 
-			var cpu = this,
-				model = cpu.get('model');
-
-			if ( model.get('isEndGame') ) {
+			if ( this.get('model').get('isEndGame') ) {
 				log('end game from CPU');
 				return;
 			}
 
-			var player = cpu.get('player'),
+			var cpu = this,
+				model = cpu.get('model'),
+				player = cpu.get('player'),
 				//playerTeamNumber = player.teamNumber,
-				units = model.get('units'),
+				//units = model.get('units'),
 				//buildings = model.get('building'),
 				//enemyUnit = _.filter(units, function (unit) {
 				//	return unit.get('teamNumber') !== playerTeamNumber;
@@ -429,6 +428,12 @@
 			_.each(scenarios, function (scenario) {
 				cpu.setAutoRate(scenario, scenarios);
 			});
+
+			_.each(scenarios, function (scenario) {
+				cpu.setAutoIsAvailableByRaiseSkeleton(scenario); // detect raise skeleton
+
+			});
+
 
 			cpu.setAutoRateBuildingWork(scenarios);
 
@@ -784,7 +789,7 @@
 			onHealthUpBuilding: 0
 		},
 
-		setAutoIsAvailableScenario: function (scenario, allScenarios) {
+		setAutoIsAvailableByRaiseSkeleton: function (scenario) {
 
 			var cpu = this,
 				model = cpu.get('model'),
@@ -831,6 +836,10 @@
 
 		setAutoRate: function (scenario, allScenarios) {
 
+			if ( !scenario.get('isAvailable') ) {
+				return;
+			}
+
 			var cpu = this,
 				action = scenario.get('action'),
 				actionName = action.name,
@@ -842,12 +851,6 @@
 				unit = scenario.get('unit'),
 				rates = cpu.rates,
 				rate = 0;
-
-			cpu.setAutoIsAvailableScenario(scenario, allScenarios); // detect raise sceleton
-
-			if ( !scenario.get('isAvailable') ) {
-				return;
-			}
 
 			cpu.insertDataByPosition(scenario);
 
@@ -1080,9 +1083,9 @@
 
 				_.each(wantedBuildings, function (building) {
 
-					var unit = model.getUnitByXY(building);
+					var teamUnit = model.getUnitByXY(building);
 
-					if ( unit && unit.get('teamNumber') === unitTeamNumber && _.contains(unit.get('listOccupyBuilding'), building.type) ) {
+					if ( teamUnit && teamUnit.get('teamNumber') === unitTeamNumber && _.contains(teamUnit.get('listOccupyBuilding'), building.type) ) {
 						return;
 					}
 
@@ -1197,7 +1200,7 @@
 			if ( availableGivenDamage >= enemyHealth ) {
 				rate = rates.killUnit;
 			} else {
-				if ( availableResponseDamage < unit.get('health') - 10) { // detect: unit will be alive after attack
+				if ( availableResponseDamage < unit.get('health') - 10 ) { // detect: unit will be alive after attack
 					rate = availableGivenDamage; // unit alive
 				} else {
 					rate = rates.lowPriority;  // unit die
