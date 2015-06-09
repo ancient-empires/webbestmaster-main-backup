@@ -726,7 +726,7 @@
 				upHealth: 1
 			},
 
-			onHealthUpBuilding: 5
+			onHealthUpBuilding: 10
 		},
 
 		rates_hard: { // default rates
@@ -745,7 +745,7 @@
 				upHealth: 1
 			},
 
-			onHealthUpBuilding: 5
+			onHealthUpBuilding: 10
 		},
 
 		rates_normal: {
@@ -1166,21 +1166,21 @@
 			var cpu = this,
 				rates = cpu.rates,
 				model = cpu.get('model'),
-				allUnits = model.get('units'),
-				enemyUnits,
+				//allUnits = model.get('units'),
+				//enemyUnits,
 				scenario = data.scenario,
 				action = scenario.get('action'),
 				scenarioX = scenario.get('x'),
 				scenarioY = scenario.get('y'),
-				xy = {
-					x: scenarioX,
-					y: scenarioY
-				},
+				//xy = {
+				//	x: scenarioX,
+				//	y: scenarioY
+				//},
 				unit = scenario.get('unit'),
-				unitTeamNumber = unit.get('teamNumber'),
+				//unitTeamNumber = unit.get('teamNumber'),
 				unitX = unit.get('x'),
 				unitY = unit.get('y'),
-				isStartXY = unitX === scenarioX && unitY === scenarioY,
+				//isStartXY = unitX === scenarioX && unitY === scenarioY,
 				enemyXY = action.enemy,
 				enemy = model.getUnitByXY(enemyXY),
 				enemyHealth = enemy ? enemy.get('health') : 0,
@@ -1188,7 +1188,7 @@
 				availableGivenDamage,
 				availableResponseDamage = 0,
 				dataByPosition = scenario.get('dataByPosition'),
-				building,
+				//building,
 				rate;
 
 			if ( !enemy && enemyBuilding && unit.get('canDestroyBuilding') ) {
@@ -1212,33 +1212,31 @@
 			}
 
 			if ( availableGivenDamage >= enemyHealth ) {
-				rate = rates.killUnit;
+				rate = rates.killUnit + dataByPosition.onHealthUpBuilding;
 			} else {
 				if ( availableResponseDamage < unit.get('health') - 10) { // detect: unit will be alive after attack
-					rate = availableGivenDamage - availableResponseDamage * 0.3; // unit alive
+					rate = availableGivenDamage + dataByPosition.onHealthUpBuilding; // unit alive
 				} else {
 					rate = rates.lowPriority;  // unit die
 				}
 			}
 
-			rate += dataByPosition.onHealthUpBuilding;
-
-			enemyUnits = _.filter(allUnits, function (unit) {
-				return unit.get('teamNumber') !== unitTeamNumber;
-			});
-
-			// can enemy get building
-			building = model.getBuildingByXY({ x: unitX, y: unitY });
-
-			//if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
-			//	log(' -- attack - maxAvailableReceiveDamage!!!');
+			//enemyUnits = _.filter(allUnits, function (unit) {
+			//	return unit.get('teamNumber') !== unitTeamNumber;
+			//});
+			//
+			//// can enemy get building
+			//building = model.getBuildingByXY({ x: unitX, y: unitY });
+			//
+			////if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
+			////	log(' -- attack - maxAvailableReceiveDamage!!!');
+			////	rate = rates.lowPriority;
+			////}
+			//
+			//if ( dataByPosition.availableReceiveDamage >= unit.get('health') * 2 ) {
+			//	log(' -- move - can be die !!!');
 			//	rate = rates.lowPriority;
 			//}
-
-			if ( dataByPosition.availableReceiveDamage >= unit.get('health') * 2 ) {
-				log(' -- move - can be die !!!');
-				rate = rates.lowPriority;
-			}
 
 			unit.set('x', unitX);
 			unit.set('y', unitY);
