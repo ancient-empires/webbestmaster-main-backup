@@ -931,20 +931,15 @@
 					var actionName = scenario.get('action').name,
 						rate = scenario.get('rate');
 
-					switch ( actionName ){
+					switch ( actionName ) {
 						case 'fixBuilding':
 							scenario.set('rate', rate + severalBuildings * fixBuildingCount);
 							break;
 						case 'getBuilding':
 							scenario.set('rate', rate + severalBuildings * getBuildingCount);
 							break;
-
-						// todo; ??????
-
-						case 'move':
-							scenario.set('rate', rate + severalBuildings * (getBuildingCount + fixBuildingCount));
-							break;
 					}
+
 				});
 			});
 
