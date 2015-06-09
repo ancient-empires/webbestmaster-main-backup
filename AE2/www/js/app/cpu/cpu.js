@@ -711,10 +711,10 @@
 		},
 
 		rates: {
-			getBuilding: 1000,
-			fixBuilding: 750,
+			//getBuilding: 1000,
+			//fixBuilding: 1000,
 			severalBuildings: -20, // if unit can work with several buildings, reduce rate
-			raiseSkeleton: 500,
+			//raiseSkeleton: 500,
 			lowPriority: -1000,
 			highPriority: 1000,
 			killUnit: 40,
@@ -730,10 +730,10 @@
 		},
 
 		rates_hard: { // default rates
-			getBuilding: 1000,
-			fixBuilding: 750,
+			//getBuilding: 1000,
+			//fixBuilding: 1000,
 			severalBuildings: -20, // if unit can work with several buildings, reduce rate
-			raiseSkeleton: 500,
+			//raiseSkeleton: 500,
 			lowPriority: -1000,
 			highPriority: 1000,
 			killUnit: 40,
@@ -853,8 +853,6 @@
 
 			cpu.insertDataByPosition(scenario);
 
-			// todo: I stay here
-
 			switch (actionName) {
 
 				case 'move':
@@ -875,22 +873,10 @@
 					break;
 
 				case 'fixBuilding':
-
-					rate = rates.fixBuilding - util.getPathSize(xy, {x: unit.get('x'), y: unit.get('y')});
-
-					break;
-
 				case 'getBuilding':
-
-					rate = rates.getBuilding - util.getPathSize(xy, {x: unit.get('x'), y: unit.get('y')});
-
-					break;
-
 				case 'raiseSkeleton':
 
-					rate = cpu.rateRaise({
-						scenario: scenario
-					});
+					rate = rates.highPriority - util.getPathSize(xy, {x: unit.get('x'), y: unit.get('y')});
 
 					break;
 
@@ -1212,10 +1198,10 @@
 			}
 
 			if ( availableGivenDamage >= enemyHealth ) {
-				rate = rates.killUnit + dataByPosition.onHealthUpBuilding;
+				rate = rates.killUnit;
 			} else {
 				if ( availableResponseDamage < unit.get('health') - 10) { // detect: unit will be alive after attack
-					rate = availableGivenDamage + dataByPosition.onHealthUpBuilding; // unit alive
+					rate = availableGivenDamage; // unit alive
 				} else {
 					rate = rates.lowPriority;  // unit die
 				}
@@ -1243,17 +1229,6 @@
 			unit.silentOff('x', 'y');
 
 			return rate;
-
-		},
-
-		rateRaise: function (data) {
-
-			var cpu = this,
-				rates = cpu.rates,
-				scenario = data.scenario,
-				dataByPosition = scenario.get('dataByPosition');
-
-			return rates.raiseSkeleton + dataByPosition.onHealthUpBuilding + dataByPosition.placeArmor;
 
 		}
 
