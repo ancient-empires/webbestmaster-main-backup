@@ -430,8 +430,6 @@
 				cpu.setAutoRate(scenario, scenarios);
 			});
 
-			// todo: do all simple rate before here
-
 			cpu.setAutoRateBuildingWork(scenarios);
 
 			scenarios = _.filter(scenarios, function (scenario) {
@@ -892,6 +890,7 @@
 				unitWithScenarios = [];
 
 			// detect unit can fix or build 2 and more buildings
+			// create array with unit has all own scenarios
 			_.each(scenarios, function (scenario) {
 				var unit = scenario.get('unit'),
 					unitWithScenario = _.find(unitWithScenarios, { unit: unit });
@@ -939,6 +938,9 @@
 						case 'getBuilding':
 							scenario.set('rate', rate + severalBuildings * getBuildingCount);
 							break;
+
+						// todo; ??????
+
 						case 'move':
 							scenario.set('rate', rate + severalBuildings * (getBuildingCount + fixBuildingCount));
 							break;
