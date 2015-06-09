@@ -721,13 +721,11 @@
 			destroyEnemyBuilding: 40,
 
 			q: {
-				nearestNonOwnedBuilding: -5,
+				nearestNonOwnedBuilding: -1,
 				placeArmor: 0.5,
-				availableReceiveDamage: 0.5,
-				upHealth: 3
+				upHealth: 1
 			},
 
-			maxAvailableReceiveDamage: 80,
 			onHealthUpBuilding: 5
 		},
 
@@ -742,13 +740,11 @@
 			destroyEnemyBuilding: 40,
 
 			q: {
-				nearestNonOwnedBuilding: -5,
+				nearestNonOwnedBuilding: -1,
 				placeArmor: 0.5,
-				availableReceiveDamage: 0.5,
-				upHealth: 3
+				upHealth: 1
 			},
 
-			maxAvailableReceiveDamage: 80,
 			onHealthUpBuilding: 5
 		},
 
@@ -765,11 +761,9 @@
 			q: {
 				nearestNonOwnedBuilding: -5,
 				placeArmor: 0.5,
-				availableReceiveDamage: 0,
 				upHealth: 1
 			},
 
-			maxAvailableReceiveDamage: 80,
 			onHealthUpBuilding: 1
 		},
 
@@ -786,11 +780,9 @@
 			q: {
 				nearestNonOwnedBuilding: -5,
 				placeArmor: 0,
-				availableReceiveDamage: -5,
 				upHealth: 3
 			},
 
-			maxAvailableReceiveDamage: 800,
 			onHealthUpBuilding: 0
 		},
 
@@ -1068,33 +1060,32 @@
 					x: x,
 					y: y
 				},
-				building = model.getBuildingByXY(xy),
+				//building = model.getBuildingByXY(xy),
 				pathToBuildingLength = Infinity,
-				pathToEnemyLength = Infinity,
+				//pathToEnemyLength = Infinity,
 				rate = 0;
 
 			// 1 detect: enemy unit which can get or stay on building
-			if ( building ) {
+			//if ( building ) {
+			//
+			//	// can enemy get building
+			//	_.each(enemyUnits, function (enemy) {
+			//
+			//		var path = enemy.getAvailablePathFull(),
+			//			buildingTypeList = enemy.get('listOccupyBuilding');
+			//
+			//		if ( !_.find(path, xy) || !buildingTypeList ) {
+			//			return;
+			//		}
+			//
+			//	});
+			//
+			//}
 
-				// can enemy get building
-				_.each(enemyUnits, function (enemy) {
-
-					var path = enemy.getAvailablePathFull(),
-						buildingTypeList = enemy.get('listOccupyBuilding');
-
-					if ( !_.find(path, xy) || !buildingTypeList ) {
-						return;
-					}
-
-				});
-
-			}
-
-			// 2 nearest non player and available to get building
+			// 2 - nearest non player and available to get building
 			wantedBuildings = _.filter(allBuildings, function (building) {
 				return building.teamNumber !== unitTeamNumber && _.contains(wantedBuildingList, building.type);
 			});
-
 
 			if ( !wantedBuildings.length || ( !hasCastle && !hasCommander ) ) { // if mission or no needed buildings
 
@@ -1118,29 +1109,29 @@
 
 			}
 
-			// set current rate
-			rate = rate || pathToBuildingLength * rates.q.nearestNonOwnedBuilding;
+			// set rate by nearest non owned building
+			rate = pathToBuildingLength * rates.q.nearestNonOwnedBuilding;
 
-			if (dataByPosition.availableReceiveDamage) {
-				rate += dataByPosition.upHealth * rates.q.upHealth + dataByPosition.placeArmor * rates.q.placeArmor - dataByPosition.availableReceiveDamage * rates.q.availableReceiveDamage;
-			} else {
-				rate += dataByPosition.upHealth * rates.q.upHealth;
-			}
+			// add rate by upHealth
+			rate += dataByPosition.upHealth * rates.q.upHealth;
 
+			//if (dataByPosition.availableReceiveDamage) {
+			//	rate += dataByPosition.upHealth * rates.q.upHealth + dataByPosition.placeArmor * rates.q.placeArmor - dataByPosition.availableReceiveDamage * rates.q.availableReceiveDamage;
+			//} else {
+			//}
 
-			if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
-				log(' -- move - maxAvailableReceiveDamage!!!');
-				rate = rates.lowPriority;
-			}
+			//if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
+			//	log(' -- move - maxAvailableReceiveDamage!!!');
+			//	rate = rates.lowPriority;
+			//}
 
 			// detect scenario where unit get building or raise skeleton
 			_.each(allScenarios, function (sc) {
 
 				var action = sc.get('action'),
-					actionName = action.name,
 					grave;
 
-				switch (actionName) {
+				switch (action.name) {
 
 					case 'fixBuilding':
 					case 'getBuilding':
@@ -1155,7 +1146,7 @@
 
 						grave = action.grave;
 
-						if ( grave.x === x && grave.y === y ) {
+						if ( sc.get('x') === x && sc.get('y') === y && grave.x === x && grave.y === y ) {
 							rate = rates.lowPriority;
 						}
 
@@ -1239,10 +1230,10 @@
 			// can enemy get building
 			building = model.getBuildingByXY({ x: unitX, y: unitY });
 
-			if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
-				log(' -- attack - maxAvailableReceiveDamage!!!');
-				rate = rates.lowPriority;
-			}
+			//if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
+			//	log(' -- attack - maxAvailableReceiveDamage!!!');
+			//	rate = rates.lowPriority;
+			//}
 
 			if ( dataByPosition.availableReceiveDamage >= unit.get('health') * 2 ) {
 				log(' -- move - can be die !!!');
