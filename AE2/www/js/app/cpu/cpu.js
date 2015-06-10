@@ -583,7 +583,6 @@
 			// find fix building - 4
 			// find move - 5
 
-
 			_.each(['getBuilding', 'raiseSkeleton', 'attack', 'fixBuilding', 'move'], function (scenarioType) {
 
 				if ( scenarioIsDone ) {
@@ -660,6 +659,10 @@
 						break;
 
 					case 'fixBuilding':
+
+						filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
+							return sc2.get('rate') - sc1.get('rate');
+						});
 
 						break;
 
