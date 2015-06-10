@@ -43,7 +43,9 @@
 			q: {
 				nearestNonOwnedBuilding: -1,
 				placeArmor: 0.5,
-				upHealth: 1
+				upHealth: 1,
+				availableReceiveDamage: -0.1,
+				listOccupyBuilding: 50
 			},
 
 			onHealthUpBuilding: 10
@@ -63,7 +65,9 @@
 			q: {
 				nearestNonOwnedBuilding: -1,
 				placeArmor: 0.5,
-				upHealth: 1
+				upHealth: 1,
+				availableReceiveDamage: -0.1,
+				listOccupyBuilding: 50
 			},
 
 			onHealthUpBuilding: 10
@@ -83,7 +87,9 @@
 			q: {
 				nearestNonOwnedBuilding: -1,
 				placeArmor: 0.5,
-				upHealth: 1
+				upHealth: 1,
+				availableReceiveDamage: -0.1,
+				listOccupyBuilding: 50
 			},
 
 			onHealthUpBuilding: 10
@@ -103,7 +109,9 @@
 			q: {
 				nearestNonOwnedBuilding: -1,
 				placeArmor: 0.5,
-				upHealth: 1
+				upHealth: 1,
+				availableReceiveDamage: -0.1,
+				listOccupyBuilding: 50
 			},
 
 			onHealthUpBuilding: 10
@@ -492,7 +500,8 @@
 				privateUnits = model.getUnitsByOwnerId(player.id),
 				//wholes = [], // x, y, and who can ignore this whole
 				scenarios = [],
-				lowPriorityScenarios,
+				lowPriorityScenarios = [],
+				highPriorityScenarios = [],
 				//bestScenario,
 				scenarioIsDone = false;
 
@@ -512,18 +521,26 @@
 				cpu.setAutoRate(scenario, scenarios);
 			});
 
-			// reRate move
-			lowPriorityScenarios = _.filter(scenarios, function (scenario) {
-				return scenario.get('action').name === 'move';
+			_.each(scenarios, function (scenario) {
+
+				if ( scenario.get('action').name === 'move' ) {
+					lowPriorityScenarios.push(scenario);
+				} else {
+					highPriorityScenarios.push(scenario);
+				}
+
 			});
+
+			// reRate move
 			_.each(lowPriorityScenarios, function (lowPriorityScenario) {
 
-				var x = lowPriorityScenario.get('x'),
-					y = lowPriorityScenario.get('y');
-
-				_.each(scenarios, function (sc) {
+				_.each(highPriorityScenarios, function (sc) {
 					var action = sc.get('action'),
 						grave;
+
+					var x = lowPriorityScenario.get('x'),
+						y = lowPriorityScenario.get('y');
+
 					switch (action.name) {
 						case 'fixBuilding':
 						case 'getBuilding':
@@ -566,9 +583,6 @@
 			// find fix building - 4
 			// find move - 5
 
-			scenarios = scenarios.sort(function (sc1, sc2) {
-				return sc2.get('rate') - sc1.get('rate');
-			});
 
 			_.each(['getBuilding', 'raiseSkeleton', 'attack', 'fixBuilding', 'move'], function (scenarioType) {
 
@@ -595,15 +609,53 @@
 
 							scenarion.changeBy(addedRate);
 
+							filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
+								return sc2.get('rate') - sc1.get('rate');
+							});
+
 						});
 
 						break;
 
 					case 'raiseSkeleton':
 
+						_.each(filteredScenarios, function (scenario) {
+
+							var dataByPosition = scenario.get('dataByPosition'),
+								placeArmor = dataByPosition.placeArmor,
+								availableReceiveDamage = dataByPosition.availableReceiveDamage,
+								onHealthUpBuilding = dataByPosition.onHealthUpBuilding;
+
+							if (availableReceiveDamage) {
+								scenario.changeBy('rate', placeArmor + onHealthUpBuilding + availableReceiveDamage * rates.q.availableReceiveDamage);
+							}
+
+						});
+
+						filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
+							return sc2.get('rate') - sc1.get('rate');
+						});
+
 						break;
 
 					case 'attack':
+
+						_.each(filteredScenarios, function (scenario) {
+
+							var dataByPosition = scenario.get('dataByPosition'),
+								placeArmor = dataByPosition.placeArmor,
+								availableReceiveDamage = dataByPosition.availableReceiveDamage,
+								onHealthUpBuilding = dataByPosition.onHealthUpBuilding;
+
+							if (availableReceiveDamage) {
+								scenario.changeBy('rate', placeArmor + onHealthUpBuilding + availableReceiveDamage * rates.q.availableReceiveDamage - scenario.get('availableResponseDamage'));
+							}
+
+						});
+
+						filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
+							return sc2.get('rate') - sc1.get('rate');
+						});
 
 						break;
 
@@ -613,19 +665,33 @@
 
 					case 'move':
 
+						_.each(filteredScenarios, function (scenario) {
+
+							var dataByPosition = scenario.get('dataByPosition'),
+								placeArmor = dataByPosition.placeArmor,
+								availableReceiveDamage = dataByPosition.availableReceiveDamage,
+								onHealthUpBuilding = dataByPosition.onHealthUpBuilding;
+
+							if (availableReceiveDamage) {
+								scenario.changeBy('rate', placeArmor + onHealthUpBuilding + availableReceiveDamage * rates.q.availableReceiveDamage);
+							}
+
+						});
+
+						filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
+
+							var unit1 = sc1.get('unit'),
+								unit2 = sc2.get('unit'),
+								length1 = (unit1.get('listOccupyBuilding') || []).length * rates.q.listOccupyBuilding,
+								length2 = (unit2.get('listOccupyBuilding') || []).length * rates.q.listOccupyBuilding;
+
+							return (sc2.get('rate') + length1) - (sc1.get('rate') + length2);
+
+						});
+
 						break;
 
 				}
-
-
-
-
-
-
-
-
-
-
 
 				scenarioIsDone = true;
 				cpu.runScenario( filteredScenarios[0] );
@@ -1187,7 +1253,7 @@
 				enemyUnits = _.filter(allUnits, function (unit) {
 					return unit.get('teamNumber') !== unitTeamNumber;
 				}),
-				allScenarios = data.allScenarios,
+				//allScenarios = data.allScenarios,
 				rates = cpu.rates,
 				buildingData = win.APP.building,
 				dataByPosition = scenario.get('dataByPosition'),
@@ -1201,7 +1267,7 @@
 				//building = model.getBuildingByXY(xy),
 				pathToBuildingLength = Infinity,
 				//pathToEnemyLength = Infinity,
-				rate = 0;
+				rate;
 
 			// 1 detect: enemy unit which can get or stay on building
 			//if ( building ) {
@@ -1294,7 +1360,6 @@
 			//
 			//});
 
-
 			return rate;
 
 		},
@@ -1358,6 +1423,8 @@
 					rate = rates.lowPriority;  // unit die
 				}
 			}
+
+			scenario.set('availableResponseDamage', availableResponseDamage);
 
 			//enemyUnits = _.filter(allUnits, function (unit) {
 			//	return unit.get('teamNumber') !== unitTeamNumber;
