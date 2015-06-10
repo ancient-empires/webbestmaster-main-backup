@@ -29,6 +29,86 @@
 			return this;
 		},
 
+		rates: {
+			severalBuildings: -20, // if unit can work with several buildings, reduce rate
+			lowPriority: -1000,
+			highPriority: 1000,
+			killUnit: 40,
+			destroyEnemyBuilding: 40,
+			building: {
+				castle: 100,
+				farm: 0
+			},
+
+			q: {
+				nearestNonOwnedBuilding: -1,
+				placeArmor: 0.5,
+				upHealth: 1
+			},
+
+			onHealthUpBuilding: 10
+		},
+
+		rates_hard: { // default rates
+			severalBuildings: -20, // if unit can work with several buildings, reduce rate
+			lowPriority: -1000,
+			highPriority: 1000,
+			killUnit: 40,
+			destroyEnemyBuilding: 40,
+			building: {
+				castle: 100,
+				farm: 0
+			},
+
+			q: {
+				nearestNonOwnedBuilding: -1,
+				placeArmor: 0.5,
+				upHealth: 1
+			},
+
+			onHealthUpBuilding: 10
+		},
+
+		rates_normal: {
+			severalBuildings: -20, // if unit can work with several buildings, reduce rate
+			lowPriority: -1000,
+			highPriority: 1000,
+			killUnit: 40,
+			destroyEnemyBuilding: 40,
+			building: {
+				castle: 100,
+				farm: 0
+			},
+
+			q: {
+				nearestNonOwnedBuilding: -1,
+				placeArmor: 0.5,
+				upHealth: 1
+			},
+
+			onHealthUpBuilding: 10
+		},
+
+		rates_easy: {
+			severalBuildings: -20, // if unit can work with several buildings, reduce rate
+			lowPriority: -1000,
+			highPriority: 1000,
+			killUnit: 40,
+			destroyEnemyBuilding: 40,
+			building: {
+				castle: 100,
+				farm: 0
+			},
+
+			q: {
+				nearestNonOwnedBuilding: -1,
+				placeArmor: 0.5,
+				upHealth: 1
+			},
+
+			onHealthUpBuilding: 10
+		},
+
 		run: function () {
 
 			var cpu = this;
@@ -412,7 +492,8 @@
 				privateUnits = model.getUnitsByOwnerId(player.id),
 				//wholes = [], // x, y, and who can ignore this whole
 				scenarios = [],
-				bestScenario,
+				lowPriorityScenarios,
+				//bestScenario,
 				scenarioIsDone = false;
 
 			// get ALL scenarios, except nonActive units
@@ -428,21 +509,51 @@
 			});
 
 			_.each(scenarios, function (scenario) {
-				cpu.setAutoAvailableByPosition(scenario); // detect available position TODO: need implement
-				cpu.setAutoAvailableByCanEnemyGetBuilding(scenario); // detect available position
-				cpu.setAutoAvailableByRaiseSkeleton(scenario); // detect raise skeleton
-			});
-
-			scenarios = _.filter(scenarios, function (scenario) {
-				return scenario.get('isAvailable');
-			});
-
-			_.each(scenarios, function (scenario) {
 				cpu.setAutoRate(scenario, scenarios);
 			});
 
-			cpu.setAutoRateBuildingWork(scenarios);
+			// reRate move
+			lowPriorityScenarios = _.filter(scenarios, function (scenario) {
+				return scenario.get('action').name === 'move';
+			});
+			_.each(lowPriorityScenarios, function (lowPriorityScenario) {
 
+				var x = lowPriorityScenario.get('x'),
+					y = lowPriorityScenario.get('y');
+
+				_.each(scenarios, function (sc) {
+					var action = sc.get('action'),
+						grave;
+					switch (action.name) {
+						case 'fixBuilding':
+						case 'getBuilding':
+							if ( sc.get('x') === x && sc.get('y') === y ) {
+								lowPriorityScenario.set('rate', rates.lowPriority);
+							}
+							break;
+						case 'raiseSkeleton':
+							grave = action.grave;
+							if ( (sc.get('x') === x && sc.get('y') === y) || (grave.x === x && grave.y === y) ) {
+								lowPriorityScenario.set('rate', rates.lowPriority);
+							}
+							break;
+					}
+
+				});
+
+			});
+
+			 _.each(scenarios, function (scenario) {
+				 cpu.setAutoAvailableByPosition(scenario); // detect available position
+				 //cpu.setAutoAvailableByCanEnemyGetBuilding(scenario); // detect available position - TODO: need implement
+				 cpu.setAutoAvailableByRaiseSkeleton(scenario); // detect raise skeleton
+			 });
+
+			scenarios = _.filter(scenarios, function (scenario) {
+				return scenario.get('isAvailable') && scenario.get('rate') !== rates.lowPriority;
+			});
+
+			cpu.setAutoRateBuildingWork(scenarios);
 
 			if ( !scenarios.length ) {
 				model.newTurn();
@@ -459,81 +570,67 @@
 				return sc2.get('rate') - sc1.get('rate');
 			});
 
-			// find get building - 1
-			(function () {
-				var getBuildingScenarios = _.filter(scenarios, function (scenario) {
-					return scenario.get('action').name === 'getBuilding';
-				});
-				if ( !getBuildingScenarios.length ) {
+			_.each(['getBuilding', 'raiseSkeleton', 'attack', 'fixBuilding', 'move'], function (scenarioType) {
+
+				if ( scenarioIsDone ) {
 					return;
 				}
-				cpu.runScenario( getBuildingScenarios[0] );
-				scenarioIsDone = true;
-			}());
 
-			if ( scenarioIsDone ) {
-				return;
-			}
-
-			// find raise skeleton - 2
-			(function () {
-				var raiseSkeletonScenarios = _.filter(scenarios, function (scenario) {
-					return scenario.get('action').name === 'raiseSkeleton';
+				var filteredScenarios = _.filter(scenarios, function (scenario) {
+					return scenario.get('action').name === scenarioType;
 				});
-				if ( !raiseSkeletonScenarios.length ) {
+
+				if ( !filteredScenarios.length ) {
 					return;
 				}
-				cpu.runScenario( raiseSkeletonScenarios[0] );
-				scenarioIsDone = true;
-			}());
 
-			if ( scenarioIsDone ) {
-				return;
-			}
+				switch (scenarioType) {
 
-			// find attack - 3
-			(function () {
-				var attackScenarios = _.filter(scenarios, function (scenario) {
-					return scenario.get('action').name === 'attack' && scenario.get('rate') !== rates.lowPriority;
-				});
-				if ( !attackScenarios.length ) {
-					return;
+					case 'getBuilding':
+
+						_.each(filteredScenarios, function (scenarion) {
+
+							var building = scenarion.get('action').building,
+								addedRate = rates.building[building.type];
+
+							scenarion.changeBy(addedRate);
+
+						});
+
+						break;
+
+					case 'raiseSkeleton':
+
+						break;
+
+					case 'attack':
+
+						break;
+
+					case 'fixBuilding':
+
+						break;
+
+					case 'move':
+
+						break;
+
 				}
-				cpu.runScenario( attackScenarios[0] );
+
+
+
+
+
+
+
+
+
+
+
 				scenarioIsDone = true;
-			}());
+				cpu.runScenario( filteredScenarios[0] );
 
-			if ( scenarioIsDone ) {
-				return;
-			}
-
-			// find fix building - 4
-			(function () {
-				var fixBuildingScenarios = _.filter(scenarios, function (scenario) {
-					return scenario.get('action').name === 'fixBuilding';
-				});
-				if ( !fixBuildingScenarios.length ) {
-					return;
-				}
-				cpu.runScenario( fixBuildingScenarios[0] );
-				scenarioIsDone = true;
-			}());
-
-			if ( scenarioIsDone ) {
-				return;
-			}
-
-			// find move - 5
-			(function () {
-				var moveScenarios = _.filter(scenarios, function (scenario) {
-					return scenario.get('action').name === 'move' && scenario.get('rate') !== rates.lowPriority;
-				});
-				if ( !moveScenarios.length ) {
-					return;
-				}
-				cpu.runScenario( moveScenarios[0] );
-				scenarioIsDone = true;
-			}());
+			});
 
 		},
 
@@ -745,70 +842,6 @@
 
 		},
 
-		rates: {
-			severalBuildings: -20, // if unit can work with several buildings, reduce rate
-			lowPriority: -1000,
-			highPriority: 1000,
-			killUnit: 40,
-			destroyEnemyBuilding: 40,
-
-			q: {
-				nearestNonOwnedBuilding: -1,
-				placeArmor: 0.5,
-				upHealth: 1
-			},
-
-			onHealthUpBuilding: 10
-		},
-
-		rates_hard: { // default rates
-			severalBuildings: -20, // if unit can work with several buildings, reduce rate
-			lowPriority: -1000,
-			highPriority: 1000,
-			killUnit: 40,
-			destroyEnemyBuilding: 40,
-
-			q: {
-				nearestNonOwnedBuilding: -1,
-				placeArmor: 0.5,
-				upHealth: 1
-			},
-
-			onHealthUpBuilding: 10
-		},
-
-		rates_normal: {
-			severalBuildings: -20, // if unit can work with several buildings, reduce rate
-			lowPriority: -1000,
-			highPriority: 1000,
-			killUnit: 40,
-			destroyEnemyBuilding: 40,
-
-			q: {
-				nearestNonOwnedBuilding: -1,
-				placeArmor: 0.5,
-				upHealth: 1
-			},
-
-			onHealthUpBuilding: 10
-		},
-
-		rates_easy: {
-			severalBuildings: -20, // if unit can work with several buildings, reduce rate
-			lowPriority: -1000,
-			highPriority: 1000,
-			killUnit: 40,
-			destroyEnemyBuilding: 40,
-
-			q: {
-				nearestNonOwnedBuilding: -1,
-				placeArmor: 0.5,
-				upHealth: 1
-			},
-
-			onHealthUpBuilding: 10
-		},
-
 		setAutoAvailableByRaiseSkeleton: function (scenario) {
 
 			var cpu = this,
@@ -958,10 +991,6 @@
 		},
 
 		setAutoRate: function (scenario, allScenarios) {
-
-			if ( !scenario.get('isAvailable') ) {
-				return;
-			}
 
 			var cpu = this,
 				action = scenario.get('action'),
@@ -1235,35 +1264,35 @@
 			//}
 
 			// detect scenario where unit get building or raise skeleton
-			_.each(allScenarios, function (sc) {
-
-				var action = sc.get('action'),
-					grave;
-
-				switch (action.name) {
-
-					case 'fixBuilding':
-					case 'getBuilding':
-
-						if ( sc.get('x') === x && sc.get('y') === y ) {
-							rate = rates.lowPriority;
-						}
-
-						break;
-
-					case 'raiseSkeleton':
-
-						grave = action.grave;
-
-						if ( sc.get('x') === x && sc.get('y') === y && grave.x === x && grave.y === y ) {
-							rate = rates.lowPriority;
-						}
-
-						break;
-
-				}
-
-			});
+			//_.each(allScenarios, function (sc) {
+			//
+			//	var action = sc.get('action'),
+			//		grave;
+			//
+			//	switch (action.name) {
+			//
+			//		case 'fixBuilding':
+			//		case 'getBuilding':
+			//
+			//			if ( sc.get('x') === x && sc.get('y') === y ) {
+			//				rate = rates.lowPriority;
+			//			}
+			//
+			//			break;
+			//
+			//		case 'raiseSkeleton':
+			//
+			//			grave = action.grave;
+			//
+			//			if ( sc.get('x') === x && sc.get('y') === y && grave.x === x && grave.y === y ) {
+			//				rate = rates.lowPriority;
+			//			}
+			//
+			//			break;
+			//
+			//	}
+			//
+			//});
 
 
 			return rate;

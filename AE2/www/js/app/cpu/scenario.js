@@ -24,6 +24,10 @@
 			return this;
 		},
 
+		changeBy: function (key, delta) {
+			return this.set(key, this.get(key) + delta);
+		},
+
 		extend: function (json) {
 			_.extend(this.attr, json);
 			return this;
