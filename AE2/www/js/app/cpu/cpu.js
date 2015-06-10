@@ -746,10 +746,7 @@
 		},
 
 		rates: {
-			//getBuilding: 1000,
-			//fixBuilding: 1000,
 			severalBuildings: -20, // if unit can work with several buildings, reduce rate
-			//raiseSkeleton: 500,
 			lowPriority: -1000,
 			highPriority: 1000,
 			killUnit: 40,
@@ -765,10 +762,7 @@
 		},
 
 		rates_hard: { // default rates
-			//getBuilding: 1000,
-			//fixBuilding: 1000,
 			severalBuildings: -20, // if unit can work with several buildings, reduce rate
-			//raiseSkeleton: 500,
 			lowPriority: -1000,
 			highPriority: 1000,
 			killUnit: 40,
@@ -784,41 +778,35 @@
 		},
 
 		rates_normal: {
-			getBuilding: 1000,
-			fixBuilding: 750,
-			severalBuildings: 0, // if unit can work with several buildings, reduce rate
-			raiseSkeleton: 500,
+			severalBuildings: -20, // if unit can work with several buildings, reduce rate
 			lowPriority: -1000,
 			highPriority: 1000,
-			killUnit: 10,
-			destroyEnemyBuilding: 0,
+			killUnit: 40,
+			destroyEnemyBuilding: 40,
 
 			q: {
-				nearestNonOwnedBuilding: -5,
+				nearestNonOwnedBuilding: -1,
 				placeArmor: 0.5,
 				upHealth: 1
 			},
 
-			onHealthUpBuilding: 1
+			onHealthUpBuilding: 10
 		},
 
 		rates_easy: {
-			getBuilding: 1000,
-			fixBuilding: 20,
-			severalBuildings: 0, // if unit can work with several buildings, reduce rate
-			raiseSkeleton: 0,
+			severalBuildings: -20, // if unit can work with several buildings, reduce rate
 			lowPriority: -1000,
 			highPriority: 1000,
-			killUnit: 100,
-			destroyEnemyBuilding: 0,
+			killUnit: 40,
+			destroyEnemyBuilding: 40,
 
 			q: {
-				nearestNonOwnedBuilding: -5,
-				placeArmor: 0,
-				upHealth: 3
+				nearestNonOwnedBuilding: -1,
+				placeArmor: 0.5,
+				upHealth: 1
 			},
 
-			onHealthUpBuilding: 0
+			onHealthUpBuilding: 10
 		},
 
 		setAutoAvailableByRaiseSkeleton: function (scenario) {
