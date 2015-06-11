@@ -523,7 +523,9 @@
 
 			_.each(scenarios, function (scenario) {
 
-				if ( scenario.get('action').name === 'move' ) {
+				var actionName = scenario.get('action').name;
+
+				if ( actionName === 'move' ) {
 					lowPriorityScenarios.push(scenario);
 				} else {
 					highPriorityScenarios.push(scenario);
@@ -536,21 +538,29 @@
 
 				_.each(highPriorityScenarios, function (sc) {
 					var action = sc.get('action'),
-						grave;
+						grave,
+						x = lowPriorityScenario.get('x'),
+						y = lowPriorityScenario.get('y'),
+						scX = sc.get('x'),
+						scY = sc.get('y'),
+						isTheSamePlace = (scX === x && scY === y);
 
-					var x = lowPriorityScenario.get('x'),
-						y = lowPriorityScenario.get('y');
-
+					// if this move disturbs other scenarios
 					switch (action.name) {
 						case 'fixBuilding':
 						case 'getBuilding':
-							if ( sc.get('x') === x && sc.get('y') === y ) {
+							if ( isTheSamePlace ) {
 								lowPriorityScenario.set('rate', rates.lowPriority);
 							}
 							break;
 						case 'raiseSkeleton':
 							grave = action.grave;
-							if ( (sc.get('x') === x && sc.get('y') === y) || (grave.x === x && grave.y === y) ) {
+							if ( isTheSamePlace || (grave.x === x && grave.y === y) ) {
+								lowPriorityScenario.set('rate', rates.lowPriority);
+							}
+							break;
+						case 'attack':
+							if ( sc.get('rate') === rates.lowPriority && isTheSamePlace ) {
 								lowPriorityScenario.set('rate', rates.lowPriority);
 							}
 							break;
