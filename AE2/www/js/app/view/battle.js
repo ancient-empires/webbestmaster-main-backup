@@ -1468,8 +1468,6 @@
 
 		showAttack: function (data) {
 
-			console.log('show attack!!!!');
-
 			var view = this,
 				model = view.get('model'),
 				from = data.from,
