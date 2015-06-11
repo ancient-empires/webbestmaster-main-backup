@@ -491,18 +491,10 @@
 				rates = cpu.rates,
 				model = cpu.get('model'),
 				player = cpu.get('player'),
-				//playerTeamNumber = player.teamNumber,
-				//units = model.get('units'),
-				//buildings = model.get('building'),
-				//enemyUnit = _.filter(units, function (unit) {
-				//	return unit.get('teamNumber') !== playerTeamNumber;
-				//}),
 				privateUnits = model.getUnitsByOwnerId(player.id),
-				//wholes = [], // x, y, and who can ignore this whole
 				scenarios = [],
 				lowPriorityScenarios = [],
 				highPriorityScenarios = [],
-				//bestScenario,
 				scenarioIsDone = false;
 
 			// get ALL scenarios, except nonActive units
@@ -1342,47 +1334,6 @@
 			// add rate by upHealth
 			rate += dataByPosition.upHealth * rates.q.upHealth;
 
-			//if (dataByPosition.availableReceiveDamage) {
-			//	rate += dataByPosition.upHealth * rates.q.upHealth + dataByPosition.placeArmor * rates.q.placeArmor - dataByPosition.availableReceiveDamage * rates.q.availableReceiveDamage;
-			//} else {
-			//}
-
-			//if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
-			//	log(' -- move - maxAvailableReceiveDamage!!!');
-			//	rate = rates.lowPriority;
-			//}
-
-			// detect scenario where unit get building or raise skeleton
-			//_.each(allScenarios, function (sc) {
-			//
-			//	var action = sc.get('action'),
-			//		grave;
-			//
-			//	switch (action.name) {
-			//
-			//		case 'fixBuilding':
-			//		case 'getBuilding':
-			//
-			//			if ( sc.get('x') === x && sc.get('y') === y ) {
-			//				rate = rates.lowPriority;
-			//			}
-			//
-			//			break;
-			//
-			//		case 'raiseSkeleton':
-			//
-			//			grave = action.grave;
-			//
-			//			if ( sc.get('x') === x && sc.get('y') === y && grave.x === x && grave.y === y ) {
-			//				rate = rates.lowPriority;
-			//			}
-			//
-			//			break;
-			//
-			//	}
-			//
-			//});
-
 			return rate;
 
 		},
@@ -1392,21 +1343,13 @@
 			var cpu = this,
 				rates = cpu.rates,
 				model = cpu.get('model'),
-				//allUnits = model.get('units'),
-				//enemyUnits,
 				scenario = data.scenario,
 				action = scenario.get('action'),
 				scenarioX = scenario.get('x'),
 				scenarioY = scenario.get('y'),
-				//xy = {
-				//	x: scenarioX,
-				//	y: scenarioY
-				//},
 				unit = scenario.get('unit'),
-				//unitTeamNumber = unit.get('teamNumber'),
 				unitX = unit.get('x'),
 				unitY = unit.get('y'),
-				//isStartXY = unitX === scenarioX && unitY === scenarioY,
 				enemyXY = action.enemy,
 				enemy = model.getUnitByXY(enemyXY),
 				enemyHealth = enemy ? enemy.get('health') : 0,
@@ -1414,7 +1357,6 @@
 				availableGivenDamage,
 				availableResponseDamage = 0,
 				dataByPosition = scenario.get('dataByPosition'),
-				//building,
 				rate;
 
 			if ( !enemy && enemyBuilding && unit.get('canDestroyBuilding') ) {
@@ -1448,23 +1390,6 @@
 			}
 
 			scenario.set('availableResponseDamage', availableResponseDamage);
-
-			//enemyUnits = _.filter(allUnits, function (unit) {
-			//	return unit.get('teamNumber') !== unitTeamNumber;
-			//});
-			//
-			//// can enemy get building
-			//building = model.getBuildingByXY({ x: unitX, y: unitY });
-			//
-			////if ( dataByPosition.availableReceiveDamage >= rates.maxAvailableReceiveDamage ) {
-			////	log(' -- attack - maxAvailableReceiveDamage!!!');
-			////	rate = rates.lowPriority;
-			////}
-			//
-			//if ( dataByPosition.availableReceiveDamage >= unit.get('health') * 2 ) {
-			//	log(' -- move - can be die !!!');
-			//	rate = rates.lowPriority;
-			//}
 
 			unit.set('x', unitX);
 			unit.set('y', unitY);
