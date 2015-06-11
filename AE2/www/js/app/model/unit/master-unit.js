@@ -41,6 +41,7 @@
 		},
 		defByLevel: 2,
 		atkByLevel: 2,
+		reduceMoveByPoison: 1,
 		bonusAtkByWispAura: 10,
 		reduceAktPoison: 10,
 		reduceDefPoison: 10,

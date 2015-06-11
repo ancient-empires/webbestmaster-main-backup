@@ -295,11 +295,13 @@
 				view = unit.get('view'),
 				map = view.get('map'),
 				terrain = map.terrain,
-				pathFinder;
+				pathFinder,
+				unitMaster = win.APP.unitMaster,
+				reduceByPoison = unit.get('poisonCount') ? unitMaster.reduceMoveByPoison : 0;
 
 			pathFinder = new PathFinder({
 				terrain: terrain,
-				mov: unit.get('mov') - 1,
+				mov: unit.get('mov') - 1 - reduceByPoison,
 				x: unit.get('x'),
 				y: unit.get('y'),
 				moveType: unit.get('moveType'),
@@ -328,7 +330,9 @@
 				map = view.get('map'),
 				terrain = map.terrain,
 				pathFinder,
-				blackWholes = [];
+				blackWholes = [],
+				unitMaster = win.APP.unitMaster,
+				reduceByPoison = unit.get('poisonCount') ? unitMaster.reduceMoveByPoison : 0;
 
 			_.each(units, function (unit) {
 
@@ -343,7 +347,7 @@
 			pathFinder = new PathFinder({
 				blackWholes: blackWholes,
 				terrain: terrain,
-				mov: unit.get('mov') - 1,
+				mov: unit.get('mov') - 1 - reduceByPoison,
 				x: unit.get('x'),
 				y: unit.get('y'),
 				moveType: unit.get('moveType'),
