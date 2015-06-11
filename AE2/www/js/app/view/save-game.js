@@ -249,7 +249,7 @@
 				buildings = model.get('buildings'),
 				save = {
 					turnCount: model.get('turnCount'),
-					turnPartCount: model.get('turnPartCount'),
+					circleCount: model.get('circleCount'),
 					players: model.get('players'),
 					activePlayer: model.get('activePlayer'),
 					units: [],

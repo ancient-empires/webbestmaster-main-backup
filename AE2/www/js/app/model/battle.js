@@ -393,12 +393,16 @@
 
 			var model = this,
 				players = model.get('players'),
+				activePlayer = model.get('activePlayer'),
 				currentCount = model.get('turnCount') || 0,
-				currentPartCount = model.get('turnPartCount') || 0;
+				currentCircleCount = model.get('circleCount') || 0;
 
 			model.set('turnCount', currentCount + 1);
 
-			model.set('turnPartCount', currentPartCount + 1 / players.length);
+			// increase circleCount
+			if ( players.indexOf(activePlayer) === 0 ) {
+				model.set('circleCount', currentCircleCount + 1);
+			}
 
 		},
 
@@ -534,7 +538,7 @@
 
 			if (data.isSavedData) {
 				model.set('turnCount', savedData.turnCount);
-				model.set('turnPartCount', savedData.turnPartCount);
+				model.set('circleCount', savedData.circleCount);
 			} else {
 				model.increaseTurnCounter();
 			}
@@ -1224,7 +1228,7 @@
 				util = win.APP.util,
 				//winTeam,
 				//looserTeam,
-				looserBuilding,
+				//looserBuilding,
 				teamOfLooser;
 
 			_.each(players, function (player) {
@@ -1697,7 +1701,7 @@
 				buildings = model.get('buildings'),
 				save = {
 					turnCount: model.get('turnCount'),
-					turnPartCount: model.get('turnPartCount'),
+					circleCount: model.get('circleCount'),
 					players: model.get('players'),
 					activePlayer: model.get('activePlayer'),
 					units: [],
