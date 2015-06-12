@@ -20,7 +20,9 @@
 		online: 'Online',
 		settings: 'Settings',
 		instructions: 'Instructions',
-		about: 'About'
+		about: 'About',
+
+		titleInfo: 'title-info'
 
 	};
 

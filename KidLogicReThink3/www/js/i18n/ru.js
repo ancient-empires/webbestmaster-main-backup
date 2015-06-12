@@ -20,7 +20,9 @@
 		online: 'По сети',
 		settings: 'Настройки',
 		instructions: 'Инструкции',
-		about: 'О программе'
+		about: 'О программе',
+
+		titleInfo: 'титульная инфа'
 
 	};
 

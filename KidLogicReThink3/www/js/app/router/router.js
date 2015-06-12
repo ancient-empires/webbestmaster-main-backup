@@ -13,7 +13,8 @@
 
 		routes: {
 			'': 'title',
-			'about': 'about'
+			'about': 'about',
+			'section/:jsKey': 'section'
 		},
 
 		title: function () {
@@ -22,6 +23,12 @@
 
 		about: function () {
 			new APP.BB.AboutView();
+		},
+
+		section: function (jsKey) {
+			new APP.BB.SectionView({
+				jsKey: jsKey
+			});
 		},
 
 		getAction: function () {
