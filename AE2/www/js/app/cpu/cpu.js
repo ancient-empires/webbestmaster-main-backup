@@ -108,9 +108,9 @@
 
 			q: {
 				nearestNonOwnedBuilding: -1,
-				placeArmor: 0,
+				placeArmor: -0.5,
 				upHealth: 0,
-				availableReceiveDamage: 0,
+				availableReceiveDamage: 0.1,
 				listOccupyBuilding: 50
 			},
 
