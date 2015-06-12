@@ -3,6 +3,8 @@
 	"use strict";
 	/*global window, document, navigator */
 
+	var WITH_ADS = false;
+
 	function getPrefix() {
 
 		var data = {
@@ -39,6 +41,20 @@
 	pre = getPrefix();
 
 	info = {
+
+		withAds: WITH_ADS,
+
+		link: {
+			ios: {
+				normal: 'https://itunes.apple.com/us/app/ancient-empire-strike-back/id1000811506?mt=8',
+				pro: 'https://itunes.apple.com/us/app/ancient-empire-strike-back/id995589839?mt=8'
+			},
+			android: {
+				//normal: 'https://play.google.com/store/apps/details?id=com.statlex.kidlogic',
+				//pro: 'https://play.google.com/store/apps/details?id=com.statlex.kidlogicadsfree'
+			}
+		},
+
 		lang: 'en', // current language
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
 		availableLangs: ['en', 'ru'],
@@ -88,6 +104,8 @@
 			lang = lang.split('-')[0];
 			this.lang = (this.availableLangs.indexOf(lang) === -1) ? this.lang : lang;
 
+			this.setOS();
+
 		},
 		setDataFromLS: function () {
 			var data = this.getData(),
@@ -119,6 +137,31 @@
 			}
 
 			this.set('openMissions', arr, true);
+		},
+
+		setOS: function () {
+
+			var ua = win.navigator.userAgent,
+				isIE = /MSIE/.test(ua),
+				isAndroid = (/android/i).test(ua),
+				isIOS = /iPad|iPhone|iPod/.test(ua);
+
+			this.set('isIE', isIE, true);
+			this.set('isAndroid', isAndroid, true);
+			this.set('isIOS', isIOS, true);
+
+			if (isIE) {
+				this.set('os', 'wp', true);
+			}
+
+			if (isAndroid) {
+				this.set('os', 'android', true);
+			}
+
+			if (isIOS) {
+				this.set('os', 'ios', true);
+			}
+
 		}
 
 	};

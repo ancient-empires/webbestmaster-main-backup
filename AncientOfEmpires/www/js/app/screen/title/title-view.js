@@ -16,7 +16,8 @@
 			'click .js-go-to-companies': 'goToCompanies',
 			'click .js-go-to-settings': 'goToSetting',
 			'click .js-instruction': 'goToInstruction',
-			'click .js-to-credits': 'goToCredits'
+			'click .js-to-credits': 'goToCredits',
+			'click .js-external-link': 'toExternalLink'
 		},
 
 		init: function() {
@@ -64,7 +65,20 @@
 
 		goToInstruction: function () {
 			APP.router.navigate('instruction', { trigger: true });
+		},
+
+		toExternalLink: function(e) {
+
+			e.preventDefault();
+			e.stopPropagation();
+
+			var $this = $(e.target),
+				url = $this.attr('href');
+
+			win.open(url);
+
 		}
+
 
 	});
 

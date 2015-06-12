@@ -105,6 +105,15 @@
 
 	<div class="title-screen double-blocks-wrapper js-no-scroll">
 
+		<% var info = window.info, os = info.get('os'), withAds = info.get('withAds'); %>
+		<% if (os === 'ios') { %>
+			<% if (withAds) { %>
+			<a href="<%= info.get('link')[os].normal %>" class="ae2-link js-external-link text-underline">AE2</a>
+			<% } else { %>
+			<a href="<%= info.get('link')[os].pro %>" class="ae2-link js-external-link text-underline">AE2</a>
+			<% }; %>
+		<% }; %>
+
 		<div class="double-block-container title-game-logo clear-fix">
 			&nbsp;
 		</div>

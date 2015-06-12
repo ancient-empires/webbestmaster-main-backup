@@ -839,3 +839,12 @@ html {
 .text-underline {
 	text-decoration: underline;
 }
+
+.ae2-link {
+	top: 0;
+	position: fixed;
+	right: 0;
+	padding: 1em;
+	color: #fff;
+	z-index: 3;
+}
