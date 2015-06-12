@@ -33,8 +33,6 @@
 
 			view.$el = $(view.tmpl['popup-wrapper']());
 
-			//view.$el.addClass(data.from || 'left');
-
 			if (data.cssClass) {
 				view.$el.addClass(data.cssClass);
 			}
@@ -65,6 +63,7 @@
 		},
 
 		unbindEventListeners: function () {
+
 			var view = this,
 				timeout = view.get('timeout');
 
@@ -90,10 +89,6 @@
 			}
 
 			$container.append($content);
-
-			//if (append$el) {
-			//	$container.append(append$el);
-			//}
 
 			view.$wrapper.append(view.$el);
 

@@ -9,9 +9,7 @@
 
 	win.APP.BB = win.APP.BB || {};
 
-	var proto;
-
-	APP.BB.BaseView = Backbone.View.extend({
+	win.APP.BB.BaseView = Backbone.View.extend({
 
 		events: {
 			// base
@@ -64,10 +62,11 @@
 
 			proto.$wrapper = $(this.selectors.wrapper);
 
-			var info = win.APP.info,
+			var view = this,
+				info = win.APP.info,
 				isTouch = info.get('isTouch', true),
 				eventTypesIndex = Number(isTouch),
-				types = this.eventTypes,
+				types = view.eventTypes,
 				os = info.get('os', true);
 
 			_.each(types, function (typesArr, key) {
@@ -77,7 +76,7 @@
 			proto.$wrapper.addClass(os);
 			proto.$wrapper.addClass('isMobile_' + isTouch);
 
-			$(doc.body).on('contextmenu', this.stopEvent);
+			$(doc.body).on('contextmenu', view.stopEvent);
 
 		},
 
@@ -151,7 +150,6 @@
 		},
 
 		hide: function () {
-			log('hide view');
 
 			var view = this,
 				$el = view.$el,
@@ -182,9 +180,10 @@
 
 			view.$el.addClass(view.classNames.viewWrapper);
 
-			this.$wrapper.append(view.$el);
-			this.util.setSizes();
-			this.util.toTop();
+			view.$wrapper.append(view.$el);
+			view.util.setSizes();
+			view.util.toTop();
+			view.showAppearAnimation();
 
 		},
 
@@ -198,10 +197,11 @@
 
 		routeTo: function(e) {
 
-			var $this = $(e.currentTarget),
+			var view = this,
+				$this = $(e.currentTarget),
 				route = $this.attr('data-route');
 
-			this.navigate(route, true);
+			view.navigate(route, true);
 
 		},
 
@@ -281,43 +281,8 @@
 
 		},
 
-		//showTicket: function (data) {
-		//
-		//	var deferred = $.Deferred(),
-		//		popup;
-		//
-		//	setTimeout(function () {
-		//		popup =	new APP.BB.TicketView(data);
-		//		popup.set('deferred', deferred);
-		//	}, 50);
-		//
-		//	return deferred.promise();
-		//
-		//},
-
-		//hidePopups: function (data) {
-		//
-		//	data = data || {};
-		//
-		//	var view = this,
-		//		deferred = $.Deferred();
-		//
-		//	(function hidePopups () {
-		//		setTimeout(function () {
-		//			if (view.isPopupExist()) {
-		//				view.routeBack();
-		//				hidePopups();
-		//			} else {
-		//				deferred.resolve();
-		//			}
-		//		}, data.timePadding || 0); // def se time out for routing is 50
-		//	}());
-		//
-		//	return deferred.promise();
-		//
-		//},
-
 		isPopupExist: function () {
+
 			var view = this,
 				url = win.location.href,
 				popupPart = view.popupUrl;
@@ -363,7 +328,7 @@
 			var view = this,
 				a = view.util.getRandomBetween(4, 14),
 				b = view.util.getRandomBetween(4, 14),
-				result = prompt(a + ' + ' + b + ' = ?');
+				result = prompt(' ' + a + ' + ' + b + ' = ?');
 
 			if ( result === null || result === '') {
 				return;
@@ -488,25 +453,20 @@
 
 	});
 
-	proto = win.APP.BB.BaseView.prototype;
-
-	proto.tmpl = win.APP.templateMaster.tmplFn;
+	var proto = win.APP.BB.BaseView.prototype;
 	proto.proto = proto;
+	proto.tmpl = win.APP.templateMaster.tmplFn;
 	proto.info = win.APP.info;
 
 	proto.util = {
-
 		getRandomBetween: function (min, max) {
 			return Math.round(Math.random() * (max - min) + min);
 		},
-
 		toTop: function () {
 			win.scrollTo(0, 0);
 		},
 		setSizes: function () {
-
 			log('set sizes');
-
 		},
 		onResize: function () {
 			log('on resize');
@@ -518,14 +478,10 @@
 		copyJSON: function (obj) { // external
 			return JSON.parse(JSON.stringify(obj));
 		},
-
 		runIfConnect: function (calback, context) {
 			var img = new Image();
-			img.addEventListener('load', calback.call(context), false);
+			img.addEventListener('load', calback.bind(context), false);
 			img.src = 'http://statlex.com/i/statlex-icon.png?t=' + Date.now();
-		},
-		getStringFromXY: function (x, y) {
-			return 'x' + x + 'y' + y;
 		},
 		findIn: function (context, selector) {
 			return context.querySelector(selector);
