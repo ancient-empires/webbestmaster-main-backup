@@ -2,7 +2,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, setTimeout */
+	/*global window */
 	/*global Backbone, APP, $ */
 
 	win.APP = win.APP || {};

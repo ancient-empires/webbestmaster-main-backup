@@ -2,7 +2,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, Backbone, $, templateMaster, setTimeout, APP, history */
+	/*global window, Backbone, $, templateMaster, APP, history */
 
 	win.APP = win.APP || {};
 
