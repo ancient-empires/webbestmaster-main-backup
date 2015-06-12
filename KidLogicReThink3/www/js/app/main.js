@@ -1,9 +1,9 @@
 /*jslint white: true, nomen: true */
-(function (win) {
+(function (win, doc) {
 
 	"use strict";
-	/*global window, document, setTimeout, history, location, Image*/
-	/*global APP, Backbone, FastClick, _, $ */
+	/*global window, document, setTimeout */
+	/*global APP, Backbone, FastClick */
 
 	win.APP = win.APP || {};
 
@@ -11,21 +11,17 @@
 
 	function start() {
 
-		APP.templateMaster.init();
-		win.APP.util.setHTMLStyle();
+		win.APP.templateMaster.init();
 		win.APP.BB.BaseView.prototype.initStatic();
 
-		FastClick.attach(document.body);
+		win.FastClick.attach(doc.body);
 
 		function back() {
 
-			if ( location.hash ) {
-				history.back();
+			if ( win.location.hash ) {
+				win.history.back();
 				setTimeout(back, 50);
 			} else {
-				// prepare map
-				//win.APP.map.db.init();
-				//win.APP.BB.BaseView.prototype.util.loadSavedTheme();
 				win.APP.bb.router = new win.APP.BB.Router();
 				Backbone.history.start();
 				win.APP.soundMaster.init();
@@ -41,4 +37,4 @@
 
 	win.addEventListener('load', start, false);
 
-}(window));
+}(window, window.document));

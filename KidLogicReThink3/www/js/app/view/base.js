@@ -1,5 +1,5 @@
 /*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
-(function (win, doc) {
+(function (win, doc, docElem) {
 
 	"use strict";
 	/*global window, document, location, Image */
@@ -67,14 +67,18 @@
 				isTouch = info.get('isTouch', true),
 				eventTypesIndex = Number(isTouch),
 				types = view.eventTypes,
-				os = info.get('os', true);
+				fontSize;
+
+			// adjust font size
+			fontSize = Math.round( 16 * Math.pow( docElem.clientWidth * docElem.clientHeight / 153600, 0.5) ); // 153600 = 320 * 480
+			fontSize = Math.min(fontSize, 24);
+			fontSize = Math.max(fontSize, 16);
+			fontSize = Math.round(fontSize / 2) * 2;
+			docElem.style.fontSize = fontSize + 'px';
 
 			_.each(types, function (typesArr, key) {
 				types[key] = typesArr[eventTypesIndex];
 			});
-
-			proto.$wrapper.addClass(os);
-			proto.$wrapper.addClass('isMobile_' + isTouch);
 
 			$(doc.body).on('contextmenu', view.stopEvent);
 
@@ -494,4 +498,4 @@
 
 	proto.util.init();
 
-}(window, document));
+}(window, window.document, window.document.documentElement));
