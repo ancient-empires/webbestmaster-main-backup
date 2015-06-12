@@ -602,7 +602,6 @@
 				mapTiles = win.APP.mapTiles,
 				terrains = map.terrain,
 				angleTypes = ['road', 'water'],
-				reBridge = /^bridge\-\d+$/,
 				mapWidth = map.size.width,
 				mapHeight = map.size.height,
 				maxCanvasSize = win.APP.map.maxCanvasSize;
@@ -637,7 +636,7 @@
 					return;
 				}
 
-				if ( /farm/.test(building.type) ) {
+				if ( 'farm' === building.type ) {
 					terrains[xy] = 'terra-1';
 				} else {
 					terrains[xy] = 'road-1';
@@ -654,11 +653,9 @@
 			// draw angles road
 			angleTypes.forEach(function (type) {
 
-				var re = new RegExp('^(' + type +'|bridge)\\-' + '\\d+$');
-
 				_.each(terrains, function (value, xy) {
 
-					if ( !re.test(value) || reBridge.test(value) ) {
+					if ( value.indexOf(type) === -1 ) {
 						return;
 					}
 
@@ -674,63 +671,73 @@
 						ySquareSizeX2 = y * squareSizeX2,
 						xSquareSizeX2Half = xSquareSizeX2 + squareSize,
 						ySquareSizeX2Half = ySquareSizeX2 + squareSize,
-						t1 = re.test(terrains[xyStr(xl, yu)] || value),
-						t2 = re.test(terrains[xyStr(x, yu)] || value),
-						t3 = re.test(terrains[xyStr(xr, yu)] || value),
-						t4 = re.test(terrains[xyStr(xl, y)] || value),
-						t6 = re.test(terrains[xyStr(xr, y)] || value),
-						t7 = re.test(terrains[xyStr(xl, yd)] || value),
-						t8 = re.test(terrains[xyStr(x, yd)] || value),
-						t9 = re.test(terrains[xyStr(xr, yd)] || value);
+
+						terrain1 = terrains[xyStr(xl, yu)] || value,
+						terrain2 = terrains[xyStr(x, yu)] || value,
+						terrain3 = terrains[xyStr(xr, yu)] || value,
+						terrain4 = terrains[xyStr(xl, y)] || value,
+						terrain6 = terrains[xyStr(xr, y)] || value,
+						terrain7 = terrains[xyStr(xl, yd)] || value,
+						terrain8 = terrains[xyStr(x, yd)] || value,
+						terrain9 = terrains[xyStr(xr, yd)] || value,
+
+						t1 = terrain1.indexOf(type) && terrain1.indexOf('bridge'),
+						t2 = terrain2.indexOf(type) && terrain2.indexOf('bridge'),
+						t3 = terrain3.indexOf(type) && terrain3.indexOf('bridge'),
+						t4 = terrain4.indexOf(type) && terrain4.indexOf('bridge'),
+						t6 = terrain6.indexOf(type) && terrain6.indexOf('bridge'),
+						t7 = terrain7.indexOf(type) && terrain7.indexOf('bridge'),
+						t8 = terrain8.indexOf(type) && terrain8.indexOf('bridge'),
+						t9 = terrain9.indexOf(type) && terrain9.indexOf('bridge');
 
 					// draw 2, 4, 6, 8
-					if ( !t2 ) { // up is different type
+					if ( t2 ) { // up is different type
 						ctx.drawImage(mapTiles['a-' + type + '-2'].img, xSquareSizeX2, ySquareSizeX2, squareSizeX2, squareSize);
 					}
 
-					if ( !t4 ) {
+					if ( t4 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-4'].img, xSquareSizeX2, ySquareSizeX2, squareSize, squareSizeX2);
 					}
 
-					if ( !t6 ) {
+					if ( t6 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-6'].img, xSquareSizeX2Half, ySquareSizeX2, squareSize, squareSizeX2);
 					}
 
-					if ( !t8 ) {
+					if ( t8 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-8'].img, xSquareSizeX2, ySquareSizeX2Half, squareSizeX2, squareSize);
 					}
 
 					// draw 1, 3, 7, 9 - normal
-					if ( !t2 && !t4 ) {
+					if ( t2 && t4 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-1'].img, xSquareSizeX2, ySquareSizeX2, squareSize, squareSize);
 					}
 
-					if ( !t2 && !t6 ) {
+					if ( t2 && t6 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-3'].img, xSquareSizeX2Half, ySquareSizeX2, squareSize, squareSize);
 					}
 
-					if ( !t4 && !t8 ) {
+					if ( t4 && t8 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-7'].img, xSquareSizeX2, ySquareSizeX2Half, squareSize, squareSize);
 					}
 
-					if ( !t6 && !t8 ) {
+					if ( t6 && t8 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-9'].img, xSquareSizeX2Half, ySquareSizeX2Half, squareSize, squareSize);
 					}
 
 					// draw 1, 3, 7, 9 - small
-					if ( t2 && t4 && !t1 ) {
+					if ( !t2 && !t4 && t1 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-1-s'].img, xSquareSizeX2, ySquareSizeX2, squareSize, squareSize);
 					}
 
-					if ( t2 && t6 && !t3 ) {
+					if ( !t2 && !t6 && t3 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-3-s'].img, xSquareSizeX2Half, ySquareSizeX2, squareSize, squareSize);
 					}
 
-					if ( t4 && t8 && !t7 ) {
+					if ( !t4 && !t8 && t7 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-7-s'].img, xSquareSizeX2, ySquareSizeX2Half, squareSize, squareSize);
 					}
 
-					if ( t6 && t8 && !t9 ) {
+					if ( !t6 && !t8 && t9 ) {
 						ctx.drawImage(mapTiles['a-' + type + '-9-s'].img, xSquareSizeX2Half, ySquareSizeX2Half, squareSize, squareSize);
 					}
 
