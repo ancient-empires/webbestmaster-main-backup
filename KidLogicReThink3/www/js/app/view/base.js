@@ -237,13 +237,13 @@
 
 			(function backTo() {
 				setTimeout(function () {
-					if (Backbone.history.fragment === url) {
+					if (Backbone.history.fragment === url || !Backbone.history.fragment) { // needed url or ''
 						router.isForce = false;
 						return;
 					}
 					view.routeBack();
 					backTo();
-				}, 200);
+				}, 50);
 			}());
 
 		},

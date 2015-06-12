@@ -24,43 +24,41 @@
 			new APP.BB.AboutView();
 		},
 
+		getAction: function () {
+
+			var e = window.event || {},
+				newURL = e.newURL || '',
+				oldURL = e.oldURL || '',
+				popupPart = APP.BB.BaseView.prototype.popupUrl,
+				viewAction;
+
+			if ( newURL.indexOf(popupPart) !== -1 ) {
+				viewAction = 'showPopup';
+			}
+
+			if ( oldURL.indexOf(popupPart) !== -1 ) {
+				viewAction = 'hidePopup';
+			}
+
+			// other action is here
+			return viewAction;
+
+		},
+
 		constructor: function () {
 
 			var router = this,
 				originalFunctions = {},
 				proto = APP.BB.Router.prototype;
 
-			function getAction() {
+			_.each(router.routes, function (value) {
 
-				var e = window.event || {},
-					newURL = e.newURL || '',
-					oldURL = e.oldURL || '',
-					popupPart = APP.BB.BaseView.prototype.popupUrl,
-					viewAction;
-
-				if ( newURL.indexOf(popupPart) !== -1 ) {
-					viewAction = 'showPopup';
-				}
-
-				if ( oldURL.indexOf(popupPart) !== -1 ) {
-					viewAction = 'hidePopup';
-				}
-
-				if ( router.isForce ) {
-					return viewAction;
-				}
-
-				// other action is here
-				return viewAction;
-
-			}
-
-			_.each(this.routes, function (value) {
 				originalFunctions[value] = proto[value];
+
 				proto[value] = function () {
 
 					var router = this,
-						viewAction = getAction(),
+						viewAction = router.getAction(),
 						baseProto = win.APP.BB.BaseView.prototype;
 
 					if ( !viewAction ) {
@@ -68,21 +66,18 @@
 					}
 
 					switch (viewAction) {
-						
 						case 'hidePopup':
 							baseProto.hidePopup();
 							break;
-							
 						case 'showPopup':
 							break;
-							
 					}
 
 				};
 
 			});
 
-			return Backbone.Router.prototype.constructor.apply(this, arguments);
+			return Backbone.Router.prototype.constructor.apply(router, arguments);
 
 		}
 
