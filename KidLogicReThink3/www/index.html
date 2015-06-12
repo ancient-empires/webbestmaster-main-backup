@@ -69,6 +69,17 @@
 <script type="text/x-template" data-name="title">
 
 	<div class="screen">
+
+		<div class="flags-wrapper">
+
+			<% var info = window.APP.info, language = info.get('language'); %>
+
+			<% _.each(info.availableLanguages, function(lang) { %>
+				<div class="flag flag-bg-<%= lang %> js-set-lang<%= lang === language ? ' active disable-event' : ' opacity50' %>" data-sound="click.mp3" data-lang="<%= lang %>"><%= lang %></div>
+			<% }); %>
+
+		</div>
+
 		<h1 data-route="about">title page</h1>
 	</div>
 

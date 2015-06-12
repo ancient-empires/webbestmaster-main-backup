@@ -11,7 +11,7 @@
 	APP.BB.TitleView = APP.BB.BaseView.extend({
 
 		events: {
-			//'click .js-set-lang': 'setLang'
+			'click .js-set-lang': 'setLang'
 		},
 
 		initialize: function () {
@@ -24,21 +24,20 @@
 
 			view.render();
 
+		},
+
+		setLang: function (e) {
+
+			var view = this,
+				info = view.info,
+				$this = $(e.currentTarget),
+				lang = $this.attr('data-lang');
+
+			info.set('language', lang);
+
+			view.loadUrl();
+
 		}
-		//,
-		//
-		//setLang: function (e) {
-		//
-		//	var view = this,
-		//		info = view.info,
-		//		$this = $(e.currentTarget),
-		//		lang = $this.attr('data-lang');
-		//
-		//	info.set('language', lang);
-		//
-		//	view.loadUrl();
-		//
-		//}
 
 	});
 

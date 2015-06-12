@@ -66,8 +66,6 @@
 
 		init: function () {
 
-			var lang;
-
 			// get data from LS
 			this.attr = JSON.parse(this.ls.getItem(this.saveItem) || '{}');
 
@@ -83,7 +81,7 @@
 			this.setOS();
 
 			// set language
-			lang = this.get('language') || navigator.language || navigator.userLanguage || this.defaultLanguage;
+			var lang = this.get('language') || navigator.language || navigator.userLanguage || this.defaultLanguage;
 			lang = lang.split('-')[0].toLocaleLowerCase();
 			lang = (this.availableLanguages.indexOf(lang) === -1) ? this.defaultLanguage : lang;
 			lang = lang.toLowerCase();
