@@ -86,35 +86,35 @@
 
 			q: {
 				nearestNonOwnedBuilding: -1,
-				placeArmor: 0.5,
+				placeArmor: 0, // dif
 				upHealth: 1,
 				availableReceiveDamage: -0.1,
 				listOccupyBuilding: 50
 			},
 
-			onHealthUpBuilding: 10
+			onHealthUpBuilding: 0
 		},
 
 		rates_easy: {
-			severalBuildings: -20, // if unit can work with several buildings, reduce rate
+			severalBuildings: 0, // if unit can work with several buildings, reduce rate
 			lowPriority: -1000,
 			highPriority: 1000,
-			killUnit: 40,
-			destroyEnemyBuilding: 40,
+			killUnit: 1000,
+			destroyEnemyBuilding: 0,
 			building: {
-				castle: 100,
+				castle: 0,
 				farm: 0
 			},
 
 			q: {
 				nearestNonOwnedBuilding: -1,
-				placeArmor: 0.5,
-				upHealth: 1,
-				availableReceiveDamage: -0.1,
+				placeArmor: 0,
+				upHealth: 0,
+				availableReceiveDamage: 0,
 				listOccupyBuilding: 50
 			},
 
-			onHealthUpBuilding: 10
+			onHealthUpBuilding: 0
 		},
 
 		run: function () {
