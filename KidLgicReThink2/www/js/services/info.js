@@ -6,7 +6,7 @@
 	/*global APP */
 
 	var info,
-		WITH_ADS = true;
+		WITH_ADS = false;
 
 	win.APP = win.APP || {};
 

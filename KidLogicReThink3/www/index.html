@@ -193,22 +193,22 @@
 
 <script type="text/x-template" data-name="select-right-answer">
 
-	<div class="h100">
+	<div class="question-wrapper-type-2">
 
 		<% var info = window.APP.info, lang = info.get('language'), answer = question.answer; %>
 
 		<div class="question-type-2" style="background-image: url(<%= section.imgPath + question.questionImage %>);">
 			&nbsp;
-			<div class="question-type-2-text"><%= question['text_' + lang] %></div>
+			<div class="question-text-type-2"><%= question['text_' + lang] %></div>
 		</div>
 
 		<div class="answer-wrapper-type-2">
 			<% _.each(question.list, function(item, index){ %>
-			<div data-sound="click.mp3" class="answer-div-type-2 <%= index === answer ? 'js-good-answer' : 'js-bad-answer' %>" style="background-image: url(<%= section.imgPath + item %>)">&nbsp;</div>
+			<div data-sound="click.mp3" class="answer-item-type-2 <%= index === answer ? 'js-good-answer' : 'js-bad-answer' %>" style="background-image: url(<%= section.imgPath + item %>)">&nbsp;</div>
 			<% }); %>
 
 			<% for (var i = question.list.length; i < 4; i += 1) { %>
-			<div data-sound="click.mp3" class="answer-div-type-2 white-bg"></div>
+			<div data-sound="click.mp3" class="answer-item-type-2 white-bg"></div>
 			<% }; %>
 		</div>
 
