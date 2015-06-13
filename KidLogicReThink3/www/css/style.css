@@ -1,12 +1,25 @@
-.flag {
+.flags-wrapper {
+	height: 1.8rem;
+	position: fixed;
+	right: 0;
+	z-index: 1;
+}
 
+.flag {
+	width: 3.04rem;
+	height: 1.6rem;
+	float: left;
+	margin: 0.2rem 0.2rem 0;
+	opacity: 0.5;
 	background-repeat: no-repeat;
 	-webkit-background-size: contain;
 	background-size: contain;
 	background-position: center center;
-	-webkit-border-radius: 0.4rem;
-	-moz-border-radius: 0.4rem;
-	border-radius: 0.4rem;
+	border-radius: 0.25rem;
+}
+
+.flag-active {
+	opacity: 1;
 }
 
 .flag-bg-en {
@@ -17,4 +30,14 @@
 	background-image: url(../i/flag/flag-ru.svg);
 }
 
-
+.show-info {
+	position: fixed;
+	font-size: 1.5rem;
+	line-height: 1.5rem;
+	letter-spacing: 0.1rem;
+	font-weight: bold;
+	text-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
+	padding: 0.5rem;
+	color: #53A90E;
+	z-index: 1;
+}
