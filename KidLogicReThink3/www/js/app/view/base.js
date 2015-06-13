@@ -193,7 +193,12 @@
 		},
 
 		showAppearAnimation: function () {
-			this.$el.addClass('show-view-animation');
+
+			var view = this;
+
+			view.util.toTop(); // hack for animation
+			view.$el.addClass('show-view-animation');
+
 		},
 
 		navigate: function() { //url, options
