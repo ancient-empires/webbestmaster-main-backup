@@ -180,13 +180,14 @@
 
 			var view = this,
 				$oldContainer = $(view.$wrapper[0].querySelectorAll(view.selectors.viewWrapper));
+			
 			$oldContainer.trigger('hide');
 
 			view.$el.addClass(view.classNames.viewWrapper);
 
 			view.$wrapper.append(view.$el);
-			view.util.setSizes();
-			view.util.toTop();
+			//view.util.setSizes();
+			//view.util.toTop();
 			view.showAppearAnimation();
 
 		},
