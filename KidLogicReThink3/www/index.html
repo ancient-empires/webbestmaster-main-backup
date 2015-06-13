@@ -130,7 +130,7 @@
 		<div data-sound="click.mp3" class="js-back status-bar-back">&nbsp;</div>
 
 		<% var info = window.APP.info, os = info.get('os', true); %>
-		<% if (info.withAds && os === 'android') { %>
+		<% if (info.isNormal && os === 'android') { %>
 		<div data-sound="click.mp3" class="section-remove-ads js-no-scroll js-external-link" data-need-confirm="yes" data-href="<%= info.link[os].pro %>">&nbsp;</div>
 		<% }; %>
 

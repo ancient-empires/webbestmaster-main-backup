@@ -6,7 +6,7 @@
 	/*global APP */
 
 	var info,
-		WITH_ADS = true;
+		isNormal = true;
 
 	win.APP = win.APP || {};
 
@@ -43,7 +43,7 @@
 
 	info = {
 
-		withAds: WITH_ADS,
+		isNormal: isNormal,
 
 		link: {
 			ios: {

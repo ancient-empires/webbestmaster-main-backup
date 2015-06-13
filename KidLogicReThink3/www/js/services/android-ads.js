@@ -32,7 +32,7 @@
 
 	win.APP.ad = ad;
 
-	if (win.APP.info.withAds) {
+	if (win.APP.info.isNormal) {
 		ad.init();
 	}
 
