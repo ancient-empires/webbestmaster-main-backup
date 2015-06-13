@@ -77,21 +77,20 @@
 		<div data-sound="click.mp3" class="js-show-info show-info">&nbsp;</div>
 		<div class="flags-wrapper">
 			<% _.each(info.availableLanguages, function(lang) { %>
-			<div class="flag flag-bg-<%= lang %> <%= lang === language ? ' flag-active' : ' js-set-lang' %>" data-sound="click.mp3" data-lang="<%= lang %>">&nbsp;</div>
+			<div class="flag flag-bg-<%= lang %><%= lang === language ? ' flag-active' : ' js-set-lang' %>" data-sound="click.mp3" data-lang="<%= lang %>">&nbsp;</div>
 			<% }); %>
 		</div>
 
 
 
-
+		<div class="section-buttons-wrapper">
 		<% _.each(win.APP.sectionList, function(section, jsKey) { %>
-		<div data-sound="click.mp3" data-route="section/<%= jsKey %>">
-			<img src="<%= section.imgPath %><%= section.img %>" alt=""/>
-
-			<p><%= section['name_' + language] %></p>
+		<div class="section-button" data-sound="click.mp3" data-route="section/<%= jsKey %>" >
+			<img class="section-icon" src="<%= section.imgPath %><%= section.img %>" alt=""/>
+			<p class="section-name"><%= section['name_' + language] %></p>
 		</div>
 		<% }); %>
-
+		</div>
 
 		<!--<h1 data-route="about">title page</h1>-->
 
