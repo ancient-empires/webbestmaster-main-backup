@@ -42,3 +42,7 @@
 	transform: translate3d(0, 100%, 0);
 }
 
+.scroll-area-container {
+	height: 100%;
+	overflow: auto;
+}
