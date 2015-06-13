@@ -82,11 +82,21 @@
 		</div>
 
 		<div class="section-buttons-wrapper">
+		<% var info = window.APP.info, os = info.get('os', true), index = 0; %>
 		<% _.each(win.APP.sectionList, function(section, jsKey) { %>
-		<div class="section-button" data-sound="click.mp3" data-route="section/<%= jsKey %>" >
-			<img class="section-icon" src="<%= section.imgPath %><%= section.img %>" alt=""/>
-			<p class="section-name"><%= section['name_' + language] %></p>
-		</div>
+			<% if (os === 'ios' && info.isNormal && !index ) { %>
+				<div class="section-button" data-sound="click.mp3" data-route="section/<%= jsKey %>" >
+					<img class="section-icon" src="<%= section.imgPath %><%= section.img %>" alt=""/>
+					<p class="section-name"><%= section['name_' + language] %></p>
+				</div>
+			<% } else { %>
+				<div class="section-button js-external-link" data-need-confirm="yes" data-href="<%= info.link[os].pro %>" data-sound="click.mp3">
+					<img class="section-icon opacity50" src="<%= section.imgPath %><%= section.img %>" alt=""/>
+					<p class="section-name opacity50"><%= section['name_' + language] %></p>
+					<div class="app-store-link">&nbsp;</div>
+				</div>
+			<% }; %>
+			<% index += 1; %>
 		<% }); %>
 		</div>
 
