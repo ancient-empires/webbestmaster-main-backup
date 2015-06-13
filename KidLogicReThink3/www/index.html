@@ -81,8 +81,6 @@
 			<% }); %>
 		</div>
 
-
-
 		<div class="section-buttons-wrapper">
 		<% _.each(win.APP.sectionList, function(section, jsKey) { %>
 		<div class="section-button" data-sound="click.mp3" data-route="section/<%= jsKey %>" >
@@ -129,9 +127,7 @@
 <script type="text/x-template" data-name="section-header">
 
 	<div class="status-bar">
-		<div data-sound="click.mp3" class="js-back status-bar-back">
-			<span>&nbsp;</span>
-		</div>
+		<div data-sound="click.mp3" class="js-back status-bar-back">&nbsp;</div>
 
 		<% var info = window.APP.info, os = info.get('os', true); %>
 		<% if (info.withAds && os === 'android') { %>
@@ -159,13 +155,14 @@
 
 	<div class="screen">
 
-		<%= window.APP.templateMaster.tmplFn['section-header']() %>
-
-		<div class="section-wrapper h100 w100">
-
-			<%= window.APP.templateMaster.tmplFn[question.type](obj) %>
+		<div class="section-wrapper-padding">
+			<div class="section-wrapper">
+				<%= window.APP.templateMaster.tmplFn['section-header']() %>
+				<%= window.APP.templateMaster.tmplFn[question.type](obj) %>
+			</div>
 
 		</div>
+
 
 	</div>
 
@@ -173,19 +170,21 @@
 
 <script type="text/x-template" data-name="select-improper">
 
-	<div class="h100">
+	<div class="question-wrapper-type-1">
 
-		<% var info = window.APP.info, lang = info.get('language'), answer = question.answer; %>
-		<% _.each(question.list, function(item, index){ %>
-		<div data-sound="click.mp3" class="answer-image-type-1 <%= index === answer ? 'js-good-answer' : 'js-bad-answer' %>" style="background-image: url(<%= section.imgPath + item %>)">&nbsp;</div>
-		<% }); %>
+		<div class="question-answers-wrapper-type-1">
+			<% var info = window.APP.info, lang = info.get('language'), answer = question.answer; %>
+			<% _.each(question.list, function(item, index){ %>
+			<div data-sound="click.mp3" class="answer-image-type-1 <%= index === answer ? 'js-good-answer' : 'js-bad-answer' %>" style="background-image: url(<%= section.imgPath + item %>)">&nbsp;</div>
+			<% }); %>
 
-		<% for (var i = question.list.length; i < 6; i += 1) { %>
-		<div class="answer-image-type-1 white-bg"></div>
-		<% }; %>
+			<% for (var i = question.list.length; i < 6; i += 1) { %>
+			<div class="answer-image-type-1 white-bg"></div>
+			<% }; %>
+		</div>
 
-		<div class="question-text-type-1">
-			<div> <%= section['mainQuestion_' + lang] %></div>
+		<div class="question-wrapper-text-type-1">
+			<div class="question-text-type-1"><%= section['mainQuestion_' + lang] %></div>
 		</div>
 
 	</div>
