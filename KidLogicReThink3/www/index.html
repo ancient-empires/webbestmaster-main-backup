@@ -90,8 +90,12 @@
 		<% }); %>
 		</div>
 
-		<!--<h1 data-route="about">title page</h1>-->
+		<% var info = window.APP.info, os = info.get('os', true); %>
+		<% if (info.isNormal && os === 'android') { %>
+		<div data-sound="click.mp3" class="title-remove-ads js-no-scroll js-external-link" data-need-confirm="yes" data-href="<%= info.link[os].pro %>">&nbsp;</div>
+		<% }; %>
 
+		<!--<h1 data-route="about">title page</h1>-->
 
 	</div>
 

@@ -15,7 +15,7 @@
 	-webkit-background-size: contain;
 	background-size: contain;
 	background-position: center center;
-	border-radius: 0.25rem;
+	border-radius: 0.2rem;
 }
 
 .flag-active {
@@ -54,6 +54,7 @@
 	top: 50%;
 	width: 100%;
 	margin-top: -5rem;
+	z-index: 0;
 }
 
 .section-button {
@@ -252,3 +253,36 @@
 	box-sizing: border-box;
 	border: 0.5rem solid transparent;
 }
+
+.title-remove-ads,
+.section-remove-ads {
+	position: fixed;
+	z-index: 1;
+	background-color: rgba(0, 0, 0, 0.5);
+	background-repeat: no-repeat;
+	background-image: url(../i/ads-free.svg);
+	-webkit-background-size: 80% auto;
+	background-size: 80% auto;
+	background-position: center center;
+	-webkit-border-radius: 0.3rem;
+	border-radius: 0.3rem;
+}
+
+.title-remove-ads {
+	height: 2.2rem;
+	width: 2.2rem;
+	right: 0.2rem;
+	bottom: 0.2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
