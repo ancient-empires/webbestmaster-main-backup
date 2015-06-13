@@ -11,8 +11,7 @@
 	APP.BB.TitleView = APP.BB.BaseView.extend({
 
 		events: {
-			'click .js-set-lang': 'setLang',
-			'click .js-show-info': 'showInfo'
+			'click .js-set-lang': 'setLang'
 		},
 
 		initialize: function () {
@@ -37,20 +36,6 @@
 			info.set('language', lang);
 
 			view.loadUrl();
-
-		},
-
-		showInfo: function () {
-
-			var view = this,
-				langMaster = win.APP.lang;
-
-			view.showPopup({
-				name: 'info-popup',
-				data: {
-					text: langMaster.get('titleInfo')
-				}
-			})
 
 		}
 

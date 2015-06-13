@@ -14,6 +14,7 @@
 		routes: {
 			'': 'title',
 			'about': 'about',
+			'help-info': 'helpInfo',
 			'section/:jsKey': 'section'
 		},
 
@@ -23,6 +24,10 @@
 
 		about: function () {
 			new APP.BB.AboutView();
+		},
+
+		helpInfo: function () {
+			new APP.BB.HelpInfoView();
 		},
 
 		section: function (jsKey) {

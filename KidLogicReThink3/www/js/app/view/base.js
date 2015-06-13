@@ -395,7 +395,7 @@
 			maxScrollTop = scrollAreaHeight - wrapperHeight;
 
 			if ( scrollTop >= maxScrollTop ) {
-				$wrapper.scrollTop(maxScrollTop - 1);
+				$wrapper.scrollTop(maxScrollTop + 1);
 			}
 
 		},

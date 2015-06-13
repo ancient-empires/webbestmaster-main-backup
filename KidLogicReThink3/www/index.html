@@ -46,6 +46,7 @@
 	<script src="js/app/view/title.js" type="text/javascript"></script>
 	<script src="js/app/view/popup.js" type="text/javascript"></script>
 	<script src="js/app/view/about.js" type="text/javascript"></script>
+	<script src="js/app/view/help-info.js" type="text/javascript"></script>
 
 	<script src="js/app/view/section.js" type="text/javascript"></script>
 
@@ -74,7 +75,7 @@
 	<div class="screen">
 
 		<% var win = window, info = win.APP.info, language = info.get('language'); %>
-		<div data-sound="click.mp3" class="js-show-info show-info">&nbsp;</div>
+		<div data-route="help-info" class="show-info" data-sound="click.mp3">&nbsp;</div>
 		<div class="flags-wrapper">
 			<% _.each(info.availableLanguages, function(lang) { %>
 			<div class="flag flag-bg-<%= lang %><%= lang === language ? ' flag-active' : ' js-set-lang' %>" data-sound="click.mp3" data-lang="<%= lang %>">&nbsp;</div>
@@ -147,6 +148,59 @@
 		<% if (info.isNormal && os === 'android') { %>
 		<div data-sound="click.mp3" class="section-remove-ads js-no-scroll js-external-link" data-need-confirm="yes" data-href="<%= info.link[os].pro %>">&nbsp;</div>
 		<% }; %>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="help-info">
+
+	<div class="screen">
+
+		<div style="height: 100%; overflow: auto;" class="js-scroll-area-container">
+			<div>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			rr<br>
+			</div>
+		</div>
 
 	</div>
 
