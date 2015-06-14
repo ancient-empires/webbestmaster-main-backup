@@ -16,7 +16,7 @@
 
 
 		items: [
-			{
+			{ // 0
 				list: ['a1/1.svg', 'a1/2.svg', 'a1/3.svg', 'a1/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q1/1.svg',
@@ -24,7 +24,7 @@
 				text_ru: 'Для игры в хоккей необходим ...',
 				answer: 0
 			},
-			{
+			{ // 1
 				list: ['a1/1.svg', 'a1/2.svg', 'a1/3.svg', 'a1/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q1/2.svg',
@@ -32,7 +32,7 @@
 				text_ru: 'Что нужно ёжику для рисования?',
 				answer: 1
 			},
-			{
+			{ // 2
 				list: ['a1/1.svg', 'a1/2.svg', 'a1/3.svg', 'a1/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q1/3.svg',
@@ -40,7 +40,7 @@
 				text_ru: 'Что было испечено на день родения кролика?',
 				answer: 2
 			},
-			{
+			{ // 3
 				list: ['a1/1.svg', 'a1/2.svg', 'a1/3.svg', 'a1/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q1/4.svg',
@@ -48,7 +48,7 @@
 				text_ru: 'Что нужно лисе для измерения температуры?',
 				answer: 3
 			},
-			{
+			{ // 4
 				list: ['a2/1.svg', 'a2/2.svg', 'a2/3.svg', 'a2/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q2/1.svg',
@@ -57,7 +57,7 @@
 				answer: 0,
 				item: 4
 			},
-			{
+			{ // 5
 				list: ['a2/1.svg', 'a2/2.svg', 'a2/3.svg', 'a2/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q2/2.svg',
@@ -65,7 +65,7 @@
 				text_ru: 'Что мышка любит больше всего?',
 				answer: 1
 			},
-			{
+			{ // 6
 				list: ['a2/1.svg', 'a2/2.svg', 'a2/3.svg', 'a2/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q2/3.svg',
@@ -73,7 +73,7 @@
 				text_ru: 'Что собачка любит больше всего?',
 				answer: 2
 			},
-			{
+			{ // 7
 				list: ['a2/1.svg', 'a2/2.svg', 'a2/3.svg', 'a2/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q2/4.svg',
@@ -81,7 +81,7 @@
 				text_ru: 'Что медведь любит больше всего?',
 				answer: 3
 			},
-			{
+			{ // 8
 				list: ['a3/1.svg', 'a3/2.svg', 'a3/3.svg', 'a3/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q3/1.svg',
@@ -89,7 +89,7 @@
 				text_ru: 'Найди подходящий паттерн.',
 				answer: 0
 			},
-			{
+			{ // 9
 				list: ['a3/1.svg', 'a3/2.svg', 'a3/3.svg', 'a3/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q3/2.svg',
@@ -97,7 +97,7 @@
 				text_ru: 'Найди подходящий паттерн.',
 				answer: 1
 			},
-			{
+			{ // 10
 				list: ['a3/1.svg', 'a3/2.svg', 'a3/3.svg', 'a3/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q3/3.svg',
@@ -105,7 +105,7 @@
 				text_ru: 'Найди подходящий паттерн.',
 				answer: 2
 			},
-			{
+			{ // 11
 				list: ['a3/1.svg', 'a3/2.svg', 'a3/3.svg', 'a3/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q3/4.svg',
@@ -113,7 +113,7 @@
 				text_ru: 'Найди подходящий паттерн.',
 				answer: 3
 			},
-			{
+			{ // 12
 				list: ['a4/1.svg', 'a4/2.svg', 'a4/3.svg', 'a4/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q4/1.svg',
@@ -121,7 +121,7 @@
 				text_ru: 'Найди пару.',
 				answer: 0
 			},
-			{
+			{ // 13
 				list: ['a4/1.svg', 'a4/2.svg', 'a4/3.svg', 'a4/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q4/2.svg',
@@ -129,7 +129,7 @@
 				text_ru: 'Найди пару.',
 				answer: 1
 			},
-			{
+			{ // 14
 				list: ['a4/1.svg', 'a4/2.svg', 'a4/3.svg', 'a4/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q4/3.svg',
@@ -137,7 +137,7 @@
 				text_ru: 'Найди пару.',
 				answer: 2
 			},
-			{
+			{ // 15
 				list: ['a4/1.svg', 'a4/2.svg', 'a4/3.svg', 'a4/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q4/4.svg',
@@ -145,7 +145,7 @@
 				text_ru: 'Найди пару.',
 				answer: 3
 			},
-			{
+			{ // 16
 				list: ['a5/1.svg', 'a5/2.svg', 'a5/3.svg', 'a5/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q5/1.svg',
@@ -153,7 +153,7 @@
 				text_ru: 'Найди такое же здание.',
 				answer: 0
 			},
-			{
+			{ // 17
 				list: ['a5/1.svg', 'a5/2.svg', 'a5/3.svg', 'a5/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q5/2.svg',
@@ -161,7 +161,7 @@
 				text_ru: 'Найди такое же здание.',
 				answer: 1
 			},
-			{
+			{ // 18
 				list: ['a5/1.svg', 'a5/2.svg', 'a5/3.svg', 'a5/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q5/3.svg',
@@ -169,7 +169,7 @@
 				text_ru: 'Найди такое же здание.',
 				answer: 2
 			},
-			{
+			{ // 19
 				list: ['a5/1.svg', 'a5/2.svg', 'a5/3.svg', 'a5/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q5/4.svg',
@@ -177,7 +177,7 @@
 				text_ru: 'Найди такое же здание.',
 				answer: 3
 			},
-			{
+			{ // 20
 				list: ['a6/1.svg', 'a6/2.svg', 'a6/3.svg', 'a6/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q6/1.svg',
@@ -185,7 +185,7 @@
 				text_ru: 'Найди похожее.',
 				answer: 0
 			},
-			{
+			{ // 21
 				list: ['a6/1.svg', 'a6/2.svg', 'a6/3.svg', 'a6/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q6/2.svg',
@@ -193,7 +193,7 @@
 				text_ru: 'Найди похожее.',
 				answer: 1
 			},
-			{
+			{ // 22
 				list: ['a6/1.svg', 'a6/2.svg', 'a6/3.svg', 'a6/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q6/3.svg',
@@ -201,7 +201,7 @@
 				text_ru: 'Найди похожее.',
 				answer: 2
 			},
-			{
+			{ // 23
 				list: ['a6/1.svg', 'a6/2.svg', 'a6/3.svg', 'a6/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q6/4.svg',
@@ -209,7 +209,7 @@
 				text_ru: 'Найди похожее.',
 				answer: 3
 			},
-			{
+			{ // 24
 				list: ['a7/1.svg', 'a7/2.svg', 'a7/3.svg', 'a7/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q7/1.svg',
@@ -217,7 +217,7 @@
 				text_ru: 'Что мышка любит больше всего?',
 				answer: 0
 			},
-			{
+			{ // 25
 				list: ['a7/1.svg', 'a7/2.svg', 'a7/3.svg', 'a7/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q7/2.svg',
@@ -225,7 +225,7 @@
 				text_ru: 'Что белочка любит больше всего?',
 				answer: 1
 			},
-			{
+			{ // 26
 				list: ['a7/1.svg', 'a7/2.svg', 'a7/3.svg', 'a7/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q7/3.svg',
@@ -233,7 +233,7 @@
 				text_ru: 'Что кролик любит больше всего?',
 				answer: 2
 			},
-			{
+			{ // 27
 				list: ['a7/1.svg', 'a7/2.svg', 'a7/3.svg', 'a7/4.svg'],
 				type: 'select-right-answer', // vibery variant otveta
 				questionImage: 'q7/4.svg',
@@ -241,6 +241,23 @@
 				text_ru: 'Что собачка любит больше всего?',
 				answer: 3
 			}
+			//,
+
+
+			// shadow section
+
+			//{
+			//	list: ['shadow/-s.jpg', 'shadow/-s.jpg', 'shadow/-s.jpg', 'shadow/-s.jpg'],
+			//	type: 'select-right-answer',
+			//	questionImage: 'shadow/.jpg',
+			//	text_en: 'Find the right shade.',
+			//	text_ru: 'Найди подходящую тень.',
+			//	answer: win
+			//},
+
+
+
+
 
 		]
 
