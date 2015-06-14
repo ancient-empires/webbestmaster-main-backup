@@ -422,9 +422,45 @@
 				text_en: 'Find the right shade.',
 				text_ru: 'Найди подходящую тень.',
 				answer: 3
+			},
+
+
+
+
+			{ // 50 - snake - 3 and crocodile - 1
+				list: ['shadow/crocodile-1-s.jpg', 'shadow/snake-1-s.jpg', 'shadow/snake-2-s.jpg', 'shadow/snake-3-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/crocodile-1.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 0
+			},
+			{ // 51
+				list: ['shadow/crocodile-1-s.jpg', 'shadow/snake-1-s.jpg', 'shadow/snake-2-s.jpg', 'shadow/snake-3-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/snake-1.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 1
+			},
+			{ // 51
+				list: ['shadow/crocodile-1-s.jpg', 'shadow/snake-1-s.jpg', 'shadow/snake-2-s.jpg', 'shadow/snake-3-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/snake-2.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 2
+			},
+			{ // 53
+				list: ['shadow/crocodile-1-s.jpg', 'shadow/snake-1-s.jpg', 'shadow/snake-2-s.jpg', 'shadow/snake-3-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/snake-3.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 3
 			}
-			
-			
+
+
 
 
 
