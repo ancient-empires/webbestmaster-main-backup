@@ -197,6 +197,81 @@
 				list: ['36/1.jpg', '36/2.jpg', '36/3.jpg', '36/4.jpg'],
 				type: 'select-improper', // 4to lishnee
 				answer: 1
+			},
+			{
+				list: ['37/1.jpg', '37/2.jpg', '37/3.jpg', '37/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 0
+			},
+			{
+				list: ['38/1.jpg', '38/2.jpg', '38/3.jpg', '38/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 3
+			},
+			{
+				list: ['39/1.jpg', '39/2.jpg', '39/3.jpg', '39/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 2
+			},
+			{
+				list: ['40/1.jpg', '40/2.jpg', '40/3.jpg', '40/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 0
+			},
+			{
+				list: ['41/1.jpg', '41/2.jpg', '41/3.jpg', '41/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 2
+			},
+			{
+				list: ['42/1.jpg', '42/2.jpg', '42/3.jpg', '42/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 1
+			},
+			{
+				list: ['43/1.jpg', '43/2.jpg', '43/3.jpg', '43/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 3
+			},
+			{
+				list: ['44/1.jpg', '44/2.jpg', '44/3.jpg', '44/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 2
+			},
+			{
+				list: ['45/1.jpg', '45/2.jpg', '45/3.jpg', '45/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 3
+			},
+			{
+				list: ['46/1.jpg', '46/2.jpg', '46/3.jpg', '46/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 0
+			},
+			{
+				list: ['47/1.jpg', '47/2.jpg', '47/3.jpg', '47/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 1
+			},
+			{
+				list: ['48/1.jpg', '48/2.jpg', '48/3.jpg', '48/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 3
+			},
+			{
+				list: ['49/1.jpg', '49/2.jpg', '49/3.jpg', '49/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 2
+			},
+			{
+				list: ['50/1.jpg', '50/2.jpg', '50/3.jpg', '50/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 1
+			},
+			{
+				list: ['51/1.jpg', '51/2.jpg', '51/3.jpg', '51/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 0
 			}
 
 		]
