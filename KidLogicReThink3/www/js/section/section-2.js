@@ -243,7 +243,7 @@
 			},
 			// shadow section
 
-			{ // 28
+			{ // 28 - boots - 4 
 				list: ['shadow/boot-1-s.jpg', 'shadow/boot-2-s.jpg', 'shadow/boot-3-s.jpg', 'shadow/boot-4-s.jpg'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/boot-1.jpg',
@@ -276,7 +276,7 @@
 				answer: 3
 			},
 
-			{ // 32
+			{ // 32 flower - 4
 				list: ['shadow/flower-1-s.jpg', 'shadow/flower-2-s.jpg', 'shadow/flower-3-s.jpg', 'shadow/flower-4-s.jpg'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/flower-1.jpg',
@@ -307,7 +307,66 @@
 				text_en: 'Find the right shade.',
 				text_ru: 'Найди подходящую тень.',
 				answer: 3
+			},
+
+			{ // 36 bird - 6
+				list: ['shadow/bird-1-s.jpg', 'shadow/bird-2-s.jpg', 'shadow/bird-3-s.jpg', 'shadow/bird-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/bird-1.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 0
+			},
+			{ // 37
+				list: ['shadow/bird-2-s.jpg', 'shadow/bird-3-s.jpg', 'shadow/bird-4-s.jpg', 'shadow/bird-5-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/bird-2.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 0
+			},
+			{ // 38
+				list: ['shadow/bird-3-s.jpg', 'shadow/bird-4-s.jpg', 'shadow/bird-5-s.jpg', 'shadow/bird-6-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/bird-3.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 0
+			},
+			{ // 39
+				list: ['shadow/bird-4-s.jpg', 'shadow/bird-5-s.jpg', 'shadow/bird-6-s.jpg', 'shadow/bird-1-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/bird-4.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 0
+			},
+			{ // 40
+				list: ['shadow/bird-5-s.jpg', 'shadow/bird-6-s.jpg', 'shadow/bird-1-s.jpg', 'shadow/bird-2-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/bird-5.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 0
+			},
+			{ // 41
+				list: ['shadow/bird-6-s.jpg', 'shadow/bird-1-s.jpg', 'shadow/bird-2-s.jpg', 'shadow/bird-3-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/bird-6.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 0
 			}
+
+
+
+
+
+
+
+
+
+
 
 
 
