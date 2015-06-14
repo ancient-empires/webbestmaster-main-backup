@@ -111,6 +111,13 @@
 	box-sizing: border-box;
 }
 
+.help-info-wrapper {
+	height: 100%;
+	background-color: #c00;
+	padding-top: 2.5rem;
+	box-sizing: border-box;
+}
+
 .section-wrapper {
 	position: relative;
 	width: 100%;
@@ -128,13 +135,13 @@
 .question-wrapper-type-2 {
 	height: 100%;
 	box-sizing: border-box;
-	padding-top: 2.6rem;
+	padding-top: 2.5rem;
 }
 
 .question-answers-wrapper-type-1 {
 	height: 100%;
 	box-sizing: border-box;
-	padding: 2.6rem 0 3rem;
+	padding: 2.5rem 0 2.9rem;
 }
 
 .question-answers-wrapper-type-2 {

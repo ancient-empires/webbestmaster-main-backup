@@ -22,7 +22,7 @@
 		instructions: 'Инструкции',
 		about: 'О программе',
 
-		titleInfo: 'титульная инфа'
+		helpInfo: 'полезная инфа'
 
 	};
 

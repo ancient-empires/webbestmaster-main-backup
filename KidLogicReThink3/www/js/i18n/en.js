@@ -22,7 +22,7 @@
 		instructions: 'Instructions',
 		about: 'About',
 
-		titleInfo: 'title-info'
+		helpInfo: 'help info'
 
 	};
 
