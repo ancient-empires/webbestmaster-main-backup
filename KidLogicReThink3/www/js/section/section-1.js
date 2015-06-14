@@ -157,6 +157,46 @@
 				list: ['28/1.svg', '28/2.svg', '28/3.svg', '28/4.svg', '28/5.svg'],
 				type: 'select-improper', // 4to lishnee
 				answer: 4
+			},
+			{
+				list: ['29/1.jpg', '29/2.jpg', '29/3.jpg', '29/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 3
+			},
+			{
+				list: ['30/1.jpg', '30/2.jpg', '30/3.jpg', '30/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 2
+			},
+			{
+				list: ['31/1.jpg', '31/2.jpg', '31/3.jpg', '31/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 2
+			},
+			{
+				list: ['32/1.jpg', '32/2.jpg', '32/3.jpg', '32/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 1
+			},
+			{
+				list: ['33/1.jpg', '33/2.jpg', '33/3.jpg', '33/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 0
+			},
+			{
+				list: ['34/1.jpg', '34/2.jpg', '34/3.jpg', '34/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 3
+			},
+			{
+				list: ['35/1.jpg', '35/2.jpg', '35/3.jpg', '35/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 1
+			},
+			{
+				list: ['36/1.jpg', '36/2.jpg', '36/3.jpg', '36/4.jpg'],
+				type: 'select-improper', // 4to lishnee
+				answer: 1
 			}
 
 		]
