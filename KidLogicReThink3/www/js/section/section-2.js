@@ -358,9 +358,6 @@
 				answer: 0
 			},
 
-
-
-
 			{ // 42 - lists - 4
 				list: ['shadow/list-1-s.jpg', 'shadow/list-2-s.jpg', 'shadow/list-3-s.jpg', 'shadow/list-4-s.jpg'],
 				type: 'select-right-answer',
@@ -392,7 +389,42 @@
 				text_en: 'Find the right shade.',
 				text_ru: 'Найди подходящую тень.',
 				answer: 3
+			},
+			
+			{ // 46 - fishes - 4
+				list: ['shadow/fish-1-s.jpg', 'shadow/fish-2-s.jpg', 'shadow/fish-3-s.jpg', 'shadow/fish-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/fish-1.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 0
+			},
+			{ // 47
+				list: ['shadow/fish-1-s.jpg', 'shadow/fish-2-s.jpg', 'shadow/fish-3-s.jpg', 'shadow/fish-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/fish-2.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 1
+			},
+			{ // 48
+				list: ['shadow/fish-1-s.jpg', 'shadow/fish-2-s.jpg', 'shadow/fish-3-s.jpg', 'shadow/fish-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/fish-3.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 2
+			},
+			{ // 49
+				list: ['shadow/fish-1-s.jpg', 'shadow/fish-2-s.jpg', 'shadow/fish-3-s.jpg', 'shadow/fish-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/fish-4.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 3
 			}
+			
+			
 
 
 
