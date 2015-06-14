@@ -240,20 +240,41 @@
 				text_en: 'What Dog loves more?',
 				text_ru: 'Что собачка любит больше всего?',
 				answer: 3
-			}
-			//,
-
-
+			},
 			// shadow section
 
-			//{
-			//	list: ['shadow/-s.jpg', 'shadow/-s.jpg', 'shadow/-s.jpg', 'shadow/-s.jpg'],
-			//	type: 'select-right-answer',
-			//	questionImage: 'shadow/.jpg',
-			//	text_en: 'Find the right shade.',
-			//	text_ru: 'Найди подходящую тень.',
-			//	answer: win
-			//},
+			{ // 28
+				list: ['shadow/boot-1-s.jpg', 'shadow/boot-2-s.jpg', 'shadow/boot-3-s.jpg', 'shadow/boot-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/boot-1.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 0
+			},
+			{ // 29
+				list: ['shadow/boot-1-s.jpg', 'shadow/boot-2-s.jpg', 'shadow/boot-3-s.jpg', 'shadow/boot-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/boot-2.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 1
+			},
+			{ // 30
+				list: ['shadow/boot-1-s.jpg', 'shadow/boot-2-s.jpg', 'shadow/boot-3-s.jpg', 'shadow/boot-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/boot-3.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 2
+			},
+			{ // 31
+				list: ['shadow/boot-1-s.jpg', 'shadow/boot-2-s.jpg', 'shadow/boot-3-s.jpg', 'shadow/boot-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/boot-4.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 3
+			}
 
 
 
