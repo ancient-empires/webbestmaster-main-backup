@@ -274,6 +274,39 @@
 				text_en: 'Find the right shade.',
 				text_ru: 'Найди подходящую тень.',
 				answer: 3
+			},
+
+			{ // 32
+				list: ['shadow/flower-1-s.jpg', 'shadow/flower-2-s.jpg', 'shadow/flower-3-s.jpg', 'shadow/flower-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/flower-1.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 0
+			},
+			{ // 33
+				list: ['shadow/flower-1-s.jpg', 'shadow/flower-2-s.jpg', 'shadow/flower-3-s.jpg', 'shadow/flower-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/flower-2.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 1
+			},
+			{ // 34
+				list: ['shadow/flower-1-s.jpg', 'shadow/flower-2-s.jpg', 'shadow/flower-3-s.jpg', 'shadow/flower-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/flower-3.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 2
+			},
+			{ // 35
+				list: ['shadow/flower-1-s.jpg', 'shadow/flower-2-s.jpg', 'shadow/flower-3-s.jpg', 'shadow/flower-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/flower-4.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 3
 			}
 
 
