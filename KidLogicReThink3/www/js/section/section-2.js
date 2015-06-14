@@ -356,7 +356,47 @@
 				text_en: 'Find the right shade.',
 				text_ru: 'Найди подходящую тень.',
 				answer: 0
+			},
+
+
+
+
+			{ // 42 - lists - 4
+				list: ['shadow/list-1-s.jpg', 'shadow/list-2-s.jpg', 'shadow/list-3-s.jpg', 'shadow/list-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/list-1.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 0
+			},
+			{ // 43
+				list: ['shadow/list-1-s.jpg', 'shadow/list-2-s.jpg', 'shadow/list-3-s.jpg', 'shadow/list-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/list-2.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 1
+			},
+			{ // 44
+				list: ['shadow/list-1-s.jpg', 'shadow/list-2-s.jpg', 'shadow/list-3-s.jpg', 'shadow/list-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/list-3.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 2
+			},
+			{ // 45
+				list: ['shadow/list-1-s.jpg', 'shadow/list-2-s.jpg', 'shadow/list-3-s.jpg', 'shadow/list-4-s.jpg'],
+				type: 'select-right-answer',
+				questionImage: 'shadow/list-4.jpg',
+				text_en: 'Find the right shade.',
+				text_ru: 'Найди подходящую тень.',
+				answer: 3
 			}
+
+
+
+
 
 
 
