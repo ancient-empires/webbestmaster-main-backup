@@ -244,7 +244,7 @@
 			// shadow section
 
 			{ // 28 - boots - 4 
-				list: ['shadow/boot-1-s.jpg', 'shadow/boot-2-s.jpg', 'shadow/boot-3-s.jpg', 'shadow/boot-4-s.jpg'],
+				list: ['shadow/boot-1-s.png', 'shadow/boot-2-s.png', 'shadow/boot-3-s.png', 'shadow/boot-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/boot-1.jpg',
 				text_en: 'Find the right shade.',
@@ -252,7 +252,7 @@
 				answer: 0
 			},
 			{ // 29
-				list: ['shadow/boot-1-s.jpg', 'shadow/boot-2-s.jpg', 'shadow/boot-3-s.jpg', 'shadow/boot-4-s.jpg'],
+				list: ['shadow/boot-1-s.png', 'shadow/boot-2-s.png', 'shadow/boot-3-s.png', 'shadow/boot-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/boot-2.jpg',
 				text_en: 'Find the right shade.',
@@ -260,7 +260,7 @@
 				answer: 1
 			},
 			{ // 30
-				list: ['shadow/boot-1-s.jpg', 'shadow/boot-2-s.jpg', 'shadow/boot-3-s.jpg', 'shadow/boot-4-s.jpg'],
+				list: ['shadow/boot-1-s.png', 'shadow/boot-2-s.png', 'shadow/boot-3-s.png', 'shadow/boot-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/boot-3.jpg',
 				text_en: 'Find the right shade.',
@@ -268,7 +268,7 @@
 				answer: 2
 			},
 			{ // 31
-				list: ['shadow/boot-1-s.jpg', 'shadow/boot-2-s.jpg', 'shadow/boot-3-s.jpg', 'shadow/boot-4-s.jpg'],
+				list: ['shadow/boot-1-s.png', 'shadow/boot-2-s.png', 'shadow/boot-3-s.png', 'shadow/boot-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/boot-4.jpg',
 				text_en: 'Find the right shade.',
@@ -277,7 +277,7 @@
 			},
 
 			{ // 32 flower - 4
-				list: ['shadow/flower-1-s.jpg', 'shadow/flower-2-s.jpg', 'shadow/flower-3-s.jpg', 'shadow/flower-4-s.jpg'],
+				list: ['shadow/flower-1-s.png', 'shadow/flower-2-s.png', 'shadow/flower-3-s.png', 'shadow/flower-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/flower-1.jpg',
 				text_en: 'Find the right shade.',
@@ -285,7 +285,7 @@
 				answer: 0
 			},
 			{ // 33
-				list: ['shadow/flower-1-s.jpg', 'shadow/flower-2-s.jpg', 'shadow/flower-3-s.jpg', 'shadow/flower-4-s.jpg'],
+				list: ['shadow/flower-1-s.png', 'shadow/flower-2-s.png', 'shadow/flower-3-s.png', 'shadow/flower-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/flower-2.jpg',
 				text_en: 'Find the right shade.',
@@ -293,7 +293,7 @@
 				answer: 1
 			},
 			{ // 34
-				list: ['shadow/flower-1-s.jpg', 'shadow/flower-2-s.jpg', 'shadow/flower-3-s.jpg', 'shadow/flower-4-s.jpg'],
+				list: ['shadow/flower-1-s.png', 'shadow/flower-2-s.png', 'shadow/flower-3-s.png', 'shadow/flower-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/flower-3.jpg',
 				text_en: 'Find the right shade.',
@@ -301,7 +301,7 @@
 				answer: 2
 			},
 			{ // 35
-				list: ['shadow/flower-1-s.jpg', 'shadow/flower-2-s.jpg', 'shadow/flower-3-s.jpg', 'shadow/flower-4-s.jpg'],
+				list: ['shadow/flower-1-s.png', 'shadow/flower-2-s.png', 'shadow/flower-3-s.png', 'shadow/flower-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/flower-4.jpg',
 				text_en: 'Find the right shade.',
@@ -310,7 +310,7 @@
 			},
 
 			{ // 36 bird - 6
-				list: ['shadow/bird-1-s.jpg', 'shadow/bird-2-s.jpg', 'shadow/bird-3-s.jpg', 'shadow/bird-4-s.jpg'],
+				list: ['shadow/bird-1-s.png', 'shadow/bird-2-s.png', 'shadow/bird-3-s.png', 'shadow/bird-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/bird-1.jpg',
 				text_en: 'Find the right shade.',
@@ -318,7 +318,7 @@
 				answer: 0
 			},
 			{ // 37
-				list: ['shadow/bird-2-s.jpg', 'shadow/bird-3-s.jpg', 'shadow/bird-4-s.jpg', 'shadow/bird-5-s.jpg'],
+				list: ['shadow/bird-2-s.png', 'shadow/bird-3-s.png', 'shadow/bird-4-s.png', 'shadow/bird-5-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/bird-2.jpg',
 				text_en: 'Find the right shade.',
@@ -326,7 +326,7 @@
 				answer: 0
 			},
 			{ // 38
-				list: ['shadow/bird-3-s.jpg', 'shadow/bird-4-s.jpg', 'shadow/bird-5-s.jpg', 'shadow/bird-6-s.jpg'],
+				list: ['shadow/bird-3-s.png', 'shadow/bird-4-s.png', 'shadow/bird-5-s.png', 'shadow/bird-6-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/bird-3.jpg',
 				text_en: 'Find the right shade.',
@@ -334,7 +334,7 @@
 				answer: 0
 			},
 			{ // 39
-				list: ['shadow/bird-4-s.jpg', 'shadow/bird-5-s.jpg', 'shadow/bird-6-s.jpg', 'shadow/bird-1-s.jpg'],
+				list: ['shadow/bird-4-s.png', 'shadow/bird-5-s.png', 'shadow/bird-6-s.png', 'shadow/bird-1-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/bird-4.jpg',
 				text_en: 'Find the right shade.',
@@ -342,7 +342,7 @@
 				answer: 0
 			},
 			{ // 40
-				list: ['shadow/bird-5-s.jpg', 'shadow/bird-6-s.jpg', 'shadow/bird-1-s.jpg', 'shadow/bird-2-s.jpg'],
+				list: ['shadow/bird-5-s.png', 'shadow/bird-6-s.png', 'shadow/bird-1-s.png', 'shadow/bird-2-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/bird-5.jpg',
 				text_en: 'Find the right shade.',
@@ -350,7 +350,7 @@
 				answer: 0
 			},
 			{ // 41
-				list: ['shadow/bird-6-s.jpg', 'shadow/bird-1-s.jpg', 'shadow/bird-2-s.jpg', 'shadow/bird-3-s.jpg'],
+				list: ['shadow/bird-6-s.png', 'shadow/bird-1-s.png', 'shadow/bird-2-s.png', 'shadow/bird-3-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/bird-6.jpg',
 				text_en: 'Find the right shade.',
@@ -359,7 +359,7 @@
 			},
 
 			{ // 42 - lists - 4
-				list: ['shadow/list-1-s.jpg', 'shadow/list-2-s.jpg', 'shadow/list-3-s.jpg', 'shadow/list-4-s.jpg'],
+				list: ['shadow/list-1-s.png', 'shadow/list-2-s.png', 'shadow/list-3-s.png', 'shadow/list-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/list-1.jpg',
 				text_en: 'Find the right shade.',
@@ -367,7 +367,7 @@
 				answer: 0
 			},
 			{ // 43
-				list: ['shadow/list-1-s.jpg', 'shadow/list-2-s.jpg', 'shadow/list-3-s.jpg', 'shadow/list-4-s.jpg'],
+				list: ['shadow/list-1-s.png', 'shadow/list-2-s.png', 'shadow/list-3-s.png', 'shadow/list-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/list-2.jpg',
 				text_en: 'Find the right shade.',
@@ -375,7 +375,7 @@
 				answer: 1
 			},
 			{ // 44
-				list: ['shadow/list-1-s.jpg', 'shadow/list-2-s.jpg', 'shadow/list-3-s.jpg', 'shadow/list-4-s.jpg'],
+				list: ['shadow/list-1-s.png', 'shadow/list-2-s.png', 'shadow/list-3-s.png', 'shadow/list-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/list-3.jpg',
 				text_en: 'Find the right shade.',
@@ -383,7 +383,7 @@
 				answer: 2
 			},
 			{ // 45
-				list: ['shadow/list-1-s.jpg', 'shadow/list-2-s.jpg', 'shadow/list-3-s.jpg', 'shadow/list-4-s.jpg'],
+				list: ['shadow/list-1-s.png', 'shadow/list-2-s.png', 'shadow/list-3-s.png', 'shadow/list-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/list-4.jpg',
 				text_en: 'Find the right shade.',
@@ -392,7 +392,7 @@
 			},
 			
 			{ // 46 - fishes - 4
-				list: ['shadow/fish-1-s.jpg', 'shadow/fish-2-s.jpg', 'shadow/fish-3-s.jpg', 'shadow/fish-4-s.jpg'],
+				list: ['shadow/fish-1-s.png', 'shadow/fish-2-s.png', 'shadow/fish-3-s.png', 'shadow/fish-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/fish-1.jpg',
 				text_en: 'Find the right shade.',
@@ -400,7 +400,7 @@
 				answer: 0
 			},
 			{ // 47
-				list: ['shadow/fish-1-s.jpg', 'shadow/fish-2-s.jpg', 'shadow/fish-3-s.jpg', 'shadow/fish-4-s.jpg'],
+				list: ['shadow/fish-1-s.png', 'shadow/fish-2-s.png', 'shadow/fish-3-s.png', 'shadow/fish-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/fish-2.jpg',
 				text_en: 'Find the right shade.',
@@ -408,7 +408,7 @@
 				answer: 1
 			},
 			{ // 48
-				list: ['shadow/fish-1-s.jpg', 'shadow/fish-2-s.jpg', 'shadow/fish-3-s.jpg', 'shadow/fish-4-s.jpg'],
+				list: ['shadow/fish-1-s.png', 'shadow/fish-2-s.png', 'shadow/fish-3-s.png', 'shadow/fish-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/fish-3.jpg',
 				text_en: 'Find the right shade.',
@@ -416,7 +416,7 @@
 				answer: 2
 			},
 			{ // 49
-				list: ['shadow/fish-1-s.jpg', 'shadow/fish-2-s.jpg', 'shadow/fish-3-s.jpg', 'shadow/fish-4-s.jpg'],
+				list: ['shadow/fish-1-s.png', 'shadow/fish-2-s.png', 'shadow/fish-3-s.png', 'shadow/fish-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/fish-4.jpg',
 				text_en: 'Find the right shade.',
@@ -424,7 +424,7 @@
 				answer: 3
 			},
 			{ // 50 - snake - 3 and crocodile - 1
-				list: ['shadow/crocodile-1-s.jpg', 'shadow/snake-1-s.jpg', 'shadow/snake-2-s.jpg', 'shadow/snake-3-s.jpg'],
+				list: ['shadow/crocodile-1-s.png', 'shadow/snake-1-s.png', 'shadow/snake-2-s.png', 'shadow/snake-3-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/crocodile-1.jpg',
 				text_en: 'Find the right shade.',
@@ -432,7 +432,7 @@
 				answer: 0
 			},
 			{ // 51
-				list: ['shadow/crocodile-1-s.jpg', 'shadow/snake-1-s.jpg', 'shadow/snake-2-s.jpg', 'shadow/snake-3-s.jpg'],
+				list: ['shadow/crocodile-1-s.png', 'shadow/snake-1-s.png', 'shadow/snake-2-s.png', 'shadow/snake-3-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/snake-1.jpg',
 				text_en: 'Find the right shade.',
@@ -440,7 +440,7 @@
 				answer: 1
 			},
 			{ // 51
-				list: ['shadow/crocodile-1-s.jpg', 'shadow/snake-1-s.jpg', 'shadow/snake-2-s.jpg', 'shadow/snake-3-s.jpg'],
+				list: ['shadow/crocodile-1-s.png', 'shadow/snake-1-s.png', 'shadow/snake-2-s.png', 'shadow/snake-3-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/snake-2.jpg',
 				text_en: 'Find the right shade.',
@@ -448,7 +448,7 @@
 				answer: 2
 			},
 			{ // 53
-				list: ['shadow/crocodile-1-s.jpg', 'shadow/snake-1-s.jpg', 'shadow/snake-2-s.jpg', 'shadow/snake-3-s.jpg'],
+				list: ['shadow/crocodile-1-s.png', 'shadow/snake-1-s.png', 'shadow/snake-2-s.png', 'shadow/snake-3-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/snake-3.jpg',
 				text_en: 'Find the right shade.',
@@ -457,7 +457,7 @@
 			},
 
 			{ // 54 - animal - 10
-				list: ['shadow/animal-1-s.jpg', 'shadow/animal-2-s.jpg', 'shadow/animal-3-s.jpg', 'shadow/animal-4-s.jpg'],
+				list: ['shadow/animal-1-s.png', 'shadow/animal-2-s.png', 'shadow/animal-3-s.png', 'shadow/animal-4-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/animal-1.jpg',
 				text_en: 'Find the right shade.',
@@ -465,7 +465,7 @@
 				answer: 0
 			},
 			{ // 55
-				list: ['shadow/animal-2-s.jpg', 'shadow/animal-3-s.jpg', 'shadow/animal-4-s.jpg', 'shadow/animal-5-s.jpg'],
+				list: ['shadow/animal-2-s.png', 'shadow/animal-3-s.png', 'shadow/animal-4-s.png', 'shadow/animal-5-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/animal-2.jpg',
 				text_en: 'Find the right shade.',
@@ -473,7 +473,7 @@
 				answer: 0
 			},
 			{ // 56
-				list: ['shadow/animal-3-s.jpg', 'shadow/animal-4-s.jpg', 'shadow/animal-5-s.jpg', 'shadow/animal-6-s.jpg'],
+				list: ['shadow/animal-3-s.png', 'shadow/animal-4-s.png', 'shadow/animal-5-s.png', 'shadow/animal-6-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/animal-3.jpg',
 				text_en: 'Find the right shade.',
@@ -481,7 +481,7 @@
 				answer: 0
 			},
 			{ // 57
-				list: ['shadow/animal-4-s.jpg', 'shadow/animal-5-s.jpg', 'shadow/animal-6-s.jpg', 'shadow/animal-7-s.jpg'],
+				list: ['shadow/animal-4-s.png', 'shadow/animal-5-s.png', 'shadow/animal-6-s.png', 'shadow/animal-7-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/animal-4.jpg',
 				text_en: 'Find the right shade.',
@@ -489,7 +489,7 @@
 				answer: 0
 			},
 			{ // 58
-				list: ['shadow/animal-5-s.jpg', 'shadow/animal-6-s.jpg', 'shadow/animal-7-s.jpg', 'shadow/animal-8-s.jpg'],
+				list: ['shadow/animal-5-s.png', 'shadow/animal-6-s.png', 'shadow/animal-7-s.png', 'shadow/animal-8-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/animal-5.jpg',
 				text_en: 'Find the right shade.',
@@ -497,7 +497,7 @@
 				answer: 0
 			},
 			{ // 59
-				list: ['shadow/animal-6-s.jpg', 'shadow/animal-7-s.jpg', 'shadow/animal-8-s.jpg', 'shadow/animal-9-s.jpg'],
+				list: ['shadow/animal-6-s.png', 'shadow/animal-7-s.png', 'shadow/animal-8-s.png', 'shadow/animal-9-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/animal-6.jpg',
 				text_en: 'Find the right shade.',
@@ -505,7 +505,7 @@
 				answer: 0
 			},
 			{ // 60
-				list: ['shadow/animal-7-s.jpg', 'shadow/animal-8-s.jpg', 'shadow/animal-9-s.jpg', 'shadow/animal-10-s.jpg'],
+				list: ['shadow/animal-7-s.png', 'shadow/animal-8-s.png', 'shadow/animal-9-s.png', 'shadow/animal-10-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/animal-7.jpg',
 				text_en: 'Find the right shade.',
@@ -513,7 +513,7 @@
 				answer: 0
 			},
 			{ // 61
-				list: ['shadow/animal-8-s.jpg', 'shadow/animal-9-s.jpg', 'shadow/animal-10-s.jpg', 'shadow/animal-1-s.jpg'],
+				list: ['shadow/animal-8-s.png', 'shadow/animal-9-s.png', 'shadow/animal-10-s.png', 'shadow/animal-1-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/animal-8.jpg',
 				text_en: 'Find the right shade.',
@@ -521,7 +521,7 @@
 				answer: 0
 			},
 			{ // 62
-				list: ['shadow/animal-9-s.jpg', 'shadow/animal-10-s.jpg', 'shadow/animal-1-s.jpg', 'shadow/animal-2-s.jpg'],
+				list: ['shadow/animal-9-s.png', 'shadow/animal-10-s.png', 'shadow/animal-1-s.png', 'shadow/animal-2-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/animal-9.jpg',
 				text_en: 'Find the right shade.',
@@ -529,7 +529,7 @@
 				answer: 0
 			},
 			{ // 63
-				list: ['shadow/animal-10-s.jpg', 'shadow/animal-1-s.jpg', 'shadow/animal-2-s.jpg', 'shadow/animal-3-s.jpg'],
+				list: ['shadow/animal-10-s.png', 'shadow/animal-1-s.png', 'shadow/animal-2-s.png', 'shadow/animal-3-s.png'],
 				type: 'select-right-answer',
 				questionImage: 'shadow/animal-10.jpg',
 				text_en: 'Find the right shade.',
