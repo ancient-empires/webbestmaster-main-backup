@@ -26,9 +26,9 @@
 				section = win.APP.sectionList[data.jsKey],
 				util = win.APP.util,
 				assortArray = util.assortArray,
-				//question = assortArray(section.items)[0],
+				question = assortArray(section.items)[0],
 				// for test only
-				question = win.questionIndex ? section.items[win.questionIndex] : assortArray(section.items)[0],
+				//question = win.questionIndex ? section.items[win.questionIndex] : assortArray(section.items)[0],
 				answer = question.list[question.answer];
 
 			question.list = assortArray(question.list);
