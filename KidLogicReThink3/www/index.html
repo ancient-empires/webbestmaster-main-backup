@@ -163,7 +163,9 @@
 			<div class="help-info-wrapper">
 				<div class="js-scroll-area-container scroll-area-container">
 					<div>
-						<%= window.APP.lang.get('helpInfo') %>
+						<% window.APP.lang.get('helpInfo').forEach(function(part){ %>
+							<p><%= part %></p>
+						<% }); %>
 
 						br<br>
 						br<br>
