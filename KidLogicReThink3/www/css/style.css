@@ -113,7 +113,6 @@
 
 .help-info-wrapper {
 	height: 100%;
-	background-color: #c00;
 	padding-top: 2.5rem;
 	box-sizing: border-box;
 }
@@ -303,8 +302,15 @@
 	z-index: 1;
 }
 
+.content-padding {
+	padding: 0.7rem;
+}
 
-
+.paragraph {
+	color: #222;
+	padding-bottom: 1rem;
+	text-indent: 1rem;
+}
 
 
 
