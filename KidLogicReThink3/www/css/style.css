@@ -42,10 +42,12 @@
 	background-image: url(../i/info.svg);
 	background-repeat: no-repeat;
 	background-position: center center;
-	-webkit-background-size: 70% auto;
-	background-size: 70% auto;
-	width: 3rem;
-	height: 3rem;
+	-webkit-background-size: 93% auto;
+	background-size: 93% auto;
+	width: 1.6rem;
+	height: 1.5rem;
+	left: 0.2rem;
+	top: 0.2rem;
 }
 
 .section-buttons-wrapper {

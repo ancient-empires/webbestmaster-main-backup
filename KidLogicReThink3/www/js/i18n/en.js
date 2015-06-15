@@ -22,7 +22,7 @@
 		instructions: 'Instructions',
 		about: 'About',
 
-		helpInfo: ['Маленький ребёнок не может длительное время сохранять одну и ту же позу, выполнять одно и тоже действие. Поэтому не надо сердиться, если Ваш малыш будет отвлекаться, сползать со стула на пол или вдруг задаст вопрос совершенно “из другой оперы”.', 'Не старайтесь “пройти” приложение побыстрее и обязательно время от времени возвращайтесь к пройденному. Память малышей ещё очень не устойчива.']
+		helpInfo: ['Small child cannot sit on the same place and perfrom the same action  for a long time. That\'s why don\'t be angry if your child starts looking aside, climbing down from chair or simply asks question from totally different area.', 'Don\'t try to pass application by faster and always come back to already passed modules. Child\'s memory is not still steady.']
 
 	};
 
