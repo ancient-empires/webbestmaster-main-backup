@@ -10,7 +10,7 @@
 
 	win.APP.sectionList.section_1 = {
 		name_en: 'Select improper',
-		name_ru: 'Выбери лишнее',
+		name_ru: 'Выбери лишний вариант',
 		imgPath: 'img/section/section-1/',
 		img: 'find-an-extra-item-1.svg',
 

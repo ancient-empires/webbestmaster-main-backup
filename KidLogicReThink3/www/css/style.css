@@ -217,8 +217,8 @@
 	height: 90%;
 	background-repeat: no-repeat;
 	background-position: center center;
-	-webkit-background-size: 75% 75%;
-	background-size: 75% 75%;
+	-webkit-background-size: contain;
+	background-size: contain;
 	margin: 0 auto;
 }
 

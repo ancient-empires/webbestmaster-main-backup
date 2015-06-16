@@ -26,7 +26,6 @@
 				Backbone.history.start();
 				win.APP.soundMaster.init();
 				//win.APP.soundMaster.playBgSound();
-
 			}
 
 		}

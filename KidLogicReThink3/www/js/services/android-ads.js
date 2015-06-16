@@ -15,16 +15,17 @@
 		attr: {},
 		period: 3e3 * 60,
 		set: function (key, value) {
-			return this.attr[key] = value;
+			this.attr[key] = value;
+			return this;
 		},
 		get: function (key) {
 			return this.attr[key];
 		},
 		showAd: function () {
-			typeof Android !== 'undefined' && Android.displayInterstitial();
+			return win.Android && win.Android.displayInterstitial();
 		},
 		init: function () {
-			var intervalId = setInterval(this.showAd, this.period);
+			var intervalId = win.setInterval(this.showAd, this.period);
 			this.set('intervalId', intervalId);
 		}
 
