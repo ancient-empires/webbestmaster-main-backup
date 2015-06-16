@@ -7,6 +7,7 @@
 
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
+		langEs = win.APP.languages.es,
 		langEnExtra = {
 			name: 'REINFORCEMENTS',
 			objective: 'Protect the Temple of Life - destroy all enemy units, occupy the enemy castle!'
@@ -14,6 +15,10 @@
 		langRuExtra = {
 			name: 'ПОДКРЕПЛЕНИЕ',
 			objective: 'Защитить Храм Жизни - уничтожить все вражеские единицы, занять вражеский замок!'
+		},
+		langEsExtra = {
+			name: '',
+			objective: ''
 		};
 
 	win.APP.maps.mission_001_004 = {

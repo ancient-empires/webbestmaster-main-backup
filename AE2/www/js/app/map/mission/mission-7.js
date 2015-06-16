@@ -7,6 +7,7 @@
 
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
+		langEs = win.APP.languages.es,
 		langEnExtra = {
 			name: 'RENDEZVOUS',
 			objective: 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles! Galamar and Valadorn must survive.'
@@ -14,6 +15,10 @@
 		langRuExtra = {
 			name: 'ВСТРЕЧА',
 			objective: 'Пробить путь на запад через вражеские войска, убить их командира и занять все замки! Король Галамар и Король Валадорн должны выжить.'
+		},
+		langEsExtra = {
+			name: '',
+			objective: ''
 		};
 
 	win.APP.maps.mission_001_007 = {

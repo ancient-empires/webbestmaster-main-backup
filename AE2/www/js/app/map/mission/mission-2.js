@@ -7,6 +7,7 @@
 
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
+		langEs = win.APP.languages.es,
 		langEnExtra = {
 			name: 'TO THE RESCUE',
 			objective: 'Destroy all attacking enemy troops, occupy both castles.'
@@ -14,6 +15,10 @@
 		langRuExtra = {
 			name: 'К СПАСЕНИЮ',
 			objective: 'Уничтожить все вражеские войска, занять оба замка.'
+		},
+		langEsExtra = {
+			name: '',
+			objective: ''
 		};
 
 	win.APP.maps.mission_001_002 = {

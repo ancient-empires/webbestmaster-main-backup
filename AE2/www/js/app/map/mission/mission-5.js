@@ -7,6 +7,7 @@
 
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
+		langEs = win.APP.languages.es,
 		langEnExtra = {
 			name: 'ESCORT DUTY',
 			objective: 'Deliver the Crystal south to the city of Thorin. King Galamar must survive.'
@@ -14,6 +15,10 @@
 		langRuExtra = {
 			name: 'СЛУЖБА ЭСКОРТА',
 			objective: 'Доставить Кристалл на юг в город Торин. Король Галамар должен выжить.'
+		},
+		langEsExtra = {
+			name: '',
+			objective: ''
 		};
 
 	win.APP.maps.mission_001_005 = {

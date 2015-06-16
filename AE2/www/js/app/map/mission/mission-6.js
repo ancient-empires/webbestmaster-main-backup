@@ -7,6 +7,7 @@
 
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
+		langEs = win.APP.languages.es,
 		langEnExtra = {
 			name: 'NORTHBOUND',
 			objective: 'Occupy the enemy castle and destroy all enemy troops. Valadorn must survive.'
@@ -14,6 +15,10 @@
 		langRuExtra = {
 			name: 'ИДУЩИЙ НА СЕВЕР',
 			objective: 'Занять вражеский замок и уничтожить все вражеские войска. Король Валадорн должен выжить.'
+		},
+		langEsExtra = {
+			name: '',
+			objective: ''
 		};
 
 	win.APP.maps.mission_001_006 = {

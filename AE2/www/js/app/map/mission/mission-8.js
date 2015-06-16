@@ -7,6 +7,7 @@
 
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
+		langEs = win.APP.languages.es,
 		langEnExtra = {
 			name: 'HEAVEN\'S FURY',
 			objective: 'Defeat Saeth and his minions! Galamar and Valadorn must survive.'
@@ -14,6 +15,10 @@
 		langRuExtra = {
 			name: 'НЕБЕСНЫЕ ФУРИИ',
 			objective: 'Порвать Саефа и его приспешников! Король Галамар и Король Валадорн должны выжить.'
+		},
+		langEsExtra = {
+			name: '',
+			objective: ''
 		};
 
 	win.APP.maps.mission_001_008 = {

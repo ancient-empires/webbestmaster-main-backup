@@ -7,6 +7,7 @@
 
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
+		langEs = win.APP.languages.es,
 		langEnExtra = {
 			name: 'PATH OF SHADOWS',
 			objective: 'Navigate safely through the forest. Destroy all opposition. King Galamar must survive.'
@@ -14,6 +15,10 @@
 		langRuExtra = {
 			name: 'ПУТЬ ТЕНЕЙ',
 			objective: 'Проследовать через лес. Уничтожить все сопротивление. Король Галамар должен выжить.'
+		},
+		langEsExtra = {
+			name: '',
+			objective: ''
 		};
 
 	win.APP.maps.mission_001_003 = {
