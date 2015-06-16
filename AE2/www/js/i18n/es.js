@@ -30,7 +30,7 @@
 		off: 'no',
 		music: 'musica',
 		vibrate: 'vibración',
-		help: 'Ayuda',
+		help: 'ayuda',
 		youCanDisableHelpNotification: 'Puedes desactivar la notificación de ayuda en \'Opciones\'',
 		fightAnimation: 'animación de batalla',
 		gameSpeed: 'velocidad de juego',
