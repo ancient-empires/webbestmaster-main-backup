@@ -17,6 +17,9 @@
 		// en
 		name: 'Crossroads',
 
+		// es
+		'name-es': 'Cruce de caminos',
+
 		// ru
 		'name-ru': 'Перекресток',
 

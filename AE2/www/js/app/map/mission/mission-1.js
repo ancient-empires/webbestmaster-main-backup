@@ -17,8 +17,8 @@
 			objective: 'Остановить налетчиков, Король Галамар должен выжить.'
 		},
 		langEsExtra = {
-			name: '',
-			objective: ''
+			name: 'ASALTANTES DEL TEMPLO',
+			objective: 'Detén a los asaltantes, El rey Galamar debe sobrevivir.'
 		};
 
 	win.APP.maps.mission_001_001 = {
@@ -200,6 +200,185 @@
 				popupData: {
 					header: langEn.missionComplete,
 					text: '\'Crossroads\' ' + langEn.unlocked //openMaps: [ { jsMapKey: 'mission_001_002', type: 'mission' }, { jsMapKey: 'River', type: 'skirmish' } ],
+
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap', // open next battle map
+					args: ['mission_001_002', { type: 'mission' }]
+				}
+			}
+		],
+
+		// es
+		'name-es': langEsExtra.name,
+		'objective-es': langEsExtra.objective,
+		'help-es': [
+			langEs.helpList[0],
+			langEs.helpList[1]
+		],
+		'startBriefing-es': [
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langEs.story.list[0]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langEs.story.list[1]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langEs.story.list[2]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'El Templo del Coraje'
+				},
+				playSound: {
+					sound: 'bg-good.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Ayúdennos! ¡Estamos bajo ataque! ¡Estos esqueletos invasores han robado el Cristal del Coraje que juramos protejer!',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Capitán, debemos detener esta amenaza de una vez por todas!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Tropas avancen! ¡Hagan pagar a estos invasores!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEsExtra.name,
+					text: langEsExtra.objective
+				},
+				onHide: {
+					fn: 'autoShowHelpButton'
+				}
+			}
+		],
+		'n1Briefing-es': [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Más atacantes!',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 1, y: 1 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Éstos no son asaltantes! ¡Parecen mas, tropas enemigas! ¡Tenga cuidado Capitán!',
+					img: 'i/face/galamar.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 10, y: 10 }]
+				}
+			}
+		],
+		'endBriefing-es': [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Le agradesco, su majestad, tiene que ayudarnos a recuperar el Cristal lo mas pronto posible. ¡Una reliquía tan importante no debe caer en las manos equivocadas!',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Estoy su servicio. ¿Quién podría estar tras el Cristal?',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Temo que estos criminales puedan estar aliados con un mal mayor. Sería prudente consultarlo con el sumo sacerdote en el Templo de la Sabiduría. Puede que él sepa más acerca de esto.',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Enviare a mi hermano Valador inmediatamente. Tomaré mis tropas y siguiré a los atacantes que escaparon.',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEs.missionComplete,
+					text: '\'Cruce de caminos\' ' + langEs.unlocked //openMaps: [ { jsMapKey: 'mission_001_002', type: 'mission' }, { jsMapKey: 'River', type: 'skirmish' } ],
 
 				},
 				playSound: {
