@@ -17,6 +17,9 @@
 		// en
 		name: 'Waterways',
 
+		// es
+		'name-es': 'Vía Fluvial',
+
 		// ru
 		'name-ru': 'Водоемы',
 

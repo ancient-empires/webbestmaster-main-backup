@@ -17,8 +17,8 @@
 			objective: 'Защитить Храм Жизни - уничтожить все вражеские единицы, занять вражеский замок!'
 		},
 		langEsExtra = {
-			name: '',
-			objective: ''
+			name: 'REFUERZOS',
+			objective: 'Proteje el Templo de la Vida - ¡Destruye a todas las unidades enemigas, ocupa el castillo enemigo! '
 		};
 
 	win.APP.maps.mission_001_004 = {
@@ -149,6 +149,128 @@
 				popupData: {
 					header: langEn.missionComplete,
 					text: '\'Waterways\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_005', { type: 'mission' }]
+				}
+			}
+		],
+
+		// es
+		'name-es': langEsExtra.name,
+		'objective-es': langEsExtra.objective,
+		'startBriefing-es': [
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langEs.story.list[3]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'El Templo de la Vida'
+				},
+				playSound: {
+					sound: 'bg-good.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Su Majestad, gracias a dios está aquí! ¡Por favor ayúdenos a proteger el Cristal!',
+					img: 'i/face/tamplier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7 , y: 1 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Solamente en las fortalezas de Thorin el Cristal estará a salvo. Debemos llevarlo allí.',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Su Majestad, nuestros exploradores reportan tropas enemigas cercanas! ',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Están destruyendo nuestros edificios para mermar nuestro suministro de oro! ¡Deben ser detenidos!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Capitán, tenemos que salvar el Cristal, preparen las tropas para la batalla!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEsExtra.name,
+					text: langEsExtra.objective
+				}
+			}
+		],
+		'endBriefing-es': [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Su Majestad, hemos detenido el ataque.',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Bien hecho, Capitán! ¡Prepare las tropas marcharemos hacia Thorin!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEs.missionComplete,
+					text: '\'Vía Fluvial\' ' + langEs.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',
