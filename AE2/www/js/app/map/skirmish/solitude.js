@@ -17,7 +17,7 @@
 		// en
 		name: 'Solitude',
 
-		// ru
+		// es
 		'name-es': 'Soledad',
 
 		// ru
