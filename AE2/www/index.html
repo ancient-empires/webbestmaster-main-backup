@@ -865,7 +865,7 @@
 								</div>
 							</div>
 						<% } else { %>
-							<div data-sound="click.mp3" data-route="<%= urlPrefix %>/<%= map.jsKey %>" class="disable saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName.replace(/[\s\S]/g, '?') %></div>
+							<div data-sound="click.mp3" data-route="<%= urlPrefix %>/<%= map.jsKey %>" class="disable saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName.replace(/\S/g, '?') %></div>
 						<% }; %>
 					<% }); %>
 				<% } else { %>
@@ -1285,7 +1285,7 @@
 								<%= index %>. <%= window.APP.templateMaster.tmplFn['level-start']({ level: maxDoneLevel }) %>&nbsp;<%= mapName %>
 							</div>
 						<% } else { %>
-							<div data-sound="click.mp3" data-route="mission-setup-map/<%= jsKey %>" class="disable saved-item-wrapper"><%= index %>. <%= mapName.replace(/[\s\S]/g, '?') %></div>
+							<div data-sound="click.mp3" data-route="mission-setup-map/<%= jsKey %>" class="disable saved-item-wrapper"><%= index %>. <%= mapName.replace(/\S/g, '?') %></div>
 						<% }; %>
 					<% }); %>
 				</div>
