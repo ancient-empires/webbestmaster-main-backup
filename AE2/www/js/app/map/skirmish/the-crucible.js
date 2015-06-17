@@ -17,6 +17,9 @@
 		// en
 		name: 'The Crucible',
 
+		// es
+		'name-es': 'El Crisol',
+
 		// ru
 		'name-ru': 'Суровое испытание',
 

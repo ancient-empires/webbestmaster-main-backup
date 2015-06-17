@@ -17,6 +17,9 @@
 		// en
 		name: 'Shadow Lands',
 
+		// es
+		'name-es': 'Tierras Sombrías',
+
 		// ru
 		'name-ru': 'Теневые земли',
 

@@ -17,8 +17,8 @@
 			objective: 'Порвать Саефа и его приспешников! Король Галамар и Король Валадорн должны выжить.'
 		},
 		langEsExtra = {
-			name: '',
-			objective: ''
+			name: 'LA FURIA DE LOS CIELOS',
+			objective: '¡Derrota a Saeth y a sus adeptos! Galamar y Valador deben sobrevivir.'
 		};
 
 	win.APP.maps.mission_001_008 = {
@@ -271,6 +271,239 @@
 				}
 			}
 
+		],
+
+		// es
+		'name-es': langEsExtra.name,
+		'objective-es': langEsExtra.objective,
+		'startBriefing-es': [
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langEs.story.list[4]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'La Antigua Citadela'
+				},
+				playSound: {
+					sound: 'bg-good.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Las Ruinas de la Antigua Citadela... y Saeth! ¡Con los Cristales!',
+					img: 'i/face/galamar.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Al fin, Galamar y Valador! ¡Vaya si son valientes para atreverse a enfrentarme! Todas las llaves están colocadas, y pronto el mas grande poder que se jámas se haya creado en la tierra rugirá y se doblara a mi voluntad. ¡Tu destrucción será el testimonio de su poder y gloria!',
+					img: 'i/face/saeth.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7, y: 2 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Tus artimañas no podrán engañarnos mas, Saeth!',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 6, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right ta-center',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'BLANCO ADQUIRIDO...<br>FURIA DE LOS CIELOS ACTIVADA!',
+					img: ''
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¿Furia de los cielos? ¡¿Qué demonios es eso?!',
+					img: 'i/face/galamar.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Patéticas criaturas, ¡Ésto es algo tan antiguo que no lo comprenderían ni aunque vivieran mil años! ¡Testifiquen el poder de la Furia de los Cielos!',
+					img: 'i/face/saeth.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7, y: 2 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Galamar! ¡Tenemos que apresurarnos si queremos que nuestras tropas tengan una oportunidad!',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 6, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Señor, deberiamos atacar esos castillos primero antes de lanzar un ataque a las Ruinas donde está Saeth',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEsExtra.name,
+					text: langEsExtra.objective
+				}
+			}
+		],
+		'endBriefing-es': [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				playSound: {
+					sound: 'game-complete.mp3',
+					road: 0,
+					isLoop: true
+				},
+				popupData: {
+					text: 'Lamentables y miserables. Ustedes no vivirán lo suficiente para ver su precioso reino envuelto en oscuridad...',
+					img: 'i/face/saeth.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Saeth! ¡Esta vez tu derrota en definitiva!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'En sus insignificantes vidas y estrechas mentes, quizás... Sin embargo todo esta ahora puesto en marcha - Las invisibles fuerzas que goviernan el tiempo están más allá de su compresión. ¡No pueden evitar que me levante de nuevo!',
+					img: 'i/face/saeth.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Su Majestad, las Ruinas se están cayendo a pedazos! ¡Debemos irnos inmediatamente!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Pero los Cristales... todavía siguen dentro!',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Lo único que podemos salvar ahora es a nosotros mismos!',
+					img: 'i/face/valadorn.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Me han servido bien, ¡Ahora vamos!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langEs.story.list[5]
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEs.missionComplete,
+					text: '\'El Crisol\' y las \'Tierras Sombrías\' ' + langEs.unlocked
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEs.congratulations,
+					text: 'Gracias por jugar AE2 - ¡Espero que hayas disfrutado jugando, tanto como yo disfrute haciendolo!'
+				},
+				onHide: {
+					fn: 'backTo',
+					args: ['', { isForce: true }]
+				}
+			}
 		],
 
 		// ru
