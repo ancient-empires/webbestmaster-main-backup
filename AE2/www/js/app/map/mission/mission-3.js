@@ -17,8 +17,8 @@
 			objective: 'Проследовать через лес. Уничтожить все сопротивление. Король Галамар должен выжить.'
 		},
 		langEsExtra = {
-			name: '',
-			objective: ''
+			name: 'CAMINO DE SOMBRAS',
+			objective: 'Pasa através del bosque con seguridad. Destruye toda resistencia. El rey Galamar debe sobrevivir.'
 		};
 
 	win.APP.maps.mission_001_003 = {
@@ -144,6 +144,129 @@
 				popupData: {
 					header: langEn.missionComplete,
 					text: '\'Peak Island\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_004', { type: 'mission' }]
+				}
+			}
+		],
+
+
+		// es
+		'name-es': langEsExtra.name,
+		'objective-es': langEsExtra.objective,
+		'help-es': [
+			langEs.helpList[4]
+		],
+		'startBriefing-es': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Bosque de Niebla.'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Su Majestad, este bosque es conocido por ser el hogar de espíritus, Elementales, y otras mágicas criaturas. No es seguro viajar de noche.',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8 , y: 14 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Capitán, escuchó al mensajero de Valador - ¡Debemos avanzar! Nada puede detenernos para llegar a El Templo de la Vida.',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Entendido. ¡Tropas, manténganse alerta y protejan al Rey Galamar!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEsExtra.name,
+					text: langEsExtra.objective
+				},
+				onHide: {
+					fn: 'autoShowHelpButton'
+				}
+			}
+		],
+		'n1Briefing-es': [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Más lobos! Su Majestad ésto no se ve bien...',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 1, y: 8}]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Por el creador! ¡¿Qué son esas cosas?!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Saludos, hombres de Thorin! Nosotros, Los Elementales, hemos oido acerca de su búsqueda para proteger nuestras tierras de la maldad y les ofrecemos nuestra alianza a su Rey.'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 4, y: 8}]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Aceptamos su oferta alegremente. Su lealtad al reino no será olvidada.',
+					img: 'i/face/galamar.png'
+				}
+			}
+		],
+		'endBriefing-es': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEs.missionComplete,
+					text: '\'Cúspide de la Isla\' ' + langEs.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',

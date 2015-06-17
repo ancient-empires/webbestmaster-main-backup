@@ -17,6 +17,9 @@
 		// en
 		name: 'Peak Island',
 
+		// es
+		'name-es': 'Cúspide de la Isla',
+
 		// ru
 		'name-ru': 'Остров пик',
 
