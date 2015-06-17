@@ -17,6 +17,9 @@
 		// en
 		name: 'Liberty Port',
 
+		// es
+		'name-es': 'Puerto de la Libertad',
+
 		// ru
 		'name-ru': 'Порт свободы',
 

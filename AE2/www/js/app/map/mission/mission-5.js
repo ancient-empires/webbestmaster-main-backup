@@ -17,8 +17,8 @@
 			objective: 'Доставить Кристалл на юг в город Торин. Король Галамар должен выжить.'
 		},
 		langEsExtra = {
-			name: '',
-			objective: ''
+			name: 'EL DEBER DE ESCOLTA',
+			objective: 'Entrega el Cristal al sur de la ciudad de Thorin. El Rey Galamar debe sobrevivir.'
 		};
 
 	win.APP.maps.mission_001_005 = {
@@ -94,6 +94,78 @@
 				popupData: {
 					header: langEn.missionComplete,
 					text: '\'Liberty Port\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_006', { type: 'mission' }]
+				}
+			}
+		],
+
+		// es
+		'name-es': langEsExtra.name,
+		'objective-es': langEsExtra.objective,
+		'startBriefing-es': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Camino hacia Thorin'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Su Majestad, No me gusta como luce este bosque, ¡debemos ser cuidadosos!',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 11 , y: 1 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Muy bien, Capitán. Seguiremos este camino y nos mantendremos en guardia.',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEsExtra.name,
+					text: langEsExtra.objective
+				}
+			}
+		],
+		'n1Briefing-es': [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Emboscada! ¡Protejan el Cristal a cualquier costo!',
+					img: 'i/face/soldier.png'
+				}
+			}
+
+		],
+		'endBriefing-es': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEs.missionComplete,
+					text: '\'Puerto de la Libertad\' ' + langEs.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',
