@@ -8,7 +8,7 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_015 = {
-		version: 3,
+		version: 4,
 		type: 'skirmish',
 		size: {width: 19, height: 19},
 		maxPlayers: 4,
