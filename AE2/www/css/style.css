@@ -8,6 +8,11 @@
 	src: url('../font/PressStart2P.ttf');
 }
 
+@font-face {
+	font-family: 'Courier New';
+	src: url('../font/courier.ttf');
+}
+
 body {
 	color: #f0f0f0;
 	background-color: #242a45;

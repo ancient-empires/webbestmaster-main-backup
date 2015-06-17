@@ -193,6 +193,7 @@
 	background-color: #242A45;
 	box-shadow: 0.2rem 0.2rem 0 #000;
 	width: 1.5rem;
+	font-family: 'main-font', 'Lucida Grande', monospace;
 }
 
 .button-popup-close:after {

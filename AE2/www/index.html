@@ -808,11 +808,11 @@
 					<% _.each(playersData, function(player, index){ %>
 
 					<div class="js-player-info-wrapper setup-form-wrapper clear-fix">
-						<div class="js-player-color w50" data-player-color="<%= player.color %>">
+						<div class="js-player-color w45" data-player-color="<%= player.color %>">
 							<div class="setup-form-item"><div class="team-color-sign team-color-sign-<%= player.color %>">&nbsp;</div><%= window.APP.lang.get(player.color) %></div>
 							<div class="setup-form-item">{{ team }} #</div>
 						</div>
-						<div class="w50">
+						<div class="w55">
 							<div class="setup-form-item w100">
 								<span class="js-list-backward" data-group-name="player-type-<%= index %>"> <- </span>
 								<span class="js-list-changed-item js-player-type" data-group-name="player-type-<%= index %>" data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
@@ -829,9 +829,9 @@
 					<% }); %>
 
 					<div class="setup-form-wrapper clear-fix">
-						<div class="setup-form-item w50">{{ money }}</div>
+						<div class="setup-form-item w45">{{ money }}</div>
 
-						<div class="setup-form-item w50">
+						<div class="setup-form-item w55">
 							<span class="js-list-backward" data-group-name="money"> <- </span>
 							<span class="js-list-changed-item js-money" data-group-name="money" data-full-list="<%= list.money %>" data-key="<%= money %>"> <%= money %> </span>
 							<span class="js-list-forward" data-group-name="money"> -> </span>
@@ -840,9 +840,9 @@
 					</div>
 
 					<div class="setup-form-wrapper clear-fix">
-						<div class="setup-form-item w50">{{ unitLimit }}</div>
+						<div class="setup-form-item w45">{{ unitLimit }}</div>
 
-						<div class="setup-form-item w50">
+						<div class="setup-form-item w55">
 							<span class="js-list-backward" data-group-name="unit-limit"> <- </span>
 							<span class="js-list-changed-item js-unit-limit" data-group-name="unit-limit" data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
 							<span class="js-list-forward" data-group-name="unit-limit"> -> </span>

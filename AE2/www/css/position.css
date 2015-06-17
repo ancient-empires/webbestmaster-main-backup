@@ -36,8 +36,18 @@
 	width: 100%;
 }
 
+.w45 {
+	width: 45%;
+	float: left;
+}
+
 .w50 {
 	width: 50%;
+	float: left;
+}
+
+.w55 {
+	width: 55%;
 	float: left;
 }
 
