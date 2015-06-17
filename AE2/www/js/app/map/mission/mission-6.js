@@ -17,8 +17,8 @@
 			objective: 'Занять вражеский замок и уничтожить все вражеские войска. Король Валадорн должен выжить.'
 		},
 		langEsExtra = {
-			name: '',
-			objective: ''
+			name: 'A DIRECCIÓN NORTE',
+			objective: 'Ocupa el castillo enemigo y derrota a todas las tropas enemigas. Valador debe sobrevivir.'
 		};
 
 	win.APP.maps.mission_001_006 = {
@@ -86,6 +86,67 @@
 				popupData: {
 					header: langEn.missionComplete,
 					text: '\'Winter Storm\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_007', { type: 'mission' }]
+				}
+			}
+		],
+
+		// es
+		'name-es': langEsExtra.name,
+		'objective-es': langEsExtra.objective,
+		'startBriefing-es': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Las Puertas de Thorin'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡El enemigo está planeando atacar al Rey Galamar antes de que alcanze Thorin! ¡Tenemos que derrotarlos!',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 5, y: 17 }]
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEsExtra.name,
+					text: langEsExtra.objective
+				}
+			}
+
+		],
+		'endBriefing-es': [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Dirijamonos hacia el Norte para encontrarnos con Galamar. ¡Las tropas enemigas conocen sobre sus planes y puede que necesite ayuda!',
+					img: 'i/face/valadorn.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEs.missionComplete,
+					text: '\'Tormenta de Invierno\' ' + langEs.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',

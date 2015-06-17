@@ -17,6 +17,9 @@
 		// en
 		name: 'Winter Storm',
 
+		// es
+		'name-es': 'Tormenta de Invierno',
+
 		// ru
 		'name-ru': 'Зимний шторм',
 
