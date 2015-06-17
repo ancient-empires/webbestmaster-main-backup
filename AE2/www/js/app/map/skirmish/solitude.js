@@ -18,6 +18,9 @@
 		name: 'Solitude',
 
 		// ru
+		'name-es': 'Soledad',
+
+		// ru
 		'name-ru': 'Одиночество',
 
 		units: [

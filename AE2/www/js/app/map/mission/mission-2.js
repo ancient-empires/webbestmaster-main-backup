@@ -17,8 +17,8 @@
 			objective: 'Уничтожить все вражеские войска, занять оба замка.'
 		},
 		langEsExtra = {
-			name: '',
-			objective: ''
+			name: 'AL RESCATE',
+			objective: 'Destruye a todas las tropas enemigas, ocupa ambos castillos.'
 		};
 
 	win.APP.maps.mission_001_002 = {
@@ -176,6 +176,156 @@
 				popupData: {
 					header: langEn.missionComplete,
 					text: '\'Solitude\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_003', { type: 'mission' }]
+				}
+			}
+		],
+
+
+		// es
+		'name-es': langEsExtra.name,
+		'objective-es': langEsExtra.objective,
+		'help-es': [
+			langEs.helpList[2],
+			langEs.helpList[3]
+		],
+		'startBriefing-es': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'El Templo de la Sabiduría.'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¿Cómo es esto posible? El Templo de la Sabiduría también está siendo atacado.',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 9 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Bien, bien... ¿Valador, supongo? Preparate para ser derrotado.',
+					img: 'i/face/demon-lord.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 12, y: 3 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Señor, una parte de las fuerzas enemigas está retirandose!',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7 , y: 10 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡El Cristal de la Sabiduría! ¡No los dejen escapar!',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Mi señor, debemos seguirlos!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Detengamos el ataque primero. De otra manera los guardias del templo no tendrán oportunidad!',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 9 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Hagamos nuestra base en ese castillo.',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 3 , y: 5 }]
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEsExtra.name,
+					text: langEsExtra.objective
+				},
+				onHide: {
+					fn: 'autoShowHelpButton'
+				}
+			}
+		],
+		'endBriefing-es': [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Bien hecho Capitán. Pero no hay tiempo para descansar. El Cristal de la VIda puede estar en peligro. ¡Debemos advertir al rey Galamar!',
+					img: 'i/face/valadorn.png'
+				}
+			},			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Si señor. Prepararé a las tropas.',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEs.missionComplete,
+					text: '\'Soledad\' ' + langEs.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',
