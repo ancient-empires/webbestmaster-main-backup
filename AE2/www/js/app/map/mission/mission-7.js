@@ -17,8 +17,8 @@
 			objective: 'Пробить путь на запад через вражеские войска, убить их командира и занять все замки! Король Галамар и Король Валадорн должны выжить.'
 		},
 		langEsExtra = {
-			name: '',
-			objective: ''
+			name: 'REUNIÓN',
+			objective: 'Tallar un camino hacia el oeste a través de las tropas enemigas, derrotar a su comandante y ocupar todos los castillos! Galamar y Valadorn deben sobrevivir.'
 		};
 
 	win.APP.maps.mission_001_007 = {
@@ -116,6 +116,97 @@
 				popupData: {
 					header: langEn.missionComplete,
 					text: '\'Morning Star\' ' + langEn.unlocked
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_008', { type: 'mission' }]
+				}
+			}
+		],
+
+		// es
+		'name-es': langEsExtra.name,
+		'objective-es': langEsExtra.objective,
+		'startBriefing-es': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: 'Fuera de la Ciudad'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEsExtra.name,
+					text: langEsExtra.objective
+				}
+			}
+		],
+		'n1Briefing-es': [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Corran, lamentables humanos, antes de que sea demasiado tarde!',
+					img: 'i/face/demon-lord.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 0, y: 8 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: 'Las fuerzas enemigas lucen formidables, recomiendo una retirada.',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 14, y: 7 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡No tenemos otra opción mas que atacar!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '¡Galamar! ¡Venimos los más ráído que pudimos! ¡Permitenos pelear lado a lado!',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 13, y: 16 }]
+				}
+			}
+
+		],
+		'endBriefing-es': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langEs.missionComplete,
+					text: '\'Estrella de la Mañana\' ' + langEs.unlocked
 				},
 				playSound: {
 					sound: 'victory.mp3',

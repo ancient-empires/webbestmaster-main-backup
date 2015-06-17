@@ -17,6 +17,9 @@
 		// en
 		name: 'Morning Star',
 
+		// es
+		'name-es': 'Estrella de la Mañana',
+
 		// ru
 		'name-ru': 'Утренняя звезда',
 
