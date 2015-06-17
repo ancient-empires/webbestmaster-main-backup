@@ -526,11 +526,17 @@
 
 	<div>
 
+		<div data-sound="click.mp3" class="js-back button-popup-close">&times;</div>
+
 		<% if ( _.keys(mapsInfo).length ) { %>
-			<div class="popup-header">{{ unsavedMapProgressWillBeLost }}</div>
-			<% _.each(mapsInfo, function (map) { %>
+		<div class="popup-header">{{ unsavedMapProgressWillBeLost }}</div>
+		<div class="js-scroll-area-container scroll-touch save-list-wrapper">
+			<div class="scroll-area js-saved-list">
+				<% _.each(mapsInfo, function (map) { %>
 				<div data-map-name="<%= map.jsKey %>" class="saved-item-wrapper js-open-map-in-editor js-back">(<%= map.maxPlayers %>) <%= map.name %></div>
-			<% }); %>
+				<% }); %>
+			</div>
+		</div>
 		<% } else { %>
 			<div class="popup-header">{{ noSavedMaps }}</div>
 		<% }; %>
@@ -542,9 +548,14 @@
 <script type="text/x-template" data-name="map-list-popup-delete">
 
 	<div>
+		<div data-sound="click.mp3" class="js-back button-popup-close">&times;</div>
 
 		<% if ( _.keys(mapsInfo).length ) { %>
-			<div class="popup-header js-popup-header">{{ maps }}</div>
+		<div class="popup-header js-popup-header">{{ maps }}</div>
+
+		<div class="js-scroll-area-container scroll-touch save-list-wrapper">
+			<div class="scroll-area js-saved-list">
+
 			<% var languageField = 'name-' + window.APP.info.get('language'); %>
 			<% _.each(mapsInfo, function (map, jsKey) { %>
 				<% var mapName = map[languageField] || map.name; %>
@@ -572,6 +583,8 @@
 				</div>
 
 			<% }); %>
+			</div>
+		</div>
 		<% } else { %>
 			<div class="popup-header">{{ noSavedMaps }}</div>
 		<% }; %>

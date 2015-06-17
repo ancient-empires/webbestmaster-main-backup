@@ -292,7 +292,8 @@
 					parentView: view,
 					popupData: {
 						mapsInfo: mapsInfo
-					}
+					},
+					cssClass: 'no-image-border'
 				});
 
 			});
@@ -311,7 +312,8 @@
 					parentView: view,
 					popupData: {
 						mapsInfo: mapsInfo
-					}
+					},
+					cssClass: 'no-image-border'
 				});
 			});
 
