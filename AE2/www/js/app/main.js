@@ -67,6 +67,7 @@
 				settingsPrototype.setSpeedStyle();
 				settingsPrototype.autoShowBuildingSmoke();
 				settingsPrototype.autoShowUnitAnimation();
+				settingsPrototype.autoSetFont();
 				win.APP.soundMaster.init();
 				win.APP.soundMaster.playBgSound();
 

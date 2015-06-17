@@ -264,12 +264,30 @@
 						<div class="clear-fix">
 							<% _.each(info.availableLanguages, function(lang) { %>
 							<% if ( lang === info.get('language') ) { %>
-							<div class="js-change-select-setting setting-state" data-key="language" data-value="<%= lang %>">
+							<div class="js-change-select-setting setting-state selected-in-list" data-key="language" data-value="<%= lang %>">
 								<%= window.APP.languages[lang].languageName %>
 							</div>
 							<% } else { %>
 							<div class="opacity50 js-change-select-setting setting-state" data-key="language" data-value="<%= lang %>">
 								<%= window.APP.languages[lang].languageName %>
+							</div>
+							<% }; %>
+							<% }); %>
+						</div>
+					</div>
+
+					<div class="select-setting-wrapper">
+						<div class="setting-name">{{ font }}:</div>
+						<div class="clear-fix">
+							<% _.each(info.availableFonts, function(font) { %>
+							<% var fontId = font.id; %>
+							<% if ( fontId === info.get('font') ) { %>
+							<div class="js-change-select-setting setting-state selected-in-list <%= font.cssClass %>" data-key="font" data-value="<%= fontId %>">
+								<%= fontId %>
+							</div>
+							<% } else { %>
+							<div class="opacity50 js-change-select-setting setting-state <%= font.cssClass %>" data-key="font" data-value="<%= fontId %>">
+								<%= fontId %>
 							</div>
 							<% }; %>
 							<% }); %>

@@ -44,6 +44,7 @@
 		'gameSpeed-5': 'faster',
 		mainSettings: 'Main settings',
 		gameDifficulty: 'Game difficulty',
+		font: 'Font',
 		easy: 'easy',
 		normal: 'normal',
 		hard: 'hard',

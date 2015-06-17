@@ -62,6 +62,20 @@
 		defaultLanguage: 'en',
 		//availableLanguages: ['en'],
 		availableLanguages: ['en', 'es', 'ru'],
+		availableFonts: [
+			{
+				id: 'courier',
+				cssClass: 'font-courier'
+			},
+			{
+				id: 'lucida',
+				cssClass: 'font-lucida'
+			},
+			{
+				id: 'pixel',
+				cssClass: 'font-pixel'
+			}
+		],
 
 		init: function () {
 
@@ -206,6 +220,7 @@
 					fightAnimation: 'off',
 					buildingSmoke: 'off',
 					unitAnimation: 'off',
+					font: 'pixel',
 					difficult: 'easy', // easy, normal, hard
 					gameSpeed: '3' // 1..5, use string type
 				},

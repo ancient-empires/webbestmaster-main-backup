@@ -44,6 +44,7 @@
 		'gameSpeed-5': 'оч. быстро',
 		mainSettings: 'Основные настройки',
 		gameDifficulty: 'Сложность игры',
+		font: 'Шрифт',
 		easy: 'легко',
 		normal: 'нормально',
 		hard: 'трудно',

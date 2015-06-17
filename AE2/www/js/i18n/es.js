@@ -44,6 +44,7 @@
 		'gameSpeed-5': 'muy rapido',
 		mainSettings: 'Ajustes opciones',
 		gameDifficulty: 'Dificultad de juego',
+		font: 'Fuente',
 		easy: 'facil',
 		normal: 'normal',
 		hard: 'difícil',

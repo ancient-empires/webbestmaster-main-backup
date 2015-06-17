@@ -112,13 +112,21 @@
 
 			view.info.set(key, value);
 
-			if (key === 'language') {
-				win.APP.lang.set(value);
-				new view.constructor(view.get('args')); // do not use this.loadUrl(); cause this view used in battle view
-			}
+			switch (key) {
 
-			if (key === 'gameSpeed') {
-				view.setSpeedStyle();
+				case 'language':
+					win.APP.lang.set(value);
+					new view.constructor(view.get('args')); // do not use this.loadUrl(); cause this view used in battle view
+					break;
+
+				case 'gameSpeed':
+					view.setSpeedStyle();
+					break;
+
+				case 'font':
+					view.autoSetFont();
+					break;
+
 			}
 
 		},
@@ -171,6 +179,22 @@
 
 		},
 
+		autoSetFont: function () {
+
+			var view = this,
+				info = view.info,
+				fontId = info.get('font'),
+				allFonts = info.availableFonts,
+				font = _.find(allFonts, { id: fontId }),
+				$body = $(win.document.body);
+
+			_.each(allFonts, function (font) {
+				$body.removeClass(font.cssClass);
+			});
+
+			$body.addClass(font.cssClass);
+
+		},
 
 		autoSetMusic: function () {
 
