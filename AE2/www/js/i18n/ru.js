@@ -53,7 +53,7 @@
 		autoSave: 'автосохранение',
 
 		// play
-		newGame: 'Новая игра',
+		companies: 'Компании',
 		loadGame: 'Загрузить игру',
 		selectLevel: 'Выбор уровня',
 		skirmish: 'Схватка',

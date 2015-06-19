@@ -220,7 +220,7 @@
 					fightAnimation: 'off',
 					buildingSmoke: 'off',
 					unitAnimation: 'off',
-					font: 'pixel',
+					font: 'lucida',
 					difficult: 'easy', // easy, normal, hard
 					gameSpeed: '3' // 1..5, use string type
 				},

@@ -53,7 +53,7 @@
 		autoSave: 'ahorro automático',
 
 		// play
-		newGame: 'Nuevo juego',
+		companies: 'Compañia',
 		loadGame: 'Cargar partida',
 		selectLevel: 'Seleccionar nivel',
 		skirmish: 'Escaramuza',

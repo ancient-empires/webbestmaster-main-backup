@@ -53,7 +53,7 @@
 		autoSave: 'auto save',
 
 		// play
-		newGame: 'New game',
+		companies: 'Companies',
 		loadGame: 'Load game',
 		selectLevel: 'Select level',
 		skirmish: 'Skirmish',
