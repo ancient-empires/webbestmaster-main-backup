@@ -1216,15 +1216,15 @@
 			_.each(enemyUnits, function (enemy) {
 
 				// try to get available attack map from cache
-				var cachedField = [enemy.get('type'), 'x', enemy.get('x'), 'y', enemy.get('y')].join('-'),
-					cachedAvailableAttackMap = cpu.get(cachedField),
+				var cachedAttackField = ['attack', enemy.get('type'), 'x', enemy.get('x'), 'y', enemy.get('y')].join('-'),
+					cachedAvailableAttackMap = cpu.get(cachedAttackField),
 					availableAttackMap;
 
 				if (cachedAvailableAttackMap) {
 					availableAttackMap = cachedAvailableAttackMap;
 				} else {
 					availableAttackMap = enemy.getAvailableAttackMap();
-					cpu.set(cachedField, availableAttackMap);
+					cpu.set(cachedAttackField, availableAttackMap);
 				}
 
 				if (!_.find(availableAttackMap, {x: x, y: y})) {
