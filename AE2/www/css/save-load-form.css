@@ -10,7 +10,7 @@
 	padding: 0.5rem 0.1rem 0.25rem 0.4rem;
 	font-size: 1rem;
 	line-height: 1rem;
-	font-family: 'main-font', "Lucida Grande", monospace;
+	font-family: inherit;
 }
 
 .save-input-button {

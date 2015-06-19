@@ -119,7 +119,7 @@
 	border-width: 0.15rem;
 	font-size: 1rem;
 	padding-left: 0.2rem;
-	/*font-family: 'main-font', "Lucida Grande", monospace;*/
+	font-family: inherit;
 	color: #f0f0f0;
 	background-color: #242a45;
 	border-color: #f0f0f0;
