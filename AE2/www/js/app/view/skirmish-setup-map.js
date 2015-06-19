@@ -80,7 +80,7 @@
 		createViewData: function (map) {
 
 			var viewData = {},
-				util = win.APP.util,
+				//util = win.APP.util,
 				staticMapInfo = this.util.copyJSON(APP.map),
 				i, len,
 				playerData,
@@ -97,8 +97,7 @@
 			for (i = 1, len = map.maxPlayers; i <= len; i += 1) {
 				playerData = {};
 				playerData.teamNumber = i;
-				colors = util.assortArray(colors);
-				playerData.color = colors.pop();
+				playerData.color = colors[i-1];
 				playersData.push(playerData);
 				playerData.type = playerType;
 			}
