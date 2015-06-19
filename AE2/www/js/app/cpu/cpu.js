@@ -609,12 +609,12 @@
 							var building = scenarion.get('action').building,
 								addedRate = rates.building[building.type];
 
-							scenarion.changeBy(addedRate);
+							scenarion.changeBy('rate', addedRate);
 
-							filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
-								return sc2.get('rate') - sc1.get('rate');
-							});
+						});
 
+						filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
+							return sc2.get('rate') - sc1.get('rate');
 						});
 
 						break;
