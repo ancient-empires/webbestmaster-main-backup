@@ -594,9 +594,7 @@
 				var filteredScenarios = _.filter(scenarios, function (scenario) {
 						return scenario.get('action').name === scenarioType;
 					}),
-					noStrikeBack,
-					strikeBack;
-
+					noStrikeBack;
 
 				if ( !filteredScenarios.length ) {
 					return;
@@ -646,10 +644,9 @@
 
 						// detect attack with / without strike back
 						noStrikeBack = [];
-						strikeBack = [];
 
 						_.each(filteredScenarios, function (scenario) {
-							return scenario.get('availableResponseDamage') ? strikeBack.push(scenario) : noStrikeBack.push(scenario);
+							return scenario.get('availableResponseDamage') || noStrikeBack.push(scenario);
 						});
 
 						if (noStrikeBack.length) {
