@@ -592,8 +592,11 @@
 				}
 
 				var filteredScenarios = _.filter(scenarios, function (scenario) {
-					return scenario.get('action').name === scenarioType;
-				});
+						return scenario.get('action').name === scenarioType;
+					}),
+					noStrikeBack,
+					strikeBack;
+
 
 				if ( !filteredScenarios.length ) {
 					return;
@@ -640,6 +643,18 @@
 						break;
 
 					case 'attack':
+
+						// detect attack with / without strike back
+						noStrikeBack = [];
+						strikeBack = [];
+
+						_.each(filteredScenarios, function (scenario) {
+							return scenario.get('availableResponseDamage') ? strikeBack.push(scenario) : noStrikeBack.push(scenario);
+						});
+
+						if (noStrikeBack.length) {
+							filteredScenarios = noStrikeBack;
+						}
 
 						_.each(filteredScenarios, function (scenario) {
 
