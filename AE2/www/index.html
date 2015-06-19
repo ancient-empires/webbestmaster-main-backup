@@ -891,7 +891,8 @@
 								<div data-sound="click.mp3" data-map-route="<%= urlPrefix %>/<%= map.jsKey %>" data-map-preview-header="<%= mapName %>" data-js-map-key="<%= map.jsKey %>" data-map-type="<%= map.type %>" class="map-preview-button popup-button js-map-preview">&nbsp;</div>
 								<div data-sound="click.mp3" data-route="<%= urlPrefix %>/<%= map.jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
 								<div data-preview-wrapper-for="<%= map.jsKey %>" class="hidden js-map-preview-wrapper map-preview-wrapper">
-									<img data-preview-image-for="<%= map.jsKey %>" class="map-preview-image js-map-preview-image" src="" alt=""/>
+									<div data-preview-image-for="<%= map.jsKey %>" class="map-preview-image js-map-preview-image"></div>
+									<!--<img data-preview-image-for="<%= map.jsKey %>" class="map-preview-image js-map-preview-image" src="" alt=""/>-->
 									<div class="map-preview-text"><%= map.size.width %>&times;<%= map.size.height %></div>
 								</div>
 							</div>

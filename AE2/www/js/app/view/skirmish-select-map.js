@@ -76,14 +76,16 @@
 
 			if ($previewWrapper.hasClass('hidden')) {
 				$previewWrapper.removeClass('hidden');
-				if ($previewImage.attr('src')) {
+
+				if ( $previewWrapper.find('canvas').length ) {
 					return;
 				}
+
 				dbMaster.getMap({
 					type: mapType,
 					jsMapKey: jsMapKey
 				}).then(function (data) {
-					$previewImage.attr('src', view.getPreviewFromData(data));
+					$previewImage.append(view.getPreviewFromData(data));
 				});
 
 			} else {
@@ -98,7 +100,7 @@
 				canvas = document.createElement('canvas'),
 				ctx = canvas.getContext('2d'),
 				squareSize = view.squareSize.max,
-				squareSizeX2 = squareSize * 2,
+				squareSizeX2,
 				terrains = data.terrain,
 				mapWidth = data.size.width,
 				mapHeight = data.size.height,
@@ -107,11 +109,13 @@
 				buildings = data.buildings,
 				allColors = win.APP.map.allColors,
 				noMansBuildingsList = win.APP.building.noMansBuildingsList,
-				maxCanvasSize = win.APP.map.maxCanvasSize;
+				maxCanvasSize = win.APP.map.maxCanvasSize / 4;
 
 			while ( mapWidth * mapHeight * squareSize * squareSize * 4 >= maxCanvasSize ) {
 				squareSize -= 4;
 			}
+
+			squareSizeX2 = squareSize * 2;
 
 			canvas.width = mapWidth * squareSizeX2;
 			canvas.height = mapHeight * squareSizeX2;
@@ -155,7 +159,9 @@
 
 			});
 
-			return canvas.toDataURL();
+			canvas.className = 'map-preview-canvas';
+
+			return canvas;
 
 
 		}

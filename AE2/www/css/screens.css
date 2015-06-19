@@ -257,6 +257,12 @@
 	margin: -0.3rem auto 0.1rem;
 }
 
+.map-preview-canvas {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
 .map-preview-text {
 	font-size: 0.65rem;
 	line-height: 0.65rem;
