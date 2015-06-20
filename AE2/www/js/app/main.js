@@ -41,6 +41,16 @@
 
 	}
 
+	function preCacheImages() {
+
+		// just preload all images
+		_.each(win.APP.allImages, function (imgPath) {
+			var img = new Image();
+			img.src = imgPath;
+		});
+
+	}
+
 	function start() {
 
 		APP.templateMaster.init();
@@ -63,6 +73,7 @@
 				win.APP.bb.router = new win.APP.BB.Router();
 				Backbone.history.start();
 				initTiles();
+				preCacheImages();
 				settingsPrototype = win.APP.BB.SettingsView.prototype;
 				settingsPrototype.setSpeedStyle();
 				settingsPrototype.autoShowBuildingSmoke();
