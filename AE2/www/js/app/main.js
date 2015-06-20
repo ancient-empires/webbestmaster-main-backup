@@ -72,8 +72,6 @@
 				//win.APP.BB.BaseView.prototype.util.loadSavedTheme();
 				win.APP.bb.router = new win.APP.BB.Router();
 				Backbone.history.start();
-				initTiles();
-				preCacheImages();
 				settingsPrototype = win.APP.BB.SettingsView.prototype;
 				settingsPrototype.setSpeedStyle();
 				settingsPrototype.autoShowBuildingSmoke();
@@ -81,6 +79,11 @@
 				settingsPrototype.autoSetFont();
 				win.APP.soundMaster.init();
 				win.APP.soundMaster.playBgSound();
+
+				setTimeout(function () {
+					initTiles();
+					preCacheImages();
+				}, 10);
 
 				//setTimeout(function () {
 				//	win.APP.soundMaster.play({
