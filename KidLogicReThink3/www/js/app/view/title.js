@@ -35,6 +35,8 @@
 
 			info.set('language', lang);
 
+			win.APP.lang.set( APP.info.get('language') );
+
 			view.loadUrl();
 
 		}
