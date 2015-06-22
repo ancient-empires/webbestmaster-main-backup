@@ -595,6 +595,7 @@
 						return scenario.get('action').name === scenarioType;
 					}),
 					noStrikeBack,
+					killUnitAttack,
 					poisonAttack;
 
 				if ( !filteredScenarios.length ) {
@@ -680,6 +681,27 @@
 						filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
 							return sc2.get('rate') - sc1.get('rate');
 						});
+
+						// detect kill several unit
+						if (filteredScenarios[0].get('killUnit')) {
+
+							killUnitAttack = [];
+
+							_.each(filteredScenarios, function (scenario) {
+								return scenario.get('killUnit') && killUnitAttack.push(scenario);
+							});
+
+							killUnitAttack = killUnitAttack.sort(function (sc1, sc2) {
+								var scs = [sc1, sc2].map(function (sc) {
+									var enemyUnit = cpu.get('model').getUnitByXY(sc.get('action').enemy);
+									return enemyUnit.get('cost') + enemyUnit.get('health');
+								});
+								return scs[1] - scs[0];
+							});
+
+							filteredScenarios = killUnitAttack;
+
+						}
 
 						break;
 
@@ -1406,7 +1428,7 @@
 
 			if ( availableGivenDamage >= enemyHealth ) {
 				rate = rates.killUnit;
-				//scenario.set('killUnit', true); // use for detect priority to kill unit
+				scenario.set('killUnit', true); // use for detect priority to kill unit
 			} else {
 				if ( availableResponseDamage < unit.get('health') - 10 ) { // detect: unit will be alive after attack
 					rate = availableGivenDamage; // unit alive
