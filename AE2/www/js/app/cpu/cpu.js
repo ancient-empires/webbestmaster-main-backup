@@ -691,6 +691,9 @@
 								return scenario.get('killUnit') && killUnitAttack.push(scenario);
 							});
 
+
+							//todo: add kill unit on the farm/town at first queue
+
 							killUnitAttack = killUnitAttack.sort(function (sc1, sc2) {
 								var scs = [sc1, sc2].map(function (sc) {
 									var enemyUnit = cpu.get('model').getUnitByXY(sc.get('action').enemy);
