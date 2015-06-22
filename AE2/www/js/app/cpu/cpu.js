@@ -1371,6 +1371,8 @@
 				dataByPosition = scenario.get('dataByPosition'),
 				rate;
 
+			scenario.set('isPoisonAttack', unit.get('poisonPeriod') ); // turn poison attack at first
+
 			if ( !enemy && enemyBuilding && unit.get('canDestroyBuilding') ) {
 				return rates.destroyEnemyBuilding;
 			}
@@ -1393,6 +1395,7 @@
 
 			if ( availableGivenDamage >= enemyHealth ) {
 				rate = rates.killUnit;
+				//scenario.set('killUnit', true); // use for detect priority to kill unit
 			} else {
 				if ( availableResponseDamage < unit.get('health') - 10 ) { // detect: unit will be alive after attack
 					rate = availableGivenDamage; // unit alive
