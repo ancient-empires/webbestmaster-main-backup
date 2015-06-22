@@ -594,7 +594,8 @@
 				var filteredScenarios = _.filter(scenarios, function (scenario) {
 						return scenario.get('action').name === scenarioType;
 					}),
-					noStrikeBack;
+					noStrikeBack,
+					poisonAttack;
 
 				if ( !filteredScenarios.length ) {
 					return;
@@ -644,6 +645,7 @@
 
 						// detect attack with / without strike back
 						noStrikeBack = [];
+						poisonAttack = [];
 
 						_.each(filteredScenarios, function (scenario) {
 							return scenario.get('availableResponseDamage') || noStrikeBack.push(scenario);
@@ -651,6 +653,15 @@
 
 						if (noStrikeBack.length) {
 							filteredScenarios = noStrikeBack;
+						}
+
+						// try to find poison attack
+						_.each(filteredScenarios, function (scenario) {
+							return scenario.get('isPoisonAttack') && poisonAttack.push(scenario);
+						});
+
+						if (poisonAttack.length) {
+							filteredScenarios = poisonAttack;
 						}
 
 						_.each(filteredScenarios, function (scenario) {
@@ -1368,7 +1379,7 @@
 				enemyBuilding = model.getBuildingByXY(enemyXY),
 				availableGivenDamage,
 				availableResponseDamage = 0,
-				dataByPosition = scenario.get('dataByPosition'),
+				//dataByPosition = scenario.get('dataByPosition'),
 				rate;
 
 			scenario.set('isPoisonAttack', unit.get('poisonPeriod') ); // turn poison attack at first
