@@ -93,6 +93,11 @@
 
 			var view = this;
 
+			if ( view.get('isHiding') ) {
+				return;
+			}
+
+			view.set('isHiding', true);
 
 			view.showOutAnimation().then(function () {
 

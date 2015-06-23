@@ -203,6 +203,11 @@
 
 			this.stopEvent(e);
 
+			// do not extra back if view is hiding - popup workaround
+			if ( this.get('isHiding') ) {
+				return;
+			}
+
 			if (location.hash) {
 				Backbone.history.history.back();
 			}
