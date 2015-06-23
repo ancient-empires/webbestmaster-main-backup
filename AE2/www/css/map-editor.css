@@ -149,6 +149,16 @@
 	text-align: center;
 }
 
+.map-size,
+.map-name {
+	-webkit-transition: 0.3s opacity linear;
+	transition: 0.3s opacity linear;
+}
+
+.error-highlight {
+	opacity: 0;
+}
+
 .map-editor-wrapper {
 
 }

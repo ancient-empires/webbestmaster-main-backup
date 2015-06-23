@@ -658,6 +658,19 @@
 
 		},
 
+		redHighlightMapName: function () {
+
+			var view = this,
+				$nodes = view.$el.find([view.selectors.mapNameInput, view.selectors.mapSize].join(','));
+
+			$nodes.addClass('error-highlight');
+
+			setTimeout(function () {
+				$('.error-highlight').removeClass('error-highlight');
+			}, 1300);
+
+		},
+
 		saveMap: function () {
 
 			var view = this,
@@ -702,6 +715,8 @@
 					},
 					cssClass: 'error'
 				});
+
+				view.redHighlightMapName();
 
 				return;
 			}
