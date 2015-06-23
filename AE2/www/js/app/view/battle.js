@@ -250,7 +250,7 @@
 				y: y
 			});
 
-			squareEventHandler.innerHTML = '<div class="' + view.classNames.activeSquareMark + '">&nbsp;</div>';
+			$(squareEventHandler).html('<div class="' + view.classNames.activeSquareMark + '">&nbsp;</div>');
 
 			view.showUnitInfo();
 
@@ -268,7 +268,8 @@
 
 			view.hideUnitInfo();
 
-			return node && node.parentNode.removeChild(node);
+			//return node && node.parentNode.removeChild(node);
+			return node && $(node).remove();
 
 		},
 
@@ -455,13 +456,16 @@
 		clearAvailableActions: function () {
 
 			var view = this,
-				util = view.util,
-				nodes = util.findInAll(view.$el[0], view.selectors.eventSquares),
-				parentNode = nodes[0] && nodes[0].parentNode;
+				//util = view.util,
+				//nodes = util.findInAll(view.$el[0], view.selectors.eventSquares),
+				nodes = view.$el.find(view.selectors.eventSquares);
+				//parentNode = nodes[0] && nodes[0].parentNode;
 
-			nodes.forEach(function (node) {
-				parentNode.removeChild(node);
-			});
+			nodes.remove();
+
+			//nodes.forEach(function (node) {
+			//	parentNode.removeChild(node);
+			//});
 
 			view.restoreActiveSquare();
 
@@ -570,7 +574,8 @@
 			node.innerHTML = '&nbsp;';
 
 			if ( prevNode ) {
-				prevNode.parentNode.removeChild(prevNode);
+				$(prevNode).remove();
+				//prevNode.parentNode.removeChild(prevNode);
 			}
 
 			node.className = ('js-square js-event-square square ' + className).trim();
