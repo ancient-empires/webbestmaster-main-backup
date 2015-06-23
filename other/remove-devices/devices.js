@@ -608,6 +608,30 @@ window.devices = [
     "deviceName": "GT-S5570"
   },
   {
+    "product": "Galaxy Young2",
+    "deviceName": "young2nfc3g"
+  },
+  {
+    "product": "Galaxy Young2",
+    "deviceName": "young23gdtv"
+  },
+  {
+    "product": "Galaxy Young",
+    "deviceName": "royss"
+  },
+  {
+    "product": "Galaxy Young2",
+    "deviceName": "young23g"
+  },
+  {
+    "product": "Galaxy Young2",
+    "deviceName": "young2ds2g"
+  },
+  {
+    "product": "Galaxy Young2 Pro",
+    "deviceName": "young2ve3g"
+  },
+  {
     "product": "Xperia active",
     "deviceName": "ST17i"
   },
