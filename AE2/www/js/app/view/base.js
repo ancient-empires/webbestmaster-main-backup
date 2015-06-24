@@ -162,7 +162,7 @@
 				this.unbindEventListeners();
 			}
 
-			this.$el.remove();
+			this.$el.empty().remove();
 
 		},
 

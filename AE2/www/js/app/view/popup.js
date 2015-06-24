@@ -103,7 +103,7 @@
 
 				var $popupProtector = view.$wrapper.find('.js-popup-protector');
 				setTimeout(function () {
-					$popupProtector.remove();
+					$popupProtector.empty().remove();
 				}, 50);
 
 				view.proto.hide.call(view);
@@ -268,7 +268,7 @@
 				type: mapType
 			});
 
-			view.$el.find('.js-user-map-wrapper[data-user-map-name="' + mapName + '"]').remove();
+			view.$el.find('.js-user-map-wrapper[data-user-map-name="' + mapName + '"]').empty().remove();
 
 			if ( !view.$el.find('.js-user-map-wrapper').length ) {
 				view.$el.find('.js-popup-header').html(lang.get('noSavedMaps'));

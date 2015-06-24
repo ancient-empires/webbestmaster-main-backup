@@ -65,7 +65,7 @@
 				time = view.info.actionTime(),
 				$style = view.tmpl['game-speed']({time: time - 100});
 
-			view.$wrapper.find(view.selectors.style).remove();
+			view.$wrapper.find(view.selectors.style).empty().remove();
 
 			view.$wrapper.append($style);
 

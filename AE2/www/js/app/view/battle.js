@@ -461,7 +461,7 @@
 				nodes = view.$el.find(view.selectors.eventSquares);
 				//parentNode = nodes[0] && nodes[0].parentNode;
 
-			nodes.remove();
+			nodes.empty().remove();
 
 			//nodes.forEach(function (node) {
 			//	parentNode.removeChild(node);
@@ -534,7 +534,7 @@
 			}
 
 			$node = $(view.tmpl['battle-view-info-square'](infoViewObj));
-			$el.find('.js-status-bar-info-square-container').remove();
+			$el.find('.js-status-bar-info-square-container').empty().remove();
 			$el.find('.js-status-bar-info-square-wrapper').append($node);
 
 		},
@@ -574,7 +574,7 @@
 			node.innerHTML = '&nbsp;';
 
 			if ( prevNode ) {
-				$(prevNode).remove();
+				$(prevNode).empty().remove();
 				//prevNode.parentNode.removeChild(prevNode);
 			}
 
@@ -775,7 +775,7 @@
 
 		hideHouseSmoke: function () {
 
-			this.$el.find(this.selectors.smokeWrapper).remove();
+			this.$el.find(this.selectors.smokeWrapper).empty().remove();
 
 		},
 
@@ -904,7 +904,7 @@
 				return;
 			}
 
-			$wrapper.find('[data-xy="x' + x +'y' + y + '"]').remove();
+			$wrapper.find('[data-xy="x' + x +'y' + y + '"]').empty().remove();
 
 			$smokeContainer.attr('data-xy', 'x' + x + 'y' + y).attr('data-x', x).attr('data-y', y);
 
@@ -929,7 +929,7 @@
 				return;
 			}
 
-			$smokeContainer.remove();
+			$smokeContainer.empty().remove();
 
 		},
 
@@ -1011,7 +1011,7 @@
 
 		removeUnit: function (unit) {
 
-			this.getUnitByUnit(unit).remove();
+			this.getUnitByUnit(unit).empty().remove();
 
 		},
 
@@ -1059,7 +1059,7 @@
 			var view = this,
 				$graveWrapper = view.$el.find(view.selectors.unitsWrapper + ' [data-grave-id="' + grave.id + '"]');
 
-			$graveWrapper.remove();
+			$graveWrapper.empty().remove();
 
 		},
 
@@ -1079,7 +1079,7 @@
 				}
 			} else {
 				//remove wist aura
-				$unitNode.find('.js-under-wisp-aura-image').remove();
+				$unitNode.find('.js-under-wisp-aura-image').empty().remove();
 			}
 
 		},
@@ -1099,7 +1099,7 @@
 					$unitNode.append('<div class="js-under-poison-image under-poison-image">&nbsp;</div>')
 				}
 			} else {
-				$unitNode.find('.js-under-poison-image').remove();
+				$unitNode.find('.js-under-poison-image').empty().remove();
 			}
 
 		},
@@ -1508,7 +1508,7 @@
 			$attackNode.one(transitionEnd, function () {
 
 				//$(this).remove();
-				view.$el.find('.js-attack-square').remove();
+				view.$el.find('.js-attack-square').empty().remove();
 
 				model.clearAvailableActions();
 				view.clearAvailableActions();
@@ -1555,7 +1555,7 @@
 
 			$deltaHealth.one(animationEnd, function () {
 
-				$(this).remove();
+				$(this).empty().remove();
 
 				view.enable();
 
@@ -1595,8 +1595,8 @@
 				$healthTen = $unitWrapper.find('.js-unit-health-ten');
 
 			if (health === defaultHealth) {
-				$healthOne.remove();
-				$healthTen.remove();
+				$healthOne.empty().remove();
+				$healthTen.empty().remove();
 				return;
 			}
 
@@ -1605,7 +1605,7 @@
 			ten = health.pop() || ten;
 
 			if (one === 'none') {
-				$healthOne.remove();
+				$healthOne.empty().remove();
 			} else {
 				if ($healthOne.length) {
 					$healthOne.attr('class', 'js-unit-health-one unit-health-one number-1-' + one);
@@ -1615,7 +1615,7 @@
 			}
 
 			if (ten === 'none') {
-				$healthTen.remove();
+				$healthTen.empty().remove();
 			} else {
 				if ($healthTen.length) {
 					$healthTen.attr('class', 'js-unit-health-ten unit-health-ten number-1-' + ten);
@@ -1700,7 +1700,7 @@
 			$unitWrapper.append($levelUp);
 
 			$levelUp.one(animationEnd, function () {
-				$(this).remove();
+				$(this).empty().remove();
 			}); // work only one time
 
 			$levelUp.addClass('move-up');
