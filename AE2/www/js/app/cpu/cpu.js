@@ -1239,7 +1239,11 @@
 				buildingData = win.APP.building,
 				buildingUpHealthList = buildingData.upHealthList,
 				buildingList = buildingData.list,
-				onHealthUpBuilding = 0;
+				onHealthUpBuilding = 0,
+				onEnemyBuilding = false,
+				onTeamBuilding = false,
+				onFreeBuilding = false,
+				onBuilding = false;
 
 			unit.silentOn('x', 'y');
 			unit.set('x', x);
@@ -1277,13 +1281,26 @@
 			});
 
 			building = model.getBuildingByXY({ x: x, y: y });
-			if ( building &&
-				(building.ownerId === unit.get('ownerId') ||
-				_.contains(buildingUpHealthList, building.type) ||
-				building.teamNumber === unit.get('teamNumber')) ) {
-				upHealth = buildingList[building.type].healthUp;
-				upHealth = Math.min(upHealth, unit.get('defaultHealth') - unit.get('health'));
-				onHealthUpBuilding = rates.onHealthUpBuilding;
+			if ( building ) {
+
+				onBuilding = true;
+
+				if ( (building.ownerId === unit.get('ownerId') || _.contains(buildingUpHealthList, building.type) || building.teamNumber === unit.get('teamNumber')) ) {
+					upHealth = buildingList[building.type].healthUp;
+					upHealth = Math.min(upHealth, unit.get('defaultHealth') - unit.get('health'));
+					onHealthUpBuilding = rates.onHealthUpBuilding;
+				}
+
+				if ( building.teamNumber === null ) {
+					onFreeBuilding = true;
+				} else {
+					if ( building.teamNumber !== unit.get('teamNumber') ) { // detect enemy building
+						onEnemyBuilding = true;
+					} else {
+						onTeamBuilding = true;
+					}
+				}
+
 			}
 
 			unit.set('x', unitX);
@@ -1294,7 +1311,11 @@
 				placeArmor: placeArmor,
 				availableReceiveDamage: availableReceiveDamage,
 				upHealth: upHealth,
-				onHealthUpBuilding: onHealthUpBuilding
+				onHealthUpBuilding: onHealthUpBuilding,
+				onBuilding: onBuilding,
+				onFreeBuilding: onFreeBuilding,
+				onEnemyBuilding: onEnemyBuilding,
+				onTeamBuilding: onTeamBuilding
 			});
 
 		},
@@ -1404,7 +1425,7 @@
 				enemyBuilding = model.getBuildingByXY(enemyXY),
 				availableGivenDamage,
 				availableResponseDamage = 0,
-				//dataByPosition = scenario.get('dataByPosition'),
+				dataByPosition = scenario.get('dataByPosition'),
 				rate;
 
 			scenario.set('isPoisonAttack', unit.get('poisonPeriod') ); // turn poison attack at first
@@ -1438,6 +1459,13 @@
 				} else {
 					rate = rates.lowPriority;  // unit die
 				}
+			}
+
+			if (rate !== rates.lowPriority) {
+				rate += dataByPosition.onBuilding ? 1 : 0;
+				rate += dataByPosition.onFreeBuilding ? 5 : 0;
+				rate += dataByPosition.onEnemyBuilding ? 5 : 0;
+				rate += dataByPosition.onTeamBuilding ? 10 : 0;
 			}
 
 			scenario.set('availableResponseDamage', availableResponseDamage);
