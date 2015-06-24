@@ -455,7 +455,8 @@
 				$wrapper = $(e.currentTarget),
 				$this = $wrapper.find(view.selectors.onOffSetting),
 				key = $this.attr('data-key'),
-				value = ( $this.attr('data-value') === 'on' ) ? 'off' : 'on';
+				value = ( $this.attr('data-value') === 'on' ) ? 'off' : 'on',
+				settingsPrototype = win.APP.BB.SettingsView.prototype;
 
 			if ( value === 'on' ) {
 				$this.addClass('on-off-enable');
@@ -473,15 +474,15 @@
 					break;
 
 				case 'buildingSmoke':
-					view.autoShowBuildingSmoke();
+					settingsPrototype.autoShowBuildingSmoke();
 					break;
 
 				case 'unitAnimation':
-					view.autoShowUnitAnimation();
+					settingsPrototype.autoShowUnitAnimation();
 					break;
 
 				case 'music':
-					view.autoSetMusic();
+					settingsPrototype.autoSetMusic();
 					break;
 
 			}
@@ -494,7 +495,8 @@
 				$this = $(e.currentTarget),
 				key = $this.attr('data-key'),
 				value = $this.attr('data-value'),
-				$nodes = view.$el.find('.js-change-select-setting[data-key="' + key + '"]');
+				$nodes = view.$el.find('.js-change-select-setting[data-key="' + key + '"]'),
+				settingsPrototype = win.APP.BB.SettingsView.prototype;
 
 			$nodes.addClass('opacity50');
 			$nodes.removeClass('selected-in-list');
@@ -512,11 +514,11 @@
 					break;
 
 				case 'gameSpeed':
-					view.setSpeedStyle();
+					settingsPrototype.setSpeedStyle();
 					break;
 
 				case 'font':
-					view.autoSetFont();
+					settingsPrototype.autoSetFont();
 					break;
 
 			}
