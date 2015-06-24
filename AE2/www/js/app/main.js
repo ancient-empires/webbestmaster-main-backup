@@ -80,11 +80,8 @@
 				win.APP.soundMaster.init();
 				win.APP.soundMaster.playBgSound();
 
-				setTimeout(function () {
-					initTiles();
-					preCacheImages();
-				}, 10);
-
+				setTimeout(initTiles, 50);
+				setTimeout(preCacheImages, 200);
 				//setTimeout(function () {
 				//	win.APP.soundMaster.play({
 				//		sound: 'click.mp3',
