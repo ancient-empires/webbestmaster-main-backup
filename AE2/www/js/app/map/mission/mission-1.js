@@ -22,12 +22,11 @@
 		};
 
 	win.APP.maps.mission_001_001 = {
-		version: 6,
+		version: 8,
 		type: 'mission',
 		isOpen: true,
 		openMaps: [
-			{jsMapKey: 'mission_001_002', type: 'mission'},
-			{jsMapKey: 'skirmish_001_007', type: 'skirmish'}
+			{jsMapKey: 'mission_001_002', type: 'mission'}
 		],
 		size: {width: 12, height: 12},
 		maxPlayers: 2,
@@ -198,9 +197,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.missionComplete,
-					text: '\'Crossroads\' ' + langEn.unlocked //openMaps: [ { jsMapKey: 'mission_001_002', type: 'mission' }, { jsMapKey: 'River', type: 'skirmish' } ],
-
+					header: langEn.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
@@ -377,9 +374,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEs.missionComplete,
-					text: '\'Cruce de caminos\' ' + langEs.unlocked //openMaps: [ { jsMapKey: 'mission_001_002', type: 'mission' }, { jsMapKey: 'River', type: 'skirmish' } ],
-
+					header: langEs.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
@@ -556,9 +551,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langRu.missionComplete,
-					text: '\'Перекресток\' ' + langRu.unlocked //openMaps: [ { jsMapKey: 'mission_001_002', type: 'mission' }, { jsMapKey: 'River', type: 'skirmish' } ],
-
+					header: langRu.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',

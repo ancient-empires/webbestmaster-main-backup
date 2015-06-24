@@ -22,12 +22,11 @@
 		};
 
 	win.APP.maps.mission_001_004 = {
-		version: 6,
+		version: 8,
 		type: 'mission',
 		isOpen: false,
 		openMaps: [
-			{jsMapKey: 'mission_001_005', type: 'mission'},
-			{jsMapKey: 'skirmish_001_010', type: 'skirmish'}
+			{jsMapKey: 'mission_001_005', type: 'mission'}
 		],
 		size: {width: 16, height: 16},
 		maxPlayers: 2,

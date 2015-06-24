@@ -207,7 +207,7 @@
 			this.stopEvent(e);
 
 			// do not extra back if view is hiding - popup workaround
-			if ( this.get('isHiding') ) {
+			if ( this.get('isHiding') && !win.APP.bb.router.isForce) {
 				return;
 			}
 
