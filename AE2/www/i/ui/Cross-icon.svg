@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="400" height="400" id="svg2">
+  <title id="title4045">Cross</title>
+  <defs id="defs4">
+    <linearGradient x1="-481.63879" y1="1498.8496" x2="-727.92688" y2="1498.8496" id="linearGradient4057" xlink:href="#linearGradient3996" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1.1726642,0,0,1.2567202,-14.470369,-375.64336)"/>
+    <linearGradient x1="-481.63879" y1="1498.8496" x2="-727.92688" y2="1498.8496" id="linearGradient4027" xlink:href="#linearGradient3996" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.97994177,0,0,1.5038759,-12.092225,-449.52009)"/>
+    <linearGradient id="linearGradient3996">
+      <stop id="stop3998" style="stop-color:#b8b8b8;stop-opacity:1" offset="0"/>
+      <stop id="stop4000" style="stop-color:#b8b8b8;stop-opacity:0" offset="1"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(1173.1504,38.831377)" id="layer1">
+    <g transform="matrix(0.4801848,0,0,0.4801848,-316.23146,468.10984)" id="layer1-2">
+      <path d="m -1535.3078,-915.11767 -108.6821,108.68211 144.801,144.73595 c 12.4256,12.42559 12.4256,32.47889 0,44.90459 l -144.801,144.80102 108.6821,108.68212 144.801,-144.80103 c 12.4257,-12.42569 32.4789,-12.42569 44.9046,0 l 144.801,144.80103 108.6822,-108.68212 -144.8011,-144.80102 c -12.4256,-12.4257 -12.4256,-32.479 0,-44.90459 l 144.8011,-144.73595 -108.6822,-108.68211 -144.801,144.73594 c -12.4257,12.42559 -32.4789,12.42559 -44.9046,0 l -144.801,-144.73594 z" id="rect3762" style="fill:#b7bcc3;fill-opacity:1;stroke:none"/>
+    </g>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Open Clip Art Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Cross icon</dc:title>
+        <dc:date>2012-08-01T09:42:54</dc:date>
+        <dc:description/>
+        <dc:source>http://openclipart.org/detail/171382/cross-icon-by-zawertun-171382</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>ZaWertun</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>cross</rdf:li>
+            <rdf:li>icon</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
