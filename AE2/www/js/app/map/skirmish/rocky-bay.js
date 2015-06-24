@@ -8,11 +8,11 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_003 = {
-		version: 4,
+		version: 5,
 		type: 'skirmish',
 		size: {width: 17, height: 12},
 		maxPlayers: 2,
-		isOpen: true,
+		//isOpen: true,
 
 		// en
 		name: 'Rocky Bay',

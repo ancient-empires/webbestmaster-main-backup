@@ -887,7 +887,6 @@
 					<% var languageField = 'name-' + window.APP.info.get('language'); %>
 					<% _.each(mapsInfo, function (map) { %>
 						<% var mapName = map[languageField] || map.name; %>
-						<% if ( map.isOpen ) { %>
 							<div class="map-name-list-item">
 								<div data-sound="click.mp3" data-map-route="<%= urlPrefix %>/<%= map.jsKey %>" data-map-preview-header="<%= mapName %>" data-js-map-key="<%= map.jsKey %>" data-map-type="<%= map.type %>" class="map-preview-button popup-button js-map-preview">&nbsp;</div>
 								<div data-sound="click.mp3" data-route="<%= urlPrefix %>/<%= map.jsKey %>" class="saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName %></div>
@@ -897,9 +896,6 @@
 									<div class="map-preview-text"><%= map.size.width %>&times;<%= map.size.height %></div>
 								</div>
 							</div>
-						<% } else { %>
-							<div data-sound="click.mp3" data-route="<%= urlPrefix %>/<%= map.jsKey %>" class="disable saved-item-wrapper">(<%= map.maxPlayers %>) <%= mapName.replace(/\S/g, '?') %></div>
-						<% }; %>
 					<% }); %>
 				<% } else { %>
 					{{ noSavedMaps }}

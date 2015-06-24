@@ -8,11 +8,11 @@
 	win.APP.maps = win.APP.maps || {};
 
 	win.APP.maps.skirmish_001_012 = {
-		version: 4,
+		version: 5,
 		type: 'skirmish',
 		size: {width: 13, height: 13},
 		maxPlayers: 4,
-		isOpen: false,
+		//isOpen: false,
 
 		// en
 		name: 'Winter Storm',
