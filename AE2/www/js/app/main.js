@@ -9,49 +9,96 @@
 
 	win.APP.bb = win.APP.bb || {};
 
-	function initTiles() {
 
-		function prepareTiles(tiles) {
+	function prepareTiles(tiles) {
 
-			_.each(tiles, function (base64, key) {
-				var img = new Image(),
-					scale = 8;
+		var deferred = $.Deferred(),
+			promise = deferred.promise();
 
-				$(img).one('load', function () {
+		function preLoadImage(base64, key) {
 
-					var base64Scaled = win.APP.map.scaleImage(this, scale);
+			var deferred = $.Deferred(),
+				img = new Image();
 
-					tiles[key] = {
-						base64: base64Scaled,
-						img: img
-					};
+			function onceLoad() {
+				this.removeEventListener('load', onceLoad);
+				this.removeEventListener('error', onceLoad);
 
-					img.src = base64Scaled;
+				var base64Scaled = win.APP.map.scaleImage(this, 8);
 
-				}.bind(img, scale, key));
+				tiles[key] = {
+					base64: base64Scaled,
+					img: img
+				};
 
-				img.src = base64;
+				img.src = base64Scaled;
 
-			});
+				deferred.resolve();
+
+			}
+
+			img.addEventListener('load', onceLoad, false);
+			img.addEventListener('error', onceLoad, false);
+
+			img.src = base64;
+
+			return deferred.promise();
 
 		}
 
-		prepareTiles(win.APP.mapTiles);
-		prepareTiles(win.APP.mapTilesPreview);
+		_.each(tiles, function (base64, key) {
+
+			promise = promise.then(function () {
+				return preLoadImage(base64, key);
+			});
+
+		});
+
+		deferred.resolve();
 
 	}
 
 	function preCacheImages() {
 
 		// just preload all images
+		function preLoadImage(src) {
+
+			var deferred = $.Deferred(),
+				img = new Image();
+
+			function onceLoad() {
+				this.removeEventListener('load', onceLoad);
+				this.removeEventListener('error', onceLoad);
+				deferred.resolve();
+			}
+
+			img.addEventListener('load', onceLoad, false);
+			img.addEventListener('error', onceLoad, false);
+
+			img.src = src;
+
+			return deferred.promise();
+
+		}
+
+		var deferred = $.Deferred(),
+			promise = deferred.promise();
+
 		_.each(win.APP.allImages, function (imgPath) {
-			var img = new Image();
-			img.src = imgPath;
+			promise = promise.then(function () {
+				return preLoadImage(imgPath);
+			});
 		});
+
+		deferred.resolve();
 
 	}
 
 	function start() {
+
+		prepareTiles(win.APP.mapTiles);
+		prepareTiles(win.APP.mapTilesPreview);
+		preCacheImages();
 
 		APP.templateMaster.init();
 		win.APP.util.setHTMLStyle();
@@ -80,8 +127,6 @@
 				win.APP.soundMaster.init();
 				win.APP.soundMaster.playBgSound();
 
-				setTimeout(initTiles, 50);
-				setTimeout(preCacheImages, 200);
 				//setTimeout(function () {
 				//	win.APP.soundMaster.play({
 				//		sound: 'click.mp3',
