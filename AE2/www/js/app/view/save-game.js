@@ -205,7 +205,7 @@
 				$blocks,
 				$block = view.$el.find(view.selectors.savedItemWrapper + '[data-save-name="' + gameName + '"]');
 
-			$block.empty().remove();
+			$block.remove().empty();
 
 			dbMaster.removeSave(gameName);
 
