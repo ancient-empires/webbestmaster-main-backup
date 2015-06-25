@@ -655,6 +655,10 @@
 				ctx.drawImage(mapTiles[value].img, xy.x * squareSizeX2, xy.y * squareSizeX2, squareSizeX2, squareSizeX2);
 			});
 
+			function isReal(x, y) {
+				return x >= 0 && y >= 0 && x < mapWidth && y < mapHeight;
+			}
+
 			// draw angles road
 			angleTypes.forEach(function (type) {
 
@@ -677,15 +681,25 @@
 						xSquareSizeX2Half = xSquareSizeX2 + squareSize,
 						ySquareSizeX2Half = ySquareSizeX2 + squareSize,
 
-						terrain1 = terrains[xyStr(xl, yu)] || value,
-						terrain2 = terrains[xyStr(x, yu)] || value,
-						terrain3 = terrains[xyStr(xr, yu)] || value,
-						terrain4 = terrains[xyStr(xl, y)] || value,
-						terrain6 = terrains[xyStr(xr, y)] || value,
-						terrain7 = terrains[xyStr(xl, yd)] || value,
-						terrain8 = terrains[xyStr(x, yd)] || value,
-						terrain9 = terrains[xyStr(xr, yd)] || value,
+						terrain1Real = isReal(xl, yu) && terrains[xyStr(xl, yu)],
+						terrain2Real = isReal(x, yu) && terrains[xyStr(x, yu)],
+						terrain3Real = isReal(xr, yu) && terrains[xyStr(xr, yu)],
+						terrain4Real = isReal(xl, y) && terrains[xyStr(xl, y)],
+						terrain6Real = isReal(xr, y) && terrains[xyStr(xr, y)],
+						terrain7Real = isReal(xl, yd) && terrains[xyStr(xl, yd)],
+						terrain8Real = isReal(x, yd) && terrains[xyStr(x, yd)],
+						terrain9Real = isReal(xr, yd) && terrains[xyStr(xr, yd)],
 
+						terrain1 = terrain1Real || value,
+						terrain2 = terrain2Real || value,
+						terrain3 = terrain3Real || value,
+						terrain4 = terrain4Real || value,
+						terrain6 = terrain6Real || value,
+						terrain7 = terrain7Real || value,
+						terrain8 = terrain8Real || value,
+						terrain9 = terrain9Real || value,
+
+						// true if no bridge or no terrain type
 						t1 = terrain1.indexOf(type) && terrain1.indexOf('bridge'),
 						t2 = terrain2.indexOf(type) && terrain2.indexOf('bridge'),
 						t3 = terrain3.indexOf(type) && terrain3.indexOf('bridge'),
@@ -694,6 +708,26 @@
 						t7 = terrain7.indexOf(type) && terrain7.indexOf('bridge'),
 						t8 = terrain8.indexOf(type) && terrain8.indexOf('bridge'),
 						t9 = terrain9.indexOf(type) && terrain9.indexOf('bridge');
+
+					if (type === 'road') {
+
+						if (!terrain2Real) {
+							t2 = !t4 || !t6;
+						}
+
+						if (!terrain4Real) {
+							t4 = !t2 || !t8;
+						}
+
+						if (!terrain6Real) {
+							t6 = !t2 || !t8;
+						}
+
+						if (!terrain8Real) {
+							t8 = !t4 || !t6;
+						}
+
+					}
 
 					// draw 2, 4, 6, 8
 					if ( t2 ) { // up is different type
