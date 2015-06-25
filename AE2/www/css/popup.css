@@ -190,9 +190,10 @@
 	background-color: #242A45;
 	box-shadow: 0.2rem 0.2rem 0 #000;
 	background-repeat: no-repeat;
-	-webkit-background-size: 100% 100%;
-	background-size: 100% 100%;
+	-webkit-background-size: 85%;
+	background-size: 85%;
 	background-image: url(../i/ui/cross-icon.svg);
+	background-position: center center;
 	width: 1.9rem;
 	height: 1.9rem;
 }
