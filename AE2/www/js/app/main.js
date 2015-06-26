@@ -9,11 +9,11 @@
 
 	win.APP.bb = win.APP.bb || {};
 
-
 	function prepareTiles(tiles) {
 
 		var deferred = $.Deferred(),
-			promise = deferred.promise();
+			promise = deferred.promise(),
+			mainDeferred = $.Deferred();
 
 		function preLoadImage(base64, key) {
 
@@ -54,7 +54,13 @@
 
 		});
 
+		promise.then(function () {
+			mainDeferred.resolve();
+		});
+
 		deferred.resolve();
+
+		return mainDeferred.promise();
 
 	}
 
@@ -82,7 +88,8 @@
 		}
 
 		var deferred = $.Deferred(),
-			promise = deferred.promise();
+			promise = deferred.promise(),
+			mainDeferred = $.Deferred();
 
 		_.each(win.APP.allImages, function (imgPath) {
 			promise = promise.then(function () {
@@ -90,15 +97,20 @@
 			});
 		});
 
+		promise.then(function () {
+			mainDeferred.resolve();
+		});
+
 		deferred.resolve();
+
+		return mainDeferred.promise();
 
 	}
 
-	function start() {
 
-		prepareTiles(win.APP.mapTiles);
-		prepareTiles(win.APP.mapTilesPreview);
-		preCacheImages();
+	function startApp() {
+
+		$('.js-wrapper').empty().html('');
 
 		APP.templateMaster.init();
 		win.APP.util.setHTMLStyle();
@@ -139,13 +151,16 @@
 				//	win.APP.soundMaster.playBgSound();
 				//}, 2000);
 
-
 			}
 
 		}
 
 		back();
 
+	}
+
+	function start() {
+		$.when(prepareTiles(win.APP.mapTiles), prepareTiles(win.APP.mapTilesPreview), preCacheImages()).then(startApp);
 	}
 
 	win.addEventListener('load', start, false);
