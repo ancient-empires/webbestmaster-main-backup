@@ -182,7 +182,14 @@
 		preloadImages: function () {
 
 			this.progressLength = win.APP.allImages.length + _.keys(win.APP.mapTiles).length + _.keys(win.APP.mapTilesPreview).length;
-			return $.when(this.prepareTiles(win.APP.mapTiles), this.prepareTiles(win.APP.mapTilesPreview), this.preCacheImages());
+
+			return this.prepareTiles(win.APP.mapTiles)
+				.then(function () {
+					return win.APP.map.prepareTiles(win.APP.mapTilesPreview);
+				})
+				.then(function () {
+					return win.APP.map.preCacheImages();
+				});
 
 		},
 
