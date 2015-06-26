@@ -138,6 +138,7 @@
 				function onceLoad() {
 					this.removeEventListener('load', onceLoad);
 					this.removeEventListener('error', onceLoad);
+					win.APP.allImagesCache[this.src] = this;
 					map.recountProgress();
 					deferred.resolve();
 				}
