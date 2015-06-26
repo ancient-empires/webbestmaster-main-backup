@@ -493,6 +493,7 @@
 				player = cpu.get('player'),
 				privateUnits = model.getUnitsByOwnerId(player.id),
 				scenarios = [],
+				coverBuildingScenarios,
 				lowPriorityScenarios = [],
 				highPriorityScenarios = [],
 				scenarioIsDone = false;
@@ -568,6 +569,8 @@
 				 cpu.setAutoAvailableByRaiseSkeleton(scenario); // detect raise skeleton
 			 });
 
+			cpu.detectScenarioCanCoverBuilding(scenarios);
+
 			scenarios = _.filter(scenarios, function (scenario) {
 				return scenario.get('isAvailable') && scenario.get('rate') !== rates.lowPriority;
 			});
@@ -584,6 +587,14 @@
 			// find attack - 3
 			// find fix building - 4
 			// find move - 5
+
+			coverBuildingScenarios = _.filter(scenarios, function (scenario) {
+				return scenario.get('coverBuilding');
+			});
+
+			if (coverBuildingScenarios.length) {
+				scenarios = coverBuildingScenarios;
+			}
 
 			_.each(['getBuilding', 'raiseSkeleton', 'attack', 'fixBuilding', 'move'], function (scenarioType) {
 
@@ -1219,6 +1230,81 @@
 
 		},
 
+		detectScenarioCanCoverBuilding: function (scenarios) {
+
+			var cpu = this,
+				model = cpu.get('model'),
+				activePlayer = model.get('activePlayer'),
+				teamNumber = activePlayer.teamNumber,
+				allUnits = model.get('units'),
+				enemyUnits,
+				buildings = model.get('buildings'),
+				enemyUnitsGetAvailableBuildings = [];
+
+			enemyUnits = _.filter(allUnits, function (unit) {
+				return unit.get('teamNumber') !== teamNumber;
+			});
+
+			// detect building which can be got by enemy
+			_.each(enemyUnits, function (enemy) {
+
+				// try to get available attack map from cache
+				var cachedMoveField = ['move', enemy.get('type'), 'x', enemy.get('x'), 'y', enemy.get('y')].join('-'),
+					cachedAvailableMoveMap = cpu.get(cachedMoveField),
+					availableMoveMap,
+					enemyTeamNumber = enemy.get('teamNumber'),
+					listOccupyBuilding = enemy.get('listOccupyBuilding') || [];
+
+				if ( !listOccupyBuilding.length ) { // detect units who can get buildings
+					return;
+				}
+
+				if (cachedAvailableMoveMap) {
+					availableMoveMap = cachedAvailableMoveMap;
+				} else {
+					availableMoveMap = enemy.getAvailablePathFull();
+					cpu.set(cachedMoveField, availableMoveMap);
+				}
+
+				_.each(availableMoveMap, function (moveXY) {
+
+					var building = _.find(buildings, moveXY);
+
+					if ( !building ) { // if no building
+						return;
+					}
+
+					if ( listOccupyBuilding.indexOf(building.type) === -1 ) { // if building is not in occupy list
+						return;
+					}
+
+					if ( building.teamNumber === enemyTeamNumber ) { // enemy not reason get own building twice
+						return;
+					}
+
+					enemyUnitsGetAvailableBuildings.push(moveXY);
+
+				});
+
+			});
+
+			// mark scenarios which cover building which can be got by enemy
+			_.each(scenarios, function (scenario) {
+				// detect scenario where unit can raise skeleton
+				var action = scenario.get('action'),
+					x = scenario.get('x'),
+					y = scenario.get('y'),
+					grave = action.grave,
+					buildingXY = _.find(enemyUnitsGetAvailableBuildings, {x: x, y: y}) || (grave && _.find(enemyUnitsGetAvailableBuildings, grave));
+
+				if (buildingXY) {
+					scenario.set('coverBuilding', true);
+				}
+
+			});
+
+		},
+		
 		insertDataByPosition: function (scenario) {
 
 			var cpu = this,
