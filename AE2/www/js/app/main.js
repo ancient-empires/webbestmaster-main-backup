@@ -9,105 +9,6 @@
 
 	win.APP.bb = win.APP.bb || {};
 
-	function prepareTiles(tiles) {
-
-		var deferred = $.Deferred(),
-			promise = deferred.promise(),
-			mainDeferred = $.Deferred();
-
-		function preLoadImage(base64, key) {
-
-			var deferred = $.Deferred(),
-				img = new Image();
-
-			function onceLoad() {
-				this.removeEventListener('load', onceLoad);
-				this.removeEventListener('error', onceLoad);
-
-				var base64Scaled = win.APP.map.scaleImage(this, 8);
-
-				tiles[key] = {
-					base64: base64Scaled,
-					img: img
-				};
-
-				img.src = base64Scaled;
-
-				deferred.resolve();
-
-			}
-
-			img.addEventListener('load', onceLoad, false);
-			img.addEventListener('error', onceLoad, false);
-
-			img.src = base64;
-
-			return deferred.promise();
-
-		}
-
-		_.each(tiles, function (base64, key) {
-
-			promise = promise.then(function () {
-				return preLoadImage(base64, key);
-			});
-
-		});
-
-		promise.then(function () {
-			mainDeferred.resolve();
-		});
-
-		deferred.resolve();
-
-		return mainDeferred.promise();
-
-	}
-
-	function preCacheImages() {
-
-		// just preload all images
-		function preLoadImage(src) {
-
-			var deferred = $.Deferred(),
-				img = new Image();
-
-			function onceLoad() {
-				this.removeEventListener('load', onceLoad);
-				this.removeEventListener('error', onceLoad);
-				deferred.resolve();
-			}
-
-			img.addEventListener('load', onceLoad, false);
-			img.addEventListener('error', onceLoad, false);
-
-			img.src = src;
-
-			return deferred.promise();
-
-		}
-
-		var deferred = $.Deferred(),
-			promise = deferred.promise(),
-			mainDeferred = $.Deferred();
-
-		_.each(win.APP.allImages, function (imgPath) {
-			promise = promise.then(function () {
-				return preLoadImage(imgPath);
-			});
-		});
-
-		promise.then(function () {
-			mainDeferred.resolve();
-		});
-
-		deferred.resolve();
-
-		return mainDeferred.promise();
-
-	}
-
-
 	function startApp() {
 
 		$('.js-wrapper').empty().html('');
@@ -160,7 +61,7 @@
 	}
 
 	function start() {
-		$.when(prepareTiles(win.APP.mapTiles), prepareTiles(win.APP.mapTilesPreview), preCacheImages()).then(startApp);
+		win.APP.map.preloadImages().then(startApp);
 	}
 
 	win.addEventListener('load', start, false);

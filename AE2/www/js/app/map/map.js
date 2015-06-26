@@ -63,8 +63,126 @@
 		money: [500, 750, 1000, 1500, 2000, 5000],
 		unitsLimits: [10, 15, 20, 25],
 		terrainTypes: ['bridge-1', 'bridge-2', 'forest-1', 'forest-2', 'hill-1', 'road-1', 'stone-1', 'stone-2', 'terra-1', 'terra-2', 'terra-3', 'terra-4', 'terra-5', 'water-1', 'water-2', 'water-3'],
+		progressLength: 0,
+		progress: 0,
 		getTypeByTileName: function (tileName) {
-			return tileName.replace(/\-\d+$/,'');
+			return tileName.replace(/\-\d+$/, '');
+		},
+
+		prepareTiles: function (tiles) {
+
+			var deferred = $.Deferred(),
+				promise = deferred.promise(),
+				mainDeferred = $.Deferred(),
+				map = this;
+
+			function preLoadImage(base64, key) {
+
+				var deferred = $.Deferred(),
+					img = new Image();
+
+				function onceLoad() {
+					this.removeEventListener('load', onceLoad);
+					this.removeEventListener('error', onceLoad);
+
+					var base64Scaled = win.APP.map.scaleImage(this, 8);
+
+					tiles[key] = {
+						base64: base64Scaled,
+						img: img
+					};
+
+					img.src = base64Scaled;
+					map.recountProgress();
+					deferred.resolve();
+
+				}
+
+				img.addEventListener('load', onceLoad, false);
+				img.addEventListener('error', onceLoad, false);
+
+				img.src = base64;
+
+				return deferred.promise();
+
+			}
+
+			_.each(tiles, function (base64, key) {
+
+				promise = promise.then(function () {
+					return preLoadImage(base64, key);
+				});
+
+			});
+
+			promise.then(function () {
+				mainDeferred.resolve();
+			});
+
+			deferred.resolve();
+
+			return mainDeferred.promise();
+
+		},
+
+		preCacheImages: function () {
+
+			var map = this;
+
+			// just preload all images
+			function preLoadImage(src) {
+
+				var deferred = $.Deferred(),
+					img = new Image();
+
+				function onceLoad() {
+					this.removeEventListener('load', onceLoad);
+					this.removeEventListener('error', onceLoad);
+					map.recountProgress();
+					deferred.resolve();
+				}
+
+				img.addEventListener('load', onceLoad, false);
+				img.addEventListener('error', onceLoad, false);
+
+				img.src = src;
+
+				return deferred.promise();
+
+			}
+
+			var deferred = $.Deferred(),
+				promise = deferred.promise(),
+				mainDeferred = $.Deferred();
+
+			_.each(win.APP.allImages, function (imgPath) {
+				promise = promise.then(function () {
+					return preLoadImage(imgPath);
+				});
+			});
+
+			promise.then(function () {
+				mainDeferred.resolve();
+			});
+
+			deferred.resolve();
+
+			return mainDeferred.promise();
+
+		},
+
+		recountProgress: function () {
+
+			this.progress += 1;
+			doc.querySelector('.js-progress-bar').style.width = Math.round(this.progress / this.progressLength * 100) + '%';
+
+		},
+
+		preloadImages: function () {
+
+			this.progressLength = win.APP.allImages.length + _.keys(win.APP.mapTiles).length + _.keys(win.APP.mapTilesPreview).length;
+			return $.when(this.prepareTiles(win.APP.mapTiles), this.prepareTiles(win.APP.mapTilesPreview), this.preCacheImages());
+
 		},
 
 		terra: {
@@ -118,7 +236,7 @@
 				dbMaster.db = db;
 
 				// create tablet if needed
-				db.transaction(function(tx) {
+				db.transaction(function (tx) {
 
 					var missionDeferred = $.Deferred(),
 						skirmishDeferred = $.Deferred();
@@ -191,7 +309,7 @@
 
 				// get done state
 				_.each(savedProperties, function (property) {
-					if ( !oldMapData.hasOwnProperty(property) ) {
+					if (!oldMapData.hasOwnProperty(property)) {
 						return;
 					}
 					newMap[property] = oldMapData[property];
@@ -222,7 +340,7 @@
 				delete info.buildings;
 				delete info.terrain;
 
-				db.transaction(function(tx) {
+				db.transaction(function (tx) {
 					tx.executeSql('INSERT INTO ' + map.type + ' (jsMapKey, info, map) values(?, ?, ?)', [jsMapKey, JSON.stringify(info), JSON.stringify(map)], function () {
 						deferred.resolve();
 					}, null);
@@ -414,7 +532,7 @@
 					db = dbMaster.db;
 
 				_.each(data.map, function (value, key) {
-					if ( !/briefing/i.test(key) ) { // save briefing only
+					if (!/briefing/i.test(key)) { // save briefing only
 						return;
 					}
 					_.each(value, function (briefing) {
@@ -433,7 +551,7 @@
 				dbMaster
 					.removeSave(name)
 					.then(function () {
-						db.transaction(function(tx) {
+						db.transaction(function (tx) {
 							tx.executeSql('INSERT INTO ' + dbMaster.savedGame + ' (date, name, game) values(?, ?, ?)', [date, name, JSON.stringify(data)], function () {
 								deferred.resolve();
 							}, null);
@@ -490,7 +608,7 @@
 
 				db.transaction(function (tx) {
 					tx.executeSql('SELECT * FROM ' + data.type + ' WHERE jsMapKey=?', [data.jsMapKey], function (tx, results) {
-						deferred.resolve( Boolean(results.rows.length) );
+						deferred.resolve(Boolean(results.rows.length));
 					});
 				});
 
