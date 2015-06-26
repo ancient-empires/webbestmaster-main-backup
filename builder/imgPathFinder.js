@@ -14,7 +14,7 @@
 		// get files only from i and img
 
 		files = files.filter(function (file) {
-			return file.indexOf('www\\i') !== -1 || file.indexOf('www\\img') !== -1;
+			return file.indexOf('www\\i\\') !== -1 || file.indexOf('www\\img\\') !== -1;
 		}).map(function (file) {
 			return '\'' + file.replace(/^www\\/, '').replace(/\\/g, '/') + '\'';
 		});
