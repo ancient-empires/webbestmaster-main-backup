@@ -766,7 +766,7 @@
 
 							// find min Available Receive Damage
 							nullAvailableReceiveDamage = _.filter(filteredScenarios, function (sc) {
-								return !sc.get('dataByPosition').availableReceiveDamage;
+								return !sc.get('dataByPosition').availableReceiveDamageWithPath;
 							});
 
 							if ( nullAvailableReceiveDamage.length ) { // if nullAvailableReceiveDamage is exist
@@ -784,7 +784,7 @@
 
 							} else {
 								filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
-									return sc1.get('dataByPosition').availableReceiveDamage - sc2.get('dataByPosition').availableReceiveDamage;
+									return sc1.get('dataByPosition').availableReceiveDamageWithPath - sc2.get('dataByPosition').availableReceiveDamageWithPath;
 								});
 							}
 
@@ -1257,6 +1257,7 @@
 				unitTeamNumber = unit.get('teamNumber'),
 				enemyUnits,
 				availableReceiveDamage = 0, // +
+				availableReceiveDamageWithPath = 0, // +
 				placeArmor, // +
 				upHealth = 0, // ---
 				building,
@@ -1282,20 +1283,33 @@
 				// try to get available attack map from cache
 				var cachedAttackField = ['attack', enemy.get('type'), 'x', enemy.get('x'), 'y', enemy.get('y')].join('-'),
 					cachedAvailableAttackMap = cpu.get(cachedAttackField),
-					availableAttackMap;
+					availableAttackMap,
+					cachedAttackFieldWithPath = ['attack-with-path', enemy.get('type'), 'x', enemy.get('x'), 'y', enemy.get('y')].join('-'),
+					cachedAvailableAttackMapWithPath = cpu.get(cachedAttackFieldWithPath),
+					availableAttackMapWithPath;
 
 				if (cachedAvailableAttackMap) {
 					availableAttackMap = cachedAvailableAttackMap;
 				} else {
-					availableAttackMap = enemy.getAvailableAttackMapWithPath({ removePoisonCount: true });
+					availableAttackMap = enemy.getAvailableAttackMap();
 					cpu.set(cachedAttackField, availableAttackMap);
 				}
 
-				if (!_.find(availableAttackMap, {x: x, y: y})) {
-					return;
+				if (_.find(availableAttackMap, {x: x, y: y})) {
+					availableReceiveDamage += enemy.getAttackToUnit(unit, {average: true});
 				}
 
-				availableReceiveDamage += enemy.getAttackToUnit(unit, {average: true});
+				// with path
+				if (cachedAvailableAttackMapWithPath) {
+					availableAttackMapWithPath = cachedAvailableAttackMapWithPath;
+				} else {
+					availableAttackMapWithPath = enemy.getAvailableAttackMapWithPath({ removePoisonCount: true });
+					cpu.set(cachedAttackFieldWithPath, availableAttackMapWithPath);
+				}
+
+				if (_.find(availableAttackMapWithPath, {x: x, y: y})) {
+					availableReceiveDamageWithPath += enemy.getAttackToUnit(unit, {average: true});
+				}
 
 			});
 
@@ -1334,6 +1348,7 @@
 			scenario.set('dataByPosition', {
 				placeArmor: placeArmor,
 				availableReceiveDamage: availableReceiveDamage,
+				availableReceiveDamageWithPath: availableReceiveDamageWithPath,
 				upHealth: upHealth,
 				onHealthUpBuilding: onHealthUpBuilding,
 				onBuilding: onBuilding,
