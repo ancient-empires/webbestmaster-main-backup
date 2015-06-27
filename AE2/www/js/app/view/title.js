@@ -11,7 +11,11 @@
 	APP.BB.TitleView = APP.BB.BaseView.extend({
 
 		events: {
+			'press .js-unlock-all-levels': 'unlockAllLevels'
+		},
 
+		selectors: {
+			unlockAllLevels: '.js-unlock-all-levels'
 		},
 
 		initialize: function () {
@@ -26,6 +30,15 @@
 
 			log('do not show showRateUs');
 			//this.showRateUs();
+
+		},
+
+		unlockAllLevels: function () {
+
+			var view = this;
+
+			view.$el.find(view.selectors.unlockAllLevels).html('Test mode<br>enabled');
+			view.info.testMode = 'on';
 
 		},
 

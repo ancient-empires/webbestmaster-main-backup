@@ -183,7 +183,7 @@
 
 	<div class="double-blocks-wrapper title-game-bg js-no-scroll">
 
-		<div class="sticker js-no-scroll">Fan<br>Game</div>
+		<div class="sticker js-no-scroll js-unlock-all-levels">Fan<br>Game</div>
 
 		<div class="double-block-container port-padding-top js-no-scroll">
 			<div class="logo-bg h100">
@@ -1321,11 +1321,11 @@
 		<div class="main-content-wrapper">
 			<div class="main-content-container js-scroll-area-container scroll-touch">
 				<div class="scroll-area">
-					<% var languageField = 'name-' + window.APP.info.get('language'), index = 0; %>
+					<% var info = window.APP.info, languageField = 'name-' + info.get('language'), index = 0; isTestMode = info.testMode === 'on'; %>
 					<% _.each(mapsInfo, function (map, jsKey) { %>
 					<% var mapName = map[languageField] || map.name, maxDoneLevel = 'no-level'; %>
 						<% index += 1; %>
-						<% if (map.isOpen) { %>
+						<% if (map.isOpen || isTestMode) { %>
 							<% _.each(['easy', 'normal', 'hard'], function(level) { %>
 								<% maxDoneLevel = map['isDoneByDifficult_' + level] ? level : maxDoneLevel; %>
 							<% }); %>
