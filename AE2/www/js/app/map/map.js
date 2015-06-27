@@ -187,9 +187,9 @@
 				.then(function () {
 					return win.APP.map.prepareTiles(win.APP.mapTilesPreview);
 				})
-				.then(function () {
-					return win.APP.map.preCacheImages();
-				});
+				//.then(function () {
+				//	return win.APP.map.preCacheImages();
+				//});
 
 		},
 

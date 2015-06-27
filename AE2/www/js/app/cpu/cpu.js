@@ -565,7 +565,6 @@
 
 			 _.each(scenarios, function (scenario) {
 				 cpu.setAutoAvailableByPosition(scenario); // detect available position
-				 //cpu.setAutoAvailableByCanEnemyGetBuilding(scenario); // detect available position - TODO: need implement
 				 cpu.setAutoAvailableByRaiseSkeleton(scenario); // detect raise skeleton
 			 });
 
@@ -607,7 +606,9 @@
 					}),
 					noStrikeBack,
 					killUnitAttack,
-					poisonAttack;
+					poisonAttack,
+					moveHp40Plus,
+					nullAvailableReceiveDamage;
 
 				if ( !filteredScenarios.length ) {
 					return;
@@ -742,16 +743,49 @@
 
 						});
 
-						filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
+						// find scenarios with unit.hp > 40
 
-							var unit1 = sc1.get('unit'),
-								unit2 = sc2.get('unit'),
-								length1 = (unit1.get('listOccupyBuilding') || []).length * rates.q.listOccupyBuilding,
-								length2 = (unit2.get('listOccupyBuilding') || []).length * rates.q.listOccupyBuilding;
-
-							return (sc2.get('rate') + length1) - (sc1.get('rate') + length2);
-
+						moveHp40Plus = _.filter(filteredScenarios, function (scenario) {
+							return scenario.get('unit').get('health') > 40 || scenario.get('dataByPosition').onHealthUpBuilding;
 						});
+
+						if (moveHp40Plus.length) { // find scenario for normal move
+
+							filteredScenarios = moveHp40Plus.sort(function (sc1, sc2) {
+
+								var unit1 = sc1.get('unit'),
+									unit2 = sc2.get('unit'),
+									length1 = (unit1.get('listOccupyBuilding') || []).length * rates.q.listOccupyBuilding,
+									length2 = (unit2.get('listOccupyBuilding') || []).length * rates.q.listOccupyBuilding;
+
+								return (sc2.get('rate') + length1) - (sc1.get('rate') + length2);
+
+							});
+
+						} else { // retreat scenarios
+
+							// find min Available Receive Damage
+							nullAvailableReceiveDamage = _.filter(filteredScenarios, function (sc) {
+								return !sc.get('dataByPosition').availableReceiveDamage;
+							});
+
+							if ( nullAvailableReceiveDamage.length ) { // if nullAvailableReceiveDamage is exist
+
+								// find nearest heals up building
+								_.each(nullAvailableReceiveDamage, function (sc) {
+									cpu.rateMoveToHealthUp({
+										scenario: sc
+									});
+								});
+								filteredScenarios = nullAvailableReceiveDamage;
+
+							} else {
+								filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
+									return sc1.get('dataByPosition').availableReceiveDamage - sc2.get('dataByPosition').availableReceiveDamage;
+								});
+							}
+
+						}
 
 						break;
 
@@ -1021,105 +1055,6 @@
 
 		},
 
-		// detect enemy can get your building
-		setAutoAvailableByCanEnemyGetBuilding: function (scenario) {
-
-			var cpu = this,
-				model = cpu.get('model'),
-				allUnits = model.get('units'),
-				unit = scenario.get('unit'),
-				unitTeamNumber = unit.get('teamNumber'),
-				nearestUnitBuilding = [],
-				nearestEnemyBuilding = [],
-				enemyUnits = [],
-				teamUnits = [],
-				x = scenario.get('x'),
-				y = scenario.get('y'),
-				xy = {
-					x: x,
-					y: y
-				},
-				availablePathWithTeamUnit,
-				availablePathViewWithoutTeamUnit
-				;
-
-			// get team and enemy units
-			_.each(allUnits, function (unit) {
-				if ( unit.get('teamNumber') === unitTeamNumber ) {
-					teamUnits.push(unit);
-				} else {
-					enemyUnits.push(unit);
-				}
-			});
-
-			enemyUnits = _.filter(enemyUnits, function (enemyUnit) {
-				return enemyUnit.get('listOccupyBuilding');
-			});
-
-			availablePathWithTeamUnit = unit.getAvailablePathWithTeamUnit();
-
-			// get available path view withOUT team unit
-			availablePathViewWithoutTeamUnit = _.filter(availablePathWithTeamUnit, function (xy) {
-				var founded = false;
-				_.each(teamUnits, function (unit) {
-					if ( unit.get('x') === xy.x && unit.get('y') === xy.y ) {
-						founded = true;
-					}
-				});
-				return !founded;
-			});
-
-			availablePathViewWithoutTeamUnit.push({
-				x: unit.get('x'),
-				y: unit.get('y')
-			});
-
-			_.each(enemyUnits, function (enemyUnit) {
-
-				var availablePath = enemyUnit.getAvailablePathWithTeamUnit();
-
-				_.each(availablePath, function (xy) {
-
-					var building = model.getBuildingByXY(xy);
-
-					if (!building) {
-						return;
-					}
-
-					if (enemyUnit.get('listOccupyBuilding').indexOf(building.type) === -1) {
-						return;
-					}
-
-					nearestEnemyBuilding.push(building);
-
-				});
-
-			});
-
-			_.each(availablePathViewWithoutTeamUnit, function (xy) {
-
-				var building = model.getBuildingByXY(xy);
-
-				if ( !building ) {
-					return;
-				}
-
-				if ( nearestEnemyBuilding.indexOf(building) === -1 ) {
-					return;
-				}
-
-				nearestUnitBuilding.push(building);
-
-			});
-
-			//if ( _.find(nearestUnitBuilding, xy) ) {
-				log('DETECT WHEN ENEMY CAN GET BUILDING');
-				log(nearestUnitBuilding);
-			//}
-
-
-		},
-
 		setAutoRate: function (scenario, allScenarios) {
 
 			var cpu = this,
@@ -1349,7 +1284,7 @@
 				if (cachedAvailableAttackMap) {
 					availableAttackMap = cachedAvailableAttackMap;
 				} else {
-					availableAttackMap = enemy.getAvailableAttackMap();
+					availableAttackMap = enemy.getAvailableAttackMapWithPath({ removePoisonCount: true });
 					cpu.set(cachedAttackField, availableAttackMap);
 				}
 
@@ -1493,6 +1428,99 @@
 
 		},
 
+		rateMoveToHealthUp: function (data) {
+
+			//return;
+
+			console.log(data.scenario);
+
+			return;
+
+			var cpu = this,
+				model = cpu.get('model'),
+				player = model.get('activePlayer'),
+				hasCastle = model.playerHasCastle(player),
+				hasCommander = model.playerHasCommander(player),
+				allBuildings = model.get('buildings'),
+				wantedBuildings,
+				util = win.APP.util,
+				scenario = data.scenario,
+				unit = scenario.get('unit'),
+				unitTeamNumber = unit.get('teamNumber'),
+				allUnits = model.get('units'),
+				enemyUnits = _.filter(allUnits, function (unit) {
+					return unit.get('teamNumber') !== unitTeamNumber;
+				}),
+			//allScenarios = data.allScenarios,
+				rates = cpu.rates,
+				buildingData = win.APP.building,
+				dataByPosition = scenario.get('dataByPosition'),
+				wantedBuildingList = unit.get('listOccupyBuilding') || buildingData.wantedBuildingList,
+				x = scenario.get('x'),
+				y = scenario.get('y'),
+				xy = {
+					x: x,
+					y: y
+				},
+			//building = model.getBuildingByXY(xy),
+				pathToBuildingLength = Infinity,
+			//pathToEnemyLength = Infinity,
+				rate;
+
+			// 1 detect: enemy unit which can get or stay on building
+			//if ( building ) {
+			//
+			//	// can enemy get building
+			//	_.each(enemyUnits, function (enemy) {
+			//
+			//		var path = enemy.getAvailablePathFull(),
+			//			buildingTypeList = enemy.get('listOccupyBuilding');
+			//
+			//		if ( !_.find(path, xy) || !buildingTypeList ) {
+			//			return;
+			//		}
+			//
+			//	});
+			//
+			//}
+
+			// 2 - nearest non player and available to get building
+			wantedBuildings = _.filter(allBuildings, function (building) {
+				return building.teamNumber !== unitTeamNumber && _.contains(wantedBuildingList, building.type);
+			});
+
+			if ( !wantedBuildings.length || ( !hasCastle && !hasCommander ) ) { // if mission or no needed buildings
+
+				_.each(enemyUnits, function (enemy) {
+					pathToBuildingLength = Math.min(pathToBuildingLength, util.getPathSize({ x: enemy.get('x'), y: enemy.get('y') }, xy));
+				});
+
+			} else {
+
+				_.each(wantedBuildings, function (building) {
+
+					var teamUnit = model.getUnitByXY(building);
+
+					if ( teamUnit && teamUnit.get('teamNumber') === unitTeamNumber && _.contains(teamUnit.get('listOccupyBuilding'), building.type) ) {
+						return;
+					}
+
+					pathToBuildingLength = Math.min(pathToBuildingLength, util.getPathSize(building, xy));
+
+				});
+
+			}
+
+			// set rate by nearest non owned building
+			rate = pathToBuildingLength * rates.q.nearestNonOwnedBuilding;
+
+			// add rate by upHealth
+			rate += dataByPosition.upHealth * rates.q.upHealth;
+
+			return rate;
+
+		},
+
 		rateAttack: function (data) {
 
 			var cpu = this,
@@ -1540,7 +1568,7 @@
 				rate = rates.killUnit;
 				scenario.set('killUnit', true); // use for detect priority to kill unit
 			} else {
-				if ( availableResponseDamage < unit.get('health') - 10 ) { // detect: unit will be alive after attack
+				if ( availableResponseDamage < unit.get('health') - 20 ) { // detect: unit will be alive after attack
 					rate = availableGivenDamage; // unit alive
 				} else {
 					rate = rates.lowPriority;  // unit die

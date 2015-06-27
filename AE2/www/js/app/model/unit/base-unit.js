@@ -316,11 +316,13 @@
 
 		},
 
-		getAvailablePathWithTeamUnit: function () {
+		getAvailablePathWithTeamUnit: function (data) {
 
 			if ( this.get('didMove') ) {
 				return [];
 			}
+
+			data = data || {};
 
 			var unit = this,
 				view = unit.get('view'),
@@ -332,7 +334,7 @@
 				pathFinder,
 				blackWholes = [],
 				unitMaster = win.APP.unitMaster,
-				reduceByPoison = unit.get('poisonCount') ? unitMaster.reduceMoveByPoison : 0;
+				reduceByPoison = (unit.get('poisonCount') && !data.removePoisonCount) ? unitMaster.reduceMoveByPoison : 0;
 
 			_.each(units, function (unit) {
 
@@ -445,14 +447,14 @@
 
 		},
 
-		getAvailableAttackMapWithPath: function () {
+		getAvailableAttackMapWithPath: function (data) {
 
 			var unit = this,
 				attacksMap = [{
 					x: unit.get('x'), // add unit's xy
 					y: unit.get('y')
 				}],
-				availablePath = unit.getAvailablePathWithTeamUnit();
+				availablePath = unit.getAvailablePathWithTeamUnit(data);
 
 			_.each(availablePath, function (xy) {
 				_.each(unit.getAvailableAttackMapFromXy(xy), function (xy) {
