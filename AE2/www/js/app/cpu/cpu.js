@@ -745,6 +745,8 @@
 
 						// find scenarios with unit.hp > 40
 
+						// todo: user retreat if cpu is hard and mission have enought buildings for health and good game
+
 						moveHp40Plus = _.filter(filteredScenarios, function (scenario) {
 							return scenario.get('unit').get('health') > 40 || scenario.get('dataByPosition').onHealthUpBuilding;
 						});
