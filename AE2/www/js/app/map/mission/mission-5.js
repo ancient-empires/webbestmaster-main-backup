@@ -22,7 +22,7 @@
 		};
 
 	win.APP.maps.mission_001_005 = {
-		version: 8,
+		version: 9,
 		type: 'mission',
 		isOpen: false,
 		openMaps: [
@@ -91,8 +91,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.missionComplete,
-					text: '\'Liberty Port\' ' + langEn.unlocked
+					header: langEn.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
@@ -163,8 +162,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEs.missionComplete,
-					text: '\'Puerto de la Libertad\' ' + langEs.unlocked
+					header: langEs.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
@@ -235,8 +233,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langRu.missionComplete,
-					text: '\'Порт свободы\' ' + langRu.unlocked
+					header: langRu.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',

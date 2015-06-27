@@ -22,7 +22,7 @@
 		};
 
 	win.APP.maps.mission_001_008 = {
-		version: 8,
+		version: 9,
 		type: 'mission',
 		isOpen: false,
 		//openMaps: [],
@@ -252,8 +252,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.missionComplete,
-					text: '\'The Crucible\' and \'Shadow Lands\' ' + langEn.unlocked
+					header: langEn.missionComplete
 				}
 			},
 			{
@@ -486,8 +485,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEs.missionComplete,
-					text: '\'El Crisol\' y las \'Tierras Sombrías\' ' + langEs.unlocked
+					header: langEs.missionComplete
 				}
 			},
 			{
@@ -719,8 +717,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langRu.missionComplete,
-					text: '\'Суровое испытание\' и \'Теневые земли\' ' + langRu.unlocked
+					header: langRu.missionComplete
 				}
 			},
 			{

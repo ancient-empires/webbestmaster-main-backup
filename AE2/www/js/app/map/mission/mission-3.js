@@ -22,7 +22,7 @@
 		};
 
 	win.APP.maps.mission_001_003 = {
-		version: 8,
+		version: 9,
 		type: 'mission',
 		isOpen: false,
 		openMaps: [
@@ -141,8 +141,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.missionComplete,
-					text: '\'Peak Island\' ' + langEn.unlocked
+					header: langEn.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
@@ -264,8 +263,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEs.missionComplete,
-					text: '\'Cúspide de la Isla\' ' + langEs.unlocked
+					header: langEs.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
@@ -387,8 +385,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langRu.missionComplete,
-					text: '\'Остров пик\' ' + langRu.unlocked
+					header: langRu.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',

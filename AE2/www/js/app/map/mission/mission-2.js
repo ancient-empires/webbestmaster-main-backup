@@ -22,7 +22,7 @@
 		};
 
 	win.APP.maps.mission_001_002 = {
-		version: 8,
+		version: 9,
 		type: 'mission',
 		isOpen: false,
 		openMaps: [
@@ -173,8 +173,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.missionComplete,
-					text: '\'Solitude\' ' + langEn.unlocked
+					header: langEn.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
@@ -323,8 +322,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEs.missionComplete,
-					text: '\'Soledad\' ' + langEs.unlocked
+					header: langEs.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
@@ -472,8 +470,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langRu.missionComplete,
-					text: '\'Одиночество\' ' + langRu.unlocked
+					header: langRu.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',

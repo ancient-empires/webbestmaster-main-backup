@@ -22,7 +22,7 @@
 		};
 
 	win.APP.maps.mission_001_004 = {
-		version: 8,
+		version: 9,
 		type: 'mission',
 		isOpen: false,
 		openMaps: [
@@ -146,8 +146,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.missionComplete,
-					text: '\'Waterways\' ' + langEn.unlocked
+					header: langEn.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
@@ -268,8 +267,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEs.missionComplete,
-					text: '\'Vía Fluvial\' ' + langEs.unlocked
+					header: langEs.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
@@ -390,8 +388,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langRu.missionComplete,
-					text: '\'Водоемы\' ' + langRu.unlocked
+					header: langRu.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',

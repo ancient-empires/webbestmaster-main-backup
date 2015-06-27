@@ -22,7 +22,7 @@
 		};
 
 	win.APP.maps.mission_001_007 = {
-		version: 8,
+		version: 9,
 		type: 'mission',
 		isOpen: false,
 		openMaps: [
@@ -113,8 +113,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.missionComplete,
-					text: '\'Morning Star\' ' + langEn.unlocked
+					header: langEn.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
@@ -204,8 +203,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEs.missionComplete,
-					text: '\'Estrella de la Mañana\' ' + langEs.unlocked
+					header: langEs.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
@@ -295,8 +293,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langRu.missionComplete,
-					text: '\'Утренняя звезда\' ' + langRu.unlocked
+					header: langRu.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
