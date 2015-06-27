@@ -777,7 +777,10 @@
 										scenario: sc
 									});
 								});
-								filteredScenarios = nullAvailableReceiveDamage;
+
+								filteredScenarios = nullAvailableReceiveDamage.sort(function (sc1, sc2) {
+									return sc2.get('rate') - sc1.get('rate');
+								});
 
 							} else {
 								filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
@@ -1430,94 +1433,28 @@
 
 		rateMoveToHealthUp: function (data) {
 
-			//return;
-
-			console.log(data.scenario);
-
-			return;
-
+			// find health up building
 			var cpu = this,
+				rates = cpu.rates,
 				model = cpu.get('model'),
 				player = model.get('activePlayer'),
-				hasCastle = model.playerHasCastle(player),
-				hasCommander = model.playerHasCommander(player),
+				teamNumber = player.teamNumber,
 				allBuildings = model.get('buildings'),
-				wantedBuildings,
+				healthUpBuilding = win.APP.building.upHealthList,
+				wantedBuildings = _.filter(allBuildings, function (building) {
+					return healthUpBuilding.indexOf(building.type) !== -1 || building.teamNumber === teamNumber;
+				}),
+				pathToBuildingLength = Infinity,
 				util = win.APP.util,
 				scenario = data.scenario,
-				unit = scenario.get('unit'),
-				unitTeamNumber = unit.get('teamNumber'),
-				allUnits = model.get('units'),
-				enemyUnits = _.filter(allUnits, function (unit) {
-					return unit.get('teamNumber') !== unitTeamNumber;
-				}),
-			//allScenarios = data.allScenarios,
-				rates = cpu.rates,
-				buildingData = win.APP.building,
-				dataByPosition = scenario.get('dataByPosition'),
-				wantedBuildingList = unit.get('listOccupyBuilding') || buildingData.wantedBuildingList,
 				x = scenario.get('x'),
-				y = scenario.get('y'),
-				xy = {
-					x: x,
-					y: y
-				},
-			//building = model.getBuildingByXY(xy),
-				pathToBuildingLength = Infinity,
-			//pathToEnemyLength = Infinity,
-				rate;
+				y = scenario.get('y');
 
-			// 1 detect: enemy unit which can get or stay on building
-			//if ( building ) {
-			//
-			//	// can enemy get building
-			//	_.each(enemyUnits, function (enemy) {
-			//
-			//		var path = enemy.getAvailablePathFull(),
-			//			buildingTypeList = enemy.get('listOccupyBuilding');
-			//
-			//		if ( !_.find(path, xy) || !buildingTypeList ) {
-			//			return;
-			//		}
-			//
-			//	});
-			//
-			//}
-
-			// 2 - nearest non player and available to get building
-			wantedBuildings = _.filter(allBuildings, function (building) {
-				return building.teamNumber !== unitTeamNumber && _.contains(wantedBuildingList, building.type);
+			_.each(wantedBuildings, function (building) {
+				pathToBuildingLength = Math.min(pathToBuildingLength, util.getPathSize(building, {x: x, y: y}));
 			});
 
-			if ( !wantedBuildings.length || ( !hasCastle && !hasCommander ) ) { // if mission or no needed buildings
-
-				_.each(enemyUnits, function (enemy) {
-					pathToBuildingLength = Math.min(pathToBuildingLength, util.getPathSize({ x: enemy.get('x'), y: enemy.get('y') }, xy));
-				});
-
-			} else {
-
-				_.each(wantedBuildings, function (building) {
-
-					var teamUnit = model.getUnitByXY(building);
-
-					if ( teamUnit && teamUnit.get('teamNumber') === unitTeamNumber && _.contains(teamUnit.get('listOccupyBuilding'), building.type) ) {
-						return;
-					}
-
-					pathToBuildingLength = Math.min(pathToBuildingLength, util.getPathSize(building, xy));
-
-				});
-
-			}
-
-			// set rate by nearest non owned building
-			rate = pathToBuildingLength * rates.q.nearestNonOwnedBuilding;
-
-			// add rate by upHealth
-			rate += dataByPosition.upHealth * rates.q.upHealth;
-
-			return rate;
+			scenario.set('rate', pathToBuildingLength * rates.q.nearestNonOwnedBuilding);
 
 		},
 
