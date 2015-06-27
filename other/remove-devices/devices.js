@@ -812,6 +812,10 @@ window.devices = [
     "deviceName": "ZTE-Blade-V"
   },
   {
+    "product": "Hisense Sero 8",
+    "deviceName": "rk3188"
+  },
+  {
     "product": null,
     "deviceName": "hsdroid"
   },
