@@ -133,8 +133,6 @@
 			var cpu = this,
 				difficult = win.APP.info.get('difficult');
 
-			cpu.set('difficult', difficult);
-
 			cpu.rates = cpu['rates_' + difficult];
 
 		},
@@ -610,7 +608,8 @@
 					killUnitAttack,
 					poisonAttack,
 					moveHp40Plus,
-					nullAvailableReceiveDamage;
+					nullAvailableReceiveDamage,
+					gameDifficult = win.APP.info.get('difficult');
 
 				if ( !filteredScenarios.length ) {
 					return;
@@ -746,7 +745,7 @@
 						});
 
 						// find scenarios with unit.hp > 40
-						if ( model.playerHasCastle(player) || model.playerHasCommander(player) || cpu.get('difficult') === 'hard') { // if mission has no buildings
+						if ( gameDifficult !== 'easy' && (model.playerHasCastle(player) || model.playerHasCommander(player) || gameDifficult === 'hard' || (gameDifficult === 'normal' && Math.random() > 0.5 )) ) { // if mission has no buildings
 
 							moveHp40Plus = _.filter(filteredScenarios, function (scenario) {
 								return scenario.get('unit').get('health') > 40 || scenario.get('dataByPosition').onHealthUpBuilding;
