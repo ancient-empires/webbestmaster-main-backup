@@ -744,16 +744,56 @@
 						});
 
 						// find scenarios with unit.hp > 40
+						if ( model.playerHasCastle(player) || model.playerHasCommander(player) ) { // if mission has no buildings
 
-						// todo: user retreat if cpu is hard and mission have enought buildings for health and good game
+							moveHp40Plus = _.filter(filteredScenarios, function (scenario) {
+								return scenario.get('unit').get('health') > 40 || scenario.get('dataByPosition').onHealthUpBuilding;
+							});
 
-						moveHp40Plus = _.filter(filteredScenarios, function (scenario) {
-							return scenario.get('unit').get('health') > 40 || scenario.get('dataByPosition').onHealthUpBuilding;
-						});
+							if (moveHp40Plus.length) { // find scenario for normal move
 
-						if (moveHp40Plus.length) { // find scenario for normal move
+								filteredScenarios = moveHp40Plus.sort(function (sc1, sc2) {
 
-							filteredScenarios = moveHp40Plus.sort(function (sc1, sc2) {
+									var unit1 = sc1.get('unit'),
+										unit2 = sc2.get('unit'),
+										length1 = (unit1.get('listOccupyBuilding') || []).length * rates.q.listOccupyBuilding,
+										length2 = (unit2.get('listOccupyBuilding') || []).length * rates.q.listOccupyBuilding;
+
+									return (sc2.get('rate') + length1) - (sc1.get('rate') + length2);
+
+								});
+
+							} else { // retreat scenarios
+
+								// find min Available Receive Damage
+								nullAvailableReceiveDamage = _.filter(filteredScenarios, function (sc) {
+									return !sc.get('dataByPosition').availableReceiveDamageWithPath;
+								});
+
+								if ( nullAvailableReceiveDamage.length ) { // if nullAvailableReceiveDamage is exist
+
+									// find nearest heals up building
+									_.each(nullAvailableReceiveDamage, function (sc) {
+										cpu.rateMoveToHealthUp({
+											scenario: sc
+										});
+									});
+
+									filteredScenarios = nullAvailableReceiveDamage.sort(function (sc1, sc2) {
+										return sc2.get('rate') - sc1.get('rate');
+									});
+
+								} else {
+									filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
+										return sc1.get('dataByPosition').availableReceiveDamageWithPath - sc2.get('dataByPosition').availableReceiveDamageWithPath;
+									});
+								}
+
+							}
+
+						} else {
+
+							filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
 
 								var unit1 = sc1.get('unit'),
 									unit2 = sc2.get('unit'),
@@ -763,33 +803,6 @@
 								return (sc2.get('rate') + length1) - (sc1.get('rate') + length2);
 
 							});
-
-						} else { // retreat scenarios
-
-							// find min Available Receive Damage
-							nullAvailableReceiveDamage = _.filter(filteredScenarios, function (sc) {
-								return !sc.get('dataByPosition').availableReceiveDamageWithPath;
-							});
-
-							if ( nullAvailableReceiveDamage.length ) { // if nullAvailableReceiveDamage is exist
-
-								// find nearest heals up building
-								_.each(nullAvailableReceiveDamage, function (sc) {
-									cpu.rateMoveToHealthUp({
-										scenario: sc
-									});
-								});
-
-								filteredScenarios = nullAvailableReceiveDamage.sort(function (sc1, sc2) {
-									return sc2.get('rate') - sc1.get('rate');
-								});
-
-							} else {
-								filteredScenarios = filteredScenarios.sort(function (sc1, sc2) {
-									return sc1.get('dataByPosition').availableReceiveDamageWithPath - sc2.get('dataByPosition').availableReceiveDamageWithPath;
-								});
-							}
-
 						}
 
 						break;
