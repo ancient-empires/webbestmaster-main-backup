@@ -76,7 +76,7 @@
 				mainDeferred = $.Deferred(),
 				map = this;
 
-			function preLoadImage(base64, key) {
+			function preLoadImage(src, key) {
 
 				var deferred = $.Deferred(),
 					img = new Image();
@@ -101,16 +101,16 @@
 				img.addEventListener('load', onceLoad, false);
 				img.addEventListener('error', onceLoad, false);
 
-				img.src = base64;
+				img.src = src;
 
 				return deferred.promise();
 
 			}
 
-			_.each(tiles, function (base64, key) {
+			_.each(tiles, function (src, key) {
 
 				promise = promise.then(function () {
-					return preLoadImage(base64, key);
+					return preLoadImage(src, key);
 				});
 
 			});
@@ -127,7 +127,10 @@
 
 		preCacheImages: function () {
 
-			var map = this;
+			var map = this,
+				deferred = $.Deferred(),
+				promise = deferred.promise(),
+				mainDeferred = $.Deferred();
 
 			// just preload all images
 			function preLoadImage(src) {
@@ -151,10 +154,6 @@
 				return deferred.promise();
 
 			}
-
-			var deferred = $.Deferred(),
-				promise = deferred.promise(),
-				mainDeferred = $.Deferred();
 
 			_.each(win.APP.allImages, function (imgPath) {
 				promise = promise.then(function () {
