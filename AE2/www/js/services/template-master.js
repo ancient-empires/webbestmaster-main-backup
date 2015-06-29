@@ -31,7 +31,16 @@
 					.split("%>").join("p.push('")
 					.split("\r").join("\\'") + "');} return p.join('');");
 		},
-		init: function () {
+		removeHtmlComments: function () {
+
+			['head', 'body'].forEach(function (item) {
+				var node = doc[item];
+				node.innerHTML = node.innerHTML.replace(/\/\*[\s\S]*?\*\/|<!--[\s\S]*?-->/g, '');
+			});
+
+		},
+
+		prepareTemplates: function () {
 
 			var templates = doc.querySelectorAll(this.templateSelector);
 
@@ -46,6 +55,13 @@
 				tmplNode.parentNode.removeChild(tmplNode);
 
 			}, this);
+
+		},
+
+		init: function () {
+
+			this.removeHtmlComments();
+			this.prepareTemplates();
 
 		}
 

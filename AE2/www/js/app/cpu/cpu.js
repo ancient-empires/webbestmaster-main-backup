@@ -301,7 +301,6 @@
 		},
 
 		buyNextUnit: function (data) {
-
 			var cpu = this,
 				util = win.APP.util,
 				assortArray = util.assortArray,
@@ -318,7 +317,11 @@
 					//{ type: 'golem',	 	count: 1, currentCount: 0 },
 					//{ type: 'dire-wolf',	count: 1, currentCount: 0 }
 				],
-				otherUnits = ['soldier', 'archer', 'sorceress', 'sorceress', 'golem', 'dire-wolf', 'dragon', 'catapult', 'sorceress', 'golem', 'dire-wolf', 'dragon'];
+				otherUnits = [];
+
+			otherUnits.push('soldier', 'archer', 'catapult');
+			otherUnits.push('sorceress', 'golem', 'dire-wolf', 'dragon');
+			otherUnits.push('sorceress', 'golem', 'dire-wolf', 'dragon');
 
 			unitCounts = assortArray(unitCounts);
 
