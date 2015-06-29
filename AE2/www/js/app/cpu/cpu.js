@@ -400,23 +400,36 @@
 				y0 = store.y,
 				storeField = ['store', 'x', x0, 'y', y0, 'can-buy-water-unit'].join('-'),
 				cachedValue = cpu.get(storeField),
-				x,
-				y,
-				endX,
-				endY,
-				isWater = false;
+				isWater = false,
+				PathFinder = win.APP.PathFinder,
+				unitMasterElemental = win.APP.unitMaster.list.elemental,
+				pathFinder,
+				path;
 
 			if (cachedValue !== undefined) {
 				return cachedValue;
 			}
 
-			for (x = x0 - 2, endX = x0 + 2; x <= endX; x += 1) {
-				for (y = y0 - 2, endY = y0 + 2; y <= endY; y += 1) {
-					if (!isWater) {
-						isWater = (terrain[['x', x, 'y', y].join('')] || '').indexOf('water-') === 0;
-					}
+			pathFinder = new PathFinder({
+				terrain: terrain,
+				mov: unitMasterElemental.mov,
+				x: store.x,
+				y: store.y,
+				moveType: unitMasterElemental.moveType,
+				minX: 0,
+				minY: 0,
+				maxX: map.size.width - 1,
+				maxY: map.size.height - 1,
+				relativeTypeSpace: true
+			});
+
+			path = pathFinder.getAvailablePath();
+
+			_.each(path, function (xy) {
+				if (!isWater) {
+					isWater = (terrain[['x', xy.x, 'y', xy.y].join('')] || '').indexOf('water-') === 0;
 				}
-			}
+			});
 
 			cpu.set(storeField, isWater);
 

@@ -1257,6 +1257,8 @@
 
 	}
 
+	win.APP.PathFinder = PathFinder;
+
 	PathFinder.prototype = {
 
 		set: function (key, value) {
