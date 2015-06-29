@@ -323,6 +323,10 @@
 			otherUnits.push('sorceress', 'golem', 'dire-wolf', 'dragon');
 			otherUnits.push('sorceress', 'golem', 'dire-wolf', 'dragon');
 
+			if (cpu.detectCanButWaterUnits(data)) {
+				otherUnits.push('elemental', 'elemental');
+			}
+
 			unitCounts = assortArray(unitCounts);
 
 			if ( model.isUnitsTooMuch() ) {
@@ -382,6 +386,41 @@
 
 
 
+
+		},
+
+		detectCanButWaterUnits: function (data) {
+
+			var cpu = this,
+				model = cpu.get('model'),
+				map = model.get('map'),
+				terrain = map.terrain,
+				store = data.store,
+				x0 = store.x,
+				y0 = store.y,
+				storeField = ['store', 'x', x0, 'y', y0, 'can-buy-water-unit'].join('-'),
+				cachedValue = cpu.get(storeField),
+				x,
+				y,
+				endX,
+				endY,
+				isWater = false;
+
+			if (cachedValue !== undefined) {
+				return cachedValue;
+			}
+
+			for (x = x0 - 2, endX = x0 + 2; x <= endX; x += 1) {
+				for (y = y0 - 2, endY = y0 + 2; y <= endY; y += 1) {
+					if (!isWater) {
+						isWater = (terrain[['x', x, 'y', y].join('')] || '').indexOf('water-') === 0;
+					}
+				}
+			}
+
+			cpu.set(storeField, isWater);
+
+			return isWater;
 
 		},
 
