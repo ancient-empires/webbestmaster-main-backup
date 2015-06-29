@@ -85,7 +85,7 @@
 					this.removeEventListener('load', onceLoad);
 					this.removeEventListener('error', onceLoad);
 
-					var base64Scaled = win.APP.map.scaleImage(this, 8);
+					var base64Scaled = win.APP.map.scaleImage(this, 4);
 
 					tiles[key] = {
 						base64: base64Scaled,
