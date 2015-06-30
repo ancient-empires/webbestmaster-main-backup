@@ -1321,7 +1321,7 @@
 		<div class="main-content-wrapper">
 			<div class="main-content-container js-scroll-area-container scroll-touch">
 				<div class="scroll-area">
-					<% var info = window.APP.info, languageField = 'name-' + info.get('language'), index = 0; isTestMode = info.testMode === 'on'; %>
+					<% var info = window.APP.info, languageField = 'name-' + info.get('language'), index = 0; isTestMode = info.get('isTestMode', true) === 'on'; %>
 					<% _.each(mapsInfo, function (map, jsKey) { %>
 					<% var mapName = map[languageField] || map.name, maxDoneLevel = 'no-level'; %>
 						<% index += 1; %>

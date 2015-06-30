@@ -38,7 +38,8 @@
 			var view = this;
 
 			view.$el.find(view.selectors.unlockAllLevels).html('Test mode<br>enabled');
-			view.info.testMode = 'on';
+			view.info.set('isTestMode', 'on', true);
+			//view.info.set('testMode')  = 'on';
 
 		},
 
