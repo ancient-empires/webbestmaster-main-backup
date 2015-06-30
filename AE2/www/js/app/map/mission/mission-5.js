@@ -22,7 +22,7 @@
 		};
 
 	win.APP.maps.mission_001_005 = {
-		version: 9,
+		version: 10,
 		type: 'mission',
 		isOpen: false,
 		openMaps: [
@@ -31,7 +31,8 @@
 		size: {width: 20, height: 12},
 		maxPlayers: 2,
 		unitLimit: 25,
-		win: ['noEnemyUnit', 'allUnorderedCasesIsDone'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
+		//win: ['noEnemyUnit', 'allUnorderedCasesIsDone'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
+		win: ['noEnemyUnit', 'allOrderedCasesIsDone'], // allCastles, noEnemyUnit, allUnorderedCasesIsDone
 		defeat: ['commanderIsDead', 'crystalIsDead'], // 'galamarDead', 'valadornDead', crystalIsDead
 
 		// en
@@ -247,7 +248,8 @@
 			}
 		],
 
-		unorderedCases: [
+		//unorderedCases: [
+		orderedCases: [
 			{
 				isDone: false,
 				detect: 'unitOnPlace',
@@ -257,7 +259,7 @@
 						x1: 0,
 						y1: 0,
 						x2: 8,
-						y2: 6
+						y2: 11
 					}
 				],
 				units: [
@@ -291,7 +293,7 @@
 					{
 						x1: 0,
 						y1: 7,
-						x2: 7,
+						x2: 19,
 						y2: 11
 					}
 				],
@@ -322,9 +324,9 @@
 				do: ['appendUnits'],
 				place: [
 					{
-						x1: 8,
-						y1: 7,
-						x2: 15,
+						x1: 7,
+						y1: 6,
+						x2: 19,
 						y2: 11
 					}
 				],
@@ -355,8 +357,8 @@
 				do: ['appendUnits'],
 				place: [
 					{
-						x1: 16,
-						y1: 4,
+						x1: 15,
+						y1: 8,
 						x2: 19,
 						y2: 11
 					}
@@ -528,7 +530,7 @@
 			x7y11: 'stone-1',
 			x8y11: 'stone-1',
 			x9y11: 'forest-1',
-			x10y0: 'road-1',
+			x10y0: 'terra-1',
 			x10y1: 'forest-1',
 			x10y2: 'terra-1',
 			x10y3: 'road-1',
@@ -611,7 +613,7 @@
 			x16y8: 'road-1',
 			x16y9: 'terra-1',
 			x16y10: 'hill-1',
-			x16y11: 'road-1',
+			x16y11: 'terra-1',
 			x17y0: 'forest-1',
 			x17y1: 'stone-1',
 			x17y2: 'forest-1',

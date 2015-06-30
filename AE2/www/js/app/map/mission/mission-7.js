@@ -22,7 +22,7 @@
 		};
 
 	win.APP.maps.mission_001_007 = {
-		version: 9,
+		version: 10,
 		type: 'mission',
 		isOpen: false,
 		openMaps: [
@@ -311,7 +311,7 @@
 			{
 				isDone: false,
 				detect: 'turnCount',
-				turnCount: 11,
+				turnCount: 15,
 				do: ['appendUnits', 'showBriefing'],
 				units: [
 					{x: 12, y: 14, type: 'soldier', ownerId: 1},

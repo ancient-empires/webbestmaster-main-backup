@@ -1434,10 +1434,11 @@
 		checkCases: function () {
 
 			var model = this,
-				view = model.get('view'),
+				//view = model.get('view'),
 				map = model.get('map'),
 				unorderedCases = _.where(map.unorderedCases, { isDone: false }),
-				theCase = _.find(map.cases, { isDone: false });
+				theCase = _.find(map.cases, { isDone: false }),
+				theOrderedCase = _.find(map.orderedCases, { isDone: false });
 
 			_.each(unorderedCases, function (caseItem) {
 
@@ -1451,19 +1452,21 @@
 
 			});
 
-			if ( !theCase ) {
-				return false;
+			if ( theCase && model.checkState(theCase) ) {
+				_.each(theCase.do, function (doIt) {
+					model.doCase(doIt, theCase);
+				});
+				return true;
 			}
 
-			if ( !model.checkState(theCase) ) {
-				return false;
+			if ( theOrderedCase && model.checkState(theOrderedCase) ) {
+				_.each(theOrderedCase.do, function (doIt) {
+					model.doCase(doIt, theOrderedCase);
+				});
+				return true;
 			}
 
-			_.each(theCase.do, function (doIt) {
-				model.doCase(doIt, theCase);
-			});
-
-			return true;
+			return false;
 
 		},
 
@@ -1553,6 +1556,7 @@
 				view = model.get('view'),
 				map = model.get('map'),
 				unorderedCases = _.where(map.unorderedCases, { isDone: false }),
+				orderedCases = _.where(map.orderedCases, { isDone: false }),
 				castles = _.where(buildings, { type: 'castle' }),
 				units = model.get('units'),
 				enemyUnits = _.filter(units, function (unit) {
@@ -1645,6 +1649,12 @@
 				case 'allUnorderedCasesIsDone':
 
 					return !unorderedCases.length;
+
+					break;
+
+				case 'allOrderedCasesIsDone':
+
+					return !orderedCases.length;
 
 					break;
 
