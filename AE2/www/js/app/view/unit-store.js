@@ -88,7 +88,7 @@
 		buyUnit: function (e) {
 
 			var view, model, mapSize, unitLimit, mapWidth, mapHeight, x, y, xy, currentXY, getPathSize, player,
-				playerUnits, playerMoney, $this, unitType, unitData, unitCost, freeXYs;
+				playerUnits, playerMoney, $this, unitType, unitData, unitCost, freeXYs, unitMaster, isCommander;
 
 			if (e.state === 'cpu') { // bot
 
@@ -136,6 +136,12 @@
 			unitData = win.APP.unitMaster.list[unitType];
 			unitCost = unitData.cost;
 			freeXYs = [];
+			unitMaster = win.APP.unitMaster;
+			isCommander = _.contains(unitMaster.commanderList, unitType);
+
+			if ( isCommander ) {
+				unitCost += (player.commander.deadCount || 0) * unitMaster.commanderAddedCost;
+			}
 
 			if ( playerUnits.length >= unitLimit ) {
 				return;
@@ -147,7 +153,7 @@
 
 			// if commander is live - return
 			// do not buy 2+ commander
-			if ( player.commander.isLive && _.contains(win.APP.unitMaster.commanderList, unitType) ) {
+			if ( player.commander.isLive && isCommander ) {
 				return;
 			}
 

@@ -1292,7 +1292,11 @@
 						</div>
 
 						<div data-sound="click.mp3" class="unit-buy-button js-buy-unit" data-unit-key="<%= key %>">
-							<%= unitData.cost %>
+							<% if (isCommander) { %>
+								<%= unitData.cost + (commander.deadCount || 0) * unitsData.commanderAddedCost %>
+							<% } else { %>
+								<%= unitData.cost %>
+							<% }; %>
 						</div>
 						<div class="clear"></div>
 						<div class="js-description-unit-info description-unit-info hidden" data-unit-key="<%= key %>">

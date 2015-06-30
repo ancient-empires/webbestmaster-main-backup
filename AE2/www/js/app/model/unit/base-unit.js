@@ -147,6 +147,7 @@
 			if ( health <= 0 && unit.isCommander() ) {
 				player = unit.getOwner();
 				player.commander.isLive = false;
+				player.commander.deadCount = (player.commander.deadCount || 0) + 1;
 			}
 
 		},
