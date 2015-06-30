@@ -31,14 +31,6 @@
 					.split("%>").join("p.push('")
 					.split("\r").join("\\'") + "');} return p.join('');");
 		},
-		removeHtmlComments: function () {
-
-			['head', 'body'].forEach(function (item) {
-				var node = doc[item];
-				node.innerHTML = node.innerHTML.replace(/\/\*[\s\S]*?\*\/|<!--[\s\S]*?-->/g, '');
-			});
-
-		},
 
 		prepareTemplates: function () {
 
@@ -60,7 +52,6 @@
 
 		init: function () {
 
-			this.removeHtmlComments();
 			this.prepareTemplates();
 
 		}

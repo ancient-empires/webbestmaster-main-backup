@@ -24,9 +24,11 @@
 		fs.unlink(src);
 	});
 
-	endHtml = endHtml.replace('scriptRemoved', '<script src="js/all.js" type="text/javascript"><\/script>');
-
-	endHtml = endHtml.replace(/scriptRemoved[\s\S]+scriptRemoved/g, '');
+	endHtml = endHtml.replace('scriptRemoved', '<script src="js/all.js" type="text/javascript"><\/script>')
+		.replace(/scriptRemoved[\s\S]+scriptRemoved/g, '')
+		.replace(/\/\*[\s\S]*?\*\/|<!--[\s\S]*?-->/g, '')
+		.replace(/>\s+</g, '><')
+		.replace(/\s+/g, ' ');
 
 	fs.appendFile('./www/js/all.js', endJs, function (err) {
 		if (err) throw err;
