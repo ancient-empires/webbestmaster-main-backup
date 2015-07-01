@@ -168,7 +168,8 @@
 
 		render: function () {
 
-			var $oldContainer = this.$wrapper.find('> div');
+			var $oldContainer = $(this.$wrapper[0].querySelectorAll(':scope > div'));
+
 			$oldContainer.trigger('hide');
 
 			this.$wrapper.append(this.$el);
@@ -352,7 +353,7 @@
 			}
 
 			var $wrapper = $(e.currentTarget),
-				$scrollArea = $wrapper.find('> div'),
+				$scrollArea = $($wrapper[0].querySelectorAll(':scope > div')),
 				scrollTop = $wrapper.scrollTop(),
 				wrapperHeight,
 				scrollAreaHeight,
