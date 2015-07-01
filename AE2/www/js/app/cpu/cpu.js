@@ -1281,15 +1281,17 @@
 				// detect building which can be got by enemy
 				_.each(enemyUnits, function (enemy) {
 
-					var cachedMoveField,
-						cachedAvailableMoveMap,
+					var cachedMoveField = ['move', enemy.get('type'), 'x', enemy.get('x'), 'y', enemy.get('y')].join('-'),
+						cachedAvailableMoveMap = cpu.get(cachedMoveField),
 						availableMoveMap,
 						enemyTeamNumber = enemy.get('teamNumber'),
 						listOccupyBuilding = enemy.get('listOccupyBuilding') || [],
 						enemyXY = {
 							x: enemy.get('x'),
 							y: enemy.get('y')
-						};
+						},
+						blackWholesXYs,
+						isBlackWholeInCachedAvailableMoveMap = false;
 
 					if ( _.find(data.killUnitsXY, enemyXY) ) {
 						return;
@@ -1300,12 +1302,20 @@
 					}
 
 					if (data.blackWholes) {
-						availableMoveMap = enemy.getAvailablePathFull(data);
+
+						if ( cachedAvailableMoveMap ) {
+							blackWholesXYs = data.blackWholesXYs;
+							_.each(cachedAvailableMoveMap, function (xy) {
+								return isBlackWholeInCachedAvailableMoveMap || (isBlackWholeInCachedAvailableMoveMap = _.find(blackWholesXYs, xy));
+							});
+							availableMoveMap = isBlackWholeInCachedAvailableMoveMap ? enemy.getAvailablePathFull(data) : cachedAvailableMoveMap;
+						} else {
+							availableMoveMap = enemy.getAvailablePathFull(data);
+						}
+
 					} else {
 						// try to get available path map from cache
-						cachedMoveField = ['move', enemy.get('type'), 'x', enemy.get('x'), 'y', enemy.get('y')].join('-');
-						cachedAvailableMoveMap = cpu.get(cachedMoveField);
-						if (cachedAvailableMoveMap) {
+						if ( cachedAvailableMoveMap ) {
 							availableMoveMap = cachedAvailableMoveMap;
 						} else {
 							availableMoveMap = enemy.getAvailablePathFull();
@@ -1383,7 +1393,8 @@
 						y = unitScenario.get('y'),
 						grave = action.grave,
 						enemyUnitsGetAvailableBuildingsByScenario,
-						killUnitsXY = [];
+						killUnitsXY = [],
+						blackWholesStrings;
 
 					if ( action.name === 'attack' && unitScenario.get('killUnit') ) {
 						killUnitsXY.push(action.enemy);
@@ -1398,12 +1409,13 @@
 						blackWholes.push(grave);
 					}
 
-					blackWholes = _.map(blackWholes, function (xy) {
+					blackWholesStrings = _.map(blackWholes, function (xy) {
 						return ['x', xy.x, 'y', xy.y].join('');
 					});
 
 					enemyUnitsGetAvailableBuildingsByScenario = getXyBuildingToEnemyGet({
-						blackWholes: blackWholes,
+						blackWholes: blackWholesStrings,
+						blackWholesXYs: blackWholes,
 						killUnitsXY: killUnitsXY
 					});
 
