@@ -1274,7 +1274,15 @@
 						cachedAvailableMoveMap,
 						availableMoveMap,
 						enemyTeamNumber = enemy.get('teamNumber'),
-						listOccupyBuilding = enemy.get('listOccupyBuilding') || [];
+						listOccupyBuilding = enemy.get('listOccupyBuilding') || [],
+						enemyXY = {
+							x: enemy.get('x'),
+							y: enemy.get('y')
+						};
+
+					if ( _.find(data.killUnitsXY, enemyXY) ) {
+						return;
+					}
 
 					if ( !listOccupyBuilding.length ) { // detect units who can get buildings
 						return;
@@ -1363,7 +1371,12 @@
 						x = unitScenario.get('x'),
 						y = unitScenario.get('y'),
 						grave = action.grave,
-						enemyUnitsGetAvailableBuildingsByScenario;
+						enemyUnitsGetAvailableBuildingsByScenario,
+						killUnitsXY = [];
+
+					if ( action.name === 'attack' && unitScenario.get('killUnit') ) {
+						killUnitsXY.push(action.enemy);
+					}
 
 					blackWholes.push({
 						x: unitScenario.get('x'),
@@ -1379,7 +1392,8 @@
 					});
 
 					enemyUnitsGetAvailableBuildingsByScenario = getXyBuildingToEnemyGet({
-						blackWholes: blackWholes
+						blackWholes: blackWholes,
+						killUnitsXY: killUnitsXY
 					});
 
 					unitScenario.set('coverBuildingCount', enemyUnitsGetAvailableBuildingsFull.length - enemyUnitsGetAvailableBuildingsByScenario.length);
