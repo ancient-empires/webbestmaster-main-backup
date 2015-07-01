@@ -643,10 +643,13 @@
 			// find move - 5
 
 			coverBuildingScenarios = _.filter(scenarios, function (scenario) {
-				return scenario.get('coverBuilding');
+				return scenario.get('coverBuildingCount') > 0;
 			});
 
 			if (coverBuildingScenarios.length) {
+				coverBuildingScenarios = coverBuildingScenarios.sort(function (sc1, sc2) {
+					return sc2.get('coverBuildingCount') - sc1.get('coverBuildingCount');
+				});
 				scenarios = coverBuildingScenarios;
 			}
 
@@ -1249,8 +1252,7 @@
 				enemyUnits,
 				teamUnits,
 				buildings = model.get('buildings'),
-				enemyUnitsGetAvailableBuildings = [],
-				coveringBuilding = [];
+				enemyUnitsGetAvailableBuildingsFull;
 
 			enemyUnits = _.filter(allUnits, function (unit) {
 				return unit.get('teamNumber') !== teamNumber;
@@ -1260,97 +1262,131 @@
 				return unit.get('teamNumber') === teamNumber;
 			});
 
-			// detect building which can be got by enemy
-			_.each(enemyUnits, function (enemy) {
+			function getXyBuildingToEnemyGet(dataArg) {
 
-				// try to get available attack map from cache
-				var cachedMoveField = ['move', enemy.get('type'), 'x', enemy.get('x'), 'y', enemy.get('y')].join('-'),
-					cachedAvailableMoveMap = cpu.get(cachedMoveField),
-					availableMoveMap,
-					enemyTeamNumber = enemy.get('teamNumber'),
-					listOccupyBuilding = enemy.get('listOccupyBuilding') || [];
+				var data = dataArg || {},
+					enemyUnitsGetAvailableBuildings = [];
 
-				if ( !listOccupyBuilding.length ) { // detect units who can get buildings
-					return;
-				}
+				// detect building which can be got by enemy
+				_.each(enemyUnits, function (enemy) {
 
-				if (cachedAvailableMoveMap) {
-					availableMoveMap = cachedAvailableMoveMap;
-				} else {
-					availableMoveMap = enemy.getAvailablePathFull();
-					cpu.set(cachedMoveField, availableMoveMap);
-				}
+					var cachedMoveField,
+						cachedAvailableMoveMap,
+						availableMoveMap,
+						enemyTeamNumber = enemy.get('teamNumber'),
+						listOccupyBuilding = enemy.get('listOccupyBuilding') || [];
 
-				_.each(availableMoveMap, function (moveXY) {
-
-					var building = _.find(buildings, moveXY);
-
-					if ( !building ) { // if no building
+					if ( !listOccupyBuilding.length ) { // detect units who can get buildings
 						return;
 					}
 
-					if ( listOccupyBuilding.indexOf(building.type) === -1 ) { // if building is not in occupy list
-						return;
+					if (data.blackWholes) {
+						availableMoveMap = enemy.getAvailablePathFull(data);
+					} else {
+						// try to get available path map from cache
+						cachedMoveField = ['move', enemy.get('type'), 'x', enemy.get('x'), 'y', enemy.get('y')].join('-');
+						cachedAvailableMoveMap = cpu.get(cachedMoveField);
+						if (cachedAvailableMoveMap) {
+							availableMoveMap = cachedAvailableMoveMap;
+						} else {
+							availableMoveMap = enemy.getAvailablePathFull();
+							cpu.set(cachedMoveField, availableMoveMap);
+						}
 					}
 
-					if ( building.teamNumber === enemyTeamNumber ) { // enemy not reason get own building twice
-						return;
-					}
+					_.each(availableMoveMap, function (moveXY) {
 
-					enemyUnitsGetAvailableBuildings.push(moveXY);
+						var building = _.find(buildings, moveXY);
+
+						if ( !building ) { // if no building
+							return;
+						}
+
+						if ( listOccupyBuilding.indexOf(building.type) === -1 ) { // if building is not in occupy list
+							return;
+						}
+
+						if ( building.teamNumber === enemyTeamNumber ) { // enemy not reason get own building twice
+							return;
+						}
+
+						if ( !_.find(enemyUnitsGetAvailableBuildings, moveXY) ) {
+							enemyUnitsGetAvailableBuildings.push(moveXY);
+						}
+
+					});
 
 				});
 
-			});
+				return enemyUnitsGetAvailableBuildings;
+
+			}
+
+			enemyUnitsGetAvailableBuildingsFull = getXyBuildingToEnemyGet();
 
 			// mark scenarios which cover building which can be got by enemy
-			_.each(scenarios, function (scenario) {
-				// detect scenario where unit can raise skeleton
-				var action = scenario.get('action'),
-					x = scenario.get('x'),
-					y = scenario.get('y'),
-					grave = action.grave,
-					buildingXY = _.find(enemyUnitsGetAvailableBuildings, {x: x, y: y}) || (grave && _.find(enemyUnitsGetAvailableBuildings, grave));
-
-				if ( buildingXY && !_.find(coveringBuilding, buildingXY) ) {
-					coveringBuilding.push(buildingXY);
-					//scenario.set('coverBuilding', true);
-				}
-
-			});
+			//_.each(scenarios, function (scenario) {
+			//	// detect scenario where unit can raise skeleton
+			//	var action = scenario.get('action'),
+			//		x = scenario.get('x'),
+			//		y = scenario.get('y'),
+			//		grave = action.grave,
+			//		buildingXY = _.find(enemyUnitsGetAvailableBuildings, {x: x, y: y}) || (grave && _.find(enemyUnitsGetAvailableBuildings, grave));
+			//
+			//	if ( buildingXY && !_.find(coveringBuilding, buildingXY) ) {
+			//		coveringBuilding.push(buildingXY);
+			//		//scenario.set('coverBuilding', true);
+			//	}
+			//
+			//});
 
 			// если у юнита есть сценарии при котором захваченных зданий меньше чем coveringBuilding, то те сценарии где мньше, сетаем как 'coverBuilding' true
-
 			_.each(teamUnits, function (unit) {
 
 				var unitScenarios = _.filter(scenarios, function (scenario) {
-					return scenario.get('unit') === unit;
-				});
+						return scenario.get('unit') === unit;
+					}),
+					otherTeamUnits = _.filter(teamUnits, function (teamUnit) {
+						return teamUnit !== unit;
+					}),
+					teamBlackWholes = _.map(otherTeamUnits, function (teamUnit) {
+						return {
+							x: teamUnit.get('x'),
+							y: teamUnit.get('y')
+						}
+					});
 
 				_.each(unitScenarios, function (unitScenario) {
 
+					var blackWholes = JSON.parse(JSON.stringify(teamBlackWholes)),
+						action = unitScenario.get('action'),
+						x = unitScenario.get('x'),
+						y = unitScenario.get('y'),
+						grave = action.grave,
+						enemyUnitsGetAvailableBuildingsByScenario;
 
+					blackWholes.push({
+						x: unitScenario.get('x'),
+						y: unitScenario.get('y')
+					});
 
+					if (grave) {
+						blackWholes.push(grave);
+					}
 
+					blackWholes = _.map(blackWholes, function (xy) {
+						return ['x', xy.x, 'y', xy.y].join('');
+					});
 
+					enemyUnitsGetAvailableBuildingsByScenario = getXyBuildingToEnemyGet({
+						blackWholes: blackWholes
+					});
 
+					unitScenario.set('coverBuildingCount', enemyUnitsGetAvailableBuildingsFull.length - enemyUnitsGetAvailableBuildingsByScenario.length);
 
 				});
 
 			});
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		},
 		

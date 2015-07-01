@@ -286,15 +286,14 @@
 
 		},
 
-		getAvailablePathFull: function (data) {
+		getAvailablePathFull: function (dataArg) {
 
 			if ( this.get('didMove') ) {
 				return [];
 			}
 
-			data = data || {};
-
-			var unit = this,
+			var data = dataArg || {},
+				unit = this,
 				view = unit.get('view'),
 				map = view.get('map'),
 				terrain = map.terrain,
