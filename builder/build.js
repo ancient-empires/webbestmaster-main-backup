@@ -42,7 +42,7 @@
 		fs.unlink(src);
 	});
 
-	endHtml = endHtml.replace('scriptRemoved', '<script src="js/all.js" type="text/javascript"><\/script>')
+	endHtml = endHtml.replace('scriptRemoved', '<script src="js/all.js" type="text/javascript" async><\/script>')
 		.replace(/scriptRemoved[\s\S]+scriptRemoved/g, '')
 		.replace(/\/\*[\s\S]*?\*\/|<!--[\s\S]*?-->/g, '')
 		.replace(/>\s+</g, '><')
@@ -56,7 +56,6 @@
 		if (err) throw err;
 		console.log('ALL JS');
 	});
-
 
 	fs.writeFile('./www/index.html', endHtml, function (err) {
 		if (err) throw err;
