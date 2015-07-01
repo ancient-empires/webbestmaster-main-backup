@@ -806,7 +806,18 @@
 						if ( gameDifficult !== 'easy' && (model.playerHasCastle(player) || model.playerHasCommander(player) || gameDifficult === 'hard' || (gameDifficult === 'normal' && Math.random() > 0.5 )) ) { // if mission has no buildings
 
 							moveHp40Plus = _.filter(filteredScenarios, function (scenario) {
-								return scenario.get('unit').get('health') > 40 || scenario.get('dataByPosition').onHealthUpBuilding;
+
+								var unit = scenario.get('unit'),
+									health = unit.get('health'),
+									onHealthUpBuilding = scenario.get('dataByPosition').onHealthUpBuilding;
+
+								// try to save commander
+								if ( unit.isCommander() ) {
+									return health > 80 || (health > 60 && onHealthUpBuilding);
+								} else {
+									return health > 40 || onHealthUpBuilding;
+								}
+
 							});
 
 							if (moveHp40Plus.length) { // find scenario for normal move
