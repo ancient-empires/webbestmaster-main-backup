@@ -72,7 +72,7 @@
 				canFixBuilding: true,
 				withoutGrave: true,
 				listOccupyBuilding: ['farm', 'castle'],
-				cost: 400
+				cost: 200
 			},
 			valadorn: {
 				atk: {
@@ -87,7 +87,7 @@
 				canFixBuilding: true,
 				withoutGrave: true,
 				listOccupyBuilding: ['farm', 'castle'],
-				cost: 400
+				cost: 200
 			},
 			'demon-lord': {
 				atk: {
@@ -102,7 +102,7 @@
 				canFixBuilding: true,
 				withoutGrave: true,
 				listOccupyBuilding: ['farm', 'castle'],
-				cost: 400
+				cost: 200
 			},
 			saeth: {
 				atk: {
@@ -117,7 +117,7 @@
 				canFixBuilding: true,
 				withoutGrave: true,
 				listOccupyBuilding: ['farm', 'castle'],
-				cost: 400
+				cost: 200
 			},
 
 			'saeth-heavens-fury': {

@@ -286,11 +286,13 @@
 
 		},
 
-		getAvailablePathFull: function () {
+		getAvailablePathFull: function (data) {
 
 			if ( this.get('didMove') ) {
 				return [];
 			}
+
+			data = data || {};
 
 			var unit = this,
 				view = unit.get('view'),
@@ -305,6 +307,7 @@
 				mov: unit.get('mov') - 1 - reduceByPoison,
 				x: unit.get('x'),
 				y: unit.get('y'),
+				blackWholes: data.blackWholes || [],
 				moveType: unit.get('moveType'),
 				minX: 0,
 				minY: 0,

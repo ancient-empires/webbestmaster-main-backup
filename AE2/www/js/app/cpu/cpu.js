@@ -1247,11 +1247,17 @@
 				teamNumber = activePlayer.teamNumber,
 				allUnits = model.get('units'),
 				enemyUnits,
+				teamUnits,
 				buildings = model.get('buildings'),
-				enemyUnitsGetAvailableBuildings = [];
+				enemyUnitsGetAvailableBuildings = [],
+				coveringBuilding = [];
 
 			enemyUnits = _.filter(allUnits, function (unit) {
 				return unit.get('teamNumber') !== teamNumber;
+			});
+
+			teamUnits = _.filter(allUnits, function (unit) {
+				return unit.get('teamNumber') === teamNumber;
 			});
 
 			// detect building which can be got by enemy
@@ -1306,11 +1312,45 @@
 					grave = action.grave,
 					buildingXY = _.find(enemyUnitsGetAvailableBuildings, {x: x, y: y}) || (grave && _.find(enemyUnitsGetAvailableBuildings, grave));
 
-				if (buildingXY) {
-					scenario.set('coverBuilding', true);
+				if ( buildingXY && !_.find(coveringBuilding, buildingXY) ) {
+					coveringBuilding.push(buildingXY);
+					//scenario.set('coverBuilding', true);
 				}
 
 			});
+
+			// если у юнита есть сценарии при котором захваченных зданий меньше чем coveringBuilding, то те сценарии где мньше, сетаем как 'coverBuilding' true
+
+			_.each(teamUnits, function (unit) {
+
+				var unitScenarios = _.filter(scenarios, function (scenario) {
+					return scenario.get('unit') === unit;
+				});
+
+				_.each(unitScenarios, function (unitScenario) {
+
+
+
+
+
+
+
+				});
+
+			});
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		},
 		
