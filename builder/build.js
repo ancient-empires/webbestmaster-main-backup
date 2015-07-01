@@ -9,7 +9,7 @@
 
 		html = fs.readFileSync('./www/index.html', 'utf-8'),
 
-		scripts = html.match(/src="js\/\S+"/g) || [],
+		scripts = html.match(/src="js\/\S+"/g),
 
 		css = fs.readFileSync('./www/css/main.css', 'utf-8'),
 
