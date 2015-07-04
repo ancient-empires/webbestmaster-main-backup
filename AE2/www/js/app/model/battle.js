@@ -853,17 +853,7 @@
 
 		getBuildingByXY: function (xy) {
 
-			var x = xy.x,
-				y = xy.y,
-				result = false;
-
-			_.each(this.get('buildings'), function (building) {
-				if ( building.x === x && building.y === y ) {
-					result = building;
-				}
-			});
-
-			return result;
+			return _.find(this.get('buildings'), xy);
 
 		},
 

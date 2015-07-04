@@ -591,7 +591,8 @@
 						y = lowPriorityScenario.get('y'),
 						scX = sc.get('x'),
 						scY = sc.get('y'),
-						isTheSamePlace = (scX === x && scY === y);
+						isTheSamePlace = (scX === x && scY === y),
+						building;
 
 					// if this move disturbs other scenarios
 					switch (action.name) {
@@ -609,7 +610,14 @@
 							break;
 						case 'attack':
 							if ( sc.get('rate') === rates.lowPriority && isTheSamePlace ) {
-								lowPriorityScenario.set('rate', rates.lowPriority);
+
+								building = model.getBuildingByXY({x: x, y: y});
+								if ( building ) { // stay on building
+									lowPriorityScenario.set('rate', rates.highPriority);
+								} else { // other cases
+									lowPriorityScenario.set('rate', rates.lowPriority);
+								}
+
 							}
 							break;
 					}
@@ -737,7 +745,6 @@
 							}
 
 						}
-
 
 						_.each(filteredScenarios, function (scenario) {
 
