@@ -591,11 +591,10 @@
 
 		},
 
-		getAttackToUnit: function (enemy, data) {
+		getAttackToUnit: function (enemy, dataArg) {
 
-			data = data || {};
-
-			var unit = this,
+			var data = dataArg || {},
+				unit = this,
 				model = unit.get('model'),
 				unitXY = {
 					x: unit.get('x'),
@@ -627,10 +626,40 @@
 				enemyDefBonusByLevel = unitMaster.defByLevel * enemyLevel,
 				enemyDefReduceByPoison = enemy.get('poisonCount') ? unitMaster.reduceDefPoison : 0,
 				enemyFlowDefBonus = (enemyMoveType === 'flow' && enemyTerrain.terrainType === 'water') ? unitMaster.bonusDefByWater : 0,
-				unitStartAtk = data.average ? Math.round( (unitMinAtk + unitMaxAtk) / 2) : unit.util.getRandomBetween(unitMinAtk, unitMaxAtk),
+				unitStartAtk = 0,
 				unitQ = unit.get('health') / unit.get('defaultHealth'),
-				enemyQ = enemy.get('health') / enemy.get('defaultHealth'),
+				randonKeys,
+				//enemyQ = enemy.get('health') / enemy.get('defaultHealth'),
 				atk;
+
+			if (data.average) {
+				unitStartAtk = Math.round( (unitMinAtk + unitMaxAtk) / 2);
+			} else {
+				randonKeys = ['atkRange', 'def', 'health', 'id', 'level', 'mov', 'ownerId', 'poisonCount', 'teamNumber',  'y', 'x', 'xp'];
+				_.each(model.get('units'), function (item) {
+
+					if (item === unit) {
+						return;
+					}
+
+					_.each(randonKeys, function (key) {
+						unitStartAtk += item.get(key) || 0;
+					});
+
+					var unitAtk = item.get('atk'),
+						type = item.get('type');
+
+					unitStartAtk += unitAtk.min + unitAtk.max + type.length;
+
+				});
+
+				unitStartAtk *= 86;
+				unitStartAtk += 36;
+
+				unitStartAtk = (unitMaxAtk - unitMinAtk) * ((unitStartAtk % 100) / 100) + unitMinAtk;
+				//unitStartAtk = unit.util.getRandomBetween(unitMinAtk, unitMaxAtk);
+
+			}
 
 			atk = ( unitStartAtk + unitAktBonusByLevel + unitFlowAtkBonus + unitAtkBonusAgainstFly + unitAtkBonusAgainstSkeleton - unitAtkReduceByPoison  + unitAktBonusByWispAura) * unitQ - ( enemyDefBonusByLevel + enemyFlowDefBonus - enemyDefReduceByPoison + enemyDef + enemyDefTerrain) * unitQ; // * enemyQ;
 
