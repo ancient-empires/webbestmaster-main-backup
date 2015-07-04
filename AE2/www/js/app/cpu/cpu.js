@@ -724,17 +724,20 @@
 							return scenario.get('isPoisonAttack') && poisonAttack.push(scenario);
 						});
 
-						if (poisonAttack.length) {
+						if (poisonAttack.length) { // find poison attack
 							filteredScenarios = poisonAttack;
+						} else { // find no strike back attack
+
+							_.each(filteredScenarios, function (scenario) {
+								return scenario.get('availableResponseDamage') || noStrikeBack.push(scenario);
+							});
+
+							if (noStrikeBack.length) {
+								filteredScenarios = noStrikeBack;
+							}
+
 						}
 
-						_.each(filteredScenarios, function (scenario) {
-							return scenario.get('availableResponseDamage') || noStrikeBack.push(scenario);
-						});
-
-						if (noStrikeBack.length) {
-							filteredScenarios = noStrikeBack;
-						}
 
 						_.each(filteredScenarios, function (scenario) {
 
