@@ -43,9 +43,9 @@
 	});
 
 	endHtml = endHtml.replace('scriptRemoved', '<script src="js/all.js" type="text/javascript" async><\/script>')
-		.replace(/scriptRemoved[\s\S]+scriptRemoved/g, '')
-		.replace(/\/\*[\s\S]*?\*\/|<!--[\s\S]*?-->/g, '')
-		.replace(/>\s+</g, '><')
+		.replace(/scriptRemoved[\s\S]+scriptRemoved/g, ' ')
+		.replace(/\/\*[\s\S]*?\*\/|<!--[\s\S]*?-->/g, ' ')
+		.replace(/>\s+</g, '> <')
 		.replace(/\s+/g, ' ');
 
 	deleteFolderRecursive('./www/js');
