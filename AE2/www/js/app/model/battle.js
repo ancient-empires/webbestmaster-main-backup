@@ -1366,6 +1366,14 @@
 
 			}
 
+			view.showPopup({
+				popupName: 'simple-popup',
+				parentView: view,
+				popupData: {
+					header: win.APP.lang.get(looser.color + 'Defeat')
+				}
+			});
+
 			// adjust loser's building
 			_.each(model.getBuildingsByOwnerId(looser.id), function (building) {
 
