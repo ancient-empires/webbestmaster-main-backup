@@ -882,8 +882,7 @@
 
 			// try to get building
 			var model = this,
-				buildings = model.get('buildings'),
-				build = _.find(buildings, xy),
+				build = model.getBuildingByXY(xy),
 				armor = build && win.APP.building.list[build.type].defence,
 				terrainType;
 
