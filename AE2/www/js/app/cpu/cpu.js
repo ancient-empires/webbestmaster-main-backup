@@ -719,14 +719,6 @@
 						noStrikeBack = [];
 						poisonAttack = [];
 
-						_.each(filteredScenarios, function (scenario) {
-							return scenario.get('availableResponseDamage') || noStrikeBack.push(scenario);
-						});
-
-						if (noStrikeBack.length) {
-							filteredScenarios = noStrikeBack;
-						}
-
 						// try to find poison attack
 						_.each(filteredScenarios, function (scenario) {
 							return scenario.get('isPoisonAttack') && poisonAttack.push(scenario);
@@ -734,6 +726,14 @@
 
 						if (poisonAttack.length) {
 							filteredScenarios = poisonAttack;
+						}
+
+						_.each(filteredScenarios, function (scenario) {
+							return scenario.get('availableResponseDamage') || noStrikeBack.push(scenario);
+						});
+
+						if (noStrikeBack.length) {
+							filteredScenarios = noStrikeBack;
 						}
 
 						_.each(filteredScenarios, function (scenario) {
