@@ -276,7 +276,18 @@
 			var cpu = this,
 				model = cpu.get('model'),
 				player = cpu.get('player'),
-				store = cpu.getStore();
+				playerMoney = player.money,
+				activePlayer = model.get('activePlayer'),
+				teamNumber = activePlayer.teamNumber,
+				allUnits = model.get('units'),
+				enemyUnits,
+				unitsBuyList,
+				unitList,
+				enemyUnitsGetAvailableBuildings = [],
+				enemyUnitsAvailablePath = [],
+				stores = cpu.getStores(),
+				store = cpu.getStore(),
+				needToCoverStores = [];
 
 			if ( !store ) { // no store, no units ))
 				return;
@@ -288,6 +299,59 @@
 				store: store,
 				type: player.commander.name
 			});
+
+			// detect enemy can stay on castle
+			enemyUnits = _.filter(allUnits, function (unit) {
+				return unit.get('teamNumber') !== teamNumber;
+			});
+
+			_.each(enemyUnits, function (enemy) {
+				_.each( enemy.getAvailablePathWithTeamUnit(), function (xy) {
+					return _.find(enemyUnitsAvailablePath, xy) || enemyUnitsAvailablePath.push(xy);
+				});
+			});
+
+			_.each(enemyUnitsAvailablePath, function (enemyXY) {
+				var coveredStore = _.find(stores, enemyXY);
+				return coveredStore && needToCoverStores.push(coveredStore);
+			});
+
+
+			if (needToCoverStores.length) {
+				playerMoney = player.money;
+				unitList = win.APP.unitMaster.list;
+				unitsBuyList = [
+					{
+						type: 'soldier',
+						cost: unitList.soldier.cost
+					},
+					{
+						type: 'archer',
+						cost: unitList.archer.cost
+					},
+					{
+						type: 'golem',
+						cost: unitList.golem.cost
+					}
+				];
+
+				_.each(needToCoverStores, function (store) {
+
+					// detect the most expensive unit from list
+					var buyUnit;
+					_.each(unitsBuyList, function (unitData) {
+						buyUnit = unitData.cost <= playerMoney ? unitData : buyUnit;
+					});
+
+					if (buyUnit) {
+						cpu.buyUnit({
+							store: store,
+							type: buyUnit.type
+						});
+					}
+
+				});
+			}
 
 			if ( !model.playerHasCommander(player) ) {
 				return;
@@ -515,6 +579,18 @@
 
 		},
 
+		getStores: function () {
+
+			var cpu = this,
+				model = cpu.get('model'),
+				player = cpu.get('player'),
+				ownerId = player.id,
+				buildings = model.get('buildings');
+
+			return _.where(buildings, { ownerId: ownerId, canBeStore: true });
+
+		},
+
 		buyUnit: function (data) {
 
 			var cpu = this,
@@ -551,6 +627,7 @@
 				coverBuildingScenarios,
 				lowPriorityScenarios = [],
 				highPriorityScenarios = [],
+				firstCoverBuildingScenarioCount,
 				scenarioIsDone = false;
 
 			// get ALL scenarios, except nonActive units
@@ -658,7 +735,13 @@
 				coverBuildingScenarios = coverBuildingScenarios.sort(function (sc1, sc2) {
 					return sc2.get('coverBuildingCount') - sc1.get('coverBuildingCount');
 				});
-				scenarios = coverBuildingScenarios;
+
+				firstCoverBuildingScenarioCount = coverBuildingScenarios[0].get('coverBuildingCount');
+
+				scenarios = _.filter(coverBuildingScenarios, function (sc) {
+					return firstCoverBuildingScenarioCount === sc.get('coverBuildingCount');
+				});
+
 			}
 
 			_.each(['getBuilding', 'raiseSkeleton', 'attack', 'fixBuilding', 'move'], function (scenarioType) {
