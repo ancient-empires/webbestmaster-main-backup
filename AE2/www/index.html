@@ -1435,6 +1435,30 @@
 
 </script>
 
+<script type="text/x-template" data-name="full-unit-info">
+
+	<div>
+
+		<div data-sound="click.mp3" class="js-back button-popup-close">&nbsp;</div>
+		<div class="h100 js-scroll-area-container scroll-touch">
+			<div class="scroll-area">
+				<div class="popup-page">
+					<div class="full-unit-info-image <%= img %>">&nbsp;</div>
+					<div class="full-unit-info-health-wrapper">
+						<% _.each(health, function(sign){ %>
+						<div class="full-unit-info-health-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">&nbsp;</div>
+						<% }); %>
+					</div>
+					<div class="full-unit-info-name ellipsis"><%= name %></div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</script>
+
 <!--
 <script type="text/x-template" data-name="fight-animation">
 

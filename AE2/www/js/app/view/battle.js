@@ -1327,7 +1327,8 @@
 			var view = this,
 				downEvent = view.get('downEvent'),
 				moveEvent = view.get('moveEvent'),
-				model, xy, unit;
+				lang,
+				model, xy, unit, xp, level;
 
 			if ( Math.abs(downEvent.x - moveEvent.x) + Math.abs(downEvent.y - moveEvent.y) > 7 )  { // detect press event without move
 				return;
@@ -1341,9 +1342,22 @@
 				return;
 			}
 
-			console.log(unit.toJSON());
+			lang = win.APP.lang;
 
+			//xp = unit.get('xp');
+			//level = unit.get('level');
 
+			//debugger
+
+			view.showPopup({
+				cssClass: 'full',
+				popupName: 'full-unit-info',
+				popupData: {
+					img: ['unit-image', unit.get('type'), unit.get('color')].join('-'),
+					health: unit.get('health').toString(),
+					name: lang.get('unitsList')[unit.get('langKey')].name
+				}
+			});
 
 		},
 
