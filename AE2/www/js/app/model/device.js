@@ -1,3 +1,4 @@
+/*jslint white: true, nomen: true */
 (function (win) {
 
 	"use strict";
@@ -13,7 +14,7 @@
 		},
 		bindEventListeners: function () {
 
-			$(window).on('resize', $.proxy( this, 'onResize' ) );
+			$(win).on('resize', $.proxy( this, 'onResize' ) );
 
 		},
 		onResize: function () {

@@ -1290,10 +1290,13 @@
 			var view = this,
 				selectors = view.selectors;
 
+			$.Finger.pressDuration = 600;
+
 			view.events[view.eventTypes.down + ' ' + selectors.moveAreaContainer] = 'saveDownEvent';
 			view.events[view.eventTypes.move + ' ' + selectors.moveAreaContainer] = 'saveMoveEvent';
 			view.events[view.eventTypes.up + ' ' + selectors.mainEventHandler] = 'detectClick';
 			view.events[view.eventTypes.dbl + ' ' + selectors.mainEventHandler] = 'detectDblClick';
+			view.events['press' + ' ' + selectors.mainEventHandler] = 'detectPress';
 
 		},
 
@@ -1316,6 +1319,31 @@
 			xy = view.getEventXy();
 
 			view.onClick(xy);
+
+		},
+
+		detectPress: function () {
+
+			var view = this,
+				downEvent = view.get('downEvent'),
+				moveEvent = view.get('moveEvent'),
+				model, xy, unit;
+
+			if ( Math.abs(downEvent.x - moveEvent.x) + Math.abs(downEvent.y - moveEvent.y) > 7 )  { // detect press event without move
+				return;
+			}
+
+			model = view.get('model');
+			xy = view.getEventXy();
+			unit = model.getUnitByXY(xy);
+
+			if ( !unit ) {
+				return;
+			}
+
+			console.log(unit.toJSON());
+
+
 
 		},
 
