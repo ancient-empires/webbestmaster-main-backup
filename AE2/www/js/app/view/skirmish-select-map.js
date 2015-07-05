@@ -34,11 +34,11 @@
 					mapsInfo.push(item);
 				});
 
-				if (data.type === 'userMap') {
+				mapsInfo = mapsInfo.sort(function (a, b) {
+					return ((a.maxPlayers + a.name) > (b.maxPlayers + b.name)) ? 1 : -1;
+				});
 
-					mapsInfo = mapsInfo.sort(function (a, b) {
-						return ((a.maxPlayers + a.name) > (b.maxPlayers + b.name)) ? 1 : -1;
-					});
+				if (data.type === 'userMap') {
 
 					view.$el = $(view.tmpl.skirmishSelectMap({
 						mapsInfo: mapsInfo,
