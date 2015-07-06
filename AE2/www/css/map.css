@@ -138,6 +138,14 @@
 	background-position: center center;
 	-webkit-background-size: auto 100%;
 	background-size: auto 100%;
+
+	/*
+	-webkit-background-clip: content-box;
+	background-clip: content-box;
+	box-sizing: border-box;
+	padding: 0.5%;
+	*/
+
 }
 
 .show-unit-under-attack,
