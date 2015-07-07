@@ -1064,6 +1064,10 @@
 				view = model.get('view'),
 				activePlayer = model.get('activePlayer');
 
+			if ( view.popupIsOpen() ) {
+				return;
+			}
+
 			model.clearAvailableActions();
 			view.clearAvailableActions();
 			view.removeActiveSquare();

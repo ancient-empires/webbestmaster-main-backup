@@ -154,6 +154,7 @@
 		},
 
 		hide: function () {
+
 			log('hide view');
 
 			this.undelegateEvents();
@@ -235,6 +236,16 @@
 					backTo();
 				}, 200);
 			}());
+
+		},
+
+		popupIsOpen: function () {
+
+			var view = this,
+				popupUrl = view.popupUrl,
+				url = win.location.href;
+
+			return url.indexOf(popupUrl) !== -1;
 
 		},
 

@@ -274,7 +274,22 @@
 				$button.attr('data-description-is-show', 'no');
 			}
 
+		},
+
+		hide: function () {
+
+			var view = this,
+				battleView = view.get('view'),
+				battleModel = view.get('model');
+
+			battleModel.clearAvailableActions();
+			battleView.clearAvailableActions();
+			battleView.removeActiveSquare();
+
+			return view.proto.hide.apply(view, arguments);
+
 		}
+
 
 	});
 
