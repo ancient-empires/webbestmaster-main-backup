@@ -1328,7 +1328,7 @@
 				downEvent = view.get('downEvent'),
 				moveEvent = view.get('moveEvent'),
 				lang,
-				model, xy, unit, xp, level, unitLangData;
+				model, xy, unit, levelPercent, unitLangData;
 
 			if ( Math.abs(downEvent.x - moveEvent.x) + Math.abs(downEvent.y - moveEvent.y) > 7 )  { // detect press event without move
 				return;
@@ -1342,13 +1342,28 @@
 				return;
 			}
 
+			model.clearAvailableActions();
+			view.clearAvailableActions();
+
 			lang = win.APP.lang;
 			unitLangData = lang.get('unitsList')[unit.get('langKey')];
 
-			//xp = unit.get('xp');
-			//level = unit.get('level');
+			levelPercent = (function (){
 
-			//debugger
+				var levelList = win.APP.unitMaster.levelList,
+					xp = unit.get('xp') || 0,
+					level = unit.get('level') || 0,
+					min = levelList[level],
+					max = levelList[level + 1],
+					length = max - min;
+
+				if ( !max ) { // max level exceed
+					return 100;
+				}
+
+				return (xp - min) / length * 100; // de
+
+			}());
 
 			view.showPopup({
 				cssClass: 'full',
@@ -1357,7 +1372,8 @@
 					unit: unit,
 					img: ['unit-image', unit.get('type'), unit.get('color')].join('-'),
 					name: unitLangData.name,
-					description: unitLangData.description
+					description: unitLangData.description,
+					levelPercent: levelPercent
 				}
 			});
 

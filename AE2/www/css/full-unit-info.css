@@ -2,6 +2,40 @@
     width: 10rem;
 }
 
+.unit-level-icon {
+    background-repeat: no-repeat;
+    width: 1.4rem;
+    height: 1.4rem;
+    float: right;
+    -webkit-background-size: auto 100%;
+    background-size: auto 100%;
+    margin-top: 0.4rem;
+    background-position: 0 0;
+    text-align: right;
+}
+
+.unit-info-icon-with-level {
+    width: 2.1rem;
+}
+
+.unit-xp-level-wrapper {
+    margin-right: 1.6rem;
+    height: 1.1rem;
+    background-color: #f0f0f0;
+    box-sizing: border-box;
+    padding: 0.15rem;
+    margin-top: 0.4rem;
+}
+
+.unit-xp-level-wrapper-with-level {
+    margin-right: 2.3rem;
+}
+
+.unit-xp-level {
+    height: 100%;
+    background-color: #242a45;
+}
+
 /*
 .full-unit-info-image {
     -webkit-background-size: 100% auto;

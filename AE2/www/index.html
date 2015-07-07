@@ -1444,8 +1444,8 @@
 			<div class="scroll-area">
 				<div class="popup-page">
 
-					<div class="unit-card-wrapper">
-						<div class="unit-card-header"><%= name %> - <%= unit.get('health') %>/<%= unit.get('defaultHealth') %></div>
+					<div class="ta-left">
+						<div class="unit-card-header"><%= name %> - <%= unit.get('health') %> <!-- /<%= unit.get('defaultHealth') %> --> </div>
 						<div class="unit-shot-info-wrapper clear-fix">
 							<div class="unit-shot-info-image">
 								<div class="unit-image <%= img %>">&nbsp;</div>
@@ -1460,82 +1460,13 @@
 						</div>
 
 						<div class="clear"></div>
+						<div class="unit-level-icon unit-info-icon-level<%= level ? ' unit-info-icon-with-level' : '' %>"><%= level || '&nbsp;' %></div>
+						<div class="unit-xp-level-wrapper<%= level ? ' unit-xp-level-wrapper-with-level' : '' %>"><div class="unit-xp-level" style="width: <%= levelPercent + '%' %>"></div></div>
+
+						<div class="clear"></div>
 						<div class="description-unit-info"><%= description %></div>
 
-
-
-
-
 					</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 				</div>
 			</div>
