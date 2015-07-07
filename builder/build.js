@@ -39,7 +39,7 @@
 
 		src = './www/' + src.replace(/^src="|"$/g, '');
 		endJs += fs.readFileSync(src, 'utf-8');
-		fs.unlink(src);
+		fs.unlinkSync(src);
 	});
 
 	endHtml = endHtml.replace('scriptRemoved', '<script src="js/all.js" type="text/javascript" async><\/script>')
