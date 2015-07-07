@@ -1443,13 +1443,99 @@
 		<div class="h100 js-scroll-area-container scroll-touch">
 			<div class="scroll-area">
 				<div class="popup-page">
-					<div class="full-unit-info-image <%= img %>">&nbsp;</div>
-					<div class="full-unit-info-health-wrapper">
-						<% _.each(health, function(sign){ %>
-						<div class="full-unit-info-health-sign-block" style="background-image: url(i/fonts/numbers-2-<%= sign %>.png);">&nbsp;</div>
-						<% }); %>
+
+					<div class="unit-card-wrapper">
+						<div class="unit-card-header"><%= name %> - <%= unit.get('health') %>/<%= unit.get('defaultHealth') %></div>
+						<div class="unit-shot-info-wrapper clear-fix">
+							<div class="unit-shot-info-image">
+								<div class="unit-image <%= img %>">&nbsp;</div>
+							</div>
+							<div class="unit-shot-info-properties unit-shot-info-properties-wide">
+								<% var atk = unit.get('atk'), level = unit.get('level'), unitMaster = window.APP.unitMaster; %>
+								<div class="unit-shot-info-attack"><%= atk.min %>-<%= atk.max %><%= level ? '+'+ unitMaster.atkByLevel : '' %></div>
+								<div class="clear"></div>
+								<div class="unit-shot-info-defence"><%= unit.get('def') %><%= level ? '+'+ unitMaster.defByLevel : '' %></div>
+								<div class="unit-shot-info-move"><%= unit.get('mov') %></div>
+							</div>
+						</div>
+
+						<div class="clear"></div>
+						<div class="description-unit-info"><%= description %></div>
+
+
+
+
+
 					</div>
-					<div class="full-unit-info-name ellipsis"><%= name %></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 				</div>
 			</div>
@@ -1460,6 +1546,49 @@
 </script>
 
 <!--
+
+
+
+
+
+					<div class="unit-card-wrapper js-unit-card clear-fix disabled-card <%= isAvailable ? '' : 'disable' %>" data-is-commander="<%= isCommander %>" data-unit-card-name="<%= key %>">
+
+						<div class="unit-card-header"><%= langUnits[unitData.langKey].name %>
+							<span class="buy-unit-count js-buy-unit-count hidden" data-unit-count="0" data-unit-key="<%= key %>"></span>
+						</div>
+
+						<div class="unit-shot-info-wrapper clear-fix js-show-unit-description" data-description-is-show="no" data-unit-key="<%= key %>">
+							<div class="unit-shot-info-image">
+								<div class="unit-image unit-image-<%= key %>-<%= playerColor %>">&nbsp;</div>
+							</div>
+							<div class="unit-shot-info-properties">
+								<div class="unit-shot-info-attack"><%= unitData.atk.min %>-<%= unitData.atk.max %></div>
+								<div class="clear"></div>
+								<div class="unit-shot-info-defence"><%= unitData.def %></div>
+								<div class="unit-shot-info-move"><%= unitData.mov %></div>
+							</div>
+						</div>
+
+						<div data-sound="click.mp3" class="unit-buy-button js-buy-unit" data-unit-key="<%= key %>">
+							<% if (isCommander) { %>
+							<%= unitData.cost + (commander.deadCount || 0) * unitsData.commanderAddedCost %>
+							<% } else { %>
+							<%= unitData.cost %>
+							<% }; %>
+						</div>
+						<div class="clear"></div>
+						<div class="js-description-unit-info description-unit-info hidden" data-unit-key="<%= key %>">
+							<%= langUnits[unitData.langKey].description %>
+						</div>
+
+					</div>
+
+
+
+
+
+
+
 <script type="text/x-template" data-name="fight-animation">
 
 	<div class="fight-animation-wrapper js-fight-animation-wrapper">

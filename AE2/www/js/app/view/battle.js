@@ -1328,7 +1328,7 @@
 				downEvent = view.get('downEvent'),
 				moveEvent = view.get('moveEvent'),
 				lang,
-				model, xy, unit, xp, level;
+				model, xy, unit, xp, level, unitLangData;
 
 			if ( Math.abs(downEvent.x - moveEvent.x) + Math.abs(downEvent.y - moveEvent.y) > 7 )  { // detect press event without move
 				return;
@@ -1343,6 +1343,7 @@
 			}
 
 			lang = win.APP.lang;
+			unitLangData = lang.get('unitsList')[unit.get('langKey')];
 
 			//xp = unit.get('xp');
 			//level = unit.get('level');
@@ -1353,9 +1354,10 @@
 				cssClass: 'full',
 				popupName: 'full-unit-info',
 				popupData: {
+					unit: unit,
 					img: ['unit-image', unit.get('type'), unit.get('color')].join('-'),
-					health: unit.get('health').toString(),
-					name: lang.get('unitsList')[unit.get('langKey')].name
+					name: unitLangData.name,
+					description: unitLangData.description
 				}
 			});
 
