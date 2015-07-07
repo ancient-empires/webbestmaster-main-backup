@@ -1,0 +1,7 @@
+{
+  "name": "example-project",
+  "version": "0.1.0",
+  "devDependencies": {
+    "gulp-closure-compiler": "^0.2.20"
+  }
+}

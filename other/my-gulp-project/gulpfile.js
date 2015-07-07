@@ -13,7 +13,7 @@
         return gulp.src('src/*.js')
             .pipe(closureCompiler({
                 compilerPath: 'bower_components/closure-compiler/compiler.jar',
-                fileName: 'build.js'
+                fileName: 'all.js'
             }))
             .pipe(gulp.dest('dist'));
 
