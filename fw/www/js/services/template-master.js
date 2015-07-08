@@ -3,7 +3,7 @@
 
 	"use strict";
 	/*global window, document */
-	/*global APP */
+	/*global APP, doT */
 
 	win.APP = win.APP || {};
 
@@ -13,24 +13,7 @@
 		templateSelector: 'script[type="text/x-template"]',
 		tmplText: {},
 		tmplFn: {},
-		optimizeHtml: function (html) {
-			return html
-				.trim() // remove extra spaces
-				.replace(/\{\{\s*(\S+)\s*\}\}/gi, "<%= window.APP.lang.attr.$1 %>") // {{ word }} to normal state
-				.replace(/>\s+</g, '><') // remove extra spaces
-				.replace(/\s+/g, ' '); // remove extra spaces
-		},
-		createTemplateFunction: function (str) {
-			return new Function("obj",
-					"var p=[]; obj = obj || {}; with( obj ){p.push('" + str
-					.replace(/[\r\t\n]/g, " ")
-					.split("<%").join("\t")
-					.replace(/((^|%>)[^\t]*)'/g, "$1\r")
-					.replace(/\t=([\s\S]*?)%>/g, "',$1,'")
-					.split("\t").join("');")
-					.split("%>").join("p.push('")
-					.split("\r").join("\\'") + "');} return p.join('');");
-		},
+
 		init: function () {
 
 			var templates = doc.querySelectorAll(this.templateSelector);
@@ -38,10 +21,10 @@
 			Array.prototype.forEach.call(templates, function(tmplNode) {
 
 				var name = tmplNode.getAttribute('data-name'),
-					text = this.optimizeHtml(tmplNode.textContent);
+					text = tmplNode.textContent;
 
 				this.tmplText[name] = text;
-				this.tmplFn[name] = this.createTemplateFunction(text);
+				this.tmplFn[name] = doT.template(text);
 
 				tmplNode.parentNode.removeChild(tmplNode);
 
