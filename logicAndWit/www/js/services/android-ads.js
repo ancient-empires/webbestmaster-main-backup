@@ -13,7 +13,7 @@
 
 	var ad = {
 		attr: {},
-		period: 4e3 * 60,
+		period: 3e3 * 60,
 		set: function (key, value) {
 			return this.attr[key] = value;
 		},
