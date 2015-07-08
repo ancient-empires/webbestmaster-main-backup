@@ -10,7 +10,7 @@
     gulp.task('default', function() {
 
 
-        return gulp.src('src/*.js')
+        return gulp.src('www/js/*.js')
             .pipe(closureCompiler({
                 compilerPath: 'bower_components/closure-compiler/compiler.jar',
                 fileName: 'all.js'
