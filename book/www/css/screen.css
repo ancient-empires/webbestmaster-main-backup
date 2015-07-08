@@ -1,0 +1,48 @@
+@font-face {
+	font-family: 'Comic Sans MS';
+	src: url('../font/Comic%20Sans%20MS.ttf');
+}
+.wrapper {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-image: url(../i/main-bg.jpg);
+	background-position: center center;
+	font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+	color: #FFF;
+}
+
+.screen {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	-webkit-transition: -webkit-transform ease-in 0.5s;
+	transition: transform ease-in 0.5s;
+}
+
+.show-view-animation {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+}
+
+.hide-view-animation {
+	-webkit-transition: -webkit-transform ease-in 0.5s;
+	transition: transform ease-in 0.5s;
+	-webkit-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
+}
+
+.scroll-area-container {
+	height: 100%;
+	overflow: auto;
+}
