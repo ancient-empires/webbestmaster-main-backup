@@ -11,7 +11,7 @@
 	APP.BB.HomeView = APP.BB.BaseView.extend({
 
 		events: {
-			'click div': 'test',
+			//'click div': 'test',
 			'click .js-show-popup': 'testShowPopup'
 		},
 
