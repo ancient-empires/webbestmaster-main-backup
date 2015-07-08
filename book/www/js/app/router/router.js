@@ -12,11 +12,16 @@
 	win.APP.BB.Router = Backbone.Router.extend({
 
 		routes: {
-			'': 'home'
+			'': 'home',
+			'page': 'page'
 		},
 
 		home: function () {
 			new win.APP.BB.HomeView();
+		},
+
+		page: function () {
+			new win.APP.BB.PageView();
 		},
 
 		getAction: function () {

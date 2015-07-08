@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>book</title>
+	<title> F W </title>
 
 	<!-- mobile device -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -54,30 +54,72 @@
 	<script src="js/app/view/popup.js" type="text/javascript"></script>
 
 	<script src="js/app/view/home.js" type="text/javascript"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<script src="js/app/view/page.js" type="text/javascript"></script>
 
 </head>
 <body>
 
 <div class="js-wrapper"></div>
 
+
+
+
 <script type="text/x-template" data-name="home">
 
 	<div class="screen">
 
-			<div>DIV</div>
+		<div><h1>home</h1></div>
+
+		<button class="js-show-popup">show popup</button>
+
+		<button data-route="page">to page</button>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="page">
+
+	<div class="screen">
+
+		<div><h1>page</h1></div>
+
+		<button class="js-show-popup">show popup</button>
+
+		<button data-route="page">to page</button>
+
+	</div>
+
+</script>
+
+
+<script type="text/x-template" data-name="popup-wrapper">
+
+	<div class="table popup-wrapper js-popup-wrapper">
+
+		<div class="table-row">
+			<div class="table-cell popup-container js-popup-container js-hide-popup"></div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="popup-text">
+
+	<div class="popup-text js-stop-event">
+		<%= text %>
+
+		<br/>
+		<br/>
+		<br/>
+		<%= text %>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<%= text %>
+
 
 	</div>
 

@@ -70,6 +70,7 @@
 
 			proto.$wrapper = $(view.selectors.wrapper);
 			view.tmpl = win.APP.templateMaster.tmplFn;
+			view.info = win.APP.info;
 
 			// adjust font size
 			fontSize = Math.round( 14 * Math.pow( docElem.clientWidth * docElem.clientHeight / 153600, 0.5) ); // 153600 = 320 * 480
@@ -115,8 +116,6 @@
 		},
 
 		initialize: function() {
-
-			//this.delegateEvents(); // fix for case -> get html async
 
 		},
 
@@ -164,7 +163,7 @@
 
 			var view = this,
 				$el = view.$el,
-				transitionEnd = view.info.get('transitionEnd', true);
+				animationEnd = view.info.get('animationEnd', true);
 
 			view.undelegateEvents();
 
@@ -173,9 +172,10 @@
 			}
 
 			if ($el.hasClass('show-view-animation')) {
-				$el.one(transitionEnd, function () {
+				$el.one(animationEnd, function () {
 					$(this).remove();
 				});
+				//$el.removeClass('show-view-animation');
 				$el.addClass('hide-view-animation');
 			} else {
 				$el.remove();

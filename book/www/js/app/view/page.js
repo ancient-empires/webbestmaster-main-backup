@@ -8,7 +8,7 @@
 
 	win.APP.BB = win.APP.BB || {};
 
-	APP.BB.HomeView = APP.BB.BaseView.extend({
+	APP.BB.PageView = APP.BB.BaseView.extend({
 
 		events: {
 			'click div': 'test',
@@ -19,7 +19,7 @@
 
 			var view = this;
 
-			view.$el = $(view.tmpl.home());
+			view.$el = $(view.tmpl.page());
 
 			view.proto.initialize.apply(view, arguments);
 
