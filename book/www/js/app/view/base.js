@@ -173,7 +173,7 @@
 
 			if ($el.hasClass('show-view-animation')) {
 				$el.one(animationEnd, function () {
-					$(this).remove();
+					$(this).remove().empty();
 				});
 				//$el.removeClass('show-view-animation');
 				$el.addClass('hide-view-animation');
