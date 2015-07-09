@@ -137,6 +137,7 @@
 				var wasSwipe = swiper.slideNext();
 
 				if ( !wasSwipe ) {
+					view.routeBack();
 					console.log('last swipe');
 					return;
 				}
