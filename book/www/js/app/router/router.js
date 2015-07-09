@@ -13,16 +13,25 @@
 
 		routes: {
 			'': 'home',
-			'page': 'page'
+			'page': 'page',
+			'book/:bookFolder': 'openBook'
 		},
 
 		home: function () {
 			new win.APP.BB.HomeView();
 		},
 
-		page: function () {
-			new win.APP.BB.PageView();
+		openBook: function (bookFolder) {
+
+			new win.APP.BB.BookView({
+				bookFolder: bookFolder
+			});
+
 		},
+
+		//page: function () {
+		//	new win.APP.BB.PageView();
+		//},
 
 		getAction: function () {
 

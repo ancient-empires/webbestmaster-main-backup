@@ -25,8 +25,6 @@
 					}
 				]
 			},
-
-
 			{
 				folder: 'book 1',
 				title: {
