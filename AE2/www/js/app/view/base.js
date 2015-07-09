@@ -157,13 +157,20 @@
 
 			log('hide view');
 
-			this.undelegateEvents();
+			var view = this;
 
-			if (this.unbindEventListeners) {
-				this.unbindEventListeners();
+			view.undelegateEvents();
+
+			if (view.unbindEventListeners) {
+				view.unbindEventListeners();
 			}
 
-			this.$el.remove().empty();
+			view.$el.removeData().unbind().remove().empty();
+
+			view.remove();
+			view.unbind();
+
+			Backbone.View.prototype.remove.call(view);
 
 		},
 
