@@ -2,7 +2,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, Backbone, $, templateMaster, APP, Swiper, _ */
+	/*global window, Backbone, $, templateMaster, APP, Swiper, _, setTimeout, clearTimeout */
 
 	win.APP = win.APP || {};
 
@@ -38,7 +38,7 @@
 
 			view.bindEventListeners();
 
-			view.runPage(book.title);
+			view.runPage(book.pages[0]);
 
 		},
 
@@ -96,11 +96,7 @@
 					return;
 				}
 
-				if ( index ) { // it is NOT title page
-					view.runPage(book.pages[index - 1]);
-				} else { // it is title page
-					view.runPage(book.title);
-				}
+				view.runPage(book.pages[index]);
 
 			});
 
@@ -123,6 +119,32 @@
 
 			console.log(data);
 
+			view.doNextActionAfter(data.time);
+
+		},
+
+		doNextActionAfter: function (timeout) {
+
+			var view = this,
+				swiper = view.get('swiper'),
+				previousTimeoutId = view.get('nextActionTimeoutId'),
+				currentTimeoutId;
+
+			clearTimeout(previousTimeoutId);
+
+			currentTimeoutId = setTimeout(function () {
+
+				var wasSwipe = swiper.slideNext();
+
+				if ( !wasSwipe ) {
+					console.log('last swipe');
+					return;
+				}
+
+			}, timeout * 1e3);
+
+			view.set('nextActionTimeoutId', currentTimeoutId);
+
 		},
 
 		isPageChanged: function (pageIndex) {
@@ -143,7 +165,10 @@
 		unbindEventListeners: function () {
 
 			var view = this,
-				swiper = view.get('swiper');
+				swiper = view.get('swiper'),
+				previousTimeoutId = view.get('nextActionTimeoutId');
+
+			clearTimeout(previousTimeoutId);
 
 			swiper.off('onTransitionEnd');
 
