@@ -21,10 +21,13 @@
 				info = view.info,
 				languageName = info.get('language'),
 				booksByLang = win.APP.booksData[languageName],
-				book = _.find(booksByLang, {folder: data.bookFolder}),
-				soundMaster = win.APP.soundMaster;
+				book = _.find(booksByLang, {folder: data.bookFolder});
 
 			view.$el = $(view.tmpl.book(book));
+
+			view.set('book', book);
+
+			view.set('previousPageIndex', 0);
 
 			view.proto.initialize.apply(view, arguments);
 
@@ -35,11 +38,7 @@
 
 			view.bindEventListeners();
 
-			soundMaster.play({
-				sound: ['books', languageName, book.folder, book.title.sound ].join('/'),
-				road: 0,
-				isLoop: false
-			});
+			view.runPage(book.title);
 
 		},
 
@@ -87,9 +86,57 @@
 				swiper = view.get('swiper');
 
 			//onSlideChangeEnd
-			swiper.on('onSlideChangeEnd', function (swiper) {
-				console.log(swiper.activeIndex);
+			swiper.on('onTransitionEnd', function (swiper) {
+
+				var book = view.get('book'),
+					index = swiper.activeIndex,
+					isPageChanged = view.isPageChanged(index);
+
+				if ( !isPageChanged ) {
+					return;
+				}
+
+				if ( index ) { // it is NOT title page
+					view.runPage(book.pages[index - 1]);
+				} else { // it is title page
+					view.runPage(book.title);
+				}
+
 			});
+
+		},
+
+		runPage: function (dataArg) {
+
+			var view = this,
+				data = dataArg || {},
+				info = view.info,
+				languageName = info.get('language'),
+				book = view.get('book'),
+				soundMaster = win.APP.soundMaster;
+
+			soundMaster.play({
+				sound: ['books', languageName, book.folder, data.sound].join('/'),
+				road: 0,
+				isLoop: false
+			});
+
+			console.log(data);
+
+		},
+
+		isPageChanged: function (pageIndex) {
+
+			var view = this,
+				previousPageIndex = view.get('previousPageIndex'),
+				currentPageIndex = pageIndex;
+
+			if (previousPageIndex === currentPageIndex) {
+				return false;
+			}
+
+			view.set('previousPageIndex', currentPageIndex);
+			return true;
 
 		},
 
@@ -98,7 +145,7 @@
 			var view = this,
 				swiper = view.get('swiper');
 
-			swiper.off('onSlideChangeEnd');
+			swiper.off('onTransitionEnd');
 
 			swiper.detachEvents();
 
