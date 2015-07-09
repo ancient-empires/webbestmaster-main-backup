@@ -21,13 +21,49 @@
 				info = view.info,
 				languageName = info.get('language'),
 				booksByLang = win.APP.booksData[languageName],
-				book = _.find(booksByLang, {folder: data.bookFolder});
+				book = _.find(booksByLang, {folder: data.bookFolder}),
+				swiper;
 
 			view.$el = $(view.tmpl.book(book));
 
 			view.proto.initialize.apply(view, arguments);
 
+			// init swipe
 			view.render();
+
+			swiper = new Swiper ('.swiper-container', {
+				// Optional parameters
+				direction: 'horizontal',
+				loop: false,
+
+				// If we need pagination
+				pagination: '.swiper-pagination',
+
+				// Navigation arrows
+				nextButton: '.swiper-button-next',
+				prevButton: '.swiper-button-prev',
+
+				// And if we need scrollbar
+				scrollbar: '.swiper-scrollbar'
+			});
+
+			view.set('swiper', swiper);
+
+			//onSlideChangeEnd
+			swiper.on('onSlideChangeEnd', function (swiper) {
+				console.log(swiper.activeIndex);
+			});
+
+		},
+
+		unbindEventListeners: function () {
+
+			var view = this,
+				swiper = view.get('swiper');
+
+			swiper.off('onSlideChangeEnd');
+
+			swiper.detachEvents();
 
 		}
 
