@@ -12,7 +12,7 @@
 
 		events: {
 			//'click div': 'test',
-			//'click .js-show-popup': 'testShowPopup'
+			'click .js-show-popup': 'testShowPopup'
 		},
 
 		initialize: function () {

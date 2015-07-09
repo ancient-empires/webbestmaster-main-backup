@@ -159,13 +159,26 @@
 
 		},
 
+		destroyView: function() {
+
+			var view = this;
+
+			view.undelegateEvents();
+
+			view.$el.removeData().unbind().remove().empty();
+
+			view.remove();
+			view.unbind();
+
+			Backbone.View.prototype.remove.call(view);
+
+		},
+
 		hide: function () {
 
 			var view = this,
 				$el = view.$el,
 				animationEnd = view.info.get('animationEnd', true);
-
-			view.undelegateEvents();
 
 			if (view.unbindEventListeners) {
 				view.unbindEventListeners();
@@ -173,12 +186,12 @@
 
 			if ($el.hasClass('show-view-animation')) {
 				$el.one(animationEnd, function () {
-					$(this).remove().empty();
+					view.destroyView();
 				});
 				//$el.removeClass('show-view-animation');
 				$el.addClass('hide-view-animation');
 			} else {
-				$el.remove();
+				view.destroyView();
 			}
 
 		},
@@ -187,7 +200,7 @@
 
 			var view = this,
 				$oldContainer = $(view.$wrapper[0].querySelectorAll(view.selectors.viewWrapper));
-			
+
 			$oldContainer.trigger('hide');
 
 			view.$el.addClass(view.classNames.viewWrapper);
@@ -247,7 +260,7 @@
 			//data = data || {};
 
 			var view = this;
-				//router = win.APP.bb.router;
+			//router = win.APP.bb.router;
 			//router.isForce = data.isForce;
 
 			(function backTo() {
