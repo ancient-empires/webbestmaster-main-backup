@@ -58,6 +58,9 @@
 	<script src="js/app/view/home.js" type="text/javascript"></script>
 	<script src="js/app/view/page.js" type="text/javascript"></script>
 
+	<!-- books data -->
+	<script src="js/app/books-data.js" type="text/javascript"></script>
+
 </head>
 <body>
 
@@ -80,9 +83,23 @@
 		</div>
 
 		<hr/>
-		<div>books is here</div>
 
-		<div data-route="page">i am book</div>
+		<!-- books is here -->
+		<div>
+
+			{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName]; }}
+
+			{{ _.each(books, function(book){ }}
+
+				<div data-route="book/{{= book.folder }}">
+					<img src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>
+					<p>{{= book.title.text }}</p>
+				</div>
+
+			{{ }); }}
+
+
+		</div>
 
 		<hr/>
 		<div>
