@@ -13,6 +13,8 @@
 
 		win.APP.templateMaster.init();
 		win.APP.BB.BaseView.prototype.initStatic();
+		win.APP.soundMaster.init();
+		//win.APP.soundMaster.playBgSound();
 
 		win.FastClick.attach(win.document.body);
 
@@ -25,8 +27,6 @@
 
 			win.APP.bb.router = new win.APP.BB.Router();
 			Backbone.history.start();
-			win.APP.soundMaster.init();
-			//win.APP.soundMaster.playBgSound();
 
 		}());
 

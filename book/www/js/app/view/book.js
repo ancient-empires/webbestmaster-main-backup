@@ -2,7 +2,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window, Backbone, $, templateMaster, APP */
+	/*global window, Backbone, $, templateMaster, APP, Swiper, _ */
 
 	win.APP = win.APP || {};
 
@@ -22,7 +22,7 @@
 				languageName = info.get('language'),
 				booksByLang = win.APP.booksData[languageName],
 				book = _.find(booksByLang, {folder: data.bookFolder}),
-				swiper;
+				soundMaster = win.APP.soundMaster;
 
 			view.$el = $(view.tmpl.book(book));
 
@@ -30,6 +30,23 @@
 
 			// init swipe
 			view.render();
+
+			view.initSwiper();
+
+			view.bindEventListeners();
+
+			soundMaster.play({
+				sound: ['books', languageName, book.folder, book.title.sound ].join('/'),
+				road: 0,
+				isLoop: false
+			});
+
+		},
+
+		initSwiper: function () {
+
+			var view = this,
+				swiper;
 
 			swiper = new Swiper ('.swiper-container', {
 				// Optional parameters
@@ -61,9 +78,6 @@
 			});
 
 			view.set('swiper', swiper);
-
-			view.bindEventListeners();
-
 
 		},
 

@@ -12,7 +12,7 @@
 	function start() {
 
 		win.APP.util.setHTMLStyle();
-		APP.templateMaster.init();
+		win.APP.templateMaster.init();
 
 		FastClick.attach(document.body);
 

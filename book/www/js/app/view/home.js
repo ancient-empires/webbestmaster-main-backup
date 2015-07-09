@@ -25,6 +25,10 @@
 
 			view.render();
 
+			win.APP.soundMaster.stop({
+				road: 0
+			});
+
 		},
 
 		test: function (e) {

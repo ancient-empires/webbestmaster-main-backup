@@ -9,7 +9,7 @@
 
 	win.APP.soundMaster.androidPlayer = {
 
-		pathPrefix: 'www/sound/',
+		pathPrefix: 'www/',
 
 		init: function () {
 
