@@ -146,7 +146,7 @@
 
 				{{~it.pages :book }}
 				<div class="swiper-slide">
-					<img src="books/{{= [ languageName, bookFolder, book.img ].join('/') }}" alt=""/>
+					<img style="display: block; width: 100%; height: 100px;" src="books/{{= [ languageName, bookFolder, book.img ].join('/') }}" alt=""/>
 					<div>{{= book.text }}</div>
 				</div>
 				{{~ }}

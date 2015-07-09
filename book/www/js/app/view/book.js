@@ -36,6 +36,19 @@
 				direction: 'horizontal',
 				loop: false,
 
+				// remove it for nonPAHTbI swipe
+				effect: 'coverflow',
+				grabCursor: true,
+				centeredSlides: true,
+				slidesPerView: 'auto',
+				coverflow: {
+					rotate: 50,
+					stretch: 0,
+					depth: 100,
+					modifier: 1,
+					slideShadows : true
+				},
+
 				// If we need pagination
 				pagination: '.swiper-pagination',
 
@@ -48,6 +61,16 @@
 			});
 
 			view.set('swiper', swiper);
+
+			view.bindEventListeners();
+
+
+		},
+
+		bindEventListeners: function () {
+
+			var view = this,
+				swiper = view.get('swiper');
 
 			//onSlideChangeEnd
 			swiper.on('onSlideChangeEnd', function (swiper) {

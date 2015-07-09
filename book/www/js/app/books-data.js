@@ -22,7 +22,24 @@
 					{
 						text: 'englist text 2',
 						img: '2.jpg'
+					},
+					{
+						text: 'englist text 1',
+						img: '1.jpg'
+					},
+					{
+						text: 'englist text 2',
+						img: '2.jpg'
+					},
+					{
+						text: 'englist text 1',
+						img: '1.jpg'
+					},
+					{
+						text: 'englist text 2',
+						img: '2.jpg'
 					}
+
 				]
 			},
 			{
