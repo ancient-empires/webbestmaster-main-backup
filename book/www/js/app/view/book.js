@@ -148,6 +148,11 @@
 				if (isStoryByStory) {
 					view.hide().then(function () {
 
+						// detect book/:bookFolder
+						if ( Backbone.history.fragment.indexOf('book/') !== 0 ) {
+							return;
+						}
+
 						var info = view.info,
 							languageName = info.get('language'),
 							booksData = win.APP.booksData,
