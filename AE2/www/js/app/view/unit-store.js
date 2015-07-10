@@ -88,7 +88,8 @@
 		buyUnit: function (e) {
 
 			var view, model, mapSize, unitLimit, mapWidth, mapHeight, x, y, xy, currentXY, getPathSize, player,
-				playerUnits, playerMoney, $this, unitType, unitData, unitCost, freeXYs, unitMaster, isCommander;
+				playerUnits, playerMoney, $this, unitType, unitData, unitCost, freeXYs, unitMaster, isCommander,
+				firstXY, filteredXYs;
 
 			if (e.state === 'cpu') { // bot
 
@@ -169,8 +170,26 @@
 			}
 
 			freeXYs = freeXYs.sort(function (xy1, xy2) {
-				return getPathSize(currentXY, xy1) - getPathSize(currentXY, xy2);
+
+				var pathSize1 = getPathSize(currentXY, xy1),
+					pathSize2 = getPathSize(currentXY, xy2);
+
+				xy1.pathSize = pathSize1;
+				xy2.pathSize = pathSize2;
+
+				return pathSize1 - pathSize2;
+
 			});
+
+			// find nearest non player building
+			firstXY = freeXYs[0];
+			filteredXYs = _.filter(freeXYs, function (xy) {
+				console.log(firstXY.pathSize - xy.pathSize, firstXY.pathSize, xy.pathSize);
+				return Math.abs(firstXY.pathSize - xy.pathSize) < 0.00001;
+			});
+
+			console.log(filteredXYs);
+
 
 			model.appendUnit({
 				type: unitType,
