@@ -162,11 +162,7 @@
 
 			textAnimationIntervalId = setInterval(function () {
 
-				console.log('interval');
-
-				var letter = data.text[index];
-
-				if ( !letter ) {
+				if ( !data.text[index] ) {
 					clearInterval(view.get('textAnimationIntervalId'));
 					return;
 				}
