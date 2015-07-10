@@ -11,7 +11,7 @@
 	APP.BB.BookView = APP.BB.BaseView.extend({
 
 		events: {
-
+			'click .js-play-pause': 'playPause'
 		},
 
 		initialize: function (dataArg) {
@@ -26,6 +26,8 @@
 			view.$el = $(view.tmpl.book(book));
 
 			view.set('book', book);
+
+			view.set('state', 'playing'); // playing or pause
 
 			view.set('previousPageIndex', 0);
 
@@ -117,7 +119,7 @@
 				isLoop: false
 			});
 
-			console.log(data);
+			view.set('state', 'playing');
 
 			view.doNextActionAfter(data.time);
 
@@ -156,6 +158,51 @@
 			}, timeout * 1e3);
 
 			view.set('nextActionTimeoutId', currentTimeoutId);
+
+		},
+
+		playPause: function () {
+
+			var view = this,
+				state = view.get('state');
+
+			if (state === 'playing') {
+				view.stopCurrentPage();
+			}
+
+			if (state === 'pause') {
+				view.playCurrentPage();
+			}
+
+		},
+
+		stopCurrentPage: function () {
+
+			var view = this,
+				soundMaster = win.APP.soundMaster;
+
+			view.set('state', 'pause');
+
+			// stop music and clear timeout
+
+			soundMaster.stop({
+				road: 0
+			});
+
+			clearTimeout( view.get('nextActionTimeoutId') );
+
+		},
+
+		playCurrentPage: function () {
+
+			var view = this,
+				swiper = view.get('swiper'),
+				index = swiper.activeIndex,
+				book = view.get('book');
+
+			// view.set('state', 'playing'); will set from runPage
+
+			view.runPage(book.pages[index]);
 
 		},
 
