@@ -147,9 +147,18 @@
 
 				if (isStoryByStory) {
 					view.hide().then(function () {
+
+						var info = view.info,
+							languageName = info.get('language'),
+							booksData = win.APP.booksData,
+							util = win.APP.util,
+							books = JSON.parse(JSON.stringify(booksData[languageName])),
+							book = util.assortArray(books)[0];
+
 						new win.APP.BB.BookView({
-							bookFolder: 'book 0'
+							bookFolder: book.folder
 						});
+
 					});
 				} else {
 					view.routeBack();
