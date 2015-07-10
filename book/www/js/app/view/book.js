@@ -14,6 +14,10 @@
 			'click .js-play-pause': 'playPause'
 		},
 
+		selectors: {
+			pageText: '.js-page-text'
+		},
+
 		initialize: function (dataArg) {
 
 			var view = this,
@@ -34,13 +38,13 @@
 			view.proto.initialize.apply(view, arguments);
 
 			// init swipe
-			view.render();
+			view.render().then(function () {
+				view.runPage(book.pages[0]);
+			});
 
 			view.initSwiper();
 
 			view.bindEventListeners();
-
-			view.runPage(book.pages[0]);
 
 		},
 
@@ -121,7 +125,59 @@
 
 			view.set('state', 'playing');
 
+			view.animateText();
+
 			view.doNextActionAfter(data.time);
+
+		},
+
+		animateText: function () {
+
+			var view = this,
+				selectors = view.selectors,
+				swiper = view.get('swiper'),
+				index = swiper.activeIndex,
+				$slides = view.$el.find('.swiper-slide'),
+				$slide = $slides.eq(index),
+				$text = $slide.find(selectors.pageText),
+				book = view.get('book'),
+				page = book.pages[index],
+				text = page.text;
+
+			view.showTextAnimation({
+				$el: $text,
+				text: text
+			});
+
+		},
+
+		showTextAnimation: function (dataArg) {
+
+			var view = this,
+				data = dataArg || {},
+				index = 0,
+				textAnimationIntervalId = view.get('textAnimationIntervalId');
+
+			clearInterval(textAnimationIntervalId);
+
+			textAnimationIntervalId = setInterval(function () {
+
+				console.log('interval');
+
+				var letter = data.text[index];
+
+				if ( !letter ) {
+					clearInterval(view.get('textAnimationIntervalId'));
+					return;
+				}
+
+				index += 1;
+
+				data.$el.html(data.text.substring(0, index));
+
+			}, 100);
+
+			view.set('textAnimationIntervalId', textAnimationIntervalId);
 
 		},
 
@@ -239,13 +295,15 @@
 
 			var view = this,
 				swiper = view.get('swiper'),
-				previousTimeoutId = view.get('nextActionTimeoutId');
+				previousTimeoutId = view.get('nextActionTimeoutId'),
+				textAnimationIntervalId = view.get('textAnimationIntervalId');
+
+			clearTimeout(previousTimeoutId);
+			clearInterval(textAnimationIntervalId);
 
 			win.APP.soundMaster.stop({
 				road: 0
 			});
-
-			clearTimeout(previousTimeoutId);
 
 			swiper.off('onTransitionEnd');
 

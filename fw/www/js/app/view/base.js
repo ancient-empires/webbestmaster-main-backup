@@ -178,7 +178,8 @@
 
 			var view = this,
 				$el = view.$el,
-				animationEnd = view.info.get('animationEnd', true);
+				animationEnd = view.info.get('animationEnd', true),
+				deferred = $.Deferred();
 
 			if (view.unbindEventListeners) {
 				view.unbindEventListeners();
@@ -187,12 +188,16 @@
 			if ($el.hasClass('show-view-animation')) {
 				$el.one(animationEnd, function () {
 					view.destroyView();
+					deferred.resolve();
 				});
 				//$el.removeClass('show-view-animation');
 				$el.addClass('hide-view-animation');
 			} else {
 				view.destroyView();
+				deferred.resolve();
 			}
+
+			return deferred.promise();
 
 		},
 
@@ -208,13 +213,24 @@
 			view.$wrapper.append(view.$el);
 			//view.util.setSizes();
 			//view.util.toTop();
-			view.showAppearAnimation();
+			return view.showAppearAnimation();
 
 		},
 
 		showAppearAnimation: function () {
 
-			this.$el.addClass('show-view-animation');
+			var view = this,
+				$el = view.$el,
+				deferred = $.Deferred(),
+				animationEnd = view.info.get('animationEnd', true);
+
+			$el.one(animationEnd, function () {
+				deferred.resolve();
+			});
+
+			$el.addClass('show-view-animation');
+
+			return deferred.promise();
 
 		},
 

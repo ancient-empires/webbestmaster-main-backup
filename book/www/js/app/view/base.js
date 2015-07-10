@@ -213,13 +213,24 @@
 			view.$wrapper.append(view.$el);
 			//view.util.setSizes();
 			//view.util.toTop();
-			view.showAppearAnimation();
+			return view.showAppearAnimation();
 
 		},
 
 		showAppearAnimation: function () {
 
-			this.$el.addClass('show-view-animation');
+			var view = this,
+				$el = view.$el,
+				deferred = $.Deferred(),
+				animationEnd = view.info.get('animationEnd', true);
+
+			$el.one(animationEnd, function () {
+				deferred.resolve();
+			});
+
+			$el.addClass('show-view-animation');
+
+			return deferred.promise();
 
 		},
 
