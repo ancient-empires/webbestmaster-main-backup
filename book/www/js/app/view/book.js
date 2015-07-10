@@ -169,6 +169,10 @@
 				swiper = view.get('swiper'),
 				previousTimeoutId = view.get('nextActionTimeoutId');
 
+			win.APP.soundMaster.stop({
+				road: 0
+			});
+
 			clearTimeout(previousTimeoutId);
 
 			swiper.off('onTransitionEnd');
