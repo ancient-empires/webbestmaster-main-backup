@@ -370,9 +370,10 @@
 		prompt: function (data) {
 
 			var view = this,
-				a = view.util.getRandomBetween(4, 14),
-				b = view.util.getRandomBetween(4, 14),
-				result = prompt(' ' + a + ' + ' + b + ' = ?');
+				util = win.APP.util,
+				a = util.getRandomBetween(4, 14),
+				b = util.getRandomBetween(4, 14),
+				result = prompt( [' ', a, '+', b, '= ?'].join(' ') );
 
 			if ( result === null || result === '') {
 				return;
