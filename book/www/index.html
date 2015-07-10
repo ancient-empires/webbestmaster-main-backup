@@ -79,7 +79,9 @@
 		<!-- header -->
 		<div>
 
-			<div>auto play</div>
+			{{ var isStoryByStory = window.APP.info.get('storyByStory') === 'on'; }}
+
+			<div class="js-story-by-story{{= isStoryByStory ? ' active-on-off' : '' }}"> story by story </div>
 			<div>company name</div>
 			<div>buy full version</div>
 

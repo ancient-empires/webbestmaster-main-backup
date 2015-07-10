@@ -134,12 +134,23 @@
 
 			currentTimeoutId = setTimeout(function () {
 
-				var wasSwipe = swiper.slideNext();
+				var wasSwipe = swiper.slideNext(),
+					isStoryByStory;
 
-				if ( !wasSwipe ) {
-					view.routeBack();
-					console.log('last swipe');
+				if ( wasSwipe ) { // swipe was good
 					return;
+				}
+
+				isStoryByStory = view.info.get('storyByStory') === 'on';
+
+				if (isStoryByStory) {
+					view.hide().then(function () {
+						new win.APP.BB.BookView({
+							bookFolder: 'book 0'
+						});
+					});
+				} else {
+					view.routeBack();
 				}
 
 			}, timeout * 1e3);

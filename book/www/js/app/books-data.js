@@ -13,27 +13,26 @@
 				title: {
 					text: 'title text',
 					img: 'title.jpg',
-					sound: '1.mp3',
-					time: 10
+					sound: '1.mp3'
 				},
 				pages: [
 					{
 						text: 'englist text 1',
 						img: '1.jpg',
 						sound: '1.mp3',
-						time: 10
+						time: 3
 					},
 					{
 						text: 'englist text 2',
 						img: '2.jpg',
 						sound: '2.mp3',
-						time: 10
+						time: 3
 					},
 					{
 						text: 'englist text 3',
 						img: '1.jpg',
 						sound: '3.mp3',
-						time: 10
+						time: 3
 					}
 
 				]

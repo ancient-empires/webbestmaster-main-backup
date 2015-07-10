@@ -178,7 +178,8 @@
 
 			var view = this,
 				$el = view.$el,
-				animationEnd = view.info.get('animationEnd', true);
+				animationEnd = view.info.get('animationEnd', true),
+				deferred = $.Deferred();
 
 			if (view.unbindEventListeners) {
 				view.unbindEventListeners();
@@ -187,12 +188,16 @@
 			if ($el.hasClass('show-view-animation')) {
 				$el.one(animationEnd, function () {
 					view.destroyView();
+					deferred.resolve();
 				});
 				//$el.removeClass('show-view-animation');
 				$el.addClass('hide-view-animation');
 			} else {
 				view.destroyView();
+				deferred.resolve();
 			}
+
+			return deferred.promise();
 
 		},
 

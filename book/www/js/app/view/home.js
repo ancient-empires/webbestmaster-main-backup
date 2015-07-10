@@ -11,7 +11,7 @@
 	APP.BB.HomeView = APP.BB.BaseView.extend({
 
 		events: {
-			//'click div': 'test',
+			'click .js-story-by-story': 'setStoryByStory',
 			'click .js-show-popup': 'testShowPopup'
 		},
 
@@ -27,9 +27,20 @@
 
 		},
 
-		test: function (e) {
+		setStoryByStory: function (e) {
 
-			alert('click to div');
+			var view = this,
+				$this = $(e.currentTarget),
+				info = view.info,
+				isStoryByStory = info.get('storyByStory') === 'on';
+
+			if (isStoryByStory) {
+				$this.removeClass('active-on-off');
+				info.set('storyByStory', 'off');
+			} else {
+				$this.addClass('active-on-off');
+				info.set('storyByStory', 'on');
+			}
 
 		},
 
@@ -53,7 +64,6 @@
 				//	context: view
 				//}
 			});
-
 
 		}
 
