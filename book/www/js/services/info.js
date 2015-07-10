@@ -227,6 +227,10 @@
 				}
 			}
 
+		},
+
+		getLinkToStore: function (type) { // pro or normal
+			return this.link[this.get('os', true)][type];
 		}
 
 	};
