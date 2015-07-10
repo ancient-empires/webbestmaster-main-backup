@@ -152,7 +152,7 @@
 							languageName = info.get('language'),
 							booksData = win.APP.booksData,
 							util = win.APP.util,
-							books = JSON.parse(JSON.stringify(booksData[languageName])),
+							books = util.copyJSON(booksData[languageName]),
 							book = util.assortArray(books)[0];
 
 						new win.APP.BB.BookView({
