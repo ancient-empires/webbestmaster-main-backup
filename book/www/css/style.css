@@ -1,0 +1,7 @@
+.story-by-story-wrapper {
+	background-color: #c00;
+}
+
+.story-by-story-wrapper.active-on-off {
+	background-color: #0c0;
+}
