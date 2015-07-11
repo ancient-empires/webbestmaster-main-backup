@@ -2,8 +2,8 @@
 (function (win, doc) {
 
 	'use strict';
-	/*global console, alert, window, document, openDatabase */
-	/*global $ */
+	/*global window, document, openDatabase */
+	/*global $, _ */
 
 	win.APP.map = {
 		squareSize: {
@@ -178,15 +178,17 @@
 
 		},
 
-		preloadImages: function () {
+        preloadData: function () {
 
-			this.progressLength = win.APP.allImages.length + _.keys(win.APP.mapTiles).length + _.keys(win.APP.mapTilesPreview).length;
+			this.progressLength = win.APP.allImages.length + _.keys(win.APP.mapTiles).length + _.keys(win.APP.mapTilesPreview).length + _.keys(win.APP.maps).length;
 
 			return this.prepareTiles(win.APP.mapTiles)
 				.then(function () {
 					return win.APP.map.prepareTiles(win.APP.mapTilesPreview);
 				}).then(function () {
-					return win.APP.map.preCacheImages();
+                    return win.APP.map.db.init();
+				}).then(function () {
+                    return win.APP.map.preCacheImages();
 				});
 
 		},
@@ -237,7 +239,8 @@
 			init: function () {
 
 				var dbMaster = this,
-					db = openDatabase(dbMaster.name, dbMaster.version, dbMaster.description, dbMaster.size);
+					deferred = $.Deferred(),
+                    db = openDatabase(dbMaster.name, dbMaster.version, dbMaster.description, dbMaster.size);
 
 				dbMaster.db = db;
 
@@ -248,7 +251,9 @@
 						skirmishDeferred = $.Deferred();
 
 					$.when(missionDeferred, skirmishDeferred).done(function () {
-						dbMaster.prepareDefaultMap();
+						dbMaster.prepareDefaultMap().then(function () {
+                            deferred.resolve();
+						});
 					});
 
 					//tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.missionMaps); // TODO: comment this for production
@@ -256,13 +261,13 @@
 					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.missionMaps + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], function () {
 						missionDeferred.resolve();
 					}, function (e) {
-						log(e);
+						//log(e);
 					});
 
 					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.skirmishMaps + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], function () {
 						skirmishDeferred.resolve();
 					}, function (e) {
-						log(e);
+						//log(e);
 					});
 
 					//tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.savedGame); // TODO: comment this for production
@@ -273,31 +278,64 @@
 
 				});
 
+                return deferred.promise();
+
 			},
 
 			prepareDefaultMap: function () {
 
 				var maps = win.APP.maps,
 					dbMaster = this,
-					db = dbMaster.db;
+					deferred = $.Deferred(),
+					promise = deferred.promise(),
+                    mainDeferred = $.Deferred();
 
 				_.each(maps, function (map, jsMapKey) {
-					db.transaction(function (tx) {
-						tx.executeSql('SELECT * FROM ' + map.type + ' WHERE jsMapKey=?', [jsMapKey], function (tx, results) {
-							if (results.rows.length) {
-								dbMaster.compareMap(results.rows.item(0), map, jsMapKey).then(function () {
-									delete win.APP.maps[jsMapKey];
-								});
-								return;
-							}
-							dbMaster.insertMap(map, jsMapKey);
-						});
+					promise = promise.then(function () {
+						return dbMaster.prepareMap(map, jsMapKey);
 					});
 				});
 
+                promise.then(function () {
+                    mainDeferred.resolve();
+                });
+
+				deferred.resolve();
+
+                return mainDeferred.promise();
+
 			},
 
-			compareMap: function (oldMap, newMap, jsMapKey) {
+            prepareMap: function (map, jsMapKey) {
+
+                var dbMaster = this,
+                    db = dbMaster.db,
+                    mapObj = win.APP.map,
+                    deferred = $.Deferred();
+
+                db.transaction(function (tx) {
+                    tx.executeSql('SELECT * FROM ' + map.type + ' WHERE jsMapKey=?', [jsMapKey], function (tx, results) {
+                        if (results.rows.length) {
+                            dbMaster.compareMap(results.rows.item(0), map, jsMapKey).then(function () {
+                                delete win.APP.maps[jsMapKey];
+                                mapObj.recountProgress();
+                                deferred.resolve();
+                            });
+                            return;
+                        }
+                        dbMaster.insertMap(map, jsMapKey).then(function () {
+                            delete win.APP.maps[jsMapKey];
+                            mapObj.recountProgress();
+                            deferred.resolve();
+                        });
+                    });
+                });
+
+                return deferred.promise();
+
+            },
+
+        	compareMap: function (oldMap, newMap, jsMapKey) {
 
 				var maps = win.APP.maps,
 					dbMaster = this,

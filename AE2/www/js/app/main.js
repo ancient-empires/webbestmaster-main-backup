@@ -54,9 +54,7 @@
 		win.APP.BB.BaseView.prototype.initStatic();
 		FastClick.attach(document.body);
 
-		//win.APP.map.preloadImages();
-		win.APP.map.db.init();
-		win.APP.map.preloadImages().then(startApp);
+		win.APP.map.preloadData().then(startApp);
 
 	}
 
