@@ -12,14 +12,9 @@
 		type: 'skirmish',
 		size: {width: 17, height: 12},
 		maxPlayers: 2,
-		//isOpen: true,
-
-		// en
-		name: 'Rocky Bay',
-
-		// ru
+		name: 'Rocky bay',
+		'name-es': 'Bahía rocosa',
 		'name-ru': 'Скалистая бухта',
-
 		units: [
 			{type: 'commander', x: 1, y: 9, ownerId: 0},
 			{type: 'commander', x: 15, y: 9, ownerId: 1}

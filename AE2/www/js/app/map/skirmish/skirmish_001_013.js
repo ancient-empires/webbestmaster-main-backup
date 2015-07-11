@@ -12,17 +12,9 @@
 		type: 'skirmish',
 		size: {width: 11, height: 11},
 		maxPlayers: 2,
-		//isOpen: false,
-
-		// en
-		name: 'Morning Star',
-
-		// es
-		'name-es': 'Estrella de la Mañana',
-
-		// ru
+		name: 'Morning star',
+		'name-es': 'Estrella de la mañana',
 		'name-ru': 'Утренняя звезда',
-
 		units: [
 			{x: 2, y: 8, type: 'commander', ownerId: 0},
 			{x: 8, y: 2, type: 'commander', ownerId: 1}

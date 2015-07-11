@@ -12,14 +12,9 @@
 		type: 'skirmish',
 		size: {width: 10, height: 10},
 		maxPlayers: 2,
-		//isOpen: true,
-
-		// en
 		name: 'River',
-
-		// ru
+		'name-es': 'Río',
 		'name-ru': 'Река',
-
 		units: [
 			{type: 'commander', x: 8, y: 1, ownerId: 0},
 			{type: 'commander', x: 1, y: 8, ownerId: 1}

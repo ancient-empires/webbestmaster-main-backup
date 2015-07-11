@@ -12,14 +12,9 @@
 		type: 'skirmish',
 		size: {width: 15, height: 15},
 		maxPlayers: 2,
-		//isOpen: true,
-
-		// en
-		name: 'Icy Path',
-
-		// ru
+		name: 'Icy path',
+		'name-es': 'Camino helado',
 		'name-ru': 'Ледяной путь',
-
 		units: [
 			{x: 1, y: 1, type: 'commander', ownerId: 0},
 			{x: 13, y: 13, type: 'commander', ownerId: 1}

@@ -12,17 +12,9 @@
 		type: 'skirmish',
 		size: {width: 19, height: 19},
 		maxPlayers: 4,
-		//isOpen: false,
-
-		// en
-		name: 'Shadow Lands',
-
-		// es
-		'name-es': 'Tierras Sombrías',
-
-		// ru
+		name: 'Shadow lands',
+		'name-es': 'Tierras sombrías',
 		'name-ru': 'Теневые земли',
-
 		units: [
 			{x: 9, y: 1, type: 'commander', ownerId: 0},
 			{x: 2, y: 7, type: 'commander', ownerId: 1},

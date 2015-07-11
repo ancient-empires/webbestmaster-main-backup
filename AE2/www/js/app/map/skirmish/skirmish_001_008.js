@@ -12,17 +12,9 @@
 		type: 'skirmish',
 		size: {width: 15, height: 15},
 		maxPlayers: 4,
-		//isOpen: false,
-
-		// en
 		name: 'Solitude',
-
-		// es
 		'name-es': 'Soledad',
-
-		// ru
 		'name-ru': 'Одиночество',
-
 		units: [
 			{x: 2, y: 7, type: 'commander', ownerId: 0},
 			{x: 7, y: 2, type: 'commander', ownerId: 1},

@@ -12,17 +12,9 @@
 		type: 'skirmish',
 		size: {width: 19, height: 19},
 		maxPlayers: 4,
-		//isOpen: false,
-
-		// en
-		name: 'The Crucible',
-
-		// es
-		'name-es': 'El Crisol',
-
-		// ru
+		name: 'The crucible',
+		'name-es': 'El crisol',
 		'name-ru': 'Суровое испытание',
-
 		units: [
 			{x: 3, y: 3, type: 'commander', ownerId: 0},
 			{x: 15, y: 3, type: 'commander', ownerId: 1},

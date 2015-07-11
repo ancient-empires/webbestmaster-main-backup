@@ -12,17 +12,9 @@
 		type: 'skirmish',
 		size: {width: 13, height: 13},
 		maxPlayers: 4,
-		//isOpen: false,
-
-		// en
-		name: 'Winter Storm',
-
-		// es
-		'name-es': 'Tormenta de Invierno',
-
-		// ru
+		name: 'Winter storm',
+		'name-es': 'Tormenta de invierno',
 		'name-ru': 'Зимний шторм',
-
 		units: [
 			{x: 6, y: 1, type: 'commander', ownerId: 0},
 			{x: 1, y: 6, type: 'commander', ownerId: 1},
