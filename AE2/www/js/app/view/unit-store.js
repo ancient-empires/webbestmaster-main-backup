@@ -184,20 +184,44 @@
 			// find nearest non player building
 			firstXY = freeXYs[0];
 			filteredXYs = _.filter(freeXYs, function (xy) {
-				console.log(firstXY.pathSize - xy.pathSize, firstXY.pathSize, xy.pathSize);
 				return Math.abs(firstXY.pathSize - xy.pathSize) < 0.00001;
 			});
 
-			console.log(filteredXYs);
+			filteredXYs = win.APP.util.assortArray(filteredXYs);
 
+			_.each(filteredXYs, function (xy) {
+
+				var unitTeamNumber = player.teamNumber,
+					allBuildings = model.get('buildings'),
+					buildingData = win.APP.building,
+					wantedBuildingList = buildingData.wantedBuildingList,
+					wantedBuildings = _.filter(allBuildings, function (building) {
+						return building.teamNumber !== unitTeamNumber && _.contains(wantedBuildingList, building.type);
+					}),
+
+					nearestBuildingPathSize = Infinity;
+
+				_.each(wantedBuildings, function (building) {
+					nearestBuildingPathSize = Math.min(nearestBuildingPathSize, getPathSize(xy, building));
+				});
+
+				xy.nearestBuildingPathSize = nearestBuildingPathSize;
+
+			});
+
+			filteredXYs = filteredXYs.sort(function (xy1, xy2) {
+				return xy1.nearestBuildingPathSize - xy2.nearestBuildingPathSize;
+			});
+
+			firstXY = filteredXYs[0];
 
 			model.appendUnit({
 				type: unitType,
 				ownerId: player.id,
 				teamNumber: player.teamNumber,
 				color: player.color,
-				x: freeXYs[0].x,
-				y: freeXYs[0].y
+				x: firstXY.x,
+				y: firstXY.y
 			});
 
 			if (e.state === 'cpu') { // bot
@@ -218,7 +242,6 @@
 				}
 
 			}
-
 
 		},
 
