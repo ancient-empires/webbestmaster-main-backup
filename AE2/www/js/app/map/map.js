@@ -6,6 +6,7 @@
 	/*global $, _ */
 
 	win.APP.map = {
+		mapPackVersion: 1,
 		squareSize: {
 			min: 24,
 			max: 96, // 192
@@ -240,7 +241,11 @@
 
 				var dbMaster = this,
 					deferred = $.Deferred(),
-                    db = openDatabase(dbMaster.name, dbMaster.version, dbMaster.description, dbMaster.size);
+                    db = openDatabase(dbMaster.name, dbMaster.version, dbMaster.description, dbMaster.size),
+					map = win.APP.map,
+					info = win.APP.info,
+					currentMapVersion = map.mapPackVersion,
+					previousMapVersion = info.get('mapPackVersion') || 0;
 
 				dbMaster.db = db;
 
@@ -250,30 +255,43 @@
 					var missionDeferred = $.Deferred(),
 						skirmishDeferred = $.Deferred();
 
+					function createMissionMapTables() {
+						tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.missionMaps + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], function () {
+							missionDeferred.resolve();
+						}, function (e) {
+							//log(e);
+						});
+					}
+
+					function createSkirmishMapTables() {
+						tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.skirmishMaps + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], function () {
+							skirmishDeferred.resolve();
+						}, function (e) {
+							//log(e);
+						});
+					}
+
 					$.when(missionDeferred, skirmishDeferred).done(function () {
 						dbMaster.prepareDefaultMap().then(function () {
                             deferred.resolve();
 						});
 					});
 
-					//tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.missionMaps); // TODO: comment this for production
+					// Update maps for next mapPack
+					if (currentMapVersion > previousMapVersion) { // remove all maps
 
-					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.missionMaps + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], function () {
-						missionDeferred.resolve();
-					}, function (e) {
-						//log(e);
-					});
+						info.set('mapPackVersion', currentMapVersion);
 
-					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.skirmishMaps + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], function () {
-						skirmishDeferred.resolve();
-					}, function (e) {
-						//log(e);
-					});
+						tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.missionMaps, createMissionMapTables, createMissionMapTables);
+						tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.skirmishMaps, createSkirmishMapTables, createSkirmishMapTables);
 
-					//tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.savedGame); // TODO: comment this for production
+					} else {
+
+						createMissionMapTables();
+						createSkirmishMapTables();
+					}
 
 					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.savedGame + ' (date TEXT, name TEXT, game TEXT)', [], null, null);
-
 					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.userMap + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], null, null);
 
 				});
