@@ -884,20 +884,21 @@
 					<% _.each(playersData, function(player, index){ %>
 
 					<div class="js-player-info-wrapper setup-form-wrapper clear-fix">
-						<div class="js-player-color w45" data-player-color="<%= player.color %>">
+						<div class="js-player-color w40" data-player-color="<%= player.color %>">
 							<div class="setup-form-item"><div class="team-color-sign team-color-sign-<%= player.color %>">&nbsp;</div><%= window.APP.lang.get(player.color) %></div>
-							<div class="setup-form-item">{{ team }} #</div>
+							<!--<div class="setup-form-item">{{ team }} #</div>-->
 						</div>
-						<div class="w55">
-							<div class="setup-form-item w100">
-								<span class="js-list-backward" data-group-name="player-type-<%= index %>"> <- </span>
+						<div class="w60">
+							<div class="setup-form-item w100 ta-center">
+								<span class="js-list-backward float-left" data-group-name="player-type-<%= index %>"> <- </span>
 								<span class="js-list-changed-item js-player-type" data-group-name="player-type-<%= index %>" data-full-list="<%= list.playerTypes %>" data-key="<%= player.type %>"> <%= window.APP.lang.get(player.type) %> </span>
-								<span class="js-list-forward" data-group-name="player-type-<%= index %>"> -> </span>
+								<span class="js-list-forward float-right" data-group-name="player-type-<%= index %>"> -> </span>
 							</div>
-							<div class="setup-form-item w100">
-								<span class="js-list-backward" data-group-name="team-number-<%= index %>"> <- </span>
+							<div class="setup-form-item w100 ta-center">
+								<span class="js-list-backward float-left" data-group-name="team-number-<%= index %>"> <- </span>
+								<span class="js-list-backward" data-group-name="team-number-<%= index %>">{{ team }}&nbsp;</span>
 								<span class="js-list-changed-item js-player-team-number" data-group-name="team-number-<%= index %>" data-full-list="<%= list.teamNumber %>" data-key="<%= player.teamNumber %>"> <%= player.teamNumber %> </span>
-								<span class="js-list-forward" data-group-name="team-number-<%= index %>"> -> </span>
+								<span class="js-list-forward float-right" data-group-name="team-number-<%= index %>"> -> </span>
 							</div>
 						</div>
 					</div>
@@ -905,23 +906,23 @@
 					<% }); %>
 
 					<div class="setup-form-wrapper clear-fix">
-						<div class="setup-form-item w45">{{ money }}</div>
+						<div class="setup-form-item w40">{{ money }}</div>
 
-						<div class="setup-form-item w55">
-							<span class="js-list-backward" data-group-name="money"> <- </span>
+						<div class="setup-form-item w60 ta-center">
+							<span class="js-list-backward float-left" data-group-name="money"> <- </span>
 							<span class="js-list-changed-item js-money" data-group-name="money" data-full-list="<%= list.money %>" data-key="<%= money %>"> <%= money %> </span>
-							<span class="js-list-forward" data-group-name="money"> -> </span>
+							<span class="js-list-forward float-right" data-group-name="money"> -> </span>
 						</div>
 
 					</div>
 
 					<div class="setup-form-wrapper clear-fix">
-						<div class="setup-form-item w45">{{ unitLimit }}</div>
+						<div class="setup-form-item w40">{{ unitLimit }}</div>
 
-						<div class="setup-form-item w55">
-							<span class="js-list-backward" data-group-name="unit-limit"> <- </span>
+						<div class="setup-form-item w60 ta-center">
+							<span class="js-list-backward float-left" data-group-name="unit-limit"> <- </span>
 							<span class="js-list-changed-item js-unit-limit" data-group-name="unit-limit" data-full-list="<%= list.unitsLimits %>" data-key="<%= unitLimit %>"> <%= unitLimit %> </span>
-							<span class="js-list-forward" data-group-name="unit-limit"> -> </span>
+							<span class="js-list-forward float-right" data-group-name="unit-limit"> -> </span>
 						</div>
 
 					</div>

@@ -36,18 +36,27 @@
 	width: 100%;
 }
 
+.w40 {
+	width: 40%;
+}
+
 .w45 {
 	width: 45%;
-	float: left;
 }
 
 .w50 {
 	width: 50%;
-	float: left;
 }
 
 .w55 {
 	width: 55%;
+}
+
+.w60 {
+	width: 60%;
+}
+
+.w40, .w45, .w50, .w55, .w60 {
 	float: left;
 }
 
