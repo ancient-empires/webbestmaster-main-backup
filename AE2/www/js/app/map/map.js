@@ -279,17 +279,13 @@
 
 					// Update maps for next mapPack
 					if (currentMapVersion > previousMapVersion) { // remove all maps
-
 						info.set('mapPackVersion', currentMapVersion);
-
-						tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.missionMaps, createMissionMapTables, createMissionMapTables);
 						tx.executeSql('DROP TABLE IF EXISTS ' + dbMaster.skirmishMaps, createSkirmishMapTables, createSkirmishMapTables);
-
 					} else {
-
-						createMissionMapTables();
 						createSkirmishMapTables();
 					}
+
+					createMissionMapTables();
 
 					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.savedGame + ' (date TEXT, name TEXT, game TEXT)', [], null, null);
 					tx.executeSql('CREATE TABLE IF NOT EXISTS ' + dbMaster.userMap + ' (jsMapKey TEXT, info TEXT, map TEXT)', [], null, null);
@@ -360,8 +356,8 @@
 					deferred = $.Deferred(),
 					db = dbMaster.db,
 					oldMapData = JSON.parse(oldMap.map),
-					newMapVersion = newMap.version,
-					oldMapVersion = oldMapData.version,
+					newMapVersion = newMap.version || 0,
+					oldMapVersion = oldMapData.version || 0,
 					savedProperties = ['isOpen', 'isDone', 'isDoneByDifficult_easy', 'isDoneByDifficult_normal', 'isDoneByDifficult_hard'];
 
 				if (oldMapVersion >= newMapVersion) {
