@@ -10,9 +10,9 @@
     win.APP.maps.skirmish_001_056 = {
         "type": "skirmish",
         "size": {"width": 15, "height": 15},
-        "name": "Nuclear 2",
-        "name-es": "Nuclear 2",
-        "name-ru": "Ядерная 2",
+        "name": "Nuclear",
+        "name-es": "Nuclear",
+        "name-ru": "Ядерная",
         "isOpen": true,
         "maxPlayers": 4,
         "units": [{"x": 1, "y": 5, "type": "commander", "ownerId": 0}, {

@@ -6,7 +6,7 @@
 	/*global $, _ */
 
 	win.APP.map = {
-		mapPackVersion: 1,
+		mapPackVersion: 2,
 		squareSize: {
 			min: 24,
 			max: 96, // 192

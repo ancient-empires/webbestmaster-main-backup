@@ -10,9 +10,9 @@
     win.APP.maps.skirmish_001_039 = {
         "type": "skirmish",
         "size": {"width": 15, "height": 15},
-        "name": "Atomic 1",
-        "name-es": "Atómica 1",
-        "name-ru": "Атомная 1",
+        "name": "Atomic",
+        "name-es": "Atómica",
+        "name-ru": "Атомная",
         "isOpen": true,
         "maxPlayers": 4,
         "units": [{"x": 2, "y": 7, "type": "commander", "ownerId": 0}, {
