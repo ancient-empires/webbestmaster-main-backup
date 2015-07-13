@@ -1,7 +1,10 @@
+/*
 @font-face {
 	font-family: 'Comic Sans MS';
 	src: url('../font/Comic%20Sans%20MS.ttf');
 }
+*/
+
 .wrapper {
 	position: fixed;
 	width: 100%;
@@ -11,9 +14,9 @@
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-image: url(../i/main-bg.jpg);
+	background-image: url(../i/bg/bg-1.jpg);
 	background-position: center center;
-	font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+	font-family: HelveticaNeueCyr, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
 	color: #FFF;
 }
 
@@ -31,13 +34,13 @@
 }
 
 @-webkit-keyframes screen-show-in {
-	0% { -webkit-transform: scale(0); }
-	100% { -webkit-transform: scale(1); }
+	0% { -webkit-transform: scaleX(0); }
+	100% { -webkit-transform: scaleX(1); }
 }
 
 @keyframes screen-show-in {
-	0% { transform: scale(0); }
-	100% { transform: scale(1); }
+	0% { transform: scaleX(0); }
+	100% { transform: scaleX(1); }
 }
 
 .show-view-animation {
@@ -57,13 +60,13 @@
 }
 
 @-webkit-keyframes screen-show-out {
-	0% { -webkit-transform: scale(1); }
-	100% { -webkit-transform: scale(0); }
+	0% { -webkit-transform: translate3d(0, 0, 0); }
+	100% { -webkit-transform: translate3d(0, 100%, 0); }
 }
 
 @keyframes screen-show-out {
-	0% { transform: scale(1); }
-	100% { transform: scale(0); }
+	0% { transform: translate3d(0, 0, 0); }
+	100% { transform: translate3d(0, 100%, 0); }
 }
 
 .hide-view-animation {

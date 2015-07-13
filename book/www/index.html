@@ -67,26 +67,25 @@
 </head>
 <body>
 
-<div class="js-wrapper"></div>
+<div class="js-wrapper wrapper"></div>
 
 <script type="text/x-template" data-name="home">
 
 	<div class="screen">
 
 		<!-- header -->
-		<div>
+		<div class="header">
 
 			{{ var info = window.APP.info, isStoryByStory = info.get('storyByStory') === 'on'; }}
-			<div class="js-story-by-story story-by-story-wrapper {{= isStoryByStory ? ' active-on-off' : '' }}"> story by story </div>
+			<div class="js-story-by-story story-by-story-wrapper {{= isStoryByStory ? ' active-on-off' : '' }}">Авто</div>
 			<div>company name</div>
 			<div class="js-external-link" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes">buy full version</div>
 
 		</div>
 
-		<hr/>
 
 		<!-- books is here -->
-		<div>
+		<div style="display: none;">
 
 			{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName]; }}
 
@@ -102,8 +101,7 @@
 
 		</div>
 
-		<hr/>
-		<div>
+		<div style="display: none">
 
 			share me!!
 
