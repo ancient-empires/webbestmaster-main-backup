@@ -17,7 +17,7 @@
 	background-image: url(../i/bg/bg-1.jpg);
 	background-position: center center;
 	font-family: HelveticaNeueCyr, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
-	color: #FFF;
+	color: #333;
 }
 
 .screen {
@@ -45,13 +45,13 @@
 
 .show-view-animation {
 
-	-webkit-animation-duration: 1s;
+	-webkit-animation-duration: 0.7s;
 	-webkit-animation-iteration-count: 1;
 	-webkit-animation-name: screen-show-in;
 	-webkit-animation-fill-mode: forwards;
 	-webkit-transform-origin: center center;
 
-	animation-duration: 1s;
+	animation-duration: 0.7s;
 	animation-iteration-count: 1;
 	animation-name: screen-show-in;
 	animation-fill-mode: forwards;
@@ -71,13 +71,13 @@
 
 .hide-view-animation {
 
-	-webkit-animation-duration: 1s;
+	-webkit-animation-duration: 0.7s;
 	-webkit-animation-iteration-count: 1;
 	-webkit-animation-name: screen-show-out;
 	-webkit-animation-fill-mode: forwards;
 	-webkit-transform-origin: center center;
 
-	animation-duration: 1s;
+	animation-duration: 0.7s;
 	animation-iteration-count: 1;
 	animation-name: screen-show-out;
 	animation-fill-mode: forwards;
