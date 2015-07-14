@@ -816,6 +816,10 @@ window.devices = [
     "deviceName": "rk3188"
   },
   {
+    "product": "Enspert S732",
+    "deviceName": "rk3026"
+  },
+  {
     "product": null,
     "deviceName": "hsdroid"
   },
