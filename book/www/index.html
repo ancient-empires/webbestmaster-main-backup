@@ -82,21 +82,73 @@
 			<div class="header-title">Cool Book</div>
 		</div>
 
+		<div class="books-list-wrapper">
 
-		<!-- books is here -->
-		<div style="display: none;">
+			<!-- books is here -->
+			<div class="js-scroll-area-container scroll-area-container">
 
-			{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName]; }}
+				<div class="scroll-area-content clear-fix ta-center">
 
-			{{~books :book }}
+				{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName]; }}
 
-				<div data-route="book/{{= book.folder }}">
-					<img src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>
-					<p>{{= book.title.text }}</p>
+				{{~books :book }}
+
+				<div class="title-book-wrapper" data-route="book/{{= book.folder }}">
+					<img class="title-book-wrapper-preview" src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>
+					<!--<p>{{= book.title.text }}</p>-->
 				</div>
 
-			{{~ }}
 
+				<!-- lorem ipsum below -->
+
+				<div class="title-book-wrapper" data-route="book/{{= book.folder }}">
+					<img class="title-book-wrapper-preview" src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>
+					<!--<p>{{= book.title.text }}</p>-->
+				</div>
+
+				<div class="title-book-wrapper" data-route="book/{{= book.folder }}">
+					<img class="title-book-wrapper-preview" src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>
+					<!--<p>{{= book.title.text }}</p>-->
+				</div>
+
+				<div class="title-book-wrapper" data-route="book/{{= book.folder }}">
+					<img class="title-book-wrapper-preview" src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>
+					<!--<p>{{= book.title.text }}</p>-->
+				</div>
+
+				<div class="title-book-wrapper" data-route="book/{{= book.folder }}">
+					<img class="title-book-wrapper-preview" src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>
+					<!--<p>{{= book.title.text }}</p>-->
+				</div>
+
+				<div class="title-book-wrapper" data-route="book/{{= book.folder }}">
+					<img class="title-book-wrapper-preview" src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>
+					<!--<p>{{= book.title.text }}</p>-->
+				</div>
+
+				<div class="title-book-wrapper" data-route="book/{{= book.folder }}">
+					<img class="title-book-wrapper-preview" src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>
+					<!--<p>{{= book.title.text }}</p>-->
+				</div>
+
+				<div class="title-book-wrapper" data-route="book/{{= book.folder }}">
+					<img class="title-book-wrapper-preview" src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>
+					<!--<p>{{= book.title.text }}</p>-->
+				</div>
+
+				<div class="title-book-wrapper" data-route="book/{{= book.folder }}">
+					<img class="title-book-wrapper-preview" src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>
+					<!--<p>{{= book.title.text }}</p>-->
+				</div>
+
+				{{~ }}
+
+
+
+
+				</div>
+
+			</div>
 
 		</div>
 
