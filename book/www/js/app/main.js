@@ -11,6 +11,7 @@
 
 	function start() {
 
+		win.APP.bb.device = new win.APP.BB.DeviceModel();
 		win.APP.templateMaster.init();
 		win.APP.BB.BaseView.prototype.initStatic();
 		win.APP.soundMaster.init();

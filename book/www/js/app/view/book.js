@@ -69,17 +69,18 @@
 					depth: 100,
 					modifier: 1,
 					slideShadows : true
-				},
+				}
 
 				// If we need pagination
-				pagination: '.swiper-pagination',
+				//pagination: '.swiper-pagination',
 
 				// Navigation arrows
-				nextButton: '.swiper-button-next',
-				prevButton: '.swiper-button-prev',
+				//nextButton: '.swiper-button-next',
+				//prevButton: '.swiper-button-prev',
 
 				// And if we need scrollbar
-				scrollbar: '.swiper-scrollbar'
+				//scrollbar: '.swiper-scrollbar'
+
 			});
 
 			view.set('swiper', swiper);
@@ -89,7 +90,8 @@
 		bindEventListeners: function () {
 
 			var view = this,
-				swiper = view.get('swiper');
+				swiper = view.get('swiper'),
+				device = win.APP.bb.device;
 
 			//onSlideChangeEnd
 			swiper.on('onTransitionEnd', function (swiper) {
@@ -105,6 +107,39 @@
 				view.runPage(book.pages[index]);
 
 			});
+
+			view.listenTo(device, 'resize', view.onResize);
+
+		},
+
+		unbindEventListeners: function () {
+
+			var view = this,
+				swiper = view.get('swiper'),
+				previousTimeoutId = view.get('nextActionTimeoutId'),
+				textAnimationIntervalId = view.get('textAnimationIntervalId'),
+				device = win.APP.bb.device;
+
+			view.stopListening(device);
+
+			clearTimeout(previousTimeoutId);
+			clearInterval(textAnimationIntervalId);
+
+			win.APP.soundMaster.stop({
+				road: 0
+			});
+
+			swiper.off('onTransitionEnd');
+
+			swiper.detachEvents();
+
+		},
+
+		onResize: function () {
+
+
+			console.log('resize!!!');
+
 
 		},
 
@@ -221,7 +256,7 @@
 					view.routeBack();
 				}
 
-			}, timeout * 1e3);
+			}, timeout * 10000e3); // 1e3
 
 			view.set('nextActionTimeoutId', currentTimeoutId);
 
@@ -285,27 +320,8 @@
 			view.set('previousPageIndex', currentPageIndex);
 			return true;
 
-		},
-
-		unbindEventListeners: function () {
-
-			var view = this,
-				swiper = view.get('swiper'),
-				previousTimeoutId = view.get('nextActionTimeoutId'),
-				textAnimationIntervalId = view.get('textAnimationIntervalId');
-
-			clearTimeout(previousTimeoutId);
-			clearInterval(textAnimationIntervalId);
-
-			win.APP.soundMaster.stop({
-				road: 0
-			});
-
-			swiper.off('onTransitionEnd');
-
-			swiper.detachEvents();
-
 		}
+
 
 
 	});
