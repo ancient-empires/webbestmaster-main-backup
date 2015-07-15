@@ -32,12 +32,12 @@
 
 		onResize: function () {
 
-			var device = this,
-				width = docElem.clientWidth,
-				height = docElem.clientHeight;
+			var device = this;
 
-			device.set('width', width);
-			device.set('height', height);
+			device.set({
+				width: docElem.clientWidth,
+				height: docElem.clientHeight
+			});
 
 			device.trigger('resize');
 

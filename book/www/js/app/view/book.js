@@ -15,7 +15,10 @@
 		},
 
 		selectors: {
-			pageText: '.js-page-text'
+			bookPage: '.js-book-page',
+			pageText: '.js-page-text',
+			hiddenPageText: '.js-page-text-hidden',
+			bookPageImage : '.js-book-page-image'
 		},
 
 		initialize: function (dataArg) {
@@ -39,6 +42,7 @@
 
 			// init swipe
 			view.render().then(function () {
+				view.onResize();
 				view.runPage(book.pages[0]);
 			});
 
@@ -137,9 +141,26 @@
 
 		onResize: function () {
 
+			var view = this,
+				device = win.APP.bb.device,
+				selectors = view.selectors,
+				selectorHiddenText = selectors.hiddenPageText,
+				selectorImage = selectors.bookPageImage,
+				$pages = view.$el.find(selectors.bookPage),
+				pageHeight = device.get('height');
 
-			console.log('resize!!!');
+			$pages.each(function () {
 
+				var $page = $(this),
+					$hiddenText = $page.find(selectorHiddenText),
+					hiddenTextHeight = $hiddenText.outerHeight(),
+					$image = $page.find(selectorImage);
+
+				$image.css({
+					'max-height': (pageHeight - hiddenTextHeight) + 'px'
+				});
+
+			});
 
 		},
 
