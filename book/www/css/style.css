@@ -127,5 +127,17 @@ body {
 	z-index: 0;
 }
 
+.page-text {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 1rem;
+	color: #f0f0f0;
+	text-indent: 1rem;
+	line-height: 1.1rem;
+	font-size: 1.1rem;
+}
+
 
 

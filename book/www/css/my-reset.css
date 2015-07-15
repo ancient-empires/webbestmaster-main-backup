@@ -186,6 +186,10 @@ button:focus {
 	width: 100%;
 }
 
+.visibility-hidden {
+	visibility: hidden;
+}
+
 /* draw */
 
 /*canvas,*/
