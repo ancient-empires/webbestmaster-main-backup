@@ -35,6 +35,8 @@
 
 			view.set('book', book);
 
+			view.set('url', Backbone.history.fragment);
+
 			view.set('state', 'playing'); // playing or pause
 
 			view.set('previousPageIndex', 0);
@@ -48,12 +50,21 @@
 					return view.render();
 				})
 				.then(function () {
+
+					if ( !view.checkNeedUrl() ) {
+						return;
+					}
+
 					view.initSwiper();
 					view.bindEventListeners();
 					view.onResize();
 					view.runPage(book.pages[0]);
 				});
 
+		},
+
+		checkNeedUrl: function () {
+			return this.get('url') === Backbone.history.fragment;
 		},
 
 		initSwiper: function () {
