@@ -195,8 +195,10 @@
 				{{~it.pages :page }}
 				<div class="swiper-slide js-book-page">
 					<img class="js-book-page-image book-page-image" src="books/{{= [ languageName, bookFolder, page.img ].join('/') }}" alt=""/>
+					{{? page.text }}
 					<div class="js-page-text-hidden visibility-hidden page-text">{{= page.text }}</div>
 					<div class="js-page-text page-text"></div>
+					{{?}}
 				</div>
 				{{~ }}
 

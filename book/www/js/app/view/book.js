@@ -39,16 +39,19 @@
 			view.set('previousPageIndex', 0);
 
 			view.proto.initialize.apply(view, arguments);
+			view.onResize();
 
-			// init swipe
-			view.render().then(function () {
-				view.onResize();
-				view.runPage(book.pages[0]);
-			});
-
-			view.initSwiper();
-
-			view.bindEventListeners();
+			view.loadFirstImage()
+				.then(function () {
+					view.onResize();
+					return view.render();
+				})
+				.then(function () {
+					view.initSwiper();
+					view.bindEventListeners();
+					view.onResize();
+					view.runPage(book.pages[0]);
+				});
 
 		},
 
@@ -145,22 +148,68 @@
 				device = win.APP.bb.device,
 				selectors = view.selectors,
 				selectorHiddenText = selectors.hiddenPageText,
+				pageTextSelector = selectors.pageText,
 				selectorImage = selectors.bookPageImage,
-				$pages = view.$el.find(selectors.bookPage),
-				pageHeight = device.get('height');
+				$pages = view.$el.find(selectors.bookPage);
 
 			$pages.each(function () {
 
 				var $page = $(this),
+					$pageText = $page.find(pageTextSelector),
 					$hiddenText = $page.find(selectorHiddenText),
 					hiddenTextHeight = $hiddenText.outerHeight(),
-					$image = $page.find(selectorImage);
+					$image = $page.find(selectorImage),
+					imageNode = $image.get(0),
+					beautifulSpace = 0.9,
+					availableSpace = {
+						width: device.get('width'),
+						height: device.get('height') - hiddenTextHeight
+					},
+					image = {
+						width: imageNode.naturalWidth,
+						height: imageNode.naturalHeight
+					},
+					q;
 
-				$image.css({
-					'max-height': (pageHeight - hiddenTextHeight) + 'px'
-				});
+				availableSpace.aspectRatio = availableSpace.height / availableSpace.width;
+				image.aspectRatio = image.height / image.width;
+
+				q = availableSpace.aspectRatio > image.aspectRatio ? image.width / availableSpace.width : image.height / availableSpace.height;
+
+				if ($pageText.length) {
+					$image.css({
+						width: Math.floor(image.width / q * beautifulSpace) + 'px',
+						height: Math.floor(image.height / q * beautifulSpace) + 'px',
+						top: Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2) + 'px'
+					});
+				} else {
+					$image.css({
+						//width: Math.floor(image.width / q * beautifulSpace) + 'px',
+						//height: Math.floor(image.height / q * beautifulSpace) + 'px',
+						top: Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2) + 'px'
+					});
+				}
 
 			});
+
+		},
+
+		loadFirstImage: function () {
+
+			var view = this,
+				book = view.get('book'),
+				firstPage = book.pages[0],
+				src = firstPage.img,
+				deferred = $.Deferred(),
+				img = new Image();
+
+			$(img).one('load', function () {
+				deferred.resolve();
+			});
+
+			img.src = ['books', view.info.get('language'), book.folder, src].join('/');
+
+			return deferred.promise();
 
 		},
 
@@ -195,10 +244,13 @@
 				index = swiper.activeIndex,
 				$slides = view.$el.find('.swiper-slide'),
 				$slide = $slides.eq(index),
+				$texts = view.$el.find(selectors.pageText),
 				$text = $slide.find(selectors.pageText),
 				book = view.get('book'),
 				page = book.pages[index],
 				text = page.text;
+
+			$texts.empty();
 
 			view.showTextAnimation({
 				$el: $text,
@@ -218,7 +270,7 @@
 
 			textAnimationIntervalId = setInterval(function () {
 
-				if ( !data.text[index] ) {
+				if ( !data.text || !data.text[index] ) {
 					clearInterval(view.get('textAnimationIntervalId'));
 					return;
 				}

@@ -141,11 +141,20 @@ body {
 
 .book-page-image {
 	display: block;
-	max-width: 100%;
-	max-height: 100%;
-	margin: 0 auto;
+	max-width: 90%;
+	max-height: 90%;
+	margin: 2.5% auto 0;
 	width: auto;
 	height: auto;
+	border: 0.3rem solid #fff;
+	box-shadow: 0.4rem 0.4rem 0.1rem rgba(0, 0, 0, 0.5);
+	box-sizing: border-box;
+	position: relative;
+}
+
+.swiper-container-3d .swiper-slide-shadow-left,
+.swiper-container-3d .swiper-slide-shadow-right {
+	display: none !important;
 }
 
 

@@ -17,7 +17,7 @@
 				},
 				pages: [
 					{
-						text: 'englist text 1',
+						//text: 'englist text 1',
 						img: '1.jpg',
 						sound: '1.mp3',
 						time: 3
