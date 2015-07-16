@@ -169,6 +169,9 @@
 						width: imageNode.naturalWidth,
 						height: imageNode.naturalHeight
 					},
+					endWidth,
+					endHeight,
+					endTop,
 					q;
 
 				availableSpace.aspectRatio = availableSpace.height / availableSpace.width;
@@ -177,11 +180,21 @@
 				q = availableSpace.aspectRatio > image.aspectRatio ? image.width / availableSpace.width : image.height / availableSpace.height;
 
 				if ($pageText.length) {
+
+					endWidth = Math.floor(image.width / q * beautifulSpace);
+					endHeight = Math.floor(image.height / q * beautifulSpace);
+					endTop = Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2);
+
 					$image.css({
-						width: Math.floor(image.width / q * beautifulSpace) + 'px',
-						height: Math.floor(image.height / q * beautifulSpace) + 'px',
-						top: Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2) + 'px'
+						width: endWidth + 'px',
+						height: endHeight + 'px',
+						top: endTop + 'px'
 					});
+
+					$pageText.css({
+						top: endTop + endHeight + 'px'
+					});
+
 				} else {
 					$image.css({
 						//width: Math.floor(image.width / q * beautifulSpace) + 'px',

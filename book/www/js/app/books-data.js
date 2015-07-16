@@ -23,7 +23,7 @@
 						time: 3
 					},
 					{
-						text: 'englist text 2',
+						text: 'englist text 2 englist text 2 englist text 2 englist text 2 englist text 2 englist text 2 englist text 2 englist text 2 ',
 						img: '2.jpg',
 						sound: '2.mp3',
 						time: 3
