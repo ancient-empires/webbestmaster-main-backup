@@ -31,8 +31,7 @@ body {
 	background-size: 75% auto;
 }
 
-.story-by-story-wrapper:after,
-.header-remove-ads:after {
+.header-button:after {
 	content: ' ';
 	background-repeat: no-repeat;
 	background-position: center center;
@@ -155,22 +154,34 @@ body {
 .book-pause-button,
 .book-home-button {
 	position: fixed;
-	top: 0rem;
+	top: 0;
 	width: 2rem;
 	height: 2rem;
 	z-index: 1;
+	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(200, 200, 200, 0.8));
+	background-image: linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(200, 200, 200, 0.8));
 }
 
 .book-pause-button {
-	background-color: rgba(112, 112, 112, 0.59);
-	right: 0rem;
+	right: 0.7rem;
+}
+
+.book-pause-button:after {
+	background-image: url(../i/pause.svg);
 }
 
 .book-home-button {
-	background-color: rgba(139, 91, 14, 0.5);
-	left: 0rem;
+	left: 0.7rem;
 }
 
+.book-home-button:after {
+	background-image: url(../i/home.svg);
+}
 
+.book-pause-button:after,
+.book-home-button:after {
+	-webkit-background-size: 72% auto;
+	background-size: 72% auto;
+}
 
 
