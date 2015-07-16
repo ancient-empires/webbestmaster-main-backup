@@ -134,7 +134,7 @@ body {
 	padding: 1rem;
 	color: #f0f0f0;
 	text-indent: 1rem;
-	line-height: 1.1rem;
+	line-height: 1.4rem;
 	font-size: 1.1rem;
 }
 
@@ -152,7 +152,8 @@ body {
 }
 
 .book-pause-button,
-.book-home-button {
+.book-home-button,
+.book-play-button {
 	position: fixed;
 	top: 0;
 	width: 2rem;
@@ -162,12 +163,17 @@ body {
 	background-image: linear-gradient(top, rgba(255, 255, 255, 0.8), rgba(200, 200, 200, 0.8));
 }
 
+.book-play-button,
 .book-pause-button {
 	right: 0.7rem;
 }
 
 .book-pause-button:after {
 	background-image: url(../i/pause.svg);
+}
+
+.book-play-button:after {
+	background-image: url(../i/play.svg);
 }
 
 .book-home-button {
@@ -178,6 +184,7 @@ body {
 	background-image: url(../i/home.svg);
 }
 
+.book-play-button:after,
 .book-pause-button:after,
 .book-home-button:after {
 	-webkit-background-size: 72% auto;

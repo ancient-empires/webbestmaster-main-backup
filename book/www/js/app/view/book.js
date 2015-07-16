@@ -15,6 +15,7 @@
 		},
 
 		selectors: {
+			playPauseButton: '.js-play-pause',
 			bookPage: '.js-book-page',
 			pageText: '.js-page-text',
 			hiddenPageText: '.js-page-text-hidden',
@@ -242,10 +243,27 @@
 			});
 
 			view.set('state', 'playing');
+			view.autoSetPlayPauseButtonState();
 
 			view.animateText();
 
 			view.doNextActionAfter(data.time);
+
+		},
+
+		autoSetPlayPauseButtonState: function () {
+
+			var view = this,
+				state = view.get('state'),
+				$button = view.$el.find(view.selectors.playPauseButton);
+
+			if (state === 'pause') {
+				$button.removeClass('book-pause-button').addClass('book-play-button');
+			}
+
+			if (state === 'playing') {
+				$button.removeClass('book-play-button').addClass('book-pause-button');
+			}
 
 		},
 
@@ -288,11 +306,17 @@
 					return;
 				}
 
+				if ( view.get('state') === 'pause' ) {
+					clearInterval(view.get('textAnimationIntervalId'));
+					view.$el.find(view.selectors.pageText).empty();
+					return;
+				}
+
 				index += 1;
 
 				data.$el.html(data.text.substring(0, index));
 
-			}, 100);
+			}, 25);
 
 			view.set('textAnimationIntervalId', textAnimationIntervalId);
 
@@ -369,6 +393,7 @@
 				soundMaster = win.APP.soundMaster;
 
 			view.set('state', 'pause');
+			view.autoSetPlayPauseButtonState();
 
 			// stop music and clear timeout
 
@@ -386,8 +411,6 @@
 				swiper = view.get('swiper'),
 				index = swiper.activeIndex,
 				book = view.get('book');
-
-			// view.set('state', 'playing'); will set from runPage
 
 			view.runPage(book.pages[index]);
 
@@ -407,8 +430,6 @@
 			return true;
 
 		}
-
-
 
 	});
 
