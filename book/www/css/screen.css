@@ -87,6 +87,8 @@
 }
 
 .scroll-area-container {
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
 	height: 100%;
 	overflow: auto;
 }
