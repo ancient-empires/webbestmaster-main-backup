@@ -152,11 +152,6 @@ body {
 	position: relative;
 }
 
-.swiper-container-3d .swiper-slide-shadow-left,
-.swiper-container-3d .swiper-slide-shadow-right {
-	display: none !important;
-}
-
 .book-pause-button,
 .book-home-button {
 	position: fixed;
