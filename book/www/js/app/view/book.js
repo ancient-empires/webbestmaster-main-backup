@@ -40,7 +40,7 @@
 			view.set('previousPageIndex', 0);
 
 			view.proto.initialize.apply(view, arguments);
-			view.onResize();
+			//view.onResize();
 
 			view.loadFirstImage()
 				.then(function () {

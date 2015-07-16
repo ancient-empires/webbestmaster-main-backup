@@ -32,7 +32,8 @@ body {
 }
 
 .header-button:after {
-	content: ' ';
+	content: '.';
+	color: transparent;
 	background-repeat: no-repeat;
 	background-position: center center;
 	position: absolute;
