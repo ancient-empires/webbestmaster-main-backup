@@ -137,9 +137,10 @@
 				road: 0
 			});
 
-			swiper.off('onTransitionEnd');
-
-			swiper.detachEvents();
+			if (swiper) {
+				swiper.off('onTransitionEnd');
+				swiper.detachEvents();
+			}
 
 		},
 
