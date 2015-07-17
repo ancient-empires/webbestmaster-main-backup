@@ -11,8 +11,8 @@
 	APP.BB.HomeView = APP.BB.BaseView.extend({
 
 		events: {
-			'click .js-story-by-story': 'setStoryByStory',
-			'click .js-show-popup': 'testShowPopup'
+			'click .js-story-by-story': 'setStoryByStory'
+			//'click .js-show-popup': 'testShowPopup'
 		},
 
 		initialize: function () {
@@ -32,40 +32,53 @@
 			var view = this,
 				$this = $(e.currentTarget),
 				info = view.info,
+				lang = win.APP.lang,
+				notification = lang.get('notification'),
+				popupText,
 				isStoryByStory = info.get('storyByStory') === 'on';
 
 			if (isStoryByStory) {
 				$this.removeClass('active-on-off');
 				info.set('storyByStory', 'off');
+				popupText = notification.storyByStoryOff;
 			} else {
 				$this.addClass('active-on-off');
 				info.set('storyByStory', 'on');
+				popupText = notification.storyByStoryOn;
 			}
 
-		},
-
-		testShowPopup: function () {
-
-			var view = this;
-
 			view.showPopup({
-				name: 'popup-text',
-				//timeout: 2.5e3,
-				sound: {
-					sound: 'good-answer.mp3',
-					isLoop: false,
-					road: 3
-				},
+				name: 'notification',
+				timeout: 3e3,
 				data: {
-					text: 'TEXT!!!!!!!!!'
+					text: popupText
 				}
-				//,onHide: { // see popup view source code
-				//	fn: 'newQuestion',
-				//	context: view
-				//}
 			});
 
 		}
+
+		//testShowPopup: function () {
+		//
+		//	var view = this;
+		//
+		//	view.showPopup({
+		//		name: 'popup-text',
+		//		//timeout: 2.5e3,
+		//		sound: {
+		//			sound: 'good-answer.mp3',
+		//			isLoop: false,
+		//			road: 3
+		//		},
+		//		data: {
+		//			text: 'TEXT!!!!!!!!!'
+		//		}
+		//		//,onHide: { // see popup view source code
+		//		//	fn: 'newQuestion',
+		//		//	context: view
+		//		//}
+		//	});
+		//
+		//}
 
 
 	});
