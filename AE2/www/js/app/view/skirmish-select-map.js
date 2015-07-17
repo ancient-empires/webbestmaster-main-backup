@@ -27,7 +27,8 @@
 
 			win.APP.map.db.getMapsInfo(data).then(function (mapsData) {
 
-				var mapsInfo = [];
+				var mapsInfo = [],
+					language = view.info.get('language');
 
 				_.each(mapsData, function (item, key) {
 					item.jsKey = key;
@@ -35,7 +36,12 @@
 				});
 
 				mapsInfo = mapsInfo.sort(function (a, b) {
-					return ((a.maxPlayers + a.name) > (b.maxPlayers + b.name)) ? 1 : -1;
+
+					var aName = a['name-' + language] || a.name,
+						bName = b['name-' + language] || b.name;
+
+					return ((a.maxPlayers + aName) > (b.maxPlayers + bName)) ? 1 : -1;
+
 				});
 
 				if (data.type === 'userMap') {
