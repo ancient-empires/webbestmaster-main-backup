@@ -31,13 +31,13 @@
 }
 
 .popup-container-show-in {
-	-webkit-animation-duration: 1s;
+	-webkit-animation-duration: 0.5s;
 	-webkit-animation-iteration-count: 1;
 	-webkit-animation-name: show-in;
 	-webkit-animation-fill-mode: forwards;
 	-webkit-transform-origin: center center;
 
-	animation-duration: 1s;
+	animation-duration: 0.5s;
 	animation-iteration-count: 1;
 	animation-name: show-in;
 	animation-fill-mode: forwards;
