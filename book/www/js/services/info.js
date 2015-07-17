@@ -203,7 +203,7 @@
 
 			var info = this,
 				defaultSettings = {
-					storyByStory: 'off'
+					storyByStory: 'on'
 					//autoSave: 'on', // auto save game after every turn
 					//confirmTurn: 'off', // game turn
 					//confirmMove: 'off', // move unit
