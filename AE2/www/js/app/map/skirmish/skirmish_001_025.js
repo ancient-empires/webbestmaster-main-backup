@@ -7,7 +7,7 @@
 
     win.APP.maps = win.APP.maps || {};
 
-    win.APP.maps.skirmish_001_056 = {
+    win.APP.maps.skirmish_001_025 = {
         "type": "skirmish",
         "size": {"width": 15, "height": 15},
         "name": "Nuclear",

@@ -15,8 +15,12 @@
 		"name-ru": "Кросс",
 		"isOpen": true,
 		"maxPlayers": 2,
-		"units": [{"x": 14, "y": 0, "type": "commander", "ownerId": 1}, {"x": 0, "y": 12, "type": "commander", "ownerId": 0}],
-		"buildings": [{"x": 0, "y": 0, "type": "castle", "state": "normal"}, {"x": 0, "y": 9, "type": "castle", "state": "normal"}, {"x": 0, "y": 3, "type": "farm", "state": "normal"}, {"x": 14, "y": 3, "type": "farm", "state": "normal"}, {"x": 14, "y": 6, "type": "farm", "state": "normal"}, {"x": 14, "y": 9, "type": "farm", "state": "normal"}, {"x": 14, "y": 12, "type": "farm", "state": "normal"}, {"x": 0, "y": 12, "type": "castle", "state": "normal", "ownerId": 0}, {"x": 14, "y": 0, "type": "castle", "state": "normal", "ownerId": 1}],
+		"units": [
+			{"x": 14, "y": 0, "type": "commander", "ownerId": 1}, {"x": 0, "y": 12, "type": "commander", "ownerId": 0}
+		],
+		"buildings": [
+			{"x": 0, "y": 0, "type": "castle", "state": "normal"}, {"x": 0, "y": 9, "type": "castle", "state": "normal"}, {"x": 0, "y": 3, "type": "farm", "state": "normal"}, {"x": 14, "y": 3, "type": "farm", "state": "normal"}, {"x": 14, "y": 6, "type": "farm", "state": "normal"}, {"x": 14, "y": 9, "type": "farm", "state": "normal"}, {"x": 14, "y": 12, "type": "farm", "state": "normal"}, {"x": 0, "y": 12, "type": "castle", "state": "normal", "ownerId": 0}, {"x": 14, "y": 0, "type": "castle", "state": "normal", "ownerId": 1}
+		],
 		"terrain": {
 			"x0y1": "road-1",
 			"x0y2": "road-1",
