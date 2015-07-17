@@ -1,2 +1,6 @@
+"name":"([\s\S]+?)",
+"name":"", "name-es":"", "name-ru":"$1",
+
+
 find * -type f
 chrome://appcache-internals/
