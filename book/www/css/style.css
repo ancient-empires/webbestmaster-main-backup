@@ -6,7 +6,7 @@ body {
 	height: 3.5rem;
 	background-color: rgba(255, 255, 255, 0.85);
 	margin: 0.5rem 0 0 0;
-	box-shadow: 0 0 0.05rem 0.1rem rgba(0, 0, 0, 0.3);
+	/*box-shadow: 0 0 0.05rem 0.1rem rgba(0, 0, 0, 0.3);*/
 	position: fixed;
 	width: 100%;
 	z-index: 1;
@@ -50,7 +50,7 @@ body {
 	position: relative;
 	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(200, 200, 200, 0.5));
 	background-image: linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(200, 200, 200, 0.5));
-	box-shadow: 0.1rem 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);
+	/*box-shadow: 0.1rem 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.5);*/
 	font-size: 1.5rem;
 	line-height: 1.5rem;
 	padding: 0.2rem 0.4rem;
@@ -84,11 +84,12 @@ body {
 	width: 14rem;
 	background-color: rgba(255, 255, 255, 0.65);
 	margin: 0.5rem 0 0 0;
-	box-shadow: 0 0 0.05rem 0.1rem rgba(0, 0, 0, 0.3);
+	/*box-shadow: 0 0 0.05rem 0.1rem rgba(0, 0, 0, 0.3);*/
 	left: 50%;
 	margin-left: -7rem;
 	padding: 0.5rem 0 0.3rem;
 	border-radius: 0.3rem 0.3rem 0 0;
+	border: 0.1rem solid #bbb;
 }
 
 .books-list-wrapper {
@@ -117,7 +118,8 @@ body {
 	outline: 1px solid transparent;
 	display: block;
 	margin: 0 auto;
-	box-shadow: 1px 1px 0 #bbb, 2px 2px 0 #ccc, 3px 3px 0 #ddd, 4px 4px 0 #ccc, 5px 5px 0 #ddd, 0.4rem 0.4rem 0.3rem rgba(70, 70, 70, 0.7);
+	/*box-shadow: 1px 1px 0 #bbb, 2px 2px 0 #ccc, 3px 3px 0 #ddd, 4px 4px 0 #ccc, 5px 5px 0 #ddd, 0.4rem 0.4rem 0.3rem rgba(70, 70, 70, 0.7);*/
+	box-shadow: 1px 1px 0 #bbb, 3px 3px 0 #ddd, 5px 5px 0 #ddd, 0.4rem 0.4rem 0.2rem rgba(70, 70, 70, 0.75);
 	-webkit-transform: perspective(1100px) rotateY(-45deg);
 	transform: perspective(1100px) rotateY(-45deg);
 	height: 9rem;
@@ -151,7 +153,7 @@ body {
 	width: auto;
 	height: auto;
 	border: 0.3rem solid #fff;
-	box-shadow: 0.4rem 0.4rem 0.1rem rgba(0, 0, 0, 0.5);
+	box-shadow: 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.5);
 	box-sizing: border-box;
 	position: relative;
 }
