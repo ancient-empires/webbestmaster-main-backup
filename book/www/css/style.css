@@ -118,8 +118,7 @@ body {
 	outline: 1px solid transparent;
 	display: block;
 	margin: 0 auto;
-	/*box-shadow: 1px 1px 0 #bbb, 2px 2px 0 #ccc, 3px 3px 0 #ddd, 4px 4px 0 #ccc, 5px 5px 0 #ddd, 0.4rem 0.4rem 0.3rem rgba(70, 70, 70, 0.7);*/
-	box-shadow: 1px 1px 0 #bbb, 3px 3px 0 #ddd, 5px 5px 0 #ddd, 0.4rem 0.4rem 0.2rem rgba(70, 70, 70, 0.75);
+	box-shadow: 1px 1px 0 #bbb, 2px 2px 0 #ccc, 3px 3px 0 #ddd, 4px 4px 0 #ccc, 5px 5px 0 #ddd;
 	-webkit-transform: perspective(1100px) rotateY(-45deg);
 	transform: perspective(1100px) rotateY(-45deg);
 	height: 9rem;
