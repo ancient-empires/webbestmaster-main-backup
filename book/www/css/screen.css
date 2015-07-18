@@ -22,7 +22,7 @@
 }
 
 .screen {
-	/*position: fixed;*/
+	position: fixed;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -66,6 +66,12 @@
 	animation-fill-mode: forwards;
 	transform-origin: center center;
 
+}
+
+.show-view-no-animation {
+	opacity: 1;
+	-webkit-transition: none;
+	transition: none;
 }
 
 @-webkit-keyframes screen-show-out {
