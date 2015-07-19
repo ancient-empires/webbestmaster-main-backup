@@ -44,7 +44,7 @@
 			view.proto.initialize.apply(view, arguments);
 			//view.onResize();
 
-			view.loadFirstImage()
+			view.loadBooksImages()
 				.then(function () {
 					view.onResize();
 					return view.render();
@@ -170,7 +170,7 @@
 				var $page = $(this),
 					$pageText = $page.find(pageTextSelector),
 					$hiddenText = $page.find(selectorHiddenText),
-					hiddenTextHeight = $hiddenText.outerHeight(),
+					hiddenTextHeight = $hiddenText.outerHeight() || 0,
 					$image = $page.find(selectorImage),
 					imageNode = $image.get(0),
 					beautifulSpace = 0.9,
@@ -192,7 +192,7 @@
 
 				q = availableSpace.aspectRatio > image.aspectRatio ? image.width / availableSpace.width : image.height / availableSpace.height;
 
-				if ($pageText.length) {
+				//if ($pageText.length || 1) {
 
 					endWidth = Math.floor(image.width / q * beautifulSpace);
 					endHeight = Math.floor(image.height / q * beautifulSpace);
@@ -208,34 +208,59 @@
 						top: endTop + endHeight + 'px'
 					});
 
-				} else {
-					$image.css({
+				//} else {
+					//$image.css({
 						//width: Math.floor(image.width / q * beautifulSpace) + 'px',
 						//height: Math.floor(image.height / q * beautifulSpace) + 'px',
-						top: Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2) + 'px'
-					});
-				}
+						//top: Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2) + 'px'
+					//});
+				//}
 
 			});
 
 		},
 
-		loadFirstImage: function () {
+		loadBooksImages: function () {
 
 			var view = this,
 				book = view.get('book'),
-				firstPage = book.pages[0],
-				src = firstPage.img,
-				deferred = $.Deferred(),
-				img = new Image();
+				mainBookFolder = 'books',
+				pages = book.pages,
+				language = view.info.get('language'),
+				bookFolder = book.folder,
+				loadDeferred = $.Deferred(),
+				loadPromise = loadDeferred.promise(),
+				mainDeferred = $.Deferred();
 
-			$(img).one('load', function () {
-				deferred.resolve();
+			function loadImage(page) {
+
+				var deferred = $.Deferred(),
+					img = new Image();
+
+				img.addEventListener('load', function resolve() {
+					this.removeEventListener('load', resolve, false);
+					deferred.resolve();
+				}, false);
+
+				img.src = [mainBookFolder, language, bookFolder, page.img].join('/');
+
+				return deferred.promise();
+
+			}
+
+			_.each(pages, function (page) {
+				loadPromise = loadPromise.then(function () {
+					return loadImage(page);
+				});
 			});
 
-			img.src = ['books', view.info.get('language'), book.folder, src].join('/');
+			loadPromise.then(function () {
+				return mainDeferred.resolve();
+			});
 
-			return deferred.promise();
+			loadDeferred.resolve();
+
+			return mainDeferred.promise();
 
 		},
 
