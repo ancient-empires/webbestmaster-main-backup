@@ -194,6 +194,87 @@
 
 		},
 
+		detectDuplicate: function () {
+
+			//TODO: if new map -> window.APP.map.detectDuplicate();
+
+			function getMapNames(map) {
+				var mapNames = {};
+
+				_.each(win.APP.info.availableLanguages, function (lang) {
+					mapNames[lang] = map['name-' + lang] || map.name;
+				});
+
+				return mapNames;
+
+			}
+
+			function getTerrainArray(terrain) {
+
+				var arr = [];
+
+				_.each(terrain, function (value) {
+					var lastSymbolIndex = value.lastIndexOf('-');
+					arr.push(value.substr(0, lastSymbolIndex));
+				});
+
+				return arr;
+
+			}
+
+			// get all skirmish maps
+			this.db.getAllMapList().then(function (mapList) {
+
+				_.each(mapList, function (mainMap) {
+
+					var mainMapWidth = mainMap.size.width,
+						mainMapHeight = mainMap.size.height,
+						mainMapTerrain = getTerrainArray(mainMap.terrain),
+						mainMapNames = getMapNames(mainMap);
+
+					_.each(mapList, function (map) {
+
+						if (map === mainMap) {
+							return;
+						}
+
+						var mapNames = getMapNames(map),
+							mapTerrain,
+							theSameTerrainCount = 0,
+							percent;
+
+						// detect the same names
+						_.each(mapNames, function (name, key) {
+							if (name === mainMapNames[key]) {
+								console.log('!!! - The Same Name -', name);
+							}
+						});
+
+						if ( mainMapWidth === map.size.width && mainMapHeight === map.size.height ) {
+							mapTerrain = getTerrainArray(map.terrain);
+
+							_.each(mapTerrain, function (terrainType, index) {
+								if (terrainType === mainMapTerrain[index]) {
+									theSameTerrainCount += 1;
+								}
+							});
+
+						}
+
+						percent = theSameTerrainCount / mainMapTerrain.length * 100;
+
+						if (percent > 40) {
+							console.log('%', percent, mapNames.en, '-', mainMapNames.en);
+						}
+
+					});
+
+				});
+
+			});
+
+		},
+
 		terra: {
 			pathResistance: 1,
 			defence: 5
@@ -541,6 +622,32 @@
 						for (i = 0, len = results.rows.length; i < len; i += 1) {
 							row = results.rows.item(i);
 							mapsInfo[row.jsMapKey] = JSON.parse(row.info);
+						}
+						deferred.resolve(mapsInfo);
+					});
+				});
+
+				return deferred.promise();
+
+			},
+
+			getAllMapList: function (data) {
+
+				data = data || {};
+
+				var dbMaster = this,
+					deferred = $.Deferred(),
+					db = dbMaster.db,
+					mapsInfo = {};
+
+				data.type = data.type || dbMaster.skirmishMaps;
+
+				db.transaction(function (tx) {
+					tx.executeSql('SELECT * FROM ' + data.type + ' ORDER BY jsMapKey ASC', [], function (tx, results) {
+						var i, len, row;
+						for (i = 0, len = results.rows.length; i < len; i += 1) {
+							row = results.rows.item(i);
+							mapsInfo[row.jsMapKey] = JSON.parse(row.map);
 						}
 						deferred.resolve(mapsInfo);
 					});
