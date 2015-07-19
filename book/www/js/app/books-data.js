@@ -101,31 +101,37 @@
 		],
 
 		'ru': [
+
 			{
-				folder: 'book 0',
-				pages: 3
-			},
-			{
-				folder: 'book 1',
-				pages: 3
-			},
-			{
-				folder: 'book 2',
-				pages: 3
+				folder: 'alfavit',
+				title: {
+					text: 'Алфавит',
+					img: 'alfavit-00.jpg'
+				},
+				pages: [
+					{ img: 'alfavit-01.jpg', time: 10 },
+					//{ text: 'вставь текст если нужно', img: 'alfavit-01.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-02.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-03.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-04.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-05.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-06.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-07.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-08.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-09.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-10.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-11.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-12.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-13.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-14.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-15.jpg', sound: '1.mp3', time: 20 },
+					{ text: 'вставь текст если нужно', img: 'alfavit-16.jpg', sound: '1.mp3', time: 20 }
+				]
+
 			}
+
 		]
 
-
-
-
-
-
-
-
-
-
-	}
-
-
+	};
 
 }(window));

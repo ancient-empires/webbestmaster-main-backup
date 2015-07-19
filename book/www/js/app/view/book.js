@@ -248,11 +248,17 @@
 				book = view.get('book'),
 				soundMaster = win.APP.soundMaster;
 
-			soundMaster.play({
-				sound: ['books', languageName, book.folder, data.sound].join('/'),
-				road: 0,
-				isLoop: false
-			});
+			if (data.sound) {
+				soundMaster.play({
+					sound: ['books', languageName, book.folder, data.sound].join('/'),
+					road: 0,
+					isLoop: false
+				});
+			} else {
+				soundMaster.stop({
+					road: 0
+				});
+			}
 
 			view.set('state', 'playing');
 			view.autoSetPlayPauseButtonState();
@@ -378,7 +384,7 @@
 					view.routeBack();
 				}
 
-			}, timeout * 10000e3); // 1e3
+			}, timeout * 1e3); // 1e3
 
 			view.set('nextActionTimeoutId', currentTimeoutId);
 

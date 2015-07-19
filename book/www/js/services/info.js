@@ -29,8 +29,8 @@
 		savedItem: '!!!!-ENTER-APP-NAME-!!!!',
 		attr: {},
 		systemAttr: {},
-		defaultLanguage: 'en',
-		availableLanguages: ['en'],
+		defaultLanguage: 'ru',
+		availableLanguages: ['ru'],
 		//availableLanguages: ['ru', 'en'],
 
 		init: function () {
