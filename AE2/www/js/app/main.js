@@ -25,17 +25,18 @@
 		win.APP.soundMaster.init();
 		win.APP.soundMaster.playBgSound();
 
-		//setTimeout(function () {
-		//	win.APP.soundMaster.play({
-		//		sound: 'click.mp3',
-		//		road: 3,
-		//		isLoop: false
-		//	});
-		//}, 1000);
-		//
-		//setTimeout(function () {
-		//	win.APP.soundMaster.playBgSound();
-		//}, 2000);
+		// todo: uncomment for iOS
+		setTimeout(function () {
+			win.APP.soundMaster.play({
+				sound: 'click.mp3',
+				road: 3,
+				isLoop: false
+			});
+		}, 1000);
+
+		setTimeout(function () {
+			win.APP.soundMaster.playBgSound();
+		}, 2000);
 
 	}
 
