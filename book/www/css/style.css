@@ -134,12 +134,11 @@ body {
 
 .page-text {
 	position: fixed;
-	/*bottom: 0;*/
+	/* bottom: 0; */
 	width: 100%;
 	box-sizing: border-box;
-	padding: 1rem;
+	padding: 0.7rem;
 	color: #f0f0f0;
-	text-indent: 1rem;
 	line-height: 1.4rem;
 	font-size: 1.1rem;
 }
