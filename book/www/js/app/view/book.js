@@ -357,7 +357,7 @@
 
 				index += 1;
 
-				data.$el.html(data.text.substring(0, index));
+				data.$el.html(data.text.substring(0, index).replace(/\|/g, '<br />'));
 
 			}, 25);
 
