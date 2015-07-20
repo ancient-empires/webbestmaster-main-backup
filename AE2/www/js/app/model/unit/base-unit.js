@@ -920,6 +920,8 @@
 			var unit = this,
 				view = unit.get('view');
 
+			view.moveBack.clear();
+
 			//view.showFightScreen({
 			//	attacker: unit,
 			//	defender: enemyUnit
@@ -1029,6 +1031,8 @@
 			var unit = this,
 				view = unit.get('view');
 
+			view.moveBack.clear();
+
 			view.showAttack({
 				from: {
 					x: unit.get('x'),
@@ -1130,6 +1134,8 @@
 				newUnitData,
 				newUnit;
 
+			view.moveBack.clear();
+
 			model.removeGrave(grave);
 			view.removeGrave(grave);
 
@@ -1162,6 +1168,8 @@
 				model = unit.get('model'),
 				building = action.buildingToFix;
 
+			view.moveBack.clear();
+
 			unit.set('isActive', false);
 
 			view.clearAvailableActions();
@@ -1178,6 +1186,8 @@
 				view = unit.get('view'),
 				model = unit.get('model'),
 				building = action.buildingToOccupy;
+
+			view.moveBack.clear();
 
 			unit.set('isActive', false);
 

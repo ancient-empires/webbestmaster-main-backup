@@ -178,6 +178,21 @@
 	outline: 0.45rem solid #ccc;
 }
 
-
+.move-back-button {
+	position: absolute;
+	right: 0.3rem;
+	bottom: 3.3rem;
+	background-color: #242a45;
+	z-index: 1;
+	box-shadow: 0.2rem 0.2rem 0 #000;
+	border-style: solid;
+	border-width: 0.15rem;
+	width: 2.3rem;
+	height: 1rem;
+	padding: 0.4rem 0;
+	font-family: 'big-pixel-font', "Courier New", Courier, monospace;
+	letter-spacing: -0.3rem;
+	text-indent: 0.35rem;
+}
 
 

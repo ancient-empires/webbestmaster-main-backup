@@ -17,6 +17,7 @@
 			'click .js-end-turn': 'endTurn',
 			'click .js-battle-menu-button': 'openMenu',
 			'click .js-help-button': 'showHelp',
+			'click .js-move-back-button': 'moveUndo',
 			'hideHouseSmoke': 'hideHouseSmoke',
 			'showHouseSmoke': 'showHouseSmoke'
 		},
@@ -42,6 +43,7 @@
 			statusBar: '.js-battle-view-status-bar',
 			styleSquareSize: '.js-style-square-size',
 			unitInfoWrapper: '.js-unit-info-wrapper',
+			moveBack: '.js-move-back-button',
 			helpButton: '.js-help-button'
 		},
 
@@ -111,6 +113,8 @@
 				// start game from model
 				view.get('model').startGame();
 
+				view.moveBack.init({ view: view });
+
 				view.proto.initialize.apply(view, arguments);
 
 				return;
@@ -159,9 +163,84 @@
 				// start game from model
 				view.get('model').startGame();
 
+				view.moveBack.init({ view: view });
+
 				view.proto.initialize.apply(view, arguments);
 
 			});
+
+		},
+
+		moveUndo: function () {
+			this.moveBack.moveBack();
+		},
+
+		moveBack: {
+
+			init: function (data) {
+
+				var moveBack = this,
+					view = data.view;
+
+				moveBack.view = view;
+
+				moveBack.$button = view.$el.find(view.selectors.moveBack);
+
+			},
+
+			pushUnit: function (unit) {
+
+				var moveBack = this;
+
+				moveBack.unitSavedData = unit.toJSON();
+				moveBack.unit = unit;
+				moveBack.showButton();
+
+			},
+
+			moveBack: function () {
+
+				var moveBack = this,
+					unit = moveBack.unit;
+
+				unit.set(moveBack.unitSavedData);
+
+				moveBack.view.moveUnitTo({
+					unit: unit,
+					x: unit.get('x'),
+					y: unit.get('y')
+				}).then(function () {
+					moveBack.clear();
+				});
+
+			},
+
+			showButton: function () {
+
+				var moveBack = this;
+
+				moveBack.$button.removeClass('hidden');
+
+			},
+
+			hideButton: function () {
+
+				var moveBack = this;
+
+				moveBack.$button.addClass('hidden');
+
+			},
+
+			clear: function () {
+
+				var moveBack = this;
+
+				moveBack.hideButton();
+
+				delete moveBack.unitSavedData;
+				delete moveBack.unit;
+
+			}
 
 		},
 
@@ -220,6 +299,8 @@
 		confirmedEndTurn: function () {
 
 			var view = this;
+
+			view.moveBack.clear();
 
 			view.get('model').newTurn();
 			view.removeActiveSquare();
@@ -1514,6 +1595,8 @@
 				y = data.y,
 				xPx = x * squareSize,
 				yPx = y * squareSize;
+
+			view.moveBack.pushUnit(data.unit);
 
 			view.disable();
 
