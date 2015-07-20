@@ -45,14 +45,52 @@
 			var img = new Image();
 			img.addEventListener('load', calback.bind(context), false);
 			img.src = 'http://statlex.com/i/statlex-icon.png?t=' + Date.now();
+		},
+
+		getAudioDuration: function () {
+
+			var language =  win.APP.info.get('language'),
+				booksData = win.APP.booksData,
+				books = booksData[language],
+				deferred = $.Deferred(),
+				promise = deferred.promise(),
+				srcList = [];
+
+			_.each(books, function (book) {
+				_.each(book.pages, function (page) {
+
+					if ( page.sound ) {
+						srcList.push( ['books', language, book.folder, page.sound].join('/') );
+					}
+
+				});
+			});
+
+			function loadAudio(src) {
+
+				var audio = new Audio(),
+					deferred = $.Deferred();
+
+				audio.addEventListener('canplay', function () {
+					console.log(this.src, this.duration);
+					deferred.resolve();
+				}, false);
+
+				audio.src = src;
+
+				return deferred.promise();
+
+			}
+
+			_.each(srcList, function (src) {
+				promise = promise.then(function () {
+					return loadAudio(src);
+				});
+			});
+
+			deferred.resolve();
+
 		}
-
-
-
-
-
-
-
 
 	};
 
