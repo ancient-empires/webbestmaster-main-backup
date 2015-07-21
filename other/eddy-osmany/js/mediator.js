@@ -43,7 +43,13 @@
 
 			unSubscribe = function (channel) {
 
-				mediator.channels[channel] = mediator.channels[channel].filter(function (item) {
+				var channels = mediator.channels;
+
+				if ( !channels[channel] ) {
+					return false;
+				}
+
+				channels[channel] = channels[channel].filter(function (item) {
 					return item.context !== this;
 				}, this);
 
