@@ -245,7 +245,7 @@
 
 						// detect the same names
 						_.each(mapNames, function (name, key) {
-							if (name === mainMapNames[key]) {
+							if ( name.trim() === mainMapNames[key].trim() ) {
 								console.log('!!! - The Same Name -', name);
 							}
 						});
@@ -261,7 +261,7 @@
 
 						}
 
-						percent = theSameTerrainCount / mainMapTerrain.length * 100;
+						percent = Math.round(theSameTerrainCount / mainMapTerrain.length * 100);
 
 						if (percent > 40) {
 							console.log('%', percent, mapNames.en, '-', mainMapNames.en);
