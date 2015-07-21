@@ -28,7 +28,7 @@
 					args;
 
 				if ( !list ) {
-					return false;
+					return this;
 				}
 
 				args = Array.prototype.slice.call(arguments, 1);
@@ -46,7 +46,7 @@
 				var channels = mediator.channels;
 
 				if ( !channels[channel] ) {
-					return false;
+					return this;
 				}
 
 				channels[channel] = channels[channel].filter(function (item) {
