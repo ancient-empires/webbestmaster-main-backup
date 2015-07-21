@@ -1,10 +1,8 @@
-/*jslint white: true, nomen: true */
+/*jslint white: true */
 (function (win) {
 
 	"use strict";
 	/*global window */
-	/*global */
-
 
 	var mediator = (function() {
 
@@ -73,6 +71,5 @@
 	}());
 
 	win.mediator = mediator;
-
 
 }(window));
