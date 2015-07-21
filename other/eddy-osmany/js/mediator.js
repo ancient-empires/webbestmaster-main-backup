@@ -47,6 +47,8 @@
 					return item.context !== this;
 				}, this);
 
+				return this;
+
 			};
 
 		return {
