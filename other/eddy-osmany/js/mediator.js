@@ -41,7 +41,7 @@
 
 			},
 
-			unSubscribe = function (channel) {
+			unsubscribe = function (channel) {
 
 				var channels = mediator.channels;
 
@@ -61,11 +61,11 @@
 			channels: {},
 			publish: publish,
 			subscribe: subscribe,
-			unSubscribe: unSubscribe,
+			unsubscribe: unsubscribe,
 			installTo: function(obj) {
 				obj.subscribe = subscribe;
 				obj.publish = publish;
-				obj.unSubscribe = unSubscribe;
+				obj.unsubscribe = unsubscribe;
 
 			}
 		};
