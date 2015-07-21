@@ -15,24 +15,16 @@
 	});
 
 	mediator.publish('nameChange', 'david'); //tim, david
+	mediator.unSubscribe('nameChange');
 
+	var obj = {name: 'sam'};
+	mediator.installTo(obj);
+	obj.subscribe('nameChange', function(arg) {
+		console.log(this.name);
+		this.name = arg;
+		console.log(this.name);
+	});
 
-
-
-
-	//var obj = {name: 'sam'};
-	//mediator.installTo(obj);
-	//obj.subscribe('nameChange', function(arg) {
-	//	console.log(this.name);
-	//	this.name = arg;
-	//	console.log(this.name);
-	//});
-	//
-	//obj.publish('nameChange', 'john'); //sam, john
-
-
-
-
-
+	obj.publish('nameChange', 'john'); //sam, john
 
 }(window));

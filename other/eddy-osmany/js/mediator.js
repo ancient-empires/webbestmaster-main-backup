@@ -39,15 +39,26 @@
 
 				return this;
 
+			},
+
+			unSubscribe = function (channel) {
+
+				mediator.channels[channel] = mediator.channels[channel].filter(function (item) {
+					return item.context !== this;
+				}, this);
+
 			};
 
 		return {
 			channels: {},
 			publish: publish,
 			subscribe: subscribe,
+			unSubscribe: unSubscribe,
 			installTo: function(obj) {
 				obj.subscribe = subscribe;
 				obj.publish = publish;
+				obj.unSubscribe = unSubscribe;
+
 			}
 		};
 
