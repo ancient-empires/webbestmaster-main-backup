@@ -1,7 +1,7 @@
 /*jslint white: true */
 (function (win) {
 
-	"use strict";
+	'use strict';
 	/*global window */
 
 	var mediator = (function() {
