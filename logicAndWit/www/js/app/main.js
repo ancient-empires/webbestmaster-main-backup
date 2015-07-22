@@ -26,7 +26,7 @@
 				win.APP.bb.router = new win.APP.BB.Router();
 				Backbone.history.start();
 				if (win.APP.info.withAds) {
-					setTimeout(win.APP.ad.showAd, 30e3);
+					win.APP.ad.showAd();
 				}
 			}
 
