@@ -201,16 +201,24 @@
 			moveBack: function () {
 
 				var moveBack = this,
-					unit = moveBack.unit;
+					view = moveBack.view,
+					unit = moveBack.unit,
+					xy;
 
 				unit.set(moveBack.unitSavedData);
 
-				moveBack.view.moveUnitTo({
-					unit: unit,
+				xy = {
 					x: unit.get('x'),
 					y: unit.get('y')
+				};
+
+				moveBack.view.moveUnitTo({
+					unit: unit,
+					x: xy.x,
+					y: xy.y
 				}).then(function () {
 					moveBack.clear();
+					view.onClick(xy);
 				});
 
 			},
