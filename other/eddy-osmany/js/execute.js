@@ -15,7 +15,8 @@
 	});
 
 	mediator.publish('nameChange', 'david'); //tim, david
-	mediator.unsubscribe('nameChange'); // unsubscribe to prevent follow publish, see obj.publish('nameChange', 'john');
+	mediator.unsubscribe('nameChange'); // unsubscribe to prevent follow publish, only for 'nameChange';
+	mediator.unsubscribe(); // unsubscribe to prevent follow publish, for all channels;
 
 	var obj = {name: 'sam'};
 

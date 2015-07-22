@@ -41,7 +41,20 @@
 
 			unsubscribe = function (channel) {
 
-				var channels = mediator.channels;
+				var channels = mediator.channels,
+					ch;
+
+				if ( !channel ) {
+
+					for (ch in channels) {
+						if (channels.hasOwnProperty(ch)) {
+							this.unsubscribe(ch);
+						}
+					}
+
+					return this;
+
+				}
 
 				if ( !channels[channel] ) {
 					return this;
