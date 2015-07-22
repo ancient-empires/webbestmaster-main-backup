@@ -89,7 +89,7 @@
 
 			var view, model, mapSize, unitLimit, mapWidth, mapHeight, x, y, xy, currentXY, getPathSize, player,
 				playerUnits, playerMoney, $this, unitType, unitData, unitCost, freeXYs, unitMaster, isCommander,
-				firstXY, filteredXYs;
+				firstXY, filteredXYs, moveBack;
 
 			if (e.state === 'cpu') { // bot
 
@@ -139,6 +139,7 @@
 			freeXYs = [];
 			unitMaster = win.APP.unitMaster;
 			isCommander = _.contains(unitMaster.commanderList, unitType);
+			moveBack = view.get('view').moveBack;
 
 			if ( isCommander ) {
 				unitCost += (player.commander.deadCount || 0) * unitMaster.commanderAddedCost;
@@ -214,6 +215,10 @@
 			});
 
 			firstXY = filteredXYs[0];
+
+			if ( moveBack.unitSavedData.x === firstXY.x && moveBack.unitSavedData.y === firstXY.y ) {
+				moveBack.clear();
+			}
 
 			model.appendUnit({
 				type: unitType,

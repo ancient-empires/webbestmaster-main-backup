@@ -1070,7 +1070,7 @@
 
 			model.clearAvailableActions();
 			view.clearAvailableActions();
-			view.moveBack.clear();
+			//view.moveBack.clear();
 			view.removeActiveSquare();
 
 			new APP.BB.UnitStoreView({
