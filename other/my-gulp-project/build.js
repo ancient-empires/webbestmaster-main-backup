@@ -42,7 +42,7 @@
 		fs.unlinkSync(src);
 	});
 
-	endHtml = endHtml.replace('scriptRemoved', '<script src="js/all.js" type="text/javascript" async><\/script>')
+	endHtml = endHtml.replace('scriptRemoved', '<script src="js/all.min.js" type="text/javascript" async><\/script>')
 		.replace(/scriptRemoved[\s\S]+scriptRemoved/g, ' ')
 		.replace(/\/\*[\s\S]*?\*\/|<!--[\s\S]*?-->/g, ' ')
 		.replace(/>\s+</g, '> <')
