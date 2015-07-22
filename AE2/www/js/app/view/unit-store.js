@@ -216,7 +216,7 @@
 
 			firstXY = filteredXYs[0];
 
-			if ( moveBack.unitSavedData.x === firstXY.x && moveBack.unitSavedData.y === firstXY.y ) {
+			if ( moveBack.unitSavedData && moveBack.unitSavedData.x === firstXY.x && moveBack.unitSavedData.y === firstXY.y ) {
 				moveBack.clear();
 			}
 
