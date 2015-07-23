@@ -110,10 +110,10 @@
 
 				view.render();
 
+				view.moveBack.init({ view: view });
+
 				// start game from model
 				view.get('model').startGame();
-
-				view.moveBack.init({ view: view });
 
 				view.proto.initialize.apply(view, arguments);
 
@@ -160,10 +160,10 @@
 
 				view.render();
 
+				view.moveBack.init({ view: view });
+
 				// start game from model
 				view.get('model').startGame();
-
-				view.moveBack.init({ view: view });
 
 				view.proto.initialize.apply(view, arguments);
 
@@ -307,8 +307,6 @@
 		confirmedEndTurn: function () {
 
 			var view = this;
-
-			view.moveBack.clear();
 
 			view.get('model').newTurn();
 			view.removeActiveSquare();

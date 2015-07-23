@@ -536,6 +536,8 @@
 				view = model.get('view'),
 				activePlayer = model.get('activePlayer');
 
+			view.moveBack.clear();
+
 			if (data.isSavedData) {
 				model.set('turnCount', savedData.turnCount);
 				model.set('circleCount', savedData.circleCount);
