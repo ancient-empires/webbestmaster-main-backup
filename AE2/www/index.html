@@ -1519,9 +1519,9 @@
 							</div>
 							<div class="unit-shot-info-properties unit-shot-info-properties-wide">
 								<% var atk = unit.get('atk'), level = unit.get('level'), unitMaster = window.APP.unitMaster; %>
-								<div class="unit-shot-info-attack"><%= atk.min %>-<%= atk.max %><%= level ? '+'+ unitMaster.atkByLevel : '' %></div>
+								<div class="unit-shot-info-attack"><%= atk.min %>-<%= atk.max %><%= level ? '+' + unitMaster.atkByLevel * level : '' %></div>
 								<div class="clear"></div>
-								<div class="unit-shot-info-defence"><%= unit.get('def') %><%= level ? '+'+ unitMaster.defByLevel : '' %></div>
+								<div class="unit-shot-info-defence"><%= unit.get('def') %><%= level ? '+' + unitMaster.defByLevel * level : '' %><%= defByTerrain ? '+' + defByTerrain : '' %></div>
 								<div class="unit-shot-info-move"><%= unit.get('mov') %></div>
 							</div>
 						</div>

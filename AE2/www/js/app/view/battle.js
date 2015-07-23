@@ -1417,7 +1417,7 @@
 				downEvent = view.get('downEvent'),
 				moveEvent = view.get('moveEvent'),
 				lang,
-				model, xy, unit, levelPercent, unitLangData;
+				model, xy, unit, levelPercent, unitLangData, placeArmor;
 
 			if ( Math.abs(downEvent.x - moveEvent.x) + Math.abs(downEvent.y - moveEvent.y) > 7 )  { // detect press event without move
 				return;
@@ -1454,11 +1454,31 @@
 
 			}());
 
+			/*jslint white: true, nomen: true */
+			placeArmor = (function () {
+
+				var unitXY = {
+						x: unit.get('x'),
+						y: unit.get('y')
+					},
+					unitMoveType = unit.get('moveType'),
+					unitTerrain = model.getTerrainByXY(unitXY);
+
+				// detect armor for elementals
+				if (unitMoveType === 'flow' && unitTerrain.terrainType === 'water') {
+					return win.APP.unitMaster.bonusDefByWater;
+				}
+
+				return model.getArmorByXY(unitXY);
+
+			}());
+
 			view.showPopup({
 				cssClass: 'full',
 				popupName: 'full-unit-info',
 				popupData: {
 					unit: unit,
+					defByTerrain: placeArmor,
 					img: ['unit-image', unit.get('type'), unit.get('color')].join('-'),
 					name: unitLangData.name,
 					description: unitLangData.description,
