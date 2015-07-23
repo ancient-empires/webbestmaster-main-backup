@@ -139,7 +139,7 @@
 			freeXYs = [];
 			unitMaster = win.APP.unitMaster;
 			isCommander = _.contains(unitMaster.commanderList, unitType);
-			moveBack = view.get('view').moveBack;
+			moveBack = model.get('view').moveBack;
 
 			if ( isCommander ) {
 				unitCost += (player.commander.deadCount || 0) * unitMaster.commanderAddedCost;
