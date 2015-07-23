@@ -217,6 +217,18 @@
 
 .map-name-list-item {
 	clear: both;
+	position: relative;
+}
+
+.map-list-map-size {
+	font-size: 0.65rem;
+	line-height: 0.65rem;
+	/* text-align: center; */
+	/* margin-top: 0.4rem; */
+	position: absolute;
+	bottom: 0;
+	/* display: none; */
+	padding-left: 2.6rem;
 }
 
 .map-preview-button {
@@ -226,7 +238,7 @@
 	height: 1rem;
 	position: relative;
 	z-index: 1;
-	margin-top: 0.3rem;
+	margin-top: 0.6rem;
 	margin-right: 0;
 	background-image: url(../i/ui/map-preview.png);
 	background-repeat: no-repeat;
@@ -254,7 +266,7 @@
 	border-color: #666;
 	border-width: 0.15rem;
 	border-style: solid;
-	margin: -0.3rem auto 0.1rem;
+	margin: 0.3rem auto 0.1rem;
 }
 
 .map-preview-canvas {
@@ -263,12 +275,12 @@
 	height: auto;
 }
 
-.map-preview-text {
-	font-size: 0.65rem;
-	line-height: 0.65rem;
-	text-align: center;
-	margin-top: 0.4rem;
-}
+/*.map-preview-text {*/
+	/*font-size: 0.65rem;*/
+	/*line-height: 0.65rem;*/
+	/*text-align: center;*/
+	/*margin-top: 0.4rem;*/
+/*}*/
 
 .map-preview-wrapper {
 	padding-bottom: 0.8rem;
