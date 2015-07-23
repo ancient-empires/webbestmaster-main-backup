@@ -7,6 +7,7 @@
 
 	win.APP.maps = win.APP.maps || {};
 
+	/*
 	win.APP.maps.skirmish_001_071 = {
 		"type": "skirmish",
 		"size": {"width": 14, "height": 14},
@@ -222,5 +223,7 @@
 			"x13y13": "road-1"
 		}
 	};
+
+*/
 
 }(window));
