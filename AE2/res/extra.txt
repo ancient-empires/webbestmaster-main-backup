@@ -1,5 +1,5 @@
 "name":"([\s\S]+?)",
-"name":"", "name-es":"", "name-ru":"$1",
+"name":"","name-es":"","name-ru":"$1",
 
 window.APP.map.detectDuplicate();
 
