@@ -209,14 +209,21 @@
 
 			}
 
-			function getTerrainArray(terrain) {
+			function getTerrainArray(map) {
 
-				var arr = [];
+				var arr = [],
+					terrain = map.terrain,
+					width = map.size.width,
+					height = map.size.height,
+					x, y, lastSymbolIndex, value;
 
-				_.each(terrain, function (value) {
-					var lastSymbolIndex = value.lastIndexOf('-');
-					arr.push(value.substr(0, lastSymbolIndex));
-				});
+				for (x = 0; x < width; x += 1) {
+					for (y = 0; y < height; y += 1) {
+						value = terrain['x' + x + 'y' + y];
+						lastSymbolIndex = value.lastIndexOf('-');
+						arr.push(value.substr(0, lastSymbolIndex));
+					}
+				}
 
 				return arr;
 
@@ -229,7 +236,7 @@
 
 					var mainMapWidth = mainMap.size.width,
 						mainMapHeight = mainMap.size.height,
-						mainMapTerrain = getTerrainArray(mainMap.terrain),
+						mainMapTerrain = getTerrainArray(mainMap),
 						mainMapNames = getMapNames(mainMap);
 
 					_.each(mapList, function (map) {
@@ -251,8 +258,7 @@
 						});
 
 						if ( mainMapWidth === map.size.width && mainMapHeight === map.size.height ) {
-							mapTerrain = getTerrainArray(map.terrain);
-
+							mapTerrain = getTerrainArray(map);
 							_.each(mapTerrain, function (terrainType, index) {
 								if (terrainType === mainMapTerrain[index]) {
 									theSameTerrainCount += 1;
@@ -263,8 +269,8 @@
 
 						percent = Math.round(theSameTerrainCount / mainMapTerrain.length * 100);
 
-						if (percent > 40) {
-							console.log('%', percent, mapNames.en, '-', mainMapNames.en);
+						if (percent > 60) {
+							console.log('%', percent, mapNames.en, '< = >', mainMapNames.en);
 						}
 
 					});
