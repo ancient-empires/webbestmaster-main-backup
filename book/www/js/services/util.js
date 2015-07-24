@@ -90,6 +90,59 @@
 
 			deferred.resolve();
 
+		},
+
+		createBookList: function () {
+
+			var language =  win.APP.info.get('language'),
+				booksData = win.APP.booksData,
+				books = booksData[language],
+				deferred = $.Deferred(),
+				promise = deferred.promise();
+
+			function addTimeToPage(book, page) {
+
+				var deferred = $.Deferred(),
+					audio;
+
+				if (page.sound) {
+
+					audio = new Audio();
+
+					audio.addEventListener('canplay', function () {
+						console.log(this.src, this.duration);
+						page.time = this.duration;
+						deferred.resolve();
+					}, false);
+
+					audio.src = ['books', language, book.folder, page.sound].join('/');
+
+				} else {
+					deferred.resolve();
+				}
+
+				return deferred.promise();
+
+			}
+
+			_.each(books, function (book) {
+				_.each(book.pages, function (page) {
+
+					promise = promise.then(function () {
+						return addTimeToPage(book, page);
+					});
+
+				});
+			});
+
+			promise = promise.then(function () {
+				//console.dir(JSON.stringify(books));
+				//console.dir(books);
+				console.log(JSON.stringify(books));
+			});
+
+			deferred.resolve();
+
 		}
 
 	};
