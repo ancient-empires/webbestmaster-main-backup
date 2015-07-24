@@ -696,7 +696,16 @@
 				angleTypes = ['road', 'water'],
 				mapWidth = map.size.width,
 				mapHeight = map.size.height,
-				maxCanvasSize = win.APP.map.maxCanvasSize;
+				maxCanvasSize = win.APP.map.maxCanvasSize,
+				args = view.get('args'),
+				mapType = args.type,
+				jsMapKey = args.jsMapKey;
+
+			// detect skirmish and missions
+			if ( ['skirmish', 'mission'].indexOf(mapType) !== -1 ) {
+				$mapImageWrapper.html('&nbsp;').css('background-image', 'url(map/' + jsMapKey + '.png)');
+				return;
+			}
 
 			//if ( !this.info.get('isAndroid', true) ) { // for NOT android set size 24
 			//	squareSize = 48; // see tiles image size 24 * 2

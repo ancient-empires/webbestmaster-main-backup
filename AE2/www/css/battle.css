@@ -33,6 +33,8 @@
 	background-color: #F4F4E6;
 	position: relative;
 	outline: 0.6rem solid #666;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
 }
 
 .map-image {
