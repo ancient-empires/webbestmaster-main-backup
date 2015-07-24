@@ -19,7 +19,7 @@
 			bookPage: '.js-book-page',
 			pageText: '.js-page-text',
 			hiddenPageText: '.js-page-text-hidden',
-			bookPageImage : '.js-book-page-image'
+			bookPageImage: '.js-book-page-image'
 		},
 
 		initialize: function (dataArg) {
@@ -160,7 +160,8 @@
 			var view = this,
 				device = win.APP.bb.device,
 				selectors = view.selectors,
-				selectorHiddenText = selectors.hiddenPageText,
+				//selectorHiddenText = selectors.hiddenPageText,
+				selectorHiddenText = selectors.pageText,
 				pageTextSelector = selectors.pageText,
 				selectorImage = selectors.bookPageImage,
 				$pages = view.$el.find(selectors.bookPage);
@@ -288,7 +289,7 @@
 			view.set('state', 'playing');
 			view.autoSetPlayPauseButtonState();
 
-			view.animateText();
+			//view.animateText();
 
 			view.doNextActionAfter(data.time);
 
