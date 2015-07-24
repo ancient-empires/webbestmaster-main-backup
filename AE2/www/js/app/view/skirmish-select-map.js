@@ -51,12 +51,16 @@
 						urlPrefix: 'user-map-setup-map'
 					}));
 
+					view.set('map-type', 'userMap');
+
 				} else { // skirmish
 
 					view.$el = $(view.tmpl.skirmishSelectMap({
 						mapsInfo: mapsInfo,
 						urlPrefix: 'skirmish-setup-map'
 					}));
+
+					view.set('map-type', 'skirmish');
 
 				}
 
@@ -83,16 +87,24 @@
 			if ($previewWrapper.hasClass('hidden')) {
 				$previewWrapper.removeClass('hidden');
 
-				if ( $previewWrapper.find('canvas').length ) {
+				if ( $previewWrapper.find('.map-preview-canvas').length ) {
 					return;
 				}
 
-				dbMaster.getMap({
-					type: mapType,
-					jsMapKey: jsMapKey
-				}).then(function (data) {
-					$previewImage.append(view.getPreviewFromData(data));
-				});
+				if ( view.get('map-type') === 'skirmish' ) {
+
+					$previewImage.html('<img class="map-preview-canvas" src="map/' + $this.attr('data-js-map-key') + '_preview.png" />')
+
+				} else {
+
+					dbMaster.getMap({
+						type: mapType,
+						jsMapKey: jsMapKey
+					}).then(function (data) {
+						$previewImage.append(view.getPreviewFromData(data));
+					});
+
+				}
 
 			} else {
 				$previewWrapper.addClass('hidden');
