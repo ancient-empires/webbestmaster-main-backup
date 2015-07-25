@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>НИЧОСИ !</title>
+
+	<!-- mobile device -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- do not phone -->
+	<meta name="format-detection" content="telephone=no">
+
+	<!-- styles -->
+	<link rel="stylesheet" href="css/main.css"/>
+
+	<!-- main -->
+	<script src="js/app/main.js" type="text/javascript"></script>
+
+	<!-- libs -->
+	<script src="js/lib/shim.js" type="text/javascript"></script>
+	<script src="js/lib/fastclick.js" type="text/javascript"></script>
+	<script src="js/lib/lodash.js" type="text/javascript"></script>
+
+	<script src="js/lib/dot.js" type="text/javascript"></script>
+
+	<script src="js/lib/jquery-2.1.3.js" type="text/javascript"></script>
+	<script src="js/lib/jquery.mb.browser.js" type="text/javascript"></script>
+	<script src="js/lib/jquery.finger-0.1.2.js" type="text/javascript"></script>
+
+	<script src="js/lib/backbone.js" type="text/javascript"></script>
+
+	<!-- langs -->
+	<script src="js/i18n/en.js" type="text/javascript"></script>
+	<script src="js/i18n/ru.js" type="text/javascript"></script>
+
+	<!-- services -->
+	<script src="js/services/log.js" type="text/javascript"></script>
+	<script src="js/services/util.js" type="text/javascript"></script>
+	<script src="js/services/info.js" type="text/javascript"></script>
+	<script src="js/services/device.js" type="text/javascript"></script>
+	<script src="js/services/lang.js" type="text/javascript"></script>
+	<script src="js/services/template-master.js" type="text/javascript"></script>
+	<script src="js/services/android-ads.js" type="text/javascript"></script>
+
+	<!-- sound -->
+	<script src="js/sound/sound-master.js" type="text/javascript"></script>
+	<script src="js/sound/player-web.js" type="text/javascript"></script>
+	<script src="js/sound/player-android.js" type="text/javascript"></script>
+	<script src="js/sound/player-ios.js" type="text/javascript"></script>
+
+	<!-- router -->
+	<script src="js/app/router/router.js" type="text/javascript"></script>
+
+	<!-- views -->
+	<script src="js/app/view/base.js" type="text/javascript"></script>
+	<script src="js/app/view/popup.js" type="text/javascript"></script>
+
+	<script src="js/app/view/home.js" type="text/javascript"></script>
+	<script src="js/app/view/page.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<div class="js-wrapper"></div>
+
+
+
+
+<script type="text/x-template" data-name="home">
+
+	<div class="screen">
+
+		<div><h1>home</h1></div>
+
+		<button class="js-show-popup">show popup</button>
+
+		<button data-route="page">to page</button>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="page">
+
+	<div class="screen">
+
+		<div><h1>page</h1></div>
+
+		<button class="js-show-popup">show popup</button>
+
+		<button data-route="page">to page</button>
+
+	</div>
+
+</script>
+
+
+<script type="text/x-template" data-name="popup-wrapper">
+
+	<div class="table popup-wrapper js-popup-wrapper">
+
+		<div class="table-row">
+			<div class="table-cell popup-container js-popup-container js-hide-popup"></div>
+		</div>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="popup-text">
+
+	<div class="popup-text js-stop-event">
+		{{= it.text }}
+		<br/>
+		<br/>
+		<br/>
+		{{= it.text }}
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		{{= it.text }}
+	</div>
+
+</script>
+
+
+
+</body>
+</html>

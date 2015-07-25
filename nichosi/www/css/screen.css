@@ -1,0 +1,88 @@
+@font-face {
+	font-family: 'Comic Sans MS';
+	src: url('../font/Comic%20Sans%20MS.ttf');
+}
+.wrapper {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-image: url(../i/main-bg.jpg);
+	background-position: center center;
+	font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+	color: #FFF;
+}
+
+.screen {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+
+	-webkit-transform: scale(0);
+	transform: scale(0);
+	-webkit-transition: -webkit-transform ease-in 0.5s;
+	transition: transform ease-in 0.5s;
+}
+
+@-webkit-keyframes screen-show-in {
+	0% { -webkit-transform: scale(0); }
+	100% { -webkit-transform: scale(1); }
+}
+
+@keyframes screen-show-in {
+	0% { transform: scale(0); }
+	100% { transform: scale(1); }
+}
+
+.show-view-animation {
+
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-name: screen-show-in;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-transform-origin: center center;
+
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+	animation-name: screen-show-in;
+	animation-fill-mode: forwards;
+	transform-origin: center center;
+
+}
+
+@-webkit-keyframes screen-show-out {
+	0% { -webkit-transform: scale(1); }
+	100% { -webkit-transform: scale(0); }
+}
+
+@keyframes screen-show-out {
+	0% { transform: scale(1); }
+	100% { transform: scale(0); }
+}
+
+.hide-view-animation {
+
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-name: screen-show-out;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-transform-origin: center center;
+
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+	animation-name: screen-show-out;
+	animation-fill-mode: forwards;
+	transform-origin: center center;
+
+}
+
+.scroll-area-container {
+	height: 100%;
+	overflow: auto;
+}
