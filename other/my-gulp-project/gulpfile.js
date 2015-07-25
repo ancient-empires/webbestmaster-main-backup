@@ -7,6 +7,7 @@
     //var minify = require('gulp-minify');
     var uglify = require("gulp-uglify");
     var clean = require('gulp-clean');
+    var cssBase64 = require('gulp-css-base64');
     // gulp - run 'default' task
     // gulp <task> <othertask>.
 
@@ -27,6 +28,14 @@
             .pipe(gulp.dest('./www/js'));
 
     });
+
+    gulp.task('css-base64', function() {
+
+        return gulp.src('www/css/main.css')
+            .pipe(cssBase64())
+            .pipe(gulp.dest('./www/css'));
+
+	});
 
     gulp.task('clean', function() {
 
