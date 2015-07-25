@@ -177,15 +177,17 @@
 		hide: function () {
 
 			var view = this,
+				info = view.info,
 				$el = view.$el,
-				animationEnd = view.info.get('animationEnd', true),
+				animationEnd = info.get('animationEnd', true),
+				isScreenAnimation = info.get('screenAnimation') === 'on',
 				deferred = $.Deferred();
 
 			if (view.unbindEventListeners) {
 				view.unbindEventListeners();
 			}
 
-			if ($el.hasClass('show-view-animation')) {
+			if (isScreenAnimation && $el.hasClass('show-view-animation')) {
 				$el.one(animationEnd, function () {
 					view.destroyView();
 					deferred.resolve();
@@ -205,7 +207,7 @@
 
 			var view = this,
 				$oldContainer = $(view.$wrapper[0].querySelectorAll(view.selectors.viewWrapper));
-
+			
 			$oldContainer.trigger('hide');
 
 			view.$el.addClass(view.classNames.viewWrapper);
@@ -220,15 +222,21 @@
 		showAppearAnimation: function () {
 
 			var view = this,
+				info = view.info,
+				isScreenAnimation = info.get('screenAnimation') === 'on',
 				$el = view.$el,
 				deferred = $.Deferred(),
-				animationEnd = view.info.get('animationEnd', true);
+				animationEnd = info.get('animationEnd', true);
 
-			$el.one(animationEnd, function () {
+			if (isScreenAnimation) {
+				$el.one(animationEnd, function () {
+					deferred.resolve();
+				});
+				$el.addClass('show-view-animation');
+			} else {
+				$el.addClass('show-view-no-animation');
 				deferred.resolve();
-			});
-
-			$el.addClass('show-view-animation');
+			}
 
 			return deferred.promise();
 
@@ -276,7 +284,7 @@
 			//data = data || {};
 
 			var view = this;
-			//router = win.APP.bb.router;
+				//router = win.APP.bb.router;
 			//router.isForce = data.isForce;
 
 			(function backTo() {

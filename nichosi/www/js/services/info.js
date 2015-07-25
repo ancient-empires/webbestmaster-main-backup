@@ -30,8 +30,8 @@
 		attr: {},
 		systemAttr: {},
 		defaultLanguage: 'en',
-		//availableLanguages: ['en'],
-		availableLanguages: ['ru', 'en'],
+		availableLanguages: ['en'],
+		//availableLanguages: ['ru', 'en'],
 
 		init: function () {
 
@@ -203,6 +203,7 @@
 
 			var info = this,
 				defaultSettings = {
+					screenAnimation: 'on'
 					//autoSave: 'on', // auto save game after every turn
 					//confirmTurn: 'off', // game turn
 					//confirmMove: 'off', // move unit
