@@ -11,8 +11,15 @@
 	APP.BB.HomeView = APP.BB.BaseView.extend({
 
 		events: {
-			'click div': 'test',
-			'click .js-show-popup': 'testShowPopup'
+			//'click div': 'test',
+			//'click .js-show-popup': 'testShowPopup'
+			'click .js-image-container': 'setNichosiImage'
+
+
+		},
+
+		selectors: {
+			imageContainer: '.js-image-container'
 		},
 
 		initialize: function () {
@@ -25,7 +32,34 @@
 
 			view.render();
 
+			view.setNichosiImage();
+
 		},
+
+		getRandomNichosi: function () {
+
+			var min = 1,
+				max = 17,
+				number = Math.round(Math.random() * (max - min) + min);
+
+			return (number > 9 ? '' : '0') + number;
+
+		},
+
+		setNichosiImage: function () {
+
+			var view = this,
+				$container = view.$el.find(view.selectors.imageContainer),
+				nichosiImage = view.getRandomNichosi();
+
+			$container.css('background-image', 'url(nichosi-img/' + nichosiImage + '.jpg)');
+
+		}
+
+
+
+
+/*
 
 		test: function (e) {
 
@@ -41,7 +75,7 @@
 				name: 'popup-text',
 				//timeout: 2.5e3,
 				sound: {
-					sound: 'good-answer.mp3',
+					sound: 'click.mp3',
 					isLoop: false,
 					road: 3
 				},
@@ -56,6 +90,7 @@
 
 
 		}
+*/
 
 
 	});
