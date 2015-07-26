@@ -15,6 +15,10 @@
         gulp.run('uglify-js', 'clean');
     });
 
+    gulp.task('default+css', function() {
+        gulp.run('uglify-js', 'css-base64', 'clean');
+    });
+
     gulp.task('uglify-js', function() {
 
         return gulp.src('www/js/*.js')
