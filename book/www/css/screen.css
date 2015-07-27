@@ -14,11 +14,10 @@
 	-webkit-background-size: cover;
 	background-size: cover;
 	background-repeat: no-repeat;
-	/*background-image: url(../i/bg/bg-1.jpg);*/
-	background-image: url(../i/bg/bg-2.jpg);
 	background-position: center center;
 	font-family: HelveticaNeueCyr, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
 	color: #333;
+	background-color: #242424;
 }
 
 .screen {
