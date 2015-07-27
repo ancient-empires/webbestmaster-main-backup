@@ -11,7 +11,8 @@
 	APP.BB.BookView = APP.BB.BaseView.extend({
 
 		events: {
-			'click .js-play-pause': 'playPause'
+			'click .js-play-pause': 'playPause',
+			'dbl .js-play-pause': 'toggleState'
 		},
 
 		selectors: {
@@ -478,6 +479,10 @@
 			view.set('previousPageIndex', currentPageIndex);
 			return true;
 
+		},
+
+		toggleState: function () {
+			console.log('toggle !!!!!!');
 		}
 
 	});

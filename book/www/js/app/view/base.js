@@ -50,7 +50,7 @@
 			viewWrapper: '.js-view-wrapper'
 		},
 
-		// will be change after initStatic
+		// will be changed after initStatic
 		eventTypes: {
 			down: ['mousedown', 'touchstart'],
 			move: ['mousemove', 'touchmove'],
@@ -90,9 +90,17 @@
 		constructor: function() {
 
 			var view = this,
-				proto = win.APP.BB.BaseView.prototype;
+				proto = win.APP.BB.BaseView.prototype,
+				newEvents = {};
 
 			view.events = $.extend( {}, proto.events, view.events );
+
+			// prepare extra events from eventTypes
+			_.each(view.events, function (functionName,  eventAndSelector) {
+				newEvents[view.getFullEventNameAndSelector(eventAndSelector)] = functionName;
+			});
+
+			view.events = newEvents;
 
 			view.selectors = $.extend( {}, proto.selectors, view.selectors );
 
@@ -112,6 +120,20 @@
 			_.each(this.selectors, function (value, key) {
 				this[key] = value.replace(/\./g, ' ').trim();
 			}, this.classNames);
+
+		},
+
+		getFullEventNameAndSelector: function (eventNameAndSelector) {
+
+			var view = this,
+				arr = eventNameAndSelector.split(' '),
+				newEventName = view.eventTypes[arr[0]];
+
+			if (newEventName) {
+				return [newEventName, arr[1]].join(' ');
+			}
+
+			return eventNameAndSelector;
 
 		},
 
