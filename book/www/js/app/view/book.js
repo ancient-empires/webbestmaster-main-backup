@@ -12,7 +12,7 @@
 
 		events: {
 			'click .js-play-pause': 'playPause',
-			'dbl .js-play-pause': 'toggleState'
+			'dbl .js-book-page': 'toggleState'
 		},
 
 		selectors: {
