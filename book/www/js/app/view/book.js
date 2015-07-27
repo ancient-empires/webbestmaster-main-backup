@@ -19,7 +19,8 @@
 			playPauseButton: '.js-play-pause',
 			bookPage: '.js-book-page',
 			pageText: '.js-page-text',
-			bookPageImage: '.js-book-page-image'
+			bookPageImage: '.js-book-page-image',
+			backPageTextWrapper: '.js-back-page-wrapper'
 		},
 
 		initialize: function (dataArg) {
@@ -32,6 +33,8 @@
 				book = _.find(booksByLang, {folder: data.bookFolder});
 
 			view.set('withText', false);
+
+			view.set('pageMode', 'normal'); // fullText or normal
 
 			view.$el = $(view.tmpl.book(
 				{
@@ -46,7 +49,7 @@
 
 			view.set('url', Backbone.history.fragment);
 
-			view.set('state', 'playing'); // playing or pause
+			view.set('playerState', 'playing'); // playing or pause
 
 			view.set('previousPageIndex', 0);
 
@@ -132,7 +135,9 @@
 					return;
 				}
 
-				view.runPage(book.pages[index]);
+				if ( view.get('pageMode') === 'normal' || view.get('playerState') === 'playing') {
+					view.runPage(book.pages[index]);
+				}
 
 			});
 
@@ -292,7 +297,7 @@
 				});
 			}
 
-			view.set('state', 'playing');
+			view.set('playerState', 'playing');
 			view.autoSetPlayPauseButtonState();
 
 			//view.animateText();
@@ -304,7 +309,7 @@
 		autoSetPlayPauseButtonState: function () {
 
 			var view = this,
-				state = view.get('state'),
+				state = view.get('playerState'),
 				$button = view.$el.find(view.selectors.playPauseButton);
 
 			if (state === 'pause') {
@@ -356,7 +361,7 @@
 					return;
 				}
 
-				if ( view.get('state') === 'pause' ) {
+				if ( view.get('playerState') === 'pause' ) {
 					clearInterval(view.get('textAnimationIntervalId'));
 					view.$el.find(view.selectors.pageText).empty();
 					return;
@@ -425,7 +430,7 @@
 		playPause: function () {
 
 			var view = this,
-				state = view.get('state');
+				state = view.get('playerState');
 
 			if (state === 'playing') {
 				view.stopCurrentPage();
@@ -442,7 +447,7 @@
 			var view = this,
 				soundMaster = win.APP.soundMaster;
 
-			view.set('state', 'pause');
+			view.set('playerState', 'pause');
 			view.autoSetPlayPauseButtonState();
 
 			// stop music and clear timeout
@@ -482,7 +487,43 @@
 		},
 
 		toggleState: function () {
-			console.log('toggle !!!!!!');
+
+			var view = this,
+				state = view.get('pageMode'), // fullText or normal
+				selectors = view.selectors,
+				$el = view.$el,
+				$images = $el.find(selectors.bookPageImage),
+				$pageText = $el.find(selectors.pageText),
+				$backPageTextWrapper = $el.find(selectors.backPageTextWrapper);
+
+			switch (state) {
+
+				case 'fullText':
+
+					view.set('pageMode', 'normal');
+
+					$images.removeClass('hidden');
+					$pageText.removeClass('hidden');
+					$backPageTextWrapper.addClass('hidden');
+
+					view.playCurrentPage();
+
+					break;
+
+				case 'normal':
+
+					view.set('pageMode', 'fullText');
+
+					$images.addClass('hidden');
+					$pageText.addClass('hidden');
+					$backPageTextWrapper.removeClass('hidden');
+
+					view.stopCurrentPage();
+
+					break;
+
+			}
+
 		}
 
 	});
