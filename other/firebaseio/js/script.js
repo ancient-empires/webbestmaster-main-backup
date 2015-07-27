@@ -33,4 +33,11 @@
 		full_name: "11"
 	});
 
+	myDataRef.child("users").orderByChild('date_of_birth').equalTo('11').on('value', function (snapshot) {
+
+		console.log('1111');
+		console.log(snapshot.val());
+
+	})
+
 }(window));
