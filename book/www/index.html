@@ -142,7 +142,7 @@
 
 		<div class="js-play-pause book-pause-button header-button js-no-scroll">&nbsp;</div>
 
-		{{ var languageName = window.APP.info.get('language'), bookFolder = it.folder; }}
+		{{ var languageName = window.APP.info.get('language'), book = it.book, settings = it.settings, bookFolder = book.folder; }}
 
 		<!-- Slider main container -->
 		<div class="swiper-container js-no-scroll">
@@ -150,11 +150,10 @@
 			<div class="swiper-wrapper">
 				<!-- Slides -->
 
-				{{~it.pages :page }}
+				{{~book.pages :page }}
 				<div class="swiper-slide js-book-page">
 					<img class="js-book-page-image book-page-image" src="books/{{= [ languageName, bookFolder, page.img ].join('/') }}" alt=""/>
-					{{? page.text }}
-					<!--<div class="js-page-text-hidden visibility-hidden page-text">{{= page.text.replace(/\|/g, '<br />') }}</div>-->
+					{{? page.text && settings.withText }}
 					<div class="js-page-text page-text">{{= page.text.replace(/\|/g, '<br />') }}</div>
 					{{?}}
 				</div>

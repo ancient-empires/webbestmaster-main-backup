@@ -18,7 +18,6 @@
 			playPauseButton: '.js-play-pause',
 			bookPage: '.js-book-page',
 			pageText: '.js-page-text',
-			hiddenPageText: '.js-page-text-hidden',
 			bookPageImage: '.js-book-page-image'
 		},
 
@@ -31,7 +30,16 @@
 				booksByLang = win.APP.booksData[languageName],
 				book = _.find(booksByLang, {folder: data.bookFolder});
 
-			view.$el = $(view.tmpl.book(book));
+			view.set('withText', false);
+
+			view.$el = $(view.tmpl.book(
+				{
+					book: book,
+					settings: {
+						withText: view.get('withText')
+					}
+				}
+			));
 
 			view.set('book', book);
 
@@ -160,8 +168,6 @@
 			var view = this,
 				device = win.APP.bb.device,
 				selectors = view.selectors,
-				//selectorHiddenText = selectors.hiddenPageText,
-				selectorHiddenText = selectors.pageText,
 				pageTextSelector = selectors.pageText,
 				selectorImage = selectors.bookPageImage,
 				$pages = view.$el.find(selectors.bookPage);
@@ -170,14 +176,13 @@
 
 				var $page = $(this),
 					$pageText = $page.find(pageTextSelector),
-					$hiddenText = $page.find(selectorHiddenText),
-					hiddenTextHeight = $hiddenText.outerHeight() || 0,
+					textHeight = $pageText.outerHeight() || 0,
 					$image = $page.find(selectorImage),
 					imageNode = $image.get(0),
 					beautifulSpace = 0.9,
 					availableSpace = {
 						width: device.get('width'),
-						height: device.get('height') - hiddenTextHeight
+						height: device.get('height') - textHeight
 					},
 					image = {
 						width: imageNode.naturalWidth,
