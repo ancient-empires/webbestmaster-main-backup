@@ -153,8 +153,19 @@
 				{{~book.pages :page }}
 				<div class="swiper-slide js-book-page">
 					<img class="js-book-page-image book-page-image" src="books/{{= [ languageName, bookFolder, page.img ].join('/') }}" alt=""/>
-					{{? page.text && settings.withText }}
-					<div class="js-page-text page-text">{{= page.text.replace(/\|/g, '<br />') }}</div>
+					{{? page.text }}
+						{{? settings.withText }}
+						<div class="js-page-text page-text">{{= page.text.replace(/\|/g, '<br />') }}</div>
+						{{?}}
+
+						<div class="table back-page-wrapper js-back-page-wrapper hidden">
+							<div class="table-row">
+								<div class="table-cell">
+									<div class="back-page-text">{{= page.text.replace(/\|/g, '<br />') }}</div>
+								</div>
+							</div>
+						</div>
+
 					{{?}}
 				</div>
 				{{~ }}
