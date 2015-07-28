@@ -30,11 +30,11 @@
 		full_name: "Alan Turing from Nadya"
 	});
 
-	myDataRef.child("users/5/4/4").push({
-
-		date_of_birth: "June 23, 1912 from Nadya",
-		full_name: "Alan Turing from Nadya"
-	});
+	//myDataRef.child("users/5/4/4").push({
+	//
+	//	date_of_birth: "June 23, 1912 from Nadya",
+	//	full_name: "Alan Turing from Nadya"
+	//});
 
 	//myDataRef.child("users").push({
 	//	date_of_birth: "11",

@@ -11,9 +11,14 @@
 
 	function start() {
 
+		win.APP.db.init();
+
 		win.APP.templateMaster.init();
 		win.APP.BB.BaseView.prototype.initStatic();
 		win.APP.soundMaster.init();
+
+		win.APP.bb.device = new win.APP.BB.DeviceModel();
+
 		//win.APP.soundMaster.playBgSound();
 
 		win.FastClick.attach(win.document.body);

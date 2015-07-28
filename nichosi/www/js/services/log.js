@@ -5,6 +5,7 @@
 	/*global */
 
 	win.logger = {
+		isEnable: false,
 		on: function () {
 			console.log('Logger is Enabled');
 			this.isEnable = true;
@@ -13,7 +14,6 @@
 			console.log('Logger is Disabled');
 			this.isEnable = false;
 		},
-		isEnable: false,
 		log: function () {
 			return this.isEnable && console.log.apply(console, arguments);
 		}
