@@ -60,19 +60,21 @@
 	<script src="js/app/view/home.js" type="text/javascript"></script>
 	<script src="js/app/view/page.js" type="text/javascript"></script>
 
+	<!-- models -->
+	<script src="js/app/model/user.js" type="text/javascript"></script>
+
 </head>
 <body>
 
 <div class="js-wrapper"></div>
-
-
-
 
 <script type="text/x-template" data-name="home">
 
 	<div class="screen">
 
 		<div class="image-container js-image-container">&nbsp;</div>
+
+		<input type="text" class="js-user-nick" placeholder="user name..." value="{{= it.user.nick }}"/>
 
 	</div>
 

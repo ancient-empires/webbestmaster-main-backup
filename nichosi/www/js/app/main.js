@@ -18,6 +18,7 @@
 		win.APP.soundMaster.init();
 
 		win.APP.bb.device = new win.APP.BB.DeviceModel();
+		win.APP.bb.user = new win.APP.BB.UserModel();
 
 		//win.APP.soundMaster.playBgSound();
 

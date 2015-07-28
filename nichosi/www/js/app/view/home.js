@@ -13,9 +13,8 @@
 		events: {
 			//'click div': 'test',
 			//'click .js-show-popup': 'testShowPopup'
-			'click .js-image-container': 'setNichosiImage'
-
-
+			'click .js-image-container': 'setNichosiImage',
+			'input .js-user-nick': 'setUserNick'
 		},
 
 		selectors: {
@@ -24,9 +23,12 @@
 
 		initialize: function () {
 
-			var view = this;
+			var view = this,
+				info = view.info;
 
-			view.$el = $(view.tmpl.home());
+			view.$el = $(view.tmpl.home({
+				user: info.get('user')
+			}));
 
 			view.proto.initialize.apply(view, arguments);
 
@@ -53,6 +55,33 @@
 				nichosiImage = view.getRandomNichosi();
 
 			$container.css('background-image', 'url(nichosi-img/' + nichosiImage + '.jpg)');
+
+		},
+
+		setUserNick: function (e) {
+
+			var view = this,
+				info = view.info,
+				$this = $(e.currentTarget),
+				user = info.get('user'),
+				nick = $this.val();
+
+			// detect empty nick
+			if ( !nick ) {
+				user.nick = nick;
+				info.set('user', user);
+				return;
+			}
+
+			// detect nick with extra symbols
+			if ( !/^[a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]+$/.test(nick) ) {
+				$this.val(info.get('user').nick);
+				return;
+			}
+
+			user.nick = nick;
+
+			info.set('user', user);
 
 		}
 
