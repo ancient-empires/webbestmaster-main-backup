@@ -14,7 +14,8 @@
 			//'click div': 'test',
 			//'click .js-show-popup': 'testShowPopup'
 			'click .js-image-container': 'setNichosiImage',
-			'input .js-user-nick': 'setUserNick'
+			'input .js-user-nick': 'setUserNick',
+			'click .js-share-record': 'shareRecord'
 		},
 
 		selectors: {
@@ -34,7 +35,7 @@
 
 			view.render();
 
-			view.setNichosiImage();
+			view.setNichosiImage({ doNotCount: true });
 
 		},
 
@@ -48,13 +49,18 @@
 
 		},
 
-		setNichosiImage: function () {
+		setNichosiImage: function (dataArgs) {
 
 			var view = this,
+				data = dataArgs || {},
 				$container = view.$el.find(view.selectors.imageContainer),
 				nichosiImage = view.getRandomNichosi();
 
 			$container.css('background-image', 'url(nichosi-img/' + nichosiImage + '.jpg)');
+
+			if ( !data.doNotCount ) {
+				win.APP.bb.user.increaseNichosiCount();
+			}
 
 		},
 
@@ -70,18 +76,26 @@
 			if ( !nick ) {
 				user.nick = nick;
 				info.set('user', user);
+				// todo: validate user nick by firebase
 				return;
 			}
 
 			// detect nick with extra symbols
 			if ( !/^[a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]+$/.test(nick) ) {
 				$this.val(info.get('user').nick);
+				// todo: validate user nick by firebase
 				return;
 			}
 
 			user.nick = nick;
 
 			info.set('user', user);
+
+		},
+
+		shareRecord: function () {
+
+
 
 		}
 

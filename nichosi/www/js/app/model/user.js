@@ -6,13 +6,16 @@
 	/*global */
 
 	win.APP = win.APP || {};
+
 	win.APP.bb = win.APP.bb || {};
 
 	win.APP.BB.UserModel = Backbone.Model.extend({
 
 		defaults: {
 			user: {
-				nick: ''
+				nick: '',
+				id: Date.now(),
+				nichosiCount: 0
 			}
 		},
 
@@ -30,13 +33,22 @@
 				info = win.APP.info,
 				savedUser = info.get('user');
 
-			if (savedUser) {
-				return;
+			if ( !savedUser) {
+				savedUser = user.get('user');
+				info.set('user', savedUser);
 			}
 
-			savedUser = user.get('user');
+		},
 
-			info.set('user', savedUser);
+		increaseNichosiCount: function () {
+
+			var user = this,
+				info = win.APP.info,
+				userData = info.get('user');
+
+			userData.nichosiCount += 1;
+
+			info.set('user', userData);
 
 		}
 
