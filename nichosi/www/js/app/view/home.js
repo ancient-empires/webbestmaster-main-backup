@@ -70,7 +70,7 @@
 				info = view.info,
 				$this = $(e.currentTarget),
 				user = info.get('user'),
-				nick = $this.val();
+				nick = $this.val().trim();
 
 			// detect empty nick
 			if ( !nick ) {
