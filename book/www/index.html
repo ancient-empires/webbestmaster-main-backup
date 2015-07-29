@@ -81,42 +81,44 @@
 		<div class="header js-no-scroll">
 
 			{{ var info = window.APP.info, isStoryByStory = info.get('storyByStory') === 'on'; }}
+
+
 			<div class="js-story-by-story story-by-story-wrapper header-button{{= isStoryByStory ? ' active-on-off' : '' }}">&nbsp;</div>
 			<div class="js-external-link header-remove-ads header-button" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes">&nbsp;</div>
-			<div class="header-title">Cool Book</div>
+			<div class="header-title">&nbsp;</div>
 		</div>
 
-		<div class="books-list-wrapper">
+		<!--<div class="books-list-wrapper">-->
 
-			<!-- books is here -->
-			<div class="js-scroll-area-container scroll-area-container">
+			<!--&lt;!&ndash; books is here &ndash;&gt;-->
+			<!--<div class="js-scroll-area-container scroll-area-container">-->
 
-				<div class="scroll-area-content clear-fix ta-center">
+				<!--<div class="scroll-area-content clear-fix ta-center">-->
 
-				{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName]; }}
+				<!--{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName]; }}-->
 
-				{{~books :book }}
+				<!--{{~books :book }}-->
 
-				<div class="title-book-wrapper" data-route="book/{{= book.folder }}">
-					<img class="title-book-wrapper-preview" src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>
-					<!--<p>{{= book.title.text }}</p>-->
-				</div>
+				<!--<div class="title-book-wrapper" data-route="book/{{= book.folder }}">-->
+					<!--<img class="title-book-wrapper-preview" src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>-->
+					<!--&lt;!&ndash;<p>{{= book.title.text }}</p>&ndash;&gt;-->
+				<!--</div>-->
 
-				{{~ }}
+				<!--{{~ }}-->
 
-				</div>
+				<!--</div>-->
 
-			</div>
+			<!--</div>-->
 
-		</div>
+		<!--</div>-->
 
-		<div class="clear-fix share-link-wrapper js-no-scroll">
-			<a href="https://www.facebook.com/sharer/sharer.php?u=http://statlex.com/share/logic-and-wit.html" class="share-link share-link-facebook js-external-linkv">&nbsp;</a>
-			<a href="https://twitter.com/share?url=http://statlex.com/share/logic-and-wit.html" class="share-link share-link-twitter js-external-link-11">&nbsp;</a>
-			<a href="http://vk.com/share.php?url=http://statlex.com/share/logic-and-wit.html" class="share-link share-link-vk js-external-link-11">&nbsp;</a>
-			<a href="https://plus.google.com/share?url=http://statlex.com/share/logic-and-wit.html" class="share-link share-link-google js-external-link-11">&nbsp;</a>
-			<!--<a href="http://www.linkedin.com/shareArticle?url=http://statlex.com/share/logic-and-wit.html" class="share-link share-link-linkedin js-external-link-11">&nbsp;</a>-->
-		</div>
+		<!--<div class="clear-fix share-link-wrapper js-no-scroll">-->
+			<!--<a href="https://www.facebook.com/sharer/sharer.php?u=http://statlex.com/share/logic-and-wit.html" class="share-link share-link-facebook js-external-linkv">&nbsp;</a>-->
+			<!--<a href="https://twitter.com/share?url=http://statlex.com/share/logic-and-wit.html" class="share-link share-link-twitter js-external-link-11">&nbsp;</a>-->
+			<!--<a href="http://vk.com/share.php?url=http://statlex.com/share/logic-and-wit.html" class="share-link share-link-vk js-external-link-11">&nbsp;</a>-->
+			<!--<a href="https://plus.google.com/share?url=http://statlex.com/share/logic-and-wit.html" class="share-link share-link-google js-external-link-11">&nbsp;</a>-->
+			<!--&lt;!&ndash;<a href="http://www.linkedin.com/shareArticle?url=http://statlex.com/share/logic-and-wit.html" class="share-link share-link-linkedin js-external-link-11">&nbsp;</a>&ndash;&gt;-->
+		<!--</div>-->
 
 	</div>
 
