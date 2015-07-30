@@ -82,10 +82,18 @@
 
 			{{ var info = window.APP.info, isStoryByStory = info.get('storyByStory') === 'on'; }}
 
+			<div class="js-story-by-story story-by-story-wrapper header-button{{= isStoryByStory ? ' active-on-off' : '' }}">
+				<div class="active-on-off-indicator story-by-story-bg">&nbsp;</div>
+			</div>
+			<div class="header-button-text header-button-text-left">autoplay</div>
 
-			<div class="js-story-by-story story-by-story-wrapper header-button{{= isStoryByStory ? ' active-on-off' : '' }}">&nbsp;</div>
-			<div class="js-external-link header-remove-ads header-button" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes">&nbsp;</div>
+			<div class="js-external-link header-remove-ads header-button active-on-off" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes">
+				<div class="active-on-off-indicator remove-ads-bg">&nbsp;</div>
+			</div>
+			<div class="header-button-text header-button-text-right">remove ads</div>
+
 			<div class="header-title">&nbsp;</div>
+
 		</div>
 
 		<!--<div class="books-list-wrapper">-->
