@@ -96,29 +96,37 @@
 
 		</div>
 
-		<!--<div class="books-list-wrapper">-->
+		<div class="books-list-wrapper">
 
-			<!--&lt;!&ndash; books is here &ndash;&gt;-->
-			<!--<div class="js-scroll-area-container scroll-area-container">-->
+			<!-- books is here -->
+			<div class="js-scroll-area-container scroll-area-container">
 
-				<!--<div class="scroll-area-content clear-fix ta-center">-->
+				<div class="scroll-area-content clear-fix ta-center">
 
-				<!--{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName]; }}-->
+				{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName]; }}
 
-				<!--{{~books :book }}-->
+				{{~books :book:index}}
 
-				<!--<div class="title-book-wrapper" data-route="book/{{= book.folder }}">-->
-					<!--<img class="title-book-wrapper-preview" src="books/{{= [ languageName, book.folder, book.title.img ].join('/') }}" alt=""/>-->
-					<!--&lt;!&ndash;<p>{{= book.title.text }}</p>&ndash;&gt;-->
-				<!--</div>-->
+				<div class="title-book-wrapper" data-route="book/{{= book.folder }}">
+					<div class="title-book-wrapper-preview" style="background-image: url(books/{{= [languageName, book.folder, book.title.img].join('/') }});">&nbsp;</div>
+					<!--<p>{{= book.title.text }}</p>-->
+				</div>
 
-				<!--{{~ }}-->
+				{{? index && index % 2 }}
+					<div class="shelf">&nbsp;</div>
+				{{?}}
 
-				<!--</div>-->
+				{{~ }}
 
-			<!--</div>-->
+				{{? books.length % 2 }}
+				<div class="shelf">&nbsp;</div>
+				{{?}}
 
-		<!--</div>-->
+				</div>
+
+			</div>
+
+		</div>
 
 		<div class="clear-fix share-link-wrapper js-no-scroll">
 			<a class="share-link-button" href="https://www.facebook.com/sharer/sharer.php?u=http://statlex.com/share/logic-and-wit.html"><span class="share-link share-link-facebook">&nbsp;</span></a>
