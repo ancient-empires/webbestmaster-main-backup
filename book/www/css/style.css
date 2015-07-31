@@ -216,10 +216,14 @@
 .book-home-button,
 .book-play-button {
 	position: fixed;
-	top: 0;
-	width: 2rem;
-	height: 2rem;
+	width: 3rem;
+	height: 3rem;
 	z-index: 1;
+	-webkit-background-size: 58% auto;
+	background-size: 58% auto;
+	background-repeat: no-repeat;
+	background-position: center center;
+	top: 0.2rem;
 }
 
 .book-play-button,
@@ -227,11 +231,11 @@
 	right: 0.7rem;
 }
 
-.book-pause-button:after {
+.book-pause-button {
 	background-image: url(../i/pause.svg);
 }
 
-.book-play-button:after {
+.book-play-button {
 	background-image: url(../i/play.svg);
 }
 
@@ -239,15 +243,8 @@
 	left: 0.7rem;
 }
 
-.book-home-button:after {
-	background-image: url(../i/home.svg);
-}
-
-.book-play-button:after,
-.book-pause-button:after,
-.book-home-button:after {
-	-webkit-background-size: 72% auto;
-	background-size: 72% auto;
+.book-home-button {
+	background-image: url(../i/back.svg);
 }
 
 .popup-text {
@@ -282,5 +279,5 @@
 }
 
 .bg-inner-page {
-	background-color: rgba(255, 255, 255, 0.69);
+	background-color: rgba(255, 255, 255, 0.68);
 }
