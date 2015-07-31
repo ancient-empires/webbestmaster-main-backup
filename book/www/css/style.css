@@ -1,3 +1,20 @@
+@font-face {
+	font-family: 'MayonezBlack-Italic';
+	font-weight: bold;
+	src: url(../font/MayonezBlack-Italic.otf) format('opentype');
+}
+
+.story-title {
+	font-family: 'MayonezBlack-Italic', cursive;
+	color: #959595;
+	text-align: center;
+	font-size: 1.2rem;
+	line-height: 1.2rem;
+	padding-top: 1.2rem;
+	margin: 0 3.7rem;
+	width: auto; /* override .ellipsis */
+}
+
 .wrapper {
 	background-image: url(../i/bg.png);
 	background-repeat: no-repeat;
