@@ -288,12 +288,11 @@
 				soundMaster = win.APP.soundMaster;
 
 			if (data.sound) {
-			// todo: uncomment!!!!
-				//soundMaster.play({
-				//	sound: ['books', languageName, book.folder, data.sound].join('/'),
-				//	road: 0,
-				//	isLoop: false
-				//});
+				soundMaster.play({
+					sound: ['books', languageName, book.folder, data.sound].join('/'),
+					road: 0,
+					isLoop: false
+				});
 			} else {
 				soundMaster.stop({
 					road: 0
