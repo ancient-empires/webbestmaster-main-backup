@@ -201,8 +201,6 @@
 	box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.5);
 	box-sizing: border-box;
 	border: 0.1rem solid #C0C0C0;
-	width: 94%;
-	margin: 0 auto;
 }
 
 .back-page-wrapper {
@@ -211,7 +209,7 @@
 	height: 100%;
 	top: 0;
 	left: 0;
-	padding-top: 2.4rem;
+	padding: 4.4rem 1rem 1rem;
 	box-sizing: border-box;
 }
 
