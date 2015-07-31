@@ -20,7 +20,8 @@
 			bookPage: '.js-book-page',
 			pageText: '.js-page-text',
 			bookPageImage: '.js-book-page-image',
-			backPageTextWrapper: '.js-back-page-wrapper'
+			backPageTextWrapper: '.js-back-page-wrapper',
+			header: '.js-header'
 		},
 
 		initialize: function (dataArg) {
@@ -176,7 +177,8 @@
 				selectors = view.selectors,
 				pageTextSelector = selectors.pageText,
 				selectorImage = selectors.bookPageImage,
-				$pages = view.$el.find(selectors.bookPage);
+				$pages = view.$el.find(selectors.bookPage),
+				topBarHeight = view.$el.find(selectors.header).outerHeight();
 
 			$pages.each(function () {
 
@@ -188,7 +190,7 @@
 					beautifulSpace = 0.9,
 					availableSpace = {
 						width: device.get('width'),
-						height: device.get('height') - textHeight
+						height: device.get('height') - textHeight - topBarHeight
 					},
 					image = {
 						width: imageNode.naturalWidth,
@@ -208,7 +210,7 @@
 
 					endWidth = Math.floor(image.width / q * beautifulSpace);
 					endHeight = Math.floor(image.height / q * beautifulSpace);
-					endTop = Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2);
+					endTop = Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2) + topBarHeight;
 
 					$image.css({
 						width: endWidth + 'px',
@@ -286,11 +288,12 @@
 				soundMaster = win.APP.soundMaster;
 
 			if (data.sound) {
-				soundMaster.play({
-					sound: ['books', languageName, book.folder, data.sound].join('/'),
-					road: 0,
-					isLoop: false
-				});
+			// todo: uncomment!!!!
+				//soundMaster.play({
+				//	sound: ['books', languageName, book.folder, data.sound].join('/'),
+				//	road: 0,
+				//	isLoop: false
+				//});
 			} else {
 				soundMaster.stop({
 					road: 0

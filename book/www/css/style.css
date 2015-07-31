@@ -177,10 +177,15 @@
 
 .back-page-text {
 	text-align: left;
-	padding: 1rem;
+	padding: 0.9rem 1rem;
 	font-size: 1.2rem;
 	line-height: 1.5rem;
-	color: #f0f0f0;
+	background-color: #FFFFFF;
+	box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.5);
+	box-sizing: border-box;
+	border: 0.1rem solid #C0C0C0;
+	width: 94%;
+	margin: 0 auto;
 }
 
 .back-page-wrapper {
@@ -189,7 +194,8 @@
 	height: 100%;
 	top: 0;
 	left: 0;
-	background-color: rgba(0, 0, 0, 0.5);
+	padding-top: 2.4rem;
+	box-sizing: border-box;
 }
 
 .book-page-image {
@@ -200,10 +206,10 @@
 	margin: 0 auto;
 	width: auto;
 	height: auto;
-	border: 0.3rem solid #fff;
-	box-shadow: 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.5);
+	box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.5);
 	box-sizing: border-box;
 	position: relative;
+	border: 0.1rem solid #C0C0C0;
 }
 
 .book-pause-button,
@@ -273,4 +279,8 @@
 	margin: 0 auto;
 	height: 5.5rem;
 	margin-bottom: -1rem;
+}
+
+.bg-inner-page {
+	background-color: rgba(255, 255, 255, 0.69);
 }
