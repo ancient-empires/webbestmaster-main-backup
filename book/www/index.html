@@ -155,11 +155,18 @@
 
 	<div class="screen">
 
-		<div class="js-back book-home-button header-button js-no-scroll">&nbsp;</div>
-
-		<div class="js-play-pause book-pause-button header-button js-no-scroll">&nbsp;</div>
-
 		{{ var languageName = window.APP.info.get('language'), book = it.book, settings = it.settings, bookFolder = book.folder; }}
+
+		<!-- header -->
+		<div class="header js-no-scroll">
+
+			<div class="js-back book-home-button header-button js-no-scroll">&nbsp;</div>
+
+			<div class="js-play-pause book-pause-button header-button js-no-scroll">&nbsp;</div>
+
+			<div class="story-title">{{= book.title.text }}</div>
+
+		</div>
 
 		<!-- Slider main container -->
 		<div class="swiper-container js-no-scroll">
