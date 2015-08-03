@@ -1,7 +1,6 @@
 @import url(reset.css);
 @import url(my-reset.css);
 @import url(style.css);
-@import url(../share/share.css);
 @import url(popup.css);
 @import url(battle.css);
 @import url(building.css);
@@ -24,7 +23,6 @@
 @import url(position.css);
 @import url(screens.css);
 @import url(full-unit-info.css);
-/*@import url(fight-animation.css);*/
 @import url(android.css);
 
 
