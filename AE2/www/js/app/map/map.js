@@ -6,7 +6,7 @@
 	/*global $, _ */
 
 	win.APP.map = {
-		mapPackVersion: 3,
+		mapPackVersion: 4,
 		squareSize: {
 			min: 24,
 			max: 96, // 192
@@ -250,12 +250,12 @@
 							theSameTerrainCount = 0,
 							percent;
 
-						// detect the same names
-						//_.each(mapNames, function (name, key) {
-						//	if ( name.trim() === mainMapNames[key].trim() ) {
-						//		console.log('!!! - The Same Name -', name);
-						//	}
-						//});
+						 //detect the same names
+						_.each(mapNames, function (name, key) {
+							if ( name.trim() === mainMapNames[key].trim() ) {
+								console.log('!!! - The Same Name -', name);
+							}
+						});
 
 						if ( mainMapWidth === map.size.width && mainMapHeight === map.size.height ) {
 							mapTerrain = getTerrainArray(map);
@@ -264,14 +264,13 @@
 									theSameTerrainCount += 1;
 								}
 							});
-
 						}
 
 						percent = Math.round(theSameTerrainCount / mainMapTerrain.length * 100);
 
-						if (percent > 60) {
+						if (percent > 75) {
 							console.log(map);
-							console.log('%', percent, mapNames.ru, '< = >', mainMapNames.ru);
+							console.log('%', percent, mapNames.en, '< = >', mainMapNames.en);
 						}
 
 					});
