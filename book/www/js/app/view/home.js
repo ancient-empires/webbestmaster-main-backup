@@ -34,26 +34,26 @@
 				info = view.info,
 				lang = win.APP.lang,
 				notification = lang.get('notification'),
-				//popupText,
+				popupText,
 				isStoryByStory = info.get('storyByStory') === 'on';
 
 			if (isStoryByStory) {
 				$this.removeClass('active-on-off');
 				info.set('storyByStory', 'off');
-				//popupText = notification.storyByStoryOff;
+				popupText = notification.storyByStoryOff;
 			} else {
 				$this.addClass('active-on-off');
 				info.set('storyByStory', 'on');
-				//popupText = notification.storyByStoryOn;
+				popupText = notification.storyByStoryOn;
 			}
 
-			//view.showPopup({
-			//	name: 'notification',
-			//	timeout: 3e3,
-			//	data: {
-			//		text: popupText
-			//	}
-			//});
+			view.showPopup({
+				name: 'notification',
+				timeout: 3e3,
+				data: {
+					text: popupText
+				}
+			});
 
 		}
 

@@ -20,8 +20,7 @@
 			bookPage: '.js-book-page',
 			pageText: '.js-page-text',
 			bookPageImage: '.js-book-page-image',
-			backPageTextWrapper: '.js-back-page-wrapper',
-			header: '.js-header'
+			backPageTextWrapper: '.js-back-page-wrapper'
 		},
 
 		initialize: function (dataArg) {
@@ -156,8 +155,8 @@
 
 			view.stopListening(device);
 
-			clearTimeout(previousTimeoutId);
-			clearInterval(textAnimationIntervalId);
+			win.clearTimeout(previousTimeoutId);
+			win.clearInterval(textAnimationIntervalId);
 
 			win.APP.soundMaster.stop({
 				road: 0
@@ -178,7 +177,7 @@
 				pageTextSelector = selectors.pageText,
 				selectorImage = selectors.bookPageImage,
 				$pages = view.$el.find(selectors.bookPage),
-				topBarHeight = view.$el.find(selectors.header).outerHeight();
+				topBarHeight = view.info.get('remSize', true) * 3.4; // see style css .header
 
 			$pages.each(function () {
 
@@ -187,7 +186,7 @@
 					textHeight = $pageText.outerHeight() || 0,
 					$image = $page.find(selectorImage),
 					imageNode = $image.get(0),
-					beautifulSpace = 0.9,
+					beautifulSpace = view.get('withText') ? 1 : 0.9,
 					availableSpace = {
 						width: device.get('width'),
 						height: device.get('height') - textHeight - topBarHeight
@@ -206,7 +205,7 @@
 
 				q = availableSpace.aspectRatio > image.aspectRatio ? image.width / availableSpace.width : image.height / availableSpace.height;
 
-				//if ($pageText.length || 1) {
+				//if ($pageText.length) {
 
 					endWidth = Math.floor(image.width / q * beautifulSpace);
 					endHeight = Math.floor(image.height / q * beautifulSpace);
@@ -223,11 +222,11 @@
 					});
 
 				//} else {
-					//$image.css({
-						//width: Math.floor(image.width / q * beautifulSpace) + 'px',
-						//height: Math.floor(image.height / q * beautifulSpace) + 'px',
-						//top: Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2) + 'px'
-					//});
+				//	$image.css({
+				//		width: Math.floor(image.width / q * beautifulSpace) + 'px',
+				//		height: Math.floor(image.height / q * beautifulSpace) + 'px',
+				//		top: Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2) + 'px'
+				//	});
 				//}
 
 			});
@@ -354,17 +353,17 @@
 				index = 0,
 				textAnimationIntervalId = view.get('textAnimationIntervalId');
 
-			clearInterval(textAnimationIntervalId);
+			win.clearInterval(textAnimationIntervalId);
 
-			textAnimationIntervalId = setInterval(function () {
+			textAnimationIntervalId = win.setInterval(function () {
 
 				if ( !data.text || !data.text[index] ) {
-					clearInterval(view.get('textAnimationIntervalId'));
+					win.clearInterval(view.get('textAnimationIntervalId'));
 					return;
 				}
 
 				if ( view.get('playerState') === 'pause' ) {
-					clearInterval(view.get('textAnimationIntervalId'));
+					win.clearInterval(view.get('textAnimationIntervalId'));
 					view.$el.find(view.selectors.pageText).empty();
 					return;
 				}
@@ -386,9 +385,9 @@
 				previousTimeoutId = view.get('nextActionTimeoutId'),
 				currentTimeoutId;
 
-			clearTimeout(previousTimeoutId);
+			win.clearTimeout(previousTimeoutId);
 
-			currentTimeoutId = setTimeout(function () {
+			currentTimeoutId = win.setTimeout(function () {
 
 				var wasSwipe = swiper.slideNext(),
 					isStoryByStory;
@@ -458,7 +457,7 @@
 				road: 0
 			});
 
-			clearTimeout( view.get('nextActionTimeoutId') );
+			win.clearTimeout( view.get('nextActionTimeoutId') );
 
 		},
 

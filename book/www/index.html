@@ -169,7 +169,8 @@
 		</div>
 
 		<!-- Slider main container -->
-		<div class="swiper-container js-no-scroll">
+		<!--<div class="swiper-container js-no-scroll">-->
+		<div class="swiper-container">
 			<!-- Additional required wrapper -->
 			<div class="swiper-wrapper">
 				<!-- Slides -->
@@ -182,11 +183,9 @@
 						<div class="js-page-text page-text">{{= page.text.replace(/\|/g, '<br />') }}</div>
 						{{?}}
 
-						<div class="table back-page-wrapper js-back-page-wrapper hidden">
-							<div class="table-row">
-								<div class="table-cell">
-									<div class="back-page-text">{{= page.text.replace(/\|/g, '<br />') }}</div>
-								</div>
+						<div class="js-back-page-wrapper js-scroll-area-container scroll-area-container w100 hidden">
+							<div class="back-page-wrapper">
+								<div class="back-page-text">{{= page.text.replace(/\|/g, '<br />') }}</div>
 							</div>
 						</div>
 

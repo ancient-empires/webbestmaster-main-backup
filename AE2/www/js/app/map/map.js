@@ -251,11 +251,11 @@
 							percent;
 
 						// detect the same names
-						_.each(mapNames, function (name, key) {
-							if ( name.trim() === mainMapNames[key].trim() ) {
-								console.log('!!! - The Same Name -', name);
-							}
-						});
+						//_.each(mapNames, function (name, key) {
+						//	if ( name.trim() === mainMapNames[key].trim() ) {
+						//		console.log('!!! - The Same Name -', name);
+						//	}
+						//});
 
 						if ( mainMapWidth === map.size.width && mainMapHeight === map.size.height ) {
 							mapTerrain = getTerrainArray(map);
@@ -270,7 +270,8 @@
 						percent = Math.round(theSameTerrainCount / mainMapTerrain.length * 100);
 
 						if (percent > 60) {
-							console.log('%', percent, mapNames.en, '< = >', mainMapNames.en);
+							console.log(map);
+							console.log('%', percent, mapNames.ru, '< = >', mainMapNames.ru);
 						}
 
 					});

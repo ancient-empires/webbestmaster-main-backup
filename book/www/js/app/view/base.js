@@ -3,7 +3,7 @@
 
 	"use strict";
 	/*global window, document, location, Image */
-	/*global Backbone, $, APP, log */
+	/*global Backbone, $, APP, log, _ */
 
 	win.APP = win.APP || {};
 
@@ -79,6 +79,8 @@
 			fontSize = Math.round(fontSize / 2) * 2;
 			docElem.style.fontSize = fontSize + 'px';
 
+			info.set('remSize', fontSize, true);
+
 			_.each(types, function (typesArr, key) {
 				types[key] = typesArr[eventTypesIndex];
 			});
@@ -137,9 +139,10 @@
 
 		},
 
-		initialize: function() {
-
-		},
+		// still not implemented
+		//initialize: function() {
+		//
+		//},
 
 		changeSelect: function (e) { // external
 
@@ -310,7 +313,7 @@
 			//router.isForce = data.isForce;
 
 			(function backTo() {
-				setTimeout(function () {
+				win.setTimeout(function () {
 					if (Backbone.history.fragment === url || !Backbone.history.fragment) { // needed url or ''
 						//router.isForce = false;
 						return;
@@ -403,7 +406,7 @@
 				util = win.APP.util,
 				a = util.getRandomBetween(4, 14),
 				b = util.getRandomBetween(4, 14),
-				result = prompt( [' ', a, '+', b, '= ?'].join(' ') );
+				result = win.prompt( [' ', a, '+', b, '= ?'].join(' ') );
 
 			if ( result === null || result === '') {
 				return;
