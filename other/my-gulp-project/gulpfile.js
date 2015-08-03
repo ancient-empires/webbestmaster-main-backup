@@ -8,6 +8,7 @@
     var uglify = require("gulp-uglify");
     var clean = require('gulp-clean');
     var cssBase64 = require('gulp-css-base64');
+    var tinypng = require('gulp-tinypng');
     // gulp - run 'default' task
     // gulp <task> <othertask>.
 
@@ -48,5 +49,10 @@
 
 	});
 
+    gulp.task('tiny-png', function () {
+        gulp.src('tinypng/**/*.png')
+            .pipe(tinypng('uY9x_ytUQ0sq9-bB8iTvwGnmiWVci4an'))
+            .pipe(gulp.dest('dist'));
+    });
 
 }());
