@@ -3,8 +3,6 @@
 
     var gulp = require('gulp');
     var rename = require('gulp-rename');
-    //var closureCompiler = require('gulp-closure-compiler');
-    //var minify = require('gulp-minify');
     var uglify = require("gulp-uglify");
     var clean = require('gulp-clean');
     var cssBase64 = require('gulp-css-base64');
@@ -23,11 +21,6 @@
     gulp.task('uglify-js', function() {
 
         return gulp.src('www/js/*.js')
-            //.pipe(closureCompiler({
-            //    compilerPath: 'bower_components/closure-compiler/compiler.jar',
-            //    fileName: 'www/js/all.min.js'
-            //}))
-            //.pipe(minify())
             .pipe(uglify())
             .pipe(rename('all.min.js'))
             .pipe(gulp.dest('./www/js'));
