@@ -12,11 +12,11 @@
     // gulp - run 'default' task
     // gulp <task> <othertask>.
 
-    gulp.task('default', function() {
+    gulp.task('default', function() { // ae
         gulp.run('uglify-js', 'clean');
     });
 
-    gulp.task('default+css', function() {
+    gulp.task('default+css', function() { // book
         gulp.run('uglify-js', 'css-base64', 'clean');
     });
 
