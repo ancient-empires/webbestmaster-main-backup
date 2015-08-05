@@ -191,9 +191,7 @@
 			firebase.orderByChild('nick').equalTo(nick).once('value', function (snap) {
 				//console.log(snap.numChildren());
 				deferred.resolve(snap);
-
 			});
-
 
 			return deferred.promise();
 
