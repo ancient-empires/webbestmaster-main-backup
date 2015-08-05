@@ -194,7 +194,10 @@
 
 				moveBack.unitSavedData = unit.toJSON();
 				moveBack.unit = unit;
-				moveBack.showButton();
+
+				if ( unit.get('model').get('activePlayer').type !== 'cpu' ) {
+					moveBack.showButton();
+				}
 
 			},
 
