@@ -80,28 +80,16 @@
 				info = view.info,
 				$this = $(e.currentTarget),
 				user = info.get('user'),
-				nick = $this.val().trim();
+				nick = $this.val().trim(),
+				userModel = win.APP.bb.user;
 
-			// detect empty nick
-			if ( !nick ) {
-				user.nick = nick;
-				info.set('user', user);
-				win.APP.db.saveUserData(user, {nick: nick});
-				// todo: validate user nick by firebase
-				return;
-			}
-
-			// detect nick with extra symbols
-			if ( !/^[a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]+$/.test(nick) ) {
+			// if nick is exist detect extra symbols
+			if ( nick && !/^[a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]+$/.test(nick) || nick.length > 6) {
 				$this.val(info.get('user').nick);
-				// todo: validate user nick by firebase
 				return;
 			}
 
-			user.nick = nick;
-
-			info.set('user', user);
-			win.APP.db.saveUserData(user, {nick: nick});
+			userModel.set('nick', nick);
 
 		}
 

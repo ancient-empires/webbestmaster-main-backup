@@ -136,12 +136,14 @@
 				if ( val ) { // user is exist
 					key = _.keys(val)[0];
 					db.set('userDbKey', key);
-					db.saveUserData(user);
-					deferred.resolve();
-				} else { // create new user
-					firebase.push(user);
-					db.initUser().then(function () {
+					db.saveUserData(user).done(function () {
 						deferred.resolve();
+					});
+				} else { // create new user
+					firebase.push(user, function () {
+						db.initUser().done(function () {
+							deferred.resolve();
+						});
 					});
 				}
 
@@ -156,22 +158,46 @@
 
 			var db = this,
 				firebase = db.get('db'),
-				userDbKey = db.get('userDbKey');
+				userDbKey = db.get('userDbKey'),
+				deferred = $.Deferred();
 
 			// db.set('isInit', true);
 			if ( !userDbKey ) { // detect db is init
+				deferred.reject();
 				log('user is not inited');
-				return;
+				return deferred.promise();
 			}
 
 			if (newValue) {
-				firebase.child('/' + userDbKey).update(newValue);
+				firebase.child('/' + userDbKey).update(newValue, function () {
+					deferred.resolve();
+				});
 			} else {
-				firebase.child('/' + userDbKey).set(user);
+				firebase.child('/' + userDbKey).set(user, function () {
+					deferred.resolve();
+				});
 			}
 
-		}
+			return deferred.promise();
 
+		},
+
+		getUsersByNick: function (nick) {
+
+			var db = this,
+				firebase = db.get('db'),
+				deferred = $.Deferred();
+
+			firebase.orderByChild('nick').equalTo(nick).once('value', function (snap) {
+				//console.log(snap.numChildren());
+				deferred.resolve(snap);
+
+			});
+
+
+			return deferred.promise();
+
+		}
 
 	}
 

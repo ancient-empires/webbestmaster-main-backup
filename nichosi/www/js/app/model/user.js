@@ -25,6 +25,8 @@
 
 			user.autoSetData();
 
+			user.on('change:nick', user.onChangeNick);
+
 		},
 
 		autoSetData: function () {
@@ -51,6 +53,34 @@
 			info.set('user', userData);
 
 			win.APP.db.saveUserData(userData, {nichosiCount: userData.nichosiCount});
+
+		},
+
+		onChangeNick: function (model, newValue) {
+
+			var user = this,
+				info = win.APP.info,
+				userData = info.get('user'),
+				db = win.APP.db;
+
+			userData.nick = newValue;
+
+			info.set('user', userData);
+
+			db.saveUserData(userData, {nick: newValue}).done(function () {
+
+				db.getUsersByNick(newValue).done(function (snap) {
+
+					if ( info.get('user').nick === newValue ) {
+						console.log('we have more ' + (snap.numChildren() - 1) + ' with name ' + newValue + ' except you');
+					} else {
+						console.log('diff nick yet');
+					}
+
+				})
+
+			});
+
 
 		}
 
