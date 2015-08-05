@@ -20,7 +20,8 @@
 
 		attr: {
 			isInit: false,
-			scriptIsLoaded: false
+			scriptIsLoaded: false,
+			userDbKey: false
 		},
 
 		init: function () {
@@ -28,35 +29,36 @@
 			var db = this,
 				deferred = $.Deferred();
 
-			if ( db.get('isInit') ) {
+			if ( db.get('userDbKey') ) {
 				deferred.resolve();
 				return deferred.promise();
 			}
 
-			db.loadScript().then(
-				function () {
-					var fireBase = new Firebase(db.url.dataBase);
-					db.set('db', fireBase);
-					db.set('isInit', true);
-					log('db is inited');
-
-
-					fireBase.onAuth(function(authData) {
-						deferred.resolve();
+			db
+				.loadScript()
+				// load script
+				.then(
+					// script loaded
+					function () {
+						var fireBase = new Firebase(db.url.dataBase);
+						db.set('db', fireBase);
 						db.set('isInit', true);
-						if (authData) {
-							console.log("Authenticated with uid:", authData.uid);
-						} else {
-							console.log("Client unauthenticated.")
-						}
-					});
-					//deferred.resolve();
-				},
-				function () {
-					log('script is not loaded');
-					deferred.reject();
-				}
-			);
+						return db.initUser();
+					},
+					// script is not loaded
+					function () {
+						log('script is not loaded');
+						deferred.reject();
+						return false;
+					}
+				)
+				// try to init user
+				.then(function () {
+					log('unit is init');
+					deferred.resolve();
+				}, function () {
+					log('failed to init user');
+				});
 
 			return deferred.promise();
 
@@ -119,44 +121,49 @@
 
 		},
 
+		initUser: function () {
+
+			var db = this,
+				firebase = db.get('db'),
+				user = win.APP.info.get('user'),
+				deferred = $.Deferred();
+
+			firebase.child('/').orderByChild('id').equalTo(user.id).once('value', function (snapshot) {
+
+				var val = snapshot.val(),
+					key;
+
+				if ( val ) { // user is exist
+					key = _.keys(val)[0];
+					db.set('userDbKey', key);
+					deferred.resolve();
+				} else { // create new user
+					firebase.push(user);
+					db.initUser().then(function () {
+						deferred.resolve();
+					});
+				}
+
+			});
+
+			return deferred.promise();
+
+		},
+
 		// extend
 		saveUserData: function (user) {
 
 			var db = this,
-				firebase = db.get('db'),
-				key;
+				firebase = db.get('db');
 
 			// db.set('isInit', true);
-			if ( !db.get('isInit') ) { // detect db is init
+			if ( !db.get('userDbKey') ) { // detect db is init
 				return;
 			}
 
 			// detect user db key, if exists - all is OK
-			key = db.get('userDbKey');
-			if ( key ) {
-				console.log('key!!!!!!!');
-				firebase.child('/' + key).set(user);
-			} else {
-				console.log('no!!!!!!!!');
-				firebase.child('/').orderByChild('id').equalTo(user.id).once('value', function (snapshot) {
 
-					var val = snapshot.val(),
-						key;
-
-					if ( val ) { // user is exist
-						key = _.keys(val)[0];
-						db.set('userDbKey', key);
-						firebase.child('/' + key).set(user);
-					} else { // create new user
-						firebase.push(user);
-					}
-
-				});
-
-			}
-
-
-
+			firebase.child('/' + db.get('userDbKey')).set(user);
 
 		}
 

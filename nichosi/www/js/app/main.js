@@ -11,14 +11,20 @@
 
 	function start() {
 
-		win.APP.db.init();
+
+		win.APP.bb.device = new win.APP.BB.DeviceModel();
+		win.APP.bb.user = new win.APP.BB.UserModel();
+
+		win.APP.db.init().then(function () {
+			console.log('u are Allow to use');
+		},
+		function () {
+			console.warn('FUUUUUUUUCK!!!!!!');
+		});
 
 		win.APP.templateMaster.init();
 		win.APP.BB.BaseView.prototype.initStatic();
 		win.APP.soundMaster.init();
-
-		win.APP.bb.device = new win.APP.BB.DeviceModel();
-		win.APP.bb.user = new win.APP.BB.UserModel();
 
 		//win.APP.soundMaster.playBgSound();
 
