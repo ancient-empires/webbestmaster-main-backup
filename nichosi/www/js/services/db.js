@@ -39,10 +39,21 @@
 					db.set('db', fireBase);
 					db.set('isInit', true);
 					log('db is inited');
-					deferred.resolve();
+
+
+					fireBase.onAuth(function(authData) {
+						deferred.resolve();
+						db.set('isInit', true);
+						if (authData) {
+							console.log("Authenticated with uid:", authData.uid);
+						} else {
+							console.log("Client unauthenticated.")
+						}
+					});
+					//deferred.resolve();
 				},
 				function () {
-					log('db is NOT inited');
+					log('script is not loaded');
 					deferred.reject();
 				}
 			);
@@ -106,7 +117,49 @@
 
 			return deferred.promise();
 
+		},
+
+		// extend
+		saveUserData: function (user) {
+
+			var db = this,
+				firebase = db.get('db'),
+				key;
+
+			// db.set('isInit', true);
+			if ( !db.get('isInit') ) { // detect db is init
+				return;
+			}
+
+			// detect user db key, if exists - all is OK
+			key = db.get('userDbKey');
+			if ( key ) {
+				console.log('key!!!!!!!');
+				firebase.child('/' + key).set(user);
+			} else {
+				console.log('no!!!!!!!!');
+				firebase.child('/').orderByChild('id').equalTo(user.id).once('value', function (snapshot) {
+
+					var val = snapshot.val(),
+						key;
+
+					if ( val ) { // user is exist
+						key = _.keys(val)[0];
+						db.set('userDbKey', key);
+						firebase.child('/' + key).set(user);
+					} else { // create new user
+						firebase.push(user);
+					}
+
+				});
+
+			}
+
+
+
+
 		}
+
 
 	}
 

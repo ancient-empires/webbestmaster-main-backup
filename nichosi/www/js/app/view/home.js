@@ -14,12 +14,12 @@
 			//'click div': 'test',
 			//'click .js-show-popup': 'testShowPopup'
 			'click .js-image-container': 'setNichosiImage',
-			'input .js-user-nick': 'setUserNick',
-			'click .js-share-record': 'shareRecord'
+			'input .js-user-nick': 'setUserNick'
 		},
 
 		selectors: {
-			imageContainer: '.js-image-container'
+			imageContainer: '.js-image-container',
+			userNichosiCount: '.js-user-nichosi-count'
 		},
 
 		initialize: function () {
@@ -60,7 +60,17 @@
 
 			if ( !data.doNotCount ) {
 				win.APP.bb.user.increaseNichosiCount();
+				view.updateUserNichosiCount();
 			}
+
+		},
+
+		updateUserNichosiCount: function () {
+
+			var view = this,
+				$count = view.$el.find(view.selectors.userNichosiCount);
+
+			$count.val( view.info.get('user').nichosiCount );
 
 		},
 
@@ -76,6 +86,7 @@
 			if ( !nick ) {
 				user.nick = nick;
 				info.set('user', user);
+				win.APP.db.saveUserData(user);
 				// todo: validate user nick by firebase
 				return;
 			}
@@ -90,12 +101,7 @@
 			user.nick = nick;
 
 			info.set('user', user);
-
-		},
-
-		shareRecord: function () {
-
-
+			win.APP.db.saveUserData(user);
 
 		}
 

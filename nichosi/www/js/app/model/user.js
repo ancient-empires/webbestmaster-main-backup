@@ -50,6 +50,8 @@
 
 			info.set('user', userData);
 
+			win.APP.db.saveUserData(userData);
+
 		}
 
 
