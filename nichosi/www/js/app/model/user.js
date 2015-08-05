@@ -50,7 +50,7 @@
 
 			info.set('user', userData);
 
-			win.APP.db.saveUserData(userData);
+			win.APP.db.saveUserData(userData, {nichosiCount: userData.nichosiCount});
 
 		}
 

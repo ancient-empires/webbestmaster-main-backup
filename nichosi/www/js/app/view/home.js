@@ -86,7 +86,7 @@
 			if ( !nick ) {
 				user.nick = nick;
 				info.set('user', user);
-				win.APP.db.saveUserData(user);
+				win.APP.db.saveUserData(user, {nick: nick});
 				// todo: validate user nick by firebase
 				return;
 			}
@@ -101,7 +101,7 @@
 			user.nick = nick;
 
 			info.set('user', user);
-			win.APP.db.saveUserData(user);
+			win.APP.db.saveUserData(user, {nick: nick});
 
 		}
 

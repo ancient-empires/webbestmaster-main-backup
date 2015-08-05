@@ -136,6 +136,7 @@
 				if ( val ) { // user is exist
 					key = _.keys(val)[0];
 					db.set('userDbKey', key);
+					db.saveUserData(user);
 					deferred.resolve();
 				} else { // create new user
 					firebase.push(user);
@@ -151,19 +152,23 @@
 		},
 
 		// extend
-		saveUserData: function (user) {
+		saveUserData: function (user, newValue) {
 
 			var db = this,
-				firebase = db.get('db');
+				firebase = db.get('db'),
+				userDbKey = db.get('userDbKey');
 
 			// db.set('isInit', true);
-			if ( !db.get('userDbKey') ) { // detect db is init
+			if ( !userDbKey ) { // detect db is init
+				log('user is not inited');
 				return;
 			}
 
-			// detect user db key, if exists - all is OK
-
-			firebase.child('/' + db.get('userDbKey')).set(user);
+			if (newValue) {
+				firebase.child('/' + userDbKey).update(newValue);
+			} else {
+				firebase.child('/' + userDbKey).set(user);
+			}
 
 		}
 
