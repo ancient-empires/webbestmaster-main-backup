@@ -149,6 +149,13 @@
 
 			});
 
+			//firebase.orderByPriority(true).on('value', function (snap) {
+			//
+			//	console.log(snap.val());
+			//
+			//});
+
+
 			return deferred.promise();
 
 		},
@@ -169,9 +176,23 @@
 			}
 
 			if (newValue) {
-				firebase.child('/' + userDbKey).update(newValue, function () {
-					deferred.resolve();
-				});
+
+				if (newValue.nichosiCount) {
+					firebase.child('/' + userDbKey).setWithPriority(user, newValue.nichosiCount, function () {
+
+						console.log(newValue.nichosiCount);
+
+						deferred.resolve();
+					});
+				} else {
+					firebase.child('/' + userDbKey).update(newValue, function () {
+						deferred.resolve();
+					});
+
+				}
+
+
+
 			} else {
 				firebase.child('/' + userDbKey).set(user, function () {
 					deferred.resolve();
