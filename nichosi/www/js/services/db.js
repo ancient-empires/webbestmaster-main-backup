@@ -216,7 +216,7 @@
 				firebase = db.get('db'),
 				deferred = $.Deferred();
 
-			if ( db.get('userDbKey') ) {
+			if ( !db.get('userDbKey') ) {
 				deferred.reject();
 				return deferred.promise();
 			}
