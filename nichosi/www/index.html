@@ -78,6 +78,8 @@
 
 		<input type="text" disabled="disabled" class="js-user-nichosi-count" value="{{= it.user.nichosiCount }}"/>
 
+		<div class="js-leader-board-wrapper"></div>
+
 	</div>
 
 </script>
@@ -91,6 +93,31 @@
 		<button class="js-show-popup">show popup</button>
 
 		<button data-route="page">to page</button>
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="leader-board">
+
+	<div>
+
+
+		<table>
+
+			<tr>
+				<td>nick</td><td>score</td>
+			</tr>
+
+			{{~it.list :data}}
+			<tr>
+				<td>{{= data.nick}}</td>
+				<td>{{= data.nichosiCount}}</td>
+			</tr>
+			{{~ }}
+		</table>
+
+
 
 	</div>
 

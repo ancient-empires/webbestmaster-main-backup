@@ -20,7 +20,8 @@
 
 		selectors: {
 			imageContainer: '.js-image-container',
-			userNichosiCount: '.js-user-nichosi-count'
+			userNichosiCount: '.js-user-nichosi-count',
+			leaderBoardWrapper: '.js-leader-board-wrapper'
 		},
 
 		initialize: function () {
@@ -96,15 +97,14 @@
 
 		updateLeaderBoard: function (evt, snap) {
 
-			var arr = [];
+			var arr = [],
+				view = this;
 
 			snap.forEach(function (user) {
 				arr.unshift(user.val());
 			});
 
-
-			console.log('updateLeaderBoard');
-			console.log(arr);
+			view.$el.find(view.selectors.leaderBoardWrapper).html(view.tmpl['leader-board']({list: arr}));
 
 		}
 
