@@ -179,10 +179,13 @@
 
 				if (newValue.nichosiCount) {
 					firebase.child('/' + userDbKey).setWithPriority(user, newValue.nichosiCount, function () {
-
-						console.log(newValue.nichosiCount);
-
 						deferred.resolve();
+						db.getLeaderBoard().done(function (snap) {
+							console.log('---');
+							snap.forEach(function (user) {
+								console.log(user.val());
+							});
+						});
 					});
 				} else {
 					firebase.child('/' + userDbKey).update(newValue, function () {
@@ -190,8 +193,6 @@
 					});
 
 				}
-
-
 
 			} else {
 				firebase.child('/' + userDbKey).set(user, function () {
@@ -215,6 +216,21 @@
 			});
 
 			return deferred.promise();
+
+		},
+
+		getLeaderBoard: function () {
+
+			var db = this,
+				firebase = db.get('db'),
+				deferred = $.Deferred();
+
+			firebase.limitToLast(3).once('value', function (snap) {
+				deferred.resolve(snap);
+			});
+
+			return deferred.promise();
+
 
 		}
 
