@@ -69,7 +69,7 @@
 
 			db.saveUserData(userData, {nick: newValue}).done(function () {
 
-				db.getUsersByNick(newValue).done(function (snap) {
+				db.getUsersByNick(newValue).then(function (snap) {
 
 					if ( info.get('user').nick === newValue ) {
 						console.log('we have more ' + (snap.numChildren() - 1) + ' with name ' + newValue + ' except you');
@@ -77,6 +77,8 @@
 						console.log('diff nick yet');
 					}
 
+				},function () {
+					console.log('can not get users by nick');
 				})
 
 			});

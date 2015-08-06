@@ -14,7 +14,8 @@
 			//'click div': 'test',
 			//'click .js-show-popup': 'testShowPopup'
 			'click .js-image-container': 'setNichosiImage',
-			'input .js-user-nick': 'setUserNick'
+			'input .js-user-nick': 'setUserNick',
+			'updateLeaderBoard': 'updateLeaderBoard'
 		},
 
 		selectors: {
@@ -90,6 +91,20 @@
 			}
 
 			userModel.set('nick', nick);
+
+		},
+
+		updateLeaderBoard: function (evt, snap) {
+
+			var arr = [];
+
+			snap.forEach(function (user) {
+				arr.unshift(user.val());
+			});
+
+
+			console.log('updateLeaderBoard');
+			console.log(arr);
 
 		}
 

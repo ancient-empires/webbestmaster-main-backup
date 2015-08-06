@@ -55,6 +55,7 @@
 				// try to init user
 				.then(function () {
 					log('unit is init');
+					db.bindLeaderBordListener();
 					deferred.resolve();
 				}, function () {
 					log('failed to init user');
@@ -180,12 +181,6 @@
 				if (newValue.nichosiCount) {
 					firebase.child('/' + userDbKey).setWithPriority(user, newValue.nichosiCount, function () {
 						deferred.resolve();
-						db.getLeaderBoard().done(function (snap) {
-							console.log('---');
-							snap.forEach(function (user) {
-								console.log(user.val());
-							});
-						});
 					});
 				} else {
 					firebase.child('/' + userDbKey).update(newValue, function () {
@@ -210,6 +205,11 @@
 				firebase = db.get('db'),
 				deferred = $.Deferred();
 
+			if ( db.get('userDbKey') ) {
+				deferred.reject();
+				return deferred.promise();
+			}
+
 			firebase.orderByChild('nick').equalTo(nick).once('value', function (snap) {
 				//console.log(snap.numChildren());
 				deferred.resolve(snap);
@@ -219,20 +219,36 @@
 
 		},
 
-		getLeaderBoard: function () {
+		//getLeaderBoard: function () {
+		//
+		//	var db = this,
+		//		firebase = db.get('db'),
+		//		deferred = $.Deferred();
+		//
+		//	firebase.limitToLast(3).once('value', function (snap) {
+		//		deferred.resolve(snap);
+		//	});
+		//
+		//	return deferred.promise();
+		//
+		//},
+
+		bindLeaderBordListener: function () {
 
 			var db = this,
 				firebase = db.get('db'),
 				deferred = $.Deferred();
 
-			firebase.limitToLast(3).once('value', function (snap) {
-				deferred.resolve(snap);
+			firebase.limitToLast(3).on('value', function (snap) {
+				$('.js-nichosi-screen').trigger('updateLeaderBoard', snap);
 			});
 
 			return deferred.promise();
 
-
 		}
+
+
+
 
 	}
 
