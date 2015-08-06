@@ -15,6 +15,7 @@
 			//'click .js-show-popup': 'testShowPopup'
 			'click .js-image-container': 'setNichosiImage',
 			'input .js-user-nick': 'setUserNick',
+			'blur .js-user-nick': 'setUserNick',
 			'updateLeaderBoard': 'updateLeaderBoard'
 		},
 
