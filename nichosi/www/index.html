@@ -111,8 +111,8 @@
 
 			{{~it.list :data}}
 			<tr>
-				<td>{{= data.nick}}</td>
-				<td>{{= data.nichosiCount}}</td>
+				<td>{{= data.nick || 'no name' }}</td>
+				<td>{{= data.nichosiCount }}</td>
 			</tr>
 			{{~ }}
 		</table>
