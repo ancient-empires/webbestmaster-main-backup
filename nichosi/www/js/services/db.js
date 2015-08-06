@@ -19,7 +19,7 @@
 		},
 
 		attr: {
-			isInit: false,
+			initState: false,
 			scriptIsLoaded: false,
 			userDbKey: false
 		},
@@ -34,6 +34,14 @@
 				return deferred.promise();
 			}
 
+			if ( db.get('initState') === 'initializing' ) {
+				log('db is initializing');
+				deferred.reject();
+				return deferred.promise();
+			}
+
+			db.set('initState', 'initializing');
+
 			db
 				.loadScript()
 				// load script
@@ -42,11 +50,13 @@
 					function () {
 						var fireBase = new Firebase(db.url.dataBase);
 						db.set('db', fireBase);
-						db.set('isInit', true);
+						db.set('initState', 'done');
+						log('db initState is done');
 						return db.initUser();
 					},
 					// script is not loaded
 					function () {
+						db.set('initState', false);
 						log('script is not loaded');
 						deferred.reject();
 						return false;
@@ -172,6 +182,7 @@
 			// db.set('isInit', true);
 			if ( !userDbKey ) { // detect db is init
 				deferred.reject();
+				db.init();
 				log('user is not inited');
 				return deferred.promise();
 			}
@@ -237,9 +248,18 @@
 
 			var db = this,
 				firebase = db.get('db'),
-				deferred = $.Deferred();
+				deferred = $.Deferred(),
+				query = db.get('leaderBoardQuery');
 
-			firebase.limitToLast(3).on('value', function (snap) {
+			if (query) {
+				query.off('value');
+			}
+
+			query = firebase.limitToLast(3);
+
+			db.set('leaderBoardQuery', query);
+
+			query.on('value', function (snap) {
 				$('.js-nichosi-screen').trigger('updateLeaderBoard', snap);
 			});
 
