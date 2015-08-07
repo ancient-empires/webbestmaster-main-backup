@@ -128,9 +128,15 @@
 			var db = this,
 				firebase = db.get('db');
 
-			firebase.orderByChild("nichosiCount").limitToLast(3).on('value', function (snap) {
-				$('.js-nichosi-screen').trigger('updateLeaderBoard', snap);
-			});
+			setInterval(function () {
+				firebase.orderByChild("nichosiCount").limitToLast(3).once('value', function (snap) {
+					$('.js-nichosi-screen').trigger('updateLeaderBoard', snap);
+				},
+				function (err) {
+					log('can not update leader board');
+				});
+			}, 1000);
+
 
 		}
 
