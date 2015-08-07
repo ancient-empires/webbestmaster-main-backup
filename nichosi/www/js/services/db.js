@@ -10,68 +10,22 @@
 	win.APP.db = {
 
 		url: {
-			script: 'https://cdn.firebase.com/js/client/2.2.1/firebase.js',
+			//script: 'https://cdn.firebase.com/js/client/2.2.1/firebase.js',
 			dataBase: 'https://radiant-torch-4344.firebaseio.com/nichosi/'
 		},
 
-		className: {
-			dataBaseScript: 'js-firebase-script'
-		},
-
 		attr: {
-			initState: false,
-			scriptIsLoaded: false,
 			userDbKey: false
 		},
 
 		init: function () {
 
 			var db = this,
-				deferred = $.Deferred();
+				fireBase = new Firebase(db.url.dataBase);
 
-			if ( db.get('userDbKey') ) {
-				deferred.resolve();
-				return deferred.promise();
-			}
+			db.set('db', fireBase);
 
-			if ( db.get('initState') === 'initializing' ) {
-				log('db is initializing');
-				deferred.reject();
-				return deferred.promise();
-			}
-
-			db.set('initState', 'initializing');
-
-			db
-				.loadScript()
-				// load script
-				.then(
-					// script loaded
-					function () {
-						var fireBase = new Firebase(db.url.dataBase);
-						db.set('db', fireBase);
-						db.set('initState', 'done');
-						log('db initState is done');
-						return db.initUser();
-					},
-					// script is not loaded
-					function () {
-						db.set('initState', false);
-						log('script is not loaded');
-						deferred.reject();
-						return false;
-					}
-				)
-				// try to init user
-				.then(function () {
-					log('unit is init');
-					db.bindLeaderBordListener();
-					deferred.resolve();
-				}, function () {
-					log('failed to init user');
-				});
-
-			return deferred.promise();
+			db.bindLeaderBordListener();
 
 		},
 
@@ -84,88 +38,36 @@
 			return this.attr[key];
 		},
 
-		loadScript: function () {
-
-			var db = this,
-				deferred = $.Deferred(),
-				url = db.url.script,
-				scriptClassName = db.className.dataBaseScript,
-				script = doc.createElement('script'),
-				headNode = doc.head,
-				oldScript = headNode.querySelector('.' + scriptClassName);
-
-			// detect - script was loaded successfully
-			if ( db.get('scriptIsLoaded') ) {
-				deferred.resolve();
-				return deferred.promise();
-			}
-
-			// detect old script
-			if (oldScript) {
-				headNode.removeChild(oldScript);
-			}
-
-			script.className = scriptClassName;
-
-			function onLoad() {
-				script.removeEventListener('load', onLoad, false);
-				script.removeEventListener('error', onError, false);
-				db.set('scriptIsLoaded', true);
-				deferred.resolve();
-			}
-
-			function onError() {
-				script.removeEventListener('load', onLoad, false);
-				script.removeEventListener('error', onError, false);
-				deferred.reject();
-			}
-
-			script.addEventListener('load', onLoad, false);
-
-			script.addEventListener('error', onError, false);
-
-			script.src = url;
-
-			headNode.appendChild(script);
-
-			return deferred.promise();
-
-		},
-
+		// extra
 		initUser: function () {
 
 			var db = this,
 				firebase = db.get('db'),
-				user = win.APP.info.get('user'),
+				userData = win.APP.info.get('user'),
 				deferred = $.Deferred();
 
-			firebase.child('/').orderByChild('id').equalTo(user.id).once('value', function (snapshot) {
+			firebase.child('/').orderByChild('id').equalTo(userData.id).once('value', function (snapshot) {
 
 				var val = snapshot.val(),
-					key;
+					key,
+					newUser;
 
 				if ( val ) { // user is exist
 					key = _.keys(val)[0];
 					db.set('userDbKey', key);
-					db.saveUserData(user).done(function () {
+					db.saveUserData(userData).done(function () {
 						deferred.resolve();
 					});
 				} else { // create new user
-					firebase.push(user, function () {
-						db.initUser().done(function () {
-							deferred.resolve();
-						});
+					newUser = firebase.push(userData, function () {
+						db.set('userDbKey', newUser.key());
+						deferred.resolve();
 					});
 				}
 
+			}, function (err) {
+				deferred.reject(err);
 			});
-
-			//firebase.orderByPriority(true).on('value', function (snap) {
-			//
-			//	console.log(snap.val());
-			//
-			//});
-
 
 			return deferred.promise();
 
@@ -181,28 +83,19 @@
 
 			// db.set('isInit', true);
 			if ( !userDbKey ) { // detect db is init
+				db.initUser();
 				deferred.reject();
-				db.init();
 				log('user is not inited');
 				return deferred.promise();
 			}
 
 			if (newValue) {
-
-				if (newValue.nichosiCount) {
-					firebase.child('/' + userDbKey).setWithPriority(user, newValue.nichosiCount, function () {
-						deferred.resolve();
-					});
-				} else {
-					firebase.child('/' + userDbKey).update(newValue, function () {
-						deferred.resolve();
-					});
-
-				}
-
+				firebase.child('/' + userDbKey).update(newValue, function (err) {
+					return err ? deferred.reject() : deferred.resolve();
+				});
 			} else {
-				firebase.child('/' + userDbKey).set(user, function () {
-					deferred.resolve();
+				firebase.child('/' + userDbKey).set(user, function (err) {
+					return err ? deferred.reject() : deferred.resolve();
 				});
 			}
 
@@ -230,45 +123,16 @@
 
 		},
 
-		//getLeaderBoard: function () {
-		//
-		//	var db = this,
-		//		firebase = db.get('db'),
-		//		deferred = $.Deferred();
-		//
-		//	firebase.limitToLast(3).once('value', function (snap) {
-		//		deferred.resolve(snap);
-		//	});
-		//
-		//	return deferred.promise();
-		//
-		//},
-
 		bindLeaderBordListener: function () {
 
 			var db = this,
-				firebase = db.get('db'),
-				deferred = $.Deferred(),
-				query = db.get('leaderBoardQuery');
+				firebase = db.get('db');
 
-			if (query) {
-				query.off('value');
-			}
-
-			query = firebase.limitToLast(3);
-
-			db.set('leaderBoardQuery', query);
-
-			query.on('value', function (snap) {
+			firebase.orderByChild("nichosiCount").limitToLast(3).on('value', function (snap) {
 				$('.js-nichosi-screen').trigger('updateLeaderBoard', snap);
 			});
 
-			return deferred.promise();
-
 		}
-
-
-
 
 	}
 
