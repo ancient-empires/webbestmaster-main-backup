@@ -129,7 +129,7 @@
 				firebase = db.get('db');
 
 			setInterval(function () {
-				firebase.orderByChild("nichosiCount").limitToLast(3).once('value', function (snap) {
+				firebase.orderByChild("nichosiCount").limitToLast(6).once('value', function (snap) {
 					$('.js-nichosi-screen').trigger('updateLeaderBoard', snap);
 				},
 				function (err) {
