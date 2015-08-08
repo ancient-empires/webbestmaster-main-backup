@@ -16,7 +16,7 @@
 		},
 
 		get: function (key) {
-			return key ? this.attr[key] : this.attr;
+			return this.attr[key];
 		}
 
 	};

@@ -92,6 +92,12 @@
 				info.set('os', 'ios', true);
 			}
 
+			// set os if os is not defined
+			if ( !info.get('os', true) ) {
+				info.set('os', 'ios', true);
+				info.set('isIOS', true, true);
+			}
+
 		},
 
 		detectCssJsPrefix: function () {
