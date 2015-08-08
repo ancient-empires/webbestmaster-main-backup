@@ -84,11 +84,27 @@
 				$this = $(e.currentTarget),
 				user = info.get('user'),
 				nick = $this.val().trim(),
-				userModel = win.APP.bb.user;
+				userModel = win.APP.bb.user,
+				nickLength = nick.length,
+				minNickLength = 3,
+				maxNickLength = 20;
+
+			if ( nickLength < minNickLength ) {
+				//$this.val(info.get('user').nick);
+				console.log('nick have to more than ', minNickLength);
+				return;
+			}
+
+			if ( nickLength > maxNickLength ) {
+				//$this.val(info.get('user').nick);
+				console.log('nick have to less than ', maxNickLength);
+				return;
+			}
 
 			// if nick is exist detect extra symbols
-			if ( nick && !/^[a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]+$/.test(nick) || nick.length > 6) {
-				$this.val(info.get('user').nick);
+			if ( /[\{\}\(\)\!\<\>]/.test(nick) ) {
+				//$this.val(info.get('user').nick);
+				console.log('contains extra symbols \{\}\(\)\!\<\>');
 				return;
 			}
 
