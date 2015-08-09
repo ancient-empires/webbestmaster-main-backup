@@ -114,53 +114,22 @@
 
 		updateLeaderBoard: function (evt, snap) {
 
-			var arr = [],
-				view = this;
+			var newList = [],
+				view = this,
+				$el = view.$el,
+				$board = $el.find(view.selectors.leaderBoardWrapper),
+				oldList = view.get('boardList');
 
 			snap.forEach(function (user) {
-				arr.unshift(user.val());
+				newList.unshift(user.val());
 			});
 
-			view.$el.find(view.selectors.leaderBoardWrapper).html(view.tmpl['leader-board']({list: arr}));
+			if ( JSON.stringify(newList) !== JSON.stringify(oldList) ) {
+				view.set('boardList', newList);
+				$board.html( view.tmpl['leader-board']({list: newList}) );
+			}
 
 		}
-
-
-
-
-/*
-
-		test: function (e) {
-
-			alert('click to div');
-
-		},
-
-		testShowPopup: function () {
-
-			var view = this;
-
-			view.showPopup({
-				name: 'popup-text',
-				//timeout: 2.5e3,
-				sound: {
-					sound: 'click.mp3',
-					isLoop: false,
-					road: 3
-				},
-				data: {
-					text: 'TEXT!!!!!!!!!'
-				}
-				//,onHide: { // see popup view source code
-				//	fn: 'newQuestion',
-				//	context: view
-				//}
-			});
-
-
-		}
-*/
-
 
 	});
 
