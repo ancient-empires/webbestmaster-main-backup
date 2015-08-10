@@ -93,7 +93,6 @@ body {
 .leader-board-index,
 .leader-board-name,
 .leader-board-count {
-	height: 3.3rem;
 	line-height: 3.3rem;
 	font-size: 1.3rem;
 }
@@ -105,8 +104,7 @@ body {
 
 .leader-board-name {
 	line-height: 1.3rem;
-	padding: 1rem 0;
-	box-sizing: border-box;
+	padding-bottom: 1rem;
 }
 
 .leader-board-count {
