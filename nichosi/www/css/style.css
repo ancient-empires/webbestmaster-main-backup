@@ -16,6 +16,7 @@ input {
 
 input {
 	background-color: transparent;
+	padding: 0 !important;
 }
 
 body {
@@ -37,17 +38,22 @@ body {
 	border: none;
 	float: left;
 	padding: 1rem;
+	line-height: 1.3rem;
+}
+
+.user-nick::-webkit-input-placeholder {
+	text-align: center;
 }
 
 .user-nichosi-count {
 	float: right;
 	border-left: 1px solid #333;
+	line-height: 3.3rem;
 }
 
 .user-nick,
 .user-nichosi-count {
 	height: 3.3rem;
-	line-height: 3.3rem;
 	text-align: center;
 	font-size: 1.3rem;
 	box-sizing: border-box;
