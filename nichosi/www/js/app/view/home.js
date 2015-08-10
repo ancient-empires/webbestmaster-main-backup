@@ -62,7 +62,9 @@
 				$container = view.$el.find(view.selectors.imageContainer),
 				nichosiImage = view.getRandomNichosi();
 
-			$container.css('background-image', 'url(nichosi-img/' + nichosiImage + '.jpg)');
+			setTimeout(function () {
+				$container.css('background-image', 'url(nichosi-img/' + nichosiImage + '.jpg)');
+			}, 50);
 
 			if ( !data.doNotCount ) {
 				win.APP.bb.user.increaseNichosiCount();
@@ -108,12 +110,14 @@
 			if ( nickLength < minNickLength ) {
 				//$this.val(info.get('user').nick);
 				console.log('nick have to more than ', minNickLength);
+				userModel.set('nick', '');
 				return;
 			}
 
 			if ( nickLength > maxNickLength ) {
 				//$this.val(info.get('user').nick);
 				console.log('nick have to less than ', maxNickLength);
+				userModel.set('nick', '');
 				return;
 			}
 
@@ -121,6 +125,7 @@
 			if ( /[\{\}\(\)\!\<\>]/.test(nick) ) {
 				//$this.val(info.get('user').nick);
 				console.log('contains extra symbols \{\}\(\)\!\<\>');
+				userModel.set('nick', '');
 				return;
 			}
 
