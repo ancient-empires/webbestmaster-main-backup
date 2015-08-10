@@ -25,7 +25,7 @@
 
 			user.autoSetData();
 
-			//user.on('change:nick', user.onChangeNick);
+			user.on('change:nick', user.onChangeNick);
 
 		},
 
@@ -54,36 +54,37 @@
 
 			win.APP.db.saveUserData(userData, {nichosiCount: userData.nichosiCount});
 
-		}
+		},
 
-		//,onChangeNick: function (model, newValue) {
-		//
-		//	var user = this,
-		//		info = win.APP.info,
-		//		userData = info.get('user'),
-		//		db = win.APP.db,
-		//		$view = $('.js-nichosi-screen');
-		//
-		//	userData.nick = newValue;
-		//	info.set('user', userData);
-		//	db.saveUserData(userData, {nick: newValue}).done(function () {
-		//		db.getUsersByNick(newValue).then(function (snap) {
-		//			if ( info.get('user').nick === newValue ) {
-		//				//log('we have more ' + (snap.numChildren() - 1) + ' with name ' + newValue + ' except you');
-		//				$view.trigger('showNickInfo', {
-		//					name: newValue,
-		//					userCount: snap.numChildren() - 1
-		//				});
-		//			} else {
-		//				log('diff nick yet');
-		//			}
-		//		}, function () {
-		//			log('can not get users by nick');
-		//		})
-		//
-		//	});
-		//
-		//}
+		onChangeNick: function (model, newValue) {
+
+			var user = this,
+				info = win.APP.info,
+				userData = info.get('user'),
+				db = win.APP.db;
+
+			userData.nick = newValue;
+			info.set('user', userData);
+
+			db.saveUserData(userData, {nick: newValue});
+			//.done(function () {
+			//	db.getUsersByNick(newValue).then(function (snap) {
+			//		if ( info.get('user').nick === newValue ) {
+			//			//log('we have more ' + (snap.numChildren() - 1) + ' with name ' + newValue + ' except you');
+			//			$view.trigger('showNickInfo', {
+			//				name: newValue,
+			//				userCount: snap.numChildren() - 1
+			//			});
+			//		} else {
+			//			log('diff nick yet');
+			//		}
+			//	}, function () {
+			//		log('can not get users by nick');
+			//	})
+			//
+			//});
+
+		}
 
 	});
 
