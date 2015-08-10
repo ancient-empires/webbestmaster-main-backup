@@ -118,6 +118,18 @@ body {
 	padding: 1.5rem;
 }
 
-
+.nick-error-text {
+	position: absolute;
+	top: 3.3rem;
+	text-align: center;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0.7rem;
+	color: #f3f3f3;
+	background-color: #e0483e;
+	z-index: 1;
+	line-height: 1rem;
+	font-size: 0.8rem;
+}
 
 

@@ -23,7 +23,8 @@
 			userNick: '.js-user-nick',
 			imageContainer: '.js-image-container',
 			userNichosiCount: '.js-user-nichosi-count',
-			leaderBoardWrapper: '.js-leader-board-wrapper'
+			leaderBoardWrapper: '.js-leader-board-wrapper',
+			nickErrorText: '.js-nick-error-text'
 		},
 
 		initialize: function () {
@@ -105,32 +106,45 @@
 				userModel = win.APP.bb.user,
 				nickLength = nick.length,
 				minNickLength = 3,
-				maxNickLength = 20;
+				maxNickLength = 20,
+				lang = win.APP.lang;
 
-			if ( nickLength < minNickLength ) {
+			view.hideNickError();
+
+			if ( nickLength && nickLength < minNickLength ) {
 				//$this.val(info.get('user').nick);
-				console.log('nick have to more than ', minNickLength);
+				view.showNickError(lang.get('minNickLength') + ' ' + minNickLength);
 				userModel.set('nick', '');
 				return;
 			}
 
 			if ( nickLength > maxNickLength ) {
 				//$this.val(info.get('user').nick);
-				console.log('nick have to less than ', maxNickLength);
+				view.showNickError(lang.get('maxNickLength') + ' ' + maxNickLength);
 				userModel.set('nick', '');
 				return;
 			}
 
 			// if nick is exist detect extra symbols
-			if ( /[\{\}\(\)\!\<\>]/.test(nick) ) {
+			if ( /[\{\}\(\)\!\<\>\[\]]/.test(nick) ) {
 				//$this.val(info.get('user').nick);
-				console.log('contains extra symbols \{\}\(\)\!\<\>');
+				view.showNickError( lang.get('containsExtraSymbols') + ':<br /> \{ \} \( \) \! \< \> \[ \]');
 				userModel.set('nick', '');
 				return;
 			}
 
 			userModel.set('nick', nick);
 
+		},
+
+		showNickError: function (text) {
+			var view = this;
+			view.$el.find(view.selectors.nickErrorText).html(text).removeClass('hidden');
+		},
+
+		hideNickError: function () {
+			var view = this;
+			view.$el.find(view.selectors.nickErrorText).html('').addClass('hidden');
 		},
 
 		updateLeaderBoard: function (evt, snap) {
