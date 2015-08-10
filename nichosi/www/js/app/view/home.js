@@ -134,15 +134,18 @@
 				view = this,
 				$el = view.$el,
 				$board = $el.find(view.selectors.leaderBoardWrapper),
-				oldList = view.get('boardList');
+				oldList = view.get('boardList'),
+				scrollTop;
 
 			snap.forEach(function (user) {
 				newList.unshift(user.val());
 			});
 
 			if ( JSON.stringify(newList) !== JSON.stringify(oldList) ) {
+				scrollTop = view.$el.find('.js-scroll-area-container').scrollTop();
 				view.set('boardList', newList);
 				$board.html( view.tmpl['leader-board']({list: newList}) );
+				view.$el.find('.js-scroll-area-container').scrollTop(scrollTop);
 			}
 
 		}
