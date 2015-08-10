@@ -90,26 +90,28 @@ body {
 	background-color: #f9f9f9;
 }
 
-.leader-board-index {
-	text-align: center;
-	width: 3.3rem;
-}
-
-.leader-board-name {
-
-}
-
-.leader-board-count {
-	padding: 0 1.5rem 0 1rem;
-	text-align: right;
-}
-
 .leader-board-index,
 .leader-board-name,
 .leader-board-count {
 	height: 3.3rem;
 	line-height: 3.3rem;
 	font-size: 1.3rem;
+}
+
+.leader-board-index {
+	text-align: center;
+	width: 3.3rem;
+}
+
+.leader-board-name {
+	line-height: 1.3rem;
+	padding: 1rem 0;
+	box-sizing: border-box;
+}
+
+.leader-board-count {
+	padding: 0 1.5rem 0 1rem;
+	text-align: right;
 }
 
 .no-connection {
