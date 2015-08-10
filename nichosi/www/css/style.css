@@ -53,3 +53,63 @@ body {
 	box-sizing: border-box;
 	border-bottom: 1px solid #333;
 }
+
+.leader-board-wrapper {
+	position: fixed;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	height: 50%;
+	box-sizing: border-box;
+	padding-top: 3.3rem;
+	z-index: -1;
+}
+
+.leader-board-table {
+	width: 100%;
+}
+
+.leader-board-row {
+	border-top: 1px solid #ccc;
+}
+
+.leader-board-row-odd {
+	background-color: #fff;
+
+}
+
+.leader-board-row-even {
+	background-color: #f9f9f9;
+}
+
+.leader-board-index {
+	text-align: center;
+	width: 3.3rem;
+}
+
+.leader-board-name {
+
+}
+
+.leader-board-count {
+	padding: 0 1.5rem 0 1rem;
+	text-align: right;
+}
+
+.leader-board-index,
+.leader-board-name,
+.leader-board-count {
+	height: 3.3rem;
+	line-height: 3.3rem;
+	font-size: 1.3rem;
+}
+
+.no-connection {
+	text-align: center;
+	font-size: 1.4rem;
+	padding: 1.5rem;
+}
+
+
+
+

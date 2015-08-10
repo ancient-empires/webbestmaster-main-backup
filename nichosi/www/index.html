@@ -79,7 +79,11 @@
 
 		<div class="image-container js-image-container clear">&nbsp;</div>
 
-		<div class="js-leader-board-wrapper"></div>
+		<div class="js-leader-board-wrapper leader-board-wrapper">
+			<div class="no-connection">
+				{{= %noConnection% }}
+			</div>
+		</div>
 
 	</div>
 
@@ -101,25 +105,18 @@
 
 <script type="text/x-template" data-name="leader-board">
 
-	<div>
-
-
-		<table>
-
-			<tr>
-				<td>nick</td><td>score</td>
-			</tr>
-
-			{{~it.list :data}}
-			<tr>
-				<td>{{= data.nick || 'no name' }}</td>
-				<td>{{= data.nichosiCount }}</td>
-			</tr>
-			{{~ }}
-		</table>
-
-
-
+	<div class="scroll-area-container js-scroll-area-container">
+		<div>
+			<table class="leader-board-table">
+				{{~it.list :data:index}}
+				<tr class="leader-board-row leader-board-row-{{= index % 2 ? 'odd' : 'even'}}">
+					<td class="leader-board-index">{{= index + 1 }}</td>
+					<td class="leader-board-name">{{= data.nick || %noName% }}</td>
+					<td class="leader-board-count">{{= data.nichosiCount }}</td>
+				</tr>
+				{{~ }}
+			</table>
+		</div>
 	</div>
 
 </script>
