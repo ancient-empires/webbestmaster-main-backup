@@ -73,11 +73,11 @@
 
 	<div class="screen js-nichosi-screen">
 
-		<div class="image-container js-image-container">&nbsp;</div>
+		<input type="text" class="user-nick js-user-nick" placeholder="user name..." value="{{= it.user.nick }}"/>
 
-		<input type="text" class="js-user-nick" placeholder="user name..." value="{{= it.user.nick }}"/>
+		<div class="user-nichosi-count js-user-nichosi-count">{{= it.user.nichosiCount }}</div>
 
-		<input type="text" disabled="disabled" class="js-user-nichosi-count" value="{{= it.user.nichosiCount }}"/>
+		<div class="image-container js-image-container clear">&nbsp;</div>
 
 		<div class="js-leader-board-wrapper"></div>
 

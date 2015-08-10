@@ -20,6 +20,7 @@
 		},
 
 		selectors: {
+			userNick: '.js-user-nick',
 			imageContainer: '.js-image-container',
 			userNichosiCount: '.js-user-nichosi-count',
 			leaderBoardWrapper: '.js-leader-board-wrapper'
@@ -39,6 +40,8 @@
 			view.render();
 
 			view.setNichosiImage({ doNotCount: true });
+
+			view.updateUserNichosiCount();
 
 		},
 
@@ -71,9 +74,22 @@
 		updateUserNichosiCount: function () {
 
 			var view = this,
-				$count = view.$el.find(view.selectors.userNichosiCount);
+				$el = view.$el,
+				selectors = view.selectors,
+				$count = $el.find(selectors.userNichosiCount),
+				$nick = $el.find(selectors.userNick),
+				nichosiCount = view.info.get('user').nichosiCount,
+				countLength = String(nichosiCount).length,
+				countWidth = (countLength + 2) * view.info.get('remSize', true),
+				fullWidth = win.APP.bb.device.get('width');
 
-			$count.val( view.info.get('user').nichosiCount );
+			if (countLength !== view.get('countLength')) {
+				$count.css('width', countWidth + 'px');
+				$nick.css('width', (fullWidth - countWidth) + 'px');
+				view.set('countLength', countLength);
+			}
+
+			$count.html( nichosiCount );
 
 		},
 

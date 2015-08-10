@@ -79,6 +79,8 @@
 			fontSize = Math.round(fontSize / 2) * 2;
 			docElem.style.fontSize = fontSize + 'px';
 
+			info.set('remSize', fontSize, true);
+
 			_.each(types, function (typesArr, key) {
 				types[key] = typesArr[eventTypesIndex];
 			});
