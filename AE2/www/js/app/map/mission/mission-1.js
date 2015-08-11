@@ -35,11 +35,12 @@
 		defeat: ['commanderIsDead'], // 'galamarDead', 'valadornDead'
 
 		// en
-		name: langEnExtra.name,
-		objective: langEnExtra.objective,
+		//name: langEnExtra.name,
+		//objective: langEnExtra.objective,
 		help: [
-			langEn.helpList[0],
-			langEn.helpList[1]
+			0, 1
+			//langEn.helpList[0],
+			//langEn.helpList[1]
 		],
 		startBriefing: [
 			{
