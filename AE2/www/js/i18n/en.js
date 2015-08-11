@@ -143,7 +143,7 @@
 		noSavedMaps: 'No saved maps',
 		youAreSureToDeleteMap: 'You are sure to delete map?',
 		mapHasBeenSaved: 'map has been saved.',
-		mapHasBeenDeleted: 'map has been deleted',
+		mapHasBeenDeleted: 'map has been deleted.',
 		cleanMapNotSavedDataWillBeLost: 'Clean map? Not saved data will be lost.',
 		needMoreUnitsOrBuildings: 'Need more Units or Buildings',
 		enterMapName: 'Enter map name',
@@ -180,7 +180,7 @@
 			// 0
 			{
 				img: 'img/help/select-unit.png',
-				text: ['To select unit tap (<img src="img/help/tap-finger.png" class="icon-in-text" />) to unit.', '<img src="img/help/finger-on-red-square.png" class="icon-in-text" /> - The red squares mark the movement range of a unit.', 'A unit\'s range is determined by its type and the terrain it is on.']
+				text: ['To select unit tap (<img src="img/help/tap-finger.png" class="icon-in-text" />) to unit.', '<img src="img/help/finger-on-red-square.png" class="icon-in-text" /> - the red squares mark the movement range of a unit.', 'A unit\'s range is determined by its type and the terrain it is on.']
 			},
 			// 1
 			{
