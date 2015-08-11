@@ -39,7 +39,7 @@
 		//name: langEnExtra.name,
 		//objective: langEnExtra.objective,
 		help: [
-			0, 1
+			'%helpList.0%', '%helpList.1%'
 			//langEn.helpList[0],
 			//langEn.helpList[1]
 		],

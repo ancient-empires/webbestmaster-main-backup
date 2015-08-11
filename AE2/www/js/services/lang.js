@@ -26,38 +26,54 @@
 			}
 
 			_.each(data.popupData, function(value, key) {
-				return /%[\s\S]+%/.test(value) && (data.popupData[key] = this.getByChain(value));
+
+				if ( Array.isArray(value) ) {
+					data.popupData[key] = _.map(value, function (item) {
+						return /%[\s\S]+%/.test(item) ? this.getByChain(item) : item;
+					}, this);
+				} else {
+					return /%[\s\S]+%/.test(value) && (data.popupData[key] = this.getByChain(value));
+				}
+
 			}, this);
 
 		},
 
 		getByChain: function (chain) {
 
-			var que = chain.replace(/%([\s\S]+)%/, '$1').split('.'),
+			var que = chain.replace(/%([\s\S]+)%/, '$1').split('.') || [],
 				value,
 				dropCounter = 0,
 				curLang = this.get(),
 				defaultLang = win.APP.languages.en;
 
-			_.each(que, function (path) {
-				if ( value ) {
-					value = value[path];
-				} else {
-					// always first time
-					value = curLang[path];
-					dropCounter += 1;
+			if ( que[0] === 'helpList' ) {
+
+				return curLang.helpList[que[1]] || defaultLang.helpList[que[1]];
+
+			} else {
+
+				_.each(que, function (path) {
+					if ( value ) {
+						value = value[path];
+					} else {
+						// always first time
+						value = curLang[path];
+						dropCounter += 1;
+					}
+				});
+
+				if ( dropCounter === 1 && typeof value === 'string' ) {
+					return value;
 				}
-			});
 
-			if ( dropCounter === 1 && typeof value === 'string' ) {
+				_.each(que, function (path) {
+					return value = value ? value[path] : defaultLang[path];
+				});
+
 				return value;
+
 			}
-
-			_.each(que, function (path) {
-				return value = value ? value[path] : defaultLang[path];
-			});
-
-			return value;
 
 		}
 
