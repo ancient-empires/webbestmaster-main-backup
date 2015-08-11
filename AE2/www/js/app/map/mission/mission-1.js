@@ -5,21 +5,22 @@
 	/*global window */
 	/*global */
 
-	var langEn = win.APP.languages.en,
-		langRu = win.APP.languages.ru,
-		langEs = win.APP.languages.es,
-		langEnExtra = {
-			name: 'TEMPLE RAIDERS',
-			objective: 'Stop the raiders, King Galamar must survive.'
-		},
-		langRuExtra = {
-			name: 'ХРАМОВЫЕ НАЛЕТЧИКИ',
-			objective: 'Остановить налетчиков, Король Галамар должен выжить.'
-		},
-		langEsExtra = {
-			name: 'ASALTANTES DEL TEMPLO',
-			objective: 'Detén a los asaltantes, El rey Galamar debe sobrevivir.'
-		};
+	//var
+		//langEn = win.APP.languages.en,
+		//langRu = win.APP.languages.ru,
+		//langEs = win.APP.languages.es,
+		//langEnExtra = {
+		//	name: 'TEMPLE RAIDERS',
+		//	objective: 'Stop the raiders, King Galamar must survive.'
+		//},
+		//langRuExtra = {
+		//	name: 'ХРАМОВЫЕ НАЛЕТЧИКИ',
+		//	objective: 'Остановить налетчиков, Король Галамар должен выжить.'
+		//},
+		//langEsExtra = {
+		//	name: 'ASALTANTES DEL TEMPLO',
+		//	objective: 'Detén a los asaltantes, El rey Galamar debe sobrevivir.'
+		//};
 
 	win.APP.maps.mission_001_001 = {
 		version: 9,
@@ -47,7 +48,8 @@
 				popupName: 'story',
 				cssClass: 'full-screen',
 				popupData: {
-					content: langEn.story.list[0]
+					//content: langEn.story.list[0]
+					content: '%missionData.1.startBriefing.story0%'
 				},
 				playSound: {
 					sound: 'bg-story.mp3',
@@ -59,7 +61,8 @@
 				popupName: 'story',
 				cssClass: 'full-screen',
 				popupData: {
-					content: langEn.story.list[1]
+					//content: langEn.story.list[1]
+					content: '%missionData.1.startBriefing.story1%'
 				},
 				playSound: {
 					sound: 'bg-story.mp3',
@@ -71,7 +74,8 @@
 				popupName: 'story',
 				cssClass: 'full-screen',
 				popupData: {
-					content: langEn.story.list[2]
+					//content: langEn.story.list[2]
+					content: '%missionData.1.startBriefing.story2%'
 				},
 				playSound: {
 					sound: 'bg-story.mp3',
@@ -82,7 +86,7 @@
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: 'The Temple of Courage'
+					header: '%missionData.1.startBriefing.header1%'
 				},
 				playSound: {
 					sound: 'bg-good.mp3',
@@ -95,7 +99,7 @@
 				from: 'left',
 				cssClass: 'briefing',
 				popupData: {
-					text: 'Help us! We are under attack! These skeleton raiders have stolen the Crystal of Courage we swore to protect!',
+					text: '%missionData.1.startBriefing.text1%',
 					img: 'i/face/tamplier.png'
 				}
 			},
@@ -104,7 +108,7 @@
 				from: 'right',
 				cssClass: 'briefing',
 				popupData: {
-					text: 'Captain, we must stop this menace at once!',
+					text: '%missionData.1.startBriefing.text2%',
 					img: 'i/face/galamar.png'
 				}
 			},
@@ -113,15 +117,15 @@
 				from: 'left',
 				cssClass: 'briefing',
 				popupData: {
-					text: 'Forward troops! Make these raiders pay!',
+					text: '%missionData.1.startBriefing.text3%',
 					img: 'i/face/soldier.png'
 				}
 			},
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEnExtra.name,
-					text: langEnExtra.objective
+					header: '%missionData.1.name%',
+					text: '%missionData.1.objective%'
 				},
 				onHide: {
 					fn: 'autoShowHelpButton'
@@ -134,7 +138,7 @@
 				from: 'left',
 				cssClass: 'briefing',
 				popupData: {
-					text: 'More attackers!',
+					text: '%missionData.1.n1Briefing.text1%',
 					img: 'i/face/soldier.png'
 				},
 				onShow: {
@@ -148,7 +152,7 @@
 				from: 'right',
 				cssClass: 'briefing',
 				popupData: {
-					text: 'These are no raiders! They look like enemy troops! Be careful, Captain!',
+					text: '%missionData.1.n1Briefing.text2%',
 					img: 'i/face/galamar.png'
 				},
 				onShow: {
@@ -164,7 +168,7 @@
 				from: 'right',
 				cssClass: 'briefing',
 				popupData: {
-					text: 'Thank you, your Majesty, you must help us return the Crystal as quickly as possible. Such an important relic must not fall into the wrong hands!',
+					text: '%missionData.1.endBriefing.text1%',
 					img: 'i/face/tamplier.png'
 				}
 			},
@@ -173,7 +177,7 @@
 				from: 'left',
 				cssClass: 'briefing',
 				popupData: {
-					text: 'I am at your service. Who could possibly be after the Crystal?',
+					text: '%missionData.1.endBriefing.text2%',
 					img: 'i/face/galamar.png'
 				}
 			},
@@ -182,7 +186,7 @@
 				from: 'right',
 				cssClass: 'briefing',
 				popupData: {
-					text: 'I fear these criminals may be allied to a greater evil. It would be wise to consult with the High Priest at the Temple of Wisdom. He may know more of this.',
+					text: '%missionData.1.endBriefing.text3%',
 					img: 'i/face/tamplier.png'
 				}
 			},
@@ -191,14 +195,14 @@
 				from: 'left',
 				cssClass: 'briefing',
 				popupData: {
-					text: 'I shall send my brother Valadorn there immediately. I will take my troops and follow the attackers who got away.',
+					text: '%missionData.1.endBriefing.text4%',
 					img: 'i/face/galamar.png'
 				}
 			},
 			{
 				popupName: 'simple-notification',
 				popupData: {
-					header: langEn.missionComplete
+					header: '%missionComplete%'
 				},
 				playSound: {
 					sound: 'victory.mp3',
@@ -212,6 +216,7 @@
 			}
 		],
 
+/*
 		// es
 		'name-es': langEsExtra.name,
 		'objective-es': langEsExtra.objective,
@@ -565,6 +570,7 @@
 				}
 			}
 		],
+*/
 
 		cases: [
 			{
