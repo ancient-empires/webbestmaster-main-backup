@@ -11,15 +11,6 @@
 body,
 input {
 	font-family: 'Open Sans', monospace;
-	color: #1c1c1c;
-}
-
-input {
-	background-color: transparent;
-}
-
-body {
-	background-color: #f3f3f3;
 }
 
 .image-container {
@@ -30,6 +21,8 @@ body {
 	background-size: contain;
 	background-position: center center;
 	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	box-sizing: border-box;
 }
 
 .user-nick {
@@ -49,7 +42,6 @@ body {
 
 .user-nichosi-count {
 	float: right;
-	border-left: 1px solid #333;
 	line-height: 3.3rem;
 	font-size: 1.5rem;
 }
@@ -59,7 +51,7 @@ body {
 	height: 3.3rem;
 	text-align: center;
 	box-sizing: border-box;
-	border-bottom: 1px solid #333;
+	border-bottom: 1px solid #ccc;
 }
 
 .leader-board-wrapper {
