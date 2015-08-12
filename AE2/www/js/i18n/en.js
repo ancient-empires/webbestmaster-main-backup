@@ -269,11 +269,11 @@
 		story: {
 			list: [
 				// 0
-				//'img/story/story-1-1.png_!_With the passing of the war against the forces of darkness, the brothers Galamar and Valadorn are reunited in their rule of the kingdom of Thorin. The kingdom is slowly returning to its peace time ways, protected by three ancient crystals safely guarded in the temples of Courage, Wisdom and Life, when rumours of skirmishes in the North reach the palace...',
+				'img/story/story-1-1.png_!_With the passing of the war against the forces of darkness, the brothers Galamar and Valadorn are reunited in their rule of the kingdom of Thorin. The kingdom is slowly returning to its peace time ways, protected by three ancient crystals safely guarded in the temples of Courage, Wisdom and Life, when rumours of skirmishes in the North reach the palace...',
 				// 1
-				//'img/story/story-1-2.png_!_\'And three was their number, three to protect, three to destroy. Mercy upon the wielder of their power, mercy upon our souls, for He shall unleash the heavenly fires onto this world.\'<br \/>[Verse 3:7 from the Crystal Prophecies, author unknown, translated from the only surviving transcript from the Age of Darkness]',
+				'img/story/story-1-2.png_!_\'And three was their number, three to protect, three to destroy. Mercy upon the wielder of their power, mercy upon our souls, for He shall unleash the heavenly fires onto this world.\'<br \/>[Verse 3:7 from the Crystal Prophecies, author unknown, translated from the only surviving transcript from the Age of Darkness]',
 				// 2
-				//'img/story/story-1-3.png_!_A messenger from the Temple of Courage arrives at the castle gates, pleading for the King\'s assistance - the Temple has fallen prey to brutal attackers, and must be protected...',
+				'img/story/story-1-3.png_!_A messenger from the Temple of Courage arrives at the castle gates, pleading for the King\'s assistance - the Temple has fallen prey to brutal attackers, and must be protected...',
 				// 3
 				'img/story/story-4-1.png_!_With the help of the Elementals, King Galamar finally reaches the Temple of Life one step before the enemy...',
 				// 4
@@ -281,61 +281,6 @@
 				// 5
 				'img/story/story-8-2.png_!_\'And the Earth shall tremble, and the skies shall weep. For He who is the destroyer shall be destroyed, for the He who is the taker shall be taken. And a new age, free of evil and darkness shall dawn.\'<br>[Final verse from the Crystal Prophecies, author unknown, never translated, lost during the age of darkness]'
 			]
-		},
-		missionData: {
-
-			1: {
-				name: 'TEMPLE RAIDERS',
-				objective: 'Stop the raiders, King Galamar must survive.',
-				startBriefing: {
-					story0: 'img/story/story-1-1.png_!_With the passing of the war against the forces of darkness, the brothers Galamar and Valadorn are reunited in their rule of the kingdom of Thorin. The kingdom is slowly returning to its peace time ways, protected by three ancient crystals safely guarded in the temples of Courage, Wisdom and Life, when rumours of skirmishes in the North reach the palace...',
-					story1: 'img/story/story-1-2.png_!_\'And three was their number, three to protect, three to destroy. Mercy upon the wielder of their power, mercy upon our souls, for He shall unleash the heavenly fires onto this world.\'<br \/>[Verse 3:7 from the Crystal Prophecies, author unknown, translated from the only surviving transcript from the Age of Darkness]',
-					story2: 'img/story/story-1-3.png_!_A messenger from the Temple of Courage arrives at the castle gates, pleading for the King\'s assistance - the Temple has fallen prey to brutal attackers, and must be protected...',
-					header1: 'The Temple of Courage',
-					text1: 'Help us! We are under attack! These skeleton raiders have stolen the Crystal of Courage we swore to protect!',
-					text2: 'Captain, we must stop this menace at once!',
-					text3: 'Forward troops! Make these raiders pay!'
-				},
-				n1Briefing: {
-					text1: 'More attackers!',
-					text2: 'These are no raiders! They look like enemy troops! Be careful, Captain!'
-				},
-				endBriefing: {
-					text1: 'Thank you, your Majesty, you must help us return the Crystal as quickly as possible. Such an important relic must not fall into the wrong hands!',
-					text2: 'I am at your service. Who could possibly be after the Crystal?',
-					text3: 'I fear these criminals may be allied to a greater evil. It would be wise to consult with the High Priest at the Temple of Wisdom. He may know more of this.',
-					text4: 'I shall send my brother Valadorn there immediately. I will take my troops and follow the attackers who got away.'
-				}
-			},
-
-			2: {
-
-			},
-
-			3: {
-
-			},
-
-			4: {
-
-			},
-
-			5: {
-
-			},
-
-			6: {
-
-			},
-
-			7: {
-
-			},
-
-			8: {
-
-			}
-
 		}
 
 	};

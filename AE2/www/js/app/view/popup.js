@@ -37,8 +37,6 @@
 				view.routeToPopup();
 			}
 
-			win.APP.lang.parsePopupData(data);
-
 			view.extendFromObj(data); // popupName, parentView, popupData(objToView)
 
 
