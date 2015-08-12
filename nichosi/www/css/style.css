@@ -82,6 +82,11 @@ input {
 	background-color: #f9f9f9;
 }
 
+.leader-board-row-in-board {
+	background-color: #60A73B;
+	color: #fff;
+}
+
 .leader-board-index,
 .leader-board-name,
 .leader-board-count {

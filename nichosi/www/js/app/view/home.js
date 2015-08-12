@@ -154,10 +154,20 @@
 				$el = view.$el,
 				$board = $el.find(view.selectors.leaderBoardWrapper),
 				oldList = view.get('boardList'),
-				scrollTop;
+				scrollTop,
+				userDbKey = win.APP.db.get('userDbKey'),
+				data = snap.val();
 
-			snap.forEach(function (user) {
-				newList.unshift(user.val());
+			if ( data[userDbKey] ) {
+				data[userDbKey].inList = true;
+			}
+
+			_.each(data, function (user) {
+				newList.push(user);
+			});
+
+			newList = newList.sort(function (a, b) {
+				return b.nichosiCount - a.nichosiCount;
 			});
 
 			if ( JSON.stringify(newList) !== JSON.stringify(oldList) ) {
