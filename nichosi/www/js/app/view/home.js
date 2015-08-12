@@ -76,23 +76,9 @@
 
 		updateUserNichosiCount: function () {
 
-			var view = this,
-				$el = view.$el,
-				selectors = view.selectors,
-				$count = $el.find(selectors.userNichosiCount),
-				$nick = $el.find(selectors.userNick),
-				nichosiCount = view.info.get('user').nichosiCount,
-				countLength = String(nichosiCount).length,
-				countWidth = (countLength + 2) * view.info.get('remSize', true),
-				fullWidth = win.APP.bb.device.get('width');
+			var view = this;
 
-			if (countLength !== view.get('countLength')) {
-				$count.css('width', countWidth + 'px');
-				$nick.css('width', (fullWidth - countWidth) + 'px');
-				view.set('countLength', countLength);
-			}
-
-			$count.html( nichosiCount );
+			view.$el.find(view.selectors.userNichosiCount).html(view.info.get('user').nichosiCount);
 
 		},
 

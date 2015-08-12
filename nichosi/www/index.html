@@ -73,10 +73,29 @@
 
 	<div class="screen js-nichosi-screen">
 
-		<input type="text" class="user-nick js-user-nick" placeholder="{{= %yourName% }}" value="{{= it.user.nick }}"/>
+		<table class="leader-board-table">
+			<tr class="leader-board-row-odd">
+				<td class="leader-board-index">&nbsp;</td>
+				<td class="leader-board-name">
+					<input type="text" class="user-nick js-user-nick" placeholder="{{= %yourName% }}" value="{{= it.user.nick }}"/>
+				</td>
+				<td class="leader-board-count js-user-nichosi-count">
+					{{= it.user.nichosiCount }}
+					<!--<div class="user-nichosi-count js-user-nichosi-count">{{= it.user.nichosiCount }}</div>-->
+					<!--<div class="user-nichosi-count js-user-nichosi-count">{{= it.user.nichosiCount }}</div>-->
 
-		<div class="user-nichosi-count js-user-nichosi-count">{{= it.user.nichosiCount }}</div>
+				</td>
+			</tr>
+		</table>
 		<div class="nick-error-text js-nick-error-text hidden"></div>
+
+
+
+
+
+
+
+
 
 		<div class="image-container js-image-container clear">&nbsp;</div>
 

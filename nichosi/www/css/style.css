@@ -28,10 +28,12 @@ input {
 .user-nick {
 	display: block;
 	border: none;
-	float: left;
-	padding: 1.2rem 0 0.8rem;
+	/* float: left; */
+	/* padding: 1.2rem 0 0.8rem; */
 	line-height: 1.3rem;
 	font-size: 1.3rem;
+	text-align: center;
+	width: 100%;
 }
 
 .user-nick::-webkit-input-placeholder {
@@ -40,19 +42,19 @@ input {
 	font-size: 1.3rem;
 }
 
-.user-nichosi-count {
-	float: right;
-	line-height: 3.3rem;
-	font-size: 1.5rem;
-}
+/*.user-nichosi-count {*/
+	/*float: right;*/
+	/*line-height: 3.3rem;*/
+	/*font-size: 1.5rem;*/
+/*}*/
 
-.user-nick,
-.user-nichosi-count {
-	height: 3.3rem;
-	text-align: center;
-	box-sizing: border-box;
-	border-bottom: 1px solid #ccc;
-}
+/*.user-nick {*/
+/*/!*.user-nichosi-count {*!/*/
+	/*height: 3.3rem;*/
+	/*text-align: center;*/
+	/*box-sizing: border-box;*/
+	/*border-bottom: 1px solid #ccc;*/
+/*}*/
 
 .leader-board-wrapper {
 	position: fixed;
