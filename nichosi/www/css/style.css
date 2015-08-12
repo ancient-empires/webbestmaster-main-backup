@@ -19,7 +19,7 @@ input {
 	background-repeat: no-repeat;
 	-webkit-background-size: contain;
 	background-size: contain;
-	background-position: center center;
+	background-position: center bottom;
 	background-color: #fff;
 	border-bottom: 1px solid #ccc;
 	box-sizing: border-box;
