@@ -90,7 +90,7 @@ input {
 .leader-board-index,
 .leader-board-name,
 .leader-board-count {
-	line-height: 3.3rem;
+	line-height: 2.8rem;
 	font-size: 1.3rem;
 }
 
@@ -101,11 +101,11 @@ input {
 
 .leader-board-name {
 	line-height: 1.3rem;
-	padding-bottom: 1rem;
+	padding-bottom: 0.8rem;
 }
 
 .leader-board-count {
-	padding: 0 1.5rem 0 1rem;
+	padding: 0 1rem;
 	text-align: right;
 }
 
