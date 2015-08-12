@@ -110,7 +110,7 @@
 		<div class="scroll-area-content">
 			<table class="leader-board-table">
 				{{~it.list :data:index}}
-				<tr class="leader-board-row leader-board-row-{{= index % 2 ? 'odd' : 'even'}}{{= data.inList ? ' leader-board-row-in-board' : ''}}">
+				<tr class="leader-board-row-{{= index % 2 ? 'odd' : 'even'}}{{= data.inList ? ' leader-board-row-in-board' : ''}}">
 					<td class="leader-board-index">{{= index + 1 }}</td>
 					<td class="leader-board-name">{{= data.nick || %noName% }}</td>
 					<td class="leader-board-count">{{= data.nichosiCount }}</td>

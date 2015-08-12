@@ -69,13 +69,8 @@ input {
 	width: 100%;
 }
 
-.leader-board-row {
-	border-bottom: 1px solid #ccc;
-}
-
 .leader-board-row-odd {
 	background-color: #fff;
-
 }
 
 .leader-board-row-even {
