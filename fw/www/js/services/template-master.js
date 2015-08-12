@@ -21,7 +21,7 @@
 			Array.prototype.forEach.call(templates, function(tmplNode) {
 
 				var name = tmplNode.getAttribute('data-name'),
-					text = tmplNode.textContent.replace(/%(\S+)%/g, 'window.APP.lang.attr.' + '$1');
+					text = tmplNode.textContent.replace(/%(\S+?)%/g, 'window.APP.lang.attr.' + '$1');
 
 				this.tmplText[name] = text;
 				this.tmplFn[name] = doT.template(text);
