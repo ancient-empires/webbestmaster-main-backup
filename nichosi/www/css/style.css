@@ -70,7 +70,7 @@ input {
 }
 
 .leader-board-row {
-	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
 
 .leader-board-row-odd {
@@ -124,4 +124,6 @@ input {
 	font-size: 0.8rem;
 }
 
-
+.scroll-area-content {
+	padding-bottom: 60px;
+}
