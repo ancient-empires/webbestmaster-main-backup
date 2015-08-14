@@ -53,66 +53,66 @@
 		},
 		{
 			"folder": "kurochka-ryaba",
-			"title": {"text": "Курочка ряба", "img": "Kurochkaryaba-00.jpg"},
+			"title": {"text": "Курочка ряба", "img": "title.jpg"},
 			"pages": [
 				{
-					"text": "",
-					"img": "Kurochkaryaba-01.jpg",
-					"sound": "Kurochkaryaba-01.mp3",
+					"text": "Жили себе дед да баба,",
+					"img": "kurochka-ryaba-01.jpg",
+					"sound": "kurochka-ryaba-01.mp3",
 					"time": 21.828125
 				},
 				{
-					"text": "",
-					"img": "Kurochkaryaba-02.jpg",
-					"sound": "Kurochkaryaba-02.mp3",
+					"text": "И была у них курочка Ряба.",
+					"img": "kurochka-ryaba-02.jpg",
+					"sound": "kurochka-ryaba-02.mp3",
 					"time": 4.378375
 				},
 				{
-					"text": "",
-					"img": "Kurochkaryaba-03.jpg",
-					"sound": "Kurochkaryaba-03.mp3",
+					"text": "Снесла курочка яичко.",
+					"img": "kurochka-ryaba-03.jpg",
+					"sound": "kurochka-ryaba-03.mp3",
 					"time": 17.8315
 				},
 				{
-					"text": "",
-					"img": "Kurochkaryaba-04.jpg",
-					"sound": "Kurochkaryaba-04.mp3",
+					"text": "Яичко не простое - Золотое.",
+					"img": "kurochka-ryaba-04.jpg",
+					"sound": "kurochka-ryaba-04.mp3",
 					"time": 3.908125
 				},
 				{
-					"text": "",
-					"img": "Kurochkaryaba-05.jpg",
-					"sound": "Kurochkaryaba-05.mp3",
+					"text": "Дед бил, бил - не разбил.",
+					"img": "kurochka-ryaba-05.jpg",
+					"sound": "kurochka-ryaba-05.mp3",
 					"time": 18.406125
 				},
 				{
-					"text": "",
-					"img": "Kurochkaryaba-06.jpg",
-					"sound": "Kurochkaryaba-06.mp3",
+					"text": "Баба била, била - не разбила.",
+					"img": "kurochka-ryaba-06.jpg",
+					"sound": "kurochka-ryaba-06.mp3",
 					"time": 5.867375
 				},
 				{
-					"text": "",
-					"img": "Kurochkaryaba-07.jpg",
-					"sound": "Kurochkaryaba-07.mp3",
+					"text": "Мышка бежала, хвостиком махнула,|Яичко упало и разбилось.",
+					"img": "kurochka-ryaba-07.jpg",
+					"sound": "kurochka-ryaba-07.mp3",
 					"time": 8.740875
 				},
 				{
-					"text": "",
-					"img": "Kurochkaryaba-08.jpg",
-					"sound": "Kurochkaryaba-08.mp3",
+					"text": "Дед плачет, баба плачет.",
+					"img": "kurochka-ryaba-08.jpg",
+					"sound": "kurochka-ryaba-08.mp3",
 					"time": 4.718
 				},
 				{
-					"text": "",
-					"img": "Kurochkaryaba-09.jpg",
-					"sound": "Kurochkaryaba-09.mp3",
+					"text": "А курочка кудахчет:|\"Не плач дед, не плач баба,",
+					"img": "kurochka-ryaba-09.jpg",
+					"sound": "kurochka-ryaba-09.mp3",
 					"time": 8.14
 				},
 				{
-					"text": "",
-					"img": "Kurochkaryaba-10.jpg",
-					"sound": "Kurochkaryaba-10.mp3",
+					"text": "Снесу я вам яичко другое,|Не золотое, а простое\".",
+					"img": "kurochka-ryaba-10.jpg",
+					"sound": "kurochka-ryaba-10.mp3",
 					"time": 11.17025
 				}
 			]
