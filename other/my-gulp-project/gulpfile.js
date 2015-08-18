@@ -7,12 +7,47 @@
     var clean = require('gulp-clean');
     var cssBase64 = require('gulp-css-base64');
     var tinypng = require('gulp-tinypng');
+    var rjs = require('gulp-requirejs');
     // gulp - run 'default' task
     // gulp <task> <othertask>.
 
     gulp.task('default', function() { // ae
         gulp.run('uglify-js', 'clean');
     });
+
+    gulp.task('requirejsBuild', function() {
+        return rjs({
+            name: 'main',
+            baseUrl: 'www/js/',
+            out: 'www/js/main.js',
+            //shim: {
+			//
+            //}
+			//
+            //baseUrl: 'js/',
+
+            paths: {
+                'jquery': 'lib/jquery-2.1.3',
+                'underscore': 'lib/underscore',
+                'bb': 'lib/backbone'
+            }
+
+
+
+
+        })
+        .pipe(gulp.dest('./delpoy/')); // pipe it to the output DIR
+    });
+
+
+
+
+
+
+
+
+
+
 
     gulp.task('default+css', function() { // book
         gulp.run('uglify-js', 'css-base64', 'clean');
