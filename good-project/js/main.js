@@ -1,5 +1,5 @@
 /*jslint white: true, nomen: true */
-require(['initCore', 'app/home/home-view', 'backbone', 'templateMaster'], function (initCore, view, bb, templateMaster) {
+require(['initCore', 'app/home/home-view', 'backbone', 'templateMaster', 'device', 'log'], function (initCore, view, bb, templateMaster) {
 
 	'use strict';
 
@@ -8,16 +8,6 @@ require(['initCore', 'app/home/home-view', 'backbone', 'templateMaster'], functi
 	initCore();
 
 	new view();
-
-
-
-
-
-
-
-
-
-
 
 	(function back() {
 		var win = window;

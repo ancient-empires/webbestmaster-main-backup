@@ -33,8 +33,10 @@
 				// util
 				'templateMaster': 'util/template-master',
 				// service
+				'log': 'service/log',
 				'mediator': 'service/mediator',
 				'router': 'service/router',
+				'device': 'service/device',
 				// core
 				'initCore': 'app/core/init-core',
 				'BaseView': 'app/core/base-view'
