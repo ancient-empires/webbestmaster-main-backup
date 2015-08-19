@@ -1,13 +1,7 @@
 /*jslint white: true, nomen: true */
-require(['initCore', 'app/home/home-view', 'backbone', 'templateMaster', 'device', 'log'], function (initCore, view, bb, templateMaster) {
+require(['initCore', 'backbone'], function (initCore, bb) {
 
 	'use strict';
-
-	templateMaster.init();
-
-	initCore();
-
-	new view();
 
 	(function back() {
 		var win = window;

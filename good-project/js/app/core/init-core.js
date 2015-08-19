@@ -1,9 +1,9 @@
-define(function () {
+define(['templateMaster', 'router', 'device', 'log', 'app/home/home-view'], function (templateMaster) {
 
 	'use strict';
 
-	return function () {
-		console.log('init core');
-	};
+	templateMaster.init();
+
+	return {};
 
 });

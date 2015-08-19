@@ -1,25 +1,35 @@
-define(['backbone', 'mediator'], function (bb, mediator) {
+define(['backbone', 'mediator', 'log'], function (bb, mediator, log) {
 
 	'use strict';
 
-	var Router = bb.Router.extend({
+	var Router, router;
 
-			routes: {
-				'': 'home',
-				'*action': 'route'
-			},
+	function newViewByPath(path, data) {
+		var ViewConstructor = require(path);
+		return new ViewConstructor(data);
+	}
 
-			home: function () {
-				this.trigger('route:route', '/');
-			}
+	Router = bb.Router.extend({
 
-		}),
-		router = new Router();
+		routes: {
+			'': 'home',
+			'*action': 'route'
+		},
+
+		home: function () {
+			this.trigger('route:route', '/');
+			newViewByPath('app/home/home-view');
+		}
+
+	});
+
+	router = new Router();
 
 	mediator.installTo(router);
 
 	router.on('route:route', function (url) {
 		this.publish('url', url);
+		log('url -', url);
 	});
 
 	return router;
