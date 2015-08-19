@@ -1,9 +1,11 @@
-define(['templateMaster', 'router', 'device', 'log', 'app/home/home-view', 'app/page/page-view'], function (templateMaster) {
+define(['templateMaster', 'fastclick', 'shim', 'router', 'device', 'log', 'app/home/home-view', 'app/page/page-view'], function (templateMaster, fastclick) {
 
 	'use strict';
 
 	templateMaster.init();
 
-	return {};
+	fastclick.attach(window.document.body);
+
+	return true;
 
 });

@@ -26,6 +26,8 @@
 			out: 'js/main.js',
 			paths: {
 				// libs
+				'shim': 'lib/shim',
+				'fastclick': 'lib/fastclick',
 				'jquery': 'lib/jquery-2.1.3',
 				'underscore': 'lib/underscore',
 				'backbone': 'lib/backbone',
