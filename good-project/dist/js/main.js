@@ -12530,12 +12530,17 @@ define('router',['backbone', 'mediator', 'log'], function (bb, mediator, log) {
 
 		routes: {
 			'': 'home',
+			'page': 'page',
 			'*action': 'route'
 		},
 
 		home: function () {
 			this.trigger('route:route', '/');
 			newViewByPath('app/home/home-view');
+		},
+
+		page: function () {
+			newViewByPath('app/page/page-view');
 		}
 
 	});
@@ -12646,14 +12651,282 @@ define('device',['jquery', 'backbone', 'mediator'], function ($, bb, mediator) {
 	return device;
 
 });
-define('BaseView',['underscore', 'jquery', 'backbone', 'mediator', 'router', 'templateMaster'], function (_, $, bb, mediator, router, templateMaster) {
+/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
+define('info',[],function () {
+
+	
+	/*global window, JSON */
+
+	var info,
+		isNormal = false,
+		win = window,
+		navigator = win.navigator,
+		doc = win.document,
+		docElem = doc.documentElement;
+
+	info = {
+
+		isNormal: isNormal,
+
+		link: {
+			ios: {
+				normal: '',
+				pro: ''
+			},
+			android: {
+				normal: '',
+				pro: ''
+			}
+		},
+
+		ls: win.localStorage,
+		savedItem: '!!!!-ENTER-APP-NAME-!!!!',
+		attr: {},
+		systemAttr: {},
+		defaultLanguage: 'en',
+		availableLanguages: ['en'],
+		//availableLanguages: ['ru', 'en'],
+
+		init: function () {
+
+			var info = this;
+
+			// get data from LS
+			info.attr = JSON.parse(info.ls.getItem(info.savedItem) || '{}');
+
+			//set settings
+			info.setSettings();
+			// set language
+			info.setLanguage();
+			// is phone
+			info.set('isPhone', Math.max(docElem.clientHeight, docElem.clientWidth) <= 736, true); // 736 msx of iPhone6plus
+			// is touch
+			info.set('isTouch', 'ontouchstart' in doc, true);
+			info.setOS();
+			info.detectCssJsPrefix();
+			info.detectTransitionEndEventName();
+			info.detectAnimationEndEventName();
+
+			info.setRemSize();
+
+		},
+
+		setLanguage: function () {
+
+			var info = this,
+				lang;
+
+			lang = info.get('language') || navigator.language || navigator.userLanguage || this.defaultLanguage;
+			lang = lang.split('-')[0].toLowerCase();
+			lang = (info.availableLanguages.indexOf(lang) === -1) ? info.defaultLanguage : lang;
+			lang = lang.toLowerCase();
+			info.set('language', lang);
+
+		},
+
+		setOS: function () {
+
+			var info = this,
+				ua = navigator.userAgent,
+				isIE = /MSIE/.test(ua),
+				isAndroid = (/android/i).test(ua),
+				isIOS = /iPad|iPhone|iPod/.test(ua);
+
+			info.set('isIE', isIE, true);
+			info.set('isAndroid', isAndroid, true);
+			info.set('isIOS', isIOS, true);
+
+			if (isIE) {
+				info.set('os', 'wp', true);
+			}
+
+			if (isAndroid) {
+				info.set('os', 'android', true);
+			}
+
+			if (isIOS) {
+				info.set('os', 'ios', true);
+			}
+
+			// set os if os is not defined
+			if ( !info.get('os', true) ) {
+				info.set('os', 'ios', true);
+				info.set('isIOS', true, true);
+			}
+
+		},
+
+		detectCssJsPrefix: function () {
+
+			var data = {
+					js: '',
+					css: ''
+				},
+				tempStyle = doc.createElement('div').style,
+				vendors = ['t', 'webkitT', 'MozT', 'msT', 'OT'];
+
+			// find vendors by css transform property
+			vendors.forEach(function (vendor) {
+
+				var transform = vendor + 'ransform';
+
+				if (!tempStyle.hasOwnProperty(transform)) {
+					return;
+				}
+
+				vendor = vendor.replace(/t$/i, ''); // remove 't' from vendor
+
+				data.js = vendor;
+
+				vendor = vendor.toLowerCase();
+				if (vendor) {
+					data.css = '-' + vendor + '-';
+				}
+
+			});
+
+			this.set('cssJsPrefix', data, true);
+
+		},
+
+		detectTransitionEndEventName: function () {
+
+			var i,
+				el = doc.createElement('div'),
+				transitions = {
+					'transition':'transitionend',
+					'OTransition':'otransitionend',  // oTransitionEnd in very old Opera
+					'MozTransition':'transitionend',
+					'WebkitTransition':'webkitTransitionEnd'
+				},
+				transitionEnd = 'transitionend';
+
+			for (i in transitions) {
+				if (transitions.hasOwnProperty(i) && el.style[i] !== undefined) {
+					transitionEnd = transitions[i];
+				}
+			}
+
+			this.set('transitionEnd', transitionEnd, true);
+
+		},
+
+		detectAnimationEndEventName: function () {
+			var i,
+				el = doc.createElement('div'),
+				animations = {
+					'animation':'animationend',
+					'OAnimation':'oAnimationEnd',  // oAnimationEnd in very old Opera
+					'MozAnimation':'animationend',
+					'WebkitAnimation':'webkitAnimationEnd'
+				},
+				animationEnd = 'animationend';
+
+			for (i in animations) {
+				if (animations.hasOwnProperty(i) && el.style[i] !== undefined) {
+					animationEnd = animations[i];
+				}
+			}
+
+			this.set('animationEnd', animationEnd, true);
+
+		},
+
+		setRemSize: function () {
+
+			var info = this,
+				fontSize;
+
+			fontSize = Math.round( 14 * Math.pow( docElem.clientWidth * docElem.clientHeight / 153600, 0.5) ); // 153600 = 320 * 480
+			fontSize = Math.min(fontSize, 24);
+			fontSize = Math.max(fontSize, 14);
+			fontSize = Math.round(fontSize / 2) * 2;
+			docElem.style.fontSize = fontSize + 'px';
+
+			info.set('remSize', fontSize, true);
+
+		},
+
+		set: function (key, value, isSystem) {
+
+			if (isSystem) {
+				this.systemAttr[key] = value;
+			} else {
+				this.attr[key] = value;
+				this.ls.setItem(this.savedItem, JSON.stringify(this.attr));
+			}
+
+			return key;
+
+		},
+
+		get: function (key, isSystem) {
+			return isSystem ? this.systemAttr[key] : this.attr[key];
+		},
+
+		remove: function (key, isSystem) {
+			if (isSystem) {
+				delete this.systemAttr[key];
+			} else {
+				delete this.attr[key];
+				this.ls.setItem(this.savedItem, JSON.stringify(this.attr));
+			}
+
+			return key;
+
+		},
+
+		setSettings: function () {
+
+			var info = this,
+				defaultSettings = {
+					screenAnimation: 'on'
+					//autoSave: 'on', // auto save game after every turn
+					//confirmTurn: 'off', // game turn
+					//confirmMove: 'off', // move unit
+					//confirmAttack: 'off', // attack unit
+					//music: 'on',
+					//vibrate: 'off',
+					//help: 'on',
+					//fightAnimation: 'off',
+					//buildingSmoke: 'off',
+					//unitAnimation: 'off',
+					//difficult: 'easy', // easy, normal, hard
+					//gameSpeed: '3' // 1..5, use string type
+				},
+				key,
+				value;
+
+			for ( key in defaultSettings ) {
+				if (defaultSettings.hasOwnProperty(key)) {
+					value = info.get(key) || defaultSettings[key];
+					info.set(key, value);
+				}
+			}
+
+		},
+
+		getLinkToStore: function (type) { // pro or normal
+			return this.link[this.get('os', true)][type];
+		}
+
+	};
+
+	info.init();
+
+	return info;
+
+});
+
+define('BaseView',['underscore', 'jquery', 'backbone', 'mediator', 'router', 'templateMaster', 'log', 'info'], function (_, $, bb, mediator, router, templateMaster, log, info) {
 
 	
 
 	return bb.View.extend({
 
 		baseEvents: {
-			'click [data-route]': 'routeTo'
+			'click [data-route]': 'routeTo',
+			'click .js-back': 'routeBack'
 		},
 
 		baseSelectors: {
@@ -12670,6 +12943,8 @@ define('BaseView',['underscore', 'jquery', 'backbone', 'mediator', 'router', 'te
 		},
 
 		tmpl: templateMaster.tmplFn,
+
+		info: info,
 
 		constructor: function() {
 
@@ -12689,6 +12964,8 @@ define('BaseView',['underscore', 'jquery', 'backbone', 'mediator', 'router', 'te
 			view.selectors = $.extend( {}, proto.baseSelectors, view.selectors );
 
 			mediator.installTo(view);
+
+			view.subscribe('hide', view.hide);
 
 			//view.attr = {};
 
@@ -12716,19 +12993,110 @@ define('BaseView',['underscore', 'jquery', 'backbone', 'mediator', 'router', 'te
 
 		routeTo: function (e) {
 
-			var view = this,
-				$this = $(e.currentTarget),
+			var $this = $(e.currentTarget),
 				route = $this.attr('data-route');
 
 			router.navigate(route, true);
 
 		},
 
+		routeBack: function () {
+
+			if (window.location.hash) {
+				bb.history.history.back();
+			}
+
+		},
+
 		render: function () {
 
-			$('.js-wrapper').append(this.$el);
+			var view = this;
+
+			$('.js-wrapper').append(view.$el);
+
+			view.publish('hide', {except: [this]});
+
+		},
+
+		hide: function (dataArg) {
+
+			var view = this,
+				data = dataArg || {},
+				info = view.info,
+				$el = view.$el,
+				animationEnd = info.get('animationEnd', true),
+				isScreenAnimation = info.get('screenAnimation') === 'on',
+				deferred = $.Deferred();
+
+			if ( _.contains(data.except, view) ) {
+				log(view, 'not!!');
+				return;
+			}
+
+			if (view.unbindEventListeners) {
+				view.unbindEventListeners();
+			}
+
+			if (isScreenAnimation && $el.hasClass('show-view-animation')) {
+				$el.one(animationEnd, function () {
+					view.destroyView();
+					deferred.resolve();
+				});
+				//$el.removeClass('show-view-animation');
+				$el.addClass('hide-view-animation');
+			} else {
+				view.destroyView();
+				deferred.resolve();
+			}
+
+		},
+
+		destroyView: function() {
+
+			var view = this;
+
+			view.undelegateEvents();
+
+			view.$el.removeData().unbind().remove().empty();
+
+			view.remove();
+			view.unbind();
+
+			bb.View.prototype.remove.call(view);
+
+		},
+
+		initStatic: function () {
+
+			var proto = this,
+				info = proto.info,
+				isTouch = info.get('isTouch', true),
+				eventTypesIndex = Number(isTouch),
+				types = proto.eventTypes;
+
+			proto.$wrapper = $('.js-wrapper');
+
+			_.each(types, function (typesArr, key) {
+				types[key] = typesArr[eventTypesIndex];
+			});
+
+			$(window.document.body).on('contextmenu', proto.stopEvent);
+
+		},
+
+		stopEvent: function (e) {
+
+			if (!e) {
+				return;
+			}
+
+			console.log('!!!');
+
+			e.preventDefault();
+			e.stopPropagation();
 
 		}
+
 
 	});
 
@@ -12763,7 +13131,40 @@ define('app/home/home-view',['jquery', 'backbone', 'BaseView'], function ($, bb,
 
 });
 
-define('initCore',['templateMaster', 'router', 'device', 'log', 'app/home/home-view'], function (templateMaster) {
+define('app/page/page-view',['jquery', 'backbone', 'BaseView'], function ($, bb, BaseView) {
+
+	return BaseView.extend({
+
+		events: {
+
+		},
+
+		selectors: {
+
+		},
+
+		initialize: function () {
+
+			var view = this;
+
+			view.$el = $(view.tmpl.page());
+
+			//view.constructor.prototype.initialize.apply(view, arguments);
+			view.delegateEvents();
+			view.render();
+
+			debugger
+
+
+			console.log('page view initialize');
+
+		}
+
+	});
+
+});
+
+define('initCore',['templateMaster', 'router', 'device', 'log', 'app/home/home-view', 'app/page/page-view'], function (templateMaster) {
 
 	
 
@@ -12773,9 +13174,11 @@ define('initCore',['templateMaster', 'router', 'device', 'log', 'app/home/home-v
 
 });
 /*jslint white: true, nomen: true */
-require(['initCore', 'backbone'], function (initCore, bb) {
+require(['initCore', 'backbone', 'BaseView'], function (initCore, bb, BaseView) {
 
 	
+
+	BaseView.prototype.initStatic();
 
 	(function back() {
 		var win = window;

@@ -13,12 +13,17 @@ define(['backbone', 'mediator', 'log'], function (bb, mediator, log) {
 
 		routes: {
 			'': 'home',
+			'page': 'page',
 			'*action': 'route'
 		},
 
 		home: function () {
 			this.trigger('route:route', '/');
 			newViewByPath('app/home/home-view');
+		},
+
+		page: function () {
+			newViewByPath('app/page/page-view');
 		}
 
 	});

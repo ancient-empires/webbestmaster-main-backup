@@ -34,6 +34,7 @@
 				'templateMaster': 'util/template-master',
 				// service
 				'log': 'service/log',
+				'info': 'service/info',
 				'mediator': 'service/mediator',
 				'router': 'service/router',
 				'device': 'service/device',

@@ -1,7 +1,9 @@
 /*jslint white: true, nomen: true */
-require(['initCore', 'backbone'], function (initCore, bb) {
+require(['initCore', 'backbone', 'BaseView'], function (initCore, bb, BaseView) {
 
 	'use strict';
+
+	BaseView.prototype.initStatic();
 
 	(function back() {
 		var win = window;
