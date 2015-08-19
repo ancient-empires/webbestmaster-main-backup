@@ -20,9 +20,6 @@ define(['jquery', 'backbone', 'BaseView'], function ($, bb, BaseView) {
 			view.delegateEvents();
 			view.render();
 
-			debugger
-
-
 			console.log('page view initialize');
 
 		}

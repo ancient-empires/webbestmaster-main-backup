@@ -13090,8 +13090,6 @@ define('BaseView',['underscore', 'jquery', 'backbone', 'mediator', 'router', 'te
 				return;
 			}
 
-			console.log('!!!');
-
 			e.preventDefault();
 			e.stopPropagation();
 
@@ -13152,9 +13150,6 @@ define('app/page/page-view',['jquery', 'backbone', 'BaseView'], function ($, bb,
 			//view.constructor.prototype.initialize.apply(view, arguments);
 			view.delegateEvents();
 			view.render();
-
-			debugger
-
 
 			console.log('page view initialize');
 
