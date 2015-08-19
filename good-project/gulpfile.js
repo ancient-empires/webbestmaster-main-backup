@@ -19,14 +19,23 @@
 	});
 
 	gulp.task('requirejs', function () {
+
 		var stream = rjs({
 			name: 'main',
 			baseUrl: 'js',
 			out: 'js/main.js',
 			paths: {
+				// libs
 				'jquery': 'lib/jquery-2.1.3',
 				'underscore': 'lib/underscore',
-				'backbone': 'lib/backbone'
+				'backbone': 'lib/backbone',
+				// service
+				'mediator': 'service/mediator',
+				'router': 'service/router',
+				// core
+				'initCore': 'app/core/init-core',
+				'BaseView': 'app/core/base-view'
+
 			}
 		});
 

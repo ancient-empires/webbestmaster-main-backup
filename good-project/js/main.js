@@ -1,12 +1,10 @@
 /*jslint white: true, nomen: true */
-(function (win) {
+require(['initCore', 'app/home/home-view'], function (initCore, view) {
 
-	"use strict";
-	/*global window */
-	/*global */
+	'use strict';
 
-	require(['app/base-view'], function (view) {
-		new view();
-	});
+	initCore();
 
-}(window));
+	new view();
+
+});
