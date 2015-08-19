@@ -5,7 +5,12 @@ define(['backbone', 'mediator'], function (bb, mediator) {
 	var Router = bb.Router.extend({
 
 			routes: {
-				"*actions": "route"
+				'': 'home',
+				'*action': 'route'
+			},
+
+			home: function () {
+				this.trigger('route:route', '/');
 			}
 
 		}),
@@ -13,9 +18,8 @@ define(['backbone', 'mediator'], function (bb, mediator) {
 
 	mediator.installTo(router);
 
-	router.on('route:route', function (action) {
-		console.log(action);
-		// mediator publish here
+	router.on('route:route', function (url) {
+		this.publish('url', url);
 	});
 
 	return router;

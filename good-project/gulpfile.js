@@ -29,6 +29,9 @@
 				'jquery': 'lib/jquery-2.1.3',
 				'underscore': 'lib/underscore',
 				'backbone': 'lib/backbone',
+				'doT': 'lib/dot',
+				// util
+				'templateMaster': 'util/template-master',
 				// service
 				'mediator': 'service/mediator',
 				'router': 'service/router',

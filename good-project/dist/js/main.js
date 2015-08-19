@@ -12322,17 +12322,220 @@ define('mediator',[],function () {
 	return mediator;
 
 });
-define('BaseView',['underscore', 'jquery', 'backbone', 'mediator'], function (_, $, bb, mediator) {
+define('router',['backbone', 'mediator'], function (bb, mediator) {
+
+	
+
+	var Router = bb.Router.extend({
+
+			routes: {
+				'': 'home',
+				'*action': 'route'
+			},
+
+			home: function () {
+				this.trigger('route:route', '/');
+			}
+
+		}),
+		router = new Router();
+
+	mediator.installTo(router);
+
+	router.on('route:route', function (url) {
+		this.publish('url', url);
+	});
+
+	return router;
+
+});
+// doT.js
+// 2011-2014, Laura Doktorova, https://github.com/olado/doT
+// Licensed under the MIT license.
+
+(function() {
+	
+
+	var doT = {
+		version: "1.0.3",
+		templateSettings: {
+			evaluate:    /\{\{([\s\S]+?(\}?)+)\}\}/g,
+			interpolate: /\{\{=([\s\S]+?)\}\}/g,
+			encode:      /\{\{!([\s\S]+?)\}\}/g,
+			use:         /\{\{#([\s\S]+?)\}\}/g,
+			useParams:   /(^|[^\w$])def(?:\.|\[[\'\"])([\w$\.]+)(?:[\'\"]\])?\s*\:\s*([\w$\.]+|\"[^\"]+\"|\'[^\']+\'|\{[^\}]+\})/g,
+			define:      /\{\{##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\}\}/g,
+			defineParams:/^\s*([\w$]+):([\s\S]+)/,
+			conditional: /\{\{\?(\?)?\s*([\s\S]*?)\s*\}\}/g,
+			iterate:     /\{\{~\s*(?:\}\}|([\s\S]+?)\s*\:\s*([\w$]+)\s*(?:\:\s*([\w$]+))?\s*\}\})/g,
+			varname:	"it",
+			strip:		true,
+			append:		true,
+			selfcontained: false,
+			doNotSkipEncoded: false
+		},
+		template: undefined, //fn, compile template
+		compile:  undefined  //fn, for express
+	}, _globals;
+
+	doT.encodeHTMLSource = function(doNotSkipEncoded) {
+		var encodeHTMLRules = { "&": "&#38;", "<": "&#60;", ">": "&#62;", '"': "&#34;", "'": "&#39;", "/": "&#47;" },
+			matchHTML = doNotSkipEncoded ? /[&<>"'\/]/g : /&(?!#?\w+;)|<|>|"|'|\//g;
+		return function(code) {
+			return code ? code.toString().replace(matchHTML, function(m) {return encodeHTMLRules[m] || m;}) : "";
+		};
+	};
+
+	_globals = (function(){ return this || (0,eval)("this"); }());
+
+	if (typeof module !== "undefined" && module.exports) {
+		module.exports = doT;
+	} else if (typeof define === "function" && define.amd) {
+		define('doT',[],function(){return doT;});
+	} else {
+		_globals.doT = doT;
+	}
+
+	var startend = {
+		append: { start: "'+(",      end: ")+'",      startencode: "'+encodeHTML(" },
+		split:  { start: "';out+=(", end: ");out+='", startencode: "';out+=encodeHTML(" }
+	}, skip = /$^/;
+
+	function resolveDefs(c, block, def) {
+		return ((typeof block === "string") ? block : block.toString())
+		.replace(c.define || skip, function(m, code, assign, value) {
+			if (code.indexOf("def.") === 0) {
+				code = code.substring(4);
+			}
+			if (!(code in def)) {
+				if (assign === ":") {
+					if (c.defineParams) value.replace(c.defineParams, function(m, param, v) {
+						def[code] = {arg: param, text: v};
+					});
+					if (!(code in def)) def[code]= value;
+				} else {
+					new Function("def", "def['"+code+"']=" + value)(def);
+				}
+			}
+			return "";
+		})
+		.replace(c.use || skip, function(m, code) {
+			if (c.useParams) code = code.replace(c.useParams, function(m, s, d, param) {
+				if (def[d] && def[d].arg && param) {
+					var rw = (d+":"+param).replace(/'|\\/g, "_");
+					def.__exp = def.__exp || {};
+					def.__exp[rw] = def[d].text.replace(new RegExp("(^|[^\\w$])" + def[d].arg + "([^\\w$])", "g"), "$1" + param + "$2");
+					return s + "def.__exp['"+rw+"']";
+				}
+			});
+			var v = new Function("def", "return " + code)(def);
+			return v ? resolveDefs(c, v, def) : v;
+		});
+	}
+
+	function unescape(code) {
+		return code.replace(/\\('|\\)/g, "$1").replace(/[\r\t\n]/g, " ");
+	}
+
+	doT.template = function(tmpl, c, def) {
+		c = c || doT.templateSettings;
+		var cse = c.append ? startend.append : startend.split, needhtmlencode, sid = 0, indv,
+			str  = (c.use || c.define) ? resolveDefs(c, tmpl, def || {}) : tmpl;
+
+		str = ("var out='" + (c.strip ? str.replace(/(^|\r|\n)\t* +| +\t*(\r|\n|$)/g," ")
+					.replace(/\r|\n|\t|\/\*[\s\S]*?\*\//g,""): str)
+			.replace(/'|\\/g, "\\$&")
+			.replace(c.interpolate || skip, function(m, code) {
+				return cse.start + unescape(code) + cse.end;
+			})
+			.replace(c.encode || skip, function(m, code) {
+				needhtmlencode = true;
+				return cse.startencode + unescape(code) + cse.end;
+			})
+			.replace(c.conditional || skip, function(m, elsecase, code) {
+				return elsecase ?
+					(code ? "';}else if(" + unescape(code) + "){out+='" : "';}else{out+='") :
+					(code ? "';if(" + unescape(code) + "){out+='" : "';}out+='");
+			})
+			.replace(c.iterate || skip, function(m, iterate, vname, iname) {
+				if (!iterate) return "';} } out+='";
+				sid+=1; indv=iname || "i"+sid; iterate=unescape(iterate);
+				return "';var arr"+sid+"="+iterate+";if(arr"+sid+"){var "+vname+","+indv+"=-1,l"+sid+"=arr"+sid+".length-1;while("+indv+"<l"+sid+"){"
+					+vname+"=arr"+sid+"["+indv+"+=1];out+='";
+			})
+			.replace(c.evaluate || skip, function(m, code) {
+				return "';" + unescape(code) + "out+='";
+			})
+			+ "';return out;")
+			.replace(/\n/g, "\\n").replace(/\t/g, '\\t').replace(/\r/g, "\\r")
+			.replace(/(\s|;|\}|^|\{)out\+='';/g, '$1').replace(/\+''/g, "");
+			//.replace(/(\s|;|\}|^|\{)out\+=''\+/g,'$1out+=');
+
+		if (needhtmlencode) {
+			if (!c.selfcontained && _globals && !_globals._encodeHTML) _globals._encodeHTML = doT.encodeHTMLSource(c.doNotSkipEncoded);
+			str = "var encodeHTML = typeof _encodeHTML !== 'undefined' ? _encodeHTML : ("
+				+ doT.encodeHTMLSource.toString() + "(" + (c.doNotSkipEncoded || '') + "));"
+				+ str;
+		}
+		try {
+			return new Function(c.varname, str);
+		} catch (e) {
+			if (typeof console !== "undefined") console.log("Could not create a template function: " + str);
+			throw e;
+		}
+	};
+
+	doT.compile = function(tmpl, def) {
+		return doT.template(tmpl, null, def);
+	};
+}());
+
+/*jslint white: true, nomen: true */
+define('templateMaster',['doT'], function (doT) {
+
+	
+	/*global window*/
+
+	var win = window,
+		doc = win.document;
+
+	return {
+		templateSelector: 'script[type="text/x-template"]',
+		tmplText: {},
+		tmplFn: {},
+
+		init: function () {
+
+			var templates = doc.querySelectorAll(this.templateSelector);
+
+			Array.prototype.forEach.call(templates, function(tmplNode) {
+
+				var name = tmplNode.getAttribute('data-name'),
+					text = tmplNode.textContent.replace(/%(\S+?)%/g, 'window.APP.lang.attr.' + '$1');
+
+				this.tmplText[name] = text;
+				this.tmplFn[name] = doT.template(text);
+
+				tmplNode.parentNode.removeChild(tmplNode);
+
+			}, this);
+
+		}
+
+	};
+
+});
+define('BaseView',['underscore', 'jquery', 'backbone', 'mediator', 'router', 'templateMaster'], function (_, $, bb, mediator, router, templateMaster) {
 
 	
 
 	return bb.View.extend({
 
-		events: {
-
+		baseEvents: {
+			'click [data-route]': 'routeTo'
 		},
 
-		selectors: {
+		baseSelectors: {
 			//wrapper: '.js-wrapper',
 			//viewWrapper: '.js-view-wrapper'
 		},
@@ -12345,13 +12548,15 @@ define('BaseView',['underscore', 'jquery', 'backbone', 'mediator'], function (_,
 			dbl: ['dblclick', 'doubletap']
 		},
 
+		tmpl: templateMaster.tmplFn,
+
 		constructor: function() {
 
 			var view = this,
 				proto = view.constructor.prototype,
 				newEvents = {};
 
-			view.events = $.extend( {}, proto.events, view.events );
+			view.events = $.extend( {}, proto.baseEvents, view.events );
 
 			// prepare extra events from eventTypes
 			_.each(view.events, function (functionName,  eventAndSelector) {
@@ -12360,7 +12565,7 @@ define('BaseView',['underscore', 'jquery', 'backbone', 'mediator'], function (_,
 
 			view.events = newEvents;
 
-			view.selectors = $.extend( {}, proto.selectors, view.selectors );
+			view.selectors = $.extend( {}, proto.baseSelectors, view.selectors );
 
 			mediator.installTo(view);
 
@@ -12386,23 +12591,50 @@ define('BaseView',['underscore', 'jquery', 'backbone', 'mediator'], function (_,
 
 			return eventNameAndSelector;
 
+		},
+
+		routeTo: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget),
+				route = $this.attr('data-route');
+
+			router.navigate(route, true);
+
+		},
+
+		render: function () {
+
+			$('.js-wrapper').append(this.$el);
+
 		}
 
 	});
 
 });
-
-
 define('app/home/home-view',['jquery', 'backbone', 'BaseView'], function ($, bb, BaseView) {
 
 	return BaseView.extend({
 
+		events: {
+
+		},
+
+		selectors: {
+
+		},
+
 		initialize: function () {
 
+			var view = this;
+
+			view.$el = $(view.tmpl.home());
+
+			//view.constructor.prototype.initialize.apply(view, arguments);
+			view.delegateEvents();
+			view.render();
+
 			console.log('home view initialize');
-
-
-
 
 		}
 
@@ -12411,13 +12643,34 @@ define('app/home/home-view',['jquery', 'backbone', 'BaseView'], function ($, bb,
 });
 
 /*jslint white: true, nomen: true */
-require(['initCore', 'app/home/home-view'], function (initCore, view) {
+require(['initCore', 'app/home/home-view', 'backbone', 'templateMaster'], function (initCore, view, bb, templateMaster) {
 
 	
+
+	templateMaster.init();
 
 	initCore();
 
 	new view();
+
+
+
+
+
+
+
+
+
+
+
+	(function back() {
+		var win = window;
+		if ( win.location.hash ) {
+			win.history.back();
+			return setTimeout(back, 50);
+		}
+		bb.history.start();
+	}());
 
 });
 define("main", function(){});

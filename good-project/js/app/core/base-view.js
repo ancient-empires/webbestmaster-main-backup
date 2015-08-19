@@ -1,14 +1,14 @@
-define(['underscore', 'jquery', 'backbone', 'mediator'], function (_, $, bb, mediator) {
+define(['underscore', 'jquery', 'backbone', 'mediator', 'router', 'templateMaster'], function (_, $, bb, mediator, router, templateMaster) {
 
 	'use strict';
 
 	return bb.View.extend({
 
-		events: {
-
+		baseEvents: {
+			'click [data-route]': 'routeTo'
 		},
 
-		selectors: {
+		baseSelectors: {
 			//wrapper: '.js-wrapper',
 			//viewWrapper: '.js-view-wrapper'
 		},
@@ -21,13 +21,15 @@ define(['underscore', 'jquery', 'backbone', 'mediator'], function (_, $, bb, med
 			dbl: ['dblclick', 'doubletap']
 		},
 
+		tmpl: templateMaster.tmplFn,
+
 		constructor: function() {
 
 			var view = this,
 				proto = view.constructor.prototype,
 				newEvents = {};
 
-			view.events = $.extend( {}, proto.events, view.events );
+			view.events = $.extend( {}, proto.baseEvents, view.events );
 
 			// prepare extra events from eventTypes
 			_.each(view.events, function (functionName,  eventAndSelector) {
@@ -36,7 +38,7 @@ define(['underscore', 'jquery', 'backbone', 'mediator'], function (_, $, bb, med
 
 			view.events = newEvents;
 
-			view.selectors = $.extend( {}, proto.selectors, view.selectors );
+			view.selectors = $.extend( {}, proto.baseSelectors, view.selectors );
 
 			mediator.installTo(view);
 
@@ -62,9 +64,24 @@ define(['underscore', 'jquery', 'backbone', 'mediator'], function (_, $, bb, med
 
 			return eventNameAndSelector;
 
+		},
+
+		routeTo: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget),
+				route = $this.attr('data-route');
+
+			router.navigate(route, true);
+
+		},
+
+		render: function () {
+
+			$('.js-wrapper').append(this.$el);
+
 		}
 
 	});
 
 });
-
