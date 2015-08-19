@@ -170,8 +170,6 @@ define(['underscore', 'jquery', 'backbone', 'mediator', 'router', 'templateMaste
 				return;
 			}
 
-			console.log('!!!');
-
 			e.preventDefault();
 			e.stopPropagation();
 
