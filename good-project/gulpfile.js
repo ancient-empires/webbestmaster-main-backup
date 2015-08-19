@@ -15,7 +15,7 @@
 
 	gulp.task('default', function () {
 		isUglify = true;
-		gulp.start('requirejs', 'copy-require', 'copy-html');
+		gulp.start('requirejs', 'copy-require', 'copy-html', 'css');
 	});
 
 	gulp.task('requirejs', function () {

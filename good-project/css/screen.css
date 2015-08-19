@@ -1,0 +1,115 @@
+/*
+@font-face {
+	font-family: 'Comic Sans MS';
+	src: url('../font/Comic%20Sans%20MS.ttf');
+}
+*/
+
+.wrapper {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	/*background-image: url(../i/bg/bg-1.jpg);*/
+	background-image: url(../i/bg/bg-2.jpg);
+	background-position: center center;
+	font-family: HelveticaNeueCyr, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+	color: #333;
+}
+
+.screen {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+
+	/*-webkit-transform: scale(0);*/
+	/*transform: scale(0);*/
+	/*-webkit-transition: -webkit-transform ease-in 0.5s;*/
+	/*transition: transform ease-in 0.5s;*/
+
+	opacity: 0;
+	-webkit-transition: opacity ease-in 0.5s;
+	transition: opacity ease-in 0.5s;
+}
+
+@-webkit-keyframes screen-show-in {
+	/*0% { -webkit-transform: scaleX(0); }*/
+	/*100% { -webkit-transform: scaleX(1); }*/
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@keyframes screen-show-in {
+	/*0% { transform: scaleX(0); }*/
+	/*100% { transform: scaleX(1); }*/
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+.show-view-animation {
+
+	-webkit-animation-duration: 0.7s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-name: screen-show-in;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-transform-origin: center center;
+
+	animation-duration: 0.7s;
+	animation-iteration-count: 1;
+	animation-name: screen-show-in;
+	animation-fill-mode: forwards;
+	transform-origin: center center;
+
+}
+
+.show-view-no-animation {
+	opacity: 1;
+	-webkit-transition: none;
+	transition: none;
+}
+
+@-webkit-keyframes screen-show-out {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
+	/*0% { -webkit-transform: translate3d(0, 0, 0); }*/
+	/*100% { -webkit-transform: translate3d(0, 100%, 0); }*/
+}
+
+@keyframes screen-show-out {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
+	/*0% { transform: translate3d(0, 0, 0); }*/
+	/*100% { transform: translate3d(0, 100%, 0); }*/
+}
+
+.hide-view-animation {
+
+	-webkit-animation-duration: 0.7s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-name: screen-show-out;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-transform-origin: center center;
+
+	animation-duration: 0.7s;
+	animation-iteration-count: 1;
+	animation-name: screen-show-out;
+	animation-fill-mode: forwards;
+	transform-origin: center center;
+
+}
+
+.scroll-area-container {
+	-webkit-overflow-scrolling: touch;
+	overflow-scrolling: touch;
+	height: 100%;
+	overflow: auto;
+}
+
+
+
