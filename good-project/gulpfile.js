@@ -11,13 +11,28 @@
 	//tinypng = require('gulp-tinypng'),
 		concatCss = require('gulp-concat-css'),
 		cssmin = require('gulp-cssmin'),
-		rjs = require('gulp-requirejs');
-
-	var isUglify = false;
+		rjs = require('gulp-requirejs'),
+		isUglify = false;
 
 	gulp.task('default', function () {
 		isUglify = true;
 		gulp.start('requirejs', 'copy-require', 'copy-html', 'css');
+	});
+
+	gulp.task('watch', function () {
+
+		gulp.watch('js/**/*', function () {
+			return gulp.start('requirejs');
+		});
+
+		gulp.watch('css/**/*', function () {
+			return gulp.start('css');
+		});
+
+		gulp.watch('index.html', function () {
+			return gulp.start('copy-html');
+		});
+
 	});
 
 	gulp.task('css', function () {
@@ -85,23 +100,6 @@
 			.pipe(gulp.dest('./dist/'));
 
 	});
-
-	gulp.task('watch', function () {
-
-		gulp.watch('js/**/*', function () {
-			return gulp.start('requirejs');
-		});
-
-		gulp.watch('css/**/*', function () {
-			return gulp.start('css');
-		});
-
-		gulp.watch('index.html', function () {
-			return gulp.start('copy-html');
-		});
-
-	});
-
 
 	/*
 	 gulp.task('default', function () { // ae
