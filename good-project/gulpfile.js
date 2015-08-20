@@ -7,7 +7,7 @@
 	//rename = require('gulp-rename'),
 		uglify = require("gulp-uglify"),
 	//clean = require('gulp-clean'),
-	//cssBase64 = require('gulp-css-base64'),
+	cssBase64 = require('gulp-css-base64'),
 	//tinypng = require('gulp-tinypng'),
 		concatCss = require('gulp-concat-css'),
 		cssmin = require('gulp-cssmin'),
@@ -26,7 +26,7 @@
 			.pipe(concatCss('main.css'));
 
 		if (isUglify) {
-			stream = stream.pipe(cssmin());
+			stream = stream.pipe(cssmin()).pipe(cssBase64());
 		}
 
 		return stream.pipe(gulp.dest('dist/css'));

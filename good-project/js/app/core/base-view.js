@@ -96,6 +96,31 @@ define(['underscore', 'jquery', 'backbone', 'mediator', 'router', 'templateMaste
 
 			view.publish('hide', {except: [this]});
 
+			return view.showAppearAnimation();
+
+		},
+
+		showAppearAnimation: function () {
+
+			var view = this,
+				info = view.info,
+				isScreenAnimation = info.get('screenAnimation') === 'on',
+				$el = view.$el,
+				deferred = $.Deferred(),
+				animationEnd = info.get('animationEnd', true);
+
+			if (isScreenAnimation) {
+				$el.one(animationEnd, function () {
+					deferred.resolve();
+				});
+				$el.addClass('show-view-animation');
+			} else {
+				$el.addClass('show-view-no-animation');
+				deferred.resolve();
+			}
+
+			return deferred.promise();
+
 		},
 
 		hide: function (dataArg) {
@@ -129,6 +154,8 @@ define(['underscore', 'jquery', 'backbone', 'mediator', 'router', 'templateMaste
 				deferred.resolve();
 			}
 
+			return deferred.promise();
+
 		},
 
 		destroyView: function() {
@@ -142,7 +169,7 @@ define(['underscore', 'jquery', 'backbone', 'mediator', 'router', 'templateMaste
 			view.remove();
 			view.unbind();
 
-			bb.View.prototype.remove.call(view);
+			return bb.View.prototype.remove.call(view);
 
 		},
 
