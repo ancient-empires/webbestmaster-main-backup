@@ -14447,7 +14447,7 @@ define('app/home/home-view',['jquery', 'backbone', 'BaseView', 'PopupView'], fun
 
 			var popup = new PopupView({
 				name: 'popup-test-content',
-				timeout: 3e3
+				timeout: 0
 			});
 
 			popup.data.onShowPromise.then(function () {
