@@ -72,7 +72,8 @@
 				'device': 'service/device',
 				// core
 				'initCore': 'app/core/init-core',
-				'BaseView': 'app/core/base-view'
+				'BaseView': 'app/core/base-view',
+				'PopupView': 'app/core/popup-view'
 
 			}
 		});

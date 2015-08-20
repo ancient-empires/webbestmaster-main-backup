@@ -169,6 +169,8 @@ define(['underscore', 'jquery', 'backbone', 'mediator', 'router', 'templateMaste
 			view.remove();
 			view.unbind();
 
+			view.unsubscribe();
+
 			return bb.View.prototype.remove.call(view);
 
 		},
@@ -201,7 +203,23 @@ define(['underscore', 'jquery', 'backbone', 'mediator', 'router', 'templateMaste
 			e.stopPropagation();
 
 		}
-
+		//,
+		//showPopup: function(data) {
+		//	var view = this,
+		//		showDeferred = $.Deferred(),
+		//		hideDeferred = $.Deferred(),
+		//		popup,
+		//		PopupView;
+		//
+		//	//view.hidePopup();
+		//
+		//	popup =	new PopupView(data);
+		//	popup.showDeferred = showDeferred;
+		//	popup.hideDeferred = hideDeferred;
+		//
+		//	return popup;
+		//
+		//}
 
 	});
 

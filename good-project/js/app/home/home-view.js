@@ -1,9 +1,9 @@
-define(['jquery', 'backbone', 'BaseView'], function ($, bb, BaseView) {
+define(['jquery', 'backbone', 'BaseView', 'PopupView'], function ($, bb, BaseView, PopupView) {
 
 	return BaseView.extend({
 
 		events: {
-
+			'click .js-show-popup': 'showPopupView'
 		},
 
 		selectors: {
@@ -21,6 +21,19 @@ define(['jquery', 'backbone', 'BaseView'], function ($, bb, BaseView) {
 			view.render();
 
 			console.log('home view initialize');
+
+		},
+
+		showPopupView: function () {
+
+			var popup = new PopupView({
+				name: 'popup-test-content',
+				timeout: 3e3
+			});
+
+			popup.data.onShowPromise.then(function () {
+				console.log('show popup');
+			});
 
 		}
 

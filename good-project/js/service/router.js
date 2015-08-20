@@ -17,6 +17,10 @@ define(['backbone', 'mediator', 'log'], function (bb, mediator, log) {
 			'*action': 'route'
 		},
 
+		url: {
+			popup: 'show-popup=popup'
+		},
+
 		home: function () {
 			this.trigger('route:route', '/');
 			newViewByPath('app/home/home-view');
@@ -24,6 +28,10 @@ define(['backbone', 'mediator', 'log'], function (bb, mediator, log) {
 
 		page: function () {
 			newViewByPath('app/page/page-view');
+		},
+
+		routeToPopup: function () {
+			this.navigate(bb.history.fragment + '?' + this.url.popup, false);
 		}
 
 	});
