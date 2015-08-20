@@ -28,7 +28,7 @@ define(['jquery', 'backbone', 'BaseView', 'PopupView'], function ($, bb, BaseVie
 
 			var popup = new PopupView({
 				name: 'popup-test-content',
-				timeout: 0
+				timeout: 3e3
 			});
 
 			popup.data.onShowPromise.then(function () {

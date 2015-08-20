@@ -70,7 +70,8 @@ define(['jquery', 'backbone', 'router', 'log', 'BaseView'], function ($, bb, rou
 
 			if (timeout) {
 				view.data.timeoutId = setTimeout(function () {
-					view.publish('hide-popup');
+					//view.publish('hide-popup');
+					router.hidePopup();
 				}, timeout);
 			}
 

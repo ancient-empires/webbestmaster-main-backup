@@ -13601,7 +13601,7 @@ define('log',[],function () {
 	return log;
 
 });
-define('router',['backbone', 'mediator', 'log'], function (bb, mediator, log) {
+define('router',['underscore', 'backbone', 'mediator', 'log'], function (_, bb, mediator, log) {
 
 	
 
@@ -13620,11 +13620,8 @@ define('router',['backbone', 'mediator', 'log'], function (bb, mediator, log) {
 			'*action': 'route'
 		},
 
-		url: {
-			popup: 'show-popup=popup'
-		},
-
 		home: function () {
+			console.log('home');
 			this.trigger('route:route', '/');
 			newViewByPath('app/home/home-view');
 		},
@@ -13633,8 +13630,81 @@ define('router',['backbone', 'mediator', 'log'], function (bb, mediator, log) {
 			newViewByPath('app/page/page-view');
 		},
 
+		url: {
+			popup: 'show-popup=popup'
+		},
+
+		getAction: function () {
+
+			var router = this,
+				e = window.event || {},
+				newURL = e.newURL || '',
+				oldURL = e.oldURL || '',
+				popupPart = router.url.popup,
+				viewAction;
+
+			if ( newURL.indexOf(popupPart) !== -1 ) {
+				viewAction = 'showPopup';
+			}
+
+			if ( oldURL.indexOf(popupPart) !== -1 ) {
+				viewAction = 'hidePopup';
+			}
+
+			// other action is here
+			return viewAction;
+
+		},
+
+		constructor: function () {
+
+			var router = this,
+				originalFunctions = {},
+				proto = Router.prototype;
+
+			_.each(router.routes, function (value) {
+
+				originalFunctions[value] = proto[value];
+
+				proto[value] = function () {
+
+					var router = this,
+						viewAction = router.getAction();
+
+					if ( !viewAction ) {
+						return originalFunctions[value].apply(router, arguments);
+					}
+
+					switch (viewAction) {
+						case 'hidePopup':
+							this.publish('hide-popup');
+							break;
+						case 'showPopup':
+							break;
+					}
+
+				};
+
+			});
+
+			return bb.Router.prototype.constructor.apply(router, arguments);
+
+		},
+
 		routeToPopup: function () {
 			this.navigate(bb.history.fragment + '?' + this.url.popup, false);
+		},
+
+		hidePopup: function () {
+
+			var router = this;
+
+			if (bb.history.fragment.indexOf(router.url.popup) !== -1) {
+				window.history.back();
+			} else {
+				router.publish('hide-popup');
+			}
+
 		}
 
 	});
@@ -14310,7 +14380,8 @@ define('PopupView',['jquery', 'backbone', 'router', 'log', 'BaseView'], function
 
 			if (timeout) {
 				view.data.timeoutId = setTimeout(function () {
-					view.publish('hide-popup');
+					//view.publish('hide-popup');
+					router.hidePopup();
 				}, timeout);
 			}
 
@@ -14447,7 +14518,7 @@ define('app/home/home-view',['jquery', 'backbone', 'BaseView', 'PopupView'], fun
 
 			var popup = new PopupView({
 				name: 'popup-test-content',
-				timeout: 0
+				timeout: 3e3
 			});
 
 			popup.data.onShowPromise.then(function () {
