@@ -14267,167 +14267,6 @@ if (typeof String.prototype.utf8Decode == 'undefined') {
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 if (typeof module != 'undefined' && module.exports) module.exports = Sha1; // CommonJs export
 if (typeof define == 'function' && define.amd) define('sha1',[], function() { return Sha1; }); // AMD;
-define('user',['backbone', 'mediator', 'log'], function (bb, mediator, log) {
-
-	var User = bb.Model.extend({
-
-		defaults: {
-			isLogged: false,
-			login: null,
-			password: null
-		},
-
-		initialize: function () {
-
-			var user = this;
-
-			mediator.installTo(user);
-
-			user.bindEventListeners();
-
-		},
-
-		bindEventListeners: function () {
-
-			var user = this;
-
-			user.subscribe('login-successful', user.login);
-
-		},
-
-		login: function (data) {
-
-			log('user is logged');
-
-			var user = this;
-
-			user.set(data);
-
-			user.set('isLogged', true);
-
-			user.publish('route-to', {
-				url: 'main'
-			});
-
-		}
-
-	});
-
-	log('user init');
-
-	return new User();
-
-});
-/*jslint white: true, nomen: true */
-define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, mediator, log, sha1, user) {
-
-	
-
-	var db = {
-
-		url: {
-			//script: 'https://cdn.firebase.com/js/client/2.2.1/firebase.js',
-			dataBase: 'https://radiant-torch-4344.firebaseio.com/messenger/'
-		},
-
-		attr: {},
-
-		init: function () {
-
-			var base = this,
-				fireBase = new Firebase(base.url.dataBase);
-
-			base.set('db', fireBase);
-
-			log('Firebase init');
-
-			base.bindLeaderBordListener();
-
-		},
-
-		set: function (key, value) {
-			this.attr[key] = value;
-			return this;
-		},
-
-		get: function (key) {
-			return this.attr[key];
-		},
-
-		bindLeaderBordListener: function () {
-
-			var base = this;
-
-			mediator.installTo(base);
-
-			base.subscribe('register-user', base.registerUser);
-			base.subscribe('login-user', base.loginUser);
-
-		},
-
-		registerUser: function (dataArg) {
-
-			var base = this,
-				db = base.get('db'),
-				data = dataArg || {},
-				login = data.login,
-				hash = sha1.hash(login + data.password),
-				id = sha1.hash(hash);
-
-			data.hash = hash;
-
-			data.id = id;
-
-			// save to main data
-			db.child('/users').push(data);
-
-			// save for safe and fast access
-			db.child('/usersData').push({
-				id: id,
-				login: login
-			});
-
-			log('try to reg user', data);
-
-		},
-
-		loginUser: function (dataArg) {
-
-			var base = this,
-				db = base.get('db'),
-				data = dataArg || {},
-				hash = sha1.hash(data.login + data.password);
-
-			log('try to login ', data);
-
-			db.child('/users').orderByChild('hash').equalTo(hash).once('value', function (snap) {
-
-				var userData = snap.val(),
-					dbHash;
-
-				if (userData) {
-					dbHash = _.keys(userData)[0];
-					base.publish('login-successful', userData[dbHash]);
-					base.set('db-hash', dbHash);
-					base.publish('');
-				} else {
-					base.publish('login-failed');
-				}
-
-			});
-
-
-
-		}
-
-	};
-
-	db.init();
-
-	return db;
-
-});
-
 /*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
 define('info',[],function () {
 
@@ -14457,7 +14296,7 @@ define('info',[],function () {
 		},
 
 		ls: win.localStorage,
-		savedItem: '!!!!-ENTER-APP-NAME-!!!!',
+		savedItem: '!!!!-m-!!!!',
 		attr: {},
 		systemAttr: {},
 		defaultLanguage: 'en',
@@ -14692,6 +14531,194 @@ define('info',[],function () {
 	info.init();
 
 	return info;
+
+});
+
+define('user',['backbone', 'mediator', 'log', 'info'], function (bb, mediator, log, info) {
+
+	var User = bb.Model.extend({
+
+		defaults: {
+			isLogged: false,
+			login: null,
+			password: null
+		},
+
+		initialize: function () {
+
+			var user = this;
+
+			mediator.installTo(user);
+
+			user.bindEventListeners();
+
+		},
+
+		bindEventListeners: function () {
+
+			var user = this;
+
+			user.subscribe('login-successful', user.login);
+
+		},
+
+		login: function (dataArg) {
+
+			log('user is logged');
+
+			var user = this,
+				data = dataArg;
+
+			user.set(data);
+
+			user.set('isLogged', true);
+
+			user.publish('route-to', {
+				url: 'main'
+			});
+
+			info.set('hash', data.hash);
+
+		}
+
+	});
+
+	log('user init');
+
+	return new User();
+
+});
+/*jslint white: true, nomen: true */
+define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, mediator, log, sha1, user) {
+
+	
+
+	var db = {
+
+		url: {
+			//script: 'https://cdn.firebase.com/js/client/2.2.1/firebase.js',
+			dataBase: 'https://radiant-torch-4344.firebaseio.com/messenger/'
+		},
+
+		attr: {},
+
+		init: function () {
+
+			var base = this,
+				fireBase = new Firebase(base.url.dataBase);
+
+			base.set('db', fireBase);
+
+			log('Firebase init');
+
+			base.bindLeaderBordListener();
+
+		},
+
+		set: function (key, value) {
+			this.attr[key] = value;
+			return this;
+		},
+
+		get: function (key) {
+			return this.attr[key];
+		},
+
+		bindLeaderBordListener: function () {
+
+			var base = this;
+
+			mediator.installTo(base);
+
+			base.subscribe('register-user', base.registerUser);
+			base.subscribe('login-user', base.loginUser);
+			base.subscribe('auto-login-user', base.autoLoggingUser);
+
+		},
+
+		registerUser: function (dataArg) {
+
+			var base = this,
+				db = base.get('db'),
+				data = dataArg || {},
+				login = data.login,
+				hash = sha1.hash(login + data.password),
+				id = sha1.hash(hash);
+
+			data.hash = hash;
+
+			data.id = id;
+
+			// save to main data
+			db.child('/users').push(data);
+
+			// save for safe and fast access
+			db.child('/usersData').push({
+				id: id,
+				login: login
+			});
+
+			log('try to reg user', data);
+
+		},
+
+		loginUser: function (dataArg) {
+
+			var base = this,
+				db = base.get('db'),
+				data = dataArg || {},
+				hash = sha1.hash(data.login + data.password);
+
+			log('try to login ', data);
+
+			db.child('/users').orderByChild('hash').equalTo(hash).once('value', function (snap) {
+
+				var userData = snap.val(),
+					dbHash;
+
+				if (userData) {
+					dbHash = _.keys(userData)[0];
+					base.publish('login-successful', userData[dbHash]);
+					base.set('db-hash', dbHash);
+				} else {
+					base.publish('login-failed');
+				}
+
+			});
+
+		},
+
+		autoLoggingUser: function (dataArg) {
+
+			var base = this,
+				db = base.get('db'),
+				data = dataArg || {},
+				hash = data.hash || '';
+
+			log('try to auto login', hash);
+
+			db.child('/users').orderByChild('hash').equalTo(hash).once('value', function (snap) {
+
+				var userData = snap.val(),
+					dbHash;
+
+				if (userData) {
+					dbHash = _.keys(userData)[0];
+					base.publish('login-successful', userData[dbHash]);
+					base.set('db-hash', dbHash);
+				} else {
+					base.publish('auto-login-failed');
+				}
+
+			});
+
+		}
+
+	};
+
+	db.init();
+
+	return db;
 
 });
 
@@ -15130,6 +15157,8 @@ define('app/home/home-view',['jquery', 'backbone', 'BaseView', 'PopupView', 'und
 
 			console.log('home view initialize');
 
+			view.autoLogging();
+
 		},
 
 		showPopupView: function () {
@@ -15217,6 +15246,22 @@ define('app/home/home-view',['jquery', 'backbone', 'BaseView', 'PopupView', 'und
 			});
 
 			return data;
+
+		},
+
+		autoLogging: function () {
+
+			var view = this,
+				info = view.info,
+				hash = info.get('hash');
+
+			if (!hash) {
+				return;
+			}
+
+			view.publish('auto-login-user', {
+				hash: hash
+			});
 
 		}
 

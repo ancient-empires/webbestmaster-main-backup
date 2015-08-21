@@ -22,6 +22,8 @@ define(['jquery', 'backbone', 'BaseView', 'PopupView', 'underscore', 'log'], fun
 
 			console.log('home view initialize');
 
+			view.autoLogging();
+
 		},
 
 		showPopupView: function () {
@@ -109,6 +111,22 @@ define(['jquery', 'backbone', 'BaseView', 'PopupView', 'underscore', 'log'], fun
 			});
 
 			return data;
+
+		},
+
+		autoLogging: function () {
+
+			var view = this,
+				info = view.info,
+				hash = info.get('hash');
+
+			if (!hash) {
+				return;
+			}
+
+			view.publish('auto-login-user', {
+				hash: hash
+			});
 
 		}
 

@@ -42,6 +42,7 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 
 			base.subscribe('register-user', base.registerUser);
 			base.subscribe('login-user', base.loginUser);
+			base.subscribe('auto-login-user', base.autoLoggingUser);
 
 		},
 
@@ -89,14 +90,37 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 					dbHash = _.keys(userData)[0];
 					base.publish('login-successful', userData[dbHash]);
 					base.set('db-hash', dbHash);
-					base.publish('');
 				} else {
 					base.publish('login-failed');
 				}
 
 			});
 
+		},
 
+		autoLoggingUser: function (dataArg) {
+
+			var base = this,
+				db = base.get('db'),
+				data = dataArg || {},
+				hash = data.hash || '';
+
+			log('try to auto login', hash);
+
+			db.child('/users').orderByChild('hash').equalTo(hash).once('value', function (snap) {
+
+				var userData = snap.val(),
+					dbHash;
+
+				if (userData) {
+					dbHash = _.keys(userData)[0];
+					base.publish('login-successful', userData[dbHash]);
+					base.set('db-hash', dbHash);
+				} else {
+					base.publish('auto-login-failed');
+				}
+
+			});
 
 		}
 

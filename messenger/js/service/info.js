@@ -27,7 +27,7 @@ define(function () {
 		},
 
 		ls: win.localStorage,
-		savedItem: '!!!!-ENTER-APP-NAME-!!!!',
+		savedItem: '!!!!-m-!!!!',
 		attr: {},
 		systemAttr: {},
 		defaultLanguage: 'en',

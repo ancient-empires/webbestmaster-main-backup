@@ -1,4 +1,4 @@
-define(['backbone', 'mediator', 'log'], function (bb, mediator, log) {
+define(['backbone', 'mediator', 'log', 'info'], function (bb, mediator, log, info) {
 
 	var User = bb.Model.extend({
 
@@ -26,11 +26,12 @@ define(['backbone', 'mediator', 'log'], function (bb, mediator, log) {
 
 		},
 
-		login: function (data) {
+		login: function (dataArg) {
 
 			log('user is logged');
 
-			var user = this;
+			var user = this,
+				data = dataArg;
 
 			user.set(data);
 
@@ -39,6 +40,8 @@ define(['backbone', 'mediator', 'log'], function (bb, mediator, log) {
 			user.publish('route-to', {
 				url: 'main'
 			});
+
+			info.set('hash', data.hash);
 
 		}
 
