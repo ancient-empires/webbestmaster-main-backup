@@ -14534,7 +14534,7 @@ define('info',[],function () {
 
 });
 
-define('user',['backbone', 'mediator', 'log', 'info'], function (bb, mediator, log, info) {
+define('user',['backbone', 'mediator', 'log', 'info', 'db'], function (bb, mediator, log, info, db) {
 
 	var User = bb.Model.extend({
 
@@ -14578,6 +14578,8 @@ define('user',['backbone', 'mediator', 'log', 'info'], function (bb, mediator, l
 			user.publish('route-to', {
 				url: 'main'
 			});
+
+			user.publish('update-contact-list', {list: data.contacts} );
 
 		}
 
@@ -14633,6 +14635,7 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 			base.subscribe('register-user', base.registerUser);
 			base.subscribe('login-user', base.loginUser);
 			base.subscribe('auto-login-user', base.autoLoggingUser);
+			base.subscribe('add-user-to-contact-list', base.addUserToContactList);
 
 		},
 
@@ -14708,6 +14711,7 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 					dbHash = _.keys(userData)[0];
 					base.publish('login-successful', userData[dbHash]);
 					base.set('db-hash', dbHash);
+					log('db-hash', dbHash);
 				} else {
 					base.publish('auto-login-failed');
 				}
@@ -14738,6 +14742,33 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 			});
 
 			return deferred.promise();
+
+		},
+
+		addUserToContactList: function (dataArg) {
+
+			var base = this,
+				data = dataArg || {},
+				db = base.get('db'),
+				dbHash = base.get('db-hash');
+
+			db.child('/users/' + dbHash + '/contacts').push(data.userId, function () {
+
+				base.getContactList();
+
+			});
+
+		},
+
+		getContactList: function () {
+
+			var base = this,
+				db = base.get('db'),
+				dbHash = base.get('db-hash');
+
+			db.child('/users/' + dbHash + '/contacts').once('value', function (snap) {
+				base.publish('update-contact-list', { list: snap.val() });
+			});
 
 		}
 
@@ -15303,7 +15334,8 @@ define('app/main/main-view',['jquery', 'backbone', 'BaseView', 'db', 'log'], fun
 	return BaseView.extend({
 
 		events: {
-			'input .js-search': 'search'
+			'input .js-search': 'search',
+			'click .js-add-user': 'addUser'
 		},
 
 		selectors: {
@@ -15319,6 +15351,8 @@ define('app/main/main-view',['jquery', 'backbone', 'BaseView', 'db', 'log'], fun
 
 			//view.constructor.prototype.initialize.apply(view, arguments);
 			view.render();
+
+			view.subscribe('update-contact-list', view.updateContactList);
 
 			console.log('main view initialize');
 
@@ -15344,8 +15378,7 @@ define('app/main/main-view',['jquery', 'backbone', 'BaseView', 'db', 'log'], fun
 
 			db.searchUser(value).then(function (data) {
 
-				var realValue = view.$el.find(view.selectors.search).val(),
-					logins;
+				var realValue = view.$el.find(view.selectors.search).val();
 
 				if (realValue !== data.value) {
 					log('research', data.value, '->', realValue);
@@ -15353,13 +15386,35 @@ define('app/main/main-view',['jquery', 'backbone', 'BaseView', 'db', 'log'], fun
 					return;
 				}
 
-				logins = data.result.map(function (data) {
-					return data.login;
-				});
+				view.$el.find(view.selectors.searchResult).html(view.tmpl['search-result']( data ));
 
-				view.$el.find(view.selectors.searchResult).html(JSON.stringify(logins));
+				view.delegateEvents();
 
 			});
+
+		},
+
+		addUser: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget),
+				userId = $this.attr('data-user-id');
+
+			view.publish('add-user-to-contact-list', { userId: userId });
+
+		},
+
+		updateContactList: function (dataArg) {
+
+			var view = this,
+				data = dataArg || {},
+				list = [];
+
+			_.each(data.list, function (id, dbHash) {
+				list.push(id);
+			});
+
+			view.$el.find('.js-contact-list').html(view.tmpl['contact-list']({ list: list}));
 
 		}
 

@@ -46,14 +46,47 @@
 
 </script>
 
+<script type="text/x-template" data-name="search-result">
+
+	<div>
+
+		{{~it.result :user }}
+
+		<div> {{= user.login }} - {{= user.id }} <div class="js-add-user" data-user-id="{{= user.id }}">add user</div> </div>
+
+		<hr/>
+		{{~}}
+
+	</div>
+
+</script>
+
+<script type="text/x-template" data-name="contact-list">
+
+	<div>
+
+		{{~ it.list :item }}
+			<div>{{= item }}</div>
+		{{~}}
+
+	</div>
+
+</script>
+
 <script type="text/x-template" data-name="main">
 
 	<div class="screen">
 
-
 		<input class="js-search" type="text" placeholder="Search..."/>
 		<div class="js-search-result"></div>
 
+		<div>contacts</div>
+
+		<div class="js-contact-list">
+
+
+
+		</div>
 
 		<div data-route="">main page</div>
 

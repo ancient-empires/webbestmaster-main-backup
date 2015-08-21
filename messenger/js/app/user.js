@@ -1,4 +1,4 @@
-define(['backbone', 'mediator', 'log', 'info'], function (bb, mediator, log, info) {
+define(['backbone', 'mediator', 'log', 'info', 'db'], function (bb, mediator, log, info, db) {
 
 	var User = bb.Model.extend({
 
@@ -42,6 +42,8 @@ define(['backbone', 'mediator', 'log', 'info'], function (bb, mediator, log, inf
 			user.publish('route-to', {
 				url: 'main'
 			});
+
+			user.publish('update-contact-list', {list: data.contacts} );
 
 		}
 

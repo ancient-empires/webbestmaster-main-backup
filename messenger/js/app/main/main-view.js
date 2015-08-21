@@ -3,7 +3,8 @@ define(['jquery', 'backbone', 'BaseView', 'db', 'log'], function ($, bb, BaseVie
 	return BaseView.extend({
 
 		events: {
-			'input .js-search': 'search'
+			'input .js-search': 'search',
+			'click .js-add-user': 'addUser'
 		},
 
 		selectors: {
@@ -19,6 +20,8 @@ define(['jquery', 'backbone', 'BaseView', 'db', 'log'], function ($, bb, BaseVie
 
 			//view.constructor.prototype.initialize.apply(view, arguments);
 			view.render();
+
+			view.subscribe('update-contact-list', view.updateContactList);
 
 			console.log('main view initialize');
 
@@ -44,8 +47,7 @@ define(['jquery', 'backbone', 'BaseView', 'db', 'log'], function ($, bb, BaseVie
 
 			db.searchUser(value).then(function (data) {
 
-				var realValue = view.$el.find(view.selectors.search).val(),
-					logins;
+				var realValue = view.$el.find(view.selectors.search).val();
 
 				if (realValue !== data.value) {
 					log('research', data.value, '->', realValue);
@@ -53,13 +55,35 @@ define(['jquery', 'backbone', 'BaseView', 'db', 'log'], function ($, bb, BaseVie
 					return;
 				}
 
-				logins = data.result.map(function (data) {
-					return data.login;
-				});
+				view.$el.find(view.selectors.searchResult).html(view.tmpl['search-result']( data ));
 
-				view.$el.find(view.selectors.searchResult).html(JSON.stringify(logins));
+				view.delegateEvents();
 
 			});
+
+		},
+
+		addUser: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget),
+				userId = $this.attr('data-user-id');
+
+			view.publish('add-user-to-contact-list', { userId: userId });
+
+		},
+
+		updateContactList: function (dataArg) {
+
+			var view = this,
+				data = dataArg || {},
+				list = [];
+
+			_.each(data.list, function (id, dbHash) {
+				list.push(id);
+			});
+
+			view.$el.find('.js-contact-list').html(view.tmpl['contact-list']({ list: list}));
 
 		}
 
