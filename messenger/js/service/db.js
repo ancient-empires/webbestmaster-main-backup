@@ -68,6 +68,8 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 				login: login
 			});
 
+			base.publish('auto-login-user', { hash: hash });
+
 			log('try to reg user', data);
 
 		},

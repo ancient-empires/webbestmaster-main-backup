@@ -14571,13 +14571,13 @@ define('user',['backbone', 'mediator', 'log', 'info'], function (bb, mediator, l
 
 			user.set(data);
 
+			info.set('hash', data.hash);
+
 			user.set('isLogged', true);
 
 			user.publish('route-to', {
 				url: 'main'
 			});
-
-			info.set('hash', data.hash);
 
 		}
 
@@ -14657,6 +14657,8 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 				id: id,
 				login: login
 			});
+
+			base.publish('auto-login-user', { hash: hash });
 
 			log('try to reg user', data);
 
@@ -15256,6 +15258,7 @@ define('app/home/home-view',['jquery', 'backbone', 'BaseView', 'PopupView', 'und
 				hash = info.get('hash');
 
 			if (!hash) {
+				log('no hash tp auto login');
 				return;
 			}
 
@@ -15329,3 +15332,4 @@ require(['initCore', 'backbone', 'BaseView'], function (initCore, bb, BaseView) 
 
 });
 define("main", function(){});
+

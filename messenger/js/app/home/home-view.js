@@ -121,6 +121,7 @@ define(['jquery', 'backbone', 'BaseView', 'PopupView', 'underscore', 'log'], fun
 				hash = info.get('hash');
 
 			if (!hash) {
+				log('no hash tp auto login');
 				return;
 			}
 

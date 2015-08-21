@@ -35,13 +35,13 @@ define(['backbone', 'mediator', 'log', 'info'], function (bb, mediator, log, inf
 
 			user.set(data);
 
+			info.set('hash', data.hash);
+
 			user.set('isLogged', true);
 
 			user.publish('route-to', {
 				url: 'main'
 			});
-
-			info.set('hash', data.hash);
 
 		}
 
