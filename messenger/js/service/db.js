@@ -1,5 +1,5 @@
 /*jslint white: true, nomen: true */
-define(['Firebase', 'mediator', 'log', 'sha1'], function (Firebase, mediator, log, sha1) {
+define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, mediator, log, sha1, user) {
 
 	'use strict';
 

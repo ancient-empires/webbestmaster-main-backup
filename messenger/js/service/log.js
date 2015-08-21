@@ -2,6 +2,8 @@ define(function () {
 
 	'use strict';
 
+	console.log('log init');
+
 	var logger = {
 		isEnable: true,
 		on: function () {

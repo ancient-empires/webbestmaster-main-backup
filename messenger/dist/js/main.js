@@ -13497,6 +13497,8 @@ define('log',[],function () {
 
 	
 
+	console.log('log init');
+
 	var logger = {
 		isEnable: true,
 		on: function () {
@@ -14241,8 +14243,49 @@ if (typeof String.prototype.utf8Decode == 'undefined') {
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 if (typeof module != 'undefined' && module.exports) module.exports = Sha1; // CommonJs export
 if (typeof define == 'function' && define.amd) define('sha1',[], function() { return Sha1; }); // AMD;
+define('user',['backbone', 'mediator', 'log'], function (bb, mediator, log) {
+
+	var User = bb.Model.extend({
+
+		defaults: {
+			isLogged: false,
+			login: null,
+			password: null
+		},
+
+		initialize: function () {
+
+			var user = this;
+
+			mediator.installTo(user);
+
+			user.bindEventListeners();
+
+		},
+
+		bindEventListeners: function () {
+
+			var user = this;
+
+			user.subscribe('login-successful', user.login);
+
+		},
+
+		login: function () {
+
+			log('user is logged');
+
+		}
+
+	});
+
+	log('user init');
+
+	return new User();
+
+});
 /*jslint white: true, nomen: true */
-define('db',['Firebase', 'mediator', 'log', 'sha1'], function (Firebase, mediator, log, sha1) {
+define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, mediator, log, sha1, user) {
 
 	
 
@@ -14319,8 +14362,8 @@ define('db',['Firebase', 'mediator', 'log', 'sha1'], function (Firebase, mediato
 				if (userData) {
 					base.publish('login-successful');
 					dbHash = _.keys(userData)[0];
-					base.set('db-hash', dbHash);
-					base.set('id', id);
+					//base.set('db-hash', dbHash);
+					//base.set('id', id);
 					log('user dbHash', dbHash);
 					log('user id', id);
 					log('user data', userData[dbHash]);
@@ -15169,7 +15212,7 @@ define('app/page/page-view',['jquery', 'backbone', 'BaseView'], function ($, bb,
 
 });
 
-define('initCore',['templateMaster', 'fastclick', 'shim', 'router', 'device', 'log', 'Firebase', 'db', 'app/home/home-view', 'app/page/page-view'], function (templateMaster, fastclick) {
+define('initCore',['templateMaster', 'fastclick', 'shim', 'router', 'device', 'log', 'Firebase', 'db', 'user', 'app/home/home-view', 'app/page/page-view'], function (templateMaster, fastclick) {
 
 	
 

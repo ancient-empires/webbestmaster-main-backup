@@ -76,7 +76,10 @@
 				// core
 				'initCore': 'app/core/init-core',
 				'BaseView': 'app/core/base-view',
-				'PopupView': 'app/core/popup-view'
+				'PopupView': 'app/core/popup-view',
+
+				// other
+				'user': 'app/user'
 
 			},
 
