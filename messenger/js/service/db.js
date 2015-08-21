@@ -49,11 +49,23 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 
 			var base = this,
 				db = base.get('db'),
-				data = dataArg || {};
+				data = dataArg || {},
+				login = data.login,
+				hash = sha1.hash(login + data.password),
+				id = sha1.hash(hash);
 
-			data.id = sha1.hash(data.login + data.password);
+			data.hash = hash;
 
+			data.id = id;
+
+			// save to main data
 			db.child('/users').push(data);
+
+			// save for safe and fast access
+			db.child('/usersData').push({
+				id: id,
+				login: login
+			});
 
 			log('try to reg user', data);
 
@@ -64,11 +76,11 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 			var base = this,
 				db = base.get('db'),
 				data = dataArg || {},
-				id = sha1.hash(data.login + data.password);
+				hash = sha1.hash(data.login + data.password);
 
 			log('try to login ', data);
 
-			db.child('/users').orderByChild('id').equalTo(id).once('value', function (snap) {
+			db.child('/users').orderByChild('hash').equalTo(hash).once('value', function (snap) {
 
 				var userData = snap.val(),
 					dbHash;
@@ -79,7 +91,7 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 					//base.set('db-hash', dbHash);
 					//base.set('id', id);
 					log('user dbHash', dbHash);
-					log('user id', id);
+					log('user hash', hash);
 					log('user data', userData[dbHash]);
 				} else {
 					base.publish('login-failed');
