@@ -58,6 +58,7 @@
 				// libs
 				'shim': 'lib/shim',
 				'Firebase': 'lib/firebase',
+				'sha1': 'lib/sha1',
 				'fastclick': 'lib/fastclick',
 				'jquery': 'lib/jquery-2.1.3',
 				'underscore': 'lib/underscore',

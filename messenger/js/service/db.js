@@ -1,5 +1,5 @@
 /*jslint white: true, nomen: true */
-define(['Firebase', 'mediator', 'log'], function (Firebase, mediator, log) {
+define(['Firebase', 'mediator', 'log', 'sha1'], function (Firebase, mediator, log, sha1) {
 
 	'use strict';
 
@@ -14,18 +14,14 @@ define(['Firebase', 'mediator', 'log'], function (Firebase, mediator, log) {
 
 		init: function () {
 
-			var db = this,
-				fireBase = new Firebase(db.url.dataBase);
+			var base = this,
+				fireBase = new Firebase(base.url.dataBase);
 
-			db.set('db', fireBase);
+			base.set('db', fireBase);
 
 			log('Firebase init');
 
-			mediator.installTo(db);
-
-			db.subscribe('register-user', db.registerUser);
-
-			//db.bindLeaderBordListener();
+			base.bindLeaderBordListener();
 
 		},
 
@@ -38,17 +34,57 @@ define(['Firebase', 'mediator', 'log'], function (Firebase, mediator, log) {
 			return this.attr[key];
 		},
 
+		bindLeaderBordListener: function () {
+
+			var base = this;
+
+			mediator.installTo(base);
+
+			base.subscribe('register-user', base.registerUser);
+			base.subscribe('login-user', base.loginUser);
+
+		},
+
 		registerUser: function (dataArg) {
 
 			var base = this,
 				db = base.get('db'),
 				data = dataArg || {};
 
-			data.id = Math.random();
+			data.id = sha1.hash(data.login + data.password);
 
-			db.child('/user').push(data);
+			db.child('/users').push({
+				i: data.id,
+				l: data.login,
+				p: data.password,
+				m: data.email
+			});
 
 			log('try to reg user', data);
+
+		},
+
+		loginUser: function (dataArg) {
+
+			var base = this,
+				db = base.get('db'),
+				data = dataArg || {},
+				i = sha1.hash(data.login + data.password);
+
+			log('try to login ', data);
+
+			db.child('/users').orderByChild('i').equalTo(i).once('value', function (snap) {
+
+				var userData = snap.val();
+
+				if (userData) {
+					base.publish('login-successful');
+				} else {
+					base.publish('login-failed');
+				}
+
+			});
+
 
 
 		}

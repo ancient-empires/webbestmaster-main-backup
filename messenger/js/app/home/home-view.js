@@ -4,12 +4,11 @@ define(['jquery', 'backbone', 'BaseView', 'PopupView', 'underscore', 'log'], fun
 
 		events: {
 			'click .js-show-popup': 'showPopupView',
-			'click .js-register': 'register'
+			'click .js-register': 'register',
+			'click .js-login': 'login'
 		},
 
-		selectors: {
-
-		},
+		selectors: {},
 
 		initialize: function () {
 
@@ -38,6 +37,25 @@ define(['jquery', 'backbone', 'BaseView', 'PopupView', 'underscore', 'log'], fun
 
 		},
 
+		register: function () {
+
+			var view = this,
+				data = view.collectRegisterData();
+
+			view.subscribe('register-successful', function () {
+				log('user register successful');
+				this.unsubscribe('register-successful');
+			});
+
+			view.subscribe('register-failed', function () {
+				log('user register failed');
+				this.unsubscribe('register-failed');
+			});
+
+			view.publish('register-user', data);
+
+		},
+
 		collectRegisterData: function () {
 
 			var $el = this.$el,
@@ -56,24 +74,44 @@ define(['jquery', 'backbone', 'BaseView', 'PopupView', 'underscore', 'log'], fun
 
 		},
 
-		register: function () {
+		login: function () {
 
 			var view = this,
-				data = view.collectRegisterData();
+				data = view.collectLoginData();
 
-			view.subscribe('register-successful', function () {
-				log('user register successful');
-				this.unsubscribe('register-successful');
+			view.subscribe('login-successful', function () {
+				log('user login successful');
+				this.unsubscribe('login-successful');
+				this.unsubscribe('login-failed');
 			});
 
-			view.subscribe('register-failed', function () {
-				log('user register failed');
-				this.unsubscribe('register-failed');
+			view.subscribe('login-failed', function () {
+				log('user login failed');
+				this.unsubscribe('login-successful');
+				this.unsubscribe('login-failed');
 			});
 
-			view.publish('register-user', data);
+			view.publish('login-user', data);
+
+		},
+
+		collectLoginData: function () {
+
+			var $el = this.$el,
+				data = {},
+				map = {
+					login: '.js-login-login',
+					password: '.js-login-password'
+				};
+
+			_.each(map, function (selector, key) {
+				data[key] = $el.find(selector).val();
+			});
+
+			return data;
 
 		}
+
 
 	});
 
