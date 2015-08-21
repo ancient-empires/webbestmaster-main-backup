@@ -124,6 +124,31 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 
 			});
 
+		},
+
+		searchUser: function (value) {
+
+			var base = this,
+				db = base.get('db'),
+				deferred = $.Deferred();
+
+			db.child('/usersData').orderByChild('login').startAt(value).endAt(value + '~').once('value', function (snap) {
+
+				var result = [];
+
+				snap.forEach(function (item) {
+					result.push(item.val());
+				});
+
+				deferred.resolve({
+					result: result,
+					value: value
+				});
+
+			});
+
+			return deferred.promise();
+
 		}
 
 	};

@@ -14714,6 +14714,31 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 
 			});
 
+		},
+
+		searchUser: function (value) {
+
+			var base = this,
+				db = base.get('db'),
+				deferred = $.Deferred();
+
+			db.child('/usersData').orderByChild('login').startAt(value).endAt(value + '~').once('value', function (snap) {
+
+				var result = [];
+
+				snap.forEach(function (item) {
+					result.push(item.val());
+				});
+
+				deferred.resolve({
+					result: result,
+					value: value
+				});
+
+			});
+
+			return deferred.promise();
+
 		}
 
 	};
@@ -15273,16 +15298,17 @@ define('app/home/home-view',['jquery', 'backbone', 'BaseView', 'PopupView', 'und
 
 });
 
-define('app/main/main-view',['jquery', 'backbone', 'BaseView'], function ($, bb, BaseView) {
+define('app/main/main-view',['jquery', 'backbone', 'BaseView', 'db', 'log'], function ($, bb, BaseView, db, log) {
 
 	return BaseView.extend({
 
 		events: {
-
+			'input .js-search': 'search'
 		},
 
 		selectors: {
-
+			searchResult: '.js-search-result',
+			search: '.js-search'
 		},
 
 		initialize: function () {
@@ -15295,6 +15321,45 @@ define('app/main/main-view',['jquery', 'backbone', 'BaseView'], function ($, bb,
 			view.render();
 
 			console.log('main view initialize');
+
+		},
+
+		search: function (e) {
+
+			var view = this,
+				$this = $(e.currentTarget),
+				value = $this.val();
+
+			if (!value) {
+				return;
+			}
+
+			view.searchByValue(value);
+
+		},
+
+		searchByValue: function (value) {
+
+			var view = this;
+
+			db.searchUser(value).then(function (data) {
+
+				var realValue = view.$el.find(view.selectors.search).val(),
+					logins;
+
+				if (realValue !== data.value) {
+					log('research', data.value, '->', realValue);
+					view.searchByValue(realValue);
+					return;
+				}
+
+				logins = data.result.map(function (data) {
+					return data.login;
+				});
+
+				view.$el.find(view.selectors.searchResult).html(JSON.stringify(logins));
+
+			});
 
 		}
 
@@ -15332,4 +15397,3 @@ require(['initCore', 'backbone', 'BaseView'], function (initCore, bb, BaseView) 
 
 });
 define("main", function(){});
-
