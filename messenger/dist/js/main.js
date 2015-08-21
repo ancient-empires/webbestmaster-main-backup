@@ -13623,6 +13623,7 @@ define('router',['underscore', 'backbone', 'mediator', 'log'], function (_, bb, 
 		routes: {
 			'': 'home',
 			'page': 'page',
+			'main': 'main',
 			'*action': 'route'
 		},
 
@@ -13634,6 +13635,10 @@ define('router',['underscore', 'backbone', 'mediator', 'log'], function (_, bb, 
 
 		page: function () {
 			newViewByPath('app/page/page-view');
+		},
+
+		main: function () {
+			newViewByPath('app/main/main-view');
 		},
 
 		url: {
@@ -13698,7 +13703,14 @@ define('router',['underscore', 'backbone', 'mediator', 'log'], function (_, bb, 
 		},
 
 		routeToPopup: function () {
-			this.navigate(bb.history.fragment + '?' + this.url.popup, false);
+
+			var router = this;
+
+			router.routeTo({
+				url: bb.history.fragment + '?' + router.url.popup,
+				trigger: false
+			});
+
 		},
 
 		hidePopup: function () {
@@ -13711,6 +13723,17 @@ define('router',['underscore', 'backbone', 'mediator', 'log'], function (_, bb, 
 				router.publish('hide-popup');
 			}
 
+		},
+
+		routeTo: function (dataArg) {
+
+			var router = this,
+				data = dataArg || {},
+				url = data.url,
+				trigger = data.hasOwnProperty('trigger') ? data.trigger : true;
+
+			router.navigate(url, { trigger: trigger });
+
 		}
 
 	});
@@ -13721,6 +13744,7 @@ define('router',['underscore', 'backbone', 'mediator', 'log'], function (_, bb, 
 
 	router.subscribe('router-route-to-popup', router.routeToPopup);
 	router.subscribe('router-hide-popup', router.hidePopup);
+	router.subscribe('route-to', router.routeTo);
 
 	router.on('route:route', function (url) {
 		this.publish('url', url);
@@ -14271,9 +14295,19 @@ define('user',['backbone', 'mediator', 'log'], function (bb, mediator, log) {
 
 		},
 
-		login: function () {
+		login: function (data) {
 
 			log('user is logged');
+
+			var user = this;
+
+			user.set(data);
+
+			user.set('isLogged', true);
+
+			user.publish('route-to', {
+				url: 'main'
+			});
 
 		}
 
@@ -14335,11 +14369,23 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 
 			var base = this,
 				db = base.get('db'),
-				data = dataArg || {};
+				data = dataArg || {},
+				login = data.login,
+				hash = sha1.hash(login + data.password),
+				id = sha1.hash(hash);
 
-			data.id = sha1.hash(data.login + data.password);
+			data.hash = hash;
 
+			data.id = id;
+
+			// save to main data
 			db.child('/users').push(data);
+
+			// save for safe and fast access
+			db.child('/usersData').push({
+				id: id,
+				login: login
+			});
 
 			log('try to reg user', data);
 
@@ -14350,23 +14396,20 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 			var base = this,
 				db = base.get('db'),
 				data = dataArg || {},
-				id = sha1.hash(data.login + data.password);
+				hash = sha1.hash(data.login + data.password);
 
 			log('try to login ', data);
 
-			db.child('/users').orderByChild('id').equalTo(id).once('value', function (snap) {
+			db.child('/users').orderByChild('hash').equalTo(hash).once('value', function (snap) {
 
 				var userData = snap.val(),
 					dbHash;
 
 				if (userData) {
-					base.publish('login-successful');
 					dbHash = _.keys(userData)[0];
-					//base.set('db-hash', dbHash);
-					//base.set('id', id);
-					log('user dbHash', dbHash);
-					log('user id', id);
-					log('user data', userData[dbHash]);
+					base.publish('login-successful', userData[dbHash]);
+					base.set('db-hash', dbHash);
+					base.publish('');
 				} else {
 					base.publish('login-failed');
 				}
@@ -15082,7 +15125,7 @@ define('app/home/home-view',['jquery', 'backbone', 'BaseView', 'PopupView', 'und
 			view.$el = $(view.tmpl.home());
 
 			//view.constructor.prototype.initialize.apply(view, arguments);
-			view.delegateEvents();
+			//view.delegateEvents();
 			view.render();
 
 			console.log('home view initialize');
@@ -15144,17 +15187,17 @@ define('app/home/home-view',['jquery', 'backbone', 'BaseView', 'PopupView', 'und
 			var view = this,
 				data = view.collectLoginData();
 
-			view.subscribe('login-successful', function () {
-				log('user login successful');
-				this.unsubscribe('login-successful');
-				this.unsubscribe('login-failed');
-			});
-
-			view.subscribe('login-failed', function () {
-				log('user login failed');
-				this.unsubscribe('login-successful');
-				this.unsubscribe('login-failed');
-			});
+			//view.subscribe('login-successful', function () {
+			//	log('user login successful');
+			//	this.unsubscribe('login-successful');
+			//	this.unsubscribe('login-failed');
+			//});
+			//
+			//view.subscribe('login-failed', function () {
+			//	log('user login failed');
+			//	this.unsubscribe('login-successful');
+			//	this.unsubscribe('login-failed');
+			//});
 
 			view.publish('login-user', data);
 
@@ -15182,7 +15225,7 @@ define('app/home/home-view',['jquery', 'backbone', 'BaseView', 'PopupView', 'und
 
 });
 
-define('app/page/page-view',['jquery', 'backbone', 'BaseView'], function ($, bb, BaseView) {
+define('app/main/main-view',['jquery', 'backbone', 'BaseView'], function ($, bb, BaseView) {
 
 	return BaseView.extend({
 
@@ -15198,13 +15241,12 @@ define('app/page/page-view',['jquery', 'backbone', 'BaseView'], function ($, bb,
 
 			var view = this;
 
-			view.$el = $(view.tmpl.page());
+			view.$el = $(view.tmpl.main());
 
 			//view.constructor.prototype.initialize.apply(view, arguments);
-			view.delegateEvents();
 			view.render();
 
-			console.log('page view initialize');
+			console.log('main view initialize');
 
 		}
 
@@ -15212,7 +15254,8 @@ define('app/page/page-view',['jquery', 'backbone', 'BaseView'], function ($, bb,
 
 });
 
-define('initCore',['templateMaster', 'fastclick', 'shim', 'router', 'device', 'log', 'Firebase', 'db', 'user', 'app/home/home-view', 'app/page/page-view'], function (templateMaster, fastclick) {
+define('initCore',['templateMaster', 'fastclick', 'shim', 'router', 'device', 'log', 'Firebase', 'db', 'user',
+	'app/home/home-view', 'app/main/main-view'], function (templateMaster, fastclick) {
 
 	
 

@@ -86,13 +86,10 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 					dbHash;
 
 				if (userData) {
-					base.publish('login-successful');
 					dbHash = _.keys(userData)[0];
-					//base.set('db-hash', dbHash);
-					//base.set('id', id);
-					log('user dbHash', dbHash);
-					log('user hash', hash);
-					log('user data', userData[dbHash]);
+					base.publish('login-successful', userData[dbHash]);
+					base.set('db-hash', dbHash);
+					base.publish('');
 				} else {
 					base.publish('login-failed');
 				}

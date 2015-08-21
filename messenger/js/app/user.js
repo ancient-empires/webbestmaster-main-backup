@@ -26,9 +26,19 @@ define(['backbone', 'mediator', 'log'], function (bb, mediator, log) {
 
 		},
 
-		login: function () {
+		login: function (data) {
 
 			log('user is logged');
+
+			var user = this;
+
+			user.set(data);
+
+			user.set('isLogged', true);
+
+			user.publish('route-to', {
+				url: 'main'
+			});
 
 		}
 

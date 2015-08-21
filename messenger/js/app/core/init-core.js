@@ -1,4 +1,5 @@
-define(['templateMaster', 'fastclick', 'shim', 'router', 'device', 'log', 'Firebase', 'db', 'user', 'app/home/home-view', 'app/page/page-view'], function (templateMaster, fastclick) {
+define(['templateMaster', 'fastclick', 'shim', 'router', 'device', 'log', 'Firebase', 'db', 'user',
+	'app/home/home-view', 'app/main/main-view'], function (templateMaster, fastclick) {
 
 	'use strict';
 

@@ -14,6 +14,7 @@ define(['underscore', 'backbone', 'mediator', 'log'], function (_, bb, mediator,
 		routes: {
 			'': 'home',
 			'page': 'page',
+			'main': 'main',
 			'*action': 'route'
 		},
 
@@ -25,6 +26,10 @@ define(['underscore', 'backbone', 'mediator', 'log'], function (_, bb, mediator,
 
 		page: function () {
 			newViewByPath('app/page/page-view');
+		},
+
+		main: function () {
+			newViewByPath('app/main/main-view');
 		},
 
 		url: {
@@ -89,7 +94,14 @@ define(['underscore', 'backbone', 'mediator', 'log'], function (_, bb, mediator,
 		},
 
 		routeToPopup: function () {
-			this.navigate(bb.history.fragment + '?' + this.url.popup, false);
+
+			var router = this;
+
+			router.routeTo({
+				url: bb.history.fragment + '?' + router.url.popup,
+				trigger: false
+			});
+
 		},
 
 		hidePopup: function () {
@@ -102,6 +114,17 @@ define(['underscore', 'backbone', 'mediator', 'log'], function (_, bb, mediator,
 				router.publish('hide-popup');
 			}
 
+		},
+
+		routeTo: function (dataArg) {
+
+			var router = this,
+				data = dataArg || {},
+				url = data.url,
+				trigger = data.hasOwnProperty('trigger') ? data.trigger : true;
+
+			router.navigate(url, { trigger: trigger });
+
 		}
 
 	});
@@ -112,6 +135,7 @@ define(['underscore', 'backbone', 'mediator', 'log'], function (_, bb, mediator,
 
 	router.subscribe('router-route-to-popup', router.routeToPopup);
 	router.subscribe('router-hide-popup', router.hidePopup);
+	router.subscribe('route-to', router.routeTo);
 
 	router.on('route:route', function (url) {
 		this.publish('url', url);

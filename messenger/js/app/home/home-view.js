@@ -17,7 +17,7 @@ define(['jquery', 'backbone', 'BaseView', 'PopupView', 'underscore', 'log'], fun
 			view.$el = $(view.tmpl.home());
 
 			//view.constructor.prototype.initialize.apply(view, arguments);
-			view.delegateEvents();
+			//view.delegateEvents();
 			view.render();
 
 			console.log('home view initialize');
@@ -79,17 +79,17 @@ define(['jquery', 'backbone', 'BaseView', 'PopupView', 'underscore', 'log'], fun
 			var view = this,
 				data = view.collectLoginData();
 
-			view.subscribe('login-successful', function () {
-				log('user login successful');
-				this.unsubscribe('login-successful');
-				this.unsubscribe('login-failed');
-			});
-
-			view.subscribe('login-failed', function () {
-				log('user login failed');
-				this.unsubscribe('login-successful');
-				this.unsubscribe('login-failed');
-			});
+			//view.subscribe('login-successful', function () {
+			//	log('user login successful');
+			//	this.unsubscribe('login-successful');
+			//	this.unsubscribe('login-failed');
+			//});
+			//
+			//view.subscribe('login-failed', function () {
+			//	log('user login failed');
+			//	this.unsubscribe('login-successful');
+			//	this.unsubscribe('login-failed');
+			//});
 
 			view.publish('login-user', data);
 

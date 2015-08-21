@@ -14,13 +14,12 @@ define(['jquery', 'backbone', 'BaseView'], function ($, bb, BaseView) {
 
 			var view = this;
 
-			view.$el = $(view.tmpl.page());
+			view.$el = $(view.tmpl.main());
 
 			//view.constructor.prototype.initialize.apply(view, arguments);
-			view.delegateEvents();
 			view.render();
 
-			console.log('page view initialize');
+			console.log('main view initialize');
 
 		}
 
