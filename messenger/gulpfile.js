@@ -57,6 +57,7 @@
 			paths: {
 				// libs
 				'shim': 'lib/shim',
+				'Firebase': 'lib/firebase',
 				'fastclick': 'lib/fastclick',
 				'jquery': 'lib/jquery-2.1.3',
 				'underscore': 'lib/underscore',
@@ -70,12 +71,20 @@
 				'mediator': 'service/mediator',
 				'router': 'service/router',
 				'device': 'service/device',
+				'db': 'service/db',
 				// core
 				'initCore': 'app/core/init-core',
 				'BaseView': 'app/core/base-view',
 				'PopupView': 'app/core/popup-view'
 
+			},
+
+			shim: {
+				Firebase: {
+					'exports': 'Firebase'
+				}
 			}
+
 		});
 
 		if (isUglify) {
