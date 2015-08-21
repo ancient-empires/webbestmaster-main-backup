@@ -110,6 +110,9 @@ define(['underscore', 'backbone', 'mediator', 'log'], function (_, bb, mediator,
 
 	mediator.installTo(router);
 
+	router.subscribe('router-route-to-popup', router.routeToPopup);
+	router.subscribe('router-hide-popup', router.hidePopup);
+
 	router.on('route:route', function (url) {
 		this.publish('url', url);
 		log('url -', url);

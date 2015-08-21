@@ -1,4 +1,4 @@
-define(['jquery', 'backbone', 'router', 'log', 'BaseView'], function ($, bb, router, log, BaseView) {
+define(['jquery', 'backbone', 'log', 'BaseView'], function ($, bb, log, BaseView) {
 
 	'use strict';
 
@@ -18,7 +18,7 @@ define(['jquery', 'backbone', 'router', 'log', 'BaseView'], function ($, bb, rou
 
 		initialize: function(dataArg) { // timeout, cssClass, from, data {text, header ...}, append$el, sound, onShow {context, fn}, onHide {context, fn}
 
-			router.routeToPopup();
+			//router.routeToPopup();
 
 			var view = this,
 				data = dataArg || {},
@@ -26,6 +26,8 @@ define(['jquery', 'backbone', 'router', 'log', 'BaseView'], function ($, bb, rou
 				onHideDeferred = $.Deferred(),
 				onShowPromise = onShowDeferred.promise(),
 				onHidePromise = onHideDeferred.promise();
+
+			view.publish('router-route-to-popup');
 
 			view.unsubscribe();
 			view.subscribe('hide-popup', view.hide);
@@ -70,8 +72,7 @@ define(['jquery', 'backbone', 'router', 'log', 'BaseView'], function ($, bb, rou
 
 			if (timeout) {
 				view.data.timeoutId = setTimeout(function () {
-					//view.publish('hide-popup');
-					router.hidePopup();
+					view.publish('router-hide-popup');
 				}, timeout);
 			}
 
@@ -121,13 +122,18 @@ define(['jquery', 'backbone', 'router', 'log', 'BaseView'], function ($, bb, rou
 
 			view.showOutAnimation().then(function () {
 
-				var onHide = view.data.onHide,
+				var data = view.data,
+					onHide = data.onHide,
 					context;
+
+				data.onShowDeferred.resolve();
 
 				if (onHide) {
 					context = onHide.context || view;
 					context[onHide.fn].apply(context, onHide.args);
 				}
+
+				data.onHideDeferred.resolve();
 
 				BaseView.prototype.hide.call(view);
 
@@ -164,7 +170,6 @@ define(['jquery', 'backbone', 'router', 'log', 'BaseView'], function ($, bb, rou
 				animationEnd = view.info.get('animationEnd', true);
 
 			$container.one(animationEnd, function () {
-				view.data.onHideDeferred.resolve();
 				deferred.resolve();
 			}); // work only one time
 

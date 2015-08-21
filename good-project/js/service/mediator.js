@@ -1,4 +1,4 @@
-define(function () {
+define(['log'], function (log) {
 
 	var mediator;
 
@@ -18,6 +18,8 @@ define(function () {
 
 	function publish(channel) {
 
+		log('publish -', channel);
+
 		var list = mediator.channels[channel],
 			args;
 
@@ -26,6 +28,8 @@ define(function () {
 		}
 
 		args = Array.prototype.slice.call(arguments, 1);
+
+		log(args);
 
 		list.forEach(function (item) {
 			item.callback.apply(item.context, args);

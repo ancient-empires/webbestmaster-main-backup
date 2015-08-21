@@ -134,7 +134,7 @@ define(['underscore', 'jquery', 'backbone', 'mediator', 'router', 'templateMaste
 				deferred = $.Deferred();
 
 			if ( _.contains(data.except, view) ) {
-				log(view, 'not!!');
+				log('excepted view -',  view);
 				return;
 			}
 
