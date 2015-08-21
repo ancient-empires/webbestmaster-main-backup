@@ -19,7 +19,11 @@ define(['Firebase', 'mediator', 'log'], function (Firebase, mediator, log) {
 
 			db.set('db', fireBase);
 
-			log('firebase init');
+			log('Firebase init');
+
+			mediator.installTo(db);
+
+			db.subscribe('register-user', db.registerUser);
 
 			//db.bindLeaderBordListener();
 
@@ -32,11 +36,24 @@ define(['Firebase', 'mediator', 'log'], function (Firebase, mediator, log) {
 
 		get: function (key) {
 			return this.attr[key];
+		},
+
+		registerUser: function (dataArg) {
+
+			var base = this,
+				db = base.get('db'),
+				data = dataArg || {};
+
+			data.id = Math.random();
+
+			db.child('/user').push(data);
+
+			log('try to reg user', data);
+
+
 		}
 
 	};
-
-	mediator.installTo(db);
 
 	db.init();
 

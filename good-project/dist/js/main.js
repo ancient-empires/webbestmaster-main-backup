@@ -13493,7 +13493,33 @@ return jQuery;
 
 }));
 
-define('mediator',[],function () {
+define('log',[],function () {
+
+	
+
+	var logger = {
+		isEnable: true,
+		on: function () {
+			console.log('Logger is Enabled');
+			this.isEnable = true;
+		},
+		off: function () {
+			console.log('Logger is Disabled');
+			this.isEnable = false;
+		},
+		log: function () {
+			return this.isEnable && console.log.apply(console, arguments);
+		}
+	};
+
+	function log() {
+		return logger.log.apply(logger, arguments);
+	}
+
+	return log;
+
+});
+define('mediator',['log'], function (log) {
 
 	var mediator;
 
@@ -13513,6 +13539,8 @@ define('mediator',[],function () {
 
 	function publish(channel) {
 
+		log('publish -', channel);
+
 		var list = mediator.channels[channel],
 			args;
 
@@ -13521,6 +13549,8 @@ define('mediator',[],function () {
 		}
 
 		args = Array.prototype.slice.call(arguments, 1);
+
+		log(args);
 
 		list.forEach(function (item) {
 			item.callback.apply(item.context, args);
@@ -13573,32 +13603,6 @@ define('mediator',[],function () {
 	};
 
 	return mediator;
-
-});
-define('log',[],function () {
-
-	
-
-	var logger = {
-		isEnable: true,
-		on: function () {
-			console.log('Logger is Enabled');
-			this.isEnable = true;
-		},
-		off: function () {
-			console.log('Logger is Disabled');
-			this.isEnable = false;
-		},
-		log: function () {
-			return this.isEnable && console.log.apply(console, arguments);
-		}
-	};
-
-	function log() {
-		return logger.log.apply(logger, arguments);
-	}
-
-	return log;
 
 });
 define('router',['underscore', 'backbone', 'mediator', 'log'], function (_, bb, mediator, log) {
@@ -13712,6 +13716,9 @@ define('router',['underscore', 'backbone', 'mediator', 'log'], function (_, bb, 
 	router = new Router();
 
 	mediator.installTo(router);
+
+	router.subscribe('router-route-to-popup', router.routeToPopup);
+	router.subscribe('router-hide-popup', router.hidePopup);
 
 	router.on('route:route', function (url) {
 		this.publish('url', url);
@@ -14218,7 +14225,7 @@ define('BaseView',['underscore', 'jquery', 'backbone', 'mediator', 'router', 'te
 				deferred = $.Deferred();
 
 			if ( _.contains(data.except, view) ) {
-				log(view, 'not!!');
+				log('excepted view -',  view);
 				return;
 			}
 
@@ -14308,7 +14315,7 @@ define('BaseView',['underscore', 'jquery', 'backbone', 'mediator', 'router', 'te
 	});
 
 });
-define('PopupView',['jquery', 'backbone', 'router', 'log', 'BaseView'], function ($, bb, router, log, BaseView) {
+define('PopupView',['jquery', 'backbone', 'log', 'BaseView'], function ($, bb, log, BaseView) {
 
 	
 
@@ -14328,7 +14335,7 @@ define('PopupView',['jquery', 'backbone', 'router', 'log', 'BaseView'], function
 
 		initialize: function(dataArg) { // timeout, cssClass, from, data {text, header ...}, append$el, sound, onShow {context, fn}, onHide {context, fn}
 
-			router.routeToPopup();
+			//router.routeToPopup();
 
 			var view = this,
 				data = dataArg || {},
@@ -14336,6 +14343,8 @@ define('PopupView',['jquery', 'backbone', 'router', 'log', 'BaseView'], function
 				onHideDeferred = $.Deferred(),
 				onShowPromise = onShowDeferred.promise(),
 				onHidePromise = onHideDeferred.promise();
+
+			view.publish('router-route-to-popup');
 
 			view.unsubscribe();
 			view.subscribe('hide-popup', view.hide);
@@ -14380,8 +14389,7 @@ define('PopupView',['jquery', 'backbone', 'router', 'log', 'BaseView'], function
 
 			if (timeout) {
 				view.data.timeoutId = setTimeout(function () {
-					//view.publish('hide-popup');
-					router.hidePopup();
+					view.publish('router-hide-popup');
 				}, timeout);
 			}
 
@@ -14431,13 +14439,18 @@ define('PopupView',['jquery', 'backbone', 'router', 'log', 'BaseView'], function
 
 			view.showOutAnimation().then(function () {
 
-				var onHide = view.data.onHide,
+				var data = view.data,
+					onHide = data.onHide,
 					context;
+
+				data.onShowDeferred.resolve();
 
 				if (onHide) {
 					context = onHide.context || view;
 					context[onHide.fn].apply(context, onHide.args);
 				}
+
+				data.onHideDeferred.resolve();
 
 				BaseView.prototype.hide.call(view);
 
@@ -14474,7 +14487,6 @@ define('PopupView',['jquery', 'backbone', 'router', 'log', 'BaseView'], function
 				animationEnd = view.info.get('animationEnd', true);
 
 			$container.one(animationEnd, function () {
-				view.data.onHideDeferred.resolve();
 				deferred.resolve();
 			}); // work only one time
 

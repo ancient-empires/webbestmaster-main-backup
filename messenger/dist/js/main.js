@@ -14104,7 +14104,11 @@ define('db',['Firebase', 'mediator', 'log'], function (Firebase, mediator, log) 
 
 			db.set('db', fireBase);
 
-			log('firebase init');
+			log('Firebase init');
+
+			mediator.installTo(db);
+
+			db.subscribe('register-user', db.registerUser);
 
 			//db.bindLeaderBordListener();
 
@@ -14117,11 +14121,24 @@ define('db',['Firebase', 'mediator', 'log'], function (Firebase, mediator, log) 
 
 		get: function (key) {
 			return this.attr[key];
+		},
+
+		registerUser: function (dataArg) {
+
+			var base = this,
+				db = base.get('db'),
+				data = dataArg || {};
+
+			data.id = Math.random();
+
+			db.child('/user').push(data);
+
+			log('try to reg user', data);
+
+
 		}
 
 	};
-
-	mediator.installTo(db);
 
 	db.init();
 
@@ -14807,12 +14824,13 @@ define('PopupView',['jquery', 'backbone', 'log', 'BaseView'], function ($, bb, l
 	});
 
 });
-define('app/home/home-view',['jquery', 'backbone', 'BaseView', 'PopupView'], function ($, bb, BaseView, PopupView) {
+define('app/home/home-view',['jquery', 'backbone', 'BaseView', 'PopupView', 'underscore', 'log'], function ($, bb, BaseView, PopupView, _, log) {
 
 	return BaseView.extend({
 
 		events: {
-			'click .js-show-popup': 'showPopupView'
+			'click .js-show-popup': 'showPopupView',
+			'click .js-register': 'register'
 		},
 
 		selectors: {
@@ -14843,6 +14861,43 @@ define('app/home/home-view',['jquery', 'backbone', 'BaseView', 'PopupView'], fun
 			popup.data.onShowPromise.then(function () {
 				console.log('show popup');
 			});
+
+		},
+
+		collectRegisterData: function () {
+
+			var $el = this.$el,
+				data = {},
+				map = {
+					login: '.js-register-login',
+					email: '.js-register-email',
+					password: '.js-register-password'
+				};
+
+			_.each(map, function (selector, key) {
+				data[key] = $el.find(selector).val();
+			});
+
+			return data;
+
+		},
+
+		register: function () {
+
+			var view = this,
+				data = view.collectRegisterData();
+
+			view.subscribe('register-successful', function () {
+				log('user register successful');
+				this.unsubscribe('register-successful');
+			});
+
+			view.subscribe('register-failed', function () {
+				log('user register failed');
+				this.unsubscribe('register-failed');
+			});
+
+			view.publish('register-user', data);
 
 		}
 
