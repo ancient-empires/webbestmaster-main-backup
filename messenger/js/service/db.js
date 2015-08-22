@@ -44,6 +44,7 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 			base.subscribe('login-user', base.loginUser);
 			base.subscribe('auto-login-user', base.autoLoggingUser);
 			base.subscribe('add-user-to-contact-list', base.addUserToContactList);
+			base.subscribe('send-message', base.sendMessage);
 
 		},
 
@@ -177,6 +178,28 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 			db.child('/users/' + dbHash + '/contacts').once('value', function (snap) {
 				base.publish('update-contact-list', { list: snap.val() });
 			});
+
+		},
+
+		sendMessage: function (dataArg) {
+
+			var base = this,
+				db = base.get('db'),
+				data = dataArg || {},
+				senderId = user.get('id'),
+				acceptorId = data.to,
+				text = data.text,
+				conversationId = [senderId, acceptorId].sort().join('');
+
+			db.child('/conversation/' + conversationId).push({
+				text: text,
+				from: senderId
+			});
+
+
+
+			console.log(data);
+
 
 		}
 

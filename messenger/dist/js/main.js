@@ -14636,6 +14636,7 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 			base.subscribe('login-user', base.loginUser);
 			base.subscribe('auto-login-user', base.autoLoggingUser);
 			base.subscribe('add-user-to-contact-list', base.addUserToContactList);
+			base.subscribe('send-message', base.sendMessage);
 
 		},
 
@@ -14769,6 +14770,28 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 			db.child('/users/' + dbHash + '/contacts').once('value', function (snap) {
 				base.publish('update-contact-list', { list: snap.val() });
 			});
+
+		},
+
+		sendMessage: function (dataArg) {
+
+			var base = this,
+				db = base.get('db'),
+				data = dataArg || {},
+				senderId = user.get('id'),
+				acceptorId = data.to,
+				text = data.text,
+				conversationId = [senderId, acceptorId].sort().join('');
+
+			db.child('/conversation/' + conversationId).push({
+				text: text,
+				from: senderId
+			});
+
+
+
+			console.log(data);
+
 
 		}
 
@@ -15335,12 +15358,14 @@ define('app/main/main-view',['jquery', 'backbone', 'BaseView', 'db', 'log'], fun
 
 		events: {
 			'input .js-search': 'search',
-			'click .js-add-user': 'addUser'
+			'click .js-add-user': 'addUser',
+			'click .js-send-message': 'sendMessage'
 		},
 
 		selectors: {
 			searchResult: '.js-search-result',
-			search: '.js-search'
+			search: '.js-search',
+			message: '.js-message'
 		},
 
 		initialize: function () {
@@ -15415,6 +15440,19 @@ define('app/main/main-view',['jquery', 'backbone', 'BaseView', 'db', 'log'], fun
 			});
 
 			view.$el.find('.js-contact-list').html(view.tmpl['contact-list']({ list: list}));
+
+		},
+
+		sendMessage: function () {
+
+			var view = this,
+				$text = view.$el.find(view.selectors.message),
+				text = $text.val();
+
+			view.publish('send-message', {
+				to: '2a440602246a90d34e45faaef79842b943aa639a',
+				text: text
+			});
 
 		}
 

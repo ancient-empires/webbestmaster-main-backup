@@ -4,12 +4,14 @@ define(['jquery', 'backbone', 'BaseView', 'db', 'log'], function ($, bb, BaseVie
 
 		events: {
 			'input .js-search': 'search',
-			'click .js-add-user': 'addUser'
+			'click .js-add-user': 'addUser',
+			'click .js-send-message': 'sendMessage'
 		},
 
 		selectors: {
 			searchResult: '.js-search-result',
-			search: '.js-search'
+			search: '.js-search',
+			message: '.js-message'
 		},
 
 		initialize: function () {
@@ -84,6 +86,19 @@ define(['jquery', 'backbone', 'BaseView', 'db', 'log'], function ($, bb, BaseVie
 			});
 
 			view.$el.find('.js-contact-list').html(view.tmpl['contact-list']({ list: list}));
+
+		},
+
+		sendMessage: function () {
+
+			var view = this,
+				$text = view.$el.find(view.selectors.message),
+				text = $text.val();
+
+			view.publish('send-message', {
+				to: '2a440602246a90d34e45faaef79842b943aa639a',
+				text: text
+			});
 
 		}
 
