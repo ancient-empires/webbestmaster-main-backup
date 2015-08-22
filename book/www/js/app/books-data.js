@@ -9,7 +9,7 @@
 		'ru': [
 			{
 				"folder": "baba-yaga-i-yagody",
-				"title": {"text": "Аудио сказка Баба Яга и ягоды", "img": "title.jpg"},
+				"title": {"text": "Баба Яга и ягоды", "img": "title.jpg"},
 				"pages": [
 					{
 						"text": "",
