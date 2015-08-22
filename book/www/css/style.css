@@ -141,6 +141,7 @@
 	border-radius: 3rem;
 	margin: 0 0.8rem 0.6rem;
 	box-shadow: 0.1rem 0.1rem 0.6rem rgba(0, 0, 0, 0.4);
+	text-decoration: none;
 }
 
 .books-list-wrapper {
