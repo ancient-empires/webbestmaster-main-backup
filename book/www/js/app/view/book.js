@@ -411,7 +411,7 @@
 							booksData = win.APP.booksData,
 							util = win.APP.util,
 							books = util.copyJSON(booksData[languageName]),
-							book = util.assortArray(books)[0];
+							book = util.assortArray(books)[6];
 
 						new win.APP.BB.BookView({
 							bookFolder: book.folder
