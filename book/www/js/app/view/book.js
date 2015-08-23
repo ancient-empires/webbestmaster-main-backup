@@ -409,9 +409,9 @@
 						var info = view.info,
 							languageName = info.get('language'),
 							booksData = win.APP.booksData,
-							util = win.APP.util,
-							books = util.copyJSON(booksData[languageName]),
-							book = util.assortArray(books)[6];
+							books = booksData[languageName],
+							index = Math.floor(books.length * Math.random()),
+							book = books[index];
 
 						new win.APP.BB.BookView({
 							bookFolder: book.folder
