@@ -43,7 +43,7 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 			base.subscribe('register-user', base.registerUser);
 			base.subscribe('login-user', base.loginUser);
 			base.subscribe('auto-login-user', base.autoLoggingUser);
-			base.subscribe('add-user-to-contact-list', base.addUserToContactList);
+			base.subscribe('send-request-to-user', base.sendRequestToUser);
 			base.subscribe('send-message', base.sendMessage);
 
 		},
@@ -154,7 +154,7 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 
 		},
 
-		addUserToContactList: function (dataArg) {
+		sendRequestToUser: function (dataArg) {
 
 			var base = this,
 				data = dataArg || {},
@@ -163,23 +163,23 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 
 			db.child('/users/' + dbHash + '/contacts').push(data.userId, function () {
 
-				base.getContactList();
+				//base.getContactList();
 
 			});
 
 		},
 
-		getContactList: function () {
-
-			var base = this,
-				db = base.get('db'),
-				dbHash = base.get('db-hash');
-
-			db.child('/users/' + dbHash + '/contacts').once('value', function (snap) {
-				base.publish('update-contact-list', { list: snap.val() });
-			});
-
-		},
+		//getContactList: function () {
+		//
+		//	var base = this,
+		//		db = base.get('db'),
+		//		dbHash = base.get('db-hash');
+		//
+		//	db.child('/users/' + dbHash + '/contacts').once('value', function (snap) {
+		//		base.publish('update-contact-list', { list: snap.val() });
+		//	});
+		//
+		//},
 
 		sendMessage: function (dataArg) {
 

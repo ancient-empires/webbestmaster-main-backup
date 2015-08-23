@@ -4,7 +4,7 @@ define(['jquery', 'backbone', 'BaseView', 'db', 'log'], function ($, bb, BaseVie
 
 		events: {
 			'input .js-search': 'search',
-			'click .js-add-user': 'addUser',
+			'click .js-send-request': 'sendRequest',
 			'click .js-send-message': 'sendMessage'
 		},
 
@@ -65,13 +65,13 @@ define(['jquery', 'backbone', 'BaseView', 'db', 'log'], function ($, bb, BaseVie
 
 		},
 
-		addUser: function (e) {
+		sendRequest: function (e) {
 
 			var view = this,
 				$this = $(e.currentTarget),
 				userId = $this.attr('data-user-id');
 
-			view.publish('add-user-to-contact-list', { userId: userId });
+			view.publish('send-request-to-user', { userId: userId });
 
 		},
 

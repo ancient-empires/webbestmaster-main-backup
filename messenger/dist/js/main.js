@@ -14635,7 +14635,7 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 			base.subscribe('register-user', base.registerUser);
 			base.subscribe('login-user', base.loginUser);
 			base.subscribe('auto-login-user', base.autoLoggingUser);
-			base.subscribe('add-user-to-contact-list', base.addUserToContactList);
+			base.subscribe('send-request-to-user', base.sendRequestToUser);
 			base.subscribe('send-message', base.sendMessage);
 
 		},
@@ -14746,7 +14746,7 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 
 		},
 
-		addUserToContactList: function (dataArg) {
+		sendRequestToUser: function (dataArg) {
 
 			var base = this,
 				data = dataArg || {},
@@ -14755,23 +14755,23 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 
 			db.child('/users/' + dbHash + '/contacts').push(data.userId, function () {
 
-				base.getContactList();
+				//base.getContactList();
 
 			});
 
 		},
 
-		getContactList: function () {
-
-			var base = this,
-				db = base.get('db'),
-				dbHash = base.get('db-hash');
-
-			db.child('/users/' + dbHash + '/contacts').once('value', function (snap) {
-				base.publish('update-contact-list', { list: snap.val() });
-			});
-
-		},
+		//getContactList: function () {
+		//
+		//	var base = this,
+		//		db = base.get('db'),
+		//		dbHash = base.get('db-hash');
+		//
+		//	db.child('/users/' + dbHash + '/contacts').once('value', function (snap) {
+		//		base.publish('update-contact-list', { list: snap.val() });
+		//	});
+		//
+		//},
 
 		sendMessage: function (dataArg) {
 
@@ -15358,7 +15358,7 @@ define('app/main/main-view',['jquery', 'backbone', 'BaseView', 'db', 'log'], fun
 
 		events: {
 			'input .js-search': 'search',
-			'click .js-add-user': 'addUser',
+			'click .js-send-request': 'sendRequest',
 			'click .js-send-message': 'sendMessage'
 		},
 
@@ -15419,13 +15419,13 @@ define('app/main/main-view',['jquery', 'backbone', 'BaseView', 'db', 'log'], fun
 
 		},
 
-		addUser: function (e) {
+		sendRequest: function (e) {
 
 			var view = this,
 				$this = $(e.currentTarget),
 				userId = $this.attr('data-user-id');
 
-			view.publish('add-user-to-contact-list', { userId: userId });
+			view.publish('send-request-to-user', { userId: userId });
 
 		},
 
