@@ -59,7 +59,7 @@
 			_.each(books, function (book) {
 				_.each(book.pages, function (page) {
 
-					if ( page.sound ) {
+					if ( page.sound && !page.time ) {
 						srcList.push( ['books', language, book.folder, page.sound].join('/') );
 					}
 
