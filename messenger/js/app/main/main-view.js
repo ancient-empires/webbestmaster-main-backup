@@ -4,7 +4,7 @@ define(['jquery', 'backbone', 'BaseView', 'db', 'log'], function ($, bb, BaseVie
 
 		events: {
 			'input .js-search': 'search',
-			'click .js-send-request': 'sendRequest',
+			'click .js-send-friend-request': 'sendFriendRequest',
 			'click .js-send-message': 'sendMessage'
 		},
 
@@ -65,7 +65,7 @@ define(['jquery', 'backbone', 'BaseView', 'db', 'log'], function ($, bb, BaseVie
 
 		},
 
-		sendRequest: function (e) {
+		sendFriendRequest: function (e) {
 
 			var view = this,
 				$this = $(e.currentTarget),

@@ -14637,6 +14637,24 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 			base.subscribe('auto-login-user', base.autoLoggingUser);
 			base.subscribe('send-request-to-user', base.sendRequestToUser);
 			base.subscribe('send-message', base.sendMessage);
+			base.subscribe('login-successful', base.bindUserListeners);
+
+		},
+
+		bindUserListeners: function () {
+
+			var base = this,
+				db = base.get('db'),
+				userDataDbHash = base.get('user-data-db-hash');
+
+			// find userData db-hash
+			db.child('/usersData/' + userDataDbHash + '/inputs').on('child_added', function () {
+
+				debugger
+
+				console.log(arguments);
+
+			});
 
 		},
 
@@ -14680,12 +14698,29 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 			db.child('/users').orderByChild('hash').equalTo(hash).once('value', function (snap) {
 
 				var userData = snap.val(),
-					dbHash;
+					dbHash,
+					userId;
+
+				debugger
 
 				if (userData) {
 					dbHash = _.keys(userData)[0];
-					base.publish('login-successful', userData[dbHash]);
+					userData = userData[dbHash];
 					base.set('db-hash', dbHash);
+					userId = userData.id;
+					base.set('user-id', userId);
+
+					db.child('/usersData').orderByChild('id').equalTo(userId).once('value', function (snap) {
+
+						var data = snap.val(),
+							userDataDbHash = _.keys(data)[0];
+
+						base.set('user-data-db-hash', userDataDbHash);
+						base.publish('login-successful', userData);
+
+					});
+
+
 				} else {
 					base.publish('login-failed');
 				}
@@ -14710,9 +14745,22 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 
 				if (userData) {
 					dbHash = _.keys(userData)[0];
-					base.publish('login-successful', userData[dbHash]);
+					userData = userData[dbHash];
 					base.set('db-hash', dbHash);
-					log('db-hash', dbHash);
+					userId = userData.id;
+					base.set('user-id', userId);
+
+					db.child('/usersData').orderByChild('id').equalTo(userId).once('value', function (snap) {
+
+						var data = snap.val(),
+							userDataDbHash = _.keys(data)[0];
+
+						base.set('user-data-db-hash', userDataDbHash);
+						base.publish('login-successful', userData);
+
+					});
+
+
 				} else {
 					base.publish('auto-login-failed');
 				}
@@ -14750,14 +14798,27 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 
 			var base = this,
 				data = dataArg || {},
-				db = base.get('db'),
-				dbHash = base.get('db-hash');
+				db = base.get('db');
 
-			db.child('/users/' + dbHash + '/contacts').push(data.userId, function () {
+			db.child('/usersData').orderByChild('id').equalTo(data.userId).once('value', function (snap) {
+
+				var data = snap.val(),
+					key = _.keys(data)[0];
+
+				db.child('/usersData/' + key + '/inputs').push({
+					type: 'request-to-user',
+					from: base.get('user-id')
+				});
+
+				//debugger
+
+			});
+
+			//db.child('/users/' + dbHash + '/contacts').push(data.userId, function () {
 
 				//base.getContactList();
 
-			});
+			//});
 
 		},
 
@@ -15358,7 +15419,7 @@ define('app/main/main-view',['jquery', 'backbone', 'BaseView', 'db', 'log'], fun
 
 		events: {
 			'input .js-search': 'search',
-			'click .js-send-request': 'sendRequest',
+			'click .js-send-friend-request': 'sendFriendRequest',
 			'click .js-send-message': 'sendMessage'
 		},
 
@@ -15419,7 +15480,7 @@ define('app/main/main-view',['jquery', 'backbone', 'BaseView', 'db', 'log'], fun
 
 		},
 
-		sendRequest: function (e) {
+		sendFriendRequest: function (e) {
 
 			var view = this,
 				$this = $(e.currentTarget),
