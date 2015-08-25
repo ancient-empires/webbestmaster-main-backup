@@ -923,7 +923,7 @@
 			},
 			{
 				"folder": "nesmeyana-tsarevna",
-				"title": {"text": "", "img": "title.jpg"},
+				"title": {"text": "Несмеяна-царевна", "img": "title.jpg"},
 				"pages": [
 					{
 						"text": "",
@@ -983,7 +983,7 @@
 			},
 			{
 				"folder": "kroshechka-khavroshechka",
-				"title": {"text": "", "img": "title.jpg"},
+				"title": {"text": "Крошечка-Хаврошечка", "img": "title.jpg"},
 				"pages": [
 					{
 						"text": "",
