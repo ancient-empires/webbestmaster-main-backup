@@ -861,7 +861,6 @@
 					}
 				]
 			},
-
 			{
 				"folder": "zimove-zverey",
 				"title": {"text": "Зимовье зверей", "img": "title.jpg"},
@@ -919,6 +918,144 @@
 						"img": "zimove-zverey-09.jpg",
 						"sound": "zimove-zverey-09.mp3",
 						"time": 26.97425
+					}
+				]
+			},
+			{
+				"folder": "nesmeyana-tsarevna",
+				"title": {"text": "", "img": "title.jpg"},
+				"pages": [
+					{
+						"text": "",
+						"img": "nesmeyana-tsarevna-01.jpg",
+						"sound": "nesmeyana-tsarevna-01.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "nesmeyana-tsarevna-02.jpg",
+						"sound": "nesmeyana-tsarevna-02.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "nesmeyana-tsarevna-03.jpg",
+						"sound": "nesmeyana-tsarevna-03.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "nesmeyana-tsarevna-04.jpg",
+						"sound": "nesmeyana-tsarevna-04.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "nesmeyana-tsarevna-05.jpg",
+						"sound": "nesmeyana-tsarevna-05.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "nesmeyana-tsarevna-06.jpg",
+						"sound": "nesmeyana-tsarevna-06.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "nesmeyana-tsarevna-07.jpg",
+						"sound": "nesmeyana-tsarevna-07.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "nesmeyana-tsarevna-08.jpg",
+						"sound": "nesmeyana-tsarevna-08.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "nesmeyana-tsarevna-09.jpg",
+						"sound": "nesmeyana-tsarevna-09.mp3",
+						"time": 0
+					}
+				]
+			},
+			{
+				"folder": "kroshechka-khavroshechka",
+				"title": {"text": "", "img": "title.jpg"},
+				"pages": [
+					{
+						"text": "",
+						"img": "kroshechka-khavroshechka-01.jpg",
+						"sound": "kroshechka-khavroshechka-01.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "kroshechka-khavroshechka-02.jpg",
+						"sound": "kroshechka-khavroshechka-02.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "kroshechka-khavroshechka-03.jpg",
+						"sound": "kroshechka-khavroshechka-03.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "kroshechka-khavroshechka-04.jpg",
+						"sound": "kroshechka-khavroshechka-04.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "kroshechka-khavroshechka-05.jpg",
+						"sound": "kroshechka-khavroshechka-05.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "kroshechka-khavroshechka-06.jpg",
+						"sound": "kroshechka-khavroshechka-06.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "kroshechka-khavroshechka-07.jpg",
+						"sound": "kroshechka-khavroshechka-07.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "kroshechka-khavroshechka-08.jpg",
+						"sound": "kroshechka-khavroshechka-08.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "kroshechka-khavroshechka-09.jpg",
+						"sound": "kroshechka-khavroshechka-09.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "kroshechka-khavroshechka-10.jpg",
+						"sound": "kroshechka-khavroshechka-10.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "kroshechka-khavroshechka-11.jpg",
+						"sound": "kroshechka-khavroshechka-11.mp3",
+						"time": 0
+					},
+					{
+						"text": "",
+						"img": "kroshechka-khavroshechka-12.jpg",
+						"sound": "kroshechka-khavroshechka-12.mp3",
+						"time": 0
 					}
 				]
 			}
