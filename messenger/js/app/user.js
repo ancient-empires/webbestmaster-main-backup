@@ -43,7 +43,7 @@ define(['backbone', 'mediator', 'log', 'info', 'db'], function (bb, mediator, lo
 				url: 'main'
 			});
 
-			user.publish('update-contact-list', {list: data.contacts} );
+			user.publish('db-get-contacts');
 
 		}
 

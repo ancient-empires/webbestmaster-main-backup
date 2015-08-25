@@ -46,6 +46,7 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 			base.subscribe('send-request-to-user', base.sendRequestToUser);
 			base.subscribe('send-message', base.sendMessage);
 			base.subscribe('login-successful', base.bindUserListeners);
+			base.subscribe('db-get-contacts', base.getContactList);
 
 		},
 
@@ -56,13 +57,46 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 				userDataDbHash = base.get('user-data-db-hash');
 
 			// find userData db-hash
-			db.child('/usersData/' + userDataDbHash + '/inputs').on('child_added', function () {
+			db.child('/usersData/' + userDataDbHash + '/inputs').on('child_added', function (snap) {
 
-				debugger
+				var data = snap.val();
 
-				console.log(arguments);
+				log('new request from', data.from);
+				log('auto accept request');
+
+				base.acceptRequest(data);
 
 			});
+
+		},
+
+		acceptRequest: function (dataArg) {
+
+			var base = this,
+				data = dataArg || {},
+				db = base.get('db'),
+				meId = base.get('user-id'),
+				meDataDbHash = base.get('user-data-db-hash'),
+				requesterId = dataArg.from,
+				requesterDataDbHash;
+
+			db.child('/usersData').orderByChild('id').equalTo(requesterId).once('value', function (snap) {
+
+				var data = snap.val();
+				requesterDataDbHash = _.keys(data)[0];
+
+				// add to contacts to both users
+				db.child('/usersData/' + meDataDbHash + '/contacts').push({
+					id: requesterId
+				});
+
+				db.child('/usersData/' + requesterDataDbHash + '/contacts').push({
+					id: meId
+				});
+
+			});
+
+			// base.set('user-data-db-hash', userDataDbHash);
 
 		},
 
@@ -209,17 +243,18 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 
 		},
 
-		//getContactList: function () {
-		//
-		//	var base = this,
-		//		db = base.get('db'),
-		//		dbHash = base.get('db-hash');
-		//
-		//	db.child('/users/' + dbHash + '/contacts').once('value', function (snap) {
-		//		base.publish('update-contact-list', { list: snap.val() });
-		//	});
-		//
-		//},
+		getContactList: function () {
+
+			var base = this,
+				db = base.get('db'),
+				//dbHash = base.get('db-hash'),
+				userDataDbHash = base.get('user-data-db-hash');
+
+			db.child('/usersData/' + userDataDbHash + '/contacts').once('value', function (snap) {
+				base.publish('update-contact-list', { list: snap.val() });
+			});
+
+		},
 
 		sendMessage: function (dataArg) {
 
@@ -235,11 +270,6 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 				text: text,
 				from: senderId
 			});
-
-
-
-			console.log(data);
-
 
 		}
 
