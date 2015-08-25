@@ -97,19 +97,26 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 		loginUser: function (dataArg) {
 
 			var base = this,
-				db = base.get('db'),
+				//db = base.get('db'),
 				data = dataArg || {},
 				hash = sha1.hash(data.login + data.password);
 
 			log('try to login ', data);
+
+			base.loginUserProceed(hash);
+
+		},
+
+		loginUserProceed: function (hash) {
+
+			var base = this,
+				db = base.get('db');
 
 			db.child('/users').orderByChild('hash').equalTo(hash).once('value', function (snap) {
 
 				var userData = snap.val(),
 					dbHash,
 					userId;
-
-				debugger
 
 				if (userData) {
 					dbHash = _.keys(userData)[0];
@@ -140,40 +147,13 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 		autoLoggingUser: function (dataArg) {
 
 			var base = this,
-				db = base.get('db'),
+				//db = base.get('db'),
 				data = dataArg || {},
 				hash = data.hash || '';
 
 			log('try to auto login', hash);
 
-			db.child('/users').orderByChild('hash').equalTo(hash).once('value', function (snap) {
-
-				var userData = snap.val(),
-					dbHash;
-
-				if (userData) {
-					dbHash = _.keys(userData)[0];
-					userData = userData[dbHash];
-					base.set('db-hash', dbHash);
-					userId = userData.id;
-					base.set('user-id', userId);
-
-					db.child('/usersData').orderByChild('id').equalTo(userId).once('value', function (snap) {
-
-						var data = snap.val(),
-							userDataDbHash = _.keys(data)[0];
-
-						base.set('user-data-db-hash', userDataDbHash);
-						base.publish('login-successful', userData);
-
-					});
-
-
-				} else {
-					base.publish('auto-login-failed');
-				}
-
-			});
+			base.loginUserProceed(hash);
 
 		},
 
@@ -225,7 +205,6 @@ define(['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase, medi
 			//db.child('/users/' + dbHash + '/contacts').push(data.userId, function () {
 
 				//base.getContactList();
-
 			//});
 
 		},

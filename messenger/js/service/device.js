@@ -87,7 +87,7 @@ define(['jquery', 'backbone', 'mediator'], function ($, bb, mediator) {
 
 	device.onResize();
 
-	device.checkInternetConnection();
+	//device.checkInternetConnection();
 
 	return device;
 
