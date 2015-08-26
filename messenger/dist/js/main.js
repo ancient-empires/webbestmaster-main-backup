@@ -14686,6 +14686,15 @@ define('db',['Firebase', 'mediator', 'log', 'sha1', 'user'], function (Firebase,
 					id: meId
 				});
 
+				db.child('/usersData/' + meDataDbHash + '/inputs').orderByChild('from').equalTo(requesterId).once('value', function (snap) {
+
+					var data = snap.val(),
+						key = _.keys(data)[0];
+
+					db.child('/usersData/' + meDataDbHash + '/inputs/' + key).remove();
+
+				});
+
 			});
 
 			// base.set('user-data-db-hash', userDataDbHash);
