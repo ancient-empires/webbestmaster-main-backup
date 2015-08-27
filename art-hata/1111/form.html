@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+	<!-- mobile device -->
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- add site icon -->
+	<link rel="icon" href="i/favicon.ico" type="image/x-icon">
+
+	<!-- iPhone icon -->
+	<link rel="apple-touch-icon" href="i/iphone.jpg"/>
+
+	<!-- keywords and description -->
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+</head>
+<body>
+
+	<div class="js-form-container" style="display: none;">
+
+		<div class="js-request-form-wrapper request-form-wrapper">
+			<div class="js-close-form request-form-wrapper-close">close form</div>
+			<form>
+				<input type="text" name="name" placeholder="Enter your name" />
+				<input type="email" name="email" placeholder="E-mail" />
+				<input type="tel" name="tel" required placeholder="+375-..-...-..-.." value="+375 " />
+				<textarea name="content" placeholder="Couple of word about your self..." ></textarea>
+				<input type="file" name="files" multiple title="Загрузите одну или несколько фотографий" />
+				<input type="submit" value="send" />
+			</form>
+		</div>
+
+	</div>
+
+	<style>
+
+		.fade-for-form {
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 100;
+			background-color: rgba(0, 0, 0, 0.6);
+		}
+
+		.request-form-wrapper {
+			position: absolute;
+			width: 350px;
+			top: 20%;
+			left: 50%;
+			margin-left: -175px;
+			background-color: #fff;
+		}
+
+		.request-form-wrapper-close {
+			background-image: url(/buyme/templates/default/close.png);
+		}
+
+		.request-form-wrapper input,
+		.request-form-wrapper textarea {
+
+		}
+
+	</style>
+
+</body>
+</html>
