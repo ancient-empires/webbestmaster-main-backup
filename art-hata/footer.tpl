@@ -87,9 +87,20 @@ var CallBaseUrl = '//uptocall.com';
             <input type="text" name="name" placeholder="Enter your name" />
             <input type="email" name="email" placeholder="E-mail" />
             <input type="tel" name="tel" required placeholder="+375-..-...-..-.." value="+375 " />
+            <select name="works-type">
+                <option value="0">-- Выберите --</option>
+                <option value="Картины">Картины</option>
+                <option value="Скинали для кухни">Скинали для кухни</option>
+                <option value="Фотообои">Фотообои</option>
+                <option value="Широкоформатная печать">Широкоформатная печать</option>
+            </select>
             <textarea name="content" placeholder="Couple of word about your self..." ></textarea>
             <input type="file" name="files" multiple title="Загрузите одну или несколько фотографий" />
             <input type="submit" value="send" />
+
+            <input type="hidden" name="title" value="title"/>
+            <input type="hidden" name="extra" value=""/>
+
         </form>
     </div>
 

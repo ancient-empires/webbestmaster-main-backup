@@ -7,6 +7,8 @@ $content = $_POST['content'];
 $name = substr(htmlspecialchars(trim($_POST['name'])), 0, 100);
 $email = substr(htmlspecialchars(trim($_POST['email'])), 0, 100);
 $phone = substr(htmlspecialchars(trim($_POST['tel'])), 0, 100);//    'phone'   => '28071985',
+$extra = $_POST['extra'];
+$works_type = $_POST['works-type'];
 
 $mail = new PHPMailer();
 $mail->From = 'arthata.by';      // от кого
@@ -16,7 +18,7 @@ $mail->AddAddress('web.best.master@gmail.com', 'arthata.by'); // кому - ад
 $mail->IsHTML(true);        // выставляем формат письма HTML
 $mail->Subject = $title;  // тема письма
 
-$mail->Body = 'title - '.$title.'<br/ >name - '.$name.'<br/ >phone - '.$phone.'<br/ >email - '.$email.'<br/ >content - '.$content.'<br />';
+$mail->Body = 'title - '.$title.'<br/ >name - '.$name.'<br/ >phone - '.$phone.'<br/ >email - '.$email.'<br/ >content - '.$content.'<br />extra - '.$extra.'<br />works-type - '.$works_type;
 
 // add attachment
 // если было изображение/ия, то прикрепляем его в виде картинки к телу письма.

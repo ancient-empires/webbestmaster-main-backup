@@ -21,7 +21,11 @@
 
 			var $this = $(e.currentTarget),
 				inputs = $this.find('[name]'),
+				extra = $this.find('[name="extra"]'),
+				title = $this.find('[name="title"]'),
 				formData = new FormData();
+
+			extra.val( decodeURIComponent ('URL: ' + loc.href) );
 
 			inputs.each(function () {
 				var $this = $(this),
@@ -102,6 +106,8 @@
 		$body.append($fade);
 
 		bindFormEventListeners($fade.find('form'));
+
+		$form.find('[name="title"]').val($this.html());
 
 		return e && e.preventDefault && e.preventDefault();
 
