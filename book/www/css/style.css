@@ -54,6 +54,8 @@
 	margin-top: 0.5rem;
 	z-index: 1;
 	border-radius: 1rem;
+	-webkit-transition: background-color 0.3s linear;
+	transition: background-color 0.3s linear;
 }
 
 .active-on-off-indicator {
@@ -67,6 +69,8 @@
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 	box-shadow: 0.1rem 0.1rem 0.6rem rgba(0, 0, 0, 0.4);
+	-webkit-transition: -webkit-transform 0.3s linear;
+	transition: transform 0.3s linear;
 }
 
 .header-button.active-on-off {
@@ -74,7 +78,8 @@
 }
 
 .header-button.active-on-off .active-on-off-indicator {
-	float: right;
+	-webkit-transform: translate3d(1.3rem, 0, 0);
+	transform: translate3d(1.3rem, 0, 0);
 }
 
 .story-by-story-bg {
