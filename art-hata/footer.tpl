@@ -79,66 +79,164 @@ var CallBaseUrl = '//uptocall.com';
 })(window, document, 'script', 'cloud.roistat.com', '7000');
 </script>
 
-<div class="js-form-container" style="display: none;">
+	<div class="js-form-container" style="display: none;">
 
-    <div class="js-request-form-wrapper request-form-wrapper">
-        <div class="js-close-form request-form-wrapper-close">close form</div>
-        <form>
-            <input type="text" name="name" placeholder="Enter your name" />
-            <input type="email" name="email" placeholder="E-mail" />
-            <input type="tel" name="tel" required placeholder="+375-..-...-..-.." value="+375 " />
-            <select name="works-type">
-                <option value="0">-- Выберите --</option>
-                <option value="Картины">Картины</option>
-                <option value="Скинали для кухни">Скинали для кухни</option>
-                <option value="Фотообои">Фотообои</option>
-                <option value="Широкоформатная печать">Широкоформатная печать</option>
-            </select>
-            <textarea name="content" placeholder="Couple of word about your self..." ></textarea>
-            <input type="file" name="files" multiple title="Загрузите одну или несколько фотографий" />
-            <input type="submit" value="send" />
+		<div class="js-request-form-wrapper request-form-wrapper">
+			<p class="request-form-header">Оформление заказа:</p>
+			<div class="js-close-form request-form-wrapper-close">закрыть</div>
+			<form class="request-form-form">
+				<label class="request-form-label"><span>Вид работы</span>
+					<select name="works-type">
+						<option value="0"> -- Выберите -- </option>
+						<option value="Картины">Картины</option>
+						<option value="Скинали для кухни">Скинали для кухни</option>
+						<option value="Фотообои">Фотообои</option>
+						<option value="Широкоформатная печать">Широкоформатная печать</option>
+					</select>
+				</label>
+				<label class="request-form-label"><span>ФИО</span><input type="text" name="name" placeholder="Ваше Имя и Фамилия" /></label>
+				<label class="request-form-label"><span>E-mail адрес</span><input type="email" name="email" placeholder="E-mail" /></label>
 
-            <input type="hidden" name="title" value="title"/>
-            <input type="hidden" name="extra" value=""/>
+				<label class="request-form-label"><span>Прикрепить изображения*</span><input type="file" name="files" multiple title="Загрузите одну или несколько фотографий" required /></label>
+				<div class="request-form-progress-wrapper"><div class="request-form-progress-line js-request-form-progress-line"></div></div>
+				<label class="request-form-label"><span>Телефон*</span><input type="tel" name="tel" placeholder="+375-__-___-__-__" value="+375 " required /></label>
 
-        </form>
-    </div>
+				<label class="request-form-label"><span>Адрес доставки, прочие пожелания:</span><textarea name="content" placeholder="Адрес доставки, прочие пожелания..."></textarea></label>
 
-</div>
+				<input type="submit" class="request-form-submit" value="Выслать" />
 
-<style>
+				<input type="hidden" name="title" value="title"/>
+				<input type="hidden" name="extra" value=""/>
 
-    .fade-for-form {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 100;
-        background-color: rgba(0, 0, 0, 0.6);
-    }
+			</form>
+		</div>
 
-    .request-form-wrapper {
-        position: absolute;
-        width: 350px;
-        top: 20%;
-        left: 50%;
-        margin-left: -175px;
-        background-color: #fff;
-    }
+	</div>
 
-    .request-form-wrapper-close {
-        background-image: url(/buyme/templates/default/close.png);
-    }
+	<style>
 
-    .request-form-wrapper input,
-    .request-form-wrapper textarea {
+		.request-form-submit {
+			font-family: Arial;
+			color: #ffffff;
+			font-size: 20px;
+			background: #705B99;
+			padding: 10px 20px 10px 20px;
+			text-decoration: none;
+			border: 0px;
+			cursor: pointer;
+			margin: 0 auto;
+			display: block;
+		}
 
-    }
+		.request-form-label {
+			clear: both;
+			display: block;
+			padding-bottom: 9px;
+		}
 
-</style>
+		.request-form-label span {
+			display: block;
+			padding-bottom: 2px;
+		}
 
+		.fade-for-form {
+			font: 400 16px Arial, Open Sans,sans-serif;
 
+			position: fixed;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 100;
+			background-color: rgba(0, 0, 0, 0.6);
+		}
+
+		.request-form-wrapper {
+			position: absolute;
+			width: 350px;
+			top: 20%;
+			left: 50%;
+			margin-left: -175px;
+			background-color: #fff;
+		}
+
+		.request-form-wrapper-close {
+			background-image: url(/buyme/templates/default/close.png);
+			position: relative;
+			float: right;
+			font-size: 0;
+			line-height: 0;
+			width: 13px;
+			height: 13px;
+			top: -26px;
+			right: 14px;
+			background-repeat: no-repeat;
+		}
+
+		.request-form-wrapper input,
+		.request-form-wrapper textarea {
+			background: #F3F0EB;
+			border: 1px solid #ccd1da;
+			border-radius: 2px;
+			width: 100%;
+			color: #4b5362;
+			font-size: 13px;
+			padding: 5px 2px;
+			box-sizing: border-box;
+		}
+
+		.request-form-wrapper textarea {
+			width: 100%;
+			display: block;
+			box-sizing: border-box;
+			height: 60px;
+		}
+
+		.request-form-header {
+			padding: 12px 0 10px 3%;
+			display: block;
+			overflow: hidden;
+			background: #705B99;
+			color: #fff;
+			text-shadow: 0 -1px 0 #1B457D;
+			font-size: 13px;
+			margin: 0;
+		}
+
+		.request-form-form {
+			font: 400 16px Arial, Open Sans,sans-serif;
+
+			padding: 8px 10px 10px;
+		}
+
+		.request-form-wrapper .request-form-submit {
+			font-family: Arial, sans-serif;
+			color: #ffffff;
+			font-size: 20px;
+			background: #705B99;
+			padding: 10px 20px 10px 20px;
+			text-decoration: none;
+			border: none;
+			cursor: pointer;
+			display: block;
+			width: 130px;
+		}
+
+		.request-form-progress-wrapper {
+			height: 6px;
+			background: #F3F0EB;
+			border: 1px solid #ccd1da;
+			margin-bottom: 12px;
+			margin-top: -10px;
+		}
+
+		.request-form-progress-line {
+			height: 100%;
+			width: 0;
+			background-color: #705B99;
+		}
+
+	</style>
 
 
 </body>

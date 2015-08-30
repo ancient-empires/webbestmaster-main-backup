@@ -13,7 +13,12 @@
 
 	function bindFormEventListeners($form) {
 
-		var $close = $form.parent().find('.js-close-form'); // find close button
+		var $parent = $form.parent(),
+			$close = $parent.find('.js-close-form'); // find close button
+
+		$parent.on('click', function(e){
+			e.stopPropagation();
+		});
 
 		$close.on('click', hideForm); // add event listeners to remove/hide form
 
@@ -23,7 +28,15 @@
 				inputs = $this.find('[name]'),
 				extra = $this.find('[name="extra"]'),
 				title = $this.find('[name="title"]'),
+				$tel = $this.find('[name="tel"]'),
+				tel = ($tel.val()|| '').trim(),
 				formData = new FormData();
+
+			if ( !tel || !/^\+?[\-\_\d\s]{11,25}$/g.test(tel) ) {
+				alert('Неправильно указан номер');
+				e.preventDefault();
+				return;
+			}
 
 			extra.val( decodeURIComponent ('URL: ' + loc.href) );
 
@@ -58,14 +71,22 @@
 					}
 					return myXhr;
 				},
-				success: function(php_script_response){
-					alert(php_script_response); // display response from the PHP script, if any
+				success: function(response){
+
+					if ( String(response).trim().indexOf('status:1;') === 0 ) {
+						alert('Ваше сообщение успешно отправлено.');
+					} else {
+						alert('Ошибка при оформлении заказа!');
+					}
 				}
 			});
 
 			function progressHandlingFunction(e){
 				if(e.lengthComputable){
 					// show progress
+
+					$('.js-request-form-progress-line').css('width', e.loaded / e.total * 100 + '%');
+
 					console.log(e.loaded, e.total);
 				} else {
 					// show spinner
@@ -102,6 +123,8 @@
 		$fade.addClass('fade-for-form');
 
 		$fade.append($form);
+
+		$fade.on('click', hideForm);
 
 		$body.append($fade);
 
