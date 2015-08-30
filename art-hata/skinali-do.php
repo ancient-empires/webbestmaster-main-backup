@@ -83,7 +83,7 @@ $roistatData = array(
     'phone'   => substr(htmlspecialchars(trim('28071985280719852807198528071985')), 0, 30),//    'phone'   => '28071985',
     'fields'  => array()
 );
-echo "https://cloud.roistat.com/api/proxy/1.0/leads/add?".http_build_query($roistatData);
+//echo "https://cloud.roistat.com/api/proxy/1.0/leads/add?".http_build_query($roistatData);
 file_get_contents("https://cloud.roistat.com/api/proxy/1.0/leads/add?".http_build_query($roistatData));
 
 ?> 
