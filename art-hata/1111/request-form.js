@@ -57,8 +57,6 @@
 				$select.val(getType(type));
 			}
 
-
-
 			$select.on('change', function (e) {
 
 				$form.find('[name=title]').val($select.val());
@@ -258,7 +256,7 @@
 
 			bindFormEventListeners($fade.find('form'), {type: type});
 
-			$form.find('[name="title"]').val( type ? 'Форма ' + (getType(type)) : 'заказ');
+			$form.find('[name="title"]').val( type ? ('Форма ' + (getType(type))) : 'заказ');
 
 			if ( type === 'skinali' ) {
 				$form.find('.request-form-label').eq(0).hide();
