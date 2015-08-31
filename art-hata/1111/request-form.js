@@ -11,7 +11,7 @@
 
 		var formHtml = $('.js-form-container').html(),
 		//$formWrappers = $('.js-form-wrapper'),
-			$formWrappers = $('.align_center'),
+		//$formWrappers = $('.align_center'),
 			$showFormButton = $('.request-form, [href="/zagruzit-izobrazhenie"]'),
 			formFadeClassName = 'js-fade-for-form';
 
@@ -276,7 +276,7 @@
 			$('.' + formFadeClassName).remove();
 		}
 
-		$formWrappers.each(appendForm);
+		//$formWrappers.each(appendForm);
 
 		$showFormButton
 			.removeAttr('onclick')
