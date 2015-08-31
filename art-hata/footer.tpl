@@ -54,8 +54,8 @@ var s = document.createElement('script'); s.type = 'text/javascript'; s.async = 
 <!-- {/literal} END JIVOSITE CODE -->
 		<script type="text/javascript" src="/buyme/js/buyme.js"></script>
 		<script type="text/javascript" charset="utf-8" src="/callme/js/callme.js"></script>		
-		<script type="text/javascript">
-/* init Call Service */
+<script type="text/javascript">
+/*
 var CallSiteId = '99cb8ce73a743fe1acf0a15ce74e0d9c';
 var CallBaseUrl = '//uptocall.com';
 (function() {
@@ -68,6 +68,7 @@ var CallBaseUrl = '//uptocall.com';
     if (sc) sc.parentNode.insertBefore(lt, sc);
     else document.documentElement.firstChild.appendChild(lt);
 })();
+*/
 </script>
 <script type="text/javascript">(window.Image ? (new Image()) : document.createElement('img')).src = location.protocol + '//vk.com/rtrg?r=JWcCJqP0j0yJkDkphaUk5HyxW37dmEI0bzXcjiA9HUXhEh3GQuoqVQgsYD1QxI0Fahpk74IALTj6J*9EDUdRDRND87/D8dHHfbDBtoYv1Xu/IGieg/4hbtwM2i6zxf5AyUHUHhEz0IspdVp6RHKY4*TBjcVYPUoZ25DmKt/m53I-';</script>
 <script>
@@ -79,6 +80,7 @@ var CallBaseUrl = '//uptocall.com';
 })(window, document, 'script', 'cloud.roistat.com', '7000');
 </script>
 
+
 	<div class="js-form-container" style="display: none;">
 
 		<div class="js-request-form-wrapper request-form-wrapper">
@@ -88,16 +90,17 @@ var CallBaseUrl = '//uptocall.com';
 				<label class="request-form-label"><span>Вид работы</span>
 					<select name="works-type">
 						<option value="0"> -- Выберите -- </option>
-						<option value="Картины">Картины</option>
-						<option value="Скинали для кухни">Скинали для кухни</option>
+						<option value="Картина на холсте">Картина на холсте</option>
+						<option value="Багет">Багет</option>
 						<option value="Фотообои">Фотообои</option>
+						<option value="Скинали для кухни">Скинали для кухни</option>
 						<option value="Широкоформатная печать">Широкоформатная печать</option>
 					</select>
 				</label>
 				<label class="request-form-label"><span>ФИО</span><input type="text" name="name" placeholder="Ваше Имя и Фамилия" /></label>
 				<label class="request-form-label"><span>E-mail адрес</span><input type="email" name="email" placeholder="E-mail" /></label>
 
-				<label class="request-form-label"><span>Прикрепить изображения*</span><input type="file" name="files" multiple title="Загрузите одну или несколько фотографий" required /></label>
+				<label class="request-form-label"><span>Прикрепить файлы</span><input type="file" name="files" multiple title="Загрузите одну или несколько фотографий" /></label>
 				<div class="request-form-progress-wrapper"><div class="request-form-progress-line js-request-form-progress-line"></div></div>
 				<label class="request-form-label"><span>Телефон*</span><input type="tel" name="tel" placeholder="+375-__-___-__-__" value="+375 " required /></label>
 
@@ -238,6 +241,7 @@ var CallBaseUrl = '//uptocall.com';
 
 	</style>
 
+	<script type="text/javascript" src="/js/request-form.js"></script>
 
 </body>
 </html>
