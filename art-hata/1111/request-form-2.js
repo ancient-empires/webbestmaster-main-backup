@@ -8,7 +8,8 @@
 	var selectors = {
 		showFormButton: '.js-request-form',
 		fade: '.js-fade-for-form',
-		formSource: '.js-form-container'
+		formSource: '.js-form-container',
+		filePreviewContainer: '.js-file-preview-container'
 	};
 
 	$(selectors.showFormButton).on('click', showForm);
@@ -52,7 +53,7 @@
 
 		setFormByParams($form, formParams);
 
-		findEventListeners($form, formParams);
+		bindEventListeners($form, formParams);
 
 		$fade.append($form);
 		$('body').append($fade);
@@ -66,7 +67,7 @@
 		var key, value;
 
 		for (key in params) {
-			
+
 			if (params.hasOwnProperty(key)) {
 
 				value = params[key];
@@ -120,6 +121,7 @@
 
 					case 'data-works-type':
 						$form.find('[name="works-type"]').val(value);
+						$form.find('[name="title"]').val('Форма "' + value + '". ');
 						break;
 
 					case 'data-works-type-text': // set to select default option
@@ -154,24 +156,184 @@
 
 	}
 
-	function findEventListeners($form, params) {
+	function bindEventListeners($form, params) {
+
+		$form.on('click', function (e) {
+			e.stopPropagation();
+		});
+
+		$form.find('[name="works-type"]').on('change', function (e) {
+			$form.find('[name="title"]').val('Форма "' + $(e.currentTarget).val() + '". ');
+		});
+
+		$form.find('[type="file"]').on('change', function (e) {
+
+			var inputNode = e.currentTarget,
+				$input = $(inputNode),
+				allFiles = $input.data('files') || [],
+				files = inputNode.files,
+				file,
+				i, len;
+
+			$form.addClass('form-in-progress');
+
+			for (i = 0, len = files.length; i < len; i += 1) {
+				file = files[i];
+				if (!inAllFilesDetect(allFiles, file)) {
+					allFiles.push(file);
+				}
+			}
+
+			$input.data('files', allFiles);
+
+			drawFiles($form, allFiles);
+
+		});
+
+		function inAllFilesDetect(arr, item) {
+
+			var i, len, file, isInArr = false;
+
+			for (i = 0, len = arr.length; i < len; i += 1) {
+				file = arr[i];
+				isInArr = isInArr || (file.lastModified === item.lastModified && file.name === item.name && file.size === item.size);
+			}
+
+			return isInArr;
+
+		}
+
+		function drawFiles($form, files) {
+
+			var i, len,
+				deferred = $.Deferred(),
+				promise = deferred.promise();
+
+			$form.find(selectors.filePreviewContainer).empty();
+
+			for (i = 0, len = files.length; i < len; i += 1) {
+				promise = promise.then(function (bindFile, index) {
+					return drawImagePreviewFromFile(bindFile, $form, index);
+				}.bind(null, files[i], i));
+			}
+
+			promise.then(function () {
+				addRemoveButton($form);
+				$form.removeClass('form-in-progress');
+			});
+
+			deferred.resolve();
+
+		}
+
+		function drawImagePreviewFromFile(file, $form, index) {
+
+			var $container = $form.find(selectors.filePreviewContainer),
+				reader = new FileReader(),
+				deferred = $.Deferred(),
+				size = file.size,
+				lastModified = file.lastModified,
+				name = file.name,
+				$wrapper = $('<div data-index="' + index + '" class="form-preview-image-wrapper js-form-preview-image-wrapper"></div>'),
+				src = $form.data([size, lastModified, name].join('-'));
+
+			if (src) {
+				if (src === 'not-image') {
+					$wrapper.append('<div class="no-preview-image">Не изображение</div>');
+				} else {
+					//$wrapper.attr('data-file-size', size);
+					//$wrapper.attr('data-file-last-modified', lastModified);
+					//$wrapper.attr('data-file-name', name);
+					$wrapper.append('<img class="form-preview-image" src="' + src + '"/>');
+				}
+				$container.append($wrapper);
+				deferred.resolve();
+				return deferred.promise();
+			}
+
+			reader.readAsDataURL(file);
+
+			reader.onload = function (dataUrl) {
+
+				var image = new Image(),
+					size = file.size,
+					lastModified = file.lastModified,
+					name = file.name,
+					src = dataUrl.target.result,
+					$image;
+
+				image.src = src;
+
+				//$wrapper.attr('data-file-size', size);
+				//$wrapper.attr('data-file-last-modified', lastModified);
+				//$wrapper.attr('data-file-name', name);
+
+				$image = $(image);
+
+				$image.addClass('form-preview-image');
+
+				$wrapper.append(image);
+
+				$container.append($wrapper);
+
+				image.onerror = function () {
+					var $image = $(this);
+					$image.parent().append('<div class="no-preview-image">Не изображение</div>');
+					$image.remove();
+					$form.data([size, lastModified, name].join('-'), 'not-image');
+					deferred.resolve();
+				};
+
+				image.onload = function () {
+					$form.data([size, lastModified, name].join('-'), src);
+					deferred.resolve();
+				};
 
 
+			};
 
+			reader.onerror = function () {
+				$form.data([size, lastModified, name].join('-'), 'not-image');
+				$wrapper.append('<div class="no-preview-image">Не изображение</div>');
+				$container.append($wrapper);
+				deferred.resolve();
+			};
 
+			return deferred.promise();
 
+		}
 
+	}
 
+	function addRemoveButton($form) {
 
+		$form.find('.js-form-preview-image-wrapper').each(function () {
 
+			var $wrapper = $(this),
+				$removeButton = $('<div class="form-remove-file">Удалить</div>');
 
+			$removeButton.on('click', function (e) {
 
+				var $wrapper = $(e.currentTarget).parent(),
+					index = Number($wrapper.attr('data-index')),
+					$input = $form.find('[type="file"]'),
+					files = $input.data('files');
 
+				files.splice(index, 1);
 
+				$input.data('files', files);
 
+				$wrapper.remove();
 
+				$form.find('.js-form-preview-image-wrapper').each(function (index) {
+					$(this).attr('data-index', index);
+				});
 
+			});
 
+			$wrapper.append($removeButton);
+
+		});
 
 	}
 
