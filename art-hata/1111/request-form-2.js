@@ -234,35 +234,16 @@
 				size = file.size,
 				lastModified = file.lastModified,
 				name = file.name,
-				$wrapper = $('<div data-index="' + index + '" class="form-preview-image-wrapper js-form-preview-image-wrapper"></div>'),
-				src = $form.data([size, lastModified, name].join('-'));
-
-			if (src) {
-				if (src === 'not-image') {
-					$wrapper.append('<div class="no-preview-image">Не изображение</div>');
-				} else {
-					//$wrapper.attr('data-file-size', size);
-					//$wrapper.attr('data-file-last-modified', lastModified);
-					//$wrapper.attr('data-file-name', name);
-					$wrapper.append('<img class="form-preview-image" src="' + src + '"/>');
-				}
-				$container.append($wrapper);
-				deferred.resolve();
-				return deferred.promise();
-			}
+				$wrapper = $('<div data-index="' + index + '" class="form-preview-image-wrapper js-form-preview-image-wrapper"></div>');
 
 			reader.readAsDataURL(file);
 
 			reader.onload = function (dataUrl) {
 
 				var image = new Image(),
-					size = file.size,
-					lastModified = file.lastModified,
-					name = file.name,
-					src = dataUrl.target.result,
 					$image;
 
-				image.src = src;
+				image.src = dataUrl.target.result;
 
 				//$wrapper.attr('data-file-size', size);
 				//$wrapper.attr('data-file-last-modified', lastModified);
@@ -280,12 +261,11 @@
 					var $image = $(this);
 					$image.parent().append('<div class="no-preview-image">Не изображение</div>');
 					$image.remove();
-					$form.data([size, lastModified, name].join('-'), 'not-image');
 					deferred.resolve();
 				};
 
 				image.onload = function () {
-					$form.data([size, lastModified, name].join('-'), src);
+					console.log('load');
 					deferred.resolve();
 				};
 
