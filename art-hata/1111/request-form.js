@@ -5,6 +5,29 @@
 	/*global window */
 	/*global */
 
+	var selectors = {
+		showFormButton: '.js-request-form',
+		fade: '.js-fade-for-form',
+		formSource: '.js-form-container'
+		};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	//$(win).on('load', function () {
 
 		console.log('request-form.js initialized');
@@ -12,7 +35,7 @@
 		var formHtml = $('.js-form-container').html(),
 		//$formWrappers = $('.js-form-wrapper'),
 		//$formWrappers = $('.align_center'),
-			$showFormButton = $('.request-form, [href="/zagruzit-izobrazhenie"]'),
+			$showFormButton = $('.request-form'),
 			formFadeClassName = 'js-fade-for-form';
 
 		function getType(type) {
