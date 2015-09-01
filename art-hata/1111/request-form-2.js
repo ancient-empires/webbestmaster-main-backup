@@ -186,6 +186,8 @@
 
 			$input.data('files', allFiles);
 
+			$input.val(null);
+
 			drawFiles($form, allFiles);
 
 		});
