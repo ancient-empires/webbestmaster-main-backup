@@ -21,6 +21,20 @@
 </head>
 <body style="background-color:#888;">
 
+<!-- the same params set for form wrapper -->
+	<div class="js-request-form-main-container request-form-main-container"
+
+		 data-form-header="my header 1"
+		 data-button-text="my text 2"
+		 data-hide-close="1"
+		 data-hide-header="1"
+
+		 style="width: 960px; height: 500px; background-color: #af87ff;"
+
+			>
+		<h1>I am From Wrapper</h1>
+	</div>
+
 
 	<button class="js-request-form"
 			data-form-header="my header 1"
@@ -57,7 +71,7 @@
 			<form class="request-form-form">
 				<label class="request-form-label"><span>Вид работы</span>
 					<select name="works-type">
-						<option value="0"> -- Выберите -- </option>
+						<option value="Не выбрано"> -- Выберите -- </option>
 						<option value="Картина на холсте">Картина на холсте</option>
 						<option value="Багет">Багет</option>
 						<option value="Фотообои">Фотообои</option>
@@ -329,6 +343,17 @@
 
 		.form-preview-image-wrapper:hover .form-remove-file {
 			opacity: 1;
+		}
+
+		.request-form-main-container {
+			position: relative;
+		}
+
+		.request-form-main-container .request-form-wrapper {
+			left: auto;
+			margin: 0;
+			right: 10px;
+			top: 10px;
 		}
 
 	</style>

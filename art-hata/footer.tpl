@@ -80,16 +80,15 @@ var CallBaseUrl = '//uptocall.com';
 })(window, document, 'script', 'cloud.roistat.com', '7000');
 </script>
 
-
 	<div class="js-form-container" style="display: none;">
 
 		<div class="js-request-form-wrapper request-form-wrapper">
-			<p class="request-form-header">Оформление заказа:</p>
-			<div class="js-close-form request-form-wrapper-close">закрыть</div>
+			<p class="request-form-header js-request-form-header">Оформление заказа:</p>
+			<div class="js-request-form-wrapper-close request-form-wrapper-close">закрыть</div>
 			<form class="request-form-form">
 				<label class="request-form-label"><span>Вид работы</span>
 					<select name="works-type">
-						<option value="0"> -- Выберите -- </option>
+						<option value="Не выбрано"> -- Выберите -- </option>
 						<option value="Картина на холсте">Картина на холсте</option>
 						<option value="Багет">Багет</option>
 						<option value="Фотообои">Фотообои</option>
@@ -100,8 +99,9 @@ var CallBaseUrl = '//uptocall.com';
 				<label class="request-form-label"><span>ФИО</span><input type="text" name="name" placeholder="Ваше Имя и Фамилия" /></label>
 				<label class="request-form-label"><span>E-mail адрес</span><input type="email" name="email" placeholder="E-mail" /></label>
 
-				<label class="request-form-label"><span>Прикрепить файлы</span><input type="file" name="files" multiple title="Загрузите одну или несколько фотографий" /></label>
-				<div class="request-form-progress-wrapper"><div class="request-form-progress-line js-request-form-progress-line"></div></div>
+				<label class="request-form-label"><span>Прикрепить файлы</span><input type="file" name="files" multiple title="Загрузите одну или несколько фотографий" /><p class="drop-file-here">Загрузите файлы</p></label>
+				<div class="request-form-progress-wrapper js-request-form-progress-wrapper"><div class="request-form-progress-line js-request-form-progress-line"></div></div>
+				<div class="js-file-preview-container file-preview-container"></div>
 				<label class="request-form-label"><span>Телефон*</span><input type="tel" name="tel" placeholder="+375-__-___-__-__" value="+375 " required /></label>
 
 				<label class="request-form-label"><span>Адрес доставки, прочие пожелания:</span><textarea name="content" placeholder="Адрес доставки, прочие пожелания..."></textarea></label>
@@ -110,6 +110,8 @@ var CallBaseUrl = '//uptocall.com';
 
 				<input type="hidden" name="title" value="title"/>
 				<input type="hidden" name="extra" value=""/>
+
+				<div class="in-progress-title">Обработка...</div>
 
 			</form>
 		</div>
@@ -132,6 +134,7 @@ var CallBaseUrl = '//uptocall.com';
 		}
 
 		.request-form-label {
+			position: relative;
 			clear: both;
 			display: block;
 			padding-bottom: 9px;
@@ -195,6 +198,29 @@ var CallBaseUrl = '//uptocall.com';
 			height: 60px;
 		}
 
+		.request-form-wrapper input[type="file"] {
+			display: block;
+			opacity: 0;
+			position: relative;
+			z-index: 1;
+			cursor: pointer;
+		}
+
+		.drop-file-here {
+			position: absolute;
+			z-index: 0;
+			top: 2px;
+			width: 80%;
+			text-align: center;
+			font-size: 18px;
+			color: #fff;
+			background: #705B99;
+			border-radius: 2px;
+			padding: 4px 0px;
+			line-height: 24px;
+			left: 10%;
+		}
+
 		.request-form-header {
 			padding: 12px 0 10px 3%;
 			display: block;
@@ -208,7 +234,6 @@ var CallBaseUrl = '//uptocall.com';
 
 		.request-form-form {
 			font: 400 16px Arial, Open Sans,sans-serif;
-
 			padding: 8px 10px 10px;
 		}
 
@@ -229,14 +254,123 @@ var CallBaseUrl = '//uptocall.com';
 			height: 6px;
 			background: #F3F0EB;
 			border: 1px solid #ccd1da;
-			margin-bottom: 12px;
-			margin-top: -10px;
+			width: 80%;
+			margin: -10px auto 12px;
 		}
 
 		.request-form-progress-line {
 			height: 100%;
 			width: 0;
 			background-color: #705B99;
+		}
+
+		.form-preview-image-wrapper {
+			width: 92px;
+			height: 92px;
+			background: #f9f9f9;
+			border: 1px solid #ccd1da;
+			border-radius: 2px;
+			margin: 0 5px 10px;
+			display: inline-block;
+			position: relative;
+		}
+
+		.form-preview-image {
+			display: block;
+			max-width: 100%;
+			max-height: 100%;
+			margin: 0 auto;
+		}
+
+		.no-preview-image {
+			font-size: 13px;
+			line-height: 15px;
+			display: inline-block;
+			position: absolute;
+			top: 30px;
+			left: 0;
+		}
+
+		.file-preview-container {
+			max-height: 160px;
+			overflow: auto;
+			margin-bottom: 7px;
+			text-align: center;
+			font-size: 0;
+			line-height: 0;
+		}
+
+		.file-preview-container:after {
+			content: '';
+			display: block;
+			clear: both;
+			width: 0;
+			height: 0;
+		}
+
+		.file-preview-container:empty {
+			display: none;
+		}
+
+		.in-progress-title {
+			position: absolute;
+			top: 50%;
+			width: 80%;
+			text-align: center;
+			padding: 10px 0;
+			font-size: 20px;
+			line-height: 20px;
+			color: #fff;
+			background-color: #705B99;
+			left: 10%;
+			display: none;
+		}
+
+		.form-in-progress .in-progress-title {
+			display: block;
+		}
+
+		.form-in-progress .request-form-label,
+		.form-in-progress .file-preview-container,
+		.form-in-progress .request-form-progress-wrapper {
+			opacity: 0.5;
+		}
+
+		.form-in-progress .request-form-submit {
+			display: none;
+		}
+
+		.form-remove-file {
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			font-size: 12px;
+			line-height: 12px;
+			padding: 5px 0;
+			background-color: rgba(0, 0, 0, 0.5);
+			color: #fff;
+			cursor: pointer;
+			opacity: 0;
+			-webkit-transition: opacity linear 0.4s;
+			-moz-transition: opacity linear 0.4s;
+			-ms-transition: opacity linear 0.4s;
+			-o-transition: opacity linear 0.4s;
+			transition: opacity linear 0.4s;
+		}
+
+		.form-preview-image-wrapper:hover .form-remove-file {
+			opacity: 1;
+		}
+
+		.request-form-main-container {
+			position: relative;
+		}
+
+		.request-form-main-container .request-form-wrapper {
+			left: auto;
+			margin: 0;
+			right: 10px;
+			top: 10px;
 		}
 
 	</style>
