@@ -202,6 +202,8 @@
 			$form.find('[name="title"]').val('Форма: ' + $(e.currentTarget).val() + '. ');
 		});
 
+		$form.find('.js-request-form-wrapper-close').on('click', hideForm);
+
 		$form.find('[name="title"]').val('Форма: ' + $form.find('[name="works-type"]').val() + '. ');
 
 		$form.find('[type="file"]').on('change', function (e) {
