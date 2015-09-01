@@ -46,17 +46,17 @@ echo $mail->Send();
 echo ';';
 
 
-$roistatData = array(
-    'roistat' => isset($_COOKIE['roistat_visit']) ? $_COOKIE['roistat_visit'] : null,
-    'key'     => 'NjMzNDo3MDAwOjliZTZhYjdiMzgxMTM1NjE1NWJkMGQ3NTliYjkxMDU1', // Çàìåíèòå SECRET_KEY íà ñåêðåòíûé êëþ÷ èç ïóíêòà ìåíþ Íàñòðîéêè -> Èíòåãðàöèÿ ñî ñäåëêàìè â íèæíåé ÷àñòè ýêðàíà è ñòðî÷êå Êëþ÷ äëÿ èíòåãðàöèé
-    'title'   => $title,
-    'comment' => $mailContent,
-    'name'    => $name,
-    'email'   => $email,
-    'phone'   => $phone,
-    'fields'  => array()
-);
+//$roistatData = array(
+//    'roistat' => isset($_COOKIE['roistat_visit']) ? $_COOKIE['roistat_visit'] : null,
+//    'key'     => 'NjMzNDo3MDAwOjliZTZhYjdiMzgxMTM1NjE1NWJkMGQ3NTliYjkxMDU1', // Çàìåíèòå SECRET_KEY íà ñåêðåòíûé êëþ÷ èç ïóíêòà ìåíþ Íàñòðîéêè -> Èíòåãðàöèÿ ñî ñäåëêàìè â íèæíåé ÷àñòè ýêðàíà è ñòðî÷êå Êëþ÷ äëÿ èíòåãðàöèé
+//    'title'   => $title,
+//    'comment' => $mailContent,
+//    'name'    => $name,
+//    'email'   => $email,
+//    'phone'   => $phone,
+//    'fields'  => array()
+//);
 
-echo file_get_contents("https://cloud.roistat.com/api/proxy/1.0/leads/add?".http_build_query($roistatData));
+//echo file_get_contents("https://cloud.roistat.com/api/proxy/1.0/leads/add?".http_build_query($roistatData));
 
 ?>

@@ -158,6 +158,7 @@ var CallBaseUrl = '//uptocall.com';
 		}
 
 		.request-form-wrapper {
+			text-align: left;
 			position: absolute;
 			width: 350px;
 			top: 20%;
@@ -209,7 +210,7 @@ var CallBaseUrl = '//uptocall.com';
 		.drop-file-here {
 			position: absolute;
 			z-index: 0;
-			top: 2px;
+			top: 22px;
 			width: 80%;
 			text-align: center;
 			font-size: 18px;
@@ -255,7 +256,7 @@ var CallBaseUrl = '//uptocall.com';
 			background: #F3F0EB;
 			border: 1px solid #ccd1da;
 			width: 80%;
-			margin: -10px auto 12px;
+			margin: -5px auto 12px;
 		}
 
 		.request-form-progress-line {
@@ -362,6 +363,7 @@ var CallBaseUrl = '//uptocall.com';
 			opacity: 1;
 		}
 
+		/* form in wrapper */
 		.request-form-main-container {
 			position: relative;
 		}
@@ -372,6 +374,119 @@ var CallBaseUrl = '//uptocall.com';
 			right: 10px;
 			top: 10px;
 		}
+
+		.request-form-main-container .request-form-submit {
+
+		}
+
+		.request-form-main-container .request-form-label {
+
+		}
+
+		.request-form-main-container .request-form-label span {
+
+		}
+
+		.request-form-main-container .fade-for-form {
+
+		}
+
+		.request-form-main-container .request-form-wrapper {
+
+		}
+
+		.request-form-main-container .request-form-wrapper-close {
+
+		}
+
+		.request-form-main-container .request-form-wrapper input,
+		.request-form-main-container .request-form-wrapper textarea {
+
+		}
+
+		.request-form-main-container .request-form-wrapper textarea {
+
+		}
+
+		.request-form-main-container .request-form-wrapper input[type="file"] {
+
+		}
+
+		.request-form-main-container .drop-file-here {
+
+		}
+
+		.request-form-main-container .request-form-header {
+
+		}
+
+		.request-form-main-container .request-form-form {
+
+		}
+
+		.request-form-main-container .request-form-wrapper .request-form-submit {
+
+		}
+
+		.request-form-main-container .request-form-progress-wrapper {
+
+		}
+
+		.request-form-main-container .request-form-progress-line {
+
+		}
+
+		.request-form-main-container .form-preview-image-wrapper {
+
+		}
+
+		.request-form-main-container .form-preview-image {
+
+		}
+
+		.request-form-main-container .no-preview-image {
+
+		}
+
+		.request-form-main-container .file-preview-container {
+
+		}
+
+		.request-form-main-container .file-preview-container:after {
+
+		}
+
+		.request-form-main-container .file-preview-container:empty {
+
+		}
+
+		.request-form-main-container .in-progress-title {
+
+		}
+
+		.request-form-main-container .form-in-progress .in-progress-title {
+
+		}
+
+		.request-form-main-container .form-in-progress .request-form-label,
+		.request-form-main-container .form-in-progress .file-preview-container,
+		.request-form-main-container .form-in-progress .request-form-progress-wrapper {
+
+		}
+
+		.request-form-main-container .form-in-progress .request-form-submit {
+
+		}
+
+		.request-form-main-container .form-remove-file {
+
+		}
+
+		.request-form-main-container .form-preview-image-wrapper:hover .form-remove-file {
+
+		}
+
+	</style>
 
 	</style>
 
