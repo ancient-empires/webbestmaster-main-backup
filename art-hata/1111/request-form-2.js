@@ -224,20 +224,20 @@
 				}
 
 				if ( file.size > maxFilesSize ) {
-					alert('Слишком большие файлы!');
+					alert(file.name + ': слишком большой файл!');
 				}
 
 			}
 
-			// detect max size
 			for (i = 0, len = allFiles.length; i < len; i += 1) {
-				file = files[i];
-				filesSize += file.size;
+				file = allFiles[i];
+				if (file) {
+					filesSize += file.size || 0;
+				}
 			}
 
-
 			if ( filesSize > maxFilesSize ) {
-				alert('Слишком большие файлы!');
+				alert('Слишком большие файлы! Форма не будет отправлена!');
 			}
 
 			$input.data('files', allFiles);
