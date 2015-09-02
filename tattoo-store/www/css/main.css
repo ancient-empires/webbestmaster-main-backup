@@ -1,5 +1,7 @@
 @import url(reset.css);
 @import url(my-reset.css);
-@import url(style.css);
+@import url(unsorted.css);
+@import url(position.css);
+@import url(header.css);
 
 

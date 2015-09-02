@@ -1,0 +1,8 @@
+html {
+	overflow: scroll;
+}
+
+.width-limiter {
+	width: 980px;
+	/*margin: 0 auto;*/
+}

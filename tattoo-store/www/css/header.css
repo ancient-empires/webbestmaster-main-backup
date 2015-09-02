@@ -1,0 +1,32 @@
+.header {
+	border-top: #c4211a 4px solid;
+	border-bottom: #e05b5b 3px solid;
+	height: 178px;
+	background-image: url(../i/bg-1.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.logo {
+	background-image: url(../i/logo.png);
+	background-repeat: no-repeat;
+	height: 87px;
+	width: 264px;
+	float: left;
+	background-size: 100%;
+	color: transparent;
+	margin: 30px 0 0 12px;
+}
+
+.header-slogan {
+	color: #7d858b;
+	font-size: 14px;
+	line-height: 18px;
+	text-transform: uppercase;
+	float: left;
+	margin: 57px 0 0 63px;
+	letter-spacing: -0.5px;
+}
+
+
+
