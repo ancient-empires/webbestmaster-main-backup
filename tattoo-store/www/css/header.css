@@ -118,13 +118,14 @@
 	height: 25px;
 	position: absolute;
 	top: 153px;
-	right: 0;
+	right: 13px;
 	background-image: url(../i/icon-basket.png);
 	background-color: #c4211a;
 	background-size: 16px 15px;
 	padding-left: 42px;
 	background-repeat: no-repeat;
 	background-position: 12px 6px;
+	letter-spacing: -0.5px;
 }
 
 .header-basket-goods-count {
