@@ -58,23 +58,31 @@
 }
 
 .header-phones-wrapper {
-
-}
+	float: right;
+	width: 128px;
+	padding-top: 45px;}
 
 .header-phone {
-
+	background-position: 0 0;
+	background-repeat: no-repeat;
+	color: #000;
+	font-size: 12px;
+	line-height: 12px;
+	background-size: 13px 13px;
+	padding-left: 20px;
+	padding-bottom: 8px;
 }
 
 .header-phone-velcom {
-
+	background-image: url(../i/icon-velcom.png);
 }
 
 .header-phone-mts {
-
+	background-image: url(../i/icon-mts.png);
 }
 
 .header-phone-fixed {
-
+	background-image: url(../i/icon-fixed.png);
 }
 
 
