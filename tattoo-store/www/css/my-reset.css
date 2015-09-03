@@ -186,6 +186,10 @@ button:focus {
 	width: 100%;
 }
 
+.pointer {
+	cursor: pointer;
+}
+
 /* draw */
 
 /*canvas,*/

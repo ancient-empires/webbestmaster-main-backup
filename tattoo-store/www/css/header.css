@@ -28,5 +28,69 @@
 	letter-spacing: -0.5px;
 }
 
+.header-search-wrapper {
+	float: left;
+	padding: 49px 0 0 44px;
+	width: 225px;
+}
+
+.header-search-input {
+	font-size: 12px;
+	line-height: 12px;
+	display: block;
+	border: 1px solid #dcdcdc;
+	background-image: url(../i/icon-search.png);
+	background-repeat: no-repeat;
+	padding: 8px 30px 4px 12px;
+	background-position: 177px 6px;
+	background-size: 16px;
+	width: 160px;
+}
+
+.header-request-free-callback {
+	font-size: 12px;
+	color: #00a1e2;
+	text-transform: uppercase;
+	text-decoration: underline;
+	line-height: 12px;
+	padding: 4px 0 0 2px;
+	letter-spacing: 0.5px;
+}
+
+.header-phones-wrapper {
+
+}
+
+.header-phone {
+
+}
+
+.header-phone-velcom {
+
+}
+
+.header-phone-mts {
+
+}
+
+.header-phone-fixed {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
