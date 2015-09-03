@@ -36,12 +36,12 @@
 
 .header-search-input {
 	font-size: 12px;
-	line-height: 12px;
+	line-height: 15px;
 	display: block;
 	border: 1px solid #dcdcdc;
 	background-image: url(../i/icon-search.png);
 	background-repeat: no-repeat;
-	padding: 8px 30px 4px 12px;
+	padding: 6px 30px 6px 12px;
 	background-position: 177px 6px;
 	background-size: 16px;
 	width: 160px;
