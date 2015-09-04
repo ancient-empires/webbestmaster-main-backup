@@ -1,10 +1,10 @@
 .sade {
-
+	padding: 0 13px 20px;
+	width: 236px;
 }
 
 .side-category-list {
-	padding: 0 13px 0 13px;
-	width: 236px;
+	padding-bottom: 45px;
 }
 
 .side-category-item {
@@ -25,6 +25,72 @@
 	color: #fff;
 	background-color: #bebebe;
 }
+
+.side-block {
+	color: #242424;
+	text-decoration: none;
+	padding-bottom: 21px;
+	display: block;
+}
+
+.side-block-header {
+	background-size: 26px;
+	background-repeat: no-repeat;
+	width: auto;
+	font-size: 12px;
+	line-height: 12px;
+	padding: 7px 10px 22px 32px;
+}
+
+.side-block-header-pointer {
+	background-image: url(../i/icon-pointer.png);
+}
+
+.side-block-header-mail {
+	background-image: url(../i/icon-mail.png);
+}
+
+.side-block-wide-image {
+	display: block;
+	width: 100%;
+}
+
+.side-block-text {
+	font-size: 12px;
+	line-height: 14px;
+}
+
+.side-single-input {
+	display: block;
+	width: 133px;
+	margin: 0;
+	border: 1px solid #e2e2e2;
+	padding: 8px 92px 8px 9px;
+	font-size: 12px;
+	line-height: 15px;
+	color: #242424;
+	margin-top: 17px;
+}
+
+.side-single-submit {
+	padding: 9px 0;
+	font-size: 12px;
+	line-height: 15px;
+	background-color: #e71d00;
+	width: 92px;
+	text-align: center;
+	color: #fff;
+	float: right;
+	position: relative;
+	top: -33px;
+}
+
+.side-color-red {
+	color: #d10303;
+}
+
+
+
 
 
 

@@ -16,11 +16,11 @@ output, progress, section, summary, time, video {
 	-o-tap-highlight-color: transparent;
 	tap-highlight-color: transparent;
 
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-o-user-select: none;
-	user-select: none;
+	/*-webkit-user-select: none;*/
+	/*-moz-user-select: none;*/
+	/*-ms-user-select: none;*/
+	/*-o-user-select: none;*/
+	/*user-select: none;*/
 
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
