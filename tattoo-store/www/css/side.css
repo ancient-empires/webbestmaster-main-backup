@@ -1,0 +1,33 @@
+.sade {
+
+}
+
+.side-category-list {
+	padding: 0 13px 0 13px;
+	width: 236px;
+}
+
+.side-category-item {
+	font-size: 13px;
+	line-height: 30px;
+	color: #7d7b7b;
+	background-color: #f6f6f6;
+	display: block;
+	text-decoration: none;
+	padding: 0 10px 0 10px;
+	margin-bottom: 1px;
+	text-transform: uppercase;
+	width: auto;
+}
+
+.side-category-item:hover,
+.side-category-item-active {
+	color: #fff;
+	background-color: #bebebe;
+}
+
+
+
+
+
+
