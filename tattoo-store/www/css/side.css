@@ -1,6 +1,7 @@
 .sade {
 	padding: 0 13px 20px;
 	width: 236px;
+	float: left;
 }
 
 .side-category-list {
@@ -83,6 +84,7 @@
 	float: right;
 	position: relative;
 	top: -33px;
+	cursor: pointer;
 }
 
 .side-color-red {
