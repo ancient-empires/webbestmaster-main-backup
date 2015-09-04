@@ -1,0 +1,134 @@
+.footer {
+	height: 155px;
+	position: relative;
+	top: 1315px;
+	border-bottom: solid 6px #bf2622;
+	background-image: url(../i/bg-1.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.footer-nav {
+	text-align: center;
+	font-size: 0;
+	line-height: 0;
+	padding: 20px 0 25px;
+}
+
+.footer-nav-item {
+	display: inline-block;
+	font-size: 14px;
+	line-height: 14px;
+	color: #000;
+	text-transform: uppercase;
+	text-decoration: none;
+	cursor: pointer;
+	margin: 0 13px;
+}
+
+.footer-info-wrapper {
+	width: 220px;
+	padding-left: 12px;
+	float: left;
+}
+
+.info-block-paragraph-black {
+	font-size: 12px;
+	line-height: 13px;
+	color: #000;
+	padding-bottom: 8px;
+}
+
+.info-block-paragraph-light {
+	font-size: 11px;
+	line-height: 13px;
+	color: #777;
+}
+
+.info-block-paragraph-light-small {
+	font-size: 10px;
+	line-height: 13px;
+	padding-top: 5px;
+}
+
+.info-block-paragraph-black-small-link {
+	font-size: 11px;
+	line-height: 11px;
+	text-decoration: underline;
+	color: #000;
+	cursor: pointer;
+}
+
+.info-block-paragraph-black-small-link:hover {
+	text-decoration: none;
+}
+
+.info-block-paragraph-black-link {
+	font-size: 12px;
+	line-height: 18px;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.info-block-paragraph-black-link:hover {
+	text-decoration: none;
+}
+
+.info-block-social-wrapper {
+	padding-top: 21px;
+}
+
+.info-block-social {
+	width: 30px;
+	height: 30px;
+	background-repeat: no-repeat;
+	background-color: #2b3338;
+	float: left;
+	background-size: 100%;
+	margin-left: 1px;
+	cursor: pointer;
+}
+
+.info-block-social-facebook {
+	background-image: url(../i/icon-social-facebook.png);
+}
+
+.info-block-social-twitter {
+	background-image: url(../i/icon-social-twitter.png);
+}
+
+.info-block-social-google {
+	background-image: url(../i/icon-social-google.png);
+}
+
+.info-block-social-youtube {
+	background-image: url(../i/icon-social-youtube.png);
+}
+
+.custom-3 {
+	padding-left: 67px;
+}
+
+.custom-1 {
+	padding: 9px 0;
+}
+
+.custom-2 {
+	padding-left: 22px;
+	width: 200px;
+}
+
+.custom-4 {
+	width: 200px;
+	padding-left: 35px;
+	position: relative;
+	top: -3px;
+}
+
+
+
+
+
+
+
+
