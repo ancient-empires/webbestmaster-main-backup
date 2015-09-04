@@ -34,6 +34,8 @@ output, progress, section, summary, time, video {
 	-o-text-size-adjust: 100%;
 	text-size-adjust: 100%;
 
+	font-weight: normal;
+
 }
 
 input:focus,
