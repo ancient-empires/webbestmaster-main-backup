@@ -10,7 +10,7 @@
 	text-align: center;
 	font-size: 0;
 	line-height: 0;
-	padding: 20px 0 25px;
+	padding: 20px 0 23px;
 }
 
 .footer-nav-item {
@@ -22,6 +22,12 @@
 	text-decoration: none;
 	cursor: pointer;
 	margin: 0 13px;
+	border-bottom: 1px solid transparent;
+	padding-bottom: 1px;
+}
+
+.footer-nav-item:hover {
+	border-bottom-color: #000000;
 }
 
 .footer-info-wrapper {
