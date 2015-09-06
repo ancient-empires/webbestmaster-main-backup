@@ -142,6 +142,8 @@
 	font-size: 12px;
 	line-height: 12px;
 	color: #000;
+	float: right;
+	padding: 18px 16px 0 0;
 }
 
 .goods-item-required-inputs-wrapper {
@@ -167,8 +169,8 @@
 .goods-item-required-counter-changer-increase,
 .goods-item-required-counter-changer-decrease {
 	color: #c4211a;
-	padding: 12px 7px;
-	width: 12px;
+	padding: 12px 6px;
+	width: 13px;
 	cursor: pointer;
 }
 
