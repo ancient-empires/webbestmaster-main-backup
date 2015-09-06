@@ -219,10 +219,18 @@
 	cursor: pointer;
 }
 
+.recommended-goods-wrapper {
+	clear: both;
+	padding: 24px 0 43px 8px;
+}
 
+.recommended-goods-wrapper .main-content-goods-item {
+	margin: 0 23px;
+}
 
-
-
+.recommended-goods-wrapper .main-content-goods-item:nth-child(2) {
+	margin-left: 5px;
+}
 
 
 
