@@ -35,6 +35,7 @@ output, progress, section, summary, time, video {
 	text-size-adjust: 100%;
 
 	font-weight: normal;
+	box-sizing: content-box;
 
 }
 
