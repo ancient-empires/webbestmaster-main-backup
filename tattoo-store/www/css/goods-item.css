@@ -66,7 +66,7 @@
 .goods-item-status-wrapper {
 	border-top: 1px solid #e0e0e0;
 	border-bottom: 1px solid #e0e0e0;
-	margin: 32px 0 0 0;
+	margin: 32px 0 26px;
 	padding: 21px 0 19px;
 }
 
@@ -113,8 +113,21 @@
 	text-decoration: line-through;
 }
 
+.add-goods-to-favorite {
+	background-repeat: no-repeat;
+	background-image: url(../i/favorite.png);
+	background-size: 13px 12px;
+	font-size: 12px;
+	line-height: 12px;
+	padding: 5px 10px 5px 20px;
+	background-position: 0 5px;
+	cursor: pointer;
+	display: inline-block;
+}
 
-
+.add-goods-to-favorite:hover {
+	text-decoration: underline;
+}
 
 
 
