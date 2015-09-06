@@ -89,18 +89,16 @@
 	background-image: -ms-linear-gradient(top, #ff4f4f, #b60605);
 	background-image: linear-gradient(top, #ff4f4f, #b60605);
 }
+
+.main-content-goods-item:hover .main-content-goods-item-request-button {
+	opacity: 1;
+}
 */
 
 .main-content-goods-item:hover {
 	border-bottom-color: transparent;
 	background-color: #f6f6f6;
 }
-
-/*
-.main-content-goods-item:hover .main-content-goods-item-request-button {
-	opacity: 1;
-}
-*/
 
 .main-content-goods-item-ticket-sale,
 .main-content-goods-item-ticket-new,
