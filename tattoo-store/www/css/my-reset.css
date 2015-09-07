@@ -193,6 +193,14 @@ button:focus {
 	cursor: pointer;
 }
 
+.no-select {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
 /* draw */
 
 /*canvas,*/

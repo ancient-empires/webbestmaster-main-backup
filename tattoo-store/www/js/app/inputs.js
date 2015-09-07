@@ -11,17 +11,60 @@
 
 		initAll: function () {
 
-			var inputObj = this;
+			var inputs = this;
 
-			inputObj.initNumbers()
+			inputs.initNumbers();
 
 		},
 
 		initNumbers: function () {
 
+			var $numberInputs = $('[type="number"]');
+
+			function changeInput($input, deltaValue) {
+
+				var curValue = Number($input.val()),
+					newValue = curValue + deltaValue,
+					max = Number($input.attr('max')),
+					min = Number($input.attr('min'));
+
+				if ( !isNaN(max) && newValue > max ) {
+					newValue = max;
+				}
+
+				if ( !isNaN(min) && newValue < min ) {
+					newValue = min;
+				}
+
+				if ( newValue !== curValue ) {
+					$input.val(newValue);
+					$input.trigger('change');
+				}
+
+			}
+
+			$numberInputs.each(function () {
+
+				var $numberInput = $(this),
+					$decrease = $numberInput.next(),
+					$increase = $numberInput.prev();
+
+				$increase.on('click', function () {
+					changeInput($numberInput, 1);
+				});
+
+				$decrease.on('click', function () {
+					changeInput($numberInput, -1);
+				});
+
+			});
+
 		}
 
-
 	};
+
+	win.addEventListener('load', function () {
+		win.APP.inputs.initAll();
+	});
 
 }(window));
