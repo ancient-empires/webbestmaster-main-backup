@@ -8,6 +8,7 @@
 .goods-left-side {
 	float: left;
 	width: 364px;
+	min-height: 520px;
 }
 
 .goods-item-image {
