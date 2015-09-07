@@ -1,0 +1,49 @@
+.goods-item-swiper-container .swiper-container {
+	width: 100%;
+	/*padding: 10px;*/
+	/*height: 100%;*/
+}
+
+.goods-item-swiper-container .swiper-slide {
+
+}
+
+.goods-item-swiper-preview {
+	display: block;
+	margin-top: 5px;
+	margin-left: 5px;
+	width: 70px;
+	height: 70px;
+}
+
+.goods-item-swiper-container {
+	width: 320px;
+	margin: 18px 0 0 7px;
+	position: relative;
+}
+
+.goods-item-swiper-container .swiper-slide {
+	height: 80px;
+}
+
+.goods-item-slide-selected {
+	box-shadow: 0 0 10px rgb(255, 0, 1);
+}
+
+.goods-item-swiper-container .swiper-button-next,
+.goods-item-swiper-container .swiper-button-prev {
+	top: 110px;
+}
+
+.goods-item-swiper-container .swiper-button-next {
+
+}
+
+.goods-item-swiper-container .swiper-button-prev {
+
+}
+
+
+
+
+
