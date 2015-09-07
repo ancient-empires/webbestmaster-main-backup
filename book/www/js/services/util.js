@@ -15,6 +15,18 @@
 			});
 		},
 
+		getFileName: function (folder, index, type) {
+
+			index += 1;
+
+			if (index < 10) {
+				index = '0' + index;
+			}
+
+			return folder + '/' + index + '.' + type;
+
+		},
+
 		arrayRemoveByValue: function (arr, value) {
 			var index = arr.indexOf(value);
 			if (index !== -1) {
