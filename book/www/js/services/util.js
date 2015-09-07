@@ -15,7 +15,7 @@
 			});
 		},
 
-		getFileName: function (folder, index, type) {
+		getPath: function (folder, index, type) {
 
 			index += 1;
 
@@ -23,7 +23,7 @@
 				index = '0' + index;
 			}
 
-			return folder + '/' + index + '.' + type;
+			return folder + '/' + folder + '-' + index + '.' + type;
 
 		},
 
@@ -66,14 +66,17 @@
 				books = booksData[language],
 				deferred = $.Deferred(),
 				promise = deferred.promise(),
+				getPath = this.getPath,
 				srcList = [];
 
 			_.each(books, function (book) {
-				_.each(book.pages, function (page) {
+				_.each(book.pages, function (page, index) {
 
-					if ( page.sound && !page.time ) {
-						srcList.push( ['books', language, book.folder, page.sound].join('/') );
+					if ( page.time ) {
+						return;
 					}
+
+					srcList.push( ['books', language, getPath(book.folder, index, 'mp3')].join('/') );
 
 				});
 			});
@@ -109,10 +112,11 @@
 			var language =  win.APP.info.get('language'),
 				booksData = win.APP.booksData,
 				books = booksData[language],
+				getPath = this.getPath,
 				deferred = $.Deferred(),
 				promise = deferred.promise();
 
-			function addTimeToPage(book, page) {
+				function addTimeToPage(book, page) {
 
 				var deferred = $.Deferred(),
 					audio;
@@ -127,7 +131,7 @@
 						deferred.resolve();
 					}, false);
 
-					audio.src = ['books', language, book.folder, page.sound].join('/');
+					audio.src = ['books', language, getPath(book.folder, page.sound, 'mp3') ].join('/');
 
 				} else {
 					deferred.resolve();

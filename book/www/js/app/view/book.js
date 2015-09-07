@@ -70,7 +70,7 @@
 					view.initSwiper();
 					view.bindEventListeners();
 					view.onResize();
-					view.runPage(book.pages[0]);
+					view.runPage({index: 0});
 				});
 
 		},
@@ -87,20 +87,20 @@
 			swiper = new Swiper ('.swiper-container', {
 				// Optional parameters
 				direction: 'horizontal',
-				loop: false,
+				loop: false
 
 				// remove it for nonPAHTbI swipe
-				effect: 'coverflow',
-				grabCursor: true,
-				centeredSlides: true,
-				slidesPerView: 'auto',
-				coverflow: {
-					rotate: 50,
-					stretch: 0,
-					depth: 100,
-					modifier: 1,
-					slideShadows : false
-				}
+				//effect: 'coverflow',
+				//grabCursor: true,
+				//centeredSlides: true,
+				//slidesPerView: 'auto',
+				//coverflow: {
+				//	rotate: 50,
+				//	stretch: 0,
+				//	depth: 100,
+				//	modifier: 1,
+				//	slideShadows : false
+				//}
 
 				// If we need pagination
 				//pagination: '.swiper-pagination',
@@ -136,7 +136,7 @@
 				}
 
 				if ( view.get('pageMode') === 'normal' || view.get('playerState') === 'playing') {
-					view.runPage(book.pages[index]);
+					view.runPage({index: index});
 				}
 
 			});
@@ -243,9 +243,10 @@
 				bookFolder = book.folder,
 				loadDeferred = $.Deferred(),
 				loadPromise = loadDeferred.promise(),
+				getPath = win.APP.util.getPath,
 				mainDeferred = $.Deferred();
 
-			function loadImage(page) {
+			function loadImage(index) {
 
 				var deferred = $.Deferred(),
 					img = new Image();
@@ -255,15 +256,15 @@
 					deferred.resolve();
 				}, false);
 
-				img.src = [mainBookFolder, language, bookFolder, page.img].join('/');
+				img.src = [mainBookFolder, language, getPath(bookFolder, index, 'jpg')].join('/');
 
 				return deferred.promise();
 
 			}
 
-			_.each(pages, function (page) {
+			_.each(pages, function (page, index) {
 				loadPromise = loadPromise.then(function () {
-					return loadImage(page);
+					return loadImage(index);
 				});
 			});
 
@@ -284,26 +285,22 @@
 				info = view.info,
 				languageName = info.get('language'),
 				book = view.get('book'),
+				getPath = win.APP.util.getPath,
+				index = data.index,
 				soundMaster = win.APP.soundMaster;
 
-			if (data.sound) {
-				soundMaster.play({
-					sound: ['books', languageName, book.folder, data.sound].join('/'),
-					road: 0,
-					isLoop: false
-				});
-			} else {
-				soundMaster.stop({
-					road: 0
-				});
-			}
+			soundMaster.play({
+				sound: ['books', languageName, getPath(book.folder, index, 'mp3')].join('/'),
+				road: 0,
+				isLoop: false
+			});
 
 			view.set('playerState', 'playing');
 			view.autoSetPlayPauseButtonState();
 
 			//view.animateText();
 
-			view.doNextActionAfter(data.time);
+			view.doNextActionAfter(book.pages[index].time);
 
 		},
 
@@ -468,7 +465,7 @@
 				index = swiper.activeIndex,
 				book = view.get('book');
 
-			view.runPage(book.pages[index]);
+			view.runPage({index: index});
 
 		},
 

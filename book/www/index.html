@@ -109,7 +109,7 @@
 					{{~books :book:index}}
 
 					<div class="title-book-wrapper" data-route="book/{{= book.folder }}">
-						<div class="title-book-wrapper-preview" style="background-image: url(books/{{= [languageName, book.folder, book.title.img].join('/') }});">
+						<div class="title-book-wrapper-preview" style="background-image: url(books/{{= [languageName, book.folder, 'title.jpg'].join('/') }});">
 							<p class="book-title-text">{{= book.title.text }}</p>
 						</div>
 					</div>
@@ -178,9 +178,9 @@
 			<div class="swiper-wrapper">
 				<!-- Slides -->
 
-				{{~book.pages :page }}
+				{{~book.pages :page:index }}
 				<div class="swiper-slide js-book-page">
-					<img class="js-book-page-image book-page-image" src="books/{{= [ languageName, bookFolder, page.img ].join('/') }}" alt=""/>
+					<img class="js-book-page-image book-page-image" src="books/{{= languageName + '/' + window.APP.util.getPath(bookFolder, index, 'jpg') }}" alt=""/>
 					{{? page.text }}
 						{{? settings.withText }}
 						<div class="js-page-text page-text">{{= page.text.replace(/\|/g, '<br />') }}</div>
