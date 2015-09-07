@@ -21,6 +21,7 @@
 .goods-right-side {
 	margin: 0 18px 0 364px;
 	padding-top: 9px;
+	min-height: 460px;
 }
 
 .goods-item-name {
