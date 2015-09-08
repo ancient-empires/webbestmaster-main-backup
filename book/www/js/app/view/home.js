@@ -19,11 +19,28 @@
 
 			var view = this;
 
-			view.$el = $(view.tmpl.home());
+			view.$el = $(view.tmpl.home({
+				booksOnShelf: view.getBooksOnShelfNumber()
+			}));
 
 			view.proto.initialize.apply(view, arguments);
 
+			view.bindEventListeners();
+
 			view.render();
+
+		},
+
+		getBooksOnShelfNumber: function () {
+
+			var view = this,
+				device = win.APP.bb.device,
+				remSize = view.info.get('remSize', true) + 1,
+				bookWidthRem = 8.8, // SEE CSS
+				bookWidthPx = bookWidthRem * remSize,
+				availableWidth = device.get('width');
+
+			return Math.floor(availableWidth / bookWidthPx);
 
 		},
 
@@ -54,6 +71,24 @@
 					text: popupText
 				}
 			});
+
+		},
+
+		bindEventListeners: function () {
+
+			var view = this,
+				device = win.APP.bb.device;
+
+			view.listenTo(device, 'change:orientation', view.loadUrl);
+
+		},
+
+		unbindEventListeners: function () {
+
+			var view = this,
+				device = win.APP.bb.device;
+
+			view.stopListening(device, 'change:orientation', view.loadUrl);
 
 		}
 

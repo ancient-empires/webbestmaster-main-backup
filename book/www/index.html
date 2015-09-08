@@ -104,7 +104,7 @@
 
 					<div class="scroll-area-content clear-fix book-titles-wrapper">
 
-					{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName]; }}
+					{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName], booksOnShelf = it.booksOnShelf; }}
 
 					{{~books :book:index}}
 
@@ -114,14 +114,14 @@
 						</div>
 					</div>
 
-					{{? index && index % 2 }}
-						<div class="shelf">&nbsp;</div>
+					{{? index && !((index + 1) % booksOnShelf) }}
+						<div class="shelf shelf-number-{{= booksOnShelf }}">&nbsp;</div>
 					{{?}}
 
 					{{~ }}
 
-					{{? books.length % 2 }}
-					<div class="shelf">&nbsp;</div>
+					{{? books.length % booksOnShelf }}
+						<div class="shelf shelf-number-{{= booksOnShelf }}">&nbsp;</div>
 					{{?}}
 
 					<div class="clear-fix share-link-wrapper js-no-scroll">

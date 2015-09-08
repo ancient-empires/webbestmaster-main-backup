@@ -10,6 +10,12 @@
 
 	win.APP.BB.DeviceModel = Backbone.Model.extend({
 
+		defaults: {
+			width: 0,
+			height: 0,
+			orientation: ''
+		},
+
 		initialize: function () {
 
 			var device = this;
@@ -32,19 +38,20 @@
 
 		onResize: function () {
 
-			var device = this;
+			var device = this,
+				width = docElem.clientWidth,
+				height = docElem.clientHeight,
+				orientation = width > height ? '-' : '|';
 
 			device.set({
-				width: docElem.clientWidth,
-				height: docElem.clientHeight
+				width: width,
+				height: height,
+				orientation: orientation
 			});
 
 			device.trigger('resize');
 
 		}
-
-
-
 
 	});
 

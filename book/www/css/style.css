@@ -265,16 +265,39 @@
 .shelf {
 	background-image: url(../i/shelf.png);
 	background-repeat: no-repeat;
-	-webkit-background-size: contain;
-	background-size: contain;
+	/*-webkit-background-size: contain;*/
+	/*background-size: contain;*/
+	-webkit-background-size: 100% 100%;
+	background-size: 100% 100%;
+
 	clear: both;
 	position: relative;
 	z-index: 0;
-	max-width: 20.8rem;
-	width: 90%;
+	/*max-width: 20.8rem;*/
+	/*width: 90%;*/
 	margin: 0 auto;
 	height: 5.5rem;
 	margin-bottom: -1rem;
+}
+
+.shelf-number-1 {
+	width: 8.8rem;
+}
+
+.shelf-number-2 {
+	width: 17.6rem;
+}
+
+.shelf-number-3 {
+	width: 26.4rem;
+}
+
+.shelf-number-4 {
+	width: 35.2rem;
+}
+
+.shelf-number-5 {
+	width: 44rem;
 }
 
 .bg-inner-page {
