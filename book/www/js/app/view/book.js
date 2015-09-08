@@ -12,7 +12,8 @@
 
 		events: {
 			'click .js-play-pause': 'playPause',
-			'dbl .js-book-page': 'toggleState'
+			'dbl .js-book-page': 'toggleState',
+			'click .js-show-inner-html': 'showInnerHtml'
 		},
 
 		selectors: {
@@ -521,6 +522,22 @@
 					break;
 
 			}
+
+		},
+
+		showInnerHtml: function (e) {
+
+			var view = this,
+				html = $(e.currentTarget).html();
+
+			view.showPopup({
+				name: 'notification',
+				timeout: 7e3,
+				cssClass: 'popup-title',
+				data: {
+					text: html
+				}
+			});
 
 		}
 

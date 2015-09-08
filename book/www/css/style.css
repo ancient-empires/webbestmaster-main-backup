@@ -4,6 +4,8 @@
 	src: url(../font/MayonezBlack-Italic.otf) format('opentype');
 }
 
+
+.popup-title .popup-text,
 .story-title {
 	font-family: 'MayonezBlack-Italic', cursive;
 	color: #959595;
@@ -13,6 +15,12 @@
 	padding-top: 1.1rem;
 	margin: 0 3.7rem;
 	width: auto; /* override .ellipsis */
+}
+
+.popup-title .popup-text {
+	margin: 0 auto;
+	width: auto; /* override .ellipsis */
+	max-width: 80%; /* override .ellipsis */
 }
 
 .wrapper {
