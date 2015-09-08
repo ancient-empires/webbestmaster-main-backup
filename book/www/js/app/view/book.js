@@ -504,7 +504,7 @@
 					$pageText.removeClass('hidden');
 					$backPageTextWrapper.addClass('hidden');
 
-					view.playCurrentPage();
+					//view.playCurrentPage();
 
 					break;
 
@@ -516,7 +516,7 @@
 					$pageText.addClass('hidden');
 					$backPageTextWrapper.removeClass('hidden');
 
-					view.stopCurrentPage();
+					//view.stopCurrentPage();
 
 					break;
 

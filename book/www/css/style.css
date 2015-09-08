@@ -199,6 +199,12 @@
 	border: 0.1rem solid #C0C0C0;
 }
 
+.book-page-image-with-text {
+	display: block;
+	width: 100%;
+	padding-bottom: 0.7rem;
+}
+
 .book-pause-button,
 .book-home-button,
 .book-play-button {
