@@ -177,12 +177,13 @@
 }
 
 .goods-item-required-counter-changer-increase {
-	text-align: right;
+	text-align: center;
 }
 
 .goods-item-required-counter-changer-decrease {
-	text-align: left;
-	text-indent: 4px;
+	text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 
 

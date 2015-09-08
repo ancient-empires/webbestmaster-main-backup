@@ -1,4 +1,5 @@
 .footer {
+	clear: both;
 	height: 155px;
 	border-bottom: solid 6px #bf2622;
 	background-image: url(../i/bg-1.png);

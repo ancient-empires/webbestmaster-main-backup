@@ -1,0 +1,155 @@
+.table-basket,
+.table-basket-head,
+.table-basket-body,
+.table-basket-row {
+	width: 100%;
+	text-align: left;
+}
+
+.table-basket-head th {
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.table-basket th,
+.table-basket td {
+	padding: 8px;
+}
+
+.table-basket-img-cell {
+	width: 130px;
+}
+
+.table-basket-img-link {
+	display: block;
+	width: 130px;
+}
+
+.table-basket-img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.table-basket-describe-cell {
+	vertical-align: top;
+	width: 300px;
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.table-basket-describe-link {
+	display: block;
+	text-decoration: none;
+	color: #378bb2;
+	font-weight: bold;
+}
+
+.table-basket-describe-link:hover {
+	text-decoration: underline;
+}
+
+.table-basket-describe-text {
+	font-size: 13px;
+	display: block;
+}
+
+.table-basket-cost,
+.table-basket-cost-one {
+	vertical-align: middle;
+	font-size: 21px;
+	line-height: 26px;
+	text-align: right;
+}
+
+.table-basket-cost-one {
+	color: #333;
+}
+
+.table-basket-required-items {
+	vertical-align: middle;
+	text-align: center;
+	width: 70px;
+}
+
+.table-basket-required-items .goods-item-required-inputs-wrapper {
+	border-right: 1px solid #ccc;
+	float: none;
+	display: inline-block;
+}
+
+.table-basket-total-word,
+.table-basket-total-cost {
+	font-size: 21px;
+	line-height: 21px;
+	height: 70px;
+	vertical-align: middle;
+}
+
+.table-basket-total-word {
+	text-align: right;
+	text-transform: uppercase;
+}
+
+.table-basket-total-cost {
+	text-align: right;
+}
+
+.table-basket-row th:last-child,
+.table-basket-row td:last-child {
+	padding: 0;
+}
+
+.table-basket-body .table-basket-row:nth-child(2n+1) {
+	background-color: #f9f9f9;
+}
+
+.table-basket-remove-item-cell {
+	vertical-align: middle;
+	width: 32px;
+}
+
+.table-basket-remove-item-button {
+	display: inline-block;
+	background-image: url(../i/icon-remove-item.png);
+	background-repeat: no-repeat;
+	background-size: 11px 11px;
+	background-position: 6px center;
+	cursor: pointer;
+	width: 32px;
+	height: 32px;
+}
+
+.table-basket-body.table-basket-body-total-cost .table-basket-row {
+	background-color: transparent;
+}
+
+.table-basket-buttons-wrapper {
+	margin-bottom: 38px;
+}
+
+.continue-shopping {
+	color: #378bb2;
+	display: inline-block;
+	font-size: 14px;
+	line-height: 16px;
+	padding-left: 8px;
+}
+
+.continue-shopping:hover {
+	text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+

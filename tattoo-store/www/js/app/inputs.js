@@ -46,8 +46,8 @@
 			$numberInputs.each(function () {
 
 				var $numberInput = $(this),
-					$decrease = $numberInput.next(),
-					$increase = $numberInput.prev();
+					$increase = $numberInput.next(),
+					$decrease = $numberInput.prev();
 
 				$increase.on('click', function () {
 					changeInput($numberInput, 1);

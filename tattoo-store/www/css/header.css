@@ -58,6 +58,10 @@
 	letter-spacing: 0.5px;
 }
 
+.header-request-free-callback:hover {
+	text-decoration: none;
+}
+
 .header-phones-wrapper {
 	float: right;
 	width: 128px;
