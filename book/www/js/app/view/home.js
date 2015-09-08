@@ -35,7 +35,7 @@
 
 			var view = this,
 				device = win.APP.bb.device,
-				remSize = view.info.get('remSize', true) + 1,
+				remSize = view.info.get('remSize', true) + 0.5,
 				bookWidthRem = 8.8, // SEE CSS
 				bookWidthPx = bookWidthRem * remSize,
 				availableWidth = device.get('width');
