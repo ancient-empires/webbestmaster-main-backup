@@ -72,10 +72,33 @@
 
 			view.setCoordinates({
 				$parts: view.$el.find(view.selectors.fadePart),
-				coordinates:  hintsMap[view.get('name')]
+				coordinates: hintsMap[view.get('name')]
 			});
 
 			$wrapper.append(view.$el);
+
+			view.showInAnimation();
+
+		},
+
+		showInAnimation: function () {
+			this.$el.addClass('hint-container-show-in');
+		},
+
+		showOutAnimation: function () {
+
+			var view = this,
+				$el = view.$el,
+				deferred = $.Deferred(),
+				animationEnd = view.info.get('animationEnd', true);
+
+			$el.one(animationEnd, function () {
+				deferred.resolve();
+			}); // work only one time
+
+			$el.addClass('hint-container-show-out');
+
+			return deferred.promise();
 
 		},
 
@@ -212,20 +235,20 @@
 		hide: function () {
 
 			var view = this;
-			// todo: implement it!!!!!!!
+
 			view.showOutAnimation().then(function () {
 
-				var onHide = view.get('onHide'),
-					context;
-
-				if (onHide) {
-					context = onHide.context || view;
-					context[onHide.fn].apply(context, onHide.args);
-				}
+				//var onHide = view.get('onHide'),
+				//	context;
+				//
+				//if (onHide) {
+				//	context = onHide.context || view;
+				//	context[onHide.fn].apply(context, onHide.args);
+				//}
 
 				view.proto.hide.call(view);
 
-				view.get('deferred').resolve();
+				//view.get('deferred').resolve();
 
 			});
 
@@ -240,8 +263,6 @@
 		},
 
 		onHide: function (fn, args, context) {
-
-
 
 		}
 
