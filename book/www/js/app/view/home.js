@@ -18,7 +18,8 @@
 
 		initialize: function () {
 
-			var view = this;
+			var view = this,
+				hintViewAutoplay;
 
 			view.$el = $(view.tmpl.home({
 				booksOnShelf: view.getBooksOnShelfNumber()
@@ -29,6 +30,12 @@
 			view.bindEventListeners();
 
 			view.render();
+
+			hintViewAutoplay = new win.APP.BB.HintView({ name: 'autoplay' });
+
+			hintViewAutoplay.onHide(function () {
+				new win.APP.BB.HintView({ name: 'autoplay' });
+			});
 
 		},
 

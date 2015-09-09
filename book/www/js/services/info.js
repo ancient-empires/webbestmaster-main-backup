@@ -210,7 +210,8 @@
 			var info = this,
 				defaultSettings = {
 					screenAnimation: 'off',
-					storyByStory: info.isNormal ? 'off' : 'on'
+					storyByStory: info.isNormal ? 'off' : 'on',
+					hint: {}
 					//autoSave: 'on', // auto save game after every turn
 					//confirmTurn: 'off', // game turn
 					//confirmMove: 'off', // move unit
