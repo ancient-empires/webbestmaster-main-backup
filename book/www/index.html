@@ -123,7 +123,7 @@
 
 					{{~books :book:index}}
 
-					<div class="title-book-wrapper" data-route="book/{{= book.folder }}">
+					<div class="title-book-wrapper js-title-book-wrapper" data-js-route="book/{{= book.folder }}">
 						<div class="title-book-wrapper-preview" style="background-image: url(books/{{= [languageName, book.folder, 'title.jpg'].join('/') }});">
 							<p class="book-title-text">{{= book.title.text }}</p>
 						</div>

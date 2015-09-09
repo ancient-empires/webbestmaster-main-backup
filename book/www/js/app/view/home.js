@@ -11,7 +11,8 @@
 	APP.BB.HomeView = APP.BB.BaseView.extend({
 
 		events: {
-			'click .js-story-by-story': 'setStoryByStory'
+			'click .js-story-by-story': 'setStoryByStory',
+			'click .js-title-book-wrapper': 'openBook'
 			//'click .js-show-popup': 'testShowPopup'
 		},
 
@@ -89,6 +90,23 @@
 				device = win.APP.bb.device;
 
 			view.stopListening(device, 'change:orientation', view.loadUrl);
+
+		},
+
+		openBook: function (e) {
+
+			var view = this,
+				$node = $(e.currentTarget),
+				isClicked = $node.attr('data-is-clicked');
+
+			if (isClicked) {
+				view.routeByUrl($node.attr('data-js-route'), true);
+				return;
+			}
+
+			$node
+				.attr('data-is-clicked', '1')
+				.addClass('book-titles-wrapper-clicked');
 
 		}
 
