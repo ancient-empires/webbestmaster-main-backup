@@ -81,17 +81,32 @@
 		<!-- header -->
 		<div class="header js-no-scroll">
 
-			{{ var info = window.APP.info, isStoryByStory = info.get('storyByStory') === 'on'; }}
+			{{ var info = window.APP.info, isStoryByStory = info.get('storyByStory') === 'on', isNormal = info.isNormal; }}
 
-			<div class="js-story-by-story story-by-story-wrapper header-button{{= isStoryByStory ? ' active-on-off' : '' }}">
-				<div class="active-on-off-indicator story-by-story-bg">&nbsp;</div>
-			</div>
+			<!-- story by story -->
+			{{? isNormal }}
+				<div class="js-external-link story-by-story-wrapper header-button{{= isStoryByStory ? ' active-on-off' : '' }}" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes">
+					<div class="active-on-off-indicator story-by-story-bg">&nbsp;</div>
+				</div>
+			{{??}}
+				<div class="js-story-by-story story-by-story-wrapper header-button{{= isStoryByStory ? ' active-on-off' : '' }}">
+					<div class="active-on-off-indicator story-by-story-bg">&nbsp;</div>
+				</div>
+			{{?}}
 			<div class="header-button-text header-button-text-left">autoplay</div>
 
+			<!-- remove ads -->
+			{{? isNormal }}
 			<div class="js-external-link header-remove-ads header-button active-on-off" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes">
 				<div class="active-on-off-indicator remove-ads-bg">&nbsp;</div>
 			</div>
 			<div class="header-button-text header-button-text-right">remove ads</div>
+			{{??}}
+			<div class="header-remove-ads header-button opacity50" >
+				<div class="active-on-off-indicator remove-ads-bg">&nbsp;</div>
+			</div>
+			<div class="header-button-text header-button-text-right opacity50">remove ads</div>
+			{{?}}
 
 			<div class="header-title">&nbsp;</div>
 

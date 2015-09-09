@@ -26,7 +26,7 @@
 		},
 
 		ls: win.localStorage,
-		savedItem: '!!!!-ENTER-APP-NAME-!!!!',
+		savedItem: 'cool-book-stories',
 		attr: {},
 		systemAttr: {},
 		defaultLanguage: 'ru',
@@ -210,7 +210,7 @@
 			var info = this,
 				defaultSettings = {
 					screenAnimation: 'off',
-					storyByStory: 'on'
+					storyByStory: info.isNormal ? 'off' : 'on'
 					//autoSave: 'on', // auto save game after every turn
 					//confirmTurn: 'off', // game turn
 					//confirmMove: 'off', // move unit
