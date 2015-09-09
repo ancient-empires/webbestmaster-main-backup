@@ -62,11 +62,18 @@
 }
 
 .hint-focus {
-	box-shadow: inset 0 0 0.4rem 0.4rem rgba(0, 0, 0, 0.5);
 	position: absolute;
+	/*box-shadow: inset 0 0 0.4rem 0.4rem rgba(0, 0, 0, 0.5);*/
+	background: -webkit-radial-gradient(center, ellipse contain, rgba(0, 0, 0, 0) 75%, rgba(0,0,0,0.5) 100%);
+	background: radial-gradient(center, ellipse contain, rgba(0, 0, 0, 0) 75%, rgba(0,0,0,0.5) 100%);
 }
 
-
+.hint-text {
+	padding: 0.5rem;
+	position: absolute;
+	box-sizing: border-box;
+	background-color: #fff;
+}
 
 
 

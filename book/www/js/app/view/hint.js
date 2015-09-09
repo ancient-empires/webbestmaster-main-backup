@@ -35,7 +35,8 @@
 	APP.BB.HintView = APP.BB.BaseView.extend({
 
 		selectors: {
-			fadePart: '.js-fade-part'
+			fadePart: '.js-fade-part',
+			text: '.js-hint-text'
 		},
 
 		events: {
@@ -55,7 +56,9 @@
 
 			view.extendFromObj(data);
 
-			view.$el = $(view.tmpl.hint());
+			view.$el = $(view.tmpl.hint({
+				text: win.APP.lang.get('hint')[data.name]
+			}));
 
 			view.proto.initialize.apply(view, arguments);
 
@@ -72,6 +75,7 @@
 
 			view.setCoordinates({
 				$parts: view.$el.find(view.selectors.fadePart),
+				$text: view.$el.find(view.selectors.text),
 				coordinates: hintsMap[view.get('name')]
 			});
 
