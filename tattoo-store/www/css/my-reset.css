@@ -39,6 +39,19 @@ output, progress, section, summary, time, video {
 
 }
 
+select {
+	-webkit-appearance: none;
+	-webkit-border-radius: 0;
+	-moz-appearance: none;
+	-moz-border-radius: 0;
+	-ms-appearance: none;
+	-ms-border-radius: 0;
+	-o-appearance: none;
+	-o-border-radius: 0;
+	appearance: none;
+	border-radius: 0;
+}
+
 input:focus,
 button:focus {
 	outline: none;
