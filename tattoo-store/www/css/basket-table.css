@@ -59,7 +59,7 @@
 .table-basket-cost,
 .table-basket-cost-one {
 	vertical-align: middle;
-	font-size: 21px;
+	font-size: 18px;
 	line-height: 26px;
 	text-align: right;
 }
@@ -82,7 +82,7 @@
 
 .table-basket-total-word,
 .table-basket-total-cost {
-	font-size: 21px;
+	font-size: 18px;
 	line-height: 21px;
 	height: 70px;
 	vertical-align: middle;
