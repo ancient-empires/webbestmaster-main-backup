@@ -1,0 +1,77 @@
+.main-form {
+	display: block;
+	padding-bottom: 28px;
+}
+
+.main-form-group-wrapper {
+	display: block;
+	width: 330px;
+	clear: both;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	position: relative;
+}
+
+.main-form-group-wrapper-required:after {
+	content: '*';
+	position: absolute;
+	display: block;
+	font-size: 13px;
+	line-height: 13px;
+	right: -11px;
+	bottom: 21px;
+	color: #f00;
+}
+
+.main-form-input-name {
+	font-size: 14px;
+	line-height: 15px;
+	padding: 0 2px 2px 4px;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.main-form-input {
+	font-size: 13px;
+	line-height: 16px;
+	padding: 6px 5px 6px 9px;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid #dcdcdc;
+}
+
+.main-form-select {
+	font-size: 13px;
+	line-height: 16px;
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid #dcdcdc;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+	height: 28px;
+	background-color: #fff;
+}
+
+.main-form-select:focus,
+.main-form-input:focus {
+	outline-color: rgb(59, 153, 252);
+	outline-offset: -2px;
+	outline-style: auto;
+	outline-width: 5px;
+}
+
+
+.main-form .goods-item-required-submit {
+	float: none;
+	width: 330px;
+	clear: both;
+	margin-top: 17px;
+}
+
+
+
+
+
