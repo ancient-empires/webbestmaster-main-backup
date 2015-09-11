@@ -108,24 +108,30 @@
 
 		setCoordinates: function (data) {
 
-			var coordinates = data.coordinates,
-				x1 = coordinates.x1,
-				y1 = coordinates.y1,
-				x2, y2;
+			var view = this,
+				allCoordinates = view.getAllCoordinates(data);
 
-			// set _ coordinates
-			if ( coordinates.hasOwnProperty('width') ) {
-				x2 = coordinates.x1 + coordinates.width;
-			} else {
-				x2 = coordinates.x2;
-			}
+			view.setFadeCoordinates({
+				$parts: data.$parts,
+				allCoordinates: allCoordinates
+			});
 
-			// set | coordinates
-			if ( coordinates.hasOwnProperty('height') ) {
-				y2 = coordinates.y1 + coordinates.height;
-			} else {
-				y2 = coordinates.y2;
-			}
+			view.setHintCoordinates({
+				$text: data.$text,
+				allCoordinates: allCoordinates
+			});
+
+		},
+
+		setHintCoordinates: function (data) {
+
+
+
+		},
+
+		setFadeCoordinates: function (data) {
+
+			var xys = data.allCoordinates;
 
 			data.$parts.each(function (index) {
 
@@ -139,7 +145,7 @@
 							top: 0,
 							left: 0,
 							bottom: 0,
-							width: x1
+							width: xys.x1
 						};
 
 						break;
@@ -148,20 +154,10 @@
 
 						css = {
 							top: 0,
-							left: x1
+							left: xys.x1,
+							width: xys.width,
+							height: xys.y1
 						};
-
-						if (x2 > x1) {
-							css.width = x2 - x1;
-						} else {
-							css.right = Math.abs(x2);
-						}
-
-						if (y2 > y1) {
-							css.height = y1;
-						} else {
-							css.height = Math.abs(y1);
-						}
 
 						break;
 
@@ -169,16 +165,10 @@
 
 						css = {
 							top: 0,
-							bottom: 0
+							bottom: 0,
+							right: 0,
+							left: xys.x2
 						};
-
-						if (x2 > x1) {
-							css.right = 0;
-							css.left = x2;
-						} else {
-							css.right = 0;
-							css.width = Math.abs(x2);
-						}
 
 						break;
 
@@ -186,41 +176,21 @@
 
 						css = {
 							bottom: 0,
-							left: x1
+							left: xys.x1,
+							width: xys.width,
+							top: xys.y2
 						};
-
-						if (x2 > x1) {
-							css.width = x2 - x1;
-						} else {
-							css.right = Math.abs(x2);
-						}
-
-						if (y2 > y1) {
-							css.top = y2;
-						} else {
-							css.height = Math.abs(y2);
-						}
 
 						break;
 
 					case 4:
 
 						css = {
-							left: x1,
-							top: y1
+							left: xys.x1,
+							top: xys.y1,
+							width: xys.width,
+							height: xys.height
 						};
-
-						if (x2 > x1) {
-							css.width = x2 - x1;
-						} else {
-							css.right = Math.abs(x2);
-						}
-
-						if (y2 > y1) {
-							css.height = y2 - y1;
-						} else {
-							css.bottom = Math.abs(y2);
-						}
 
 						break;
 
@@ -233,6 +203,53 @@
 				$(this).css(css);
 
 			});
+
+		},
+
+		getAllCoordinates: function (data) {
+
+			var view = this,
+				remSize = view.info.get('remSize'),
+				device = win.APP.bb.device,
+				maxWidth = device.get('width') / remSize,
+				maxHeight = device.get('height') / remSize,
+				width,
+				height,
+				coordinates = data.coordinates,
+				x1 = coordinates.x1,
+				y1 = coordinates.y1,
+				x2, y2;
+
+			// set _ coordinates
+			if ( coordinates.hasOwnProperty('width') ) {
+				width = coordinates.width;
+				x2 = coordinates.x1 + width;
+			} else {
+				x2 = coordinates.x2;
+				x2 = x2 >= 0 ? x2 : maxWidth + x2;
+				width = x2 - x1;
+			}
+
+			// set | coordinates
+			if ( coordinates.hasOwnProperty('height') ) {
+				height = coordinates.height;
+				y2 = coordinates.y1 + height;
+			} else {
+				y2 = coordinates.y2;
+				y2 = y2 >= 0 ? y2 : maxWidth + y2;
+				width = y2 - y1;
+			}
+
+			return {
+				x1: x1,
+				y1: y1,
+				x2: x2,
+				y2: y2,
+				width: width,
+				height: height,
+				maxWidth: maxWidth,
+				maxHeight: maxHeight
+			};
 
 		},
 
