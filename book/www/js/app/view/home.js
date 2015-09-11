@@ -34,7 +34,14 @@
 			hintViewAutoplay = new win.APP.BB.HintView({ name: 'autoplay' });
 
 			hintViewAutoplay.onHide(function () {
-				new win.APP.BB.HintView({ name: 'autoplay' });
+
+				if ( view.info.isNormal ) {
+					new win.APP.BB.HintView({ name: 'removeAds' });
+				} else {
+					new win.APP.BB.HintView({ name: 'thanksForBuy' });
+				}
+
+
 			});
 
 		},

@@ -9,27 +9,43 @@
 	win.APP.BB = win.APP.BB || {};
 
 	var hintsMap = {
+
 			autoplay: {
-				x1: 0.4,
-				y1: 0.1,
+				x1: 0.3,
+				y1: 0,
 				// use this
 				//x2: -10,
 				//y2: -10
 				// or this
-				width: 4.6,
-				height: 3.5
+				width: 4.9,
+				height: 3.7,
+				submitType: 'normal' // just click to hint to never see this hint
 			},
-			// just example
-			nextHint: {
-				x1: 0,
+
+			removeAds: {
+				x1: -0.3,
 				y1: 0,
 				// use this
-				x2: 0,
-				y2: 0,
+				//x2: 4,
+				//y2: 4,
 				// or this
-				width: 0,
-				height: 0
+				width: 4.9,
+				height: 3.7,
+				submitType: 'normal'
+			},
+
+			thanksForBuy: {
+				x1: -0.3,
+				y1: 0,
+				// use this
+				//x2: 4,
+				//y2: 4,
+				// or this
+				width: 4.9,
+				height: 3.7,
+				submitType: 'normal'
 			}
+
 		},
 		s = 'rem'; // size
 
@@ -50,12 +66,19 @@
 
 		initialize: function (data) {
 
-			var view = this;
+			var view = this,
+				hintName = data.name;
 
 			view.extendFromObj(data);
+			view.extendFromObj(hintsMap[hintName]);
+
+			if ( view.isDone() ) {
+				view.hide();
+				return view;
+			}
 
 			view.$el = $(view.tmpl.hint({
-				text: win.APP.lang.get('hint')[data.name]
+				text: win.APP.lang.get('hint')[hintName]
 			}));
 
 			view.proto.initialize.apply(view, arguments);
@@ -124,7 +147,7 @@
 		setHintCoordinates: function (data) {
 
 			var view = this,
-				textWidth = 10,
+				textWidth = 12,
 				halfTextWidth = textWidth / 2,
 				xys = data.allCoordinates,
 				maxWidth = xys.maxWidth,
@@ -211,17 +234,24 @@
 				device = win.APP.bb.device,
 				maxWidth = device.get('width') / remSize,
 				maxHeight = device.get('height') / remSize,
-				width,
-				height,
 				coordinates = data.coordinates,
+				width = coordinates.width,
+				height = coordinates.height,
 				x1 = coordinates.x1,
 				y1 = coordinates.y1,
 				x2, y2;
 
+			if ( x1 < 0 ) {
+				x1 = maxWidth + x1 - width;
+			}
+
+			if ( y1 < 0 ) {
+				y1 = maxHeight + y1 - height;
+			}
+
 			// set _ coordinates
 			if ( coordinates.hasOwnProperty('width') ) {
-				width = coordinates.width;
-				x2 = coordinates.x1 + width;
+				x2 = x1 + width;
 			} else {
 				x2 = coordinates.x2;
 				x2 = x2 >= 0 ? x2 : maxWidth + x2;
@@ -230,8 +260,7 @@
 
 			// set | coordinates
 			if ( coordinates.hasOwnProperty('height') ) {
-				height = coordinates.height;
-				y2 = coordinates.y1 + height;
+				y2 = y1 + height;
 			} else {
 				y2 = coordinates.y2;
 				y2 = y2 >= 0 ? y2 : maxHeight + y2;
@@ -261,21 +290,23 @@
 
 		hide: function () {
 
-			var view = this;
+			var view = this,
+				submitType = view.get('submitType'),
+				info = view.info,
+				hints = info.get('hint'),
+				hintName = view.get('name');
+
+			hints[hintName] = hints[hintName] || {};
+
+			if ( submitType === 'normal' ) {
+				hints[hintName].state = 'done';
+				info.set('hint', hints);
+			}
 
 			view.showOutAnimation().then(function () {
 
-				//var onHide = view.get('onHide'),
-				//	context;
-				//
-				//if (onHide) {
-				//	context = onHide.context || view;
-				//	context[onHide.fn].apply(context, onHide.args);
-				//}
-
 				view.proto.hide.call(view);
-
-				//view.get('deferred').resolve();
+				view.runOnHides();
 
 			});
 
@@ -290,6 +321,45 @@
 		},
 
 		onHide: function (fn, args, context) {
+
+			var view = this,
+				onHides = view.get('onHides') || [];
+
+			if ( view.isDone() ) {
+				return view;
+			}
+
+			onHides.push({
+				fn: fn,
+				args: args,
+				context: context
+			});
+
+			view.set('onHides', onHides);
+
+			return view;
+
+		},
+
+		runOnHides: function () {
+
+			var view = this,
+				onHides = view.get('onHides') || [];
+
+			_.each(onHides, function (item) {
+				item.fn.apply(item.context, item.args);
+			});
+
+			view.set('onHides', null);
+
+		},
+
+		isDone: function () {
+
+			var view = this,
+				hint = view.info.get('hint')[ view.get('name') ];
+
+			return Boolean( hint && hint.state === 'done' );
 
 		}
 
