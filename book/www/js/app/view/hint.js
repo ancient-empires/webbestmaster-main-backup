@@ -48,10 +48,6 @@
 			//'click .js-show-popup': 'testShowPopup'
 		},
 
-		test: function () {
-			console.log('test');
-		},
-
 		initialize: function (data) {
 
 			var view = this;
