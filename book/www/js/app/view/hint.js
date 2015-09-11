@@ -9,34 +9,36 @@
 	win.APP.BB = win.APP.BB || {};
 
 	var hintsMap = {
-		autoplay: {
-			x1: 0.4,
-			y1: 0.1,
-			// use this
-			//x2: -3,
-			//y2: -4
-			// or this
-			width: 4.6,
-			height: 3.5
+			autoplay: {
+				x1: 0.4,
+				y1: 0.1,
+				// use this
+				//x2: -10,
+				//y2: -10
+				// or this
+				width: 4.6,
+				height: 3.5
+			},
+			// just example
+			nextHint: {
+				x1: 0,
+				y1: 0,
+				// use this
+				x2: 0,
+				y2: 0,
+				// or this
+				width: 0,
+				height: 0
+			}
 		},
-		// just example
-		nextHint: {
-			x1: 0,
-			y1: 0,
-			// use this
-			x2: 0,
-			y2: 0,
-			// or this
-			width: 0,
-			height: 0
-		}
-	};
+		s = 'rem'; // size
 
 	APP.BB.HintView = APP.BB.BaseView.extend({
 
 		selectors: {
 			fadePart: '.js-fade-part',
-			text: '.js-hint-text'
+			text: '.js-hint-text',
+			hintArrow: '.js-hint-arrow'
 		},
 
 		events: {
@@ -125,83 +127,83 @@
 
 		setHintCoordinates: function (data) {
 
+			var view = this,
+				textWidth = 8,
+				halfTextWidth = textWidth / 2,
+				xys = data.allCoordinates,
+				maxWidth = xys.maxWidth,
+				//maxHeight = xys.maxHeight,
+				minX1 = 1,
+				maxX2 = maxWidth - minX1,
+				x1, y1, x2, dx = 0;
+				//y2,
+				//dy;
 
+			x1 = xys.center.bottom.x - halfTextWidth;
+			y1 = xys.center.bottom.y;
+
+			x2 = x1 + textWidth;
+
+			//debugger
+
+			if (x1 <= minX1) {
+				dx = minX1 - x1;
+			}
+
+			if (x2 >= maxX2) {
+				dx = maxX2 - x2;
+			}
+
+			data.$text.css({
+				width: textWidth + s,
+				top: y1 + s,
+				left: x1 + dx + s
+			});
+
+			data.$text.find(view.selectors.hintArrow).css({
+				left: halfTextWidth - dx + s
+			});
 
 		},
 
 		setFadeCoordinates: function (data) {
 
-			var xys = data.allCoordinates;
+			var xys = data.allCoordinates,
+				coordinates = [
+					{
+						top: 0,
+						left: 0,
+						bottom: 0,
+						width: xys.x1 + s
+					},
+					{
+						top: 0,
+						left: xys.x1 + s,
+						width: xys.width + s,
+						height: xys.y1 + s
+					},
+					{
+						top: 0,
+						bottom: 0,
+						right: 0,
+						left: xys.x2 + s
+					},
+					{
+						bottom: 0,
+						left: xys.x1 + s,
+						width: xys.width + s,
+						top: xys.y2 + s
+					},
+					{
+						left: xys.x1 + s,
+						top: xys.y1 + s,
+						width: xys.width + s,
+						height: xys.height + s
+					}
+				];
 
 			data.$parts.each(function (index) {
-
-				var css;
-
-				switch (index) {
-
-					case 0:
-
-						css = {
-							top: 0,
-							left: 0,
-							bottom: 0,
-							width: xys.x1
-						};
-
-						break;
-
-					case 1:
-
-						css = {
-							top: 0,
-							left: xys.x1,
-							width: xys.width,
-							height: xys.y1
-						};
-
-						break;
-
-					case 2:
-
-						css = {
-							top: 0,
-							bottom: 0,
-							right: 0,
-							left: xys.x2
-						};
-
-						break;
-
-					case 3:
-
-						css = {
-							bottom: 0,
-							left: xys.x1,
-							width: xys.width,
-							top: xys.y2
-						};
-
-						break;
-
-					case 4:
-
-						css = {
-							left: xys.x1,
-							top: xys.y1,
-							width: xys.width,
-							height: xys.height
-						};
-
-						break;
-
-				}
-
-				_.each(css, function (value, key) {
-					css[key] = value + 'rem';
-				});
-
-				$(this).css(css);
-
+				$(this).css(coordinates[index]);
 			});
 
 		},
@@ -209,7 +211,7 @@
 		getAllCoordinates: function (data) {
 
 			var view = this,
-				remSize = view.info.get('remSize'),
+				remSize = view.info.get('remSize', true),
 				device = win.APP.bb.device,
 				maxWidth = device.get('width') / remSize,
 				maxHeight = device.get('height') / remSize,
@@ -236,8 +238,8 @@
 				y2 = coordinates.y1 + height;
 			} else {
 				y2 = coordinates.y2;
-				y2 = y2 >= 0 ? y2 : maxWidth + y2;
-				width = y2 - y1;
+				y2 = y2 >= 0 ? y2 : maxHeight + y2;
+				height = y2 - y1;
 			}
 
 			return {
@@ -248,7 +250,15 @@
 				width: width,
 				height: height,
 				maxWidth: maxWidth,
-				maxHeight: maxHeight
+				maxHeight: maxHeight,
+
+				// you can add your custom coordinates
+				center: {
+					bottom: {
+						x: x1 + width / 2,
+						y: y2
+					}
+				}
 			};
 
 		},

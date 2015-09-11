@@ -69,10 +69,21 @@
 }
 
 .hint-text {
+	/*display: none;*/
 	padding: 0.5rem;
 	position: absolute;
 	box-sizing: border-box;
 	background-color: #fff;
+}
+
+.hint-arrow {
+	position: absolute;
+	top: 0;
+	width: 1rem;
+	height: 1rem;
+	background-color: #c00;
+	left: 50%;
+	margin-left: -0.5rem;
 }
 
 
