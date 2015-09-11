@@ -39,7 +39,8 @@
 				var $slideImg = $(e.currentTarget).find('img');
 				$('.js-goods-item-swiper-container .goods-item-slide-selected').removeClass('goods-item-slide-selected');
 				$slideImg.addClass('goods-item-slide-selected');
-				$('.js-goods-item-image').attr('src', $slideImg.attr('src'));
+				// it works only on
+				$('.js-goods-item-image').attr('src', $slideImg.attr('data-original-src'));
 			});
 
 			$slides.eq(0).trigger('click');
