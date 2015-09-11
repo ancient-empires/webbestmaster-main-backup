@@ -124,7 +124,7 @@
 		setHintCoordinates: function (data) {
 
 			var view = this,
-				textWidth = 8,
+				textWidth = 10,
 				halfTextWidth = textWidth / 2,
 				xys = data.allCoordinates,
 				maxWidth = xys.maxWidth,
