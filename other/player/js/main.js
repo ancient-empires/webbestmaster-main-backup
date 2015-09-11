@@ -1,5 +1,28 @@
 bro(function () {
 
+	//var dataLayerPush = window.dataLayer.push;
+	//
+	//window.dataLayer.push = function () {
+	//
+	//	console.log('-',arguments[0]);
+	//
+	//	return dataLayerPush.apply(window.dataLayer, arguments);
+	//
+	//};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	var $ = bro;
 
 	var list = [];
