@@ -120,15 +120,23 @@
 
 					<div class="scroll-area-content clear-fix book-titles-wrapper">
 
-					{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName], booksOnShelf = it.booksOnShelf; }}
+					{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName], booksOnShelf = it.shelf.booksOnShelf; }}
 
 					{{~books :book:index}}
 
-					<div class="title-book-wrapper js-title-book-wrapper" data-js-route="book/{{= book.folder }}">
-						<div class="title-book-wrapper-preview" style="background-image: url(books/{{= [languageName, book.folder, 'title.jpg'].join('/') }});">
-							<p class="book-title-text">{{= book.title.text }}</p>
+						{{? index % booksOnShelf}}
+						<div class="title-book-wrapper js-title-book-wrapper" data-js-route="book/{{= book.folder }}">
+							<div class="title-book-wrapper-preview" style="background-image: url(books/{{= [languageName, book.folder, 'title.jpg'].join('/') }});">
+								<p class="book-title-text">{{= book.title.text }}</p>
+							</div>
 						</div>
-					</div>
+						{{??}}
+						<div class="title-book-wrapper js-title-book-wrapper" style="margin-left: {{= it.shelf.firstBookPadding}}" data-js-route="book/{{= book.folder }}">
+							<div class="title-book-wrapper-preview" style="background-image: url(books/{{= [languageName, book.folder, 'title.jpg'].join('/') }});">
+								<p class="book-title-text">{{= book.title.text }}</p>
+							</div>
+						</div>
+						{{?}}
 
 					{{? index && !((index + 1) % booksOnShelf) }}
 						<div class="shelf shelf-number-{{= booksOnShelf }}">&nbsp;</div>

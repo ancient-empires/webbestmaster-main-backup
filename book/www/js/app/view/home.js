@@ -22,7 +22,8 @@
 				hintViewAutoplay;
 
 			view.$el = $(view.tmpl.home({
-				booksOnShelf: view.getBooksOnShelfNumber()
+				shelf: view.getBooksOnShelfNumber()
+				//booksOnShelf:
 			}));
 
 			view.proto.initialize.apply(view, arguments);
@@ -52,9 +53,14 @@
 				remSize = view.info.get('remSize', true) + 0.5,
 				bookWidthRem = 8.8, // SEE CSS
 				bookWidthPx = bookWidthRem * remSize,
-				availableWidth = device.get('width');
+				availableWidth = device.get('width'),
+				booksOnShelf = Math.floor(availableWidth / bookWidthPx),
+				firstBookPadding = Math.floor(availableWidth % bookWidthPx / 2);
 
-			return Math.floor(availableWidth / bookWidthPx);
+			return {
+				firstBookPadding: firstBookPadding + 'px',
+				booksOnShelf: booksOnShelf
+			};
 
 		},
 

@@ -165,9 +165,10 @@
 }
 
 .title-book-wrapper {
-	display: inline-block;
+	/*display: inline-block;*/
 	width: 8.8rem;
 	height: 8rem;
+	float: left;
 }
 
 .title-book-wrapper-preview {
