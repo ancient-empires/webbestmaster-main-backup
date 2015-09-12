@@ -179,6 +179,7 @@
 	box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.5);
 	margin: 0 auto;
 	position: relative;
+	border-radius: 0.2rem;
 }
 
 .swiper-container {
@@ -210,7 +211,8 @@
 .book-page-image-with-text {
 	display: block;
 	width: 100%;
-	padding-bottom: 0.7rem;
+	margin-bottom: 0.7rem;
+	border-radius: 0.2rem;
 }
 
 .book-pause-button,
@@ -254,10 +256,11 @@
 	font-size: 1.3rem;
 	line-height: 1.5rem;
 	background-color: #FFFFFF;
-	box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.5);
+	box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.5);
 	box-sizing: border-box;
 	border: 0.1rem solid #C0C0C0;
 	font-family: "Times New Roman", serif;
+	border-radius: 0.2rem;
 }
 
 .popup-text {

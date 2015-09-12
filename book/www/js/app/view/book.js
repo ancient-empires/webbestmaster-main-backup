@@ -532,7 +532,7 @@
 
 			view.showPopup({
 				name: 'notification',
-				timeout: 7e3,
+				timeout: 9e3,
 				cssClass: 'popup-title',
 				data: {
 					text: html
