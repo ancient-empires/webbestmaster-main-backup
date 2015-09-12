@@ -72,6 +72,20 @@
 					view.bindEventListeners();
 					view.onResize();
 					view.runPage({index: 0});
+
+					var hintViewShowTitle = new win.APP.BB.HintView({ name: 'showTitle' });
+
+
+					hintViewShowTitle.onHide(function () {
+
+						var hintViewShowText = new win.APP.BB.HintView({ name: 'showText' });
+
+						hintViewShowText.onHide(function () {
+							new win.APP.BB.HintView({ name: 'stopAndStartPlay' });
+						});
+
+					});
+
 				});
 
 		},

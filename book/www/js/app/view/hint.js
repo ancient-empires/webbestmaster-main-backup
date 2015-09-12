@@ -44,6 +44,42 @@
 				width: 4.9,
 				height: 3.7,
 				submitType: 'normal'
+			},
+
+			showTitle: {
+				x1: 3.3,
+				y1: 0.3,
+				// use this
+				x2: -3.3,
+				//y2: 3.3,
+				// or this
+				//width: 4.9,
+				height: 3,
+				submitType: 'normal'
+			},
+
+			showText: {
+				x1: 1,
+				y1: 5,
+				// use this
+				x2: -1,
+				y2: -6,
+				// or this
+				//width: 4.9,
+				//height: 3.7,
+				submitType: 'normal'
+			},
+
+			stopAndStartPlay: {
+				x1: -0.3,
+				y1: 0,
+				// use this
+				//x2: 4,
+				//y2: 4,
+				// or this
+				width: 3.7,
+				height: 3.6,
+				submitType: 'normal'
 			}
 
 		},

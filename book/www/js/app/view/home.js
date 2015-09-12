@@ -41,7 +41,6 @@
 					new win.APP.BB.HintView({ name: 'thanksForBuy' });
 				}
 
-
 			});
 
 		},
