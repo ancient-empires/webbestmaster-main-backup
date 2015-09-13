@@ -32,17 +32,17 @@
 
 			view.render();
 
-			hintViewAutoplay = new win.APP.BB.HintView({ name: 'autoplay' });
-
-			hintViewAutoplay.onHide(function () {
-
-				if ( view.info.isNormal ) {
-					new win.APP.BB.HintView({ name: 'removeAds' });
-				} else {
-					new win.APP.BB.HintView({ name: 'thanksForBuy' });
-				}
-
-			});
+			// show hint if needed
+			if ( !view.info.hintIsDone('autoplay') ) {
+				hintViewAutoplay = new win.APP.BB.HintView({ name: 'autoplay' });
+				hintViewAutoplay.onHide(function () {
+					if ( view.info.isNormal ) {
+						new win.APP.BB.HintView({ name: 'removeAds' });
+					} else {
+						new win.APP.BB.HintView({ name: 'thanksForBuy' });
+					}
+				});
+			}
 
 		},
 
@@ -98,7 +98,10 @@
 			var view = this,
 				device = win.APP.bb.device;
 
-			view.listenTo(device, 'change:orientation', view.loadUrl);
+			view.listenTo(device, 'change:orientation', function () {
+				$('.js-hint-wrapper').trigger('hide', { doNotTrack: true });
+				view.loadUrl();
+			});
 
 		},
 
@@ -107,7 +110,7 @@
 			var view = this,
 				device = win.APP.bb.device;
 
-			view.stopListening(device, 'change:orientation', view.loadUrl);
+			view.stopListening(device);
 
 		},
 

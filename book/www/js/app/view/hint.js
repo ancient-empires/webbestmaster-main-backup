@@ -317,9 +317,10 @@
 
 		},
 
-		hide: function () {
+		hide: function (evt, dataArg) {
 
 			var view = this,
+				data = dataArg || {},
 				submitType = view.get('submitType'),
 				info = view.info,
 				hints = info.get('hint'),
@@ -327,16 +328,18 @@
 
 			hints[hintName] = hints[hintName] || {};
 
-			if ( submitType === 'normal' ) {
-				hints[hintName].state = 'done';
-				info.set('hint', hints);
+			if ( data.doNotTrack ) {
+				view.clearOnHides();
+			} else {
+				if ( submitType === 'normal' ) {
+					hints[hintName].state = 'done';
+					info.set('hint', hints);
+				}
 			}
 
 			view.showOutAnimation().then(function () {
-
 				view.proto.hide.call(view);
 				view.runOnHides();
-
 			});
 
 		},
@@ -377,6 +380,10 @@
 
 			view.set('onHides', null);
 
+		},
+
+		clearOnHides: function () {
+			this.set('onHides', null);
 		}
 
 	});

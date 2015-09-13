@@ -94,19 +94,19 @@
 					<div class="active-on-off-indicator story-by-story-bg">&nbsp;</div>
 				</div>
 			{{?}}
-			<div class="header-button-text header-button-text-left">autoplay</div>
+			<div class="header-button-text header-button-text-left">сказка за сказкой</div>
 
 			<!-- remove ads -->
 			{{? isNormal }}
 			<div class="js-external-link header-remove-ads header-button active-on-off" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes">
 				<div class="active-on-off-indicator remove-ads-bg">&nbsp;</div>
 			</div>
-			<div class="header-button-text header-button-text-right">remove ads</div>
+			<div class="header-button-text header-button-text-right">реклама</div>
 			{{??}}
 			<div class="header-remove-ads header-button opacity50">
 				<div class="active-on-off-indicator remove-ads-bg">&nbsp;</div>
 			</div>
-			<div class="header-button-text header-button-text-right opacity50">remove ads</div>
+			<div class="header-button-text header-button-text-right opacity50">реклама</div>
 			{{?}}
 
 			<div class="header-title">&nbsp;</div>
@@ -252,7 +252,7 @@
 
 <script type="text/x-template" data-name="hint">
 
-	<div class="hint-wrapper">
+	<div class="hint-wrapper js-hint-wrapper">
 		<div class="js-no-scroll hint-fade js-fade-part"></div>
 		<div class="js-no-scroll hint-fade js-fade-part"></div>
 		<div class="js-no-scroll hint-fade js-fade-part"></div>
