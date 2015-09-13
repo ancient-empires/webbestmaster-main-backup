@@ -50,12 +50,12 @@
 
 			var view = this,
 				device = win.APP.bb.device,
-				remSize = view.info.get('remSize', true) + 0.5,
+				remSize = view.info.get('remSize', true),
 				bookWidthRem = 8.8, // SEE CSS
 				bookWidthPx = bookWidthRem * remSize,
 				availableWidth = device.get('width'),
 				booksOnShelf = Math.floor(availableWidth / bookWidthPx),
-				firstBookPadding = Math.floor(availableWidth % bookWidthPx / 2);
+				firstBookPadding = Math.floor((availableWidth % bookWidthPx) / 2);
 
 			return {
 				firstBookPadding: firstBookPadding + 'px',
