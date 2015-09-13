@@ -73,18 +73,29 @@
 					view.onResize();
 					view.runPage({index: 0});
 
-					var hintViewShowTitle = new win.APP.BB.HintView({ name: 'showTitle' });
+					if ( !view.info.hintIsDone('showTitle') ) {
 
+						return;
 
-					hintViewShowTitle.onHide(function () {
+						var hintViewShowTitle = new win.APP.BB.HintView({ name: 'showTitle' });
 
-						var hintViewShowText = new win.APP.BB.HintView({ name: 'showText' });
+						view.stopCurrentPage();
 
-						hintViewShowText.onHide(function () {
-							new win.APP.BB.HintView({ name: 'stopAndStartPlay' });
+						hintViewShowTitle.onHide(function () {
+
+							var hintViewShowText = new win.APP.BB.HintView({ name: 'showText' });
+
+							hintViewShowText.onHide(function () {
+
+								var hintViewStopAndStart = new win.APP.BB.HintView({ name: 'stopAndStartPlay' });
+
+								hintViewStopAndStart.onHide(view.playCurrentPage, null, view);
+
+							});
+
 						});
 
-					});
+					}
 
 				});
 
