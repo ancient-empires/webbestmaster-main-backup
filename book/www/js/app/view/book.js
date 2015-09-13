@@ -71,15 +71,10 @@
 					view.initSwiper();
 					view.bindEventListeners();
 					view.onResize();
-					view.runPage({index: 0});
 
 					if ( !view.info.hintIsDone('showTitle') ) {
 
-						return;
-
 						var hintViewShowTitle = new win.APP.BB.HintView({ name: 'showTitle' });
-
-						view.stopCurrentPage();
 
 						hintViewShowTitle.onHide(function () {
 
@@ -89,11 +84,15 @@
 
 								var hintViewStopAndStart = new win.APP.BB.HintView({ name: 'stopAndStartPlay' });
 
-								hintViewStopAndStart.onHide(view.playCurrentPage, null, view);
+								hintViewStopAndStart.onHide(view.runPage, [{index: 0}], view);
 
 							});
 
 						});
+
+					} else {
+
+						view.runPage({index: 0});
 
 					}
 
@@ -563,6 +562,15 @@
 					text: html
 				}
 			});
+
+		},
+
+		hide: function () {
+
+			var view = this;
+
+			$('.js-hint-wrapper').trigger('hide', { doNotTrack: true });
+			view.proto.hide.call(view);
 
 		}
 
