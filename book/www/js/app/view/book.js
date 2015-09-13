@@ -72,7 +72,11 @@
 					view.bindEventListeners();
 					view.onResize();
 
-					if ( !view.info.hintIsDone('showTitle') ) {
+					if ( view.info.hintIsDone('showTitle') ) {
+
+						view.runPage({index: 0});
+
+					} else {
 
 						var hintViewShowTitle = new win.APP.BB.HintView({ name: 'showTitle' });
 
@@ -89,10 +93,6 @@
 							});
 
 						});
-
-					} else {
-
-						view.runPage({index: 0});
 
 					}
 
