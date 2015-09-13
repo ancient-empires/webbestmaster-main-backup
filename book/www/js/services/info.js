@@ -237,6 +237,15 @@
 
 		},
 
+		hintIsDone: function (hintName) {
+
+			var info = this,
+				hint = info.get('hint')[hintName];
+
+			return Boolean( hint && hint.state === 'done' );
+
+		},
+
 		getLinkToStore: function (type) { // pro or normal
 			return this.link[this.get('os', true)][type];
 		}

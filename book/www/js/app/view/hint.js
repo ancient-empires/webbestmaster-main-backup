@@ -108,11 +108,6 @@
 			view.extendFromObj(data);
 			view.extendFromObj(hintsMap[hintName]);
 
-			if ( view.isDone() ) {
-				view.hide();
-				return view;
-			}
-
 			view.$el = $(view.tmpl.hint({
 				text: win.APP.lang.get('hint')[hintName]
 			}));
@@ -198,8 +193,6 @@
 			y1 = xys.center.bottom.y;
 
 			x2 = x1 + textWidth;
-
-			//debugger
 
 			if (x1 <= minX1) {
 				dx = minX1 - x1;
@@ -361,10 +354,6 @@
 			var view = this,
 				onHides = view.get('onHides') || [];
 
-			if ( view.isDone() ) {
-				return view;
-			}
-
 			onHides.push({
 				fn: fn,
 				args: args,
@@ -387,15 +376,6 @@
 			});
 
 			view.set('onHides', null);
-
-		},
-
-		isDone: function () {
-
-			var view = this,
-				hint = view.info.get('hint')[ view.get('name') ];
-
-			return Boolean( hint && hint.state === 'done' );
 
 		}
 

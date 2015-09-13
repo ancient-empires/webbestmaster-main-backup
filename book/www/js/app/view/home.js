@@ -51,14 +51,13 @@
 			var view = this,
 				device = win.APP.bb.device,
 				remSize = view.info.get('remSize', true),
-				bookWidthRem = 8.8, // SEE CSS
-				bookWidthPx = bookWidthRem * remSize,
-				availableWidth = device.get('width'),
-				booksOnShelf = Math.floor(availableWidth / bookWidthPx),
-				firstBookPadding = Math.floor((availableWidth % bookWidthPx) / 2);
+				bookWidth = 8.8, // SEE CSS
+				availableWidth = device.get('width') / remSize,
+				booksOnShelf = Math.floor(availableWidth / bookWidth),
+				firstBookPadding = (availableWidth % bookWidth) / 2;
 
 			return {
-				firstBookPadding: firstBookPadding + 'px',
+				firstBookPadding: firstBookPadding + 'rem',
 				booksOnShelf: booksOnShelf
 			};
 
