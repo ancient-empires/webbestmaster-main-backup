@@ -104,15 +104,16 @@
 	top: 2.5rem;
 	font-size: 0.7rem;
 	line-height: 0.7rem;
-	width: 5.6rem;
 	text-align: center;
 }
 
 .header-button-text-left {
+	width: 5.8rem;
 	left: 0;
 }
 
 .header-button-text-right {
+	width: 5.6rem;
 	right: 0;
 }
 

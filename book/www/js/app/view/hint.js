@@ -88,7 +88,7 @@
 	APP.BB.HintView = APP.BB.BaseView.extend({
 
 		selectors: {
-			fadePart: '.js-fade-part',
+			hintFocus: '.js-hint-focus',
 			text: '.js-hint-text',
 			hintArrow: '.js-hint-arrow'
 		},
@@ -126,7 +126,7 @@
 				$wrapper = view.$wrapper;
 
 			view.setCoordinates({
-				$parts: view.$el.find(view.selectors.fadePart),
+				$hintFocus: view.$el.find(view.selectors.hintFocus),
 				$text: view.$el.find(view.selectors.text),
 				coordinates: hintsMap[view.get('name')]
 			});
@@ -164,7 +164,7 @@
 				allCoordinates = view.getAllCoordinates(data);
 
 			view.setFadeCoordinates({
-				$parts: data.$parts,
+				$hintFocus: data.$hintFocus,
 				allCoordinates: allCoordinates
 			});
 
@@ -216,42 +216,13 @@
 
 		setFadeCoordinates: function (data) {
 
-			var xys = data.allCoordinates,
-				coordinates = [
-					{
-						top: 0,
-						left: 0,
-						bottom: 0,
-						width: xys.x1 + s
-					},
-					{
-						top: 0,
-						left: xys.x1 + s,
-						width: xys.width + s,
-						height: xys.y1 + s
-					},
-					{
-						top: 0,
-						bottom: 0,
-						right: 0,
-						left: xys.x2 + s
-					},
-					{
-						bottom: 0,
-						left: xys.x1 + s,
-						width: xys.width + s,
-						top: xys.y2 + s
-					},
-					{
-						left: xys.x1 + s,
-						top: xys.y1 + s,
-						width: xys.width + s,
-						height: xys.height + s
-					}
-				];
+			var xys = data.allCoordinates;
 
-			data.$parts.each(function (index) {
-				$(this).css(coordinates[index]);
+			data.$hintFocus.css({
+				left: xys.x1 + s,
+				top: xys.y1 + s,
+				width: xys.width + s,
+				height: xys.height + s
 			});
 
 		},
