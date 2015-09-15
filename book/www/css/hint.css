@@ -42,6 +42,10 @@
 	transform-origin: center center;
 }
 
+.hint-container-show-in-no-animation {
+	opacity: 1;
+}
+
 .hint-container-show-out {
 	-webkit-animation-duration: 0.2s;
 	-webkit-animation-iteration-count: 1;
@@ -124,6 +128,11 @@
 		opacity: 1;
 		transform: translate3d(0, 0, 0);
 	}
+}
+
+.hint-container-show-in-no-animation .hint-text {
+	opacity: 1;
+	transform: translate3d(0, 0, 0);
 }
 
 .hint-container-show-in .hint-text {
