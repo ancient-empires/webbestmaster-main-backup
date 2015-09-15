@@ -234,14 +234,21 @@
 
 		setFadeCoordinates: function (data) {
 
-			var xys = data.allCoordinates;
+			var view = this,
+				info = view.info,
+				isScreenAnimation = info.get('screenAnimation') === 'on',
+				xys = data.allCoordinates;
 
-			data.$hintFocus.css({
-				left: xys.x1 + s,
-				top: xys.y1 + s,
-				width: xys.width + s,
-				height: xys.height + s
-			});
+			if (isScreenAnimation) {
+				data.$hintFocus.css({
+					left: xys.x1 + s,
+					top: xys.y1 + s,
+					width: xys.width + s,
+					height: xys.height + s
+				});
+			} else {
+				data.$hintFocus.remove();
+			}
 
 		},
 

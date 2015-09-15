@@ -86,13 +86,14 @@
 	box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.5);
 	font-size: 1rem;
 	line-height: 1rem;
-	border-radius: 0.2rem;
+	border-radius: 0.6rem;
 	color: #333;
 	margin-top: 1.2rem;
 	text-align: center;
 	-webkit-transform: translate3d(0, 1.5rem, 0);
 	transform: translate3d(0, 1.5rem, 0);
 	z-index: 1;
+	border: 0.2rem solid #333;
 }
 
 .hint-arrow {
@@ -106,6 +107,21 @@
 	border-left-width: 0.6rem;
 	border-right-width: 0.6rem;
 	border-bottom-color: #fff;
+	z-index: 1;
+}
+
+.hint-arrow-border {
+	position: absolute;
+	top: -2rem;
+	width: 0;
+	height: 0;
+	left: 50%;
+	margin-left: -0.8rem;
+	border: 1rem solid transparent;
+	border-left-width: 0.8rem;
+	border-right-width: 0.8rem;
+	border-bottom-color: #333;
+	z-index: 0;
 }
 
 @-webkit-keyframes hint-text-show-in {
@@ -132,7 +148,7 @@
 
 .hint-container-show-in-no-animation .hint-text {
 	opacity: 1;
-	transform: translate3d(0, 0, 0);
+	transform: translate3d(0, -0.5rem, 0);
 }
 
 .hint-container-show-in .hint-text {
