@@ -108,8 +108,10 @@
 }
 
 .header-button-text-left {
-	width: 5.8rem;
+	width: 7rem;
 	left: 0;
+	text-align: left;
+	padding-left: 0.3rem;
 }
 
 .header-button-text-right {

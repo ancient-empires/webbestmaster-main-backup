@@ -40,8 +40,6 @@
 			// get data from LS
 			info.attr = JSON.parse(info.ls.getItem(info.savedItem) || '{}');
 
-			//set settings
-			info.setSettings();
 			// set language
 			info.setLanguage();
 			// is phone
@@ -52,6 +50,9 @@
 			info.detectCssJsPrefix();
 			info.detectTransitionEndEventName();
 			info.detectAnimationEndEventName();
+
+			//set settings
+			info.setSettings();
 
 		},
 
@@ -209,7 +210,7 @@
 
 			var info = this,
 				defaultSettings = {
-					screenAnimation: 'off',
+					screenAnimation: info.get('isAndroid', true) ? 'off' : 'on',
 					storyByStory: info.isNormal ? 'off' : 'on',
 					hint: {}
 					//autoSave: 'on', // auto save game after every turn

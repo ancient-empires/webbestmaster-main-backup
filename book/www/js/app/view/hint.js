@@ -138,7 +138,17 @@
 		},
 
 		showInAnimation: function () {
-			this.$el.addClass('hint-container-show-in');
+
+			var view = this,
+				info = view.info,
+				isScreenAnimation = info.get('screenAnimation') === 'on';
+
+			if (isScreenAnimation) {
+				view.$el.addClass('hint-container-show-in');
+			} else {
+				view.$el.addClass('hint-container-show-in-no-animation');
+			}
+
 		},
 
 		showOutAnimation: function () {
@@ -146,13 +156,21 @@
 			var view = this,
 				$el = view.$el,
 				deferred = $.Deferred(),
-				animationEnd = view.info.get('animationEnd', true);
+				info = view.info,
+				animationEnd = info.get('animationEnd', true),
+				isScreenAnimation = info.get('screenAnimation') === 'on';
 
-			$el.one(animationEnd, function () {
+			if ( isScreenAnimation && $el.hasClass('hint-container-show-in') ) {
+
+				$el.one(animationEnd, function () {
+					deferred.resolve();
+				}); // work only one time
+
+				$el.addClass('hint-container-show-out');
+
+			} else {
 				deferred.resolve();
-			}); // work only one time
-
-			$el.addClass('hint-container-show-out');
+			}
 
 			return deferred.promise();
 
@@ -216,14 +234,21 @@
 
 		setFadeCoordinates: function (data) {
 
-			var xys = data.allCoordinates;
+			var view = this,
+				info = view.info,
+				isScreenAnimation = info.get('screenAnimation') === 'on',
+				xys = data.allCoordinates;
 
-			data.$hintFocus.css({
-				left: xys.x1 + s,
-				top: xys.y1 + s,
-				width: xys.width + s,
-				height: xys.height + s
-			});
+			if (isScreenAnimation) {
+				data.$hintFocus.css({
+					left: xys.x1 + s,
+					top: xys.y1 + s,
+					width: xys.width + s,
+					height: xys.height + s
+				});
+			} else {
+				data.$hintFocus.remove();
+			}
 
 		},
 
