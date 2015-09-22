@@ -167,21 +167,15 @@
 	padding: 5.6rem 0 0;
 }
 
-.title-book-wrapper {
-	/*display: inline-block;*/
-	width: 8.8rem;
-	height: 8rem;
-	float: left;
-}
-
 .title-book-wrapper-preview {
-	height: 100%;
+	float: left;
 	width: 7.6rem;
+	height: 8rem;
 	background-repeat: no-repeat;
 	-webkit-background-size: 100% 100%;
 	background-size: 100% 100%;
 	box-shadow: 0.2rem 0.2rem 1rem rgba(0, 0, 0, 0.5);
-	margin: 0 auto;
+	margin: 0 0.6rem;
 	position: relative;
 	border-radius: 0.2rem;
 }

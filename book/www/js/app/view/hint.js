@@ -96,7 +96,6 @@
 		events: {
 			'click': 'hide'
 			//'click .js-story-by-story': 'setStoryByStory',
-			//'click .js-title-book-wrapper': 'openBook'
 			//'click .js-show-popup': 'testShowPopup'
 		},
 

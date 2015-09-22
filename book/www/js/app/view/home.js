@@ -54,10 +54,10 @@
 				bookWidth = 8.8, // SEE CSS
 				availableWidth = device.get('width') / remSize,
 				booksOnShelf = Math.floor(availableWidth / bookWidth),
-				firstBookPadding = (availableWidth % bookWidth) / 2;
+				firstBookMarginLeft = (availableWidth % bookWidth) / 2 + 0.6; // SEE CSS
 
 			return {
-				firstBookPadding: firstBookPadding + 'rem',
+				firstBookMarginLeft: firstBookMarginLeft + 'rem',
 				booksOnShelf: booksOnShelf
 			};
 
