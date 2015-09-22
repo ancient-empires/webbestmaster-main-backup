@@ -138,7 +138,19 @@
 						</div>
 						{{?}}
 
-					{{? index && !((index + 1) % booksOnShelf) }}
+<!--
+						{{? index % booksOnShelf}}
+						<div class="title-book-wrapper-preview title-book-wrapper js-title-book-wrapper" data-js-route="book/{{= book.folder }}" style="background-image: url(books/{{= [languageName, book.folder, 'title.jpg'].join('/') }});">
+							<p class="book-title-text">{{= book.title.text }}</p>
+						</div>
+						{{??}}
+						<div class="title-book-wrapper-preview title-book-wrapper js-title-book-wrapper" data-js-route="book/{{= book.folder }}" style="background-image: url(books/{{= [languageName, book.folder, 'title.jpg'].join('/') }}); margin-left: {{= it.shelf.firstBookPadding }};">
+							<p class="book-title-text">{{= book.title.text }}</p>
+						</div>
+						{{?}}
+
+-->
+						{{? index && !((index + 1) % booksOnShelf) }}
 						<div class="shelf shelf-number-{{= booksOnShelf }}">&nbsp;</div>
 					{{?}}
 
