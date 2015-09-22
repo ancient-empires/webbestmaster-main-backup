@@ -6,7 +6,7 @@
 	/*global APP */
 
 	var info,
-		isNormal = true;
+		isNormal = false;
 
 	win.APP = win.APP || {};
 
@@ -210,7 +210,8 @@
 
 			var info = this,
 				defaultSettings = {
-					screenAnimation: info.get('isAndroid', true) ? 'off' : 'on',
+					//screenAnimation: info.get('isAndroid', true) ? 'off' : 'on',
+					screenAnimation: 'on',
 					storyByStory: info.isNormal ? 'off' : 'on',
 					hint: {}
 					//autoSave: 'on', // auto save game after every turn

@@ -19,8 +19,8 @@
 
 .popup-title .popup-text {
 	margin: 0 auto;
+	padding-top: 0;
 	width: auto; /* override .ellipsis */
-	max-width: 80%; /* override .ellipsis */
 }
 
 .wrapper {
@@ -254,6 +254,7 @@
 	background-image: url(../i/back.svg);
 }
 
+/*
 .popup-text,
 .back-page-text {
 	padding: 0.9rem 1rem;
@@ -266,6 +267,7 @@
 	font-family: "Times New Roman", serif;
 	border-radius: 0.2rem;
 }
+*/
 
 .popup-text {
 	text-align: center;

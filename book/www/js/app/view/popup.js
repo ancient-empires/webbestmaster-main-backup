@@ -12,7 +12,14 @@
 	APP.BB.PopupView = APP.BB.BaseView.extend({
 
 		events: {
-			'click .js-popup-container': 'stopEvent'
+			//'click .js-popup-container': 'stopEvent'
+
+			'click': 'hidePopupByRouter',
+			'touchmove': 'stopEvent',
+			'gesturestart': 'stopEvent',
+			'gesturechange': 'stopEvent',
+			'gestureend': 'stopEvent'
+
 		},
 
 		selectors: {
@@ -124,22 +131,21 @@
 		// actions
 		showInAnimation: function () {
 			var view = this;
-			view.$el.find(view.selectors.popupContainer).addClass('popup-container-show-in');
+			view.$el.addClass('popup-show-in');
 		},
 
 		showOutAnimation: function () {
 
 			var view = this,
 				$el = view.$el,
-				$container = $el.find(view.selectors.popupContainer),
 				deferred = $.Deferred(),
 				animationEnd = view.info.get('animationEnd', true);
 
-			$container.one(animationEnd, function () {
+			$el.one(animationEnd, function () {
 				deferred.resolve();
 			}); // work only one time
 
-			$container.addClass('popup-container-show-out');
+			$el.addClass('popup-show-out');
 
 			return deferred.promise();
 
