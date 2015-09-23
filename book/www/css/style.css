@@ -105,17 +105,14 @@
 	font-size: 0.7rem;
 	line-height: 0.7rem;
 	text-align: center;
+	width: 5.6rem;
 }
 
 .header-button-text-left {
-	width: 7rem;
 	left: 0;
-	text-align: left;
-	padding-left: 0.3rem;
 }
 
 .header-button-text-right {
-	width: 5.6rem;
 	right: 0;
 }
 
