@@ -1,0 +1,41 @@
+#wrapper{
+width:800px;
+outline:1px solid grey;
+padding:10px;
+margin:0 auto;
+}
+
+#header{
+height:77px;
+background-color:gold;
+margin-bottom:12px;
+}
+
+#sidebarL{
+height:77px;
+background-color:silver;
+margin-bottom:12px;
+width:150px;
+float:left;
+}
+
+#sidebarR{
+height:77px;
+background-color:silver;
+margin-bottom:12px;
+width:150px;
+float:right;
+}
+
+#content{
+height:77px;
+background-color:red;
+margin:0 auto 12px auto;
+width:480px;
+}
+
+#fotter{
+height:77px;
+background-color:black;
+margin-bottom:12px;
+}
