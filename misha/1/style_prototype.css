@@ -1,0 +1,184 @@
+p{
+	color:#BDBDBD;
+	font:16px Arial;
+	line-height:30px;
+}
+
+#textinhead{
+	padding:10px;
+	line-height:37px;
+	width:880px;
+}
+
+p.hd{
+	color:#939393;
+}
+#wrapper{ 
+	padding:15px;
+	width:947px;
+	margin:30px auto;
+	border:7px solid #CCCCCC;
+	border-radius:7px;
+	background-color:#FFFFFF;
+}
+
+#header{	
+	padding:10px;
+}
+
+.wood{
+	float:left;
+	margin:20px;
+}
+
+ul.hr {
+    margin: 25px 25px 25px 50px; 
+    padding: 4px; 
+	text-align:right;
+}
+ul.hr li {
+	color:#C1C1C1;
+	font:14px Arial;
+    display: inline; /* Отображать как строчный элемент */
+    margin-right: 15px; 
+    padding: 3px; 
+   }
+   
+#line{
+	border:1px solid #DADEE1;
+	border-bottom-color:#DADEE1;
+	margin:10px 35px 35px 35px;
+	width:850px;
+	
+}
+
+#navigtitle{
+	padding-right:140px;
+}
+
+ul#navig li{
+	color:#C1C1C1;
+	font:14px Arial;
+	color:#737373;
+}
+
+.sidetitle{
+	color:#737373;
+	font-weight:600;
+}
+   
+ a{
+	 text-decoration:none;
+	 color:#737373;
+ }  
+   
+.bold{
+	color:#8C6641;
+	font-weight:bold;
+	text-decoration:none;
+}
+ 
+ #content{
+	 margin-top:20px;
+	 width:650px;
+ }
+ 
+ .img{
+	padding:4px;
+	border:1px solid #DADEE1;
+	border-radius:3px;
+ }
+ 
+ #des1{
+	 width:275px;
+	 float:left;
+ }
+ 
+ .des1{
+	 margin:0px 30px 0px 35px;
+}
+
+#sidebar{
+	width:268px;
+	float:right;
+	height:150px;
+}
+
+#prebird{
+	float:left;
+	margin-left:70px;
+	margin-right:20px;
+}
+
+.bird{
+	position:relative;
+	top:10px;
+}
+
+#see{
+	float:right;
+}
+
+#blog{
+	position:relative;
+	right:15px;
+}
+
+.tibat2{
+	position:relative;
+	top:-15px;
+	text-shadow: 1px 1px 2px #737373, 0 0 7px #737373; /* Параметры тени */
+    color: white; /* Белый цвет текста */
+    font-size: 14px; /* Размер надписи */
+}
+
+.text{
+	width:95px;
+	height:30px;
+	border:1px outset #CADA9C;
+	border-radius:3px;
+	box-shadow:0px 0px 0px 1px #628727;
+	color:#FFFFFF;
+	text-align:center;
+	background: linear-gradient(to top, #6B9C2E, #98B63F );
+}
+
+#battons{
+	width:200px;
+	margin-left:425px;
+}
+
+ul#contact{
+	list-style-type:none;
+	position:relative;
+	right:40px;
+	color:#737373;
+	font:14px Arial;
+	line-height:33px;
+}
+ul#navig li{
+	list-style-type:none;
+	position:relative;
+	right:40px;
+	line-height:33px;
+}
+
+ul#footlist li{
+	font:14px Arial;
+	list-style-type:none;
+	display: inline;
+	color:#BDBDBD;
+}
+
+#psfoot{
+	margin-right:25px;
+	position:relative;
+	right:15px;
+}
+
+#imgfoot{
+	position:relative;
+	top:14px;
+	margin-right:7px;
+	margin-left:7px;
+}
