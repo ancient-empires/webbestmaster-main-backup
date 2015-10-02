@@ -59,11 +59,11 @@
 			},
 
 			showText: {
-				x1: 1,
-				y1: 5,
+				x1: 3,
+				y1: 10,
 				// use this
-				x2: -1,
-				y2: -6,
+				x2: -3,
+				y2: -11,
 				// or this
 				//width: 4.9,
 				//height: 3.7,
