@@ -161,7 +161,7 @@
 }
 
 .scroll-area-content {
-	padding: 5.6rem 0 0;
+	padding: 5.6rem 0 6rem;
 }
 
 .title-book-wrapper-preview {
@@ -186,7 +186,7 @@
 }
 
 .back-page-wrapper {
-	padding: 4.4rem 1rem 1rem;
+	padding: 4.4rem 1rem 6rem;
 }
 
 .book-page-image {
