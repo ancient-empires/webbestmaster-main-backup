@@ -1,6 +1,6 @@
 (function (win) {
 
-	"use strict";
+	'use strict';
 	/*global window, document, console */
 	/*global */
 

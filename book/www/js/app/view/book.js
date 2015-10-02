@@ -1,7 +1,7 @@
 /*jslint white: true, nomen: true */
 (function (win) {
 
-	"use strict";
+	'use strict';
 	/*global window, Backbone, $, templateMaster, APP, Swiper, _, setTimeout, clearTimeout */
 
 	win.APP = win.APP || {};
@@ -417,6 +417,8 @@
 				if ( wasSwipe ) { // swipe was good
 					return;
 				}
+
+				win.APP.ad.showAd();
 
 				isStoryByStory = view.info.get('storyByStory') === 'on';
 

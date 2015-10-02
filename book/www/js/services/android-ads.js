@@ -1,7 +1,7 @@
 /*jslint white: true, nomen: true */
 (function (win) {
 
-	"use strict";
+	'use strict';
 	/*global window */
 	/*global */
 
@@ -13,7 +13,7 @@
 
 	var ad = {
 		attr: {},
-		period: 3e3 * 60,
+		//period: 3e3 * 60,
 		set: function (key, value) {
 			this.attr[key] = value;
 			return this;
@@ -22,19 +22,21 @@
 			return this.attr[key];
 		},
 		showAd: function () {
-			return win.Android && win.Android.displayInterstitial();
+			if (win.Android && win.APP.info.isNormal) {
+				win.Android.displayInterstitial();
+			}
 		},
 		init: function () {
-			var intervalId = win.setInterval(this.showAd, this.period);
-			this.set('intervalId', intervalId);
+			//var intervalId = win.setInterval(this.showAd, this.period);
+			//this.set('intervalId', intervalId);
 		}
 
 	};
 
 	win.APP.ad = ad;
 
-	if (win.APP.info.isNormal) {
-		ad.init();
-	}
+	//if (win.APP.info.isNormal) {
+	//	ad.init();
+	//}
 
 }(window));

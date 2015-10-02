@@ -1,7 +1,7 @@
 /*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
 (function (win, doc, docElem) {
 
-	"use strict";
+	'use strict';
 	/*global window, document, location, Image */
 	/*global Backbone, $, APP, log, _ */
 

@@ -1,7 +1,7 @@
 /*jslint white: true, nomen: true */
 (function (win) {
 
-	"use strict";
+	'use strict';
 	/*global window, document, setTimeout */
 	/*global APP, Backbone, FastClick */
 
@@ -28,6 +28,8 @@
 
 			win.APP.bb.router = new win.APP.BB.Router();
 			Backbone.history.start();
+
+			win.APP.ad.showAd();
 
 		}());
 

@@ -30,7 +30,7 @@
 /*jslint white: true, nomen: true */
 (function (win, jQuery) {
 
-	"use strict";
+	'use strict';
 	/*global window */
 	/*global */
 

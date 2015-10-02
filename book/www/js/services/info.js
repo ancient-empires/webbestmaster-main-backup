@@ -1,12 +1,12 @@
 /*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
 (function (win, doc, docElem) {
 
-	"use strict";
+	'use strict';
 	/*global window, document, navigator, localStorage */
 	/*global APP */
 
 	var info,
-		isNormal = false;
+		isNormal = true;
 
 	win.APP = win.APP || {};
 

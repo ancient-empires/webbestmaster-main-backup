@@ -1,7 +1,7 @@
 /*jslint white: true, nomen: true */
 (function (win, doc) {
 
-	"use strict";
+	'use strict';
 	/*global window, document */
 	/*global APP, doT */
 
