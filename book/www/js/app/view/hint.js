@@ -122,7 +122,20 @@
 		render: function () {
 
 			var view = this,
-				$wrapper = view.$wrapper;
+				$wrapper = view.$wrapper,
+				info = view.info,
+				isAndroid = info.get('isAndroid', true),
+				execute;
+
+			if (isAndroid) {
+				execute = function (fn, timeout) {
+					setTimeout(fn, timeout);
+				};
+			} else {
+				execute = function (fn) {
+					fn();
+				}
+			}
 
 			view.setCoordinates({
 				$hintFocus: view.$el.find(view.selectors.hintFocus),
@@ -130,9 +143,13 @@
 				coordinates: hintsMap[view.get('name')]
 			});
 
-			$wrapper.append(view.$el);
+			execute(function () {
+				$wrapper.append(view.$el);
+			}, 50);
 
-			view.showInAnimation();
+			execute(function () {
+				view.showInAnimation();
+			}, 100);
 
 		},
 
