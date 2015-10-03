@@ -418,8 +418,6 @@
 					return;
 				}
 
-				win.APP.ad.showAd();
-
 				isStoryByStory = view.info.get('storyByStory') === 'on';
 
 				if (isStoryByStory) {
@@ -444,6 +442,7 @@
 					});
 				} else {
 					view.routeBack();
+					setTimeout(win.APP.ad.showAd, 3e3);
 				}
 
 			}, timeout * 1e3); // 1e3
