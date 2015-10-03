@@ -16,12 +16,12 @@
 
 		link: {
 			ios: {
-				normal: 'https://itunes.apple.com/us/app/logika-i-smekalka/id908979726?mt=8',
-				pro: 'https://itunes.apple.com/us/app/logic-and-wit-pro/id929158288?mt=8'
+				normal: '',
+				pro: ''
 			},
 			android: {
-				normal: 'https://play.google.com/store/apps/details?id=com.statlex.logicandwit',
-				pro: 'https://play.google.com/store/apps/details?id=com.statlex.logicandwitpro'
+				normal: 'https://play.google.com/store/apps/details?id=com.elitapp.coolbook',
+				pro: 'https://play.google.com/store/apps/details?id=com.elitapp.coolbookpro'
 			}
 		},
 
