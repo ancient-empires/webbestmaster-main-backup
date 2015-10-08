@@ -571,7 +571,7 @@
 			var view = this;
 
 			$('.js-hint-wrapper').trigger('hide', { doNotTrack: true });
-			view.proto.hide.call(view);
+			return view.proto.hide.call(view);
 
 		}
 
