@@ -6,7 +6,7 @@
 	/*global APP */
 
 	var info,
-		isNormal = true;
+		isNormal = false;
 
 	win.APP = win.APP || {};
 
@@ -196,8 +196,10 @@
 
 		remove: function (key, isSystem) {
 			if (isSystem) {
+				this.systemAttr[key] = null;
 				delete this.systemAttr[key];
 			} else {
+				this.attr[key] = null;
 				delete this.attr[key];
 				this.ls.setItem(this.savedItem, JSON.stringify(this.attr));
 			}
@@ -210,6 +212,8 @@
 
 			var info = this,
 				defaultSettings = {
+					installTime: Date.now(),
+					versionCode: 1,
 					screenAnimation: info.get('isAndroid', true) ? 'off' : 'on',
 					//screenAnimation: 'on',
 					storyByStory: info.isNormal ? 'off' : 'on',
