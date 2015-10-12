@@ -389,23 +389,21 @@
 			view.stopEvent(e);
 
 			if (needConfirm === 'yes') {
-
-				view.prompt({
+				view.needConfirmLinkPrompt({
 					url: url
 				});
-
 			} else {
 				win.open(url);
 			}
 
 		},
 
-		prompt: function (data) {
+		needConfirmLinkPrompt: function (data) {
 
 			var view = this,
 				util = win.APP.util,
-				a = util.getRandomBetween(4, 14),
-				b = util.getRandomBetween(4, 14),
+				a = util.getRandomBetween(1, 9),
+				b = util.getRandomBetween(1, 9),
 				result = win.prompt( [' ', a, '+', b, '= ?'].join(' ') );
 
 			if ( result === null || result === '') {
@@ -415,7 +413,7 @@
 			if (Number(result) === a + b) {
 				win.open(data.url);
 			} else {
-				view.prompt(data);
+				view.needConfirmLinkPrompt(data);
 			}
 
 		},
