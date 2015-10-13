@@ -12,7 +12,7 @@
 		lang: 'ru', // current language
 //		availableLangs: ['en', 'ru', 'de', 'zh', 'es', 'ar', 'it'],
 		availableLangs: ['ru'],
-		adsFree: true,
+		adsFree: false,
 		saveItem: 'bingo',
 		isPhone: false,
 		isTouch: isTouch,
