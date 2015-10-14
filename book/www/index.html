@@ -248,9 +248,26 @@
 
 	<div class="popup-text js-stop-event">
 
-		<p></p>
+		<div class="external-link-icon">&nbsp;</div>
 
+		<p class="external-link-question">{{= it.a }} + {{= it.b }} = ?</p>
 
+		{{~it.answers :answer:index}}
+
+		{{? index === 3 }}
+			<div class="clear"></div>
+		{{?}}
+
+		{{? answer === it.answer }}
+		<div class="external-link-answer-button js-external-link js-back" data-href="{{= it.url }}">
+			{{= answer }}
+		</div>
+		{{??}}
+		<div class="external-link-answer-button js-back">
+			{{= answer }}
+		</div>
+		{{?}}
+		{{~ }}
 	</div>
 
 </script>

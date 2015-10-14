@@ -389,12 +389,12 @@
 			view.stopEvent(e);
 
 			if (needConfirm === 'yes') {
-				view.needConfirmLinkPrompt({
+				return view.needConfirmLinkPrompt({
 					url: url
 				});
-			} else {
-				win.open(url);
 			}
+
+			win.open(url);
 
 		},
 
@@ -402,10 +402,31 @@
 
 			var view = this,
 				util = win.APP.util,
-				a = util.getRandomBetween(1, 9),
-				b = util.getRandomBetween(1, 9),
-				result = win.prompt( [' ', a, '+', b, '= ?'].join(' ') );
+				getRandomBetween = util.getRandomBetween,
+				a = getRandomBetween(5, 9),
+				b = getRandomBetween(5, 9),
+				answer = a + b,
+				i, len,
+				numbers = [a, b].sort(),
+				answers = [];
 
+			for (i = 0, len = 6; i < len; i += 1) {
+				answers[i] = answer + i - 4;
+			}
+
+			return view.showPopup({
+				name: 'need-confirm',
+				cssClass: 'popup-title',
+				data: {
+					a: numbers[0],
+					b: numbers[1],
+					answer: answer,
+					answers: util.assortArray(answers),
+					url: data.url
+				}
+			});
+
+/*
 			if ( result === null || result === '') {
 				return;
 			}
@@ -415,6 +436,7 @@
 			} else {
 				view.needConfirmLinkPrompt(data);
 			}
+*/
 
 		},
 
