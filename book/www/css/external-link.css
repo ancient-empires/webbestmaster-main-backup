@@ -3,9 +3,10 @@
 	width: 4rem;
 	height: 4rem;
 	background-repeat: no-repeat;
-	background-size: 100% 100%;
-	-webkit-background-size: 100% 100%;
+	background-size: contain;
+	-webkit-background-size: contain;
 	margin: 0 auto 0.2rem;
+	background-position: center center;
 }
 
 .external-link-question {

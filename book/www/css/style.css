@@ -36,7 +36,7 @@
 	-webkit-background-size: auto 100%;
 	background-size: auto 100%;
 	height: 3.4rem;
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	z-index: 1;
 	background-color: rgba(255, 255, 255, 0.6);
@@ -99,7 +99,7 @@
 }
 
 .header-button-text {
-	position: fixed;
+	position: absolute;
 	z-index: 0;
 	top: 2.5rem;
 	font-size: 0.7rem;
@@ -180,7 +180,7 @@
 .swiper-container {
 	width: 100%;
 	height: 100%;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	z-index: 0;
 }
@@ -213,7 +213,7 @@
 .book-pause-button,
 .book-home-button,
 .book-play-button {
-	position: fixed;
+	position: absolute;
 	width: 3rem;
 	height: 3rem;
 	z-index: 1;
@@ -264,7 +264,7 @@
 
 .page-text {
 	z-index: 0;
-	position: fixed;
+	position: absolute;
 	width: 100%;
 	box-sizing: border-box;
 	padding: 0.7rem;
