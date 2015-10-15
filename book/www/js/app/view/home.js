@@ -44,8 +44,6 @@
 				});
 			}
 
-			//view.rateUsPopup();
-
 		},
 
 		getBooksOnShelfNumber: function () {
@@ -98,21 +96,34 @@
 		bindEventListeners: function () {
 
 			var view = this,
-				device = win.APP.bb.device;
+				device = win.APP.bb.device,
+				rateUsTimeoutId;
 
 			view.listenTo(device, 'change:orientation', function () {
 				$('.js-hint-wrapper').trigger('hide', { doNotTrack: true });
 				view.loadUrl();
 			});
 
+			rateUsTimeoutId = setTimeout(function () {
+				// check for rate up popup
+				if ( Date.now() - view.info.get('installTime') > 20e3 ) {
+					view.rateUsPopup();
+				}
+			}, 2e3);
+
+			view.set('rateUsTimeoutId', rateUsTimeoutId);
+
 		},
 
 		unbindEventListeners: function () {
 
 			var view = this,
-				device = win.APP.bb.device;
+				device = win.APP.bb.device,
+				rateUsTimeoutId = view.get('rateUsTimeoutId');
 
 			view.stopListening(device);
+
+			clearTimeout(rateUsTimeoutId);
 
 		},
 

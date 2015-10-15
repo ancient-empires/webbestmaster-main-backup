@@ -460,18 +460,18 @@
 
 			if ( lastShow && (now - lastShow < showPeriod) ) {
 				// do not show popup too often
-				console.log('do not show popup too often');
+				//console.log('do not show popup too often');
 				return;
 			}
 
 			if ( lastRateNow ) {
 				// rate by rate now
-				console.log('it had been rate by rate now');
+				//console.log('it had been rate by rate now');
 				return;
 			}
 
 			if ( lastNoThanks && ( now - lastShow < noThanksPeriod ) ) {
-				console.log('no thanks - 3 * showPeriod');
+				//console.log('no thanks - 3 * showPeriod');
 				return;
 			}
 
