@@ -440,6 +440,79 @@
 
 		},
 
+		rateUsPopup: function () {
+
+			// do not show any popup if user is offline
+			if ( !win.navigator.onLine ) {
+				return;
+			}
+
+			var view = this,
+				info = view.info,
+				dateUsData = info.get('rate-us') || {},
+				now = Date.now(),
+				lastShow = dateUsData.lastShow,
+				//lastRemindMeLater = dateUsData.lastRemindMeLater,
+				lastNoThanks = dateUsData.lastNoThanks,
+				lastRateNow = dateUsData.lastRateNow,
+				showPeriod = 86400e3 * 2,
+				noThanksPeriod = showPeriod * 3; // try to show every two days
+
+			if ( lastShow && (now - lastShow < showPeriod) ) {
+				// do not show popup too often
+				console.log('do not show popup too often');
+				return;
+			}
+
+			if ( lastRateNow ) {
+				// rate by rate now
+				console.log('it had been rate by rate now');
+				return;
+			}
+
+			if ( lastNoThanks && ( now - lastShow < noThanksPeriod ) ) {
+				console.log('no thanks - 3 * showPeriod');
+				return;
+			}
+
+			// set last show time
+			dateUsData.lastShow = now;
+
+			// save date-us data
+			info.set('rate-us', dateUsData);
+
+			return view.showPopup({
+				name: 'rate-us',
+				cssClass: 'popup-title',
+				extraEvents: [
+					{
+						selector: '.js-rate-us-rate-now',
+						event: 'click',
+						fn: function () {
+							var info = win.APP.info,
+								dateUsData = info.get('rate-us') || {};
+							dateUsData.lastRateNow = Date.now();
+							info.set('rate-us', dateUsData);
+						}
+					},
+					{
+						selector: '.js-rate-us-no-thanks',
+						event: 'click',
+						fn: function () {
+							var info = win.APP.info,
+								dateUsData = info.get('rate-us') || {};
+							dateUsData.lastNoThanks = Date.now();
+							info.set('rate-us', dateUsData);
+						}
+					}
+				],
+				data: {
+					url: info.getLinkToStore()
+				}
+			});
+
+		},
+
 		loadUrl: function () {
 			Backbone.history.loadUrl();
 		},

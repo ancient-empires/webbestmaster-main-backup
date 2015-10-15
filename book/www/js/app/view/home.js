@@ -44,6 +44,8 @@
 				});
 			}
 
+			//view.rateUsPopup();
+
 		},
 
 		getBooksOnShelfNumber: function () {

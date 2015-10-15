@@ -1,0 +1,28 @@
+.rate-us-header {
+	font-size: 1.2rem;
+	line-height: 130%;
+	padding-bottom: 0.5rem;
+}
+
+.rate-us-button,
+.rate-us-button-negative {
+	display: block;
+	height: 1.8rem;
+	width: 90%;
+	padding-top: 1rem;
+	line-height: 100%;
+	margin: 0.4rem auto 0.6rem;
+	background-color: #ECECEC;
+	border-radius: 0.4rem;
+	box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
+}
+
+.rate-us-button:active,
+.rate-us-button-negative:active {
+	box-shadow: none;
+}
+
+.rate-us-button-negative {
+	margin-top: 1.6rem;
+	opacity: 0.6;
+}

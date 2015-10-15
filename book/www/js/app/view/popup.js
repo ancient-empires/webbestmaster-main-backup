@@ -67,6 +67,9 @@
 				view.set('timeoutId', timeoutId);
 			}
 
+
+			view.bindExtraEvents();
+
 		},
 
 		unbindEventListeners: function () {
@@ -77,6 +80,32 @@
 			if (timeout) {
 				clearTimeout(view.get('timeoutId'))
 			}
+
+			view.unbindExtraEvents();
+
+		},
+
+		bindExtraEvents: function () {
+
+			var view = this,
+				$el = view.$el,
+				events = view.get('extraEvents');
+
+			_.each(events, function (data) {
+				$el.find(data.selector).on(data.event, data.fn);
+			});
+
+		},
+
+		unbindExtraEvents: function () {
+
+			var view = this,
+				$el = view.$el,
+				events = view.get('extraEvents');
+
+			_.each(events, function (data) {
+				$el.find(data.selector).off(data.event, data.fn);
+			});
 
 		},
 

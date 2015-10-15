@@ -253,7 +253,7 @@
 		},
 
 		getLinkToStore: function (type) { // pro or normal
-			return this.link[this.get('os', true)][type];
+			return this.link[this.get('os', true)][type || (this.isNormal ? 'normal' : 'pro')];
 		}
 
 	};
