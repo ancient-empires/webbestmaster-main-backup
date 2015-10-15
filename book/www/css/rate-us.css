@@ -1,3 +1,7 @@
+.popup-title .rate-us-wrapper {
+	font-family: HelveticaNeueCyr, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+}
+
 .rate-us-header {
 	font-size: 1.1rem;
 	line-height: 130%;
@@ -7,9 +11,9 @@
 .rate-us-button,
 .rate-us-button-negative {
 	display: block;
-	height: 1.8rem;
-	width: 100%;
-	padding-top: 1rem;
+	height: 1.9rem;
+	width: 90%;
+	padding-top: 0.6rem;
 	line-height: 100%;
 	margin: 0.4rem auto 0.6rem;
 	background-color: #ECECEC;
