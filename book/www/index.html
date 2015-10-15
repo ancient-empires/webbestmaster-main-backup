@@ -276,18 +276,22 @@
 
 	<div class="popup-text js-stop-event">
 
-		<p class="rate-us-header">If you like CoolBook, please rate it. Thanks!</p>
+		{{ var rateUsLang = window.APP.lang.get('rateUs'); }}
+
+		<p class="rate-us-header">
+			{{= rateUsLang.header }}
+		</p>
 
 		<div class="rate-us-button js-external-link js-back js-rate-us-rate-now" data-href="{{= it.url }}">
-			Rate Now
+			{{= rateUsLang.rateNow }}
 		</div>
 
 		<div class="rate-us-button js-back">
-			Remind me later
+			{{= rateUsLang.remindMeLater }}
 		</div>
 
 		<div class="rate-us-button-negative js-back js-rate-us-no-thanks">
-			No, Thanks
+			{{= rateUsLang.noThanks }}
 		</div>
 
 	</div>

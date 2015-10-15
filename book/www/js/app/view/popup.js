@@ -67,7 +67,6 @@
 				view.set('timeoutId', timeoutId);
 			}
 
-
 			view.bindExtraEvents();
 
 		},
