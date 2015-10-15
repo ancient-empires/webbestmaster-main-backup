@@ -6,7 +6,7 @@
 	/*global APP */
 
 	var info,
-		isNormal = true;
+		isNormal = false;
 
 	win.APP = win.APP || {};
 
