@@ -23,12 +23,6 @@
 			'hide': 'hide',
 			'click .js-hide-popup': 'hidePopupByRouter',
 
-			// no scroll
-			'touchmove .js-no-scroll': 'stopEvent',
-			'gesturestart .js-no-scroll': 'stopEvent',
-			'gesturechange .js-no-scroll': 'stopEvent',
-			'gestureend .js-no-scroll': 'stopEvent',
-
 			// fix extra scroll for iOS
 			'touchstart .js-scroll-area-container': 'touchStartAutoScroll',
 
@@ -43,12 +37,17 @@
 
 		},
 
+		extraEvents: {
+			noScroll: ['mousewheel', 'touchmove', 'gesturestart', 'gesturechange', 'gestureend']
+		},
+
 		popupUrl: 'popup=true',
 
 		selectors: {
 			wrapper: '.js-wrapper',
 			viewWrapper: '.js-view-wrapper',
-			verticalSwiper: '.js-scroll-container'
+			verticalSwiper: '.js-scroll-container',
+			noScroll: '.js-no-scroll'
 		},
 
 		// will be changed after initStatic
@@ -94,7 +93,9 @@
 
 			var view = this,
 				proto = win.APP.BB.BaseView.prototype,
-				newEvents = {};
+				newEvents = {},
+				noScrollEvents = proto.extraEvents.noScroll,
+				noScrollSelector = proto.selectors.noScroll;
 
 			view.events = $.extend( {}, proto.events, view.events );
 
@@ -102,6 +103,18 @@
 			_.each(view.events, function (functionName,  eventAndSelector) {
 				newEvents[view.getFullEventNameAndSelector(eventAndSelector)] = functionName;
 			});
+
+			_.each(noScrollEvents, function (name) {
+				newEvents[name + ' ' + noScrollSelector] = 'stopEvent';
+			});
+
+			if (newEvents.scroll === 'stopEvent') {
+				newEvents.scroll = null; // let gc clean ram
+				delete newEvents.scroll;
+				_.each(noScrollEvents, function (name) {
+					newEvents[name] = 'stopEvent';
+				});
+			}
 
 			view.events = newEvents;
 

@@ -13,13 +13,8 @@
 
 		events: {
 			//'click .js-popup-container': 'stopEvent'
-
 			'click': 'hidePopupByRouter',
-			'touchmove': 'stopEvent',
-			'gesturestart': 'stopEvent',
-			'gesturechange': 'stopEvent',
-			'gestureend': 'stopEvent'
-
+			'scroll': 'stopEvent'
 		},
 
 		selectors: {

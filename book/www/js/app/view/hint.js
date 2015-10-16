@@ -94,7 +94,8 @@
 		},
 
 		events: {
-			'click': 'hide'
+			'click': 'hide',
+			'scroll': 'stopEvent'
 			//'click .js-story-by-story': 'setStoryByStory',
 			//'click .js-show-popup': 'testShowPopup'
 		},
