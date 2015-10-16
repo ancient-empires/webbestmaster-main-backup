@@ -127,7 +127,7 @@
 
 			view.stopListening(device);
 
-			view.get('vertical-swiper').detachEvents();
+			view.get('vertical-swiper').destroy();
 
 			clearTimeout(rateUsTimeoutId);
 

@@ -190,6 +190,7 @@
 			if (swiper) {
 				swiper.off('onTransitionEnd');
 				swiper.detachEvents();
+				swiper.destroy();
 			}
 
 		},
