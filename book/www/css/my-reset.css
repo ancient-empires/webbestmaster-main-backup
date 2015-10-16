@@ -140,6 +140,23 @@ button:focus {
 	width: 100%;
 }
 
+.width-a {
+	width: auto;
+}
+
+.height-100 {
+	height: 100%;
+}
+
+.height-a {
+	height: auto;
+}
+
+.full-size {
+	width: 100%;
+	height: 100%;
+}
+
 .scroll-touch {
 	-webkit-overflow-scrolling: touch;
 	overflow-scrolling: touch;
@@ -176,14 +193,6 @@ button:focus {
 
 .pos-stat {
 	position: static;
-}
-
-.h100 {
-	height: 100%;
-}
-
-.w100 {
-	width: 100%;
 }
 
 .visibility-hidden {

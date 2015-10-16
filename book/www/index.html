@@ -113,54 +113,50 @@
 
 		</div>
 
-		<div class="books-list-wrapper">
-
-			<!-- books is here -->
-			<div class="js-scroll-area-container scroll-area-container">
-
-					<div class="scroll-area-content clear-fix book-titles-wrapper">
+		<div class="full-size js-scroll-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide books-list-wrapper">
 
 					{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName], booksOnShelf = it.shelf.booksOnShelf; }}
 
 					{{~books :book:index}}
 
-						{{? index % booksOnShelf}}
-							<div class="title-book-wrapper-preview js-title-book-wrapper" data-js-route="book/{{= book.folder }}" style="background-image: url(books/{{= [languageName, book.folder, book.folder + '-00.jpg'].join('/') }});">
-								<p class="book-title-text">{{= book.title.text }}</p>
-							</div>
-						{{??}}
-							<div class="title-book-wrapper-preview js-title-book-wrapper" data-js-route="book/{{= book.folder }}" style="background-image: url(books/{{= [languageName, book.folder, book.folder + '-00.jpg'].join('/') }}); margin-left: {{= it.shelf.firstBookMarginLeft }};">
-								<p class="book-title-text">{{= book.title.text }}</p>
-							</div>
-						{{?}}
+					{{? index % booksOnShelf}}
+					<div class="title-book-wrapper-preview js-title-book-wrapper" data-js-route="book/{{= book.folder }}" style="background-image: url(books/{{= [languageName, book.folder, book.folder + '-00.jpg'].join('/') }});">
+						<p class="book-title-text">{{= book.title.text }}</p>
+					</div>
+					{{??}}
+					<div class="title-book-wrapper-preview js-title-book-wrapper" data-js-route="book/{{= book.folder }}" style="background-image: url(books/{{= [languageName, book.folder, book.folder + '-00.jpg'].join('/') }}); margin-left: {{= it.shelf.firstBookMarginLeft }};">
+						<p class="book-title-text">{{= book.title.text }}</p>
+					</div>
+					{{?}}
 
-						{{? index && !((index + 1) % booksOnShelf) }}
-							<div class="shelf shelf-number-{{= booksOnShelf }}">&nbsp;</div>
-						{{?}}
+					{{? index && !((index + 1) % booksOnShelf) }}
+					<div class="shelf shelf-number-{{= booksOnShelf }}">&nbsp;</div>
+					{{?}}
 
 					{{~ }}
 
 					{{? books.length % booksOnShelf }}
-						<div class="shelf shelf-number-{{= booksOnShelf }}">&nbsp;</div>
+					<div class="shelf shelf-number-{{= booksOnShelf }}">&nbsp;</div>
 					{{?}}
 
-<!--
-					<div class="clear-fix share-link-wrapper js-no-scroll">
-						<a class="share-link-button" href="https://www.facebook.com/sharer/sharer.php?u=http://statlex.com/share/logic-and-wit.html"><span class="share-link share-link-facebook">&nbsp;</span></a>
-						<a class="share-link-button" href="https://twitter.com/share?url=http://statlex.com/share/logic-and-wit.html"><span class="share-link share-link-twitter">&nbsp;</span></a>
-						<a class="share-link-button" href="http://vk.com/share.php?url=http://statlex.com/share/logic-and-wit.html"><span class="share-link share-link-vk">&nbsp;</span></a>
-						<a class="share-link-button" href="https://plus.google.com/share?url=http://statlex.com/share/logic-and-wit.html"><span class="share-link share-link-google">&nbsp;</span></a>
-					</div>
--->
-
 				</div>
-
 			</div>
-
+			<!-- Add Scroll Bar -->
+			<div class="swiper-scrollbar"></div>
 		</div>
 
-
 	</div>
+
+	<!--
+		<div class="clear-fix share-link-wrapper js-no-scroll">
+			<a class="share-link-button" href="https://www.facebook.com/sharer/sharer.php?u=http://statlex.com/share/logic-and-wit.html"><span class="share-link share-link-facebook">&nbsp;</span></a>
+			<a class="share-link-button" href="https://twitter.com/share?url=http://statlex.com/share/logic-and-wit.html"><span class="share-link share-link-twitter">&nbsp;</span></a>
+			<a class="share-link-button" href="http://vk.com/share.php?url=http://statlex.com/share/logic-and-wit.html"><span class="share-link share-link-vk">&nbsp;</span></a>
+			<a class="share-link-button" href="https://plus.google.com/share?url=http://statlex.com/share/logic-and-wit.html"><span class="share-link share-link-google">&nbsp;</span></a>
+		</div>
+	-->
 
 </script>
 
@@ -206,7 +202,7 @@
 						<div class="js-page-text page-text">{{= page.text.replace(/\|/g, '<br />') }}</div>
 						{{?}}
 
-						<div class="js-back-page-wrapper js-scroll-area-container scroll-area-container w100 hidden">
+						<div class="js-back-page-wrapper js-scroll-area-container scroll-area-container width-100 hidden">
 							<div class="back-page-wrapper">
 								<div class="back-page-text">
 									<img class="book-page-image-with-text" src="books/{{= languageName + '/' + window.APP.util.getPath(bookFolder, index, 'jpg') }}" alt=""/>

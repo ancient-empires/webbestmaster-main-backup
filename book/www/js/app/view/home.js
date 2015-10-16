@@ -32,6 +32,10 @@
 
 			view.render();
 
+			view.setVerticalSwiper();
+
+			view.scrollToTop();
+
 			// show hint if needed
 			if ( !view.info.hintIsDone('autoplay') ) {
 				hintViewAutoplay = new win.APP.BB.HintView({ name: 'autoplay' });

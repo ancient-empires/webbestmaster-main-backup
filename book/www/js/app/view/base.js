@@ -47,7 +47,8 @@
 
 		selectors: {
 			wrapper: '.js-wrapper',
-			viewWrapper: '.js-view-wrapper'
+			viewWrapper: '.js-view-wrapper',
+			verticalSwiper: '.js-scroll-container'
 		},
 
 		// will be changed after initStatic
@@ -553,6 +554,31 @@
 
 		extendFromObj: function (data) {
 			_.extend(this.attr, data);
+		},
+
+		setVerticalSwiper: function () {
+
+			var view = this,
+				$el = view.$el,
+				varticalSwiper;
+
+			// need for swiper
+			$el.find('.swiper-slide').css('height', 'auto');
+
+			varticalSwiper = new Swiper($el.find(view.selectors.verticalSwiper), {
+				scrollbar: '.swiper-scrollbar',
+					direction: 'vertical',
+					slidesPerView: 'auto',
+					mousewheelControl: true,
+					freeMode: true
+				});
+
+			view.set('vertical-swiper', varticalSwiper);
+
+		},
+
+		scrollToTop: function () {
+			doc.body.scrollTop = 0
 		},
 
 		touchStartAutoScroll: function (e) {
