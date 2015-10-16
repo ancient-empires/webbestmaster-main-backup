@@ -214,8 +214,8 @@
 				defaultSettings = {
 					installTime: Date.now(),
 					versionCode: 1,
-					screenAnimation: info.get('isAndroid', true) ? 'off' : 'on',
-					//screenAnimation: 'on',
+					//screenAnimation: info.get('isAndroid', true) ? 'off' : 'on',
+					screenAnimation: 'off',
 					storyByStory: info.isNormal ? 'off' : 'on',
 					hint: {}
 					//autoSave: 'on', // auto save game after every turn
