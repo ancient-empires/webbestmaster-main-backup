@@ -59,8 +59,8 @@
 
     gulp.task('minify-css', ['css-base64'], function() {
         return gulp.src('./dist/www/css/main.css')
-            .pipe(clean({force: true})) // remove original file (imported css)
             .pipe(minifyCss())
+            .pipe(clean({force: true})) // remove original file (imported css)
             .pipe(gulp.dest('./dist/www/css'));
     });
 
