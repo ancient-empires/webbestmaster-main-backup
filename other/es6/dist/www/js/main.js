@@ -1,0 +1,1 @@
+"use strict";function square(e){return e*e}var _appCalc=require("app/calc");console.log((0,_appCalc.square)(3)),Object.defineProperty(exports,"__esModule",{value:!0});var notExported="abc";exports.square=square;

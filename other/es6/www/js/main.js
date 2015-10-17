@@ -1,10 +1,9 @@
-/*jslint white: true, nomen: true */
-(function (win) {
 
 	'use strict';
 	/*global window */
 	/*global */
 
-	'main.js';
+	import { square } from 'app/calc';
 
-}(window));
+	console.log(square(3));
+

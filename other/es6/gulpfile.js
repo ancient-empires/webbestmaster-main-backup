@@ -8,6 +8,9 @@
         cssBase64 = require('gulp-css-base64'),
         cssimport = require('gulp-cssimport'),
         minifyCss = require('gulp-minify-css'),
+        babel = require('gulp-babel'),
+        sourcemaps = require('gulp-sourcemaps'),
+        concat = require('gulp-concat'),
         minifyHTML = require('gulp-minify-html');
     // gulp - run 'default' task
     // gulp <task> <othertask>.
@@ -17,6 +20,7 @@
         gulp.start('clear-dist',
             'copy-i', 'copy-font',
             'html',
+            'babel',
             'uglify-js',
             'import-css', 'css-base64', 'minify-css'
         );
@@ -65,10 +69,18 @@
     });
 
     // JS
-    gulp.task('uglify-js', ['clear-dist'], function() {
-        return gulp.src('./www/js/*.js')
+    gulp.task('babel', ['clear-dist'], function() {
+        return gulp.src('./www/js/**/*.js')
+            .pipe(sourcemaps.init())
+            .pipe(babel())
+            .pipe(concat('main.js'))
+            .pipe(sourcemaps.write('.'))
+            .pipe(gulp.dest('./dist/www/js'));
+    });
+
+    gulp.task('uglify-js', ['babel'], function() {
+        return gulp.src('./dist/www/js/*.js')
             .pipe(uglify())
-            .pipe(rename('all.min.js'))
             .pipe(gulp.dest('./dist/www/js'));
     });
 
