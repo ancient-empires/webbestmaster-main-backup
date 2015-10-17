@@ -15,7 +15,7 @@
     gulp.task('default', function() {
 
         gulp.start('clear-dist',
-            'copy-i',
+            'copy-i', 'copy-font',
             'html',
             'uglify-js',
             'import-css', 'css-base64', 'minify-css'
@@ -76,6 +76,11 @@
     gulp.task('copy-i', ['clear-dist'], function() {
         return gulp.src('./www/i/*')
             .pipe(gulp.dest('./dist/www/i'));
+    });
+
+    gulp.task('copy-font', ['clear-dist'], function() {
+        return gulp.src('./www/font/*')
+            .pipe(gulp.dest('./dist/www/font'));
     });
 
 }());
