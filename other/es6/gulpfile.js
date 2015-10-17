@@ -42,6 +42,7 @@
     // CSS
         // import css
         // images to base64
+        // minify css
 
     gulp.task('import-css', ['clear-dist'], function() {
         gulp.src('./www/css/main.css')
