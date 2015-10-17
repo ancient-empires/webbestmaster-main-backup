@@ -7,12 +7,20 @@
         clean = require('gulp-clean'),
         cssBase64 = require('gulp-css-base64'),
         cssimport = require('gulp-cssimport'),
+        minifyCss = require('gulp-minify-css'),
         minifyHTML = require('gulp-minify-html');
     // gulp - run 'default' task
     // gulp <task> <othertask>.
 
     gulp.task('default', function() {
-        gulp.start('clear-dist', 'copy-i', 'html', 'uglify-js', 'import-css', 'css-base64');
+
+        gulp.start('clear-dist',
+            'copy-i',
+            'html',
+            'uglify-js',
+            'import-css', 'css-base64', 'minify-css'
+        );
+
     });
 
     // clear distributive directory
@@ -45,6 +53,13 @@
         return gulp.src('./dist/www/css/main.css')
             .pipe(cssBase64())
             .pipe(clean({force: true})) // remove original file (imported css)
+            .pipe(gulp.dest('./dist/www/css'));
+    });
+
+    gulp.task('minify-css', ['css-base64'], function() {
+        return gulp.src('./dist/www/css/main.css')
+            .pipe(clean({force: true})) // remove original file (imported css)
+            .pipe(minifyCss())
             .pipe(gulp.dest('./dist/www/css'));
     });
 
