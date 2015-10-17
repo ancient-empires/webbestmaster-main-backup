@@ -2,16 +2,15 @@
 (function () {
 
     var gulp = require('gulp'),
-        rename = require('gulp-rename'),
         uglify = require('gulp-uglify'),
         clean = require('gulp-clean'),
         cssBase64 = require('gulp-css-base64'),
         cssimport = require('gulp-cssimport'),
         minifyCss = require('gulp-minify-css'),
-        babel = require('gulp-babel'),
-        sourcemaps = require('gulp-sourcemaps'),
-        concat = require('gulp-concat'),
-        minifyHTML = require('gulp-minify-html');
+        minifyHTML = require('gulp-minify-html'),
+        browserify = require('browserify'),
+        babelify = require('babelify'),
+        source = require('vinyl-source-stream');
     // gulp - run 'default' task
     // gulp <task> <othertask>.
 
@@ -20,7 +19,7 @@
         gulp.start('clear-dist',
             'copy-i', 'copy-font',
             'html',
-            'babel',
+            'es6',
             'uglify-js',
             'import-css', 'css-base64', 'minify-css'
         );
@@ -69,16 +68,19 @@
     });
 
     // JS
-    gulp.task('babel', ['clear-dist'], function() {
-        return gulp.src('./www/js/**/*.js')
-            .pipe(sourcemaps.init())
-            .pipe(babel())
-            .pipe(concat('main.js'))
-            .pipe(sourcemaps.write('.'))
+    gulp.task('es6', ['clear-dist'], function () {
+        return browserify({
+            entries: './www/js/main.js',
+            extensions: ['.js'],
+            debug: true
+        })
+            .transform(babelify)
+            .bundle()
+            .pipe(source('main.js'))
             .pipe(gulp.dest('./dist/www/js'));
     });
 
-    gulp.task('uglify-js', ['babel'], function() {
+    gulp.task('uglify-js', ['es6'], function() {
         return gulp.src('./dist/www/js/*.js')
             .pipe(uglify())
             .pipe(gulp.dest('./dist/www/js'));

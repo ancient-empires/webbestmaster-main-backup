@@ -8,5 +8,5 @@
 		return x * x;
 	}
 
-	export { square }
+	export default { square };
 
