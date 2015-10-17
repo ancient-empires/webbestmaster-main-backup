@@ -14,9 +14,9 @@
     // gulp - run 'default' task
     // gulp <task> <othertask>.
 
-    gulp.task('default', function() {
+    gulp.task('default', ['clear-dist'], function() {
 
-        gulp.start('clear-dist',
+        gulp.start(
             'copy-i', 'copy-font',
             'html',
             'es6',
@@ -33,7 +33,7 @@
     });
 
     // HTML
-    gulp.task('html', ['clear-dist'], function() {
+    gulp.task('html', function() {
         return gulp.src('./www/*.html')
             .pipe(minifyHTML({
                 conditionals: true,
@@ -47,7 +47,7 @@
         // images to base64
         // minify css
 
-    gulp.task('import-css', ['clear-dist'], function() {
+    gulp.task('import-css', function() {
         gulp.src('./www/css/main.css')
             .pipe(cssimport({}))
             .pipe(gulp.dest('./dist/www/css'));
@@ -68,7 +68,7 @@
     });
 
     // JS
-    gulp.task('es6', ['clear-dist'], function () {
+    gulp.task('es6', function () {
         return browserify({
             entries: './www/js/main.js',
             extensions: ['.js'],
@@ -87,14 +87,22 @@
     });
 
     // copy data
-    gulp.task('copy-i', ['clear-dist'], function() {
+    gulp.task('copy-i', function() {
         return gulp.src('./www/i/*')
             .pipe(gulp.dest('./dist/www/i'));
     });
 
-    gulp.task('copy-font', ['clear-dist'], function() {
+    gulp.task('copy-font', function() {
         return gulp.src('./www/font/*')
             .pipe(gulp.dest('./dist/www/font'));
+    });
+
+    // watch
+    gulp.task('watch', function () {
+        gulp.watch('./www/*.html', ['html']);
+        gulp.watch('./www/css/**/*', ['import-css']);
+        gulp.watch('./www/js/**/*', ['es6']);
+        gulp.watch('./www/i/**/*', ['copy-i']);
     });
 
 }());
