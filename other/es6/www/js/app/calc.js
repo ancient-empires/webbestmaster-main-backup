@@ -1,3 +1,4 @@
+
 	'use strict';
 	/*global window */
 	/*global */
@@ -9,4 +10,3 @@
 	}
 
 	export default { square };
-
