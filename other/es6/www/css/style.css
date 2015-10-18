@@ -4,6 +4,13 @@
 	src: url(../font/MayonezBlack-Italic.otf) format('opentype');
 }
 
+div {
+	background-image: url(../i/inner/inner.png);
+}
+
+span {
+	background-image: url(../i/inner/inner-bg.png);
+}
 
 .popup-title .popup-text,
 .story-title {

@@ -10,8 +10,7 @@
 		minifyHTML = require('gulp-minify-html'),
 		browserify = require('browserify'),
 		babelify = require('babelify'),
-		source = require('vinyl-source-stream'),
-		Promise = require('promise');
+		source = require('vinyl-source-stream');
 	// gulp - run 'default' task
 	// gulp <task> <othertask>.
 
@@ -91,25 +90,48 @@
 	// clean
 	gulp.task('clean-base64', ['minify-css'], function (cd) {
 
-		var fs = require('fs');
+		var fs = require('fs'),
+			path = require('path');
 
-		return Promise
-			.all([
-				Promise.denodeify(fs.readFile)('./dist/www/css/main.css', 'utf-8'),
-				Promise.denodeify(fs.readdir)('./dist/www/i/')
-			])
-			.done(function (args) {
+		function walk (dir, done) {
+			var results = [];
+			fs.readdir(dir, function(err, list) {
+				if (err) return done(err);
+				var pending = list.length;
+				if (!pending) return done(null, results);
+				list.forEach(function(file) {
+					file = path.resolve(dir, file);
+					fs.stat(file, function(err, stat) {
+						if (stat && stat.isDirectory()) {
+							walk(file, function(err, res) {
+								results = results.concat(res);
+								if (!--pending) done(null, results);
+							});
+						} else {
+							results.push(file);
+							if (!--pending) done(null, results);
+						}
+					});
+				});
+			});
+		}
 
-				var css = args[0],
-					dir = args[1];
+		return walk('./dist/www/i/', function (err, pathFiles) {
 
-				dir.forEach(function (fileName) {
-					return css.indexOf('../i/' + fileName) === -1 && fs.unlink('./dist/www/i/' + fileName);
+			fs.readFile('./dist/www/css/main.css', 'utf-8', function (err, css) {
+
+				var cssPaths = css.match(/\.\.\/i\/[^\)]+/g) || [];
+
+				pathFiles.forEach(function (pathToFile) {
+					var cssPath = pathToFile.replace(/^[\s\S]+?\/dist\/www\/i\/([\s\S]+?)$/g, '../i/$1');
+					return cssPaths.indexOf(cssPath) === -1 && fs.unlink(pathToFile);
 				});
 
 				return cd();
 
 			});
+
+		});
 
 	});
 
