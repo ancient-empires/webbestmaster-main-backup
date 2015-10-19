@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Math</title>
+
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/test-basic.css"/>
+
+	<script src="js/finder.js" type="text/javascript"></script>
+	<script src="js/save-data.js" type="text/javascript"></script>
+	<script src="js/info.js" type="text/javascript"></script>
+	<script src="js/paginator.js" type="text/javascript"></script>
+	<script src="js/tmpl.js" type="text/javascript"></script>
+	<script src="js/ui-objects.js" type="text/javascript"></script>
+	<script src="js/status-bar.js" type="text/javascript"></script>
+	<script src="js/app.js" type="text/javascript"></script>
+	<script src="js/test-basics.js" type="text/javascript"></script>
+	<script src="js/learning-plus.js" type="text/javascript"></script>
+	<script src="js/test-plus.js" type="text/javascript"></script>
+	<script src="js/learning-minus.js" type="text/javascript"></script>
+	<script src="js/test-minus.js" type="text/javascript"></script>
+
+	<script src="js/lang/lang-en.js" type="text/javascript"></script>
+	<script src="js/lang/lang-ru.js" type="text/javascript"></script>
+	<script src="js/lang/lang-de.js" type="text/javascript"></script>
+	<script src="js/lang/lang-zh.js" type="text/javascript"></script>
+	<script src="js/lang/lang-es.js" type="text/javascript"></script>
+	<script src="js/lang/lang-ar.js" type="text/javascript"></script>
+
+	<script src="js/sound-list.js" type="text/javascript"></script>
+	<script src="js/player.js" type="text/javascript"></script>
+
+	<!-- levels begin -->
+
+	<script src="js/level/level-1.js" type="text/javascript"></script>
+	<script src="js/level/level-2.js" type="text/javascript"></script>
+	<script src="js/level/level-3.js" type="text/javascript"></script>
+	<script src="js/level/level-4.js" type="text/javascript"></script>
+	<script src="js/level/level-5.js" type="text/javascript"></script>
+	<script src="js/level/level-6.js" type="text/javascript"></script>
+	<script src="js/level/level-7.js" type="text/javascript"></script>
+	<script src="js/level/level-8.js" type="text/javascript"></script>
+	<script src="js/level/level-9.js" type="text/javascript"></script>
+	<script src="js/level/level-0.js" type="text/javascript"></script>
+
+	<!-- levels end -->
+
+	<!-- mobile device -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<script src="js/android-ads.js" type="text/javascript"></script>
+
+	<!-- keywords and description -->
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+</head>
+<body>
+
+<div class="status-bar">
+	<div to="berlin" class="back"><span>&lt;&ndash;</span></div>
+	<div class="setup"><span>&#x00A4;</span></div>
+	<div class="score"><span text="score">score</span><span>:</span>&nbsp;<span class="score-field">100</span></div>
+</div>
+
+<div id="wrapper">
+
+
+
+</div>
+
+<div class="js-template hidden title-page" run-before="app setTitleActiveSection {}">
+
+	<div class="page-wrapper">
+
+		<div class="learn-test-wrapper">
+			<p>{{= lang[info.lang].learn }}</p>
+			<p>{{= lang[info.lang].test }}</p>
+		</div>
+
+		<div class="title-buttons-wrapper clear-fix">
+			<h1 class="title-page-header">{{= lang[info.lang].digits }}</h1>
+			<div audio="click" section-name="learn-basics" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="select-level"><span>1, 2, 3, 4</span></div>
+			<div audio="click" section-name="test-basics" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="test-basics"><span>1, 2, 3, ?</span></div>
+			<h1 class="title-page-header">{{= lang[info.lang].addition }}</h1>
+			<div audio="click" section-name="learn-+" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button"  show-page="learn-plus"><span>1 + 2 = 3</span></div>
+			<div audio="click" section-name="test-+" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="test-plus"><span>1 + 2 = ?</span></div>
+			<h1 class="title-page-header">{{= lang[info.lang].subtraction }}</h1>
+			<div audio="click" section-name="learn--" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="learn-minus"><span>3 - 1 = 2</span></div>
+			<div audio="click" section-name="test--" error-massage="{{= lang[info.lang].doPreviousLevel }}" class="title-button" show-page="test-minus"><span>3 - 1 = ?</span></div>
+		</div>
+
+	</div>
+
+</div>
+
+<div back-button="app insetHTML .title-page" class="js-template hidden select-level" run-after="app closeNeededLevel {}">
+
+	<div class="page-wrapper clear-fix">
+
+		<div audio="number-1" class="level-wrapper" action='app showLevel {"level":"1"}' action-after='info setCurrentLevel {"level":"1"}' level="1"><span class="hide-first-letter">q1</span></div>
+		<div audio="number-2" class="level-wrapper" action='app showLevel {"level":"2"}' action-after='info setCurrentLevel {"level":"2"}' level="2"><span class="hide-first-letter">w2</span></div>
+		<div audio="number-3" class="level-wrapper" action='app showLevel {"level":"3"}' action-after='info setCurrentLevel {"level":"3"}' level="3"><span class="hide-first-letter">e3</span></div>
+		<div audio="number-4" class="level-wrapper" action='app showLevel {"level":"4"}' action-after='info setCurrentLevel {"level":"4"}' level="4"><span class="hide-first-letter">r4</span></div>
+		<div audio="number-5" class="level-wrapper" action='app showLevel {"level":"5"}' action-after='info setCurrentLevel {"level":"5"}' level="5"><span class="hide-first-letter">t5</span></div>
+		<div audio="number-6" class="level-wrapper" action='app showLevel {"level":"6"}' action-after='info setCurrentLevel {"level":"6"}' level="6"><span class="hide-first-letter">y6</span></div>
+		<div audio="number-7" class="level-wrapper" action='app showLevel {"level":"7"}' action-after='info setCurrentLevel {"level":"7"}' level="7"><span class="hide-first-letter">u7</span></div>
+		<div audio="number-8" class="level-wrapper" action='app showLevel {"level":"8"}' action-after='info setCurrentLevel {"level":"8"}' level="8"><span class="hide-first-letter">i8</span></div>
+		<div audio="number-9" class="level-wrapper" action='app showLevel {"level":"9"}' action-after='info setCurrentLevel {"level":"9"}' level="9"><span class="hide-first-letter">o9</span></div>
+		<div audio="number-0" class="level-wrapper" action='app showLevel {"level":"0"}' action-after='info setCurrentLevel {"level":"0"}' level="0"><span class="hide-first-letter">a0</span></div>
+
+	</div>
+
+</div>
+
+<div back-button="app insetHTML .title-page" class="js-template hidden learn-plus">
+
+	<div class="page-wrapper clear-fix">
+
+		<div audio="click" class="level-wrapper plus-level-wrapper" action='learningPlus showLevelBeginner {}'><span>{{= lang[info.lang].beginner }}</span></div>
+		<div audio="click" class="level-wrapper plus-level-wrapper" action='learningPlus showLevelExpert {}'><span>{{= lang[info.lang].expert }}</span></div>
+
+	</div>
+
+</div>
+
+<div back-button="app insetHTML .title-page" class="js-template hidden learn-minus">
+
+	<div class="page-wrapper clear-fix">
+
+		<div audio="click" class="level-wrapper plus-level-wrapper" action='learningMinus showLevelBeginner {}'><span>{{= lang[info.lang].beginner }}</span></div>
+		<div audio="click" class="level-wrapper plus-level-wrapper" action='learningMinus showLevelExpert {}'><span>{{= lang[info.lang].expert }}</span></div>
+
+	</div>
+
+</div>
+
+<div back-button="app insetHTML .learn-plus" class="js-template hidden learn-plus-beginner" run-after="app createSlider {}">
+
+	<div class="page-wrapper clear-fix">
+
+		<div class="swipe-wrapper clear-fix">
+
+			<div class="swipe-level-container clear-fix">
+
+				{{ learningPlus.slides.list.forEach(function(page){ }}
+					<div class="level-image-block clear-fix">
+						<div class="level-image-card">
+							<div class="single-image-slider" style="background-image: url('{{= learningPlus.slides.pre }}{{= page }}{{= learningPlus.slides.post }}')"></div>
+						</div>
+					</div>
+				{{ }); }}
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div back-button="app insetHTML .learn-minus" class="js-template hidden learn-minus-beginner" run-after="app createSlider {}">
+
+	<div class="page-wrapper clear-fix">
+
+		<div class="swipe-wrapper clear-fix">
+
+			<div class="swipe-level-container clear-fix">
+
+				{{ learningPlus.slides.list.forEach(function(page){ }}
+					<div class="level-image-block clear-fix">
+						<div class="level-image-card">
+							<div class="single-image-slider" style="background-image: url('{{= learningMinus.slides.pre }}{{= page }}{{= learningPlus.slides.post }}')"></div>
+						</div>
+					</div>
+				{{ }); }}
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div back-button="app insetHTML .learn-plus" class="js-template hidden learn-plus-expert" run-after="app createSlider {}">
+
+	<div class="page-wrapper clear-fix">
+
+		<div class="swipe-wrapper clear-fix">
+
+			<div class="swipe-level-container clear-fix">
+
+				{{ learningPlus.createPlusCards().forEach(function(page){ }}
+					<div class="level-image-block clear-fix">
+						<div class="level-image-card">
+							<div class="table">
+								<div class="table-row">
+									<div class="table-cell">
+										<div class="number-in-card" style="background-image: url(img/number/{{= page.a }}.svg);"></div>
+										<div class="number-in-card" style="background-image: url(img/number/+.svg);"></div>
+										<div class="number-in-card" style="background-image: url(img/number/{{= page.b }}.svg);"></div>
+										<div class="number-in-card" style="background-image: url(img/number/=.svg);"></div>
+										<div class="number-in-card" style="background-image: url(img/number/{{= page.sum }}.svg);"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{{ }); }}
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div back-button="app insetHTML .learn-minus" class="js-template hidden learn-minus-expert" run-after="app createSlider {}">
+
+
+	<div class="page-wrapper clear-fix">
+
+		<div class="swipe-wrapper clear-fix">
+
+			<div class="swipe-level-container clear-fix">
+
+				{{ learningMinus.createMinusCards().forEach(function(page){ }}
+					<div class="level-image-block clear-fix">
+						<div class="level-image-card">
+							<div class="table">
+								<div class="table-row">
+									<div class="table-cell">
+										<div class="number-in-card" style="background-image: url(img/number/{{= page.a }}.svg);"></div>
+										<div class="number-in-card" style="background-image: url(img/number/-.svg);"></div>
+										<div class="number-in-card" style="background-image: url(img/number/{{= page.b }}.svg);"></div>
+										<div class="number-in-card" style="background-image: url(img/number/=.svg);"></div>
+										<div class="number-in-card" style="background-image: url(img/number/{{= page.sum }}.svg);"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{{ }); }}
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div back-button="app insetHTML .select-level" class="js-template hidden level">
+
+	<div class="page-wrapper clear-fix">
+
+		<div class="swipe-wrapper clear-fix">
+
+			<div class="swipe-level-container clear-fix">
+
+				{{ level.pages.forEach(function(page){ }}
+
+					<div class="level-image-block clear-fix">
+
+						<div class="level-image-card learning-basics-card level-image-card-{{= level.levelNumber }}">
+							<h1>{{= level.levelNumber }}</h1>
+							<div class="level-image-wrapper">
+								{{ level.numbers.forEach(function(){ }}
+									<div class="test-basics-image-wrapper-{{= level.levelNumber }}">
+										<div class="level-image" style="background-image: url('img/test-basics/{{= page.img }}.svg')"></div>
+									</div>
+								{{ }); }}
+							</div>
+							<p>{{= page.caption[info.lang] }}</p>
+						</div>
+
+					</div>
+
+				{{ }); }}
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div back-button="app insetHTML .title-page" class="js-template hidden setup-page" run-after="app setSettingsPage {}">
+
+	<div class="page-wrapper settings-page">
+
+		<div class="table table-thanks">
+			<div class="table-row">
+				<div class="table-cell select-language-cell">
+					<div>{{= lang[info.lang].language }}:&nbsp;</div>
+					<div class="select-wrapper clear-fix">
+						<div>{{= lang[info.lang].languageName }}</div>
+						<select lang="true">
+							{{ for (var key in lang) { }}
+							{{ if (key === info.lang) { }}
+							<option value="{{= key }}" selected>{{= lang[key].languageName }}</option>
+							{{ } else { }}
+							<option value="{{= key }}">{{= lang[key].languageName }}</option>
+							{{ }; }}
+							{{ }; }}
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="table-row center-text sharing-table-row">
+				<div class="table-cell">
+					<h3 class="share-link-header">{{= lang[info.lang].shareUs }}:</h3>
+					<div class="share-link-container">
+						<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstatlex.com%2F" class="share-link facebook" share-for="facebook" target="_blank">Facebook</a>
+						<a href="https://twitter.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link twitter" share-for="twitter" target="_blank">Twitter</a>
+						<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A%2F%2Fstatlex.com%2F" class="share-link linkedin" share-for="linkedin" target="_blank">LinkedIn</a>
+						<a href="http://vk.com/share.php?url=http%3A%2F%2Fstatlex.com%2F" class="share-link vk" share-for="vk" target="_blank">vk</a>
+						<a href="https://plus.google.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link google" share-for="google" target="_blank">Google+</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="table-row center-text">
+				<div class="table-cell">
+					<p class="thanks-paragraph">{{= lang[info.lang].thanks }}:</p>
+					<p class="thanks-paragraph">{{= lang[info.lang].thanksForEs }} - Español</p>
+					<p class="thanks-paragraph">{{= lang[info.lang].thanksForDe }} - Deutsch</p>
+					<p class="thanks-paragraph">{{= lang[info.lang].designerName }} - {{= lang[info.lang].designer }}</p>
+				</div>
+			</div>
+
+			<div class="table-row center-text">
+				<div class="table-cell">
+					<p class="thanks-paragraph">&copy;&nbsp;<a class="to-main-site" href="http://statlex.com" target="_blank">statlex.com</a></p>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div back-button="app insetHTML .title-page" class="js-template hidden test-basics" run-after="testBasics startTest {}">
+
+	<div class="page-wrapper test-basics-question">
+
+		<h1>test basics</h1>
+
+	</div>
+
+</div>
+
+<div back-button="app insetHTML .title-page" class="js-template hidden test-plus" run-after="testPlus startTest {}">
+
+	<div class="page-wrapper test-basics-question">
+
+		<h1>test plus</h1>
+
+	</div>
+
+</div>
+
+<div back-button="app insetHTML .title-page" class="js-template hidden test-minus" run-after="testMinus startTest {}">
+
+	<div class="page-wrapper test-basics-question">
+
+		<h1>test minus</h1>
+
+	</div>
+
+</div>
+
+<div class="js-template hidden test-basics-question">
+
+	<div class="test-basics-question-images">
+		{{  imagesArray.forEach(function(){  }}
+			<div class="test-basics-image-wrapper-{{= answer }} question-wrapper">
+				<div style="background-image: url('img/test-basics/{{= image }}.svg');" class="test-basics-image-container"></div>
+			</div>
+		{{  });  }}
+	</div>
+
+	<div class="test-basics-question-text">{{= question }}</div>
+
+	<div class="test-basics-question-answer">
+
+		{{ answers.forEach(function(number){ }}
+			{{    if (answer === number) {    }}
+				<div class="test-basic-answer-number right-answer"><span>{{= number }}</span></div>
+			{{    } else {    }}
+				<div class="test-basic-answer-number bad-answer"><span>{{= number }}</span></div>
+			{{    };    }}
+		{{ }); }}
+
+	</div>
+
+</div>
+
+<div class="js-template hidden test-plus-question">
+
+	<div class="test-basics-question-images test-plus-question-images">
+		<div class="level-image-block">
+			<div class="table level-image-card">
+				<div class="table-row">
+					<div class="table-cell">
+						<div class="number-in-card number-in-card-third" style="background-image: url(img/number/{{= question.a }}.svg);"></div>
+						<div class="number-in-card number-in-card-third" style="background-image: url(img/number/+.svg);"></div>
+						<div class="number-in-card number-in-card-third" style="background-image: url(img/number/{{= question.b }}.svg);"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="test-basics-question-answer">
+		{{ answers.forEach(function(number){ }}
+			{{    if (answer === number) {    }}
+				<div class="test-basic-answer-number right-answer"><span>{{= number }}</span></div>
+			{{    } else {    }}
+				<div class="test-basic-answer-number bad-answer"><span>{{= number }}</span></div>
+			{{    };    }}
+		{{ }); }}
+
+	</div>
+
+</div>
+
+<div class="js-template hidden test-minus-question">
+
+	<div class="test-basics-question-images test-plus-question-images">
+		<div class="level-image-block">
+			<div class="table level-image-card">
+				<div class="table-row">
+					<div class="table-cell">
+						<div class="number-in-card number-in-card-third" style="background-image: url(img/number/{{= question.a }}.svg);"></div>
+						<div class="number-in-card number-in-card-third" style="background-image: url(img/number/-.svg);"></div>
+						<div class="number-in-card number-in-card-third" style="background-image: url(img/number/{{= question.b }}.svg);"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="test-basics-question-answer">
+		{{ answers.forEach(function(number){ }}
+			{{    if (answer === number) {    }}
+				<div class="test-basic-answer-number right-answer"><span>{{= number }}</span></div>
+			{{    } else {    }}
+				<div class="test-basic-answer-number bad-answer"><span>{{= number }}</span></div>
+			{{    };    }}
+		{{ }); }}
+
+	</div>
+
+</div>
+
+<div id="fade"></div>
+
+<div id="message-wrapper">
+
+	<div class="table">
+		<div class="table-row">
+			<div class="table-cell">
+				<div class="message-container">
+					<h1>I am message</h1>
+					<div class="message-ok-button">OK</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div id="splash-screen-wrapper">
+
+	<div class="good-answer"></div>
+	<div class="bad-answer"></div>
+
+</div>
+
+
+</body>
+</html>
