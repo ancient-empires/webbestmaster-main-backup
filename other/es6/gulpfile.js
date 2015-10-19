@@ -147,7 +147,7 @@
 	});
 
 	// watch
-	gulp.task('watch', function () {
+	gulp.task('watch', ['html', 'import-css', 'es6', 'copy-i'], function () {
 		gulp.watch('./www/*.html', ['html']);
 		gulp.watch('./www/css/**/*', ['import-css']);
 		gulp.watch('./www/js/**/*', ['es6']);
