@@ -1,6 +1,5 @@
 'use strict';
 /*global window */
-/*global APP */
 
 var en = {
 	language: 'Language',

@@ -1,6 +1,5 @@
 'use strict';
 /*global window, document, setTimeout */
-/*global APP, Backbone, FastClick */
 
 // init all librares
 import shim from './lib/shim';

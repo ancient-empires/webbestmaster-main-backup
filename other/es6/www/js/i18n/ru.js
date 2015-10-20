@@ -1,6 +1,5 @@
 'use strict';
 /*global window */
-/*global APP */
 
 var ru = {
 	language: 'Язык',
