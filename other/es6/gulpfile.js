@@ -75,7 +75,7 @@
 			extensions: ['.js'],
 			debug: true
 		})
-			.transform(babelify)
+			.transform(babelify, { compact: false })
 			.bundle()
 			.pipe(source('main.js'))
 			.pipe(gulp.dest('./dist/www/js'));
@@ -117,6 +117,8 @@
 		}
 
 		return walk('./dist/www/i/', function (err, pathFiles) {
+
+			pathFiles = pathFiles || [];
 
 			fs.readFile('./dist/www/css/main.css', 'utf-8', function (err, css) {
 
