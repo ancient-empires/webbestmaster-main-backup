@@ -22,5 +22,9 @@ import tm from './services/template-master';
 import util from './services/util';
 
 // init sound players
-import sm from './sound/sound-master'
+import sm from './sound/sound-master';
 
+import router from './app/router/router';
+
+
+console.log(router);

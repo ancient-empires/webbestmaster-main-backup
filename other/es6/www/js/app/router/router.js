@@ -1,15 +1,11 @@
-/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
-(function (win) {
+'use strict';
+/*global window */
 
-	'use strict';
-	/*global window */
-	/*global Backbone, APP, $ */
+import Backbone from './../../lib/backbone';
+import _ from './../../lib/lodash';
 
-	win.APP = win.APP || {};
-
-	win.APP.BB = win.APP.BB || {};
-
-	win.APP.BB.Router = Backbone.Router.extend({
+var win = window,
+	Router = Backbone.Router.extend({
 
 		routes: {
 			'': 'home',
@@ -35,17 +31,20 @@
 
 		getAction: function () {
 
+			// todo: fix here win.APP.BB.BaseView.prototype.popupUrl
+
 			var e = window.event || {},
 				newURL = e.newURL || '',
 				oldURL = e.oldURL || '',
-				popupPart = win.APP.BB.BaseView.prototype.popupUrl,
+				popupPart = 'fix it' ,
+				//popupPart = 'win.APP.BB.BaseView.prototype.popupUrl,
 				viewAction;
 
-			if ( newURL.indexOf(popupPart) !== -1 ) {
+			if (newURL.indexOf(popupPart) !== -1) {
 				viewAction = 'showPopup';
 			}
 
-			if ( oldURL.indexOf(popupPart) !== -1 ) {
+			if (oldURL.indexOf(popupPart) !== -1) {
 				viewAction = 'hidePopup';
 			}
 
@@ -58,7 +57,7 @@
 
 			var router = this,
 				originalFunctions = {},
-				proto = APP.BB.Router.prototype;
+				proto = router.constructor.prototype;
 
 			_.each(router.routes, function (value) {
 
@@ -67,16 +66,21 @@
 				proto[value] = function () {
 
 					var router = this,
-						viewAction = router.getAction(),
-						baseProto = win.APP.BB.BaseView.prototype;
+						viewAction = router.getAction();
+					// todo: fix here baseProto
 
-					if ( !viewAction ) {
+					//baseProto = win.APP.BB.BaseView.prototype;
+
+					if (!viewAction) {
 						return originalFunctions[value].apply(router, arguments);
 					}
 
 					switch (viewAction) {
 						case 'hidePopup':
-							baseProto.hidePopup();
+							// todo: fix here baseProto
+
+
+							//baseProto.hidePopup();
 							break;
 						case 'showPopup':
 							break;
@@ -92,4 +96,4 @@
 
 	});
 
-}(window));
+export default new Router();
