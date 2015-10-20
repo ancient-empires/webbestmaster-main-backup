@@ -58,4 +58,4 @@ var win = window,
 
 device = new Device();
 
-export default { device };
+export default device;

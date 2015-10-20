@@ -260,5 +260,5 @@ info = {
 
 info.init();
 
-export default {info};
+export default info;
 

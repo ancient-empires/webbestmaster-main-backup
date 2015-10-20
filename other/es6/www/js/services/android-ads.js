@@ -39,4 +39,4 @@ var win = window,
 
 	androidAds.init();
 
-export default { androidAds };
+export default androidAds;

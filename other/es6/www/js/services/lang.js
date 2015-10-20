@@ -22,6 +22,6 @@ var lang = {
 
 lang.set(info.get('language'));
 
-export default {lang};
+export default lang;
 
 

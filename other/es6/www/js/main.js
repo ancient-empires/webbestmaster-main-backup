@@ -23,4 +23,5 @@ import device from './services/device';
 import androidAds from './services/android-ads';
 import lang from './services/lang';
 
+console.log(lang);
 
