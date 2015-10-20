@@ -1,81 +1,79 @@
 /*jslint white: true, nomen: true */
-(function (win) {
 
-	'use strict';
-	/*global window */
-	/*global */
+'use strict';
+/*global window */
+/*global */
 
-	win.APP.soundMaster = win.APP.soundMaster || {};
+import info from './../services/info'
 
-	win.APP.soundMaster.webPlayer = {
+var win = window,
+	webPlayer = {
 
-		roads: new Array(4),
+	roads: undefined,
 
-		pathPrefix: '',
+	pathPrefix: '',
 
-		init: function () {
+	init: function () {
 
-			var player = this;
+		var player = this;
 
-			player.roads = _.map(player.roads, function () {
-				return new Audio();
-			});
+		player.roads = new Array(4).fill(new Audio());
 
-		},
+	},
 
-		play: function (data) {
+	play: function (data) {
 
-			var player = this,
-				roadNumber = data.road,
-				isLoop = data.isLoop,
-				sound = data.sound,
-				newAudio;
+		var player = this,
+			roadNumber = data.road,
+			isLoop = data.isLoop,
+			sound = data.sound,
+			newAudio;
 
-			player.stop(data);
+		player.stop(data);
 
-			newAudio = new Audio();
-			if (isLoop) {
-				newAudio.addEventListener('ended', function() {
-					if ( win.APP.info.get('music') === 'off' ) {
-						return;
-					}
-					var audio = this;
-					audio.currentTime = 0;
-					audio.play();
-				}, false);
-			}
-
-			newAudio.addEventListener('canplay', function () {
-				if ( win.APP.info.get('music') === 'off' ) {
+		newAudio = new Audio();
+		if (isLoop) {
+			newAudio.addEventListener('ended', function () {
+				if (info.get('music') === 'off') {
 					return;
 				}
 				var audio = this;
+				audio.currentTime = 0;
 				audio.play();
-			});
+			}, false);
+		}
 
-			player.roads[roadNumber].src = '';
-			player.roads[roadNumber] = newAudio;
-
-			newAudio.src = player.pathPrefix + sound;
-
-		},
-
-		stop: function (data) {
-
-			var player = this,
-				roadNumber = data.road,
-				road = player.roads[roadNumber];
-
-			if (road && road.pause) {
-				road.pause();
+		newAudio.addEventListener('canplay', function () {
+			if (info.get('music') === 'off') {
+				return;
 			}
+			var audio = this;
+			audio.play();
+		});
 
-			if (road && road.currentTime && road.currentTime < 0.1) {
-				road.currentTime = 0;
-			}
+		player.roads[roadNumber].src = '';
+		player.roads[roadNumber] = newAudio;
 
+		newAudio.src = player.pathPrefix + sound;
+
+	},
+
+	stop: function (data) {
+
+		var player = this,
+			roadNumber = data.road,
+			road = player.roads[roadNumber];
+
+		if (road && road.pause) {
+			road.pause();
+		}
+
+		if (road && road.currentTime && road.currentTime < 0.1) {
+			road.currentTime = 0;
 		}
 
 	}
 
-}(window));
+};
+
+export default webPlayer;

@@ -1,14 +1,15 @@
 /*jslint white: true, nomen: true */
-(function (win) {
 
-	'use strict';
-	/*global window */
-	/*global */
+'use strict';
+/*global window */
+/*global */
 
-	win.APP = win.APP || {};
+import androidPlayer from './player-android'
+import iosPlayer from './player-ios'
+import webPlayer from './player-web'
+import info from './../services/info'
 
-	var soundMaster;
-
+var win = window,
 	soundMaster = {
 
 		init: function () {
@@ -33,14 +34,14 @@
 				player;
 
 			if (isAndroidPlayer) {
-				player = win.APP.soundMaster.androidPlayer;
+				player = androidPlayer;
 			}
 
 			if (isIosPlayer) {
-				player = win.APP.soundMaster.iosPlayer;
+				player = iosPlayer;
 			}
 
-			player = player || win.APP.soundMaster.webPlayer; // get system player or use web player
+			player = player || webPlayer; // get system player or use web player
 
 			player.init();
 
@@ -105,7 +106,7 @@
 
 			soundMaster.roads[data.road] = JSON.parse(curStr);
 
-			if (win.APP.info.get('music') === 'off') {
+			if (info.get('music') === 'off') {
 				return;
 			}
 
@@ -144,6 +145,7 @@
 
 	};
 
-	win.APP.soundMaster = soundMaster;
+soundMaster.init();
 
-}(window));
+export default soundMaster;
+

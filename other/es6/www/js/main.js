@@ -2,10 +2,6 @@
 /*global window, document, setTimeout */
 /*global APP, Backbone, FastClick */
 
-var root = window;
-
-console.log('ssss   ssss');
-
 // init all librares
 import shim from './lib/shim';
 import lodash from './lib/lodash';
@@ -14,7 +10,7 @@ import Backbone from './lib/backbone';
 import jqueryMbBrowser from './lib/jquery.mb.browser';
 import jqueryFinger from './lib/jquery.finger';
 import fastclick from './lib/fastclick';
-import dot from './lib/dot';
+//import doT from './lib/dot';
 import swiper from './lib/swiper';
 
 // init all services
@@ -22,6 +18,10 @@ import info from './services/info';
 import device from './services/device';
 import androidAds from './services/android-ads';
 import lang from './services/lang';
+import log from './services/log';
+import tm from './services/template-master';
+import util from './services/util';
 
-console.log(lang);
+// init sound players
+import sm from './sound/sound-master'
 

@@ -1,13 +1,11 @@
 /*jslint white: true, nomen: true */
-(function (win) {
 
-	'use strict';
-	/*global window */
-	/*global */
+'use strict';
+/*global window */
+/*global */
 
-	win.APP.soundMaster = win.APP.soundMaster || {};
-
-	win.APP.soundMaster.iosPlayer = {
+var win = window,
+	iosPlayer = {
 
 		roads: new Array(4),
 
@@ -48,13 +46,14 @@
 				roadNumber = data.road,
 				road = player.roads[roadNumber];
 
-			if ( road && road.release ) {
+			if (road && road.release) {
 				player.roads[roadNumber].stop();
 				player.roads[roadNumber].release();
 			}
 
 		}
 
-	}
+	};
 
-}(window));
+export default iosPlayer;
+

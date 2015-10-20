@@ -1,46 +1,42 @@
-/*jslint white: true, nomen: true */
-(function (win) {
+'use strict';
+/*global window */
+/*global */
 
-	'use strict';
-	/*global window */
-	/*global */
+var win = window,
+	androidPlayer = {
 
-	win.APP.soundMaster = win.APP.soundMaster || {};
+	pathPrefix: 'www/',
 
-	win.APP.soundMaster.androidPlayer = {
+	init: function () {
 
-		pathPrefix: 'www/',
+	},
 
-		init: function () {
+	play: function (data) {
 
-		},
+		var player = this,
+			roadNumber = data.road,
+			isLoop = data.isLoop,
+			sound = data.sound,
+			src = player.pathPrefix + sound,
+			andAud = win['AndAud_' + roadNumber];
 
-		play: function (data) {
-
-			var player = this,
-				roadNumber = data.road,
-				isLoop = data.isLoop,
-				sound = data.sound,
-				src = player.pathPrefix + sound,
-				andAud = window['AndAud_' + roadNumber];
-
-			if (isLoop) {
-				andAud.playAudioLooping(src);
-			} else {
-				andAud.playAudio(src);
-			}
-
-		},
-
-		stop: function (data) {
-
-			var roadNumber = data.road,
-				andAud = window['AndAud_' + roadNumber];
-
-			andAud.stop();
-
+		if (isLoop) {
+			andAud.playAudioLooping(src);
+		} else {
+			andAud.playAudio(src);
 		}
+
+	},
+
+	stop: function (data) {
+
+		var roadNumber = data.road,
+			andAud = win['AndAud_' + roadNumber];
+
+		andAud.stop();
 
 	}
 
-}(window));
+};
+
+export default androidPlayer;
