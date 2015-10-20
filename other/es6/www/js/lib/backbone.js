@@ -5,8 +5,6 @@
 //     For all details and documentation:
 //     http://backbonejs.org
 
-console.log('bb required');
-
 (function(factory) {
 
   // Establish the root object, `window` (`self`) in the browser, or `global` on the server.
