@@ -1,14 +1,14 @@
-/*jslint white: true, nomen: true */
-(function (win) {
+'use strict';
+/*global window */
 
-	'use strict';
-	/*global window, Backbone, $, templateMaster, APP */
+import info from './../../services/info';
+import device from './../../services/device';
+import tm from './../../services/template-master';
+import booksData from './../books-data';
+import BaseView from './base';
 
-	win.APP = win.APP || {};
-
-	win.APP.BB = win.APP.BB || {};
-
-	APP.BB.HomeView = APP.BB.BaseView.extend({
+var win = window,
+	HomeView = BaseView.extend({
 
 		events: {
 			'click .js-story-by-story': 'setStoryByStory',
@@ -21,12 +21,14 @@
 			var view = this,
 				hintViewAutoplay;
 
-			view.$el = $(view.tmpl.home({
+			view.$el = $(tm.tmplFn.home({
+				info,
+				booksData,
 				shelf: view.getBooksOnShelfNumber()
 				//booksOnShelf:
 			}));
 
-			view.proto.initialize.apply(view, arguments);
+			BaseView.prototype.initialize.apply(view, arguments);
 
 			view.bindEventListeners();
 
@@ -37,13 +39,13 @@
 			view.scrollToTop();
 
 			// show hint if needed
-			if ( !view.info.hintIsDone('autoplay') ) {
-				hintViewAutoplay = new win.APP.BB.HintView({ name: 'autoplay' });
+			if (!info.hintIsDone('autoplay')) {
+				hintViewAutoplay = new HintView({name: 'autoplay'});
 				hintViewAutoplay.onHide(function () {
-					if ( view.info.isNormal ) {
-						new win.APP.BB.HintView({ name: 'removeAds' });
+					if (info.isNormal) {
+						new HintView({name: 'removeAds'});
 					} else {
-						new win.APP.BB.HintView({ name: 'thanksForBuy' });
+						new HintView({name: 'thanksForBuy'});
 					}
 				});
 			}
@@ -53,8 +55,7 @@
 		getBooksOnShelfNumber: function () {
 
 			var view = this,
-				device = win.APP.bb.device,
-				remSize = view.info.get('remSize', true),
+				remSize = info.get('remSize', true),
 				bookWidth = 8.8, // SEE CSS
 				availableWidth = device.get('width') / remSize,
 				booksOnShelf = Math.floor(availableWidth / bookWidth),
@@ -71,8 +72,6 @@
 
 			var view = this,
 				$this = $(e.currentTarget),
-				info = view.info,
-				lang = win.APP.lang,
 				notification = lang.get('notification'),
 				popupText,
 				isStoryByStory = info.get('storyByStory') === 'on';
@@ -100,17 +99,16 @@
 		bindEventListeners: function () {
 
 			var view = this,
-				device = win.APP.bb.device,
 				rateUsTimeoutId;
 
 			view.listenTo(device, 'change:orientation', function () {
-				$('.js-hint-wrapper').trigger('hide', { doNotTrack: true });
+				$('.js-hint-wrapper').trigger('hide', {doNotTrack: true});
 				view.loadUrl();
 			});
 
 			rateUsTimeoutId = setTimeout(function () {
 				// check for rate up popup
-				if ( Date.now() - view.info.get('installTime') > 20e3 ) {
+				if (Date.now() - info.get('installTime') > 20e3) {
 					view.rateUsPopup();
 				}
 			}, 2e3);
@@ -122,7 +120,6 @@
 		unbindEventListeners: function () {
 
 			var view = this,
-				device = win.APP.bb.device,
 				rateUsTimeoutId = view.get('rateUsTimeoutId');
 
 			view.stopListening(device);
@@ -176,4 +173,4 @@
 
 	});
 
-}(window));
+export default HomeView;

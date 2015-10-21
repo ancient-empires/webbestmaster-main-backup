@@ -2,22 +2,24 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>CATS!</title>
+	<title>coolBook - es6</title>
+
+	<!-- cordova -->
+	<!--<script src="cordova.js" type="text/javascript"></script>-->
+	<!--<script src="cordova_plugins.js" type="text/javascript"></script>-->
 
 	<!-- mobile device -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-	<!-- keywords and description -->
-	<meta name="keywords" content="">
-	<meta name="description" content="">
+	<!-- do not phone -->
+	<meta name="format-detection" content="telephone=no">
 
-
-	<link href="css/main.css" rel="stylesheet" />
+	<!-- styles -->
+	<link rel="stylesheet" href="css/main.css"/>
+	<link rel="prefetch" href="font/MayonezBlack-Italic.otf">
 
 </head>
 <body>
-
-
 
 <div class="js-wrapper wrapper"></div>
 
@@ -28,7 +30,7 @@
 		<!-- header -->
 		<div class="header js-no-scroll">
 
-			{{ var info = window.APP.info, isStoryByStory = info.get('storyByStory') === 'on', isNormal = info.isNormal; }}
+			{{ var info = it.info, isStoryByStory = info.get('storyByStory') === 'on', isNormal = info.isNormal; }}
 
 			<!-- story by story -->
 			{{? isNormal }}
@@ -63,7 +65,7 @@
 			<div class="swiper-wrapper">
 				<div class="swiper-slide books-list-wrapper">
 
-					{{ var booksData = window.APP.booksData, languageName = window.APP.info.get('language'), books = booksData[languageName], booksOnShelf = it.shelf.booksOnShelf; }}
+					{{ var booksData = it.booksData, languageName = info.get('language'), books = booksData[languageName], booksOnShelf = it.shelf.booksOnShelf; }}
 
 					{{~books :book:index}}
 
@@ -252,7 +254,6 @@
 	</div>
 
 </script>
-
 
 <script src="js/main.js" type="text/javascript"></script>
 

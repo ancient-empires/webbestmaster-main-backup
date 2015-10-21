@@ -1,5 +1,8 @@
 'use strict';
-/*global window, document, setTimeout */
+/*global window */
+
+var win = window,
+	doc = win.document;
 
 // init all librares
 import shim from './lib/shim';
@@ -10,7 +13,7 @@ import jqueryMbBrowser from './lib/jquery.mb.browser';
 import jqueryFinger from './lib/jquery.finger';
 import fastclick from './lib/fastclick';
 //import doT from './lib/dot';
-import swiper from './lib/swiper';
+import Swiper from './lib/swiper';
 
 // init all services
 import info from './services/info';
@@ -26,5 +29,23 @@ import sm from './sound/sound-master';
 
 import router from './app/router/router';
 
+import BaseView from './app/view/base';
 
-console.log(router);
+// todo: - enable fast click
+fastclick(doc.body); // test it decide
+
+(function back() {
+
+	if ( win.location.hash ) {
+		win.history.back();
+		return win.setTimeout(back, 50);
+	}
+
+	BaseView.prototype.initStatic();
+
+	Backbone.history.start();
+
+
+	win.setTimeout(androidAds.showAd, 3e3);
+
+}());

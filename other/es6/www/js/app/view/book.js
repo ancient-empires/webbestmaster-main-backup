@@ -1,14 +1,16 @@
-/*jslint white: true, nomen: true */
-(function (win) {
+'use strict';
+/*global window */
 
-	'use strict';
-	/*global window, Backbone, $, templateMaster, APP, Swiper, _, setTimeout, clearTimeout */
+import info from './../../services/info';
+import _ from './../../lib/lodash';
+import booksData from './../books-data';
+import $ from './../../lib/jquery';
+import Swiper from './../../lib/swiper';
+import device from './../../services/device';
 
-	win.APP = win.APP || {};
+var win = window,
 
-	win.APP.BB = win.APP.BB || {};
-
-	APP.BB.BookView = APP.BB.BaseView.extend({
+	BookView = BaseView.extend({
 
 		events: {
 			'click .js-play-pause': 'playPause',
@@ -28,9 +30,8 @@
 
 			var view = this,
 				data = dataArg || {},
-				info = view.info,
 				languageName = info.get('language'),
-				booksByLang = win.APP.booksData[languageName],
+				booksByLang = booksData[languageName],
 				book = _.find(booksByLang, {folder: data.bookFolder});
 
 			view.set('withText', false);
@@ -64,7 +65,7 @@
 				})
 				.then(function () {
 
-					if ( !view.checkNeedUrl() ) {
+					if (!view.checkNeedUrl()) {
 						return;
 					}
 
@@ -72,21 +73,21 @@
 					view.bindEventListeners();
 					view.onResize();
 
-					if ( view.info.hintIsDone('showTitle') ) {
+					if (view.info.hintIsDone('showTitle')) {
 
 						view.runPage({index: 0});
 
 					} else {
 
-						var hintViewShowTitle = new win.APP.BB.HintView({ name: 'showTitle' });
+						var hintViewShowTitle = new win.APP.BB.HintView({name: 'showTitle'});
 
 						hintViewShowTitle.onHide(function () {
 
-							var hintViewShowText = new win.APP.BB.HintView({ name: 'showText' });
+							var hintViewShowText = new win.APP.BB.HintView({name: 'showText'});
 
 							hintViewShowText.onHide(function () {
 
-								var hintViewStopAndStart = new win.APP.BB.HintView({ name: 'stopAndStartPlay' });
+								var hintViewStopAndStart = new win.APP.BB.HintView({name: 'stopAndStartPlay'});
 
 								hintViewStopAndStart.onHide(view.runPage, [{index: 0}], view);
 
@@ -109,7 +110,7 @@
 			var view = this,
 				swiper;
 
-			swiper = new Swiper ('.swiper-container', {
+			swiper = new Swiper('.swiper-container', {
 				// Optional parameters
 				direction: 'horizontal',
 				loop: false
@@ -146,8 +147,7 @@
 		bindEventListeners: function () {
 
 			var view = this,
-				swiper = view.get('swiper'),
-				device = win.APP.bb.device;
+				swiper = view.get('swiper');
 
 			//onSlideChangeEnd
 			swiper.on('onTransitionEnd', function (swiper) {
@@ -156,11 +156,11 @@
 					index = swiper.activeIndex,
 					isPageChanged = view.isPageChanged(index);
 
-				if ( !isPageChanged ) {
+				if (!isPageChanged) {
 					return;
 				}
 
-				if ( view.get('pageMode') === 'normal' || view.get('playerState') === 'playing') {
+				if (view.get('pageMode') === 'normal' || view.get('playerState') === 'playing') {
 					view.runPage({index: index});
 				}
 
@@ -175,8 +175,7 @@
 			var view = this,
 				swiper = view.get('swiper'),
 				previousTimeoutId = view.get('nextActionTimeoutId'),
-				textAnimationIntervalId = view.get('textAnimationIntervalId'),
-				device = win.APP.bb.device;
+				textAnimationIntervalId = view.get('textAnimationIntervalId');
 
 			view.stopListening(device);
 
@@ -198,7 +197,6 @@
 		onResize: function () {
 
 			var view = this,
-				device = win.APP.bb.device,
 				selectors = view.selectors,
 				pageTextSelector = selectors.pageText,
 				selectorImage = selectors.bookPageImage,
@@ -233,19 +231,19 @@
 
 				//if ($pageText.length) {
 
-					endWidth = Math.floor(image.width / q * beautifulSpace);
-					endHeight = Math.floor(image.height / q * beautifulSpace);
-					endTop = Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2) + topBarHeight;
+				endWidth = Math.floor(image.width / q * beautifulSpace);
+				endHeight = Math.floor(image.height / q * beautifulSpace);
+				endTop = Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2) + topBarHeight;
 
-					$image.css({
-						width: endWidth + 'px',
-						height: endHeight + 'px',
-						top: endTop + 'px'
-					});
+				$image.css({
+					width: endWidth + 'px',
+					height: endHeight + 'px',
+					top: endTop + 'px'
+				});
 
-					$pageText.css({
-						top: endTop + endHeight + 'px'
-					});
+				$pageText.css({
+					top: endTop + endHeight + 'px'
+				});
 
 				//} else {
 				//	$image.css({
@@ -380,12 +378,12 @@
 
 			textAnimationIntervalId = win.setInterval(function () {
 
-				if ( !data.text || !data.text[index] ) {
+				if (!data.text || !data.text[index]) {
 					win.clearInterval(view.get('textAnimationIntervalId'));
 					return;
 				}
 
-				if ( view.get('playerState') === 'pause' ) {
+				if (view.get('playerState') === 'pause') {
 					win.clearInterval(view.get('textAnimationIntervalId'));
 					view.$el.find(view.selectors.pageText).empty();
 					return;
@@ -415,7 +413,7 @@
 				var wasSwipe = swiper.slideNext(),
 					isStoryByStory;
 
-				if ( wasSwipe ) { // swipe was good
+				if (wasSwipe) { // swipe was good
 					return;
 				}
 
@@ -425,7 +423,7 @@
 					view.hide().then(function () {
 
 						// detect book/:bookFolder
-						if ( Backbone.history.fragment.indexOf('book/') !== 0 ) {
+						if (Backbone.history.fragment.indexOf('book/') !== 0) {
 							return;
 						}
 
@@ -481,7 +479,7 @@
 				road: 0
 			});
 
-			win.clearTimeout( view.get('nextActionTimeoutId') );
+			win.clearTimeout(view.get('nextActionTimeoutId'));
 
 		},
 
@@ -571,11 +569,11 @@
 
 			var view = this;
 
-			$('.js-hint-wrapper').trigger('hide', { doNotTrack: true });
+			$('.js-hint-wrapper').trigger('hide', {doNotTrack: true});
 			return view.proto.hide.call(view);
 
 		}
 
 	});
 
-}(window));
+export default BookView;

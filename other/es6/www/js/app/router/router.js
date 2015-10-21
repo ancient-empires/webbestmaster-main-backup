@@ -4,6 +4,7 @@
 import Backbone from './../../lib/backbone';
 import _ from './../../lib/lodash';
 import BaseView from './../view/base';
+import HomeView from './../view/home';
 
 var win = window,
 	Router = Backbone.Router.extend({
@@ -15,7 +16,8 @@ var win = window,
 		},
 
 		home: function () {
-			new win.APP.BB.HomeView();
+			console.log('home');
+			new HomeView();
 		},
 
 		openBook: function (bookFolder) {

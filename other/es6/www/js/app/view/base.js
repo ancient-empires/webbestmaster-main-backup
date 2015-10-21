@@ -5,7 +5,7 @@ import Backbone from './../../lib/backbone'
 import $ from './../../lib/jquery'
 import _ from './../../lib/lodash'
 import info from './../../services/info'
-import tm from './../../services/template-master';
+//import tm from './../../services/template-master';
 import router from './../router/router';
 import util from './../../services/util';
 import sm from './../../sound/sound-master';
@@ -125,8 +125,6 @@ var win = window,
 
 			view.setClassNames();
 
-			view.proto = proto;
-
 			return Backbone.View.prototype.constructor.apply(view, arguments);
 		},
 
@@ -217,7 +215,6 @@ var win = window,
 		hide: function () {
 
 			var view = this,
-				info = view.info,
 				$el = view.$el,
 				animationEnd = info.get('animationEnd', true),
 				isScreenAnimation = info.get('screenAnimation') === 'on',
@@ -262,7 +259,6 @@ var win = window,
 		showAppearAnimation: function () {
 
 			var view = this,
-				info = view.info,
 				isScreenAnimation = info.get('screenAnimation') === 'on',
 				$el = view.$el,
 				deferred = $.Deferred(),
@@ -477,7 +473,6 @@ var win = window,
 		rateUsPopup: function () {
 
 			var view = this,
-				info = view.info,
 				dateUsData = info.get('rate-us') || {},
 				now = Date.now(),
 				lastShow = dateUsData.lastShow,
@@ -592,7 +587,7 @@ var win = window,
 
 		touchStartAutoScroll: function (e) {
 
-			if (!this.info.get('isIOS', true)) { // do for IOS only
+			if (!info.get('isIOS', true)) { // do for IOS only
 				return;
 			}
 
@@ -681,3 +676,4 @@ var win = window,
 
 	});
 
+export default BaseView;
