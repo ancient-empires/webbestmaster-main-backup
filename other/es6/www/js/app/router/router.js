@@ -5,8 +5,10 @@ import Backbone from './../../lib/backbone';
 import _ from './../../lib/lodash';
 import BaseView from './../view/core/base';
 import HomeView from './../view/home';
+import mediator from './../../services/mediator';
 
 var win = window,
+	router,
 	Router = Backbone.Router.extend({
 
 		routes: {
@@ -31,19 +33,24 @@ var win = window,
 		//	new win.APP.BB.PageView();
 		//},
 
+		url: {
+			popup: 'show-popup=popup'
+		},
+
 		getAction: function () {
 
-			var e = window.event || {},
+			var router = this,
+				e = window.event || {},
 				newURL = e.newURL || '',
 				oldURL = e.oldURL || '',
-				popupPart = BaseView.prototype.popupUrl,
+				popupPart = router.url.popup,
 				viewAction;
 
-			if (newURL.indexOf(popupPart) !== -1) {
+			if ( newURL.indexOf(popupPart) !== -1 ) {
 				viewAction = 'showPopup';
 			}
 
-			if (oldURL.indexOf(popupPart) !== -1) {
+			if ( oldURL.indexOf(popupPart) !== -1 ) {
 				viewAction = 'hidePopup';
 			}
 
@@ -56,7 +63,7 @@ var win = window,
 
 			var router = this,
 				originalFunctions = {},
-				proto = router.constructor.prototype;
+				proto = Router.prototype;
 
 			_.each(router.routes, function (value) {
 
@@ -64,17 +71,15 @@ var win = window,
 
 				proto[value] = function () {
 
-					var router = this,
-						viewAction = router.getAction(),
-						baseProto = BaseView.prototype;
+					var viewAction = router.getAction();
 
-					if (!viewAction) {
+					if ( !viewAction ) {
 						return originalFunctions[value].apply(router, arguments);
 					}
 
 					switch (viewAction) {
 						case 'hidePopup':
-							baseProto.hidePopup();
+							router.publish('hide-popup');
 							break;
 						case 'showPopup':
 							break;
@@ -86,8 +91,32 @@ var win = window,
 
 			return Backbone.Router.prototype.constructor.apply(router, arguments);
 
+		},
+
+		routeToPopup: function () {
+			this.navigate(Backbone.history.fragment + '?' + this.url.popup, false);
+		},
+
+		hidePopup: function () {
+
+			var router = this;
+
+			if (Backbone.history.fragment.indexOf(router.url.popup) !== -1) {
+				win.history.back();
+			} else {
+				router.publish('hide-popup');
+			}
+
 		}
 
 	});
 
-export default new Router();
+router = new Router();
+
+mediator.installTo(router);
+
+router.subscribe('route-to-popup', router.routeToPopup);
+router.subscribe('router-hide-popup', router.hidePopup);
+router.subscribe('navigate', router.navigate);
+
+export default router;

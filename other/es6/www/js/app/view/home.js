@@ -2,6 +2,7 @@
 /*global window */
 
 import info from './../../services/info';
+import lang from './../../services/lang';
 import device from './../../services/device';
 import tm from './../../services/template-master';
 import booksData from './../books-data';
@@ -133,7 +134,7 @@ var win = window,
 				isClicked = $node.attr('data-is-clicked');
 
 			if (isClicked) {
-				view.routeByUrl($node.attr('data-js-route'), true);
+				view.publish('navigate', $node.attr('data-js-route'), true);
 				return;
 			}
 

@@ -33,6 +33,7 @@ import router from './app/router/router';
 
 import BaseView from './app/view/core/base';
 import hintMaster from './app/view/core/hint';
+import popupMaster from './app/view/core/popup';
 
 // todo: - enable fast click
 new fastclick(doc.body); // test it decide

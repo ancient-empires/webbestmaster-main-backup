@@ -7,9 +7,11 @@ import _ from './../../../lib/lodash';
 import sm from './../../../sound/sound-master';
 import tm from './../../../services/template-master';
 import info from './../../../services/info';
+import mediator from './../../../services/mediator';
 
 var win = window,
-	PopupView;
+	PopupView,
+	popupMaster;
 
 PopupView = BaseView.extend({
 
@@ -30,7 +32,7 @@ PopupView = BaseView.extend({
 			url = win.location.href;
 
 		if (url.indexOf(popupUrl) === -1) {
-			view.routeToPopup();
+			view.publish('route-to-popup');
 		}
 
 		view.extendFromObj(data); // name, parentView, data(objToView)
@@ -48,6 +50,8 @@ PopupView = BaseView.extend({
 		view.showInAnimation();
 
 		view.bindEventListeners();
+
+		view.subscribe('hide-popup', view.hide);
 
 	},
 
@@ -176,7 +180,16 @@ PopupView = BaseView.extend({
 
 	}
 
-
 });
 
-export default PopupView;
+popupMaster = {
+	showPopup: function (data, result) {
+		return result ? (result.view = new PopupView(data)) : new PopupView(data);
+	}
+};
+
+mediator.installTo(popupMaster);
+
+popupMaster.subscribe('showPopup', popupMaster.showPopup);
+
+export default popupMaster;

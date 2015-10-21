@@ -6,7 +6,6 @@ import $ from './../../../lib/jquery'
 import _ from './../../../lib/lodash'
 import info from './../../../services/info'
 //import tm from './../../../services/template-master';
-import router from './../../router/router';
 import util from './../../../services/util';
 import mediator from './../../../services/mediator';
 import sm from './../../../sound/sound-master';
@@ -46,7 +45,7 @@ var win = window,
 			noScroll: ['mousewheel', 'touchmove', 'gesturestart', 'gesturechange', 'gestureend']
 		},
 
-		popupUrl: 'popup=true',
+		//popupUrl: 'popup=true',
 
 		selectors: {
 			wrapper: '.js-wrapper',
@@ -283,29 +282,13 @@ var win = window,
 
 		},
 
-		navigate: function () { //url, options
-			router.navigate.apply(router, arguments);
-		},
-
 		routeTo: function (e) {
 
 			var view = this,
 				$this = $(e.currentTarget),
 				route = $this.attr('data-route');
 
-			view.navigate(route, true);
-
-		},
-
-		routeByUrl: function (route, options) {
-			this.navigate(route, options);
-		},
-
-		routeToPopup: function () {
-
-			var view = this;
-
-			view.routeByUrl(Backbone.history.fragment + '?' + view.popupUrl);
+			view.publish('navigate', route, true);
 
 		},
 
@@ -343,13 +326,13 @@ var win = window,
 
 			var view = this,
 				deferred = $.Deferred(),
-				popup;
+				popup = {};
 
 			view.hidePopup();
 
-			// TODO: fix show popup
-			//popup = new PopupView(data);
-			//popup.set('deferred', deferred);
+			view.publish('showPopup', data, popup);
+
+			popup.view.set('deferred', deferred);
 
 			return deferred.promise();
 
@@ -357,13 +340,7 @@ var win = window,
 
 		hidePopupByRouter: function () {
 
-			var view = this,
-				oldURL = Backbone.history.fragment,
-				popupPart = BaseView.prototype.popupUrl;
-
-			if (oldURL.indexOf(popupPart) !== -1) {
-				view.routeBack();
-			}
+			this.publish('router-hide-popup');
 
 		},
 
