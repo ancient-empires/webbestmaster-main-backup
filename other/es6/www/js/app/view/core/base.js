@@ -9,6 +9,7 @@ import info from './../../../services/info'
 import util from './../../../services/util';
 import mediator from './../../../services/mediator';
 import sm from './../../../sound/sound-master';
+import lang from './../../../services/lang';
 
 var win = window,
 	doc = win.document,
@@ -49,7 +50,6 @@ var win = window,
 
 		selectors: {
 			wrapper: '.js-wrapper',
-			viewWrapper: '.js-view-wrapper',
 			verticalSwiper: '.js-scroll-container',
 			noScroll: '.js-no-scroll'
 		},
@@ -246,12 +246,10 @@ var win = window,
 
 		render: function () {
 
-			var view = this,
-				$oldContainer = $(view.$wrapper[0].querySelectorAll(view.selectors.viewWrapper));
+			var view = this;
 
-			$oldContainer.trigger('hide');
-
-			view.$el.addClass(view.classNames.viewWrapper);
+			view.publish('hide-main-view');
+			view.subscribe('hide-main-view', view.hide);
 
 			view.$wrapper.append(view.$el);
 			//view.util.setSizes();
@@ -328,7 +326,7 @@ var win = window,
 				deferred = $.Deferred(),
 				popup = {};
 
-			view.hidePopup();
+			view.hidePopupByRouter();
 
 			view.publish('showPopup', data, popup);
 
@@ -341,12 +339,6 @@ var win = window,
 		hidePopupByRouter: function () {
 
 			this.publish('router-hide-popup');
-
-		},
-
-		hidePopup: function () {
-
-			$('.js-popup-wrapper').trigger('hide');
 
 		},
 
@@ -515,6 +507,7 @@ var win = window,
 						}
 					],
 					data: {
+						lang,
 						url: info.getLinkToStore()
 					}
 				});

@@ -5,8 +5,14 @@ import info from './../../services/info';
 import _ from './../../lib/lodash';
 import booksData from './../books-data';
 import $ from './../../lib/jquery';
+import Backbone from './../../lib/backbone';
 import Swiper from './../../lib/swiper';
 import device from './../../services/device';
+import sm from './../../sound/sound-master';
+import tm from './../../services/template-master';
+import util from './../../services/util';
+import androidAds from './../../services/android-ads';
+import BaseView from './core/base';
 
 var win = window,
 
@@ -40,7 +46,9 @@ var win = window,
 
 			view.setElement(tm.tmplFn.book(
 				{
-					book: book,
+					info,
+					util,
+					book,
 					settings: {
 						withText: view.get('withText')
 					}
@@ -55,7 +63,7 @@ var win = window,
 
 			view.set('previousPageIndex', 0);
 
-			view.proto.initialize.apply(view, arguments);
+			BaseView.prototype.initialize.apply(view, arguments);
 			//view.onResize();
 
 			view.loadBooksImages()
@@ -73,23 +81,29 @@ var win = window,
 					view.bindEventListeners();
 					view.onResize();
 
-					if (view.info.hintIsDone('showTitle')) {
+					if (info.hintIsDone('showTitle')) {
 
 						view.runPage({index: 0});
 
 					} else {
 
-						var hintViewShowTitle = new win.APP.BB.HintView({name: 'showTitle'});
+						var hintViewShowTitle = {};
 
-						hintViewShowTitle.onHide(function () {
+						view.publish('showHint', {name: 'showTitle'}, hintViewShowTitle);
 
-							var hintViewShowText = new win.APP.BB.HintView({name: 'showText'});
+						hintViewShowTitle.view.onHide(function () {
 
-							hintViewShowText.onHide(function () {
+							var hintViewShowText = {};
 
-								var hintViewStopAndStart = new win.APP.BB.HintView({name: 'stopAndStartPlay'});
+							view.publish('showHint', {name: 'showText'}, hintViewShowText);
 
-								hintViewStopAndStart.onHide(view.runPage, [{index: 0}], view);
+							hintViewShowText.view.onHide(function () {
+
+								var hintViewStopAndStart = {};
+
+								view.publish('showHint', {name: 'stopAndStartPlay'}, hintViewStopAndStart);
+
+								hintViewStopAndStart.view.onHide(view.runPage, [{index: 0}], view);
 
 							});
 
@@ -182,7 +196,7 @@ var win = window,
 			win.clearTimeout(previousTimeoutId);
 			win.clearInterval(textAnimationIntervalId);
 
-			win.APP.soundMaster.stop({
+			sm.stop({
 				road: 0
 			});
 
@@ -201,7 +215,7 @@ var win = window,
 				pageTextSelector = selectors.pageText,
 				selectorImage = selectors.bookPageImage,
 				$pages = view.$el.find(selectors.bookPage),
-				topBarHeight = view.info.get('remSize', true) * 3.4; // see style css .header
+				topBarHeight = info.get('remSize', true) * 3.4; // see style css .header
 
 			$pages.each(function () {
 
@@ -263,11 +277,11 @@ var win = window,
 				book = view.get('book'),
 				mainBookFolder = 'books',
 				pages = book.pages,
-				language = view.info.get('language'),
+				language = info.get('language'),
 				bookFolder = book.folder,
 				loadDeferred = $.Deferred(),
 				loadPromise = loadDeferred.promise(),
-				getPath = win.APP.util.getPath,
+				getPath = util.getPath,
 				mainDeferred = $.Deferred();
 
 			function loadImage(index) {
@@ -306,14 +320,12 @@ var win = window,
 
 			var view = this,
 				data = dataArg || {},
-				info = view.info,
 				languageName = info.get('language'),
 				book = view.get('book'),
-				getPath = win.APP.util.getPath,
-				index = data.index,
-				soundMaster = win.APP.soundMaster;
+				getPath = util.getPath,
+				index = data.index;
 
-			soundMaster.play({
+			sm.play({
 				sound: ['books', languageName, getPath(book.folder, index, 'mp3')].join('/'),
 				road: 0,
 				isLoop: false
@@ -417,7 +429,7 @@ var win = window,
 					return;
 				}
 
-				isStoryByStory = view.info.get('storyByStory') === 'on';
+				isStoryByStory = info.get('storyByStory') === 'on';
 
 				if (isStoryByStory) {
 					view.hide().then(function () {
@@ -427,21 +439,21 @@ var win = window,
 							return;
 						}
 
-						var info = view.info,
-							languageName = info.get('language'),
-							booksData = win.APP.booksData,
+						var languageName = info.get('language'),
 							books = booksData[languageName],
 							index = Math.floor(books.length * Math.random()),
 							book = books[index];
 
-						new win.APP.BB.BookView({
+						// todo: create a new book from 'this'
+
+						new BookView({
 							bookFolder: book.folder
 						});
 
 					});
 				} else {
 					view.routeBack();
-					setTimeout(win.APP.ad.showAd, 3e3);
+					setTimeout(androidAds.showAd, 3e3);
 				}
 
 			}, timeout * 1e3); // 1e3
@@ -467,15 +479,14 @@ var win = window,
 
 		stopCurrentPage: function () {
 
-			var view = this,
-				soundMaster = win.APP.soundMaster;
+			var view = this;
 
 			view.set('playerState', 'pause');
 			view.autoSetPlayPauseButtonState();
 
 			// stop music and clear timeout
 
-			soundMaster.stop({
+			sm.stop({
 				road: 0
 			});
 
@@ -510,6 +521,8 @@ var win = window,
 		},
 
 		toggleState: function () {
+
+			console.log('!!!!!');
 
 			var view = this,
 				state = view.get('pageMode'), // fullText or normal
@@ -569,8 +582,9 @@ var win = window,
 
 			var view = this;
 
-			$('.js-hint-wrapper').trigger('hide', {doNotTrack: true});
-			return view.proto.hide.call(view);
+			view.publish('hide-hint', {}, {doNotTrack: true});
+
+			return BaseView.prototype.hide.call(view);
 
 		}
 

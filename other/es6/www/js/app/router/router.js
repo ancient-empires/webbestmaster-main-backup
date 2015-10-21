@@ -5,6 +5,7 @@ import Backbone from './../../lib/backbone';
 import _ from './../../lib/lodash';
 import BaseView from './../view/core/base';
 import HomeView from './../view/home';
+import BookView from './../view/book';
 import mediator from './../../services/mediator';
 
 var win = window,
@@ -23,7 +24,7 @@ var win = window,
 
 		openBook: function (bookFolder) {
 
-			new win.APP.BB.BookView({
+			new BookView({
 				bookFolder: bookFolder
 			});
 

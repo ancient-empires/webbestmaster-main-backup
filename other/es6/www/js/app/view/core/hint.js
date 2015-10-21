@@ -121,6 +121,8 @@ HintView = BaseView.extend({
 
 		view.bindEventListeners();
 
+		view.subscribe('hide-hint', view.hide);
+
 		view.render();
 
 	},

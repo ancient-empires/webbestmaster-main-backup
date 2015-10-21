@@ -122,7 +122,7 @@
 
 	<div class="screen bg-inner-page">
 
-		{{ var languageName = window.APP.info.get('language'), book = it.book, settings = it.settings, bookFolder = book.folder; }}
+		{{ var languageName = it.info.get('language'), book = it.book, settings = it.settings, bookFolder = book.folder; }}
 
 		<!-- header -->
 		<div class="header js-header js-no-scroll">
@@ -144,7 +144,7 @@
 
 				{{~book.pages :page:index }}
 				<div class="swiper-slide js-book-page">
-					<img class="js-book-page-image book-page-image" src="books/{{= languageName + '/' + window.APP.util.getPath(bookFolder, index, 'jpg') }}" alt=""/>
+					<img class="js-book-page-image book-page-image" src="books/{{= languageName + '/' + it.util.getPath(bookFolder, index, 'jpg') }}" alt=""/>
 					{{? page.text }}
 					{{? settings.withText }}
 					<div class="js-page-text page-text">{{= page.text.replace(/\|/g, '<br />') }}</div>
@@ -153,7 +153,7 @@
 					<div class="js-back-page-wrapper js-scroll-area-container scroll-area-container width-100 hidden">
 						<div class="back-page-wrapper">
 							<div class="back-page-text">
-								<img class="book-page-image-with-text" src="books/{{= languageName + '/' + window.APP.util.getPath(bookFolder, index, 'jpg') }}" alt=""/>
+								<img class="book-page-image-with-text" src="books/{{= languageName + '/' + it.util.getPath(bookFolder, index, 'jpg') }}" alt=""/>
 								{{= page.text.replace(/\|/g, '<br />') }}
 							</div>
 						</div>
@@ -220,7 +220,7 @@
 
 	<div class="popup-text js-stop-event rate-us-wrapper">
 
-		{{ var rateUsLang = window.APP.lang.get('rateUs'); }}
+		{{ var rateUsLang = it.lang.get('rateUs'); }}
 
 		<p class="rate-us-header">
 			{{= rateUsLang.header }}

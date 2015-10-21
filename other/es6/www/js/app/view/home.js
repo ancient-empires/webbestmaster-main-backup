@@ -99,7 +99,7 @@ var win = window,
 				rateUsTimeoutId;
 
 			view.listenTo(device, 'change:orientation', function () {
-				$('.js-hint-wrapper').trigger('hide', {doNotTrack: true});
+				view.publish('hide-hint', {}, {doNotTrack: true});
 				view.loadUrl();
 			});
 
