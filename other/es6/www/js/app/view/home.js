@@ -1,6 +1,7 @@
 'use strict';
 /*global window */
 
+import $ from './../../lib/jquery';
 import info from './../../services/info';
 import lang from './../../services/lang';
 import device from './../../services/device';

@@ -20,7 +20,6 @@ var win = window,
 
 		events: {
 			'click .js-play-pause': 'playPause',
-			'dbl .js-book-page': 'toggleState',
 			'click .js-show-inner-html': 'showInnerHtml'
 		},
 
@@ -179,6 +178,8 @@ var win = window,
 				}
 
 			});
+
+			swiper.on('onDoubleTap', () => view.toggleState());
 
 			view.listenTo(device, 'resize', view.onResize);
 
@@ -521,8 +522,6 @@ var win = window,
 		},
 
 		toggleState: function () {
-
-			console.log('!!!!!');
 
 			var view = this,
 				state = view.get('pageMode'), // fullText or normal

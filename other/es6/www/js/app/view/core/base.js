@@ -58,8 +58,8 @@ var win = window,
 		eventTypes: {
 			down: ['mousedown', 'touchstart'],
 			move: ['mousemove', 'touchmove'],
-			up: ['mouseup', 'touchend'],
-			dbl: ['dblclick', 'doubletap']
+			up: ['mouseup', 'touchend']
+			//dbl: ['dblclick', 'doubletap']
 		},
 
 		initStatic: function () {

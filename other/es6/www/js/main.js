@@ -11,8 +11,6 @@ import shim from './lib/shim';
 import lodash from './lib/lodash';
 import jQuery from './lib/jquery';
 import Backbone from './lib/backbone';
-import jqueryMbBrowser from './lib/jquery.mb.browser';
-import jqueryFinger from './lib/jquery.finger';
 import fastclick from './lib/fastclick';
 //import doT from './lib/dot';
 import Swiper from './lib/swiper';
