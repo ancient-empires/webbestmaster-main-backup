@@ -1,8 +1,5 @@
-/*jslint white: true, nomen: true */
-
 'use strict';
 /*global window */
-/*global */
 
 import androidPlayer from './player-android'
 import iosPlayer from './player-ios'

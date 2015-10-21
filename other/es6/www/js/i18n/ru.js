@@ -31,4 +31,4 @@ var ru = {
 
 };
 
-export default {ru};
+export default ru;

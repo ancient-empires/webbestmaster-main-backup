@@ -1,4 +1,5 @@
 'use strict';
+/*global window */
 
 import info from './info';
 import en from './../i18n/en';

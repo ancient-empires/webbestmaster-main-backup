@@ -1,7 +1,5 @@
-/*jslint white: true, nomen: true */
 'use strict';
 /*global window */
-/*global */
 
 import Backbone from './../lib/backbone';
 

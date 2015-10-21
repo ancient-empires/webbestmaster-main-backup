@@ -1,6 +1,5 @@
 'use strict';
 /*global window */
-/*global */
 
 var win = window,
 	androidPlayer = {

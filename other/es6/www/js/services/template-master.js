@@ -1,4 +1,5 @@
 'use strict';
+/*global window */
 
 import dot from './../lib/dot';
 

@@ -1,10 +1,5 @@
 'use strict';
 /*global window */
-/*global */
-
-/*
- * ad module has depend from APP.info
- * */
 
 import info from './info'
 

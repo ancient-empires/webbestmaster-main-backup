@@ -1,6 +1,5 @@
 'use strict';
-/*global window, document, console */
-/*global */
+/*global console */
 
 var logger = {
 	isEnable: false,

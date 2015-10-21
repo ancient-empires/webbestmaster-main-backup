@@ -1,15 +1,19 @@
-/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
-(function (win, doc, docElem) {
+'use strict';
+/*global window */
 
-	'use strict';
-	/*global window, document, location, Image */
-	/*global Backbone, $, APP, log, _ */
+import Backbone from './../../lib/backbone'
+import $ from './../../lib/jquery'
+import _ from './../../lib/lodash'
+import info from './../../services/info'
+import tm from './../../services/template-master';
+import router from './../router/router';
+import util from './../../services/util';
+import sm from './../../sound/sound-master';
 
-	win.APP = win.APP || {};
-
-	win.APP.BB = win.APP.BB || {};
-
-	win.APP.BB.BaseView = Backbone.View.extend({
+var win = window,
+	doc = win.document,
+	docElem = doc.documentElement,
+	BaseView = Backbone.View.extend({
 
 		events: {
 			// base
@@ -61,19 +65,16 @@
 		initStatic: function () {
 
 			var view = this,
-				info = win.APP.info,
 				isTouch = info.get('isTouch', true),
 				eventTypesIndex = Number(isTouch),
 				types = view.eventTypes,
 				fontSize,
-				proto = win.APP.BB.BaseView.prototype;
+				proto = view.constructor.prototype;
 
 			proto.$wrapper = $(view.selectors.wrapper);
-			view.tmpl = win.APP.templateMaster.tmplFn;
-			view.info = win.APP.info;
 
 			// adjust font size
-			fontSize = Math.round( 14 * Math.pow( docElem.clientWidth * docElem.clientHeight / 153600, 0.5) ); // 153600 = 320 * 480
+			fontSize = Math.round(14 * Math.pow(docElem.clientWidth * docElem.clientHeight / 153600, 0.5)); // 153600 = 320 * 480
 			fontSize = Math.min(fontSize, 24);
 			fontSize = Math.max(fontSize, 14);
 			fontSize = Math.round(fontSize / 2) * 2;
@@ -89,18 +90,18 @@
 
 		},
 
-		constructor: function() {
+		constructor: function () {
 
 			var view = this,
-				proto = win.APP.BB.BaseView.prototype,
+				proto = view.constructor.prototype,
 				newEvents = {},
 				noScrollEvents = proto.extraEvents.noScroll,
 				noScrollSelector = proto.selectors.noScroll;
 
-			view.events = $.extend( {}, proto.events, view.events );
+			view.events = $.extend({}, proto.events, view.events);
 
 			// prepare extra events from eventTypes
-			_.each(view.events, function (functionName,  eventAndSelector) {
+			_.each(view.events, function (functionName, eventAndSelector) {
 				newEvents[view.getFullEventNameAndSelector(eventAndSelector)] = functionName;
 			});
 
@@ -118,7 +119,7 @@
 
 			view.events = newEvents;
 
-			view.selectors = $.extend( {}, proto.selectors, view.selectors );
+			view.selectors = $.extend({}, proto.selectors, view.selectors);
 
 			view.attr = {};
 
@@ -172,7 +173,7 @@
 
 			// find current index
 			listData.every(function (obj, i) {
-				if ( obj.key.toString() === currentKey ) {
+				if (obj.key.toString() === currentKey) {
 					followIndex = i + direction;
 					return false;
 				}
@@ -180,11 +181,11 @@
 			});
 
 			// adjust follow index
-			if ( followIndex < 0 ) {
+			if (followIndex < 0) {
 				followIndex = listLength - 1;
 			}
 
-			if ( followIndex >= listLength ) {
+			if (followIndex >= listLength) {
 				followIndex = 0;
 			}
 
@@ -198,7 +199,7 @@
 
 		},
 
-		destroyView: function() {
+		destroyView: function () {
 
 			var view = this;
 
@@ -246,7 +247,7 @@
 
 			var view = this,
 				$oldContainer = $(view.$wrapper[0].querySelectorAll(view.selectors.viewWrapper));
-			
+
 			$oldContainer.trigger('hide');
 
 			view.$el.addClass(view.classNames.viewWrapper);
@@ -281,11 +282,11 @@
 
 		},
 
-		navigate: function() { //url, options
-			win.APP.bb.router.navigate.apply(win.APP.bb.router, arguments);
+		navigate: function () { //url, options
+			router.navigate.apply(router, arguments);
 		},
 
-		routeTo: function(e) {
+		routeTo: function (e) {
 
 			var view = this,
 				$this = $(e.currentTarget),
@@ -295,7 +296,7 @@
 
 		},
 
-		routeByUrl: function(route, options) {
+		routeByUrl: function (route, options) {
 			this.navigate(route, options);
 		},
 
@@ -307,11 +308,11 @@
 
 		},
 
-		routeBack: function(e) {
+		routeBack: function (e) {
 
 			this.stopEvent(e);
 
-			if (location.hash) {
+			if (win.location.hash) {
 				Backbone.history.history.back();
 			}
 
@@ -323,8 +324,6 @@
 			//data = data || {};
 
 			var view = this;
-				//router = win.APP.bb.router;
-			//router.isForce = data.isForce;
 
 			(function backTo() {
 				win.setTimeout(function () {
@@ -339,7 +338,7 @@
 
 		},
 
-		showPopup: function(data) {
+		showPopup: function (data) {
 
 			var view = this,
 				deferred = $.Deferred(),
@@ -347,7 +346,7 @@
 
 			view.hidePopup();
 
-			popup =	new APP.BB.PopupView(data);
+			popup = new PopupView(data);
 			popup.set('deferred', deferred);
 
 			return deferred.promise();
@@ -358,9 +357,9 @@
 
 			var view = this,
 				oldURL = Backbone.history.fragment,
-				popupPart = win.APP.BB.BaseView.prototype.popupUrl;
+				popupPart = view.constructor.prototype.popupUrl;
 
-			if ( oldURL.indexOf(popupPart) !== -1 ) {
+			if (oldURL.indexOf(popupPart) !== -1) {
 				view.routeBack();
 			}
 
@@ -382,7 +381,7 @@
 
 		},
 
-		stopEvent: function(e) {
+		stopEvent: function (e) {
 
 			if (!e) {
 				return;
@@ -393,7 +392,7 @@
 
 		},
 
-		toExternalLink: function(e) {
+		toExternalLink: function (e) {
 
 			var view = this,
 				$this = $(e.currentTarget),
@@ -415,7 +414,6 @@
 		needConfirmLinkPrompt: function (data) {
 
 			var view = this,
-				util = win.APP.util,
 				getRandomBetween = util.getRandomBetween,
 				a = getRandomBetween(5, 9),
 				b = getRandomBetween(5, 9),
@@ -440,17 +438,17 @@
 				}
 			});
 
-/*
-			if ( result === null || result === '') {
-				return;
-			}
+			/*
+			 if ( result === null || result === '') {
+			 return;
+			 }
 
-			if (Number(result) === a + b) {
-				win.open(data.url);
-			} else {
-				view.needConfirmLinkPrompt(data);
-			}
-*/
+			 if (Number(result) === a + b) {
+			 win.open(data.url);
+			 } else {
+			 view.needConfirmLinkPrompt(data);
+			 }
+			 */
 
 		},
 
@@ -489,19 +487,19 @@
 				showPeriod = 86400e3 * 2,
 				noThanksPeriod = showPeriod * 3; // try to show every two days
 
-			if ( lastShow && (now - lastShow < showPeriod) ) {
+			if (lastShow && (now - lastShow < showPeriod)) {
 				// do not show popup too often
 				//console.log('do not show popup too often');
 				return;
 			}
 
-			if ( lastRateNow ) {
+			if (lastRateNow) {
 				// rate by rate now
 				//console.log('it had been rate by rate now');
 				return;
 			}
 
-			if ( lastNoThanks && ( now - lastShow < noThanksPeriod ) ) {
+			if (lastNoThanks && ( now - lastShow < noThanksPeriod )) {
 				//console.log('no thanks - 3 * showPeriod');
 				return;
 			}
@@ -523,8 +521,7 @@
 							selector: '.js-rate-us-rate-now',
 							event: 'click',
 							fn: function () {
-								var info = win.APP.info,
-									dateUsData = info.get('rate-us') || {};
+								var dateUsData = info.get('rate-us') || {};
 								dateUsData.lastRateNow = Date.now();
 								info.set('rate-us', dateUsData);
 							}
@@ -533,8 +530,7 @@
 							selector: '.js-rate-us-no-thanks',
 							event: 'click',
 							fn: function () {
-								var info = win.APP.info,
-									dateUsData = info.get('rate-us') || {};
+								var dateUsData = info.get('rate-us') || {};
 								dateUsData.lastNoThanks = Date.now();
 								info.set('rate-us', dateUsData);
 							}
@@ -580,11 +576,11 @@
 
 			varticalSwiper = new Swiper($el.find(view.selectors.verticalSwiper), {
 				scrollbar: '.swiper-scrollbar',
-					direction: 'vertical',
-					slidesPerView: 'auto',
-					mousewheelControl: true,
-					freeMode: true
-				});
+				direction: 'vertical',
+				slidesPerView: 'auto',
+				mousewheelControl: true,
+				freeMode: true
+			});
 
 			view.set('vertical-swiper', varticalSwiper);
 
@@ -596,7 +592,7 @@
 
 		touchStartAutoScroll: function (e) {
 
-			if ( !this.info.get('isIOS', true) ) { // do for IOS only
+			if (!this.info.get('isIOS', true)) { // do for IOS only
 				return;
 			}
 
@@ -616,7 +612,7 @@
 			scrollAreaHeight = $scrollArea.outerHeight();
 			maxScrollTop = scrollAreaHeight - wrapperHeight;
 
-			if ( scrollTop >= maxScrollTop ) {
+			if (scrollTop >= maxScrollTop) {
 				$wrapper.scrollTop(maxScrollTop - 1);
 			}
 
@@ -675,7 +671,7 @@
 			var $this = $(e.currentTarget),
 				sound = $this.attr('data-sound');
 
-			win.APP.soundMaster.play({
+			sm.play({
 				sound: sound,
 				road: 3,
 				isLoop: false
@@ -685,4 +681,3 @@
 
 	});
 
-}(window, window.document, window.document.documentElement));

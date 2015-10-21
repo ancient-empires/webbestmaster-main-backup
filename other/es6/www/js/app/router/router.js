@@ -3,6 +3,7 @@
 
 import Backbone from './../../lib/backbone';
 import _ from './../../lib/lodash';
+import BaseView from './../view/base';
 
 var win = window,
 	Router = Backbone.Router.extend({
@@ -31,13 +32,10 @@ var win = window,
 
 		getAction: function () {
 
-			// todo: fix here win.APP.BB.BaseView.prototype.popupUrl
-
 			var e = window.event || {},
 				newURL = e.newURL || '',
 				oldURL = e.oldURL || '',
-				popupPart = 'fix it' ,
-				//popupPart = 'win.APP.BB.BaseView.prototype.popupUrl,
+				popupPart = BaseView.prototype.popupUrl,
 				viewAction;
 
 			if (newURL.indexOf(popupPart) !== -1) {
@@ -66,10 +64,8 @@ var win = window,
 				proto[value] = function () {
 
 					var router = this,
-						viewAction = router.getAction();
-					// todo: fix here baseProto
-
-					//baseProto = win.APP.BB.BaseView.prototype;
+						viewAction = router.getAction(),
+						baseProto = BaseView.prototype;
 
 					if (!viewAction) {
 						return originalFunctions[value].apply(router, arguments);
@@ -77,10 +73,7 @@ var win = window,
 
 					switch (viewAction) {
 						case 'hidePopup':
-							// todo: fix here baseProto
-
-
-							//baseProto.hidePopup();
+							baseProto.hidePopup();
 							break;
 						case 'showPopup':
 							break;

@@ -1,7 +1,5 @@
-/*jslint white: true, nomen: true */ // http://www.jslint.com/lint.html#options
-
 'use strict';
-/*global window, document, navigator, localStorage */
+/*global window */
 
 var win = window,
 	doc = win.document,
