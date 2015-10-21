@@ -2,11 +2,11 @@
 /*global window */
 
 import BaseView from './base';
-import $ from './../../lib/jquery';
-import _ from './../../lib/lodash';
-import sm from './../../sound/sound-master';
-import tm from './../../services/template-master';
-import info from './../../services/info';
+import $ from './../../../lib/jquery';
+import _ from './../../../lib/lodash';
+import sm from './../../../sound/sound-master';
+import tm from './../../../services/template-master';
+import info from './../../../services/info';
 
 var win = window,
 	PopupView;

@@ -3,7 +3,7 @@
 
 import Backbone from './../../lib/backbone';
 import _ from './../../lib/lodash';
-import BaseView from './../view/base';
+import BaseView from './../view/core/base';
 import HomeView from './../view/home';
 
 var win = window,

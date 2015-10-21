@@ -22,11 +22,11 @@ function publish(channel) {
 	var list = mediator.channels[channel],
 		args;
 
-	if (!list) {
+	if ( !list ) {
 		return this;
 	}
 
-	args = Array.from(arguments, 1);
+	args = Array.prototype.slice.call(arguments, 1);
 
 	list.forEach(function (item) {
 		item.callback.apply(item.context, args);

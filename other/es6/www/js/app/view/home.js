@@ -5,8 +5,7 @@ import info from './../../services/info';
 import device from './../../services/device';
 import tm from './../../services/template-master';
 import booksData from './../books-data';
-import BaseView from './base';
-import HintView from './hint';
+import BaseView from './core/base';
 
 var win = window,
 	HomeView = BaseView.extend({
@@ -20,7 +19,7 @@ var win = window,
 		initialize: function () {
 
 			var view = this,
-				hintViewAutoplay;
+				hintViewAutoplay = {};
 
 			view.setElement(tm.tmplFn.home({
 				info,
@@ -39,14 +38,10 @@ var win = window,
 
 			// show hint if needed
 			if (!info.hintIsDone('autoplay')) {
-				hintViewAutoplay = new HintView({name: 'autoplay'});
-				hintViewAutoplay.onHide(function () {
-					if (info.isNormal) {
-						new HintView({name: 'removeAds'});
-					} else {
-						new HintView({name: 'thanksForBuy'});
-					}
-				});
+				view.publish('showHint', {name: 'autoplay'}, hintViewAutoplay);
+				hintViewAutoplay.view.onHide(
+					() => view.publish('showHint', {name: info.isNormal ? 'removeAds' : 'thanksForBuy'})
+				);
 			}
 
 			return BaseView.prototype.initialize.apply(view, arguments);

@@ -1,16 +1,15 @@
 'use strict';
 /*global window */
 
-import Backbone from './../../lib/backbone'
-import $ from './../../lib/jquery'
-import _ from './../../lib/lodash'
-import info from './../../services/info'
-//import tm from './../../services/template-master';
-import router from './../router/router';
-import util from './../../services/util';
-import sm from './../../sound/sound-master';
-console.log('!!!!no show popup');
-//import PopupView from './popup';
+import Backbone from './../../../lib/backbone'
+import $ from './../../../lib/jquery'
+import _ from './../../../lib/lodash'
+import info from './../../../services/info'
+//import tm from './../../../services/template-master';
+import router from './../../router/router';
+import util from './../../../services/util';
+import mediator from './../../../services/mediator';
+import sm from './../../../sound/sound-master';
 
 var win = window,
 	doc = win.document,
@@ -127,6 +126,8 @@ var win = window,
 
 			view.setClassNames();
 
+			mediator.installTo(view);
+
 			return Backbone.View.prototype.constructor.apply(view, arguments);
 		},
 
@@ -221,6 +222,8 @@ var win = window,
 				animationEnd = info.get('animationEnd', true),
 				isScreenAnimation = info.get('screenAnimation') === 'on',
 				deferred = $.Deferred();
+
+			view.unsubscribe();
 
 			if (view.unbindEventListeners) {
 				view.unbindEventListeners();

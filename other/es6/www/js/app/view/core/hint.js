@@ -2,15 +2,17 @@
 /*global window */
 
 import BaseView from './base';
-import $ from './../../lib/jquery';
-import _ from './../../lib/lodash';
-import lang from './../../services/lang';
-import info from './../../services/info';
-import device from './../../services/device';
-import tm from './../../services/template-master';
+import $ from './../../../lib/jquery';
+import _ from './../../../lib/lodash';
+import lang from './../../../services/lang';
+import info from './../../../services/info';
+import device from './../../../services/device';
+import tm from './../../../services/template-master';
+import mediator from './../../../services/mediator';
 
 var win = window,
 	HintView,
+	hintMaster,
 	hintsMap = {
 
 		autoplay: {
@@ -398,4 +400,14 @@ HintView = BaseView.extend({
 
 });
 
-export default HintView;
+hintMaster = {
+	showHint: function (data, result) {
+		return result ? (result.view = new HintView(data)) : new HintView(data);
+	}
+};
+
+mediator.installTo(hintMaster);
+
+hintMaster.subscribe('showHint', hintMaster.showHint);
+
+export default hintMaster;
