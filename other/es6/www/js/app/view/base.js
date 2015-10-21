@@ -69,7 +69,7 @@ var win = window,
 				eventTypesIndex = Number(isTouch),
 				types = view.eventTypes,
 				fontSize,
-				proto = view.constructor.prototype;
+				proto = BaseView.prototype;
 
 			proto.$wrapper = $(view.selectors.wrapper);
 
@@ -93,7 +93,7 @@ var win = window,
 		constructor: function () {
 
 			var view = this,
-				proto = view.constructor.prototype,
+				proto = BaseView.prototype,
 				newEvents = {},
 				noScrollEvents = proto.extraEvents.noScroll,
 				noScrollSelector = proto.selectors.noScroll;
@@ -152,10 +152,10 @@ var win = window,
 
 		},
 
-		// still not implemented
-		//initialize: function() {
-		//
-		//},
+	 	// still not implemented
+		initialize: function() {
+			console.log('base initialize');
+		},
 
 		changeSelect: function (e) { // external
 
@@ -353,7 +353,7 @@ var win = window,
 
 			var view = this,
 				oldURL = Backbone.history.fragment,
-				popupPart = view.constructor.prototype.popupUrl;
+				popupPart = BaseView.prototype.popupUrl;
 
 			if (oldURL.indexOf(popupPart) !== -1) {
 				view.routeBack();

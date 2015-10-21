@@ -16,7 +16,6 @@ var win = window,
 		},
 
 		home: function () {
-			console.log('home');
 			new HomeView();
 		},
 

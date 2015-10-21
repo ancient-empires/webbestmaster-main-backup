@@ -6,6 +6,7 @@ import device from './../../services/device';
 import tm from './../../services/template-master';
 import booksData from './../books-data';
 import BaseView from './base';
+import HintView from './hint';
 
 var win = window,
 	HomeView = BaseView.extend({
@@ -28,8 +29,6 @@ var win = window,
 				//booksOnShelf:
 			}));
 
-			BaseView.prototype.initialize.apply(view, arguments);
-
 			view.bindEventListeners();
 
 			view.render();
@@ -37,6 +36,10 @@ var win = window,
 			view.setVerticalSwiper();
 
 			view.scrollToTop();
+
+			return BaseView.prototype.initialize.apply(view, arguments);
+
+/*
 
 			// show hint if needed
 			if (!info.hintIsDone('autoplay')) {
@@ -49,6 +52,7 @@ var win = window,
 					}
 				});
 			}
+*/
 
 		},
 
