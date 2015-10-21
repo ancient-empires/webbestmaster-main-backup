@@ -9,6 +9,8 @@ import info from './../../services/info'
 import router from './../router/router';
 import util from './../../services/util';
 import sm from './../../sound/sound-master';
+console.log('!!!!no show popup');
+//import PopupView from './popup';
 
 var win = window,
 	doc = win.document,
@@ -153,9 +155,9 @@ var win = window,
 		},
 
 	 	// still not implemented
-		initialize: function() {
-			console.log('base initialize');
-		},
+		//initialize: function() {
+		//	console.log('base initialize');
+		//},
 
 		changeSelect: function (e) { // external
 
@@ -342,8 +344,9 @@ var win = window,
 
 			view.hidePopup();
 
-			popup = new PopupView(data);
-			popup.set('deferred', deferred);
+			// TODO: fix show popup
+			//popup = new PopupView(data);
+			//popup.set('deferred', deferred);
 
 			return deferred.promise();
 

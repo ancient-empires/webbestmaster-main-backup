@@ -22,7 +22,7 @@ var win = window,
 			var view = this,
 				hintViewAutoplay;
 
-			view.$el = $(tm.tmplFn.home({
+			view.setElement(tm.tmplFn.home({
 				info,
 				booksData,
 				shelf: view.getBooksOnShelfNumber()
@@ -37,10 +37,6 @@ var win = window,
 
 			view.scrollToTop();
 
-			return BaseView.prototype.initialize.apply(view, arguments);
-
-/*
-
 			// show hint if needed
 			if (!info.hintIsDone('autoplay')) {
 				hintViewAutoplay = new HintView({name: 'autoplay'});
@@ -52,7 +48,8 @@ var win = window,
 					}
 				});
 			}
-*/
+
+			return BaseView.prototype.initialize.apply(view, arguments);
 
 		},
 

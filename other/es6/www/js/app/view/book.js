@@ -38,7 +38,7 @@ var win = window,
 
 			view.set('pageMode', 'normal'); // fullText or normal
 
-			view.$el = $(view.tmpl.book(
+			view.setElement(tm.tmplFn.book(
 				{
 					book: book,
 					settings: {

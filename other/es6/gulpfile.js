@@ -72,9 +72,10 @@
 	gulp.task('es6', function () {
 		return browserify({
 			entries: './www/js/main.js',
-			extensions: ['.js'],
-			debug: true
+			extensions: ['.js']
+			//debug: true
 		})
+			//.transform(babelify)
 			.transform(babelify, { compact: false })
 			.bundle()
 			.pipe(source('main.js'))

@@ -4,6 +4,8 @@
 var win = window,
 	doc = win.document;
 
+import mediator from './services/mediator';
+
 // init all librares
 import shim from './lib/shim';
 import lodash from './lib/lodash';
@@ -32,7 +34,7 @@ import router from './app/router/router';
 import BaseView from './app/view/base';
 
 // todo: - enable fast click
-fastclick(doc.body); // test it decide
+new fastclick(doc.body); // test it decide
 
 (function back() {
 
