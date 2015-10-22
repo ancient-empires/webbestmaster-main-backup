@@ -172,7 +172,7 @@ var win = window,
 				followData;
 
 			// find current index
-			listData.every(function (obj, i) {
+			listData.every((obj, i) => {
 				if (obj.key.toString() === currentKey) {
 					followIndex = i + direction;
 					return false;
@@ -203,8 +203,6 @@ var win = window,
 
 			var view = this;
 
-			view.undelegateEvents();
-
 			view.$el.removeData().unbind().remove().empty();
 
 			view.remove();
@@ -224,12 +222,14 @@ var win = window,
 
 			view.unsubscribe();
 
+			view.undelegateEvents();
+
 			if (view.unbindEventListeners) {
 				view.unbindEventListeners();
 			}
 
 			if (isScreenAnimation && $el.hasClass('show-view-animation')) {
-				$el.one(animationEnd, function () {
+				$el.one(animationEnd, () => {
 					view.destroyView();
 					deferred.resolve();
 				});
@@ -267,7 +267,7 @@ var win = window,
 				animationEnd = info.get('animationEnd', true);
 
 			if (isScreenAnimation) {
-				$el.one(animationEnd, function () {
+				$el.one(animationEnd, () => {
 					deferred.resolve();
 				});
 				$el.addClass('show-view-animation');
@@ -390,8 +390,11 @@ var win = window,
 				b = getRandomBetween(5, 9),
 				answer = a + b,
 				i, len,
-				numbers = [a, b].sort(),
 				answers = [];
+
+			if ( a < b ) {
+				b = [a, a = b][0];
+			}
 
 			for (i = 0, len = 6; i < len; i += 1) {
 				answers[i] = answer + i - 4;
@@ -401,8 +404,8 @@ var win = window,
 				name: 'need-confirm',
 				cssClass: 'popup-title',
 				data: {
-					a: numbers[0],
-					b: numbers[1],
+					a,
+					b,
 					answer: answer,
 					answers: util.assortArray(answers),
 					url: data.url

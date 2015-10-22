@@ -84,31 +84,28 @@ var win = window,
 
 						view.runPage({index: 0});
 
-					} else {
+						return;
 
-						var hintViewShowTitle = {};
+					}
 
-						view.publish('showHint', {name: 'showTitle'}, hintViewShowTitle);
+					var hintViewData = {};
 
-						hintViewShowTitle.view.onHide(function () {
+					view.publish('showHint', {name: 'showTitle'}, hintViewData);
 
-							var hintViewShowText = {};
+					hintViewData.view.onHide(function () {
 
-							view.publish('showHint', {name: 'showText'}, hintViewShowText);
+						view.publish('showHint', {name: 'showText'}, hintViewData);
 
-							hintViewShowText.view.onHide(function () {
+						hintViewData.view.onHide(function () {
 
-								var hintViewStopAndStart = {};
+							view.publish('showHint', {name: 'stopAndStartPlay'}, hintViewData);
 
-								view.publish('showHint', {name: 'stopAndStartPlay'}, hintViewStopAndStart);
-
-								hintViewStopAndStart.view.onHide(view.runPage, [{index: 0}], view);
-
-							});
+							hintViewData.view.onHide(view.runPage, [{index: 0}], view);
 
 						});
 
-					}
+					});
+
 
 				});
 

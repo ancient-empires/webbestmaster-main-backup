@@ -75,8 +75,7 @@
 			extensions: ['.js']
 			//debug: true
 		})
-			//.transform(babelify)
-			.transform(babelify, { compact: false })
+			.transform(babelify)
 			.bundle()
 			.pipe(source('main.js'))
 			.pipe(gulp.dest('./dist/www/js'));
