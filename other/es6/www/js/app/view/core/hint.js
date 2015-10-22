@@ -312,14 +312,14 @@ HintView = BaseView.extend({
 		}
 
 		return {
-			x1: x1,
-			y1: y1,
-			x2: x2,
-			y2: y2,
-			width: width,
-			height: height,
-			maxWidth: maxWidth,
-			maxHeight: maxHeight,
+			x1,
+			y1,
+			x2,
+			y2,
+			width,
+			height,
+			maxWidth,
+			maxHeight,
 
 			// you can add your custom coordinates
 			center: {
