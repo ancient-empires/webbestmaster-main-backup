@@ -16,7 +16,8 @@
 
 	<!-- styles -->
 	<link rel="stylesheet" href="css/main.css"/>
-	<link rel="prefetch" href="font/MayonezBlack-Italic.otf">
+	<!-- see css .preload-font-mayonez-black-italic -->
+	<!--<link rel="prefetch" href="font/MayonezBlack-Italic.otf">-->
 
 </head>
 <body>
@@ -35,7 +36,7 @@
 			<!-- story by story -->
 			{{? isNormal }}
 			<div class="js-external-link story-by-story-wrapper header-button{{= isStoryByStory ? ' active-on-off' : '' }}" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes">
-				<div class="active-on-off-indicator story-by-story-bg">&nbsp;</div>
+				<div class="active-on-off-indicator story-by-story-bg preload-font-mayonez-black-italic">&nbsp;</div>
 			</div>
 			{{??}}
 			<div class="js-story-by-story story-by-story-wrapper header-button{{= isStoryByStory ? ' active-on-off' : '' }}">

@@ -4,6 +4,11 @@
 	src: url(../font/MayonezBlack-Italic.otf) format('opentype');
 }
 
+.preload-font-mayonez-black-italic {
+	font-family: 'MayonezBlack-Italic', cursive;
+	width: 0;
+	height: 0;
+}
 
 .popup-title .popup-text,
 .story-title {
