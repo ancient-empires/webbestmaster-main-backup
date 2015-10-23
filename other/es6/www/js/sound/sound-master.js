@@ -23,8 +23,6 @@ var win = window,
 
 		initPlayers: function () {
 
-			// todo: detect player type here (web, android, iOS)
-
 			var soundMaster = this,
 				isAndroidPlayer = win.AndAud_0,
 				isIosPlayer = win.Media, // detect cordova Media
