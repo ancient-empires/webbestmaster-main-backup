@@ -5,7 +5,7 @@ import Backbone from './../../lib/backbone';
 import _ from './../../lib/lodash';
 import BaseView from './../view/core/base';
 import HomeView from './../view/home';
-import BookView from './../view/book';
+import AdsView from './../view/ads';
 import mediator from './../../services/mediator';
 
 var win = window,
@@ -14,20 +14,15 @@ var win = window,
 
 		routes: {
 			'': 'home',
-			'page': 'page',
-			'book/:bookFolder': 'openBook'
+			'ads-page': 'ads-page'
 		},
 
-		home: function () {
+		'home': function () {
 			new HomeView();
 		},
 
-		openBook: function (bookFolder) {
-
-			new BookView({
-				bookFolder: bookFolder
-			});
-
+		'ads-page': function () {
+			new AdsView();
 		},
 
 		//page: function () {

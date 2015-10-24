@@ -15,9 +15,15 @@ var win = window,
 			return this.attr[key];
 		},
 		showAd: function () {
-			return win.Android && info.isNormal && win.Android.displayInterstitial();
+			console.log('--------');
+			console.log('show ads');
+			console.log(win.Android);
+			return win.Android && win.Android.displayInterstitial();
 		},
 		init: function () {
+
+			// ads will be show by view only
+			return;
 
 			if ( !info.isNormal ) {
 				return;
