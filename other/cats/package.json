@@ -1,8 +1,6 @@
 {
   "name": "es6-project",
   "version": "0.0.1",
-  "description": "The Cats project.",
-  "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-uglify": "^1.2.0",

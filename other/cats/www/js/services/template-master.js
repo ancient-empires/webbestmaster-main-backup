@@ -5,25 +5,32 @@ import dot from './../lib/dot';
 
 var doc = window.document,
 	templateMaster = {
-		templateSelector: 'script[type="text/x-template"]',
+		templateSelector: '.js-template',
+		mainJsSelector: '.js-main-js',
 		tmplText: {},
 		tmplFn: {},
-
+		getSymbolByMap: function (match, p1) {
+			return { 'amp' : '&', 'gt' : '>', 'lt' : '<' }[p1];
+		},
 		init: function () {
 
-			var templates = doc.querySelectorAll(this.templateSelector);
+			var tm = this,
+				templates = doc.querySelectorAll(tm.templateSelector),
+				mainJs = doc.querySelector(tm.mainJsSelector);
 
 			Array.prototype.forEach.call(templates, function (tmplNode) {
 
 				var name = tmplNode.getAttribute('data-name'),
-					text = tmplNode.textContent;
+					text = tmplNode.innerHTML.replace(/\&(amp|gt|lt)\;/gi, tm.getSymbolByMap);
 
-				this.tmplText[name] = text;
-				this.tmplFn[name] = dot.template(text);
+				tm.tmplText[name] = text;
+				tm.tmplFn[name] = dot.template(text);
 
 				tmplNode.parentNode.removeChild(tmplNode);
 
-			}, this);
+			});
+
+			mainJs.parentNode.removeChild(mainJs);
 
 		}
 
