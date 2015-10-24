@@ -3,7 +3,7 @@
 
 	var gulp = require('gulp'),
 		uglify = require('gulp-uglify'),
-		clean = require('gulp-clean'),
+		clean = require('gulp-rimraf'),
 		cssBase64 = require('gulp-css-base64'),
 		cssimport = require('gulp-cssimport'),
 		minifyCss = require('gulp-minify-css'),
