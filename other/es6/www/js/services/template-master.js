@@ -6,6 +6,7 @@ import dot from './../lib/dot';
 var doc = window.document,
 	templateMaster = {
 		templateSelector: '.js-template',
+		mainJsSelector: '.js-main-js',
 		tmplText: {},
 		tmplFn: {},
 		getSymbolByMap: function (match, p1) {
@@ -14,7 +15,8 @@ var doc = window.document,
 		init: function () {
 
 			var tm = this,
-				templates = doc.querySelectorAll(tm.templateSelector);
+				templates = doc.querySelectorAll(tm.templateSelector),
+				mainJs = doc.querySelector(tm.mainJsSelector);
 
 			Array.prototype.forEach.call(templates, function (tmplNode) {
 
@@ -27,6 +29,8 @@ var doc = window.document,
 				tmplNode.parentNode.removeChild(tmplNode);
 
 			});
+
+			mainJs.parentNode.removeChild(mainJs);
 
 		}
 
