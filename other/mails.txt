@@ -1,13 +1,8 @@
-    // Rob Bobin
+// Rob Bobin
 rob.bobin1983@gmail.com
 qwertyrob
 1-1-1983
 US
-
-// apple Id
-rob.bobin1983@gmail.com
-Rob Bobin1983
-
 
 // Bill Fewel
 bill.fewel@gmail.com
@@ -57,21 +52,17 @@ qwertyvik
 1-1-1983
 US
 
-// Dim Kikkik // not apoved
-dim.kikkik@gmail.com
-qwertydim
-1-1-1986
+// Litr Vodki
+litr.vodki1000@gmail.com
+litrvodki456
+3-3-1988
 US
 
 
-
-
-
-
-
-
-
-
+---------------------------
+// apple Id
+rob.bobin1983@gmail.com
+Rob Bobin1983
 
 
 
