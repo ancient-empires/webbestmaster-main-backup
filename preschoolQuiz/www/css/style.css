@@ -58,7 +58,7 @@ body {
 
 #wrapper, #wrapper-for-transition {
 	padding-top: 64px;
-	padding-bottom: 40px;
+	/*padding-bottom: 40px;*/
 	box-sizing: border-box;
 	position: fixed;
 	top: 0;

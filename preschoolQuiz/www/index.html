@@ -119,9 +119,7 @@
 
 		{{ findLetter.questions.forEach(function(letterNumber){ }}
 			<div letter="{{= letterNumber }}" class="js-letter-for-find letter-for-find letter-numerous-{{= lang[info.lang].alphabetLength }} letter-for-find-lang-{{= info.lang }}">
-				<span style="background-image: url('img/alphabet/{{= info.lang }}/{{= letterNumber}}.png');">
-					<!--{{= lang[info.lang].alphabet[letterNumber] }}-->
-				</span>
+				<span style="background-image: url('img/alphabet/{{= info.lang }}/{{= letterNumber}}.png');">&nbsp;</span>
 			</div>
 		{{ }); }}
 
@@ -133,7 +131,7 @@
 
 		{{ findColor.questions.forEach(function(color){ }}
 			<div color="{{= lang[info.lang].colors[color] }}" class="js-color-for-find color-for-find">
-				<span style="background-color: #{{= lang[info.lang].colors[color] }};"></span>
+				<span style="background-color: #{{= lang[info.lang].colors[color] }};">&nbsp;</span>
 			</div>
 		{{ }); }}
 
