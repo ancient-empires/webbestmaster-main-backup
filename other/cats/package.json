@@ -1,6 +1,12 @@
 {
-  "name": "es6-project",
+  "name": "cats-project",
   "version": "0.0.1",
+  "description": "cats",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webbestmaster/main"
+  },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-uglify": "^1.2.0",
@@ -13,6 +19,7 @@
     "vinyl-source-stream": "^1.1.0",
     "babelify": "^6.3.0",
     "jquery": "^2.1.4",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "gulp-tinypng": "^1.0.2"
   }
 }
