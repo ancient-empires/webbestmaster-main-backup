@@ -78,7 +78,7 @@
 	});
 
     gulp.task('tiny-png', function () {
-        gulp.src(['tinypng/**/*.jpg', 'tinypng/**/*.png', 'tinypng/**/*.jpeg'])
+        gulp.src(['tinypng/**/*.png', 'tinypng/**/*.jpg', 'tinypng/**/*.jpeg'])
             .pipe(tinypng('uY9x_ytUQ0sq9-bB8iTvwGnmiWVci4an')) // web.best.master
             //.pipe(tinypng('RmSQIT1W2KC2_gZf27_KaZ7GWIzpmKJu')) // ae.fan.game 234 * 2 = 468
             .pipe(gulp.dest('dist'));
