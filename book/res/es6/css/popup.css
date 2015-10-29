@@ -1,0 +1,73 @@
+.popup-wrapper {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 10;
+	opacity: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	padding: 0.9rem 1rem;
+	font-size: 1.3rem;
+	line-height: 1.5rem;
+	background-color: #FFFFFF;
+	box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.5);
+	box-sizing: border-box;
+	border: 0.1rem solid #C0C0C0;
+	border-radius: 0.2rem;
+	width: 80%;
+	-webkit-transform: translate3d(-50%, -50%, 0);
+	transform: translate3d(-50%, -50%, 0);
+}
+
+@-webkit-keyframes show-in {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@keyframes show-in {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+@-webkit-keyframes show-out {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@keyframes show-out {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+.popup-show-in {
+	-webkit-animation-duration: 0.5s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-name: show-in;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-transform-origin: center center;
+
+	animation-duration: 0.5s;
+	animation-iteration-count: 1;
+	animation-name: show-in;
+	animation-fill-mode: forwards;
+	transform-origin: center center;
+}
+
+.popup-show-out {
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-name: show-out;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-transform-origin: center center;
+
+	animation-duration: 0.2s;
+	animation-iteration-count: 1;
+	animation-name: show-out;
+	animation-fill-mode: forwards;
+	transform-origin: center center;
+}
