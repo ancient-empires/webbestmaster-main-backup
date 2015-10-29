@@ -28,7 +28,7 @@
 				if (win.APP.info.withAds) {
 					setTimeout(function () {
 						win.APP.ad.showAd();
-					}, 5 * 1e3);
+					}, 3e3);
 				}
 			}
 
