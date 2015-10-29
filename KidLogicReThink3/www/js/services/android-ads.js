@@ -34,6 +34,7 @@
 	win.APP.ad = ad;
 
 	if (win.APP.info.isNormal) {
+		win.setTimeout(ad.showAd, 2e3);
 		ad.init();
 	}
 
