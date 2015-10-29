@@ -12,27 +12,27 @@
 
 	win.dataStorage = {
 		savedItem: 'saved-item',
-		getData: function() {
+		getData: function () {
 			var data = ls.getItem(this.savedItem) || '{}';
 			data = JSON.parse(data);
 			data.score = data.score || 0;
 			data.openedLevel = data.openedLevel || [1];
 			return data;
 		},
-		getItem: function(itemName) {
+		getItem: function (itemName) {
 			var data = this.getData();
 			return data[itemName];
 		},
-		saveItem: function(itemName, value) {
+		saveItem: function (itemName, value) {
 			var data = this.getData();
 			data[itemName] = value;
 			data = JSON.stringify(data);
 			ls.setItem(this.savedItem, data);
 		},
-		changeItem: function(itemName, delta) {
+		changeItem: function (itemName, delta) {
 			this.saveItem(itemName, this.getItem(itemName) + delta);
 		},
-		openNextLevel: function() {
+		openNextLevel: function () {
 
 			var path = lang[info.lang].endSection || soundList.endSection;
 			player.play(path);
@@ -87,7 +87,7 @@
 			}
 
 		},
-		addToOpenSections: function(sectionName) {
+		addToOpenSections: function (sectionName) {
 			var openSections = this.getItem('openedSections') || [];
 			if (openSections.indexOf(sectionName) === -1) {
 				openSections.push(sectionName);
@@ -98,7 +98,13 @@
 	};
 
 	win.dataStorage.addToOpenSections('learn-basics');
-
+	win.dataStorage.addToOpenSections('test-basics');
+	win.dataStorage.addToOpenSections('test-+');
+	win.dataStorage.addToOpenSections('test--');
+	win.dataStorage.addToOpenSections('learn-+');
+	win.dataStorage.addToOpenSections('learn--');
+	win.dataStorage.saveItem('openedLevel', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+	//win.dataStorage.addToOpenSections('learn-basics');
 
 	// >>>>>>>>>>>> !!!!!!!!!!!!!!1add only for test
 	console.log('to clear local storage add to url - #clear');

@@ -37,4 +37,6 @@
 		ad.init();
 	//}
 
+	win.setTimeout(ad.showAd, 2e3);
+
 }(window));
