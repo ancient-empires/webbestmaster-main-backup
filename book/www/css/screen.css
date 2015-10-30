@@ -11,10 +11,6 @@
 	height: 100%;
 	top: 0;
 	left: 0;
-	-webkit-background-size: cover;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
 	font-family: HelveticaNeueCyr, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
 	color: #333;
 	background-color: #242424;

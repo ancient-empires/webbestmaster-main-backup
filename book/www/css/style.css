@@ -24,11 +24,7 @@
 }
 
 .wrapper {
-	background-image: url(../i/bg.png);
-	background-repeat: no-repeat;
-	-webkit-background-size: cover;
-	background-size: cover;
-	background-position: center center;
+
 }
 
 .header {

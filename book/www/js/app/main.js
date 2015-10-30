@@ -15,6 +15,7 @@
 		win.APP.templateMaster.init();
 		win.APP.BB.BaseView.prototype.initStatic();
 		win.APP.soundMaster.init();
+		win.APP.bg.init();
 		//win.APP.soundMaster.playBgSound();
 
 		win.FastClick.attach(win.document.body);

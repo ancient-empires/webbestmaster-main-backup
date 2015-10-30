@@ -98,6 +98,8 @@
 
 				});
 
+			win.APP.bg.changeBg();
+
 		},
 
 		checkNeedUrl: function () {

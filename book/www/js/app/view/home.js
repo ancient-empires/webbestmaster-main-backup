@@ -48,6 +48,8 @@
 				});
 			}
 
+			win.APP.bg.changeBg();
+
 		},
 
 		getBooksOnShelfNumber: function () {
