@@ -2,6 +2,8 @@
 /*jslint white: true, nomen: true */
 (function (win) {
 
+	/* deploy only after tests  */
+
 	'use strict';
 	/*global window */
 	/*global $, Image*/
@@ -66,7 +68,7 @@
 				imgDeferred = $.Deferred(),
 				imgPromise = imgDeferred.promise();
 
-			for (i = 0; i <= 5; i += 1) {
+			for (i = 0; i <= 4; i += 1) {
 				imgPromise = imgPromise.always(bg.loadImg.bind(bg, ('./i/background/' + i + '.png')));
 			}
 
