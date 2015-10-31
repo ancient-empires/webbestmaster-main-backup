@@ -2,20 +2,21 @@
 (function (win, doc) {
 
 	'use strict';
-	/*global window, FileReader, atob, Blob, Uint8Array */
+	/*global window, Image, FileReader, atob, Blob, Uint8Array */
 	/*global */
 
 	function $(selector, context) {
 		return (context || doc).querySelector(selector);
 	}
 
+/*
 	function $$(selector, context) {
 		return (context || doc).querySelectorAll(selector);
 	}
+*/
 
 	function Resizer() {
-		this.readAsDataURLPromise = null;
-		this.getImageFromDataUrlPromise = null;
+
 	}
 
 	Resizer.prototype.readAsDataURL = function (file) {
@@ -23,86 +24,89 @@
 		var defer = Promise.defer(),
 			reader = new FileReader();
 
-		reader.readAsDataURL(file);
-
 		reader.addEventListener('load', function (e) {
 
 			defer.resolve(e.target.result);
 
 		}, false);
 
-		this.readAsDataURLPromise = defer.promise;
+		reader.readAsDataURL(file);
 
-		return this;
+		return defer.promise;
 
 	};
 
-	Resizer.prototype.getImageFromDataUrl = function () {
+	Resizer.prototype.getImageFromDataUrl = function (dataUrl) {
 
 		var img = new Image(),
 			defer = Promise.defer();
 
-		this.readAsDataURLPromise.then(function (dataUrl) {
-			img.addEventListener('load', function (e) {
-				defer.resolve(e.target);
-			}, false);
-			img.src = dataUrl;
-		});
+		img.addEventListener('load', function (e) {
+			defer.resolve(e.target);
+		}, false);
 
-		this.getImageFromDataUrlPromise = defer.promise;
+		img.src = dataUrl;
 
-		return this;
+		return defer.promise;
 
 	};
 
-	Resizer.prototype.saveScaledImages = function () {
+	Resizer.prototype.saveScaledImages = function (img) {
 
-		var resizer = this;
+		var resizerProto = this,
+			i = 1,
+			max = 3,
+			width = img.width,
+			height = img.height,
+			canvas = doc.createElement('canvas'),
+			context = canvas.getContext('2d');
 
-		this.getImageFromDataUrlPromise.then(function (img) {
-			var i = 1,
-				max = 3,
-				width = img.width,
-				height = img.height,
-				canvas = doc.createElement('canvas'),
-				context = canvas.getContext('2d');
+		while (i <= max) {
 
-			while (i <= max) {
+			canvas.width = width * i;
+			canvas.height = height * i;
 
-				canvas.width = width * i;
-				canvas.height = height * i;
-				context.drawImage(img, 0, 0, width * i, height * i);
+			context.drawImage(img, 0, 0, width * i, height * i);
 
-				resizer.saveToDisk(resizer.dataURItoBlob(canvas.toDataURL()), 'screen-' + width + 'x' + height + '@' + i + '.png');
+			resizerProto.saveCanvasToDisk(canvas, 'screen-' + width + 'x' + height + '@' + i + '.png');
 
-				i += 1;
+			i += 1;
 
-			}
-
-		});
+		}
 
 	};
 
-	Resizer.prototype.saveScaledIcons = function () {
+	Resizer.prototype.formatNumber = function (numberArg, lengthArg) {
 
-		var resizer = this,
+		return new Array( ( lengthArg || 4 ) - numberArg.toString(10).length).fill('0').join('') + numberArg;
+
+	};
+
+	Resizer.prototype.saveScaledIcons = function (img) {
+
+		var resizerProto = this,
 			canvas = doc.createElement('canvas'),
 			context = canvas.getContext('2d'),
-			iconSizes = [22, 29, 32, 44, 48, 50, 58, 60, 64, 66, 75, 76, 80, 87, 96, 120, 128, 144, 152, 167, 180, 256, 512, 1042];
+			iconSizes = [14, 16, 18, 20, 22, 24, 29, 32, 44, 48, 50, 58, 60, 64, 66, 75, 76, 80, 87, 96, 120, 128, 144, 152, 167, 180, 256, 512, 1042];
 
-		this.getImageFromDataUrlPromise.then(function (img) {
+		iconSizes.forEach(function (size) {
 
-			iconSizes.forEach(function (size) {
+			canvas.width = size;
+			canvas.height = size;
 
-				canvas.width = size;
-				canvas.height = size;
-				context.drawImage(img, 0, 0, size, size);
+			context.drawImage(img, 0, 0, size, size);
 
-				resizer.saveToDisk(resizer.dataURItoBlob(canvas.toDataURL()), 'icon-' + size + 'x' + size + '.png');
-
-			});
+			resizerProto.saveCanvasToDisk(canvas, 'icon-' + resizerProto.formatNumber(size) + '-' + size + 'x' + size + '.png');
 
 		});
+
+	};
+
+	Resizer.prototype.saveCanvasToDisk = function (canvas, fileName) {
+
+		var resizerProto = this;
+
+		resizerProto.saveToDisk(resizerProto.dataURItoBlob(canvas.toDataURL()), fileName);
 
 	};
 
@@ -116,7 +120,7 @@
 			save.target = '_blank';
 			save.download = fileName || 'unknown file';
 
-			cEvent = document.createEvent('Event');
+			cEvent = doc.createEvent('Event');
 			cEvent.initEvent('click', true, true);
 			save.dispatchEvent(cEvent);
 			(win.URL || win.webkitURL).revokeObjectURL(save.href);
@@ -133,31 +137,36 @@
 		return new Blob([new Uint8Array(array)], {type: 'image/png'});
 	};
 
-	function getScreenShots() {
+	Resizer.prototype.scaleAndSaveImages = function (file) {
 
-		var screenShotsInput = $('.js-input-file'),
-			files = screenShotsInput.files;
+		var resizerProto = this;
 
-		Array.prototype.forEach.call(files, function (file) {
+		resizerProto.readAsDataURL(file).then(resizerProto.getImageFromDataUrl).then(resizerProto.saveScaledImages.bind(resizerProto));
 
-			new Resizer().readAsDataURL(file).getImageFromDataUrl().saveScaledImages();
+	};
 
-		});
+	Resizer.prototype.scaleAndSaveIcons = function(file) {
+
+		var resizerProto = this;
+
+		resizerProto.readAsDataURL(file).then(resizerProto.getImageFromDataUrl).then(resizerProto.saveScaledIcons.bind(resizerProto));
+
+	};
+
+	function getScreenShotsOrIcon() {
+
+		var button = this,
+			resizerProto = Resizer.prototype,
+			screenShotsInput = $('.js-input-file'),
+			files = screenShotsInput.files,
+			type = button.dataset.type,
+			fn = type === 'icon' ? resizerProto.scaleAndSaveIcons : resizerProto.scaleAndSaveImages;
+
+		Array.prototype.forEach.call(files, fn, resizerProto);
 
 	}
 
-	function getIcons() {
-
-		var screenShotsInput = $('.js-input-file'),
-			files = screenShotsInput.files;
-
-		Array.prototype.forEach.call(files, function (file) {
-			new Resizer().readAsDataURL(file).getImageFromDataUrl().saveScaledIcons();
-		});
-
-	}
-
-	$('.js-get-screen-shots-button').addEventListener('click', getScreenShots, false);
-	$('.js-get-icons').addEventListener('click', getIcons, false);
+	$('.js-get-screen-shots-button').addEventListener('click', getScreenShotsOrIcon, false);
+	$('.js-get-icons').addEventListener('click', getScreenShotsOrIcon, false);
 
 }(window, window.document));
