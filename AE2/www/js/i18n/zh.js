@@ -185,12 +185,12 @@
 			// 1
 			{
 				img: 'img/help/attack.png',
-				text: ['想攻击一个敌方单位，将你的单位移动到他的附近并点选 \'攻击\'. <img src="img/help/attack-icon.png" class="icon-in-text" />.', '如果范围内有不止一个目标，你需要选取进攻的对象。进攻的效果取决于单位的能力和地形。']
+				text: ['想攻击一个敌方单位，将你的单位移动到他的附近并点选 \'攻击\' <img src="img/help/attack-icon.png" class="icon-in-text" />。', '如果范围内有不止一个目标，你需要选取进攻的对象。进攻的效果取决于单位的能力和地形。']
 			},
 			// 2
 			{
 				//img: 'img/help/occupy-castle.png',
-				text: ['只有指挥官可以占据一座城堡。(<img src="img/help/occupy-building-icon.png" class="icon-in-text" />).', '一旦城堡被占用，你可以购买新的单位，你的黄金。', '指挥官并不需要留在城堡以购买单位。']
+				text: ['只有指挥官可以占据一座城堡 (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />)。', '一旦城堡被占用，你可以购买新的单位，你的黄金。', '指挥官并不需要留在城堡以购买单位。']
 			},
 			// 3
 			{
