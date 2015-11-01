@@ -180,7 +180,7 @@
 			// 0
 			{
 				img: 'img/help/select-unit.png',
-				text: ['要选择一个单位请单击 (<img src="img/help/tap-finger.png" class="icon-in-text" />) 该单位.', '<img src="img/help/finger-on-red-square.png" class="icon-in-text" /> - 红色的区域是一个单位可以移动的范围.', '一个单位可以移动的范围由它的兵种属性和地形共同决定']
+				text: ['要选择一个单位请单击 (<img src="img/help/tap-finger.png" class="icon-in-text" />) 该单位。', '<img src="img/help/finger-on-red-square.png" class="icon-in-text" /> - 红色的区域是一个单位可以移动的范围。', '一个单位可以移动的范围由它的兵种属性和地形共同决定。']
 			},
 			// 1
 			{
@@ -190,17 +190,17 @@
 			// 2
 			{
 				//img: 'img/help/occupy-castle.png',
-				text: ['Only a Commander can occupy (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />) a castle.', 'Once a castle is occupied you can purchase new units with your gold.', 'The Commander does not need to remain in the castle in order to purchase units.']
+				text: ['只有指挥官可以占据一座城堡。(<img src="img/help/occupy-building-icon.png" class="icon-in-text" />).', '一旦城堡被占用，你可以购买新的单位，你的黄金。', '指挥官并不需要留在城堡以购买单位。']
 			},
 			// 3
 			{
 				//img: 'img/help/occupy-farm.png',
-				text: ['You can occupy buildings by moving a Soldier or Commander onto it and selecting \'occupy\' (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />).', 'Once a building is occupied, it changes colour.', 'If a building is damaged you must repair (<img src="img/help/fix-building-icon.png" class="icon-in-text" />) the building before it can be occupied.']
+				text: ['您可以通过移动一个士兵或指挥官到它，选择占据建筑\'占据\' (<img src="img/help/occupy-building-icon.png" class="icon-in-text" />)。', '一旦建筑物被占用，它会改变颜色。', '如果建筑物被损坏，你必须修复的建筑可占据前(<img src="img/help/fix-building-icon.png" class="icon-in-text" />)。']
 			},
 			// 4
 			{
 				img: 'img/help/raise.png',
-				text: ['A Sorceress has the power to summon Skeleton warriors from the graves of fallen units.', 'After a unit has been defeated, a tombstone appears for 1 turn.', 'Move a Sorceress next to a tombstone and select \'raise\' <img src="img/help/attack-icon.png" class="icon-in-text" />.']
+				text: ['一个法师必须从阵亡单位的坟墓召唤骷髅战士的力量。', '后一个单元被击败，墓碑出现1回合。', '将旁边的一个墓碑一个法师，然后选择\'加薪\' <img src="img/help/attack-icon.png" class="icon-in-text" />。']
 			}
 		],
 		unitsList: {
