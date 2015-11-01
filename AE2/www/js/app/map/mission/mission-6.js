@@ -8,6 +8,7 @@
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
 		langEs = win.APP.languages.es,
+		langZh = win.APP.languages.zh,
 		langEnExtra = {
 			name: 'NORTHBOUND',
 			objective: 'Occupy the enemy castle and destroy all enemy troops. Valadorn must survive.'
@@ -19,6 +20,10 @@
 		langEsExtra = {
 			name: 'A DIRECCIÓN NORTE',
 			objective: 'Ocupa el castillo enemigo y derrota a todas las tropas enemigas. Valador debe sobrevivir.'
+		},
+		langZhExtra = {
+			name: '北行',
+			objective: '占领所有城堡，摧毁所有敌军，渥拉顿必须存活。'
 		};
 
 	win.APP.maps.mission_001_006 = {
@@ -204,6 +209,66 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_007', { type: 'mission' }]
+				}
+			}
+		],
+
+		// zh
+		'name-zh': langZhExtra.name,
+		'objective-zh': langZhExtra.objective,
+		'startBriefing-zh': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: '索林之门'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '敌人正计划着攻击格拉玛来阻止他运送水晶，我们必须击败他们！',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 5, y: 17 }]
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZhExtra.name,
+					text: langZhExtra.objective
+				}
+			}
+
+		],
+		'endBriefing-zh': [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '让我们赶紧北行去和格拉玛汇合!这些敌人知道格拉玛的意图，他需要我们的帮助！',
+					img: 'i/face/valadorn.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZh.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
