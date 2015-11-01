@@ -61,7 +61,7 @@
 		systemAttr: {},
 		defaultLanguage: 'en',
 		//availableLanguages: ['en'],
-		availableLanguages: ['en', 'es', 'ru'],
+		availableLanguages: ['en', 'es', 'ru', 'zh'],
 		availableFonts: [
 			{
 				id: 'courier',

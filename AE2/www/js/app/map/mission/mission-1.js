@@ -8,6 +8,7 @@
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
 		langEs = win.APP.languages.es,
+		langZh = win.APP.languages.zh,
 		langEnExtra = {
 			name: 'TEMPLE RAIDERS',
 			objective: 'Stop the raiders, King Galamar must survive.'
@@ -19,6 +20,10 @@
 		langEsExtra = {
 			name: 'ASALTANTES DEL TEMPLO',
 			objective: 'Detén a los asaltantes, El rey Galamar debe sobrevivir.'
+		},
+		langZhExtra = {
+			name: '神殿守护',
+			objective: '击退这些侵略者，格拉玛必须存活。'
 		};
 
 	win.APP.maps.mission_001_001 = {
@@ -552,6 +557,183 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap', // open next battle map
+					args: ['mission_001_002', { type: 'mission' }]
+				}
+			}
+		],
+
+		// zh
+		'name-zh': langZhExtra.name,
+		'objective-zh': langZhExtra.objective,
+		'help-zh': [
+			langZh.helpList[0],
+			langZh.helpList[1]
+		],
+		'startBriefing-zh': [
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langZh.story.list[0]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langZh.story.list[1]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langZh.story.list[2]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: '勇气神殿'
+				},
+				playSound: {
+					sound: 'bg-good.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '帮帮我们！这些骷髅正在抢夺我们保护的水晶!',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '长官！我们必须立即阻止他们！!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '士兵们！进攻！击退这些肮脏的生物!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZhExtra.name,
+					text: langZhExtra.objective
+				},
+				onHide: {
+					fn: 'autoShowHelpButton'
+				}
+			}
+		],
+		'n1Briefing-zh': [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '更多的攻击！',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 1, y: 1 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '这不像是强盗，而像是敌人的部队!小心点！',
+					img: 'i/face/galamar.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 10, y: 10 }]
+				}
+			}
+		],
+		'endBriefing-zh': [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '谢谢长官，我们必须立刻把水晶送回去，这样重要的东西不能落入黑暗之手！',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '非常荣幸帮助到您，你觉得谁可能来抢夺这些水晶？',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '我恐怕这是恶魔们的主意，去找智慧神殿的长老吧，她应该了解更多。',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '我应该让我的兄弟渥拉顿赶紧到这里..而我需要去追击那些进攻者！',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZh.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
