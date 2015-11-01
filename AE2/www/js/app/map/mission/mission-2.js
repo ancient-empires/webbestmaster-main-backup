@@ -8,6 +8,7 @@
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
 		langEs = win.APP.languages.es,
+		langZh = win.APP.languages.zh,
 		langEnExtra = {
 			name: 'TO THE RESCUE',
 			objective: 'Destroy all attacking enemy troops, occupy both castles.'
@@ -19,6 +20,10 @@
 		langEsExtra = {
 			name: 'AL RESCATE',
 			objective: 'Destruye a todas las tropas enemigas, ocupa ambos castillos.'
+		},
+		langZhExtra = {
+			name: '拯救',
+			objective: '摧毁所有地方部队，占领所有城堡.'
 		};
 
 	win.APP.maps.mission_001_002 = {
@@ -471,6 +476,154 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_003', { type: 'mission' }]
+				}
+			}
+		],
+
+		// ru
+		'name-zh': langZhExtra.name,
+		'objective-zh': langZhExtra.objective,
+		'help-zh': [
+			langZh.helpList[2],
+			langZh.helpList[3]
+		],
+		'startBriefing-zh': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: '智慧神殿'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '这怎么可能？智慧神殿正在被攻击！',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 9 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '很好，很好..是渥拉顿吗？准备好被我击败吧!',
+					img: 'i/face/demon-lord.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 12, y: 3 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '报告！我们发现了一小股地方部队正在接近！',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7 , y: 10 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '智慧水晶！不要让他们跑了！',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '先生，我们必须追上去！',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '让我们先击退对神殿的进攻吧，神殿已经支撑不了多久了。',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 9 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '让我们以这个城堡为根基吧',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 3 , y: 5 }]
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZhExtra.name,
+					text: langZhExtra.objective
+				},
+				onHide: {
+					fn: 'autoShowHelpButton'
+				}
+			}
+		],
+		'endBriefing-zh': [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '做得好！长官！但是恐怕我们没有时间休息了，生命水晶可能也有危险，我们必须赶紧通知国王格拉玛！',
+					img: 'i/face/valadorn.png'
+				}
+			},			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '好的，先生，我会让军队做好准备的',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZh.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
