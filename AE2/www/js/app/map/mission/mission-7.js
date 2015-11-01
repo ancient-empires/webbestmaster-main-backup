@@ -8,6 +8,7 @@
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
 		langEs = win.APP.languages.es,
+		langZh = win.APP.languages.zh,
 		langEnExtra = {
 			name: 'RENDEZVOUS',
 			objective: 'Carve a path to the west through the enemy troops, defeat their commander and occupy all castles! Galamar and Valadorn must survive.'
@@ -19,6 +20,10 @@
 		langEsExtra = {
 			name: 'REUNIÓN',
 			objective: 'Tallar un camino hacia el oeste a través de las tropas enemigas, derrotar a su comandante y ocupar todos los castillos! Galamar y Valadorn deben sobrevivir.'
+		},
+		langZhExtra = {
+			name: '会和',
+			objective: '穿过敌方部队，占领他们的城堡并击败所有敌人。格拉玛与渥拉顿必须存活。'
 		};
 
 	win.APP.maps.mission_001_007 = {
@@ -294,6 +299,96 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_008', { type: 'mission' }]
+				}
+			}
+		],
+
+		// zh
+		'name-zh': langZhExtra.name,
+		'objective-zh': langZhExtra.objective,
+		'startBriefing-zh': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: '外城'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZhExtra.name,
+					text: langZhExtra.objective
+				}
+			}
+		],
+		'n1Briefing-zh': [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '冲啊！勇敢的战士们！趁现在还来得及！',
+					img: 'i/face/demon-lord.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 0, y: 8 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '敌人们太强大了，我建议撤退！',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 14, y: 7 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '我们除了进攻外没有别的选择！',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '格拉玛！我们以最快速度赶到了！让我们再次一起战斗吧！',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 13, y: 16 }]
+				}
+			}
+
+		],
+		'endBriefing-zh': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZh.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
