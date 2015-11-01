@@ -8,6 +8,7 @@
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
 		langEs = win.APP.languages.es,
+		langZh = win.APP.languages.zh,
 		langEnExtra = {
 			name: 'ESCORT DUTY',
 			objective: 'Deliver the Crystal south to the city of Thorin. King Galamar must survive.'
@@ -19,6 +20,10 @@
 		langEsExtra = {
 			name: 'EL DEBER DE ESCOLTA',
 			objective: 'Entrega el Cristal al sur de la ciudad de Thorin. El Rey Galamar debe sobrevivir.'
+		},
+		langZhExtra = {
+			name: '护航',
+			objective: '保护水晶成功运送，格拉玛必须生存。'
 		};
 
 	win.APP.maps.mission_001_005 = {
@@ -235,6 +240,77 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_006', { type: 'mission' }]
+				}
+			}
+		],
+
+		// ru
+		'name-zh': langZhExtra.name,
+		'objective-zh': langZhExtra.objective,
+		'startBriefing-zh': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: '途径索林'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '上帝啊，我并不喜欢这个森林，警戒！',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 11 , y: 1 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '非常好，长官，让我们一路小心..',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZhExtra.name,
+					text: langZhExtra.objective
+				}
+			}
+		],
+		'n1Briefing-zh': [
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '必须不计一切代价保护好水晶！',
+					img: 'i/face/soldier.png'
+				}
+			}
+
+		],
+		'endBriefing-zh': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZh.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
