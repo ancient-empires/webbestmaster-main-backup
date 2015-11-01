@@ -8,6 +8,7 @@
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
 		langEs = win.APP.languages.es,
+		langZh = win.APP.languages.zh,
 		langEnExtra = {
 			name: 'PATH OF SHADOWS',
 			objective: 'Navigate safely through the forest. Destroy all opposition. King Galamar must survive.'
@@ -19,6 +20,10 @@
 		langEsExtra = {
 			name: 'CAMINO DE SOMBRAS',
 			objective: 'Pasa através del bosque con seguridad. Destruye toda resistencia. El rey Galamar debe sobrevivir.'
+		},
+		langZhExtra = {
+			name: '阴影之路',
+			objective: '小心翼翼地穿过森林，击败所有的单位，格拉玛必须存活。'
 		};
 
 	win.APP.maps.mission_001_003 = {
@@ -386,6 +391,128 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_004', { type: 'mission' }]
+				}
+			}
+		],
+
+		// zh
+		'name-zh': langZhExtra.name,
+		'objective-zh': langZhExtra.objective,
+		'help-zh': [
+			langZh.helpList[4]
+		],
+		'startBriefing-zh': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: '迷雾森林'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '尊敬的长官，这个森林是魔法生物的巢穴，在夜晚通过并不安全啊。',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8 , y: 14 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '长官，您已经收到渥拉顿的消息了——我们不能停下！必须到达生命神殿！',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '明白了。士兵们！打起精神，保护好国王！',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZhExtra.name,
+					text: langZhExtra.objective
+				},
+				onHide: {
+					fn: 'autoShowHelpButton'
+				}
+			}
+
+		],
+		'n1Briefing-zh': [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '更多的狼..看上去情况不妙。',
+					img: 'i/face/soldier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 1, y: 8}]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '天啊！这是什么生物！',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '您好，尊敬的先生。我们是水元素，是来帮助你们的。'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 4, y: 8}]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '非常感谢你们的帮助，这份恩情我们绝不会忘记。',
+					img: 'i/face/galamar.png'
+				}
+			}
+		],
+		'endBriefing-zh': [
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZh.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',

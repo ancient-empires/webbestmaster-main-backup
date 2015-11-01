@@ -489,7 +489,7 @@
 			}
 		],
 
-		// ru
+		// zh
 		'name-zh': langZhExtra.name,
 		'objective-zh': langZhExtra.objective,
 		'help-zh': [
