@@ -8,6 +8,7 @@
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
 		langEs = win.APP.languages.es,
+		langZh = win.APP.languages.zh,
 		langEnExtra = {
 			name: 'REINFORCEMENTS',
 			objective: 'Protect the Temple of Life - destroy all enemy units, occupy the enemy castle!'
@@ -19,6 +20,10 @@
 		langEsExtra = {
 			name: 'REFUERZOS',
 			objective: 'Proteje el Templo de la Vida - ¡Destruye a todas las unidades enemigas, ocupa el castillo enemigo! '
+		},
+		langZhExtra = {
+			name: '筋',
+			objective: '保护生命的圣殿 - 摧毁一切敌人，占领敌人的城堡！'
 		};
 
 	win.APP.maps.mission_001_004 = {
@@ -389,6 +394,127 @@
 				popupName: 'simple-notification',
 				popupData: {
 					header: langRu.missionComplete
+				},
+				playSound: {
+					sound: 'victory.mp3',
+					road: 0,
+					isLoop: false
+				},
+				onHide: {
+					fn: 'openMap',
+					args: ['mission_001_005', { type: 'mission' }]
+				}
+			}
+		],
+
+		// zh
+		'name-zh': langZhExtra.name,
+		'objective-zh': langZhExtra.objective,
+		'startBriefing-zh': [
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langZh.story.list[3]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: '生命神殿'
+				},
+				playSound: {
+					sound: 'bg-good.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '感谢上帝！你到了！请帮助我们保护水晶！',
+					img: 'i/face/tamplier.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7 , y: 1 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '只有严密防守才能保护住水晶，我们不能放松警惕.',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '长官！我们的探子发现附近有敌方的部队!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '他们正在破坏我们的建筑来切断我们的资金补给！必须阻止他们！',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '长官，我们必须保护水晶，准备战斗吧!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZhExtra.name,
+					text: langZhExtra.objective
+				}
+			}
+		],
+		'endBriefing-zh': [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '感谢上帝，我们保护住了水晶。',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '做得好长官！欢呼胜利吧！',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZh.missionComplete
 				},
 				playSound: {
 					sound: 'victory.mp3',
