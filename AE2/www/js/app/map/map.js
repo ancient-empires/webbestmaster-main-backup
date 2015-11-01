@@ -317,7 +317,7 @@
 			name: 'AE2DB',
 			version: '1',
 			description: 'AE2 DB',
-			size: 1024 * 1024 * 20, // 1024 x 1024 x 20 = 1MB x 20 = 20MB
+			size: 1024 * 1024 * 15, // 1024 x 1024 x 20 = 1MB x 15 = 15MB
 			db: false, // field for db
 			skirmishMaps: 'skirmish',
 			missionMaps: 'mission',
