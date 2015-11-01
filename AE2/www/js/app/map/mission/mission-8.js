@@ -8,18 +8,24 @@
 	var langEn = win.APP.languages.en,
 		langRu = win.APP.languages.ru,
 		langEs = win.APP.languages.es,
+		langZh = win.APP.languages.zh,
 		langEnExtra = {
 			name: 'HEAVEN\'S FURY',
 			objective: 'Defeat Saeth and his minions! Galamar and Valadorn must survive.'
 		},
 		langRuExtra = {
-			name: 'НЕБЕСНЫЕ ФУРИИ',
+			name: 'ЯРОСТЬ НЕБЕС',
 			objective: 'Порвать Саефа и его приспешников! Король Галамар и Король Валадорн должны выжить.'
 		},
 		langEsExtra = {
 			name: 'LA FURIA DE LOS CIELOS',
 			objective: '¡Derrota a Saeth y a sus adeptos! Galamar y Valador deben sobrevivir.'
+		},
+		langZhExtra = {
+			name: '天堂之怒',
+			objective: '击败西斯和他的生物！格拉玛与渥拉顿必须存活。'
 		};
+		
 
 	win.APP.maps.mission_001_008 = {
 		version: 9,
@@ -725,6 +731,238 @@
 				popupData: {
 					header: langRu.congratulations,
 					text: 'И благодарим вас за игру в \'Ancient Empire: Strike Back\' - я очень надеюсь, что вы насладились игрой также как я наслаждался, создавая ее!'
+				},
+				onHide: {
+					fn: 'backTo',
+					args: ['', { isForce: true }]
+				}
+			}
+		],
+
+		// zh
+		'name-zh': langZhExtra.name,
+		'objective-zh': langZhExtra.objective,
+		'startBriefing-zh': [
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langZh.story.list[4]
+				},
+				playSound: {
+					sound: 'bg-story.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: '泰型材城堡'
+				},
+				playSound: {
+					sound: 'bg-good.mp3',
+					road: 0,
+					isLoop: true
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '古代遗迹..水晶..还有西斯！',
+					img: 'i/face/galamar.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '结束了，格拉玛与渥拉顿。你们真是太可笑了，居然想要对抗我！水晶的力量已经聚齐，现在我掌握了最强大的力量！我的意愿就是神的意志！来看看我是如何摧毁你们的吧！',
+					img: 'i/face/saeth.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7, y: 2 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '你的把戏没办法愚弄我们！西斯！',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 6, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right ta-center',
+				cssClass: 'briefing',
+				popupData: {
+					text: '目标确定...<br>天堂之怒启动!',
+					img: ''
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '天堂之怒？这就是水晶的力量吗..真是太可怕了。',
+					img: 'i/face/galamar.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 8, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '这就是古代遗迹的力量，你们永远都不会明白! 感受天堂之怒吧!',
+					img: 'i/face/saeth.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 7, y: 2 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '格拉玛！我们必须尽快击败他!不然我们的军队就全毁了！',
+					img: 'i/face/valadorn.png'
+				},
+				onShow: {
+					fn: 'centerToXY',
+					context: 'parentView',
+					args: [{ x: 6, y: 15 }]
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '没错，我们必须尽快击破水晶，在西斯和他的天堂之怒再次降临以前....',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZhExtra.name,
+					text: langZhExtra.objective
+				}
+			}
+		],
+		'endBriefing-zh': [
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				playSound: {
+					sound: 'game-complete.mp3',
+					road: 0,
+					isLoop: true
+				},
+				popupData: {
+					text: '可笑的人类，你们将会消失在历史的尘埃里...',
+					img: 'i/face/saeth.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '西斯！你的失败是注定的!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '在你那有限的生命与无知的思想里..也许吧。但是我的生命是无穷的，谁也无法阻止我重生!',
+					img: 'i/face/saeth.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '上帝啊，遗迹正在坍塌，我们必须迅速撤离!',
+					img: 'i/face/soldier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '但是水晶..他们还在这里!',
+					img: 'i/face/tamplier.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'left',
+				cssClass: 'briefing',
+				popupData: {
+					text: '我们唯一可以做的就是先救自己!',
+					img: 'i/face/valadorn.png'
+				}
+			},
+			{
+				popupName: 'briefing',
+				from: 'right',
+				cssClass: 'briefing',
+				popupData: {
+					text: '你已经服务我很久了，现在，走吧!',
+					img: 'i/face/galamar.png'
+				}
+			},
+			{
+				popupName: 'story',
+				cssClass: 'full-screen',
+				popupData: {
+					content: langZh.story.list[5]
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZh.missionComplete
+				}
+			},
+			{
+				popupName: 'simple-notification',
+				popupData: {
+					header: langZh.congratulations,
+					text: '感谢游玩远古帝国：反击 - 我非常希望你能喜欢他!'
 				},
 				onHide: {
 					fn: 'backTo',
