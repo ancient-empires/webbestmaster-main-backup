@@ -418,6 +418,7 @@
                     tx.executeSql('SELECT * FROM ' + map.type + ' WHERE jsMapKey=?', [jsMapKey], function (tx, results) {
                         if (results.rows.length) {
                             dbMaster.compareMap(results.rows.item(0), map, jsMapKey).then(function () {
+                                win.APP.maps[jsMapKey] = null;
                                 delete win.APP.maps[jsMapKey];
                                 mapObj.recountProgress();
                                 deferred.resolve();
@@ -425,6 +426,7 @@
                             return;
                         }
                         dbMaster.insertMap(map, jsMapKey).then(function () {
+                            win.APP.maps[jsMapKey] = null;
                             delete win.APP.maps[jsMapKey];
                             mapObj.recountProgress();
                             deferred.resolve();
@@ -481,8 +483,11 @@
 
 				info = JSON.parse(JSON.stringify(map));
 
+				info.units = null;
 				delete info.units;
+				info.buildings = null;
 				delete info.buildings;
+				info.terrain = null;
 				delete info.terrain;
 
 				db.transaction(function (tx) {
@@ -491,6 +496,7 @@
 					}, null);
 				});
 
+				maps[jsMapKey] = null;
 				delete maps[jsMapKey];
 
 				return deferred.promise();

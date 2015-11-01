@@ -197,8 +197,10 @@
 
 		remove: function (key, isSystem) {
 			if (isSystem) {
+				this.systemAttr[key] = null;
 				delete this.systemAttr[key];
 			} else {
+				this.attr[key] = null;
 				delete this.attr[key];
 				this.ls.setItem(this.saveItem, JSON.stringify(this.attr));
 			}

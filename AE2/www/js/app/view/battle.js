@@ -248,7 +248,9 @@
 
 				moveBack.hideButton();
 
+				moveBack.unitSavedData = null;
 				delete moveBack.unitSavedData;
+				moveBack.unit = null;
 				delete moveBack.unit;
 
 			}

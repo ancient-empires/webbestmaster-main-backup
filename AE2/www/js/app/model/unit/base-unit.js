@@ -69,6 +69,7 @@
 			var unit = this,
 				silents = unit.get('silents');
 			_.each(arguments, function (eventName) {
+				silents[eventName]= null;
 				delete silents[eventName];
 			});
 		},
@@ -1044,8 +1045,10 @@
 				}
 			}).then(function () {
 
+				building.color = null;
 				delete building.color;
 				building.teamNumber = null;
+				building.ownerId = null;
 				delete building.ownerId;
 				building.state = 'destroyed';
 

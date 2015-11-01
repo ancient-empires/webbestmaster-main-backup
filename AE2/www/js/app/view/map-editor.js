@@ -575,6 +575,7 @@
 
 				building.color = playerColors[building.ownerId] || 'gray';
 				if (building.color === 'gray') {
+					building.ownerId = null;
 					delete building.ownerId;
 				}
 				view.appendBuilding(building);
@@ -786,6 +787,7 @@
 
 				building = view.util.copyJSON(building);
 
+				building.color = null;
 				delete building.color;
 
 				endMap.buildings.push(building);
@@ -803,7 +805,9 @@
 
 				unit = view.util.copyJSON(unit);
 
+				unit.color = null;
 				delete unit.color;
+				unit.id = null;
 				delete unit.id;
 
 				if ( _.contains(commanderList, unit.type) ) {

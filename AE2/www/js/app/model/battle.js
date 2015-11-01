@@ -1384,8 +1384,10 @@
 			// adjust loser's building
 			_.each(model.getBuildingsByOwnerId(looser.id), function (building) {
 
+				building.ownerId = null;
 				delete building.ownerId;
-				building.teamNumber = null;
+				building.teamNumber = null; // no delete here
+				building.color = null;
 				delete building.color;
 
 				view.redrawBuilding(building);
