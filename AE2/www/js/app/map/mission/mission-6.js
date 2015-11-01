@@ -27,7 +27,7 @@
 		};
 
 	win.APP.maps.mission_001_006 = {
-		version: 9,
+		version: 10,
 		type: 'mission',
 		isOpen: false,
 		openMaps: [
