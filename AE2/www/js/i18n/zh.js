@@ -53,7 +53,7 @@
 		autoSave: '自动保存',
 
 		// play
-		newGame: '新游戏',
+		companies: '新游戏',
 		loadGame: '载入游戏',
 		selectLevel: '选择等级',
 		skirmish: '遭遇战',
