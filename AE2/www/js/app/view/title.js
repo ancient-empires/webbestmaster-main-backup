@@ -37,8 +37,9 @@
 
 			var view = this;
 
-			view.$el.find(view.selectors.unlockAllLevels).html('Test mode<br>enabled');
+			view.$el.find(view.selectors.unlockAllLevels).html('Developer<br>mode enabled').css('opacity', '1');
 			view.info.set('isTestMode', true, true);
+			view.info.set('noAds', true);
 
 		},
 
