@@ -51,7 +51,7 @@
 
 	};
 
-	Resizer.prototype.saveScaledImages = function (img) {
+	Resizer.prototype.saveScaledImages = function (img, name) {
 
 		var resizerProto = this,
 			i = 1,
@@ -68,7 +68,7 @@
 
 			context.drawImage(img, 0, 0, width * i, height * i);
 
-			resizerProto.saveCanvasToDisk(canvas, 'screen-' + width + 'x' + height + '@' + i + '.png');
+			resizerProto.saveCanvasToDisk(canvas, name + '-screen-' + width + 'x' + height + '@' + i + '.png');
 
 			i += 1;
 
@@ -141,7 +141,9 @@
 
 		var resizerProto = this;
 
-		resizerProto.readAsDataURL(file).then(resizerProto.getImageFromDataUrl).then(resizerProto.saveScaledImages.bind(resizerProto));
+		resizerProto.readAsDataURL(file).then(resizerProto.getImageFromDataUrl).then(function (img) {
+			resizerProto.saveScaledImages(img, file.name.replace('.png', ''));
+		});
 
 	};
 
