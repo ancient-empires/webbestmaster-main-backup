@@ -122,15 +122,11 @@
 
 					{{~books :book:index}}
 
-					{{? index % booksOnShelf}}
-					<div class="title-book-wrapper-preview js-title-book-wrapper" data-js-route="book/{{= book.folder }}" style="background-image: url(books/{{= [languageName, book.folder, book.folder + '-00.jpg'].join('/') }});">
+					<div class="title-book-wrapper-preview js-title-book-wrapper" data-js-route="book/{{= book.folder }}" {{? !(index % booksOnShelf) }} style="margin-left: {{= it.shelf.firstBookMarginLeft }};" {{?}} >
+						<div class="title-book-preview-shadow"></div>
+						<img class="title-book-preview-image" src="books/{{= [languageName, book.folder, book.folder + '-00.jpg'].join('/') }}" alt=""/>
 						<p class="book-title-text">{{= book.title.text }}</p>
 					</div>
-					{{??}}
-					<div class="title-book-wrapper-preview js-title-book-wrapper" data-js-route="book/{{= book.folder }}" style="background-image: url(books/{{= [languageName, book.folder, book.folder + '-00.jpg'].join('/') }}); margin-left: {{= it.shelf.firstBookMarginLeft }};">
-						<p class="book-title-text">{{= book.title.text }}</p>
-					</div>
-					{{?}}
 
 					{{? index && !((index + 1) % booksOnShelf) }}
 					<div class="shelf shelf-number-{{= booksOnShelf }}">&nbsp;</div>
