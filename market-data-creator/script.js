@@ -87,7 +87,7 @@
 		var resizerProto = this,
 			canvas = doc.createElement('canvas'),
 			context = canvas.getContext('2d'),
-			iconSizes = [14, 16, 18, 20, 22, 24, 29, 32, 44, 48, 50, 58, 60, 64, 66, 75, 76, 80, 87, 96, 120, 128, 144, 152, 167, 180, 256, 512, 1042];
+			iconSizes = [14, 16, 18, 20, 22, 24, 29, 32, 44, 48, 50, 58, 60, 64, 66, 75, 76, 80, 87, 96, 120, 128, 144, 152, 167, 180, 256, 512, 1024];
 
 		iconSizes.forEach(function (size) {
 
