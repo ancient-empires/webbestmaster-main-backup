@@ -21,10 +21,14 @@
 			Array.prototype.forEach.call(templates, function(tmplNode) {
 
 				var name = tmplNode.getAttribute('data-name'),
-					text = tmplNode.textContent;
+					text = tmplNode.textContent,
+					originalDotFn;
 
 				this.tmplText[name] = text;
-				this.tmplFn[name] = doT.template(text);
+				originalDotFn = doT.template(text);
+				this.tmplFn[name] = function(data) {
+					return originalDotFn(data).trim();
+				};
 
 				tmplNode.parentNode.removeChild(tmplNode);
 

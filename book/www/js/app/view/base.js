@@ -54,8 +54,8 @@
 		eventTypes: {
 			down: ['mousedown', 'touchstart'],
 			move: ['mousemove', 'touchmove'],
-			up: ['mouseup', 'touchend'],
-			dbl: ['dblclick', 'doubletap']
+			up: ['mouseup', 'touchend']
+			//dbl: ['dblclick', 'doubletap']
 		},
 
 		initStatic: function () {
@@ -246,7 +246,7 @@
 		render: function () {
 
 			var view = this,
-				$oldContainer = $(view.$wrapper[0].querySelectorAll(view.selectors.viewWrapper));
+				$oldContainer = view.$wrapper.find(view.selectors.viewWrapper);
 			
 			$oldContainer.trigger('hide');
 
@@ -602,8 +602,8 @@
 			}
 
 			var $wrapper = $(e.currentTarget),
-				$scrollArea = $wrapper.find('> div'),
-				scrollTop = $wrapper.scrollTop(),
+				$scrollArea = $wrapper.find(':scope > div'),
+				scrollTop = $wrapper.scrollTop,
 				wrapperHeight,
 				scrollAreaHeight,
 				maxScrollTop;
@@ -613,8 +613,8 @@
 				return;
 			}
 
-			wrapperHeight = $wrapper.outerHeight();
-			scrollAreaHeight = $scrollArea.outerHeight();
+			wrapperHeight = $wrapper[0].clientHeight;
+			scrollAreaHeight = $scrollArea[0].clientHeight;
 			maxScrollTop = scrollAreaHeight - wrapperHeight;
 
 			if ( scrollTop >= maxScrollTop ) {

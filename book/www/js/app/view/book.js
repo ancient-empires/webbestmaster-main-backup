@@ -12,7 +12,7 @@
 
 		events: {
 			'click .js-play-pause': 'playPause',
-			'dbl .js-book-page': 'toggleState',
+			'click .js-book-page': 'toggleState',
 			'click .js-show-inner-html': 'showInnerHtml'
 		},
 
@@ -211,7 +211,7 @@
 
 				var $page = $(pageNode),
 					$pageText = $page.find(pageTextSelector),
-					textHeight = $pageText.length && $pageText.outerHeight(),
+					textHeight = $pageText.length && $pageText[0].clientHeight,
 					$image = $page.find(selectorImage),
 					imageNode = $image.get(0),
 					beautifulSpace = view.get('withText') ? 1 : 0.9,
