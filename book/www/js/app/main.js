@@ -11,6 +11,8 @@
 
 	function start() {
 
+		win.Deferred.installInto(win.jBone);
+
 		win.APP.bb.device = new win.APP.BB.DeviceModel();
 		win.APP.templateMaster.init();
 		win.APP.BB.BaseView.prototype.initStatic();

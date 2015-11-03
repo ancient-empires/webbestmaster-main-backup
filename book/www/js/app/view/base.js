@@ -204,10 +204,11 @@
 
 			view.undelegateEvents();
 
-			view.$el.removeData().unbind().remove().empty();
+			view.$el.removeData().remove().empty();
+			//view.$el.removeData().unbind().remove().empty();
 
 			view.remove();
-			view.unbind();
+			//view.unbind();
 
 			Backbone.View.prototype.remove.call(view);
 

@@ -207,11 +207,11 @@
 				$pages = view.$el.find(selectors.bookPage),
 				topBarHeight = view.info.get('remSize', true) * 3.4; // see style css .header
 
-			$pages.each(function () {
+			$pages.forEach(function (pageNode) {
 
-				var $page = $(this),
+				var $page = $(pageNode),
 					$pageText = $page.find(pageTextSelector),
-					textHeight = $pageText.outerHeight() || 0,
+					textHeight = $pageText.length && $pageText.outerHeight(),
 					$image = $page.find(selectorImage),
 					imageNode = $image.get(0),
 					beautifulSpace = view.get('withText') ? 1 : 0.9,
