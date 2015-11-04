@@ -952,7 +952,7 @@
 			$node.addClass('building').addClass('js-building').addClass('square');
 
 			if (building.state === 'normal') {
-				$node.addClass( 'building-' + building.type + '-' + building.color );
+				$node.addClass( 'building-' + building.type + '-' + (building.color || 'gray') );
 			}
 
 			if (building.state === 'destroyed') {
