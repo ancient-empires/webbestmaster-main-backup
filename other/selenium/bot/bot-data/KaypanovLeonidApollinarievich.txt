@@ -1,1 +1,0 @@
-{"name":["Kaypanov","Leonid","Apollinarievich"],"dob":1417556024531,"yandexMail":{"firstname":"Leonid","lastname":"Kaypanov","login":"Leonid.Kaypanov","pass":"y8jyul6rpkndnidbygfd","hintQuestion":3,"hintAnswer":"Leonid Kaypanov"},"isRegistered":true}

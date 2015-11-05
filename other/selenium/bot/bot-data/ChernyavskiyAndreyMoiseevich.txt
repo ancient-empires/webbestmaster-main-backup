@@ -1,1 +1,0 @@
-{"name":["Chernyavskiy","Andrey","Moiseevich"],"dob":1417555027741,"yandexMail":{"firstname":"Andrey","lastname":"Chernyavskiy","login":"Andrey.Chernyavskiy1","pass":"9lvvxl7qwp2bqczo","hintQuestion":4,"hintAnswer":"Andrey Chernyavskiy"},"isRegistered":true}

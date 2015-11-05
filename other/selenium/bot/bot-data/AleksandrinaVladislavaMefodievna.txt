@@ -1,1 +1,0 @@
-{"name":["Aleksandrina","Vladislava","Mefodievna"],"dob":1417805178474,"yandexMail":{"firstname":"Vladislava","lastname":"Aleksandrina","login":"Vladislava.Aleksandrina2","pass":"815gbuzmueao2yx","hintQuestion":5,"hintAnswer":"Vladislava Aleksandrina"},"isRegistered":true}

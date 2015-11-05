@@ -1,1 +1,0 @@
-{"name":["Marchenko","Nikifor","Fedosievich"],"dob":1417556024527,"yandexMail":{"firstname":"Nikifor","lastname":"Marchenko","login":"Nikifor.Marchenko1","pass":"jylt65zsmc7j7je2tjh","hintQuestion":7,"hintAnswer":"Nikifor Marchenko"},"isRegistered":true}

@@ -1,1 +1,0 @@
-{"name":["Emelbyanenko","Nikita","Dmitrievich"],"dob":1417556024530,"yandexMail":{"firstname":"Nikita","lastname":"Emelbyanenko","login":"Nikita.Emelbyanenko","pass":"1mxepf8q1k93ig","hintQuestion":9,"hintAnswer":"Nikita Emelbyanenko"},"isRegistered":true}
