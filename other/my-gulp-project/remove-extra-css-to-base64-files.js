@@ -11,7 +11,7 @@
 
 	fileList.forEach(function (fileName) {
 
-		if ( css.indexOf('../i/' + fileName) !== -1 || fileName.indexOf('\/background\/') !== -1 ) {
+		if ( css.indexOf('../i/' + fileName) !== -1 ) {
 			return;
 		}
 
