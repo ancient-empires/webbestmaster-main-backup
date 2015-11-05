@@ -1,8 +1,9 @@
 'use strict';
 /*global window */
 
-import $ from './../../lib/jquery';
+import $ from './../../lib/jbone';
 import info from './../../services/info';
+import bg from './../../services/bg';
 import lang from './../../services/lang';
 import device from './../../services/device';
 import tm from './../../services/template-master';
@@ -30,6 +31,11 @@ var win = window,
 				//booksOnShelf:
 			}));
 
+			// partner link
+			if (Math.random() > 0.5) {
+				view.$el.find('.js-partner-link').off().remove();
+			}
+
 			view.bindEventListeners();
 
 			view.render();
@@ -45,6 +51,8 @@ var win = window,
 					() => view.publish('showHint', {name: info.isNormal ? 'removeAds' : 'thanksForBuy'})
 				);
 			}
+
+			bg.changeBg();
 
 			return BaseView.prototype.initialize.apply(view, arguments);
 

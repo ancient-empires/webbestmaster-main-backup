@@ -27,10 +27,27 @@
 
 	});
 
+	// helper for clean
+	var taskPrefix = 'clear-dist_',
+		pathPrefix = './dist/www/',
+		dirs = ['css', 'font', 'i', 'js', 'index.html'];
+
+	dirs.forEach(function (dir, index, arr) {
+
+		var taskName = taskPrefix + dir;
+
+		gulp.task(taskName, function () {
+			return gulp.src(pathPrefix + dir)
+				.pipe(clean({force: true}));
+		});
+
+		arr[index] = taskName;
+
+	});
+
 	// clear distributive directory
-	gulp.task('clear-dist', function () {
-		return gulp.src('./dist')
-			.pipe(clean({force: true}));
+	gulp.task('clear-dist', dirs, function () {
+		return gulp.start.apply(gulp, dirs);
 	});
 
 	// HTML

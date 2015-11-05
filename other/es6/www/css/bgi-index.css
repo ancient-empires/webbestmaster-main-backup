@@ -1,0 +1,31 @@
+.bgi-0 {
+	background-image: url(../i/background/0.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center center;
+}
+
+.bgi-1,
+.bgi-2,
+.bgi-3,
+.bgi-4 {
+	-webkit-background-size: 100px 100px;
+	background-size: 100px 100px;
+}
+
+.bgi-1 {
+	background-image: url(../i/background/1.png);
+}
+
+.bgi-2 {
+	background-image: url(../i/background/2.png);
+}
+
+.bgi-3 {
+	background-image: url(../i/background/3.png);
+}
+
+.bgi-4 {
+	background-image: url(../i/background/4.png);
+}

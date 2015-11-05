@@ -2,7 +2,7 @@
 /*global window */
 
 import Backbone from './../../../lib/backbone'
-import $ from './../../../lib/jquery'
+import $ from './../../../lib/jbone'
 import _ from './../../../lib/lodash'
 import info from './../../../services/info'
 //import tm from './../../../services/template-master';
@@ -570,24 +570,24 @@ var win = window,
 				return;
 			}
 
-			var $wrapper = $(e.currentTarget),
-				$scrollArea = $wrapper.find('> div'),
-				scrollTop = $wrapper.scrollTop(),
+			var wrapper = e.currentTarget,
+				scrollArea = wrapper.querySelector(':scope > div'),
+				scrollTop = wrapper.scrollTop,
 				wrapperHeight,
 				scrollAreaHeight,
 				maxScrollTop;
 
 			if (scrollTop <= 0) {
-				$wrapper.scrollTop(1);
+				wrapper.scrollTop = 1;
 				return;
 			}
 
-			wrapperHeight = $wrapper.outerHeight();
-			scrollAreaHeight = $scrollArea.outerHeight();
+			wrapperHeight = wrapper.clientHeight;
+			scrollAreaHeight = scrollArea.clientHeight;
 			maxScrollTop = scrollAreaHeight - wrapperHeight;
 
 			if (scrollTop >= maxScrollTop) {
-				$wrapper.scrollTop(maxScrollTop - 1);
+				wrapper.scrollTop = maxScrollTop - 1;
 			}
 
 		},

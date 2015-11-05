@@ -4,7 +4,7 @@
 import info from './../../services/info';
 import _ from './../../lib/lodash';
 import booksData from './../books-data';
-import $ from './../../lib/jquery';
+import $ from './../../lib/jbone';
 import Backbone from './../../lib/backbone';
 import Swiper from './../../lib/swiper';
 import device from './../../services/device';
@@ -67,14 +67,12 @@ var win = window,
 
 			view.loadBooksImages()
 				.then(function () {
-					view.onResize();
-					return view.render();
-				})
-				.then(function () {
 
 					if (!view.checkNeedUrl()) {
 						return;
 					}
+
+					view.render();
 
 					view.initSwiper();
 					view.bindEventListeners();
@@ -106,6 +104,7 @@ var win = window,
 
 					});
 
+					view.onResize();
 
 				});
 
@@ -219,7 +218,7 @@ var win = window,
 
 				var $page = $(this),
 					$pageText = $page.find(pageTextSelector),
-					textHeight = $pageText.outerHeight() || 0,
+					textHeight = $pageText && $pageText.clientHeight || 0,
 					$image = $page.find(selectorImage),
 					imageNode = $image.get(0),
 					beautifulSpace = view.get('withText') ? 1 : 0.9,

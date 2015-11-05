@@ -9,7 +9,8 @@ import mediator from './services/mediator';
 // init all librares
 import shim from './lib/shim';
 import lodash from './lib/lodash';
-import jQuery from './lib/jquery';
+import $ from './lib/jbone';
+import Deferred from './lib/deferred';
 import Backbone from './lib/backbone';
 import fastclick from './lib/fastclick';
 //import doT from './lib/dot';
@@ -27,6 +28,9 @@ import util from './services/util';
 // init sound players
 import sm from './sound/sound-master';
 
+// init bg
+import bg from './services/bg';
+
 import router from './app/router/router';
 
 import BaseView from './app/view/core/base';
@@ -43,10 +47,13 @@ new fastclick(doc.body); // test it decide
 		return win.setTimeout(back, 50);
 	}
 
+	Deferred.installInto($);
+
+	bg.init();
+
 	BaseView.prototype.initStatic();
 
 	Backbone.history.start();
-
 
 	win.setTimeout(androidAds.showAd, 3e3);
 
