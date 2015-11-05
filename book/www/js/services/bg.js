@@ -19,9 +19,9 @@
 		},
 		changeBg: function () {
 
-			var bg = this,
-				$wrapper = bg.get('$wrapper'),
-				lastBgIndex = bg.get('lastBgIndex'),
+			var bgMaster = this,
+				$wrapper = bgMaster.get('$wrapper'),
+				lastBgIndex = bgMaster.get('lastBgIndex'),
 				index;
 
 			$wrapper.removeClass('bgi-' + lastBgIndex);
@@ -32,18 +32,18 @@
 
 			$wrapper.addClass('bgi-' + index);
 
-			bg.set('lastBgIndex', index);
+			bgMaster.set('lastBgIndex', index);
 
 		},
 
 		init: function () {
 
-			var bg = this,
+			var bgMaster = this,
 				$wrapper = $('.js-wrapper');
 
-			bg.set('$wrapper', $wrapper);
+			bgMaster.set('$wrapper', $wrapper);
 
-			bg.loadAllBgs();
+			bgMaster.loadAllBgs();
 
 		},
 
@@ -63,13 +63,13 @@
 
 		loadAllBgs: function () {
 
-			var bg = this,
+			var bgMaster = this,
 				i,
 				imgDeferred = $.Deferred(),
 				imgPromise = imgDeferred.promise();
 
 			for (i = 0; i <= 4; i += 1) {
-				imgPromise = imgPromise.always(bg.loadImg.bind(bg, ('./i/background/' + i + '.png')));
+				imgPromise = imgPromise.always(bgMaster.loadImg.bind(bgMaster, ('./i/background/' + i + '.png')));
 			}
 
 			imgDeferred.resolve();
