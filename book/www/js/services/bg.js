@@ -27,7 +27,7 @@
 			$wrapper.removeClass('bgi-' + lastBgIndex);
 
 			do {
-				index = Math.round(Math.random() * 5);
+				index = Math.round(Math.random() * 4);
 			} while (lastBgIndex === index);
 
 			$wrapper.addClass('bgi-' + index);

@@ -53,7 +53,7 @@
 				});
 			}
 
-			//win.APP.bg.changeBg();
+			win.APP.bg.changeBg();
 
 		},
 

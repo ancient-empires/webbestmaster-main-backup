@@ -59,34 +59,31 @@
 
 			view.loadBooksImages()
 				.then(function () {
-					view.onResize();
-					return view.render();
-				})
-				.then(function () {
+					//view.onResize();
+					view.render();
 
-					if ( !view.checkNeedUrl() ) {
+					if (!view.checkNeedUrl()) {
 						return;
 					}
 
 					view.initSwiper();
 					view.bindEventListeners();
-					view.onResize();
 
-					if ( view.info.hintIsDone('showTitle') ) {
+					if (view.info.hintIsDone('showTitle')) {
 
 						view.runPage({index: 0});
 
 					} else {
 
-						var hintViewShowTitle = new win.APP.BB.HintView({ name: 'showTitle' });
+						var hintViewShowTitle = new win.APP.BB.HintView({name: 'showTitle'});
 
 						hintViewShowTitle.onHide(function () {
 
-							var hintViewShowText = new win.APP.BB.HintView({ name: 'showText' });
+							var hintViewShowText = new win.APP.BB.HintView({name: 'showText'});
 
 							hintViewShowText.onHide(function () {
 
-								var hintViewStopAndStart = new win.APP.BB.HintView({ name: 'stopAndStartPlay' });
+								var hintViewStopAndStart = new win.APP.BB.HintView({name: 'stopAndStartPlay'});
 
 								hintViewStopAndStart.onHide(view.runPage, [{index: 0}], view);
 
@@ -96,9 +93,11 @@
 
 					}
 
-				});
+					win.APP.bg.changeBg();
 
-			//win.APP.bg.changeBg();
+					view.onResize();
+
+				});
 
 		},
 
@@ -111,7 +110,7 @@
 			var view = this,
 				swiper;
 
-			swiper = new Swiper ('.swiper-container', {
+			swiper = new Swiper('.swiper-container', {
 				// Optional parameters
 				direction: 'horizontal',
 				loop: false
@@ -158,11 +157,11 @@
 					index = swiper.activeIndex,
 					isPageChanged = view.isPageChanged(index);
 
-				if ( !isPageChanged ) {
+				if (!isPageChanged) {
 					return;
 				}
 
-				if ( view.get('pageMode') === 'normal' || view.get('playerState') === 'playing') {
+				if (view.get('pageMode') === 'normal' || view.get('playerState') === 'playing') {
 					view.runPage({index: index});
 				}
 
@@ -235,19 +234,19 @@
 
 				//if ($pageText.length) {
 
-					endWidth = Math.floor(image.width / q * beautifulSpace);
-					endHeight = Math.floor(image.height / q * beautifulSpace);
-					endTop = Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2) + topBarHeight;
+				endWidth = Math.floor(image.width / q * beautifulSpace);
+				endHeight = Math.floor(image.height / q * beautifulSpace);
+				endTop = Math.floor((availableSpace.height - image.height / q) / 2 + image.height / q * beautifulSpace * (1 - beautifulSpace) / 2) + topBarHeight;
 
-					$image.css({
-						width: endWidth + 'px',
-						height: endHeight + 'px',
-						top: endTop + 'px'
-					});
+				$image.css({
+					width: endWidth + 'px',
+					height: endHeight + 'px',
+					top: endTop + 'px'
+				});
 
-					$pageText.css({
-						top: endTop + endHeight + 'px'
-					});
+				$pageText.css({
+					top: endTop + endHeight + 'px'
+				});
 
 				//} else {
 				//	$image.css({
@@ -382,12 +381,12 @@
 
 			textAnimationIntervalId = win.setInterval(function () {
 
-				if ( !data.text || !data.text[index] ) {
+				if (!data.text || !data.text[index]) {
 					win.clearInterval(view.get('textAnimationIntervalId'));
 					return;
 				}
 
-				if ( view.get('playerState') === 'pause' ) {
+				if (view.get('playerState') === 'pause') {
 					win.clearInterval(view.get('textAnimationIntervalId'));
 					view.$el.find(view.selectors.pageText).empty();
 					return;
@@ -417,7 +416,7 @@
 				var wasSwipe = swiper.slideNext(),
 					isStoryByStory;
 
-				if ( wasSwipe ) { // swipe was good
+				if (wasSwipe) { // swipe was good
 					return;
 				}
 
@@ -427,7 +426,7 @@
 					view.hide().then(function () {
 
 						// detect book/:bookFolder
-						if ( Backbone.history.fragment.indexOf('book/') !== 0 ) {
+						if (Backbone.history.fragment.indexOf('book/') !== 0) {
 							return;
 						}
 
@@ -483,7 +482,7 @@
 				road: 0
 			});
 
-			win.clearTimeout( view.get('nextActionTimeoutId') );
+			win.clearTimeout(view.get('nextActionTimeoutId'));
 
 		},
 
@@ -573,7 +572,7 @@
 
 			var view = this;
 
-			$('.js-hint-wrapper').trigger('hide', { doNotTrack: true });
+			$('.js-hint-wrapper').trigger('hide', {doNotTrack: true});
 			return view.proto.hide.call(view);
 
 		}
