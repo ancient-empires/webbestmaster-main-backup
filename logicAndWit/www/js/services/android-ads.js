@@ -2,7 +2,7 @@
 (function (win) {
 
 	"use strict";
-	/*global window */
+	/*global window, Android */
 	/*global */
 
 	/*
@@ -13,7 +13,7 @@
 
 	var ad = {
 		attr: {},
-		period: 1.5e3 * 60,
+		minShowPeriod: 1.5e3 * 60,
 		set: function (key, value) {
 			return this.attr[key] = value;
 		},
@@ -21,19 +21,24 @@
 			return this.attr[key];
 		},
 		showAd: function () {
-			typeof Android !== 'undefined' && Android.displayInterstitial();
+
+			var adMaster = this,
+				now = Date.now(),
+				lastShow = adMaster.get('lastShow') || 0;
+
+			return win.APP.info.withAds && (now - lastShow) >= adMaster.minShowPeriod && adMaster.set('lastShow', now) && (typeof Android !== 'undefined') && Android.displayInterstitial();
+
 		},
 		init: function () {
-			var intervalId = setInterval(this.showAd, this.period);
-			this.set('intervalId', intervalId);
+
+			//var intervalId = setInterval(this.showAd, this.period);
+			//this.set('intervalId', intervalId);
 		}
 
 	};
 
 	win.APP.ad = ad;
 
-	if (win.APP.info.withAds) {
-		ad.init();
-	}
+	ad.init();
 
 }(window));

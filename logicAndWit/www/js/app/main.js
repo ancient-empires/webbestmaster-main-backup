@@ -25,11 +25,7 @@
 				win.APP.BB.BaseView.prototype.util.loadSavedTheme();
 				win.APP.bb.router = new win.APP.BB.Router();
 				Backbone.history.start();
-				if (win.APP.info.withAds) {
-					setTimeout(function () {
-						win.APP.ad.showAd();
-					}, 3e3);
-				}
+				win.APP.ad.showAd();
 			}
 
 		}

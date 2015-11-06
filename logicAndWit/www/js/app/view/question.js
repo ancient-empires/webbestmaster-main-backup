@@ -17,6 +17,8 @@
 
 		initialize: function (data) {
 
+			win.APP.ad.showAd();
+
 			this.proto.initialize.apply(this, arguments);
 
 			this.set('sectionName', data.sectionName);
