@@ -17,8 +17,6 @@ var win = window,
 
 			view.setElement(tm.tmplFn.home());
 
-			view.bindEventListeners();
-
 			view.render();
 
 			view.setVerticalSwiper();
