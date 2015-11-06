@@ -10782,9 +10782,9 @@ var _viewCoreBase = require('./../view/core/base');
 
 var _viewCoreBase2 = _interopRequireDefault(_viewCoreBase);
 
-var _viewHome = require('./../view/home');
+var _viewHomeHomeView = require('./../view/home/home-view');
 
-var _viewHome2 = _interopRequireDefault(_viewHome);
+var _viewHomeHomeView2 = _interopRequireDefault(_viewHomeHomeView);
 
 var _servicesMediator = require('./../../services/mediator');
 
@@ -10799,7 +10799,7 @@ var win = window,
 	},
 
 	home: function home() {
-		new _viewHome2['default']();
+		new _viewHomeHomeView2['default']();
 	},
 
 	url: {
@@ -10886,7 +10886,7 @@ router.subscribe('navigate', router.navigate);
 exports['default'] = router;
 module.exports = exports['default'];
 
-},{"./../../lib/backbone":10,"./../../lib/lodash":15,"./../../services/mediator":24,"./../view/core/base":4,"./../view/home":7}],4:[function(require,module,exports){
+},{"./../../lib/backbone":13,"./../../lib/lodash":18,"./../../services/mediator":27,"./../view/core/base":4,"./../view/home/home-view":7}],4:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -11544,7 +11544,7 @@ var win = window,
 exports['default'] = BaseView;
 module.exports = exports['default'];
 
-},{"./../../../lib/backbone":10,"./../../../lib/jbone":14,"./../../../lib/lodash":15,"./../../../services/info":21,"./../../../services/lang":22,"./../../../services/mediator":24,"./../../../services/util":26,"./../../../sound/sound-master":30}],5:[function(require,module,exports){
+},{"./../../../lib/backbone":13,"./../../../lib/jbone":17,"./../../../lib/lodash":18,"./../../../services/info":24,"./../../../services/lang":25,"./../../../services/mediator":27,"./../../../services/util":29,"./../../../sound/sound-master":33}],5:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -11980,7 +11980,7 @@ hintMaster.subscribe('showHint', hintMaster.showHint);
 exports['default'] = hintMaster;
 module.exports = exports['default'];
 
-},{"./../../../lib/jbone":14,"./../../../lib/lodash":15,"./../../../services/device":20,"./../../../services/info":21,"./../../../services/lang":22,"./../../../services/mediator":24,"./../../../services/template-master":25,"./base":4}],6:[function(require,module,exports){
+},{"./../../../lib/jbone":17,"./../../../lib/lodash":18,"./../../../services/device":23,"./../../../services/info":24,"./../../../services/lang":25,"./../../../services/mediator":27,"./../../../services/template-master":28,"./base":4}],6:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -12196,7 +12196,7 @@ popupMaster.subscribe('showPopup', popupMaster.showPopup);
 exports['default'] = popupMaster;
 module.exports = exports['default'];
 
-},{"./../../../lib/jbone":14,"./../../../lib/lodash":15,"./../../../services/info":21,"./../../../services/mediator":24,"./../../../services/template-master":25,"./../../../sound/sound-master":30,"./base":4}],7:[function(require,module,exports){
+},{"./../../../lib/jbone":17,"./../../../lib/lodash":18,"./../../../services/info":24,"./../../../services/mediator":27,"./../../../services/template-master":28,"./../../../sound/sound-master":33,"./base":4}],7:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -12206,30 +12206,34 @@ Object.defineProperty(exports, '__esModule', {
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var _coreBase = require('./core/base');
+var _coreBase = require('./../core/base');
 
 var _coreBase2 = _interopRequireDefault(_coreBase);
 
-var _servicesTemplateMaster = require('./../../services/template-master');
+var _servicesTemplateMaster = require('./../../../services/template-master');
 
 var _servicesTemplateMaster2 = _interopRequireDefault(_servicesTemplateMaster);
 
-var win = window,
-    HomeView = _coreBase2['default'].extend({
+var _schedulerCollection = require('./scheduler-collection');
+
+var _schedulerCollection2 = _interopRequireDefault(_schedulerCollection);
+
+var HomeView = _coreBase2['default'].extend({
 
 	events: {},
 
 	initialize: function initialize() {
 
-		var view = this;
+		var view = this,
+		    collection = new _schedulerCollection2['default']([{ gender: 'man' }, { gender: 'woman' }]);
 
 		view.setElement(_servicesTemplateMaster2['default'].tmplFn.home());
 
+		collection.setViewWrapper(view.$el.find('.js-scheduler-view-wrapper'));
+
+		collection.renderToWrapper();
+
 		view.render();
-
-		view.setVerticalSwiper();
-
-		view.scrollToTop();
 
 		return _coreBase2['default'].prototype.initialize.apply(view, arguments);
 	}
@@ -12239,7 +12243,278 @@ var win = window,
 exports['default'] = HomeView;
 module.exports = exports['default'];
 
-},{"./../../services/template-master":25,"./core/base":4}],8:[function(require,module,exports){
+},{"./../../../services/template-master":28,"./../core/base":4,"./scheduler-collection":8}],8:[function(require,module,exports){
+'use strict';
+/*global window */
+
+Object.defineProperty(exports, '__esModule', {
+	value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _libBackbone = require('./../../../lib/backbone');
+
+var _libBackbone2 = _interopRequireDefault(_libBackbone);
+
+var _schedulerModel = require('./scheduler-model');
+
+var _schedulerModel2 = _interopRequireDefault(_schedulerModel);
+
+var win = window,
+    SchedulerCollection = _libBackbone2['default'].Collection.extend({
+
+	model: _schedulerModel2['default'],
+
+	attr: {},
+
+	initialize: function initialize() {
+
+		this.startTime();
+	},
+
+	startTime: function startTime() {
+		var _this = this;
+
+		var updateTimeIntervalId = win.setInterval(function () {
+			return _this.updateTime();
+		}, 100);
+
+		this.setData('updateTimeIntervalId', updateTimeIntervalId);
+	},
+
+	updateTime: function updateTime() {
+
+		var collection = this,
+		    date = new Date(),
+		    h = date.getHours(),
+		    m = date.getMinutes(),
+		    s = date.getSeconds(),
+		    time = ((h * 60 + m) * 60 + s) * 1000;
+
+		collection.each(function (model) {
+			model.updateTime({ time: time });
+		});
+	},
+
+	setData: function setData(key, value) {
+		this.attr[key] = value;
+		return value;
+	},
+
+	getData: function getData(key) {
+		return this.attr[key];
+	},
+
+	setViewWrapper: function setViewWrapper($el) {
+
+		this.setData('$wrapper', $el);
+	},
+
+	renderToWrapper: function renderToWrapper() {
+
+		var collection = this,
+		    $wrapper = collection.getData('$wrapper');
+
+		collection.each(function (model) {
+			return $wrapper.append(model.get('view').$el);
+		});
+	}
+
+});
+
+exports['default'] = SchedulerCollection;
+module.exports = exports['default'];
+
+},{"./../../../lib/backbone":13,"./scheduler-model":9}],9:[function(require,module,exports){
+'use strict';
+/*global window */
+
+Object.defineProperty(exports, '__esModule', {
+	value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _libBackbone = require('./../../../lib/backbone');
+
+var _libBackbone2 = _interopRequireDefault(_libBackbone);
+
+var _schedulerView = require('./scheduler-view');
+
+var _schedulerView2 = _interopRequireDefault(_schedulerView);
+
+var schedule, SchedulerModel, key;
+
+function parseTime(str) {
+
+	var arr = str.match(/\d+/g),
+	    h = +arr[0],
+	    m = +(arr[1] || 0);
+
+	return (h * 60 + m) * 60 * 1000;
+}
+
+schedule = {
+	man: [{
+		from: '8h45m',
+		to: '9h'
+	}, {
+		from: '16h45m',
+		to: '17h'
+	}],
+	woman: [{
+		from: '9h10m',
+		to: '9h25m'
+	}, {
+		from: '17h10m',
+		to: '17h25m'
+	}]
+};
+
+for (key in schedule) {
+	if (schedule.hasOwnProperty(key)) {
+		schedule[key] = schedule[key].map(function (timePeriod) {
+			timePeriod.from = parseTime(timePeriod.from);
+			timePeriod.to = parseTime(timePeriod.to);
+			return timePeriod;
+		});
+	}
+}
+
+SchedulerModel = _libBackbone2['default'].Model.extend({
+
+	schedule: schedule,
+
+	defaults: {
+		state: 'available'
+	},
+
+	initialize: function initialize() {
+		var data = arguments.length <= 0 || arguments[0] === undefined ? { gender: 'man' } : arguments[0];
+
+		var model = this,
+		    gender = data.gender,
+		    schedule = model.schedule[gender],
+		    view;
+
+		model.set({ schedule: schedule });
+
+		view = new _schedulerView2['default']({ gender: gender, schedule: schedule });
+
+		model.set({ view: view });
+
+		view.setState(model.get('state'));
+
+		view.listenTo(model, 'change:state', function (model, state) {
+			view.setState(state);
+		});
+
+		view.listenTo(model, 'change:nextChangeState', function (model, time) {
+			view.setNextChangeStateTime(time);
+		});
+	},
+
+	updateTime: function updateTime(data) {
+
+		var model = this,
+		    nextChangeState = model.getNearestTimeToChangeState(data.time);
+
+		model.set({ nextChangeState: nextChangeState });
+
+		if (model.isInScheduler(data.time)) {
+			model.set('state', 'occupied');
+		} else {
+			model.set('state', 'available');
+		}
+	},
+
+	isInScheduler: function isInScheduler(time) {
+
+		return this.get('schedule').some(function (fromTo) {
+			return fromTo.from <= time && fromTo.to >= time;
+		});
+	},
+
+	getNearestTimeToChangeState: function getNearestTimeToChangeState(time) {
+
+		var model = this,
+		    schedule = model.get('schedule'),
+		    nextChange = 'in nex day';
+
+		schedule.every(function (fromTo) {
+
+			if (fromTo.from > time) {
+				nextChange = fromTo.from - time;
+				return false;
+			}
+
+			if (fromTo.to > time) {
+				nextChange = fromTo.to - time;
+				return false;
+			}
+
+			return true;
+		});
+
+		return nextChange;
+	}
+
+});
+
+exports['default'] = SchedulerModel;
+module.exports = exports['default'];
+
+},{"./../../../lib/backbone":13,"./scheduler-view":10}],10:[function(require,module,exports){
+'use strict';
+/*global window */
+
+Object.defineProperty(exports, '__esModule', {
+	value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _coreBase = require('./../core/base');
+
+var _coreBase2 = _interopRequireDefault(_coreBase);
+
+var _servicesTemplateMaster = require('./../../../services/template-master');
+
+var _servicesTemplateMaster2 = _interopRequireDefault(_servicesTemplateMaster);
+
+var SchedulerView = _coreBase2['default'].extend({
+
+	events: {},
+
+	initialize: function initialize(data) {
+
+		var view = this;
+
+		view.setElement(_servicesTemplateMaster2['default'].tmplFn.scheduler(data));
+
+		//view.render();
+
+		// create scheduler collection
+
+		// insert data for m and w to collection
+	},
+
+	setState: function setState(state) {
+
+		this.$el.find('.js-is-available').html(state);
+	},
+
+	setNextChangeStateTime: function setNextChangeStateTime(time) {
+		this.$el.find('.js-next-change-state-time').html(time);
+	}
+
+});
+
+exports['default'] = SchedulerView;
+module.exports = exports['default'];
+
+},{"./../../../services/template-master":28,"./../core/base":4}],11:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -12270,7 +12545,7 @@ var en = {
 exports['default'] = en;
 module.exports = exports['default'];
 
-},{}],9:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -12310,7 +12585,7 @@ var ru = {
 exports['default'] = ru;
 module.exports = exports['default'];
 
-},{}],10:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 (function (global){
 "use strict";
 
@@ -12826,7 +13101,7 @@ module.exports = exports['default'];
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":1,"underscore":2}],11:[function(require,module,exports){
+},{"jquery":1,"underscore":2}],14:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 "use strict";
 
@@ -13111,7 +13386,7 @@ module.exports = exports['default'];
     }
 }).call(undefined);
 
-},{}],12:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 "use strict";
 
 (function () {
@@ -13162,7 +13437,7 @@ module.exports = exports['default'];
 	};
 })();
 
-},{}],13:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 "use strict";
 
 !(function () {
@@ -13264,7 +13539,7 @@ module.exports = exports['default'];
   }) : "undefined" != typeof module && module.exports ? (module.exports = t.attach, module.exports.FastClick = t) : window.FastClick = t;
 })();
 
-},{}],14:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 "use strict";
 
 !(function (a) {
@@ -13510,7 +13785,7 @@ module.exports = exports['default'];
   }), a.jBone = a.$ = q) : "object" == typeof a && "object" == typeof a.document && (a.jBone = a.$ = q);
 })(window);
 
-},{}],15:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -15017,7 +15292,7 @@ module.exports = exports['default'];
 }).call(undefined);
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],16:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 "use strict";
 
 Function.prototype.bind || (Function.prototype.bind = function (b) {
@@ -15080,7 +15355,7 @@ if (!(document.documentElement.dataset || Object.getOwnPropertyDescriptor(Elemen
 	}
 };
 
-},{}],17:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 /**
  * Swiper 3.1.7
  * Most modern mobile touch slider and framework with hardware accelerated transitions
@@ -15861,7 +16136,7 @@ if (!(document.documentElement.dataset || Object.getOwnPropertyDescriptor(Elemen
 });
 
 
-},{}],18:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -15978,7 +16253,7 @@ new _libFastclick2['default'](window.document.body); // test it decide
 	win.setTimeout(_servicesAndroidAds2['default'].showAd, 3e3);
 })();
 
-},{"./app/router/router":3,"./app/view/core/base":4,"./app/view/core/hint":5,"./app/view/core/popup":6,"./lib/backbone":10,"./lib/deferred":11,"./lib/fastclick":13,"./lib/jbone":14,"./lib/lodash":15,"./lib/shim":16,"./lib/swiper":17,"./services/android-ads":19,"./services/device":20,"./services/info":21,"./services/lang":22,"./services/log":23,"./services/mediator":24,"./services/template-master":25,"./services/util":26,"./sound/sound-master":30}],19:[function(require,module,exports){
+},{"./app/router/router":3,"./app/view/core/base":4,"./app/view/core/hint":5,"./app/view/core/popup":6,"./lib/backbone":13,"./lib/deferred":14,"./lib/fastclick":16,"./lib/jbone":17,"./lib/lodash":18,"./lib/shim":19,"./lib/swiper":20,"./services/android-ads":22,"./services/device":23,"./services/info":24,"./services/lang":25,"./services/log":26,"./services/mediator":27,"./services/template-master":28,"./services/util":29,"./sound/sound-master":33}],22:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -16025,7 +16300,7 @@ androidAds.init();
 exports['default'] = androidAds;
 module.exports = exports['default'];
 
-},{"./info":21}],20:[function(require,module,exports){
+},{"./info":24}],23:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -16092,7 +16367,7 @@ device = new Device();
 exports['default'] = device;
 module.exports = exports['default'];
 
-},{"./../lib/backbone":10}],21:[function(require,module,exports){
+},{"./../lib/backbone":13}],24:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -16349,7 +16624,7 @@ info.init();
 exports['default'] = info;
 module.exports = exports['default'];
 
-},{}],22:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -16392,7 +16667,7 @@ lang.set(_info2['default'].get('language'));
 exports['default'] = lang;
 module.exports = exports['default'];
 
-},{"./../i18n/en":8,"./../i18n/ru":9,"./info":21}],23:[function(require,module,exports){
+},{"./../i18n/en":11,"./../i18n/ru":12,"./info":24}],26:[function(require,module,exports){
 'use strict';
 /*global console */
 
@@ -16413,7 +16688,7 @@ function log() {
 exports['default'] = log;
 module.exports = exports['default'];
 
-},{}],24:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -16495,7 +16770,7 @@ mediator = {
 exports['default'] = mediator;
 module.exports = exports['default'];
 
-},{}],25:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -16545,7 +16820,7 @@ templateMaster.init();
 exports['default'] = templateMaster;
 module.exports = exports['default'];
 
-},{"./../lib/dot":12}],26:[function(require,module,exports){
+},{"./../lib/dot":15}],29:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -16606,7 +16881,7 @@ var win = window,
 exports['default'] = util;
 module.exports = exports['default'];
 
-},{}],27:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -16649,7 +16924,7 @@ var win = window,
 exports['default'] = androidPlayer;
 module.exports = exports['default'];
 
-},{}],28:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -16706,7 +16981,7 @@ var win = window,
 exports['default'] = iosPlayer;
 module.exports = exports['default'];
 
-},{}],29:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -16790,7 +17065,7 @@ var win = window,
 exports['default'] = webPlayer;
 module.exports = exports['default'];
 
-},{"./../services/info":21}],30:[function(require,module,exports){
+},{"./../services/info":24}],33:[function(require,module,exports){
 'use strict';
 /*global window */
 
@@ -16948,4 +17223,4 @@ soundMaster.init();
 exports['default'] = soundMaster;
 module.exports = exports['default'];
 
-},{"./../services/info":21,"./player-android":27,"./player-ios":28,"./player-web":29}]},{},[18]);
+},{"./../services/info":24,"./player-android":30,"./player-ios":31,"./player-web":32}]},{},[21]);

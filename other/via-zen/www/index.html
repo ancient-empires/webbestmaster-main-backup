@@ -28,6 +28,28 @@
 
 	<div class="screen">
 		<h1>title</h1>
+
+		<div class="js-scheduler-view-wrapper"></div>
+
+	</div>
+
+</template>
+
+<template class="js-template" data-name="scheduler">
+
+	<div>
+
+		<h1>{{= it.gender }}</h1>
+
+		{{~it.schedule :scheduleItem}}
+
+		<div>{{= scheduleItem.from }} - {{= scheduleItem.to }}</div>
+
+		{{~ }}
+
+		<div class="js-is-available"></div>
+		<div class="js-next-change-state-time"></div>
+
 	</div>
 
 </template>

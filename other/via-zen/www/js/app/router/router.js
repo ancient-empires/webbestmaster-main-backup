@@ -4,7 +4,7 @@
 import Backbone from './../../lib/backbone';
 import _ from './../../lib/lodash';
 import BaseView from './../view/core/base';
-import HomeView from './../view/home';
+import HomeView from './../view/home/home-view';
 import mediator from './../../services/mediator';
 
 var win = window,
