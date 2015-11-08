@@ -126,11 +126,21 @@
 
 			if (isAndroid) {
 				this.set('os', 'android', true);
+				this.set('android-version', this.getAndroidVersion(), true);
+
 			}
 
 			if (isIOS) {
 				this.set('os', 'ios', true);
 			}
+
+		},
+
+		getAndroidVersion: function () {
+
+			var match = win.navigator.userAgent.toLowerCase().match(/android\s([0-9\.]*)/);
+
+			return match ? match[1] : false;
 
 		},
 

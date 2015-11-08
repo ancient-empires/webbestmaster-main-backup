@@ -50,12 +50,18 @@
 
 	function start() {
 
-		APP.templateMaster.init();
-		win.APP.util.setHTMLStyle();
-		win.APP.BB.BaseView.prototype.initStatic();
-		FastClick.attach(document.body);
+		var timeInterval = parseFloat(win.APP.info.get('android-version', true)) === 4.1 ? 5e3 : 0;
 
-		win.APP.map.preloadData().then(startApp);
+		setTimeout(function () {
+
+			APP.templateMaster.init();
+			win.APP.util.setHTMLStyle();
+			win.APP.BB.BaseView.prototype.initStatic();
+			FastClick.attach(document.body);
+
+			win.APP.map.preloadData().then(startApp);
+
+		}, timeInterval);
 
 	}
 
