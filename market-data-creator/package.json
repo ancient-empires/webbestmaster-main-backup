@@ -1,0 +1,15 @@
+{
+  "name": "market-data",
+  "version": "0.0.1",
+  "description": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webbestmaster/main"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-gm": "0.0.8",
+    "gulp-image-resize": "^0.7.1"
+  }
+}

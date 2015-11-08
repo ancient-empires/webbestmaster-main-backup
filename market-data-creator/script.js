@@ -53,26 +53,23 @@
 
 	Resizer.prototype.saveScaledImages = function (img, name) {
 
-		var resizerProto = this,
-			i = 1,
-			max = 3,
-			width = img.width,
-			height = img.height,
-			canvas = doc.createElement('canvas'),
-			context = canvas.getContext('2d');
 
-		while (i <= max) {
 
-			canvas.width = width * i;
-			canvas.height = height * i;
+var q = 3;
+				var resizerProto = this,
+						width = img.width,
+						height = img.height,
+						canvas = doc.createElement('canvas'),
+						context = canvas.getContext('2d');
 
-			context.drawImage(img, 0, 0, width * i, height * i);
+				canvas.width = width * q;
+				canvas.height = height * q;
 
-			resizerProto.saveCanvasToDisk(canvas, name + '-screen-' + width + 'x' + height + '@' + i + '.png');
+				context.drawImage(img, 0, 0, width * q, height * q);
 
-			i += 1;
+				resizerProto.saveCanvasToDisk(canvas, name + '-screen-' + width + 'x' + height + '@' + q + '.png');
 
-		}
+
 
 	};
 
