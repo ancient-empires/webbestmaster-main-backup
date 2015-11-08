@@ -16250,12 +16250,14 @@ new _libFastclick2['default'](window.document.body); // test it decide
 
 	_libBackbone2['default'].history.start();
 
-	win.setTimeout(_servicesAndroidAds2['default'].showAd, 3e3);
+	win.setTimeout(function () {
+		_servicesAndroidAds2['default'].showAd();
+	}, 3e3);
 })();
 
 },{"./app/router/router":3,"./app/view/core/base":4,"./app/view/core/hint":5,"./app/view/core/popup":6,"./lib/backbone":13,"./lib/deferred":14,"./lib/fastclick":16,"./lib/jbone":17,"./lib/lodash":18,"./lib/shim":19,"./lib/swiper":20,"./services/android-ads":22,"./services/device":23,"./services/info":24,"./services/lang":25,"./services/log":26,"./services/mediator":27,"./services/template-master":28,"./services/util":29,"./sound/sound-master":33}],22:[function(require,module,exports){
 'use strict';
-/*global window */
+/*global window, Date */
 
 Object.defineProperty(exports, '__esModule', {
 	value: true
@@ -16270,7 +16272,7 @@ var _info2 = _interopRequireDefault(_info);
 var win = window,
     androidAds = {
 	attr: {},
-	period: 3e3 * 60,
+	minShowPeriod: 2 * 60e3,
 	set: function set(key, value) {
 		this.attr[key] = value;
 		return this;
@@ -16279,18 +16281,26 @@ var win = window,
 		return this.attr[key];
 	},
 	showAd: function showAd() {
-		return win.Android && _info2['default'].isNormal && win.Android.displayInterstitial();
-	},
-	init: function init() {
 
-		if (!_info2['default'].isNormal) {
+		var ad = this,
+		    now,
+		    lastShow;
+
+		if (!ad.get('adsIsAvailable')) {
 			return;
 		}
 
-		var androidAds = this,
-		    intervalId = win.setInterval(androidAds.showAd, androidAds.period);
+		now = Date.now();
+		lastShow = ad.get('lastShow') || 0;
 
-		androidAds.set('intervalId', intervalId);
+		if (now - lastShow >= ad.minShowPeriod) {
+			ad.set('lastShow', now);
+			Android.displayInterstitial();
+		}
+	},
+	init: function init() {
+
+		this.set('adsIsAvailable', typeof Android !== 'undefined' && _info2['default'].isNormal);
 	}
 
 };
@@ -16390,8 +16400,8 @@ info = {
 			pro: ''
 		},
 		android: {
-			normal: 'https://play.google.com/store/apps/details?id=com.elitapp.coolbook',
-			pro: 'https://play.google.com/store/apps/details?id=com.elitapp.coolbookpro'
+			normal: '',
+			pro: ''
 		}
 	},
 
@@ -16455,6 +16465,7 @@ info = {
 
 		if (isAndroid) {
 			info.set('os', 'android', true);
+			info.set('android-version', info.getAndroidVersion(), true);
 		}
 
 		if (isIOS) {
@@ -16466,6 +16477,13 @@ info = {
 			info.set('os', 'ios', true);
 			info.set('isIOS', true, true);
 		}
+	},
+
+	getAndroidVersion: function getAndroidVersion() {
+
+		var match = win.navigator.userAgent.toLowerCase().match(/android\s([0-9\.]*)/);
+
+		return match && match[1];
 	},
 
 	detectCssJsPrefix: function detectCssJsPrefix() {

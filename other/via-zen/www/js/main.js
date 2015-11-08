@@ -51,6 +51,8 @@ new fastclick(window.document.body); // test it decide
 
 	Backbone.history.start();
 
-	win.setTimeout(androidAds.showAd, 3e3);
+	win.setTimeout(function () {
+		androidAds.showAd();
+	}, 3e3);
 
 }());

@@ -1,12 +1,12 @@
 'use strict';
-/*global window */
+/*global window, Date */
 
 import info from './info'
 
 var win = window,
 	androidAds = {
 		attr: {},
-		period: 3e3 * 60,
+		minShowPeriod: 2 * 60e3,
 		set: function (key, value) {
 			this.attr[key] = value;
 			return this;
@@ -15,18 +15,27 @@ var win = window,
 			return this.attr[key];
 		},
 		showAd: function () {
-			return win.Android && info.isNormal && win.Android.displayInterstitial();
-		},
-		init: function () {
 
-			if ( !info.isNormal ) {
+			var ad = this,
+				now,
+				lastShow;
+
+			if ( !ad.get('adsIsAvailable') ) {
 				return;
 			}
 
-			var androidAds = this,
-				intervalId = win.setInterval(androidAds.showAd, androidAds.period);
+			now = Date.now();
+			lastShow = ad.get('lastShow') || 0;
 
-			androidAds.set('intervalId', intervalId);
+			if ( now - lastShow >= ad.minShowPeriod ) {
+				ad.set('lastShow', now);
+				Android.displayInterstitial();
+			}
+
+		},
+		init: function () {
+
+			this.set('adsIsAvailable', (typeof Android !== 'undefined') && info.isNormal );
 
 		}
 

@@ -17,8 +17,8 @@ info = {
 			pro: ''
 		},
 		android: {
-			normal: 'https://play.google.com/store/apps/details?id=com.elitapp.coolbook',
-			pro: 'https://play.google.com/store/apps/details?id=com.elitapp.coolbookpro'
+			normal: '',
+			pro: ''
 		}
 	},
 
@@ -84,6 +84,7 @@ info = {
 
 		if (isAndroid) {
 			info.set('os', 'android', true);
+			info.set('android-version', info.getAndroidVersion(), true);
 		}
 
 		if (isIOS) {
@@ -95,6 +96,14 @@ info = {
 			info.set('os', 'ios', true);
 			info.set('isIOS', true, true);
 		}
+
+	},
+
+	getAndroidVersion: function () {
+
+		var match = win.navigator.userAgent.toLowerCase().match(/android\s([0-9\.]*)/);
+
+		return match && match[1];
 
 	},
 
