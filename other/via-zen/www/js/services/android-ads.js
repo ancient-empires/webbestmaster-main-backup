@@ -35,7 +35,11 @@ var win = window,
 		},
 		init: function () {
 
-			this.set('adsIsAvailable', (typeof Android !== 'undefined') && info.isNormal );
+			var ad = this;
+
+			ad.showAd = ad.showAd.bind(ad);
+
+			ad.set('adsIsAvailable', (typeof Android !== 'undefined') && info.isNormal );
 
 		}
 

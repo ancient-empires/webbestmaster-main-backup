@@ -16250,9 +16250,7 @@ new _libFastclick2['default'](window.document.body); // test it decide
 
 	_libBackbone2['default'].history.start();
 
-	win.setTimeout(function () {
-		_servicesAndroidAds2['default'].showAd();
-	}, 3e3);
+	win.setTimeout(_servicesAndroidAds2['default'].showAd, 3e3);
 })();
 
 },{"./app/router/router":3,"./app/view/core/base":4,"./app/view/core/hint":5,"./app/view/core/popup":6,"./lib/backbone":13,"./lib/deferred":14,"./lib/fastclick":16,"./lib/jbone":17,"./lib/lodash":18,"./lib/shim":19,"./lib/swiper":20,"./services/android-ads":22,"./services/device":23,"./services/info":24,"./services/lang":25,"./services/log":26,"./services/mediator":27,"./services/template-master":28,"./services/util":29,"./sound/sound-master":33}],22:[function(require,module,exports){
@@ -16300,7 +16298,11 @@ var win = window,
 	},
 	init: function init() {
 
-		this.set('adsIsAvailable', typeof Android !== 'undefined' && _info2['default'].isNormal);
+		var ad = this;
+
+		ad.showAd = ad.showAd.bind(ad);
+
+		ad.set('adsIsAvailable', typeof Android !== 'undefined' && _info2['default'].isNormal);
 	}
 
 };
