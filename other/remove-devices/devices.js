@@ -821,6 +821,10 @@ window.devices = [
   },
   {
     product: null,
+    deviceName: 'Spin3G'
+  },
+  {
+    product: null,
     deviceName: 'hsdroid'
   },
   {
