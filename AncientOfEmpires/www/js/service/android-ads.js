@@ -2,14 +2,14 @@
 (function (win) {
 
 	'use strict';
-	/*global window */
+	/*global window, console */
 	/*global */
 
-	var Android = {
-		displayInterstitial: function () {
-			console.log('ad has been shown');
-		}
-	};
+	win.Android = win.Android || {
+			displayInterstitial: function () {
+				console.log('AD - ad has been shown !!!!!!!');
+			}
+		};
 
 	var info = win.info,
 
@@ -29,21 +29,27 @@
 					now,
 					lastShow;
 
-				console.log('try to show ad');
+				console.log('AD - --------------');
+				console.log('AD - try to show ad');
 
-				if (!ad.get('adsIsAvailable')) {
+				if (!info.withAds) {
 					return;
 				}
+
+				console.log('AD - app WITH ads');
 
 				now = Date.now();
 				lastShow = ad.get('lastShow') || 0;
 
 				if (now - lastShow >= ad.minShowPeriod) {
 					ad.set('lastShow', now);
-					Android.displayInterstitial();
+					win.Android.displayInterstitial();
+				} else {
+					console.log('AD - time from last show is not over');
 				}
 
 			},
+
 			init: function () {
 
 				var ad = this;
@@ -51,8 +57,6 @@
 				ad.set('lastShow', Date.now());
 
 				ad.showAd = ad.showAd.bind(ad);
-
-				ad.set('adsIsAvailable', (typeof Android !== 'undefined') && info.withAds);
 
 			}
 
