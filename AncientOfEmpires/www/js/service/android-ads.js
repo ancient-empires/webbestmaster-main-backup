@@ -15,7 +15,7 @@
 
 		androidAds = {
 			attr: {},
-			minShowPeriod: 3 * 60e3,
+			minShowPeriod: 4 * 60e3,
 			set: function (key, value) {
 				this.attr[key] = value;
 				return this;
@@ -47,6 +47,8 @@
 			init: function () {
 
 				var ad = this;
+
+				ad.set('lastShow', Date.now());
 
 				ad.showAd = ad.showAd.bind(ad);
 

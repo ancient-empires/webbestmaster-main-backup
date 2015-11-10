@@ -121,8 +121,6 @@
 
 		util.setWrapperStyle($('body'));
 
-		setTimeout(win.androidAds.showAd, 3e3);
-
 		function back() {
 			if (win.location.hash) {
 				history.back();
