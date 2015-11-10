@@ -722,6 +722,8 @@
 
 		step: function() {
 
+			win.androidAds.showAd();
+
 			this.stepCount = this.stepCount || 0;
 
 			this.stepCount += 0.5;

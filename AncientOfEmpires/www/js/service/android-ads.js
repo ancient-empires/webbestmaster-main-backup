@@ -5,6 +5,12 @@
 	/*global window */
 	/*global */
 
+	var Android = {
+		displayInterstitial: function () {
+			console.log('ad has been shown');
+		}
+	};
+
 	var info = win.info,
 
 		androidAds = {
@@ -23,7 +29,7 @@
 					now,
 					lastShow;
 
-				console.log('show ad');
+				console.log('try to show ad');
 
 				if (!ad.get('adsIsAvailable')) {
 					return;
