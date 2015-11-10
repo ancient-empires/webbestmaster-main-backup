@@ -3,7 +3,7 @@
 	"use strict";
 	/*global window, document, navigator */
 
-	var WITH_ADS = false;
+	var WITH_ADS = true;
 
 	function getPrefix() {
 
