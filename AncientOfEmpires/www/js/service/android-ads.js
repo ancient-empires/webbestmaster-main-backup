@@ -7,7 +7,7 @@
 
 	win.Android = win.Android || {
 			displayInterstitial: function () {
-				console.log('AD - ad has been shown !!!!!!!');
+				console.log('AD - ad has been shown !!!');
 			}
 		};
 
@@ -26,8 +26,7 @@
 			showAd: function () {
 
 				var ad = this,
-					now,
-					lastShow;
+					now;
 
 				console.log('AD - --------------');
 				console.log('AD - try to show ad');
@@ -39,9 +38,8 @@
 				console.log('AD - app WITH ads');
 
 				now = Date.now();
-				lastShow = ad.get('lastShow') || 0;
 
-				if (now - lastShow >= ad.minShowPeriod) {
+				if (now - ad.get('lastShow') >= ad.minShowPeriod) {
 					ad.set('lastShow', now);
 					win.Android.displayInterstitial();
 				} else {
