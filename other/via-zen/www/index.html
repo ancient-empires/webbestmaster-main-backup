@@ -26,29 +26,42 @@
 
 <template class="js-template" data-name="home">
 
-	<div class="screen">
-		<h1>title</h1>
+	<section class="screen">
+		<h1 class="main-header">Toilet Schedule</h1>
 
-		<div class="js-scheduler-view-wrapper"></div>
+		<div class="js-scheduler-view-wrapper scheduler-view-wrapper">
 
-	</div>
+
+
+
+		</div>
+		<div class="support-project-link-wrapper">
+			<div class="js-external-link support-project-link" data-href="http://events.webmoney.ru/social/donate.aspx?groupUID=0b34efb2-b4a0-48f3-8d68-a802647e48c0">Support project</div>
+		</div>
+
+
+	</section>
 
 </template>
 
 <template class="js-template" data-name="scheduler">
 
-	<div>
+	<div class="schedule-wrapper">
 
-		<h1>{{= it.gender }}</h1>
+		<!--<h2 class="gender-header">{{= it.gender }}</h2>-->
 
-		{{~it.schedule :scheduleItem}}
+		<img class="gender-image" src="i/sign/wc-{{= it.data.gender }}.png" alt="">
 
-		<div>{{= scheduleItem.from }} - {{= scheduleItem.to }}</div>
+		{{~it.data.schedule :scheduleItem}}
+
+		{{ var from = it.util.formatMs(scheduleItem.from), to = it.util.formatMs(scheduleItem.to); }}
+
+		<div class="schedule-times">{{= from.h }}.{{= from.m }} - {{= to.h }}.{{= to.m }}</div>
 
 		{{~ }}
 
-		<div class="js-is-available"></div>
-		<div class="js-next-change-state-time"></div>
+		<div class="js-is-available toilet-state"></div>
+		<div class="js-next-change-state-time ta-center"></div>
 
 	</div>
 

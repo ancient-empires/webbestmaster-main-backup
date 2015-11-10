@@ -109,7 +109,7 @@ SchedulerModel = Backbone.Model.extend({
 
 		var model = this,
 			schedule = model.get('schedule'),
-			nextChange = 'in nex day';
+			nextChange = 'to end of day';
 
 		schedule.every(function (fromTo) {
 

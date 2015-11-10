@@ -2,8 +2,8 @@
 /*global window */
 
 var win = window,
-	doc = win.document,
-	docElem = doc.documentElement,
+	//doc = win.document,
+	//docElem = doc.documentElement,
 	util = {
 
 		assortArray: function (arr) {
@@ -48,6 +48,23 @@ var win = window,
 
 		copyJSON: function (obj) { // external
 			return JSON.parse(JSON.stringify(obj));
+		},
+		formatTime: function (number) {
+			return number >= 10 ? number : '0' + number;
+		},
+		formatMs: function (ms) {
+
+			var util = this,
+				date = new Date(ms);
+
+			return {
+				d: util.formatTime(date.getDate()),
+				h: util.formatTime(date.getHours()),
+				m: util.formatTime(date.getMinutes()),
+				s: util.formatTime(date.getSeconds()),
+				ms: util.formatTime(date.getMilliseconds())
+			};
+
 		}
 
 	};

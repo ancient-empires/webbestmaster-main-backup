@@ -17,7 +17,8 @@
 	gulp.task('default', ['clear-dist'], function () {
 
 		gulp.start(
-			'copy-i', 'copy-font',
+			'copy-i',
+				//'copy-font',
 			'html',
 			'es6',
 			'uglify-js',

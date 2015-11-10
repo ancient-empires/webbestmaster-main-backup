@@ -1,11 +1,90 @@
-@font-face {
-	font-family: 'MayonezBlack-Italic';
-	font-weight: bold;
-	src: url(../font/MayonezBlack-Italic.otf) format('opentype');
+.wrapper {
+	color: #333;
+	font-family: HelveticaNeueCyr, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+	line-height: 125%;
 }
 
-.wrapper {
+.main-header {
+	text-align: center;
+	padding-top: 1rem;
+	font-size: 1rem;
+}
 
+.scheduler-view-wrapper {
+	max-width: 26rem;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.schedule-wrapper {
+	float: left;
+	width: 50%;
+	padding-top: 1rem;
+}
+
+.schedule-times {
+	text-align: center;
+}
+
+.toilet-state {
+	color: #FFFFFF;
+	text-align: center;
+	border-radius: 0.3rem;
+	max-width: 80%;
+	margin: 0.6rem auto;
+	line-height: 200%;
+	font-size: 1.1rem;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+
+.toilet-is-available {
+	background-color: #5cb85c;
+	border-color: #4cae4c;
+}
+
+.toilet-is-occupied {
+	background-color: #d9534f;
+	border-color: #d43f3a;
+}
+
+/*
+.gender-header {
+	text-align: center;
+}
+*/
+
+.gender-image {
+	display: block;
+	max-width: 80%;
+	margin: 0 auto;
+	padding-bottom: 1rem;
+}
+
+.support-project-link-wrapper {
+	position: absolute;
+	bottom: 1.1rem;
+	width: 100%;
+	text-align: center;
+}
+
+@media only screen and (orientation : landscape) {
+	.support-project-link-wrapper {
+		bottom: auto;
+		right: 0.5rem;
+		width: auto;
+		top: 0.2rem;
+	}
+}
+
+.support-project-link {
+	font-size: 0.9rem;
+	display: inline-block;
+	border-bottom: 2px solid #333;
+}
+
+.support-project-link:active {
+	border-bottom-color: transparent;
 }
 
 
