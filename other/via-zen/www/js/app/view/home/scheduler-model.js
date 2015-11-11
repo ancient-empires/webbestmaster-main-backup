@@ -22,18 +22,18 @@ schedule = {
 			to: '9h'
 		},
 		{
-			from: '16h45m',
-			to: '17h'
+			from: '15h45m',
+			to: '16h'
 		}
 	],
 	woman: [
 		{
-			from: '9h10m',
-			to: '9h25m'
+			from: '8h30m',
+			to: '8h45m'
 		},
 		{
-			from: '17h10m',
-			to: '17h25m'
+			from: '15h30m',
+			to: '15h45m'
 		}
 	]
 };
