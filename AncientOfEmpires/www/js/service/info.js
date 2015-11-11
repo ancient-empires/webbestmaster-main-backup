@@ -46,12 +46,12 @@
 
 		link: {
 			ios: {
-				normal: 'https://itunes.apple.com/us/app/ancient-empire-strike-back/id1000811506?mt=8',
-				pro: 'https://itunes.apple.com/us/app/ancient-empire-strike-back/id995589839?mt=8'
+				//normal: 'https://itunes.apple.com/us/app/ancient-empire-strike-back/id1000811506?mt=8',
+				//pro: 'https://itunes.apple.com/us/app/ancient-empire-strike-back/id995589839?mt=8'
 			},
 			android: {
-				//normal: 'https://play.google.com/store/apps/details?id=com.statlex.kidlogic',
-				//pro: 'https://play.google.com/store/apps/details?id=com.statlex.kidlogicadsfree'
+				normal: 'https://play.google.com/store/apps/details?id=com.statlex.ancientempires',
+				pro: 'https://play.google.com/store/apps/details?id=com.statlex.ancientempirespro'
 			}
 		},
 
