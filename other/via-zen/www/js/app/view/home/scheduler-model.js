@@ -54,7 +54,16 @@ SchedulerModel = Backbone.Model.extend({
 	schedule: schedule,
 
 	defaults: {
-		state: 'available'
+		state: 'available',
+		availableStates: ['occupied', 'available']
+	},
+
+	validate: function (attrs) {
+
+		if ( this.get('availableStates').indexOf(attrs.state) == -1 ) {
+			return 'Not available state.';
+		}
+
 	},
 
 	initialize: function (data = {gender: 'man'}) {
@@ -80,6 +89,10 @@ SchedulerModel = Backbone.Model.extend({
 			view.setNextChangeStateTime(time);
 		});
 
+		//model.on('invalid', function (model, errorMsg, errorData) {
+		//
+		//});
+
 	},
 
 	updateTime: function (data) {
@@ -90,9 +103,9 @@ SchedulerModel = Backbone.Model.extend({
 		model.set({ nextChangeState });
 
 		if ( model.isInScheduler(data.time) ) {
-			model.set('state', 'occupied');
+			model.set('state', 'occupied', { validate: true });
 		} else {
-			model.set('state', 'available');
+			model.set('state', 'available', { validate: true });
 		}
 
 	},
