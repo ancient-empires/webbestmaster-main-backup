@@ -15,7 +15,7 @@
 
 		androidAds = {
 			attr: {},
-			minShowPeriod: 4 * 60e3,
+			minShowPeriod: 3 * 60e3,
 			set: function (key, value) {
 				this.attr[key] = value;
 				return this;
