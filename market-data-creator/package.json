@@ -10,6 +10,7 @@
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-gm": "0.0.8",
-    "gulp-image-resize": "^0.7.1"
+    "gulp-image-resize": "^0.7.1",
+    "gulp-rename": "^1.2.2"
   }
 }
