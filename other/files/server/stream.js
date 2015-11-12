@@ -23,8 +23,8 @@ function sendFile(file, res) {
 	//file.pipe(process.stdout); // see in console
 
 	file.on('error', function (err) {
-		res.statusCode = 500;
-		res.end('Server error 500');
+		res.statusCode = 404;
+		res.end('404 ((');
 		console.error(err);
 	});
 
