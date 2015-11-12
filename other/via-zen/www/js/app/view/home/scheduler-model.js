@@ -113,7 +113,7 @@ SchedulerModel = Backbone.Model.extend({
 	isInScheduler: function (time) {
 
 		return this.get('schedule').some(function (fromTo) {
-			return fromTo.from <= time && fromTo.to >= time;
+			return fromTo.from <= time && fromTo.to > time;
 		});
 
 	},

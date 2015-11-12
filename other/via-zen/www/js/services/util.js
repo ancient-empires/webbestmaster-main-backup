@@ -58,11 +58,11 @@ var win = window,
 				date = new Date(ms);
 
 			return {
-				d: util.formatTime(date.getDate()),
-				h: util.formatTime(date.getHours()),
-				m: util.formatTime(date.getMinutes()),
-				s: util.formatTime(date.getSeconds()),
-				ms: util.formatTime(date.getMilliseconds())
+				d: util.formatTime(date.getUTCDate()),
+				h: util.formatTime(date.getUTCHours()),
+				m: util.formatTime(date.getUTCMinutes()),
+				s: util.formatTime(date.getUTCSeconds()),
+				ms: util.formatTime(date.getUTCMilliseconds())
 			};
 
 		}
