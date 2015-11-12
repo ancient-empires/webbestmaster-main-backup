@@ -29,20 +29,29 @@ function sendFile(file, res) {
 	});
 
 	// normal behavior for file stream - open and close
+
 	file
 		.on('open', function (err) {
 			// start pipe from file to res
 			console.log('file stream is open');
+			console.log(Date.now());
 		})
 		.on('close', function (err) {
 			// end pipe from file to res
+			console.log(Date.now());
 			console.log('file stream is close');
+		})
+		.on('data', function (buffer) {
+			console.log('---');
+			console.log(buffer);
 		});
+
 
 	// detect when user close page until data was received
 	res.on('close', function () {
 		file.destroy();
 	});
+
 
 }
 
