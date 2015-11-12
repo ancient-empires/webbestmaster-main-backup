@@ -24,12 +24,12 @@
 
 			return gulp.src('./src/*.png')
 					.pipe(rename('ic_launcher.png'))
-					//.pipe(imageResize({
-					//	width: size,
-					//	height: size,
-					//	upscale: true,
-					//	crop: true
-					//}))
+					.pipe(imageResize({
+						width: size,
+						height: size,
+						upscale: true,
+						crop: true
+					}))
 					.pipe(gulp.dest('./dist/' + key));
 
 		});
