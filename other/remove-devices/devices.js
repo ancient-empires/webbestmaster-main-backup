@@ -1,5 +1,9 @@
 window.devices = [
   {
+    product: null,
+    deviceName: 'PAP4055DUO'
+  },
+  {
     product: 'Z120',
     deviceName: 'Z2'
   },

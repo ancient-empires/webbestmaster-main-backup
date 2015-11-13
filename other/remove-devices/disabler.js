@@ -55,6 +55,7 @@
 				deferred = Promise.defer(),
 				deviceWrapper,
 				deviceName = data.deviceName,
+				product = data.product,
 				selectors = disabler.selectors,
 				input = disabler.find(selectors.searchInput);
 
@@ -65,21 +66,23 @@
 				deviceWrapper = disabler.find('[data-device-id="' + deviceName + '"]');
 
 				if (!deviceWrapper) {
-					console.log(deviceName + ' is not found');
+					console.log(deviceName + ' - ' + product + ' - is not found');
 					return;
 				}
 
 				var checkbox = disabler.find('checkbox', deviceWrapper);
 
 				if (checkbox.getAttribute('aria-disabled') === 'true') {
-					console.log(deviceName + ' - disabled by google');
+					console.log(deviceName + ' - ' + product + ' - disabled by google');
 					return;
 				}
 
 				if (checkbox.getAttribute('aria-checked') === 'true') {
-					console.log(deviceName + ' - disabled by user');
+					console.log(deviceName + ' - ' + product + ' - disabled by user');
 					return;
 				}
+
+				console.log(deviceName + ' - ' + product + ' - will be disabled');
 
 				disabler.dispatchClick({ node: checkbox });
 
