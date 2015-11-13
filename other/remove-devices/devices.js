@@ -1,9 +1,5 @@
 window.devices = [
   {
-    product: null,
-    deviceName: 'PAP4055DUO'
-  },
-  {
     product: 'Z120',
     deviceName: 'Z2'
   },
@@ -906,5 +902,9 @@ window.devices = [
   {
     product: null,
     deviceName: 'AD6B1H'
+  },
+  {
+    product: null,
+    deviceName: 'PAP4055DUO'
   }
 ];
