@@ -155,11 +155,11 @@ button:focus {
 	float: none;
 }
 
-.clear-fix {
+.return-to-stream {
 	display: block;
 }
 
-.clear-fix:after {
+.return-to-stream:after {
 	content: '';
 	display: block;
 	clear: both;
