@@ -1,7 +1,7 @@
 'use strict';
 /*global window */
 
-import dot from './../lib/dot';
+import doT from './../lib/dot';
 
 var doc = window.document,
 	templateMaster = {
@@ -24,7 +24,7 @@ var doc = window.document,
 					text = tmplNode.innerHTML.replace(/\&(amp|gt|lt)\;/gi, tm.getSymbolByMap);
 
 				tm.tmplText[name] = text;
-				tm.tmplFn[name] = dot.template(text);
+				tm.tmplFn[name] = doT.template(text);
 
 				tmplNode.parentNode.removeChild(tmplNode);
 

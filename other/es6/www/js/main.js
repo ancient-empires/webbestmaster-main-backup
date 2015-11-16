@@ -12,8 +12,11 @@ import lodash from './lib/lodash';
 import $ from './lib/jbone';
 import Deferred from './lib/deferred';
 import Backbone from './lib/backbone';
-import fastclick from './lib/fastclick';
-//import doT from './lib/dot';
+import FastClick from './lib/fastclick';
+
+// todo: - test - enable fast click
+new FastClick(doc.body); // test it decide
+
 import Swiper from './lib/swiper';
 
 // init all services
@@ -37,9 +40,6 @@ import BaseView from './app/view/core/base';
 import hintMaster from './app/view/core/hint';
 import popupMaster from './app/view/core/popup';
 
-// todo: - test - enable fast click
-new fastclick(doc.body); // test it decide
-
 (function back() {
 
 	if ( win.location.hash ) {
@@ -58,3 +58,4 @@ new fastclick(doc.body); // test it decide
 	win.setTimeout(androidAds.showAd, 3e3);
 
 }());
+

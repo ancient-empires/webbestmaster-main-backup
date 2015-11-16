@@ -1,7 +1,7 @@
 'use strict';
 /*global window */
 
-import info from './info'
+import info from './info';
 
 var win = window,
 	androidAds = {

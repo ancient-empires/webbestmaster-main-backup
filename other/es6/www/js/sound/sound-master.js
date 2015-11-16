@@ -1,10 +1,10 @@
 'use strict';
 /*global window */
 
-import androidPlayer from './player-android'
-import iosPlayer from './player-ios'
-import webPlayer from './player-web'
-import info from './../services/info'
+import androidPlayer from './player-android';
+import iosPlayer from './player-ios';
+import webPlayer from './player-web';
+import info from './../services/info';
 
 var win = window,
 	soundMaster = {

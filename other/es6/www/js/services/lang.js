@@ -9,8 +9,10 @@ var lang = {
 
 	attr: {},
 
-	languages: { en, ru },
-
+	languages: {
+		en: en,
+		ru: ru
+	},
 	set: function (lang) {
 		this.attr = this.languages[lang];
 	},

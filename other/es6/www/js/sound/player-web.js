@@ -1,7 +1,7 @@
 'use strict';
 /*global window */
 
-import info from './../services/info'
+import info from './../services/info';
 
 var win = window,
 	webPlayer = {

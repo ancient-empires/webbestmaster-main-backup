@@ -45,9 +45,9 @@ var win = window,
 
 			view.setElement(tm.tmplFn.book(
 				{
-					info,
-					util,
-					book,
+					info: info,
+					util: util,
+					book: book,
 					settings: {
 						withText: view.get('withText')
 					}
@@ -175,7 +175,9 @@ var win = window,
 
 			});
 
-			swiper.on('onDoubleTap', () => view.toggleState());
+			swiper.on('onDoubleTap', function () {
+				view.toggleState();
+			});
 
 			view.listenTo(device, 'resize', view.onResize);
 

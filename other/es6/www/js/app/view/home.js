@@ -25,8 +25,8 @@ var win = window,
 				hintViewAutoplay = {};
 
 			view.setElement(tm.tmplFn.home({
-				info,
-				booksData,
+				info: info,
+				booksData: booksData,
 				shelf: view.getBooksOnShelfNumber()
 				//booksOnShelf:
 			}));
@@ -47,9 +47,9 @@ var win = window,
 			// show hint if needed
 			if (!info.hintIsDone('autoplay')) {
 				view.publish('showHint', {name: 'autoplay'}, hintViewAutoplay);
-				hintViewAutoplay.view.onHide(
-					() => view.publish('showHint', {name: info.isNormal ? 'removeAds' : 'thanksForBuy'})
-				);
+				hintViewAutoplay.view.onHide(function () {
+					view.publish('showHint', {name: info.isNormal ? 'removeAds' : 'thanksForBuy'});
+				});
 			}
 
 			bg.changeBg();

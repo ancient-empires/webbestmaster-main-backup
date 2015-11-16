@@ -1,15 +1,16 @@
 /*jslint white: true, nomen: true */
 (function () {
 
-	var gulp = require('gulp'),
+	var es6Import = require('es6-import'),
+		gulp = require('gulp'),
 		uglify = require('gulp-uglify'),
 		clean = require('gulp-rimraf'),
 		cssBase64 = require('gulp-css-base64'),
 		cssimport = require('gulp-cssimport'),
 		minifyCss = require('gulp-minify-css'),
 		minifyHTML = require('gulp-minify-html'),
-		browserify = require('browserify'),
-		babelify = require('babelify'),
+		//browserify = require('browserify'),
+		//babelify = require('babelify'),
 		source = require('vinyl-source-stream');
 	// gulp - run 'default' task
 	// gulp <task> <othertask>.
@@ -19,7 +20,7 @@
 		gulp.start(
 			'copy-i', 'copy-font',
 			'html',
-			'es6',
+			'es6-import',
 			'uglify-js',
 			'import-css', 'css-base64', 'minify-css',
 			'clean-base64'
@@ -86,6 +87,7 @@
 	});
 
 	// JS
+/*
 	gulp.task('es6', function () {
 		return browserify({
 			entries: './www/js/main.js',
@@ -97,9 +99,16 @@
 			.pipe(source('main.js'))
 			.pipe(gulp.dest('./dist/www/js'));
 	});
+*/
 
-	gulp.task('uglify-js', ['es6'], function () {
-		return gulp.src('./dist/www/js/*.js')
+	gulp.task('es6-import', function () {
+		return gulp.src('./www/js/main.js')
+				.pipe(es6Import())
+				.pipe(gulp.dest('./dist/www/js/'));
+	});
+
+	gulp.task('uglify-js', ['es6-import'], function () {
+		return gulp.src('./dist/www/js/main.js')
 			.pipe(uglify())
 			.pipe(gulp.dest('./dist/www/js'));
 	});
@@ -110,17 +119,17 @@
 		var fs = require('fs'),
 			path = require('path');
 
-		function walk (dir, done) {
+		function walk(dir, done) {
 			var results = [];
-			fs.readdir(dir, function(err, list) {
+			fs.readdir(dir, function (err, list) {
 				if (err) return done(err);
 				var pending = list.length;
 				if (!pending) return done(null, results);
-				list.forEach(function(file) {
+				list.forEach(function (file) {
 					file = path.resolve(dir, file);
-					fs.stat(file, function(err, stat) {
+					fs.stat(file, function (err, stat) {
 						if (stat && stat.isDirectory()) {
-							walk(file, function(err, res) {
+							walk(file, function (err, res) {
 								results = results.concat(res);
 								if (!--pending) done(null, results);
 							});
@@ -166,10 +175,10 @@
 	});
 
 	// watch
-	gulp.task('watch', ['html', 'import-css', 'es6', 'copy-i'], function () {
+	gulp.task('watch', ['html', 'import-css', 'es6-import', 'copy-i'], function () {
 		gulp.watch('./www/*.html', ['html']);
 		gulp.watch('./www/css/**/*', ['import-css']);
-		gulp.watch('./www/js/**/*', ['es6']);
+		gulp.watch('./www/js/**/*', ['es6-import']);
 		gulp.watch('./www/i/**/*', ['copy-i']);
 	});
 

@@ -1,10 +1,10 @@
 'use strict';
 /*global window */
 
-import Backbone from './../../../lib/backbone'
-import $ from './../../../lib/jbone'
-import _ from './../../../lib/lodash'
-import info from './../../../services/info'
+import Backbone from './../../../lib/backbone';
+import $ from './../../../lib/jbone';
+import _ from './../../../lib/lodash';
+import info from './../../../services/info';
 //import tm from './../../../services/template-master';
 import util from './../../../services/util';
 import mediator from './../../../services/mediator';
@@ -172,7 +172,7 @@ var win = window,
 				followData;
 
 			// find current index
-			listData.every((obj, i) => {
+			listData.every(function (obj, i) {
 				if (obj.key.toString() === currentKey) {
 					followIndex = i + direction;
 					return false;
@@ -203,7 +203,7 @@ var win = window,
 
 			var view = this;
 
-			view.$el.removeData().unbind().remove().empty();
+			view.$el.removeData().off().remove().empty();
 
 			view.remove();
 			view.unbind();
@@ -229,7 +229,7 @@ var win = window,
 			}
 
 			if (isScreenAnimation && $el.hasClass('show-view-animation')) {
-				$el.one(animationEnd, () => {
+				$el.one(animationEnd, function () {
 					view.destroyView();
 					deferred.resolve();
 				});
@@ -267,7 +267,7 @@ var win = window,
 				animationEnd = info.get('animationEnd', true);
 
 			if (isScreenAnimation) {
-				$el.one(animationEnd, () => {
+				$el.one(animationEnd, function () {
 					deferred.resolve();
 				});
 				$el.addClass('show-view-animation');
@@ -404,8 +404,8 @@ var win = window,
 				name: 'need-confirm',
 				cssClass: 'popup-title',
 				data: {
-					a,
-					b,
+					a: a,
+					b: b,
 					answer: answer,
 					answers: util.assortArray(answers),
 					url: data.url
@@ -510,7 +510,7 @@ var win = window,
 						}
 					],
 					data: {
-						lang,
+						lang: lang,
 						url: info.getLinkToStore()
 					}
 				});
