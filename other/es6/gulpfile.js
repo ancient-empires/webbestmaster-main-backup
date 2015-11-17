@@ -1,7 +1,7 @@
 /*jslint white: true, nomen: true */
 (function () {
 
-	var es6Import = require('es6-import'),
+	var es6Import = require('gulp-es6-import'),
 		gulp = require('gulp'),
 		uglify = require('gulp-uglify'),
 		clean = require('gulp-rimraf'),
