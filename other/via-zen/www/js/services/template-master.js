@@ -4,37 +4,34 @@
 import dot from './../lib/dot';
 
 var doc = window.document,
-	templateMaster = {
-		templateSelector: '.js-template',
-		mainJsSelector: '.js-main-js',
-		tmplText: {},
-		tmplFn: {},
-		getSymbolByMap: function (match, p1) {
-			return { 'amp' : '&', 'gt' : '>', 'lt' : '<' }[p1];
-		},
-		init: function () {
+		templateMaster = {
+			templateSelector: '.js-template',
+			mainJsSelector: '.js-main-js',
+			tmplText: {},
+			tmplFn: {},
+			init: function () {
 
-			var tm = this,
-				templates = doc.querySelectorAll(tm.templateSelector),
-				mainJs = doc.querySelector(tm.mainJsSelector);
+				var tm = this,
+						templates = doc.querySelectorAll(tm.templateSelector),
+						mainJs = doc.querySelector(tm.mainJsSelector);
 
-			Array.prototype.forEach.call(templates, function (tmplNode) {
+				Array.prototype.forEach.call(templates, function (tmplNode) {
 
-				var name = tmplNode.getAttribute('data-name'),
-					text = tmplNode.innerHTML.replace(/\&(amp|gt|lt)\;/gi, tm.getSymbolByMap);
+					var name = tmplNode.getAttribute('data-name'),
+						text = tmplNode.textContent.replace(/\<\!\-\-[\s\S]+?\-\-\>/gi, '').trim();
 
-				tm.tmplText[name] = text;
-				tm.tmplFn[name] = dot.template(text);
+					tm.tmplText[name] = text;
+					tm.tmplFn[name] = dot.template(text);
 
-				tmplNode.parentNode.removeChild(tmplNode);
+					tmplNode.parentNode.removeChild(tmplNode);
 
-			});
+				});
 
-			mainJs.parentNode.removeChild(mainJs);
+				return mainJs && mainJs.parentNode.removeChild(mainJs);
 
-		}
+			}
 
-	};
+		};
 
 templateMaster.init();
 

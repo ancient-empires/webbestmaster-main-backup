@@ -9,9 +9,6 @@ var doc = window.document,
 		mainJsSelector: '.js-main-js',
 		tmplText: {},
 		tmplFn: {},
-		getSymbolByMap: function (match, p1) {
-			return { 'amp' : '&', 'gt' : '>', 'lt' : '<' }[p1];
-		},
 		init: function () {
 
 			var tm = this,
@@ -21,7 +18,7 @@ var doc = window.document,
 			Array.prototype.forEach.call(templates, function (tmplNode) {
 
 				var name = tmplNode.getAttribute('data-name'),
-					text = tmplNode.innerHTML.replace(/\&(amp|gt|lt)\;/gi, tm.getSymbolByMap);
+					text = tmplNode.textContent.replace(/\<\!\-\-[\s\S]+?\-\-\>/gi, '').trim();
 
 				tm.tmplText[name] = text;
 				tm.tmplFn[name] = doT.template(text);
@@ -30,7 +27,7 @@ var doc = window.document,
 
 			});
 
-			mainJs.parentNode.removeChild(mainJs);
+			return mainJs && mainJs.parentNode.removeChild(mainJs);
 
 		}
 
