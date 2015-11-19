@@ -507,6 +507,8 @@
 
 			}
 
+			win.APP.androidAds.showAd();
+
 		},
 
 		setActivePlayer: function () {

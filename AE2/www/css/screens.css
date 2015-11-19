@@ -287,7 +287,14 @@
 	padding-bottom: 0.8rem;
 }
 
-
+.to-pro {
+	position: fixed;
+	text-decoration: underline;
+	padding: 0.7rem;
+	right: 0;
+	bottom: 0;
+	color: #f0f0f0;
+}
 
 
 

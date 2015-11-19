@@ -42,7 +42,7 @@
 
 	info = {
 
-		withAds: false,
+		withAds: true,
 
 		link: {
 			ios: {
@@ -50,8 +50,8 @@
 				pro: ''
 			},
 			android: {
-				normal: '',
-				pro: ''
+				normal: 'https://play.google.com/store/apps/details?id=com.statlex.ancientempirestrikeback',
+				pro: 'https://play.google.com/store/apps/details?id=com.statlex.ancientempirestrikebackpro'
 			}
 		},
 
@@ -256,6 +256,11 @@
 
 			return 300 + (q - 1) * 100;
 
+		},
+
+		getLinkToStore: function (type) { // pro or normal
+			return this.link[this.get('os', true)][type || 'normal'];
+			//return this.link[this.get('os', true)][type || (this.isNormal ? 'normal' : 'pro')];
 		}
 
 	};

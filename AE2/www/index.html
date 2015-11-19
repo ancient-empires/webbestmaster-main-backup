@@ -42,6 +42,7 @@
 	<script src="js/services/log.js" type="text/javascript"></script>
 	<script src="js/lib/mover.js" type="text/javascript"></script>
 	<script src="js/services/tool.js" type="text/javascript"></script>
+	<script src="js/services/android-ads.js" type="text/javascript"></script>
 
 	<!-- router -->
 	<script src="js/app/router/router.js" type="text/javascript"></script>
@@ -252,6 +253,10 @@
 	<div class="double-blocks-wrapper title-game-bg js-no-scroll">
 
 		<div class="sticker js-no-scroll js-unlock-all-levels">Fan<br>Game</div>
+
+		<% if (window.APP.info.withAds) { %>
+		<a class="js-external-link to-pro" href="<%= window.APP.info.getLinkToStore('pro') %>">Pro</a>
+		<% }; %>
 
 		<div class="double-block-container port-padding-top js-no-scroll">
 			<div class="logo-bg h100">
@@ -486,6 +491,11 @@
 						</div>
 					</div>
 				</div>
+
+				<% if (window.APP.info.withAds) { %>
+				<a class="js-external-link to-pro" href="<%= window.APP.info.getLinkToStore('pro') %>">Pro</a>
+				<% }; %>
+
 			</div>
 		</div>
 	</div>
