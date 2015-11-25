@@ -42,7 +42,7 @@
 
 	info = {
 
-		withAds: true,
+		withAds: false,
 
 		link: {
 			ios: {
