@@ -42,7 +42,7 @@
 
 	info = {
 
-		withAds: false,
+		withAds: true,
 
 		link: {
 			ios: {
@@ -51,7 +51,7 @@
 			},
 			android: {
 				normal: 'https://play.google.com/store/apps/details?id=com.statlex.ancientempirestrikeback',
-				pro: 'https://play.google.com/store/apps/details?id=com.statlex.ancientempirestrikebackpro'
+				pro: 'https://play.google.com/store/apps/details?id=com.statlex.ancientempirestrikebackup'
 			}
 		},
 
