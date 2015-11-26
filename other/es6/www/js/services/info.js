@@ -60,9 +60,10 @@ info = {
 	setLanguage: function () {
 
 		var info = this,
+			ua = win.navigator,
 			lang;
 
-		lang = info.get('language') || navigator.language || navigator.userLanguage || this.defaultLanguage;
+		lang = info.get('language') || ua.language || ua.userLanguage || this.defaultLanguage;
 		lang = lang.split('-')[0].toLowerCase();
 		lang = (info.availableLanguages.indexOf(lang) === -1) ? info.defaultLanguage : lang;
 		lang = lang.toLowerCase();
