@@ -1,0 +1,48 @@
+.nav {
+	width: 400px;
+	margin: 20px auto;
+	height: 50px;
+	position: relative;
+}
+
+.nav-item {
+	width: 20%;
+	text-align: center;
+	float: left;
+}
+
+.nav-marker {
+	position: absolute;
+	background-color: #c00;
+	width: 20%;
+	height: 30px;
+	left: 0;
+	z-index: -1;
+	transition: transform linear 1s;
+}
+
+.nav-item:nth-child(1):hover ~ .nav-marker {
+	transform: translateX(0);
+}
+
+.nav-item:nth-child(2):hover ~ .nav-marker {
+	transform: translateX(100%);
+}
+
+.nav-item:nth-child(3):hover ~ .nav-marker {
+	transform: translateX(200%);
+}
+
+.nav-item:nth-child(4):hover ~ .nav-marker {
+	transform: translateX(300%);
+}
+
+.nav-item:nth-child(5):hover ~ .nav-marker {
+	transform: translateX(400%);
+}
+
+
+
+
+
+
