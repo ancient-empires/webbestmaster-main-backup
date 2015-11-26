@@ -7,6 +7,10 @@ var win = window,
 	info,
 	isNormal = false;
 
+// Google Play: market://details?id=com.YOURPACKAGE.YOURPACKAGE
+// App Store: itms-apps://itunes.apple.com/us/app/YOUR-APP-SLUG-URL/id1111111111111?mt=8&uo=4
+// http://www.joshuawinn.com/adding-rate-button-to-cordova-based-mobile-app-android-ios-etc/
+
 info = {
 
 	isNormal: isNormal,
