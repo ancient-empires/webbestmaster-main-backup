@@ -11,6 +11,7 @@
 		minifyHTML = require('gulp-minify-html'),
 		//browserify = require('browserify'),
 		//babelify = require('babelify'),
+		sass = require('gulp-sass'),
 		source = require('vinyl-source-stream');
 	// gulp - run 'default' task
 	// gulp <task> <othertask>.
@@ -22,7 +23,7 @@
 			'html',
 			'es6-import',
 			'uglify-js',
-			'import-css', 'css-base64', 'minify-css',
+			'import-css', 'sass', 'css-base64', 'minify-css',
 			'clean-base64'
 		);
 
@@ -72,7 +73,13 @@
 			.pipe(gulp.dest('./dist/www/css'));
 	});
 
-	gulp.task('css-base64', ['import-css', 'copy-i'], function () {
+	gulp.task('sass', ['import-css'], function () {
+		gulp.src('./dist/www/css/main.css')
+				.pipe(sass())
+				.pipe(gulp.dest('./dist/www/css'));
+	});
+
+	gulp.task('css-base64', ['sass', 'copy-i'], function () {
 		return gulp.src('./dist/www/css/main.css')
 			.pipe(cssBase64())
 			.pipe(clean({force: true})) // remove original file (imported css)
@@ -175,9 +182,9 @@
 	});
 
 	// watch
-	gulp.task('watch', ['html', 'import-css', 'es6-import', 'copy-i'], function () {
+	gulp.task('watch', ['html', 'import-css', 'sass', 'es6-import', 'copy-i'], function () {
 		gulp.watch('./www/*.html', ['html']);
-		gulp.watch('./www/css/**/*', ['import-css']);
+		gulp.watch('./www/css/**/*', ['import-css', 'sass']);
 		gulp.watch('./www/js/**/*', ['es6-import']);
 		gulp.watch('./www/i/**/*', ['copy-i']);
 	});
