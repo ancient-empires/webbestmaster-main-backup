@@ -10,8 +10,8 @@
 */
 
 describe("pow", function () {
-	describe("pow", function () {
 
+	describe("pow - inner, suppert several inners", function () {
 
 		before(function() { console.log("Начало тестов"); });
 		after(function() { console.log("Конец тестов"); });
@@ -19,14 +19,31 @@ describe("pow", function () {
 		beforeEach(function() { console.log("Вход в тест"); });
 		afterEach(function() { console.log("Выход из теста"); });
 
-		it("при возведении 2 в 3ю степень результат 8", function () {
-			assert.equal(pow(2, 3), 8);
-		});
-
+		// simple test
 		it("при возведении 3 в 4ю степень равен 81", function () {
 			assert.equal(pow(3, 4), 81);
 		});
 
+		// async test
+		it("при возведении 2 в 3ю степень результат 8 - async -", function (done) {
+			setTimeout(function () {
+				assert.equal(pow(2, 3), 8);
+				done();
+			}, 100);
+		});
+
+		// several tests
+		function makeTest(x) {
+			var expected = x * x * x;
+			it("при возведении " + x + " в степень 3 результат: " + expected, function() {
+				assert.equal(pow(x, 3), expected);
+			});
+		}
+
+		for (var x = 1; x <= 5; x++) {
+			makeTest(x);
+		}
 
 	});
+
 });
