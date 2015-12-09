@@ -22,7 +22,6 @@ import Swiper from './lib/swiper';
 // init all services
 import info from './services/info';
 import device from './services/device';
-import androidAds from './services/android-ads';
 import lang from './services/lang';
 import log from './services/log';
 import tm from './services/template-master';
@@ -54,8 +53,6 @@ import popupMaster from './app/view/core/popup';
 	BaseView.prototype.initStatic();
 
 	Backbone.history.start();
-
-	win.setTimeout(androidAds.showAd, 3e3);
 
 }());
 

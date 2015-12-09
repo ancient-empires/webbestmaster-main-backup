@@ -9,6 +9,7 @@ import device from './../../services/device';
 import tm from './../../services/template-master';
 import booksData from './../books-data';
 import BaseView from './core/base';
+import ad from './../../services/android-ads';
 
 var win = window,
 	HomeView = BaseView.extend({
@@ -22,7 +23,8 @@ var win = window,
 		initialize: function () {
 
 			var view = this,
-				hintViewAutoplay = {};
+				hintViewAutoplay = {},
+				rateUsTimeoutId;
 
 			view.setElement(tm.tmplFn.home({
 				info: info,
@@ -48,6 +50,22 @@ var win = window,
 			}
 
 			bg.changeBg();
+
+			rateUsTimeoutId = setTimeout(function () {
+
+				// check for rate up popup
+				if ( ad.canShow() ) {
+					ad.showAd();
+					return;
+				}
+
+				if (Date.now() - info.get('installTime') > 20e3) {
+					view.rateUsPopup();
+				}
+
+			}, 50);
+
+			view.set('rateUsTimeoutId', rateUsTimeoutId);
 
 			return BaseView.prototype.initialize.apply(view, arguments);
 
@@ -99,22 +117,12 @@ var win = window,
 
 		bindEventListeners: function () {
 
-			var view = this,
-				rateUsTimeoutId;
+			var view = this;
 
 			view.listenTo(device, 'change:orientation', function () {
 				view.publish('hide-hint', {}, {doNotTrack: true});
 				view.loadUrl();
 			});
-
-			rateUsTimeoutId = setTimeout(function () {
-				// check for rate up popup
-				if (Date.now() - info.get('installTime') > 20e3) {
-					view.rateUsPopup();
-				}
-			}, 2e3);
-
-			view.set('rateUsTimeoutId', rateUsTimeoutId);
 
 		},
 

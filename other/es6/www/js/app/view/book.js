@@ -11,7 +11,6 @@ import device from './../../services/device';
 import sm from './../../sound/sound-master';
 import tm from './../../services/template-master';
 import util from './../../services/util';
-import androidAds from './../../services/android-ads';
 import BaseView from './core/base';
 
 var win = window,
@@ -450,7 +449,6 @@ var win = window,
 					});
 				} else {
 					view.routeBack();
-					setTimeout(androidAds.showAd, 3e3);
 				}
 
 			}, timeout * 1e3); // 1e3
