@@ -35,7 +35,7 @@
 
 			<!-- story by story -->
 			{{? isNormal }}
-			<div class="js-external-link story-by-story-wrapper header-button{{= isStoryByStory ? ' active-on-off' : '' }}" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes">
+			<div class="js-external-link story-by-story-wrapper header-button{{= isStoryByStory ? ' active-on-off' : '' }}" data-extra-text-item="aboutPaidVersion" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes">
 				<div class="active-on-off-indicator story-by-story-bg">&nbsp;</div>
 			</div>
 			{{??}}
@@ -47,7 +47,7 @@
 
 			<!-- remove ads -->
 			{{? isNormal }}
-			<div class="js-external-link header-remove-ads header-button active-on-off" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes">
+			<div class="js-external-link header-remove-ads header-button active-on-off" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes" data-extra-text-item="aboutPaidVersion">
 				<div class="active-on-off-indicator remove-ads-bg">&nbsp;</div>
 			</div>
 			<div class="header-button-text header-button-text-right">реклама</div>
@@ -70,18 +70,38 @@
 
 					{{~books :book:index }}
 
-					{{? index % booksOnShelf }}
-					<div class="title-book-wrapper-preview js-title-book-wrapper" data-js-route="book/{{= book.folder }}" >
-						<div class="title-book-preview-shadow"></div>
-						<img class="title-book-preview-image" src="books/{{= [languageName, book.folder, book.folder + '-00.jpg'].join('/') }}" alt=""/>
-						<p class="book-title-text">{{= book.title.text }}</p>
-					</div>
+					{{? isNormal && (index % 2) }}
+
+						{{? index % booksOnShelf }}
+						<div class="title-book-wrapper-preview locked js-external-link" data-extra-text-item="aboutPaidVersion" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes">
+							<div class="title-book-preview-shadow"></div>
+							<img class="title-book-preview-image" src="books/{{= [languageName, book.folder, book.folder + '-00.jpg'].join('/') }}" alt=""/>
+							<p class="book-title-text">{{= book.title.text }}</p>
+						</div>
+						{{??}}
+						<div class="title-book-wrapper-preview locked js-external-link" style="margin-left: {{= it.shelf.firstBookMarginLeft }};" data-extra-text-item="aboutPaidVersion" data-href="{{= info.getLinkToStore('pro') }}" data-need-confirm="yes">
+							<div class="title-book-preview-shadow"></div>
+							<img class="title-book-preview-image" src="books/{{= [languageName, book.folder, book.folder + '-00.jpg'].join('/') }}" alt=""/>
+							<p class="book-title-text">{{= book.title.text }}</p>
+						</div>
+						{{?}}
+
 					{{??}}
-					<div class="title-book-wrapper-preview js-title-book-wrapper" data-js-route="book/{{= book.folder }}" style="margin-left: {{= it.shelf.firstBookMarginLeft }};">
-						<div class="title-book-preview-shadow"></div>
-						<img class="title-book-preview-image" src="books/{{= [languageName, book.folder, book.folder + '-00.jpg'].join('/') }}" alt=""/>
-						<p class="book-title-text">{{= book.title.text }}</p>
-					</div>
+
+						{{? index % booksOnShelf }}
+						<div class="title-book-wrapper-preview js-title-book-wrapper" data-js-route="book/{{= book.folder }}" >
+							<div class="title-book-preview-shadow"></div>
+							<img class="title-book-preview-image" src="books/{{= [languageName, book.folder, book.folder + '-00.jpg'].join('/') }}" alt=""/>
+							<p class="book-title-text">{{= book.title.text }}</p>
+						</div>
+						{{??}}
+						<div class="title-book-wrapper-preview js-title-book-wrapper" data-js-route="book/{{= book.folder }}" style="margin-left: {{= it.shelf.firstBookMarginLeft }};">
+							<div class="title-book-preview-shadow"></div>
+							<img class="title-book-preview-image" src="books/{{= [languageName, book.folder, book.folder + '-00.jpg'].join('/') }}" alt=""/>
+							<p class="book-title-text">{{= book.title.text }}</p>
+						</div>
+						{{?}}
+
 					{{?}}
 
 					{{? index && !((index + 1) % booksOnShelf) }}
@@ -93,14 +113,6 @@
 					{{? books.length % booksOnShelf }}
 					<div class="shelf shelf-number-{{= booksOnShelf }}">&nbsp;</div>
 					{{?}}
-
-					<!-- partner-block begin -->
-					<div class="width-100 pos-rel js-partner-link">
-						<a href="http://applives.ru/" data-href="http://applives.ru/" data-need-confirm="yes" class="js-external-link" style="margin: 0 auto; display: block; width: 250px; height: 75px; background-image: url(image/pertners/applives.ru.png); color: transparent;">&nbsp;</a>
-						<p style="text-align: center; font-size: 0.8rem; padding-bottom: 0.2rem;">Партнёр приложения</p>
-					</div>
-					<div class="shelf shelf-number-{{= booksOnShelf }} js-partner-link">&nbsp;</div>
-					<!-- partner-block end -->
 
 				</div>
 			</div>
@@ -211,12 +223,8 @@
 
 		{{~it.answers :answer:index}}
 
-		{{? index === 3 }}
-		<div class="clear"></div>
-		{{?}}
-
 		{{? answer === it.answer }}
-		<div class="external-link-answer-button js-external-link js-back" data-href="{{= it.url }}">
+		<div class="external-link-answer-button js-external-link js-back" data-href="{{= it.url }}" data-extra-text-item="aboutPaidVersion">
 			{{= answer }}
 		</div>
 		{{??}}
@@ -225,6 +233,13 @@
 		</div>
 		{{?}}
 		{{~ }}
+
+		{{? it.text }}
+
+		<p class="need-confirm-text">{{= it.text }}</p>
+
+		{{?}}
+
 	</div>
 
 </script>

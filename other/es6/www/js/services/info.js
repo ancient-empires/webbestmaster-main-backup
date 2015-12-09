@@ -5,7 +5,7 @@ var win = window,
 	doc = win.document,
 	docElem = doc.documentElement,
 	info,
-	isNormal = false;
+	isNormal = true;
 
 // Google Play: market://details?id=com.YOURPACKAGE.YOURPACKAGE
 // App Store: itms-apps://itunes.apple.com/us/app/YOUR-APP-SLUG-URL/id1111111111111?mt=8&uo=4
@@ -27,7 +27,7 @@ info = {
 	},
 
 	ls: win.localStorage,
-	savedItem: 'cool-book-stories',
+	savedItem: 'cool-book-stories-1',
 	attr: {},
 	systemAttr: {},
 	defaultLanguage: 'ru',
@@ -250,7 +250,7 @@ info = {
 		var info = this,
 			hint = info.get('hint')[hintName];
 
-		return Boolean(hint && hint.state === 'done');
+			return Boolean(hint && hint.state === 'done');
 
 	},
 

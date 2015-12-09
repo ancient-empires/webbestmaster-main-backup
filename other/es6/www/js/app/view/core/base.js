@@ -368,13 +368,15 @@ var win = window,
 			var view = this,
 				$this = $(e.currentTarget),
 				needConfirm = $this.attr('data-need-confirm'),
-				url = $this.attr('data-href');
+				url = $this.attr('data-href'),
+				text = lang.get($this.attr('data-extra-text-item')) || '';
 
 			view.stopEvent(e);
 
 			if (needConfirm === 'yes') {
 				return view.needConfirmLinkPrompt({
-					url: url
+					url: url,
+					text: text.split('|').join('<br />')
 				});
 			}
 
@@ -408,7 +410,8 @@ var win = window,
 					b: b,
 					answer: answer,
 					answers: util.assortArray(answers),
-					url: data.url
+					url: data.url,
+					text: data.text
 				}
 			});
 

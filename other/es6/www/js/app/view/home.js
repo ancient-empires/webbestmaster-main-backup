@@ -31,11 +31,6 @@ var win = window,
 				//booksOnShelf:
 			}));
 
-			// partner link
-			if (Math.random() > 0.5) {
-				view.$el.find('.js-partner-link').off().remove();
-			}
-
 			view.bindEventListeners();
 
 			view.render();

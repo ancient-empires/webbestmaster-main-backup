@@ -43,16 +43,14 @@ var win = window,
 
 			view.set('pageMode', 'normal'); // fullText or normal
 
-			view.setElement(tm.tmplFn.book(
-				{
+			view.setElement(tm.tmplFn.book({
 					info: info,
 					util: util,
 					book: book,
 					settings: {
 						withText: view.get('withText')
 					}
-				}
-			));
+				}));
 
 			view.set('book', book);
 
@@ -216,9 +214,9 @@ var win = window,
 				$pages = view.$el.find(selectors.bookPage),
 				topBarHeight = info.get('remSize', true) * 3.4; // see style css .header
 
-			$pages.each(function () {
+			$pages.forEach(function (pageNode) {
 
-				var $page = $(this),
+				var $page = $(pageNode),
 					$pageText = $page.find(pageTextSelector),
 					textHeight = $pageText && $pageText.clientHeight || 0,
 					$image = $page.find(selectorImage),

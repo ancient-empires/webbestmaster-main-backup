@@ -6,17 +6,11 @@ import info from './../services/info';
 var win = window,
 	webPlayer = {
 
-	roads: undefined,
+	roads: [new Audio(), new Audio(), new Audio(), new Audio()],
 
 	pathPrefix: '',
 
 	init: function () {
-
-		var player = this;
-
-		player.roads = new Array(4).map(function () {
-			return new Audio();
-		});
 
 	},
 
@@ -31,6 +25,7 @@ var win = window,
 		player.stop(data);
 
 		newAudio = new Audio();
+
 		if (isLoop) {
 			newAudio.addEventListener('ended', function () {
 				if (info.get('music') === 'off') {
@@ -48,9 +43,9 @@ var win = window,
 			}
 			var audio = this;
 			audio.play();
+
 		});
 
-		player.roads[roadNumber].src = '';
 		player.roads[roadNumber] = newAudio;
 
 		newAudio.src = player.pathPrefix + sound;

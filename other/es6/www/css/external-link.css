@@ -29,3 +29,15 @@
 .external-link-answer-button:active {
 	box-shadow: none;
 }
+
+.need-confirm-text {
+	text-align: left;
+	font-size: 1rem;
+	line-height: 1.15rem;
+	font-family: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
+	border-top-style: solid;
+	border-top-width: 0.15rem;
+	margin-top: 0.2rem;
+	padding-top: 0.4rem;
+}
+
