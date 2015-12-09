@@ -1,0 +1,10 @@
+Compiling JSCoverage // http://siliconforks.com/jscoverage/manual.html
+
+tar jxvf jscoverage-0.5.1.tar.bz2 // http://siliconforks.com/jscoverage/download.html
+cd jscoverage-0.5.1/
+./configure
+make
+
+make install // or sudo make install
+
+
