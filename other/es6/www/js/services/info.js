@@ -5,7 +5,7 @@ var win = window,
 	doc = win.document,
 	docElem = doc.documentElement,
 	info,
-	isNormal = true;
+	isNormal = false;
 
 // Google Play: market://details?id=com.YOURPACKAGE.YOURPACKAGE
 // App Store: itms-apps://itunes.apple.com/us/app/YOUR-APP-SLUG-URL/id1111111111111?mt=8&uo=4
