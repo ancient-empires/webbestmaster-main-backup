@@ -21,8 +21,12 @@ info = {
 			pro: ''
 		},
 		android: {
+			normal: 'market://details?id=com.elitapp.coolbook',
+			pro: 'market://details?id=com.elitapp.coolbookpro'
+/*
 			normal: 'https://play.google.com/store/apps/details?id=com.elitapp.coolbook',
 			pro: 'https://play.google.com/store/apps/details?id=com.elitapp.coolbookpro'
+*/
 		}
 	},
 
