@@ -1,1 +1,1055 @@
-!function(a){function b(b){var c=b.length,d=typeof b;return o(d)||b===a?!1:1===b.nodeType&&c?!0:p(d)||0===c||"number"==typeof c&&c>0&&c-1 in b}function c(a,b){var c,d;this.originalEvent=a,d=function(a,b){this[a]="preventDefault"===a?function(){return this.defaultPrevented=!0,b[a]()}:"stopImmediatePropagation"===a?function(){return this.immediatePropagationStopped=!0,b[a]()}:o(b[a])?function(){return b[a]()}:b[a]};for(c in a)(a[c]||"function"==typeof a[c])&&d.call(this,c,a);q.extend(this,b,{isImmediatePropagationStopped:function(){return!!this.immediatePropagationStopped}})}var d,e=a.$,f=a.jBone,g=/^<(\w+)\s*\/?>$/,h=/^(?:[^#<]*(<[\w\W]+>)[^>]*$|#([\w\-]*)$)/,i=[].slice,j=[].splice,k=Object.keys,l=document,m=function(a){return"string"==typeof a},n=function(a){return a instanceof Object},o=function(a){return"[object Function]"==={}.toString.call(a)},p=function(a){return Array.isArray(a)},q=function(a,b){return new d.init(a,b)};q.noConflict=function(){return a.$=e,a.jBone=f,q},d=q.fn=q.prototype={init:function(a,b){var c,d,e,f;if(!a)return this;if(m(a)){if(d=g.exec(a))return this[0]=l.createElement(d[1]),this.length=1,n(b)&&this.attr(b),this;if((d=h.exec(a))&&d[1]){for(f=l.createDocumentFragment(),e=l.createElement("div"),e.innerHTML=a;e.lastChild;)f.appendChild(e.firstChild);return c=i.call(f.childNodes),q.merge(this,c)}if(q.isElement(b))return q(b).find(a);try{return c=l.querySelectorAll(a),q.merge(this,c)}catch(j){return this}}return a.nodeType?(this[0]=a,this.length=1,this):o(a)?a():a instanceof q?a:q.makeArray(a,this)},pop:[].pop,push:[].push,reverse:[].reverse,shift:[].shift,sort:[].sort,splice:[].splice,slice:[].slice,indexOf:[].indexOf,forEach:[].forEach,unshift:[].unshift,concat:[].concat,join:[].join,every:[].every,some:[].some,filter:[].filter,map:[].map,reduce:[].reduce,reduceRight:[].reduceRight,length:0},d.constructor=q,d.init.prototype=d,q.setId=function(b){var c=b.jid;b===a?c="window":void 0===b.jid&&(b.jid=c=++q._cache.jid),q._cache.events[c]||(q._cache.events[c]={})},q.getData=function(b){b=b instanceof q?b[0]:b;var c=b===a?"window":b.jid;return{jid:c,events:q._cache.events[c]}},q.isElement=function(a){return a&&a instanceof q||a instanceof HTMLElement||m(a)},q._cache={events:{},jid:0},d.pushStack=function(a){var b=q.merge(this.constructor(),a);return b},q.merge=function(a,b){for(var c=b.length,d=a.length,e=0;c>e;)a[d++]=b[e++];return a.length=d,a},q.contains=function(a,b){return a.contains(b)},q.extend=function(a){var b;return j.call(arguments,1).forEach(function(c){if(b=a,c)for(var d in c)b[d]=c[d]}),a},q.makeArray=function(a,c){var d=c||[];return null!==a&&(b(a)?q.merge(d,m(a)?[a]:a):d.push(a)),d},q.unique=function(a){if(null==a)return[];for(var b=[],c=0,d=a.length;d>c;c++){var e=a[c];b.indexOf(e)<0&&b.push(e)}return b},q.Event=function(a,b){var c,d;return a.type&&!b&&(b=a,a=a.type),c=a.split(".").splice(1).join("."),d=a.split(".")[0],a=l.createEvent("Event"),a.initEvent(d,!0,!0),q.extend(a,{namespace:c,isDefaultPrevented:function(){return a.defaultPrevented}},b)},q.event={add:function(a,b,c,d,e){q.setId(a);var f,g,h,i=function(b){q.event.dispatch.call(a,b)},j=q.getData(a).events;for(b=b.split(" "),g=b.length;g--;)h=b[g],f=h.split(".")[0],j[f]=j[f]||[],j[f].length?i=j[f][0].fn:a.addEventListener&&a.addEventListener(f,i,!1),j[f].push({namespace:h.split(".").splice(1).join("."),fn:i,selector:e,data:d,originfn:c})},remove:function(a,b,c){var d,e,f=function(a,b,d,e,f){var g;(c&&f.originfn===c||!c)&&(g=f.fn),a[b][d].fn===g&&(a[b].splice(d,1),a[b].length||e.removeEventListener(b,g))},g=q.getData(a).events;if(g)return!b&&g?k(g).forEach(function(b){for(e=g[b],d=e.length;d--;)f(g,b,d,a,e[d])}):void b.split(" ").forEach(function(b){var c,h=b.split(".")[0],i=b.split(".").splice(1).join(".");if(g[h])for(e=g[h],d=e.length;d--;)c=e[d],(!i||i&&c.namespace===i)&&f(g,h,d,a,c);else i&&k(g).forEach(function(b){for(e=g[b],d=e.length;d--;)c=e[d],c.namespace.split(".")[0]===i.split(".")[0]&&f(g,b,d,a,c)})})},trigger:function(a,b){var c=[];m(b)?c=b.split(" ").map(function(a){return q.Event(a)}):(b=b instanceof Event?b:q.Event(b),c=[b]),c.forEach(function(b){b.type&&a.dispatchEvent&&a.dispatchEvent(b)})},dispatch:function(a){for(var b,d,e,f,g,h=0,i=0,j=this,k=q.getData(j).events[a.type],l=k.length,m=[],n=[];l>h;h++)m.push(k[h]);for(h=0,l=m.length;l>h&&~k.indexOf(m[h])&&(!f||!f.isImmediatePropagationStopped());h++)if(d=null,g={},e=m[h],e.data&&(g.data=e.data),e.selector){if(~(n=q(j).find(e.selector)).indexOf(a.target)&&(d=a.target)||j!==a.target&&j.contains(a.target)){if(!d)for(b=n.length,i=0;b>i;i++)n[i]&&n[i].contains(a.target)&&(d=n[i]);if(!d)continue;g.currentTarget=d,f=new c(a,g),a.namespace&&a.namespace!==e.namespace||e.originfn.call(d,f)}}else f=new c(a,g),a.namespace&&a.namespace!==e.namespace||e.originfn.call(j,f)}},d.on=function(a,b,c,d){var e=this.length,f=0;if(null==c&&null==d?(d=b,c=b=void 0):null==d&&("string"==typeof b?(d=c,c=void 0):(d=c,c=b,b=void 0)),!d)return this;for(;e>f;f++)q.event.add(this[f],a,d,c,b);return this},d.one=function(a){var b,c=arguments,d=0,e=this.length,f=i.call(c,1,c.length-1),g=i.call(c,-1)[0];for(b=function(b){var c=q(b);a.split(" ").forEach(function(a){var d=function(e){c.off(a,d),g.call(b,e)};c.on.apply(c,[a].concat(f,d))})};e>d;d++)b(this[d]);return this},d.trigger=function(a){var b=0,c=this.length;if(!a)return this;for(;c>b;b++)q.event.trigger(this[b],a);return this},d.off=function(a,b){for(var c=0,d=this.length;d>c;c++)q.event.remove(this[c],a,b);return this},d.find=function(a){for(var b=[],c=0,d=this.length,e=function(c){o(c.querySelectorAll)&&[].forEach.call(c.querySelectorAll(a),function(a){b.push(a)})};d>c;c++)e(this[c]);return q(b)},d.get=function(a){return null!=a?0>a?this[a+this.length]:this[a]:i.call(this)},d.eq=function(a){return q(this[a])},d.parent=function(){for(var a,b=[],c=0,d=this.length;d>c;c++)!~b.indexOf(a=this[c].parentElement)&&a&&b.push(a);return q(b)},d.toArray=function(){return i.call(this)},d.is=function(){var a=arguments;return this.some(function(b){return b.tagName.toLowerCase()===a[0]})},d.has=function(){var a=arguments;return this.some(function(b){return b.querySelectorAll(a[0]).length})},d.add=function(a,b){return this.pushStack(q.unique(q.merge(this.get(),q(a,b))))},d.attr=function(a,b){var c,d=arguments,e=0,f=this.length;if(m(a)&&1===d.length)return this[0]&&this[0].getAttribute(a);for(2===d.length?c=function(c){c.setAttribute(a,b)}:n(a)&&(c=function(b){k(a).forEach(function(c){b.setAttribute(c,a[c])})});f>e;e++)c(this[e]);return this},d.removeAttr=function(a){for(var b=0,c=this.length;c>b;b++)this[b].removeAttribute(a);return this},d.val=function(a){var b=0,c=this.length;if(0===arguments.length)return this[0]&&this[0].value;for(;c>b;b++)this[b].value=a;return this},d.css=function(b,c){var d,e=arguments,f=0,g=this.length;if(m(b)&&1===e.length)return this[0]&&a.getComputedStyle(this[0])[b];for(2===e.length?d=function(a){a.style[b]=c}:n(b)&&(d=function(a){k(b).forEach(function(c){a.style[c]=b[c]})});g>f;f++)d(this[f]);return this},d.data=function(a,b){var c,d=arguments,e={},f=0,g=this.length,h=function(a,b,c){n(c)?(a.jdata=a.jdata||{},a.jdata[b]=c):a.dataset[b]=c},i=function(a){return"true"===a?!0:"false"===a?!1:a};if(0===d.length)return this[0].jdata&&(e=this[0].jdata),k(this[0].dataset).forEach(function(a){e[a]=i(this[0].dataset[a])},this),e;if(1===d.length&&m(a))return this[0]&&i(this[0].dataset[a]||this[0].jdata&&this[0].jdata[a]);for(1===d.length&&n(a)?c=function(b){k(a).forEach(function(c){h(b,c,a[c])})}:2===d.length&&(c=function(c){h(c,a,b)});g>f;f++)c(this[f]);return this},d.removeData=function(a){for(var b,c,d=0,e=this.length;e>d;d++)if(b=this[d].jdata,c=this[d].dataset,a)b&&b[a]&&delete b[a],delete c[a];else{for(a in b)delete b[a];for(a in c)delete c[a]}return this},d.addClass=function(a){for(var b=0,c=0,d=this.length,e=a?a.trim().split(/\s+/):[];d>b;b++)for(c=0,c=0;c<e.length;c++)this[b].classList.add(e[c]);return this},d.removeClass=function(a){for(var b=0,c=0,d=this.length,e=a?a.trim().split(/\s+/):[];d>b;b++)for(c=0,c=0;c<e.length;c++)this[b].classList.remove(e[c]);return this},d.toggleClass=function(a,b){var c=0,d=this.length,e="toggle";if(b===!0&&(e="add")||b===!1&&(e="remove"),a)for(;d>c;c++)this[c].classList[e](a);return this},d.hasClass=function(a){var b=0,c=this.length;if(a)for(;c>b;b++)if(this[b].classList.contains(a))return!0;return!1},d.html=function(a){var b,c=arguments;return 1===c.length&&void 0!==a?this.empty().append(a):0===c.length&&(b=this[0])?b.innerHTML:this},d.append=function(a){var b,c=0,d=this.length;for(m(a)&&h.exec(a)?a=q(a):n(a)||(a=document.createTextNode(a)),a=a instanceof q?a:q(a),b=function(b,c){a.forEach(function(a){b.appendChild(c?a.cloneNode(!0):a)})};d>c;c++)b(this[c],c);return this},d.appendTo=function(a){return q(a).append(this),this},d.empty=function(){for(var a,b=0,c=this.length;c>b;b++)for(a=this[b];a.lastChild;)a.removeChild(a.lastChild);return this},d.remove=function(){var a,b=0,c=this.length;for(this.off();c>b;b++)a=this[b],delete a.jdata,a.parentNode&&a.parentNode.removeChild(a);return this},"object"==typeof module&&module&&"object"==typeof module.exports?module.exports=q:"function"==typeof define&&define.amd?(define(function(){return q}),a.jBone=a.$=q):"object"==typeof a&&"object"==typeof a.document&&(a.jBone=a.$=q)}(window);
+/*!
+ * jBone v1.1.2 - 2015-10-09 - Library for DOM manipulation
+ *
+ * http://jbone.js.org
+ *
+ * Copyright 2015 Alexey Kupriyanenko
+ * Released under the MIT license.
+ */
+
+(function (win) {
+
+var
+// cache previous versions
+_$ = win.$,
+_jBone = win.jBone,
+
+// Quick match a standalone tag
+rquickSingleTag = /^<(\w+)\s*\/?>$/,
+
+// A simple way to check for HTML strings
+// Prioritize #id over <tag> to avoid XSS via location.hash
+rquickExpr = /^(?:[^#<]*(<[\w\W]+>)[^>]*$|#([\w\-]*)$)/,
+
+// Alias for function
+slice = [].slice,
+splice = [].splice,
+keys = Object.keys,
+
+// Alias for global variables
+doc = document,
+
+isString = function(el) {
+    return typeof el === "string";
+},
+isObject = function(el) {
+    return el instanceof Object;
+},
+isFunction = function(el) {
+    return ({}).toString.call(el) === "[object Function]";
+},
+isArray = function(el) {
+    return Array.isArray(el);
+},
+jBone = function(element, data) {
+    return new fn.init(element, data);
+},
+fn;
+
+// set previous values and return the instance upon calling the no-conflict mode
+jBone.noConflict = function() {
+    win.$ = _$;
+    win.jBone = _jBone;
+
+    return jBone;
+};
+
+fn = jBone.fn = jBone.prototype = {
+    init: function(element, data) {
+        var elements, tag, wraper, fragment;
+
+        if (!element) {
+            return this;
+        }
+        if (isString(element)) {
+            // Create single DOM element
+            if (tag = rquickSingleTag.exec(element)) {
+                this[0] = doc.createElement(tag[1]);
+                this.length = 1;
+
+                if (isObject(data)) {
+                    this.attr(data);
+                }
+
+                return this;
+            }
+            // Create DOM collection
+            if ((tag = rquickExpr.exec(element)) && tag[1]) {
+                fragment = doc.createDocumentFragment();
+                wraper = doc.createElement("div");
+                wraper.innerHTML = element;
+                while (wraper.lastChild) {
+                    fragment.appendChild(wraper.firstChild);
+                }
+                elements = slice.call(fragment.childNodes);
+
+                return jBone.merge(this, elements);
+            }
+            // Find DOM elements with querySelectorAll
+            if (jBone.isElement(data)) {
+                return jBone(data).find(element);
+            }
+
+            try {
+                elements = doc.querySelectorAll(element);
+
+                return jBone.merge(this, elements);
+            } catch (e) {
+                return this;
+            }
+        }
+        // Wrap DOMElement
+        if (element.nodeType) {
+            this[0] = element;
+            this.length = 1;
+
+            return this;
+        }
+        // Run function
+        if (isFunction(element)) {
+            return element();
+        }
+        // Return jBone element as is
+        if (element instanceof jBone) {
+            return element;
+        }
+
+        // Return element wrapped by jBone
+        return jBone.makeArray(element, this);
+    },
+
+    pop: [].pop,
+    push: [].push,
+    reverse: [].reverse,
+    shift: [].shift,
+    sort: [].sort,
+    splice: [].splice,
+    slice: [].slice,
+    indexOf: [].indexOf,
+    forEach: [].forEach,
+    unshift: [].unshift,
+    concat: [].concat,
+    join: [].join,
+    every: [].every,
+    some: [].some,
+    filter: [].filter,
+    map: [].map,
+    reduce: [].reduce,
+    reduceRight: [].reduceRight,
+    length: 0
+};
+
+fn.constructor = jBone;
+
+fn.init.prototype = fn;
+
+jBone.setId = function(el) {
+    var jid = el.jid;
+
+    if (el === win) {
+        jid = "window";
+    } else if (el.jid === undefined) {
+        el.jid = jid = ++jBone._cache.jid;
+    }
+
+    if (!jBone._cache.events[jid]) {
+        jBone._cache.events[jid] = {};
+    }
+};
+
+jBone.getData = function(el) {
+    el = el instanceof jBone ? el[0] : el;
+
+    var jid = el === win ? "window" : el.jid;
+
+    return {
+        jid: jid,
+        events: jBone._cache.events[jid]
+    };
+};
+
+jBone.isElement = function(el) {
+    return el && el instanceof jBone || el instanceof HTMLElement || isString(el);
+};
+
+jBone._cache = {
+    events: {},
+    jid: 0
+};
+
+function isArraylike(obj) {
+    var length = obj.length,
+        type = typeof obj;
+
+    if (isFunction(type) || obj === win) {
+        return false;
+    }
+
+    if (obj.nodeType === 1 && length) {
+        return true;
+    }
+
+    return isArray(type) || length === 0 ||
+        typeof length === "number" && length > 0 && (length - 1) in obj;
+}
+
+fn.pushStack = function(elems) {
+    var ret = jBone.merge(this.constructor(), elems);
+
+    return ret;
+};
+
+jBone.merge = function(first, second) {
+    var l = second.length,
+        i = first.length,
+        j = 0;
+
+    while (j < l) {
+        first[i++] = second[j++];
+    }
+
+    first.length = i;
+
+    return first;
+};
+
+jBone.contains = function(container, contained) {
+    return container.contains(contained);
+};
+
+jBone.extend = function(target) {
+    var tg;
+
+    splice.call(arguments, 1).forEach(function(source) {
+        tg = target; //caching target for perf improvement
+
+        if (source) {
+            for (var prop in source) {
+                tg[prop] = source[prop];
+            }
+        }
+    });
+
+    return target;
+};
+
+jBone.makeArray = function(arr, results) {
+    var ret = results || [];
+
+    if (arr !== null) {
+        if (isArraylike(arr)) {
+            jBone.merge(ret, isString(arr) ? [arr] : arr);
+        } else {
+            ret.push(arr);
+        }
+    }
+
+    return ret;
+};
+
+jBone.unique = function(array) {
+    if (array == null) {
+        return [];
+    }
+
+    var result = [];
+
+    for (var i = 0, length = array.length; i < length; i++) {
+        var value = array[i];
+        if (result.indexOf(value) < 0) {
+            result.push(value);
+        }
+    }
+    return result;
+};
+
+function BoneEvent(e, data) {
+    var key, setter;
+
+    this.originalEvent = e;
+
+    setter = function(key, e) {
+        if (key === "preventDefault") {
+            this[key] = function() {
+                this.defaultPrevented = true;
+                return e[key]();
+            };
+        } else if (key === "stopImmediatePropagation") {
+            this[key] = function() {
+                this.immediatePropagationStopped = true;
+                return e[key]();
+            };
+        } else if (isFunction(e[key])) {
+            this[key] = function() {
+                return e[key]();
+            };
+        } else {
+            this[key] = e[key];
+        }
+    };
+
+    for (key in e) {
+        if (e[key] || typeof e[key] === "function") {
+            setter.call(this, key, e);
+        }
+    }
+
+    jBone.extend(this, data, {
+        isImmediatePropagationStopped: function() {
+            return !!this.immediatePropagationStopped;
+        }
+    });
+}
+
+jBone.Event = function(event, data) {
+    var namespace, eventType;
+
+    if (event.type && !data) {
+        data = event;
+        event = event.type;
+    }
+
+    namespace = event.split(".").splice(1).join(".");
+    eventType = event.split(".")[0];
+
+    event = doc.createEvent("Event");
+    event.initEvent(eventType, true, true);
+
+    return jBone.extend(event, {
+        namespace: namespace,
+        isDefaultPrevented: function() {
+            return event.defaultPrevented;
+        }
+    }, data);
+};
+
+jBone.event = {
+
+    /**
+     * Attach a handler to an event for the elements
+     * @param {Node}        el         - Events will be attached to this DOM Node
+     * @param {String}      types      - One or more space-separated event types and optional namespaces
+     * @param {Function}    handler    - A function to execute when the event is triggered
+     * @param {Object}      [data]     - Data to be passed to the handler in event.data
+     * @param {String}      [selector] - A selector string to filter the descendants of the selected elements
+     */
+    add: function(el, types, handler, data, selector) {
+        jBone.setId(el);
+
+        var eventHandler = function(e) {
+                jBone.event.dispatch.call(el, e);
+            },
+            events = jBone.getData(el).events,
+            eventType, t, event;
+
+        types = types.split(" ");
+        t = types.length;
+        while (t--) {
+            event = types[t];
+
+            eventType = event.split(".")[0];
+            events[eventType] = events[eventType] || [];
+
+            if (events[eventType].length) {
+                // override with previous event handler
+                eventHandler = events[eventType][0].fn;
+            } else {
+                el.addEventListener && el.addEventListener(eventType, eventHandler, false);
+            }
+
+            events[eventType].push({
+                namespace: event.split(".").splice(1).join("."),
+                fn: eventHandler,
+                selector: selector,
+                data: data,
+                originfn: handler
+            });
+        }
+    },
+
+    /**
+     * Remove an event handler
+     * @param  {Node}       el        - Events will be deattached from this DOM Node
+     * @param  {String}     types     - One or more space-separated event types and optional namespaces
+     * @param  {Function}   handler   - A handler function previously attached for the event(s)
+     */
+    remove: function(el, types, handler) {
+        var removeListener = function(events, eventType, index, el, e) {
+                var callback;
+
+                // get callback
+                if ((handler && e.originfn === handler) || !handler) {
+                    callback = e.fn;
+                }
+
+                if (events[eventType][index].fn === callback) {
+                    // remove handler from cache
+                    events[eventType].splice(index, 1);
+
+                    if (!events[eventType].length) {
+                        el.removeEventListener(eventType, callback);
+                    }
+                }
+            },
+            events = jBone.getData(el).events,
+            l,
+            eventsByType;
+
+        if (!events) {
+            return;
+        }
+
+        // remove all events
+        if (!types && events) {
+            return keys(events).forEach(function(eventType) {
+                eventsByType = events[eventType];
+                l = eventsByType.length;
+
+                while(l--) {
+                    removeListener(events, eventType, l, el, eventsByType[l]);
+                }
+            });
+        }
+
+        types.split(" ").forEach(function(eventName) {
+            var eventType = eventName.split(".")[0],
+                namespace = eventName.split(".").splice(1).join("."),
+                e;
+
+            // remove named events
+            if (events[eventType]) {
+                eventsByType = events[eventType];
+                l = eventsByType.length;
+
+                while(l--) {
+                    e = eventsByType[l];
+                    if (!namespace || (namespace && e.namespace === namespace)) {
+                        removeListener(events, eventType, l, el, e);
+                    }
+                }
+            }
+            // remove all namespaced events
+            else if (namespace) {
+                keys(events).forEach(function(eventType) {
+                    eventsByType = events[eventType];
+                    l = eventsByType.length;
+
+                    while(l--) {
+                        e = eventsByType[l];
+                        if (e.namespace.split(".")[0] === namespace.split(".")[0]) {
+                            removeListener(events, eventType, l, el, e);
+                        }
+                    }
+                });
+            }
+        });
+    },
+
+    /**
+     * Execute all handlers and behaviors attached to the matched elements for the given event type.
+     * @param  {Node}       el       - Events will be triggered for thie DOM Node
+     * @param  {String}     event    - One or more space-separated event types and optional namespaces
+     */
+    trigger: function(el, event) {
+        var events = [];
+
+        if (isString(event)) {
+            events = event.split(" ").map(function(event) {
+                return jBone.Event(event);
+            });
+        } else {
+            event = event instanceof Event ? event : jBone.Event(event);
+            events = [event];
+        }
+
+        events.forEach(function(event) {
+            if (!event.type) {
+                return;
+            }
+
+            el.dispatchEvent && el.dispatchEvent(event);
+        });
+    },
+
+    dispatch: function(e) {
+        var i = 0,
+            j = 0,
+            el = this,
+            handlers = jBone.getData(el).events[e.type],
+            length = handlers.length,
+            handlerQueue = [],
+            targets = [],
+            l,
+            expectedTarget,
+            handler,
+            event,
+            eventOptions;
+
+        // cache all events handlers, fix issue with multiple handlers (issue #45)
+        for (; i < length; i++) {
+            handlerQueue.push(handlers[i]);
+        }
+
+        i = 0;
+        length = handlerQueue.length;
+
+        for (;
+            // if event exists
+            i < length &&
+            // if handler is not removed from stack
+            ~handlers.indexOf(handlerQueue[i]) &&
+            // if propagation is not stopped
+            !(event && event.isImmediatePropagationStopped());
+        i++) {
+            expectedTarget = null;
+            eventOptions = {};
+            handler = handlerQueue[i];
+            handler.data && (eventOptions.data = handler.data);
+
+            // event handler without selector
+            if (!handler.selector) {
+                event = new BoneEvent(e, eventOptions);
+
+                if (!(e.namespace && e.namespace !== handler.namespace)) {
+                    handler.originfn.call(el, event);
+                }
+            }
+            // event handler with selector
+            else if (
+                // if target and selected element the same
+                ~(targets = jBone(el).find(handler.selector)).indexOf(e.target) && (expectedTarget = e.target) ||
+                // if one of element matched with selector contains target
+                (el !== e.target && el.contains(e.target))
+            ) {
+                // get element matched with selector
+                if (!expectedTarget) {
+                    l = targets.length;
+                    j = 0;
+
+                    for (; j < l; j++) {
+                        if (targets[j] && targets[j].contains(e.target)) {
+                            expectedTarget = targets[j];
+                        }
+                    }
+                }
+
+                if (!expectedTarget) {
+                    continue;
+                }
+
+                eventOptions.currentTarget = expectedTarget;
+                event = new BoneEvent(e, eventOptions);
+
+                if (!(e.namespace && e.namespace !== handler.namespace)) {
+                    handler.originfn.call(expectedTarget, event);
+                }
+            }
+        }
+    }
+};
+
+fn.on = function(types, selector, data, fn) {
+    var length = this.length,
+        i = 0;
+
+    if (data == null && fn == null) {
+        // (types, fn)
+        fn = selector;
+        data = selector = undefined;
+    } else if (fn == null) {
+        if (typeof selector === "string") {
+            // (types, selector, fn)
+            fn = data;
+            data = undefined;
+        } else {
+            // (types, data, fn)
+            fn = data;
+            data = selector;
+            selector = undefined;
+        }
+    }
+
+    if (!fn) {
+        return this;
+    }
+
+    for (; i < length; i++) {
+        jBone.event.add(this[i], types, fn, data, selector);
+    }
+
+    return this;
+};
+
+fn.one = function(event) {
+    var args = arguments,
+        i = 0,
+        length = this.length,
+        oneArgs = slice.call(args, 1, args.length - 1),
+        callback = slice.call(args, -1)[0],
+        addListener;
+
+    addListener = function(el) {
+        var $el = jBone(el);
+
+        event.split(" ").forEach(function(event) {
+            var fn = function(e) {
+                $el.off(event, fn);
+                callback.call(el, e);
+            };
+
+            $el.on.apply($el, [event].concat(oneArgs, fn));
+        });
+    };
+
+    for (; i < length; i++) {
+        addListener(this[i]);
+    }
+
+    return this;
+};
+
+fn.trigger = function(event) {
+    var i = 0,
+        length = this.length;
+
+    if (!event) {
+        return this;
+    }
+
+    for (; i < length; i++) {
+        jBone.event.trigger(this[i], event);
+    }
+
+    return this;
+};
+
+fn.off = function(types, handler) {
+    var i = 0,
+        length = this.length;
+
+    for (; i < length; i++) {
+        jBone.event.remove(this[i], types, handler);
+    }
+
+    return this;
+};
+
+fn.find = function(selector) {
+    var results = [],
+        i = 0,
+        length = this.length,
+        finder = function(el) {
+            if (isFunction(el.querySelectorAll)) {
+                [].forEach.call(el.querySelectorAll(selector), function(found) {
+                    results.push(found);
+                });
+            }
+        };
+
+    for (; i < length; i++) {
+        finder(this[i]);
+    }
+
+    return jBone(results);
+};
+
+fn.get = function(index) {
+    return index != null ?
+
+        // Return just one element from the set
+        (index < 0 ? this[index + this.length] : this[index]) :
+
+        // Return all the elements in a clean array
+        slice.call(this);
+};
+
+fn.eq = function(index) {
+    return jBone(this[index]);
+};
+
+fn.parent = function() {
+    var results = [],
+        parent,
+        i = 0,
+        length = this.length;
+
+    for (; i < length; i++) {
+        if (!~results.indexOf(parent = this[i].parentElement) && parent) {
+            results.push(parent);
+        }
+    }
+
+    return jBone(results);
+};
+
+fn.toArray = function() {
+    return slice.call(this);
+};
+
+fn.is = function() {
+    var args = arguments;
+
+    return this.some(function(el) {
+        return el.tagName.toLowerCase() === args[0];
+    });
+};
+
+fn.has = function() {
+    var args = arguments;
+
+    return this.some(function(el) {
+        return el.querySelectorAll(args[0]).length;
+    });
+};
+
+fn.add = function(selector, context) {
+    return this.pushStack(
+        jBone.unique(
+            jBone.merge(this.get(), jBone(selector, context))
+        )
+    );
+};
+
+fn.attr = function(key, value) {
+    var args = arguments,
+        i = 0,
+        length = this.length,
+        setter;
+
+    if (isString(key) && args.length === 1) {
+        return this[0] && this[0].getAttribute(key);
+    }
+
+    if (args.length === 2) {
+        setter = function(el) {
+            el.setAttribute(key, value);
+        };
+    } else if (isObject(key)) {
+        setter = function(el) {
+            keys(key).forEach(function(name) {
+                el.setAttribute(name, key[name]);
+            });
+        };
+    }
+
+    for (; i < length; i++) {
+        setter(this[i]);
+    }
+
+    return this;
+};
+
+fn.removeAttr = function(key) {
+    var i = 0,
+        length = this.length;
+
+    for (; i < length; i++) {
+        this[i].removeAttribute(key);
+    }
+
+    return this;
+};
+
+fn.val = function(value) {
+    var i = 0,
+        length = this.length;
+
+    if (arguments.length === 0) {
+        return this[0] && this[0].value;
+    }
+
+    for (; i < length; i++) {
+        this[i].value = value;
+    }
+
+    return this;
+};
+
+fn.css = function(key, value) {
+    var args = arguments,
+        i = 0,
+        length = this.length,
+        setter;
+
+    // Get attribute
+    if (isString(key) && args.length === 1) {
+        return this[0] && win.getComputedStyle(this[0])[key];
+    }
+
+    // Set attributes
+    if (args.length === 2) {
+        setter = function(el) {
+            el.style[key] = value;
+        };
+    } else if (isObject(key)) {
+        setter = function(el) {
+            keys(key).forEach(function(name) {
+                el.style[name] = key[name];
+            });
+        };
+    }
+
+    for (; i < length; i++) {
+        setter(this[i]);
+    }
+
+    return this;
+};
+
+fn.data = function(key, value) {
+    var args = arguments, data = {},
+        i = 0,
+        length = this.length,
+        setter,
+        setValue = function(el, key, value) {
+            if (isObject(value)) {
+                el.jdata = el.jdata || {};
+                el.jdata[key] = value;
+            } else {
+                el.dataset[key] = value;
+            }
+        },
+        getValue = function(value) {
+            if (value === "true") {
+                return true;
+            } else if (value === "false") {
+                return false;
+            } else {
+                return value;
+            }
+        };
+
+    // Get all data
+    if (args.length === 0) {
+        this[0].jdata && (data = this[0].jdata);
+
+        keys(this[0].dataset).forEach(function(key) {
+            data[key] = getValue(this[0].dataset[key]);
+        }, this);
+
+        return data;
+    }
+    // Get data by name
+    if (args.length === 1 && isString(key)) {
+        return this[0] && getValue(this[0].dataset[key] || this[0].jdata && this[0].jdata[key]);
+    }
+
+    // Set data
+    if (args.length === 1 && isObject(key)) {
+        setter = function(el) {
+            keys(key).forEach(function(name) {
+                setValue(el, name, key[name]);
+            });
+        };
+    } else if (args.length === 2) {
+        setter = function(el) {
+            setValue(el, key, value);
+        };
+    }
+
+    for (; i < length; i++) {
+        setter(this[i]);
+    }
+
+    return this;
+};
+
+fn.removeData = function(key) {
+    var i = 0,
+        length = this.length,
+        jdata, dataset;
+
+    for (; i < length; i++) {
+        jdata = this[i].jdata;
+        dataset = this[i].dataset;
+
+        if (key) {
+            jdata && jdata[key] && delete jdata[key];
+            delete dataset[key];
+        } else {
+            for (key in jdata) {
+                delete jdata[key];
+            }
+
+            for (key in dataset) {
+                delete dataset[key];
+            }
+        }
+    }
+
+    return this;
+};
+
+fn.addClass = function(className) {
+    var i = 0,
+        j = 0,
+        length = this.length,
+        classes = className ? className.trim().split(/\s+/) : [];
+
+    for (; i < length; i++) {
+        j = 0;
+
+        for (j = 0; j < classes.length; j++) {
+            this[i].classList.add(classes[j]);
+        }
+    }
+
+    return this;
+};
+
+fn.removeClass = function(className) {
+    var i = 0,
+        j = 0,
+        length = this.length,
+        classes = className ? className.trim().split(/\s+/) : [];
+
+    for (; i < length; i++) {
+        j = 0;
+
+        for (j = 0; j < classes.length; j++) {
+            this[i].classList.remove(classes[j]);
+        }
+    }
+
+    return this;
+};
+
+fn.toggleClass = function(className, force) {
+    var i = 0,
+        length = this.length,
+        method = "toggle";
+
+    force === true && (method = "add") || force === false && (method = "remove");
+
+    if (className) {
+        for (; i < length; i++) {
+            this[i].classList[method](className);
+        }
+    }
+
+    return this;
+};
+
+fn.hasClass = function(className) {
+    var i = 0, length = this.length;
+
+    if (className) {
+        for (; i < length; i++) {
+            if (this[i].classList.contains(className)) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+};
+
+fn.html = function(value) {
+    var args = arguments,
+        el;
+
+    // add HTML into elements
+    if (args.length === 1 && value !== undefined) {
+        return this.empty().append(value);
+    }
+    // get HTML from element
+    else if (args.length === 0 && (el = this[0])) {
+        return el.innerHTML;
+    }
+
+    return this;
+};
+
+fn.append = function(appended) {
+    var i = 0,
+        length = this.length,
+        setter;
+
+    // create jBone object and then append
+    if (isString(appended) && rquickExpr.exec(appended)) {
+        appended = jBone(appended);
+    }
+    // create text node for insertion
+    else if (!isObject(appended)) {
+        appended = document.createTextNode(appended);
+    }
+
+    appended = appended instanceof jBone ? appended : jBone(appended);
+
+    setter = function(el, i) {
+        appended.forEach(function(node) {
+            if (i) {
+                el.appendChild(node.cloneNode(true));
+            } else {
+                el.appendChild(node);
+            }
+        });
+    };
+
+    for (; i < length; i++) {
+        setter(this[i], i);
+    }
+
+    return this;
+};
+
+fn.appendTo = function(to) {
+    jBone(to).append(this);
+
+    return this;
+};
+
+fn.empty = function() {
+    var i = 0,
+        length = this.length,
+        el;
+
+    for (; i < length; i++) {
+        el = this[i];
+
+        while (el.lastChild) {
+            el.removeChild(el.lastChild);
+        }
+    }
+
+    return this;
+};
+
+fn.remove = function() {
+    var i = 0,
+        length = this.length,
+        el;
+
+    // remove all listeners
+    this.off();
+
+    for (; i < length; i++) {
+        el = this[i];
+
+        // remove data and nodes
+        delete el.jdata;
+        el.parentNode && el.parentNode.removeChild(el);
+    }
+
+    return this;
+};
+
+if (typeof module === "object" && module && typeof module.exports === "object") {
+    // Expose jBone as module.exports in loaders that implement the Node
+    // module pattern (including browserify). Do not create the global, since
+    // the user will be storing it themselves locally, and globals are frowned
+    // upon in the Node module world.
+    module.exports = jBone;
+}
+// Register as a AMD module
+else if (typeof define === "function" && define.amd) {
+    define(function() {
+        return jBone;
+    });
+
+    win.jBone = win.$ = jBone;
+} else if (typeof win === "object" && typeof win.document === "object") {
+    win.jBone = win.$ = jBone;
+}
+
+}(window));

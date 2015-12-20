@@ -5,7 +5,7 @@
 		gulp = require('gulp'),
 		uglify = require('gulp-uglify'),
 		clean = require('gulp-rimraf'),
-		cssBase64 = require('gulp-css-base64'),
+		//cssBase64 = require('gulp-css-base64'),
 		cssimport = require('gulp-cssimport'),
 		minifyCss = require('gulp-minify-css'),
 		minifyHTML = require('gulp-minify-html'),
@@ -17,19 +17,19 @@
 	// gulp <task> <othertask>.
 
 	gulp.task('default', ['clear-dist'], function () {
-		return gulp.start('html', 'css', 'js');
+		return gulp.start('html', 'css', 'js', 'copy-images');
 	});
 
 	// watch
-	gulp.task('watch', ['html', 'css', 'js'], function () {
+	gulp.task('watch', ['html', 'css', 'js', 'copy-images'], function () {
 		gulp.watch('./www/*.html', ['html']);
 		gulp.watch('./www/css/**/*', ['css']);
 		gulp.watch('./www/js/**/*', ['js-watch']);
-		//gulp.watch('./www/i/**/*', ['copy-i']);
+		gulp.watch('./www/images/**/*', ['copy-images']);
 	});
 
 	// helper for clean
-	var clearTasks = ['css', /*'font', 'i', */ 'js', 'index.html'].map(function (dir) {
+	var clearTasks = ['index.html', 'css', 'js', 'images'].map(function (dir) {
 
 		var taskName = 'clear-dir_' + dir;
 
@@ -115,6 +115,11 @@
 				.pipe(gulp.dest('./dist/www/js'));
 		});
 
+	// copy data
+	gulp.task('copy-images', function () {
+		return gulp.src('./www/images/**/*')
+			.pipe(gulp.dest('./dist/www/images'));
+	});
 
 	/*
 	// clean
