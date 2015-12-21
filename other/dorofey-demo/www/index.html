@@ -24,10 +24,9 @@
 
 		{{ var bgSrc; }}
 
-		{{~it.sections :section }}
-
+		{{~it.sections :section:index}}
 		{{ bgSrc = 'images/' + section.imgs[0]; }}
-		<div class="section-wrapper">
+		<div class="section-wrapper js-show-gallery" data-lightbox-image-selector="{{= section.name + index }}">
 			<div class="section-image-wrapper-background" style="background-image: url({{= bgSrc }});"></div>
 			<div class="section-image-wrapper" style="background-image: url({{= bgSrc }});"></div>
 			<p class="section-name">{{= section.name }}</p>
@@ -35,6 +34,17 @@
 		{{~}}
 
 	</div>
+
+	<div class="hidden">
+		{{~it.sections :section:index}}
+		{{ bgSrc = 'images/' + section.imgs[0]; }}
+			{{~section.imgs :img }}
+				<a href="images/{{= img }}" data-lightbox="{{= section.name + index }}" ></a>
+			{{~}}
+		{{~}}
+
+	</div>
+
 </script>
 
 <script src="js/main.js" class="js-main-js" type="text/javascript" async></script>

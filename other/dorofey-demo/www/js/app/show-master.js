@@ -38,7 +38,29 @@ var showMaster = {
 
 		sm.set('$wrapper', $('.js-wrapper'));
 
+		sm.lightBoxInit();
+
 		sm.showPreviews();
+
+		sm.bindEventListeners();
+
+	},
+
+	bindEventListeners: function () {
+
+		$('.js-show-gallery').on('click', function () {
+			$('a[data-lightbox=' + this.getAttribute('data-lightbox-image-selector') + ']')
+				.eq(0)
+				.trigger('click');
+		});
+
+	},
+
+	lightBoxInit: function () {
+
+		lightbox.option({
+			showImageNumberLabel: false
+		});
 
 	},
 

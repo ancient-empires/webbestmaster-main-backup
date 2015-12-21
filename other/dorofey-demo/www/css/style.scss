@@ -23,7 +23,6 @@ $borderColor: #D0D0D0;
 }
 
 .sections-wrapper {
-
   text-align: center;
   font-size: 0;
   line-height: 0;
@@ -37,9 +36,12 @@ $borderColor: #D0D0D0;
   border: 1px solid $borderColor;
   margin: 10px;
   cursor: pointer;
+  color: $mainTextColor;
+  text-decoration: none;
   @include prefix(transition, 0.1s box-shadow linear);
 
   &:hover {
+    text-decoration: underline;
     @include prefix(box-shadow, 4px 4px 4px rgba(0, 0, 0, 0.5));
   }
 

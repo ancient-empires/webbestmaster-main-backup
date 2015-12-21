@@ -1,21 +1,16 @@
-
-	'use strict';
-	/*global window */
+'use strict';
+/*global window */
 
 // init libs
-	import shim from './lib/shim';
-	import shimES5 from './lib/es5-shim';
-	import shamES5 from './lib/es5-sham';
-	import Deferred from './lib/deferred';
-	import $ from './lib/jbone';
-	import templateMaster from './lib/template-master';
-
-	Deferred.installInto($);
+import shim from './lib/shim';
+import shimES5 from './lib/es5-shim';
+import shamES5 from './lib/es5-sham';
+import $ from './lib/jquery';
+import lightbox from './lib/lightbox';
 
 // run app
-	import master from './app/show-master';
+import showMaster from './app/show-master';
 
-	master.init();
-
+showMaster.init();
 
 
