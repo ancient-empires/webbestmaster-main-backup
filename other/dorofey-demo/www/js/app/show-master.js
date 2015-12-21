@@ -58,8 +58,17 @@ var showMaster = {
 
 	lightBoxInit: function () {
 
+		// todo: fix disable scroll
+		// http://stackoverflow.com/questions/13698456/is-it-possible-to-trigger-an-event-on-clicking-the-close-button-of-jquery-lightb
+/*
+		$("body").on("click", "#lightbox-secNav-btnClose", function() {
+			console.log("lightbox closed");
+		});
+*/
+
 		lightbox.option({
-			showImageNumberLabel: false
+			resizeDuration: 200,
+			albumLabel: '%1/%2'
 		});
 
 	},

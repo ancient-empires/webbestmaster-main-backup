@@ -1,4 +1,5 @@
 @import url(reset.css);
 @import url(my-reset.css);
-@import url(lightbox.scss);
 @import url(style.scss);
+@import url(lightbox.scss);
+@import url(lightbox-custom-styles.scss);
