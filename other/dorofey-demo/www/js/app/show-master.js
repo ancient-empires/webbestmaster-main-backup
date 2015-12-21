@@ -74,9 +74,9 @@ var showMaster = {
 		for (var i = 0; i < 3; i += 1) {
 			sections = sections.concat(sections);
 		}
-		sections = sections.sort(function () {
-			return Math.random() - 0.5;
-		});
+		//sections = sections.sort(function () {
+		//	return Math.random() - 0.5;
+		//});
 		// just generate more images - end
 
 		html = tm.tmplFn['section-preview']({

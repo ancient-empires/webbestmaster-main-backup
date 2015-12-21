@@ -18,8 +18,15 @@ var imageData = {
 		{
 			name: 'Белочки',
 			imgs: ['belka-1.jpg', 'belka-2.jpg', 'belka-3.jpg', 'belka-4.jpg', 'belka-5.jpg', 'belka-6.jpg', 'belka-7.jpg']
+		},
+		{
+			name: 'Котики',
+			imgs: ['cat-1.jpg', 'cat-2.jpg', 'cat-3.jpg', 'cat-4.jpg', 'cat-5.jpg', 'cat-6.jpg']
+		},
+		{
+			name: 'Ёжики',
+			imgs: ['ezh-1.jpg', 'ezh-2.jpg', 'ezh-3.jpg', 'ezh-4.jpg']
 		}
-
 	]
 };
 
