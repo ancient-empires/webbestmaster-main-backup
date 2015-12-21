@@ -33,9 +33,8 @@
 
 		var taskName = 'clear-dir_' + dir;
 
-		gulp.task(taskName, function () {
-			return gulp.src('./dist/www/' + dir)
-				.pipe(clean({force: true}));
+		gulp.task(taskName, function (cd) {
+			return clean('./dist/www/' + dir, cd);
 		});
 
 		return taskName;
