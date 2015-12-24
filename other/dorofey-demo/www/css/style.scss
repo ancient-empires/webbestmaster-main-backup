@@ -71,7 +71,7 @@ $mainFontFamily: Trebuchet MS, Tahoma, Verdana, Arial, sans-serif;
 }
 
 .section-image-wrapper {
-  @include prefix(background-size, contain);
+  background-size: contain;
   position: absolute;
   top: 5px;
   left: 5px;

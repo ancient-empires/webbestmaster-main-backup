@@ -2,6 +2,7 @@
 /*global window */
 
 // init libs
+import polyfillClassList from './lib/polyfill-class-list';
 import shim from './lib/shim';
 import shimES5 from './lib/es5-shim';
 import shamES5 from './lib/es5-sham';

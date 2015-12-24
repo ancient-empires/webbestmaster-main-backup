@@ -9,32 +9,12 @@ table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, audio, canvas, details, figcaption,
 figure, footer, header, hgroup, mark, menu, meter, nav,
 output, progress, section, summary, time, video {
-
-	-webkit-tap-highlight-color: transparent;
-	-moz-tap-highlight-color: transparent;
-	-ms-tap-highlight-color: transparent;
-	-o-tap-highlight-color: transparent;
 	tap-highlight-color: transparent;
-
-	-webkit-font-smoothing: antialiased;
-	-moz-font-smoothing: antialiased;
-	-ms-font-smoothing: antialiased;
-	-o-font-smoothing: antialiased;
 	font-smoothing: antialiased;
-
-	-webkit-text-size-adjust: 100%;
-	-moz-text-size-adjust: 100%;
-	-ms-text-size-adjust: 100%;
-	-o-text-size-adjust: 100%;
 	text-size-adjust: 100%;
-
 }
 
 .disable-select {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	-o-user-select: none;
 	user-select: none;
 }
 
@@ -68,18 +48,10 @@ button:focus {
 
 .disable {
 	opacity: 0.45;
-	-o-pointer-events: none;
-	-ms-pointer-events: none;
-	-moz-pointer-events: none;
-	-webkit-pointer-events: none;
 	pointer-events: none;
 }
 
 .disable-event {
-	-o-pointer-events: none;
-	-ms-pointer-events: none;
-	-moz-pointer-events: none;
-	-webkit-pointer-events: none;
 	pointer-events: none;
 }
 

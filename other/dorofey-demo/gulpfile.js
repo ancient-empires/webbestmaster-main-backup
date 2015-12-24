@@ -12,6 +12,7 @@
 	//browserify = require('browserify'),
 	//babelify = require('babelify'),
 		sass = require('gulp-sass'),
+		autoprefixer = require('gulp-autoprefixer'),
 		source = require('vinyl-source-stream');
 	// gulp - run 'default' task
 	// gulp <task> <othertask>.
@@ -62,7 +63,7 @@
 	// minify css
 
 	gulp.task('css', function () {
-		return gulp.start('import-css', 'sass', 'minify-css');
+		return gulp.start('import-css', 'sass', 'autoprefix', 'minify-css');
 	});
 
 		gulp.task('import-css', function () {
@@ -85,7 +86,17 @@
 		//		.pipe(gulp.dest('./dist/www/css'));
 		//});
 
-		gulp.task('minify-css', ['sass'], function () {
+		gulp.task('autoprefix', ['sass'], function () {
+			return gulp.src('./dist/www/css/main.css')
+				.pipe(autoprefixer({
+					browsers: ['last 4 versions'],
+					cascade: false
+				}))
+				.pipe(clean({force: true})) // remove original file (imported css)
+				.pipe(gulp.dest('./dist/www/css'));
+		});
+
+		gulp.task('minify-css', ['autoprefix'], function () {
 			return gulp.src('./dist/www/css/main.css')
 				.pipe(minifyCss())
 				.pipe(clean({force: true})) // remove original file (imported css)
