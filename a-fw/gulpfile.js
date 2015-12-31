@@ -107,7 +107,9 @@
 
 	// JS
 	gulp.task('js', function () {
-		return gulp.start('es6-import', 'uglify-js');
+		console.log('!!! enable uglify-js');
+		//return gulp.start('es6-import', 'uglify-js');
+		return gulp.start('es6-import');
 	});
 
 	gulp.task('js-watch', function () {
