@@ -90,7 +90,13 @@ var win = window,
 			}, false);
 
 			device.on('change:actionIsActive', function (self, actionIsActive) {
-				device.publish('deviceActionIsActive', actionIsActive);
+
+				if ( actionIsActive ) {
+					device.publish('deviceActionIsActive', actionIsActive, {xy: device.get('startDownEventXY') });
+				} else {
+					device.publish('deviceActionIsActive', actionIsActive);
+				}
+
 			});
 
 		},

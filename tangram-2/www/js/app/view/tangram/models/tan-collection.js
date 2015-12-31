@@ -2,6 +2,8 @@ import Backbone from './../../../../lib/backbone';
 import Tan from './tan';
 import _ from './../../../../lib/lodash';
 import device from './../../../../services/device';
+import mediator from './../../../../services/mediator';
+import log from './../../../../services/log';
 
 var tansInfo = {
 	triangleBig: {
@@ -58,11 +60,67 @@ var TanCollection = Backbone.Collection.extend({
 
 	initialize: function () {
 
-		this.detectScale();
+		var collection = this;
+
+		collection.detectScale();
+		collection.bindEventListeners();
+
+	},
+
+	bindEventListeners: function () {
+
+		var collection = this;
+
+		mediator.installTo(collection);
+
+		collection.subscribe('deviceActionIsActive', collection.activateDeActiveTans);
+
+	},
+
+	activateDeActiveTans: function (isActive, data) {
+
+		var collection = this,
+			activeTan;
+
+		if (!isActive) {
+			return collection.deActiveAll();
+		}
+
+		collection.each(function (tan) {
+
+			// touch XY is not in tan
+			if ( !tan.isIn(data.xy) ) {
+				return;
+			}
+
+			if ( !activeTan ) {
+				return activeTan = tan;
+			}
+
+			if ( tan.getLastAccept() > activeTan.getLastAccept() ) {
+				activeTan = tan;
+			}
+
+		});
+
+		if ( activeTan ) {
+			activeTan.set('isActive', true);
+			activeTan.setLastAccept();
+		}
+
+	},
+
+	deActiveAll: function () {
+
+		this.each(function (tan) {
+			tan.set('isActive', false);
+		});
 
 	},
 
 	detectScale: function () {
+
+		// TODO: SET SCALE!!!!!
 
 		var scale = 200;
 

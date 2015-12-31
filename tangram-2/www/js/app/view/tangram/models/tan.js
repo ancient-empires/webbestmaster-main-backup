@@ -8,6 +8,12 @@ var Tan = Backbone.Model.extend({
 		'stroke-width': 0.02
 	},
 
+	activeStyles: {
+		fill: '#c0c',
+		stroke: '#0cc',
+		'stroke-width': 0.03
+	},
+
 	nodeAttributes: {
 		'stroke-linejoin': 'round',
 		'stroke-alignment': 'center'
@@ -15,15 +21,52 @@ var Tan = Backbone.Model.extend({
 
 	initialize: function (data) {
 
-		var scale = data.scale,
+		var tan = this,
+			scale = data.scale,
 			coordinates = data.coordinates;
 
 		coordinates.forEach(function (xy, index) {
-			this.set('x' + index, xy.x * scale);
-			this.set('y' + index, xy.y * scale);
-		}, this);
+			tan.set('x' + index, xy.x * scale);
+			tan.set('y' + index, xy.y * scale);
+		});
 
-		this.set('anglesLength', coordinates.length);
+		tan.set('anglesLength', coordinates.length);
+
+		//tan.setLastAccept();
+
+		tan.bindEventListeners();
+
+	},
+
+	setLastAccept: function () {
+		return this.set('last-accept', Date.now());
+	},
+
+	getLastAccept: function () {
+		return this.get('last-accept');
+	},
+
+	bindEventListeners: function () {
+
+		var tan = this;
+
+		//mediator.installTo(tan);
+
+		tan.on('change:isActive', tan.setStateActiveDeActive);
+
+	},
+
+	setStateActiveDeActive: function (self, isActive) {
+
+		this.drawActiveDeActive(isActive);
+
+	},
+
+	drawActiveDeActive: function (isActive) {
+
+		var tan = this;
+
+		tan.setStyles(isActive && tan.activeStyles);
 
 	},
 
@@ -61,11 +104,11 @@ var Tan = Backbone.Model.extend({
 
 	},
 
-	setStyles: function () {
+	setStyles: function (stylesArg) {
 
 		var tan = this,
 			node = tan.get('node'),
-			styles = tan.styles,
+			styles = stylesArg || tan.styles,
 			nodeAttributes = tan.nodeAttributes,
 			styleStr = '',
 			attr = document.createAttribute('style');
@@ -97,23 +140,34 @@ var Tan = Backbone.Model.extend({
 
 	},
 
-	isIn: function (x, y) {
+	isIn: function (xy) {
 
 	var tan = this,
 		anglesLength = tan.get('anglesLength');
 		
 		if (anglesLength === 3) {
-			return tan.isInTriangle(tan.getCoordinates().concat(x,y ))
+			return tan.isInTriangle.apply(tan, tan.getCoordinates().concat([xy]));
 		}
 
+		if (anglesLength === 4) {
+			return tan.isInFourAngle.apply(tan, tan.getCoordinates().concat([xy]));
+		}
 
 	},
 
 	// x0, y0 - point coordinates
 
-	isInTriangle: function (x1, y1, x2, y2, x3, y3, x0, y0) {
+	isInTriangle: function (xy1, xy2, xy3, xy0) {
 
-		var a, b, c;
+		var a, b, c,
+			x1 = xy1.x,
+			y1 = xy1.y,
+			x2 = xy2.x,
+			y2 = xy2.y,
+			x3 = xy3.x,
+			y3 = xy3.y,
+			x0 = xy0.x,
+			y0 = xy0.y;
 
 		a = (x1 - x0) * (y2 - y1) - (x2 - x1) * (y1 - y0);
 		b = (x2 - x0) * (y3 - y2) - (x3 - x2) * (y2 - y0);
@@ -121,8 +175,15 @@ var Tan = Backbone.Model.extend({
 
 		return (a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0);
 
-	}
+	},
 
+	isInFourAngle: function (xy1, xy2, xy3, xy4, xy0) {
+
+		var tan = this;
+
+		return tan.isInTriangle(xy1, xy2, xy3, xy0) || tan.isInTriangle(xy3, xy4, xy1, xy0);
+
+	}
 
 });
 
