@@ -292,6 +292,11 @@ var win = window,
 				});
 			}
 
+			device.publish('deviceMoving', {
+				dx: dx,
+				dy: dy
+			});
+
 			device.logMoving(currentEventXY);
 
 		},

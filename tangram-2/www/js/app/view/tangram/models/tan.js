@@ -1,4 +1,5 @@
 import Backbone from './../../../../lib/backbone';
+import mediator from './../../../../services/mediator';
 
 var Tan = Backbone.Model.extend({
 
@@ -50,9 +51,33 @@ var Tan = Backbone.Model.extend({
 
 		var tan = this;
 
-		//mediator.installTo(tan);
+		mediator.installTo(tan);
 
 		tan.on('change:isActive', tan.setStateActiveDeActive);
+
+		tan.subscribe('deviceMoving', tan.move);
+
+	},
+
+	move: function (dxdy) {
+
+		if ( !this.get('isActive') ) {
+			return;
+		}
+
+		var tan = this,
+			dx = dxdy.dx,
+			dy = dxdy.dy,
+			coordinates = tan.getCoordinates();
+
+		_.each(coordinates, function (xy) {
+			xy.x -= dx;
+			xy.y -= dy;
+		});
+
+		tan.setCoordinates(coordinates);
+
+		tan.reDraw();
 
 	},
 
@@ -87,6 +112,19 @@ var Tan = Backbone.Model.extend({
 
 	},
 
+	setCoordinates: function (coordinates) {
+
+		var tan = this;
+
+		_.each(coordinates, function (xy, i) {
+			tan.set('x' + i, xy.x);
+			tan.set('y' + i, xy.y);
+		});
+
+		return tan;
+
+	},
+
 	drawTo: function (drawNode) {
 
 		var tan = this,
@@ -99,6 +137,16 @@ var Tan = Backbone.Model.extend({
 			tan.setStyles();
 			drawNode.appendChild(tanNode);
 		}
+
+		tanNode.setAttribute('points', polygonCoordinates);
+
+	},
+
+	reDraw: function () {
+
+		var tan = this,
+			tanNode = tan.get('node'),
+			polygonCoordinates = tan.getPolygonCoordinates();
 
 		tanNode.setAttribute('points', polygonCoordinates);
 
