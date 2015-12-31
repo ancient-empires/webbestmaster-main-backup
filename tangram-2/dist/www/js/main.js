@@ -1,4 +1,4 @@
-(function (gi9959) {
+(function (gi4535) {
 (function () {
 'use strict';
 /*global window */
@@ -79,7 +79,7 @@ mediator = {
 	}
 };
 
-gi9959['/www/js/services/mediator.js'] = mediator;
+gi4535['/www/js/services/mediator.js'] = mediator;
 
 }());
 (function () {
@@ -7406,7 +7406,7 @@ info = {
 
 info.init();
 
-gi9959['/www/js/services/info.js'] = info;
+gi4535['/www/js/services/info.js'] = info;
 
 
 }());
@@ -7414,7 +7414,7 @@ gi9959['/www/js/services/info.js'] = info;
 'use strict';
 /*global window */
 
-var Backbone = gi9959['/www/js/lib/backbone.js'] || window.Backbone;
+var Backbone = gi4535['/www/js/lib/backbone.js'] || window.Backbone;
 
 var win = window,
 	doc = win.document,
@@ -7469,13 +7469,13 @@ var win = window,
 
 device = new Device();
 
-gi9959['/www/js/services/device.js'] = device;
+gi4535['/www/js/services/device.js'] = device;
 }());
 (function () {
 'use strict';
 /*global window, Date */
 
-var info = gi9959['/www/js/services/info.js'] || window.info;
+var info = gi4535['/www/js/services/info.js'] || window.info;
 
 var win = window,
 	androidAds = {
@@ -7521,7 +7521,7 @@ var win = window,
 
 	androidAds.init();
 
-gi9959['/www/js/services/android-ads.js'] = androidAds;
+gi4535['/www/js/services/android-ads.js'] = androidAds;
 
 }());
 (function () {
@@ -7547,7 +7547,7 @@ var en = {
 
 };
 
-gi9959['/www/js/i18n/en.js'] = en;
+gi4535['/www/js/i18n/en.js'] = en;
 }());
 (function () {
 'use strict';
@@ -7572,15 +7572,15 @@ var ru = {
 
 };
 
-gi9959['/www/js/i18n/ru.js'] = ru;
+gi4535['/www/js/i18n/ru.js'] = ru;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var info = gi9959['/www/js/services/info.js'] || window.info;
-var en = gi9959['/www/js/i18n/en.js'] || window.en;
-var ru = gi9959['/www/js/i18n/ru.js'] || window.ru;
+var info = gi4535['/www/js/services/info.js'] || window.info;
+var en = gi4535['/www/js/i18n/en.js'] || window.en;
+var ru = gi4535['/www/js/i18n/ru.js'] || window.ru;
 
 var lang = {
 
@@ -7600,7 +7600,7 @@ var lang = {
 
 lang.set(info.get('language'));
 
-gi9959['/www/js/services/lang.js'] = lang;
+gi4535['/www/js/services/lang.js'] = lang;
 
 
 
@@ -7620,7 +7620,7 @@ function log() {
 	return logger.log.apply(logger, arguments);
 }
 
-gi9959['/www/js/services/log.js'] = log;
+gi4535['/www/js/services/log.js'] = log;
 
 
 }());
@@ -7628,7 +7628,7 @@ gi9959['/www/js/services/log.js'] = log;
 'use strict';
 /*global window */
 
-var doT = gi9959['/www/js/lib/dot.js'] || window.doT;
+var doT = gi4535['/www/js/lib/dot.js'] || window.doT;
 
 var doc = window.document,
 		templateMaster = {
@@ -7662,7 +7662,7 @@ var doc = window.document,
 
 templateMaster.init();
 
-gi9959['/www/js/services/template-master.js'] = templateMaster;
+gi4535['/www/js/services/template-master.js'] = templateMaster;
 
 
 
@@ -7739,7 +7739,7 @@ var win = window,
 
 	};
 
-gi9959['/www/js/services/util.js'] = util;
+gi4535['/www/js/services/util.js'] = util;
 }());
 (function () {
 'use strict';
@@ -7782,7 +7782,7 @@ var win = window,
 
 };
 
-gi9959['/www/js/sound/player-android.js'] = androidPlayer;
+gi4535['/www/js/sound/player-android.js'] = androidPlayer;
 }());
 (function () {
 'use strict';
@@ -7839,7 +7839,7 @@ var win = window,
 
 	};
 
-gi9959['/www/js/sound/player-ios.js'] = iosPlayer;
+gi4535['/www/js/sound/player-ios.js'] = iosPlayer;
 
 
 }());
@@ -7847,7 +7847,7 @@ gi9959['/www/js/sound/player-ios.js'] = iosPlayer;
 'use strict';
 /*global window */
 
-var info = gi9959['/www/js/services/info.js'] || window.info;
+var info = gi4535['/www/js/services/info.js'] || window.info;
 
 var win = window,
 	webPlayer = {
@@ -7921,17 +7921,17 @@ var win = window,
 
 };
 
-gi9959['/www/js/sound/player-web.js'] = webPlayer;
+gi4535['/www/js/sound/player-web.js'] = webPlayer;
 
 }());
 (function () {
 'use strict';
 /*global window */
 
-var androidPlayer = gi9959['/www/js/sound/player-android.js'] || window.androidPlayer;
-var iosPlayer = gi9959['/www/js/sound/player-ios.js'] || window.iosPlayer;
-var webPlayer = gi9959['/www/js/sound/player-web.js'] || window.webPlayer;
-var info = gi9959['/www/js/services/info.js'] || window.info;
+var androidPlayer = gi4535['/www/js/sound/player-android.js'] || window.androidPlayer;
+var iosPlayer = gi4535['/www/js/sound/player-ios.js'] || window.iosPlayer;
+var webPlayer = gi4535['/www/js/sound/player-web.js'] || window.webPlayer;
+var info = gi4535['/www/js/services/info.js'] || window.info;
 
 var win = window,
 	soundMaster = {
@@ -8069,7 +8069,7 @@ var win = window,
 
 soundMaster.init();
 
-gi9959['/www/js/sound/sound-master.js'] = soundMaster;
+gi4535['/www/js/sound/sound-master.js'] = soundMaster;
 
 
 }());
@@ -8077,15 +8077,16 @@ gi9959['/www/js/sound/sound-master.js'] = soundMaster;
 'use strict';
 /*global window */
 
-var Backbone = gi9959['/www/js/lib/backbone.js'] || window.Backbone;
-var $ = gi9959['/www/js/lib/jbone.js'] || window.$;
-var _ = gi9959['/www/js/lib/lodash.js'] || window._;
-var info = gi9959['/www/js/services/info.js'] || window.info;
-//var tm = gi9959['/www/js/services/template-master.js'] || window.tm;
-var util = gi9959['/www/js/services/util.js'] || window.util;
-var mediator = gi9959['/www/js/services/mediator.js'] || window.mediator;
-var sm = gi9959['/www/js/sound/sound-master.js'] || window.sm;
-var lang = gi9959['/www/js/services/lang.js'] || window.lang;
+var Backbone = gi4535['/www/js/lib/backbone.js'] || window.Backbone;
+var $ = gi4535['/www/js/lib/jbone.js'] || window.$;
+var _ = gi4535['/www/js/lib/lodash.js'] || window._;
+var info = gi4535['/www/js/services/info.js'] || window.info;
+//var tm = gi4535['/www/js/services/template-master.js'] || window.tm;
+var util = gi4535['/www/js/services/util.js'] || window.util;
+var mediator = gi4535['/www/js/services/mediator.js'] || window.mediator;
+var sm = gi4535['/www/js/sound/sound-master.js'] || window.sm;
+var lang = gi4535['/www/js/services/lang.js'] || window.lang;
+var device = gi4535['/www/js/services/device.js'] || window.device;
 
 var win = window,
 	doc = win.document,
@@ -8145,9 +8146,10 @@ var win = window,
 				eventTypesIndex = Number(isTouch),
 				types = view.eventTypes,
 				fontSize,
-				proto = BaseView.prototype;
+				proto = BaseView.prototype,
+				$wrapper = $(view.selectors.wrapper);
 
-			proto.$wrapper = $(view.selectors.wrapper);
+			proto.$wrapper = $wrapper;
 
 			// adjust font size
 			fontSize = Math.round(14 * Math.pow(docElem.clientWidth * docElem.clientHeight / 153600, 0.5)); // 153600 = 320 * 480
@@ -8163,6 +8165,18 @@ var win = window,
 			});
 
 			$(doc.body).on('contextmenu', view.stopEvent);
+
+			view.listenTo(device, 'resize', function () {
+				$wrapper.css({
+					width: device.get('width') + 'px',
+					height: device.get('height') + 'px'
+				});
+
+				console.log(arguments);
+
+			});
+
+			device.onResize();
 
 		},
 
@@ -8279,7 +8293,8 @@ var win = window,
 
 			var view = this;
 
-			view.$el.removeData().unbind().remove().empty();
+			// view.$el.removeData().unbind().remove().empty(); // use with jQuery
+			view.$el.remove().empty();
 
 			view.remove();
 			view.unbind();
@@ -8731,14 +8746,14 @@ var win = window,
 
 	});
 
-gi9959['/www/js/app/view/core/base.js'] = BaseView;
+gi4535['/www/js/app/view/core/base.js'] = BaseView;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi9959['/www/js/app/view/core/base.js'] || window.BaseView;
-var tm = gi9959['/www/js/services/template-master.js'] || window.tm;
+var BaseView = gi4535['/www/js/app/view/core/base.js'] || window.BaseView;
+var tm = gi4535['/www/js/services/template-master.js'] || window.tm;
 
 var HomeView = BaseView.extend({
 
@@ -8758,28 +8773,61 @@ var HomeView = BaseView.extend({
 
 });
 
-gi9959['/www/js/app/view/home/home-view.js'] = HomeView;
+gi4535['/www/js/app/view/home/home-view.js'] = HomeView;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var Backbone = gi9959['/www/js/lib/backbone.js'] || window.Backbone;
-var _ = gi9959['/www/js/lib/lodash.js'] || window._;
-var BaseView = gi9959['/www/js/app/view/core/base.js'] || window.BaseView;
-var HomeView = gi9959['/www/js/app/view/home/home-view.js'] || window.HomeView;
-var mediator = gi9959['/www/js/services/mediator.js'] || window.mediator;
+var BaseView = gi4535['/www/js/app/view/core/base.js'] || window.BaseView;
+var tm = gi4535['/www/js/services/template-master.js'] || window.tm;
+
+var TangramView = BaseView.extend({
+
+	events: {},
+
+	initialize: function () {
+
+		var view = this;
+
+		view.setElement(tm.tmplFn.tangram());
+
+		view.render();
+
+		return BaseView.prototype.initialize.apply(view, arguments);
+
+	}
+
+});
+
+gi4535['/www/js/app/view/tangram/tangram-view.js'] = TangramView;
+}());
+(function () {
+'use strict';
+/*global window */
+
+var Backbone = gi4535['/www/js/lib/backbone.js'] || window.Backbone;
+var _ = gi4535['/www/js/lib/lodash.js'] || window._;
+var BaseView = gi4535['/www/js/app/view/core/base.js'] || window.BaseView;
+var HomeView = gi4535['/www/js/app/view/home/home-view.js'] || window.HomeView;
+var TangramView = gi4535['/www/js/app/view/tangram/tangram-view.js'] || window.TangramView;
+var mediator = gi4535['/www/js/services/mediator.js'] || window.mediator;
 
 var win = window,
 	router,
 	Router = Backbone.Router.extend({
 
 		routes: {
-			'': 'home'
+			'': 'home',
+			'tangram': 'tangram'
 		},
 
 		home: function () {
 			new HomeView();
+		},
+
+		tangram: function () {
+			new TangramView();
 		},
 
 		url: {
@@ -8868,20 +8916,20 @@ router.subscribe('route-to-popup', router.routeToPopup);
 router.subscribe('router-hide-popup', router.hidePopup);
 router.subscribe('navigate', router.navigate);
 
-gi9959['/www/js/app/router/router.js'] = router;
+gi4535['/www/js/app/router/router.js'] = router;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi9959['/www/js/app/view/core/base.js'] || window.BaseView;
-var $ = gi9959['/www/js/lib/jbone.js'] || window.$;
-var _ = gi9959['/www/js/lib/lodash.js'] || window._;
-var lang = gi9959['/www/js/services/lang.js'] || window.lang;
-var info = gi9959['/www/js/services/info.js'] || window.info;
-var device = gi9959['/www/js/services/device.js'] || window.device;
-var tm = gi9959['/www/js/services/template-master.js'] || window.tm;
-var mediator = gi9959['/www/js/services/mediator.js'] || window.mediator;
+var BaseView = gi4535['/www/js/app/view/core/base.js'] || window.BaseView;
+var $ = gi4535['/www/js/lib/jbone.js'] || window.$;
+var _ = gi4535['/www/js/lib/lodash.js'] || window._;
+var lang = gi4535['/www/js/services/lang.js'] || window.lang;
+var info = gi4535['/www/js/services/info.js'] || window.info;
+var device = gi4535['/www/js/services/device.js'] || window.device;
+var tm = gi4535['/www/js/services/template-master.js'] || window.tm;
+var mediator = gi4535['/www/js/services/mediator.js'] || window.mediator;
 
 var win = window,
 	HintView,
@@ -9285,19 +9333,19 @@ mediator.installTo(hintMaster);
 
 hintMaster.subscribe('showHint', hintMaster.showHint);
 
-gi9959['/www/js/app/view/core/hint.js'] = hintMaster;
+gi4535['/www/js/app/view/core/hint.js'] = hintMaster;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi9959['/www/js/app/view/core/base.js'] || window.BaseView;
-var $ = gi9959['/www/js/lib/jbone.js'] || window.$;
-var _ = gi9959['/www/js/lib/lodash.js'] || window._;
-var sm = gi9959['/www/js/sound/sound-master.js'] || window.sm;
-var tm = gi9959['/www/js/services/template-master.js'] || window.tm;
-var info = gi9959['/www/js/services/info.js'] || window.info;
-var mediator = gi9959['/www/js/services/mediator.js'] || window.mediator;
+var BaseView = gi4535['/www/js/app/view/core/base.js'] || window.BaseView;
+var $ = gi4535['/www/js/lib/jbone.js'] || window.$;
+var _ = gi4535['/www/js/lib/lodash.js'] || window._;
+var sm = gi4535['/www/js/sound/sound-master.js'] || window.sm;
+var tm = gi4535['/www/js/services/template-master.js'] || window.tm;
+var info = gi4535['/www/js/services/info.js'] || window.info;
+var mediator = gi4535['/www/js/services/mediator.js'] || window.mediator;
 
 var win = window,
 	PopupView,
@@ -9482,43 +9530,43 @@ mediator.installTo(popupMaster);
 
 popupMaster.subscribe('showPopup', popupMaster.showPopup);
 
-gi9959['/www/js/app/view/core/popup.js'] = popupMaster;
+gi4535['/www/js/app/view/core/popup.js'] = popupMaster;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var mediator = gi9959['/www/js/services/mediator.js'] || window.mediator;
+var mediator = gi4535['/www/js/services/mediator.js'] || window.mediator;
 
 // init all librares
-var polyfillClassList = gi9959['/www/js/lib/polyfill-class-list.js'] || window.polyfillClassList;
-var shim = gi9959['/www/js/lib/shim.js'] || window.shim;
-var shimES5 = gi9959['/www/js/lib/shim-es5.js'] || window.shimES5;
-var shamES5 = gi9959['/www/js/lib/sham-es5.js'] || window.shamES5;
-var _ = gi9959['/www/js/lib/lodash.js'] || window._;
-var $ = gi9959['/www/js/lib/jbone.js'] || window.$;
-var Deferred = gi9959['/www/js/lib/deferred.js'] || window.Deferred;
-var Backbone = gi9959['/www/js/lib/backbone.js'] || window.Backbone;
-var fastclick = gi9959['/www/js/lib/fastclick.js'] || window.fastclick;
-var doT = gi9959['/www/js/lib/dot.js'] || window.doT;
+var polyfillClassList = gi4535['/www/js/lib/polyfill-class-list.js'] || window.polyfillClassList;
+var shim = gi4535['/www/js/lib/shim.js'] || window.shim;
+var shimES5 = gi4535['/www/js/lib/shim-es5.js'] || window.shimES5;
+var shamES5 = gi4535['/www/js/lib/sham-es5.js'] || window.shamES5;
+var _ = gi4535['/www/js/lib/lodash.js'] || window._;
+var $ = gi4535['/www/js/lib/jbone.js'] || window.$;
+var Deferred = gi4535['/www/js/lib/deferred.js'] || window.Deferred;
+var Backbone = gi4535['/www/js/lib/backbone.js'] || window.Backbone;
+var fastclick = gi4535['/www/js/lib/fastclick.js'] || window.fastclick;
+var doT = gi4535['/www/js/lib/dot.js'] || window.doT;
 
 // init all services
-var info = gi9959['/www/js/services/info.js'] || window.info;
-var device = gi9959['/www/js/services/device.js'] || window.device;
-var androidAds = gi9959['/www/js/services/android-ads.js'] || window.androidAds;
-var lang = gi9959['/www/js/services/lang.js'] || window.lang;
-var log = gi9959['/www/js/services/log.js'] || window.log;
-var tm = gi9959['/www/js/services/template-master.js'] || window.tm;
-var util = gi9959['/www/js/services/util.js'] || window.util;
+var info = gi4535['/www/js/services/info.js'] || window.info;
+var device = gi4535['/www/js/services/device.js'] || window.device;
+var androidAds = gi4535['/www/js/services/android-ads.js'] || window.androidAds;
+var lang = gi4535['/www/js/services/lang.js'] || window.lang;
+var log = gi4535['/www/js/services/log.js'] || window.log;
+var tm = gi4535['/www/js/services/template-master.js'] || window.tm;
+var util = gi4535['/www/js/services/util.js'] || window.util;
 
 // init sound players
-var sm = gi9959['/www/js/sound/sound-master.js'] || window.sm;
+var sm = gi4535['/www/js/sound/sound-master.js'] || window.sm;
 
-var router = gi9959['/www/js/app/router/router.js'] || window.router;
+var router = gi4535['/www/js/app/router/router.js'] || window.router;
 
-var BaseView = gi9959['/www/js/app/view/core/base.js'] || window.BaseView;
-var hintMaster = gi9959['/www/js/app/view/core/hint.js'] || window.hintMaster;
-var popupMaster = gi9959['/www/js/app/view/core/popup.js'] || window.popupMaster;
+var BaseView = gi4535['/www/js/app/view/core/base.js'] || window.BaseView;
+var hintMaster = gi4535['/www/js/app/view/core/hint.js'] || window.hintMaster;
+var popupMaster = gi4535['/www/js/app/view/core/popup.js'] || window.popupMaster;
 
 // todo: - test - enable fast click
 new FastClick(window.document.body); // test it decide

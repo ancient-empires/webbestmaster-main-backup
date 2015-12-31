@@ -10,6 +10,7 @@ import util from './../../../services/util';
 import mediator from './../../../services/mediator';
 import sm from './../../../sound/sound-master';
 import lang from './../../../services/lang';
+import device from './../../../services/device';
 
 var win = window,
 	doc = win.document,
@@ -69,9 +70,10 @@ var win = window,
 				eventTypesIndex = Number(isTouch),
 				types = view.eventTypes,
 				fontSize,
-				proto = BaseView.prototype;
+				proto = BaseView.prototype,
+				$wrapper = $(view.selectors.wrapper);
 
-			proto.$wrapper = $(view.selectors.wrapper);
+			proto.$wrapper = $wrapper;
 
 			// adjust font size
 			fontSize = Math.round(14 * Math.pow(docElem.clientWidth * docElem.clientHeight / 153600, 0.5)); // 153600 = 320 * 480
@@ -87,6 +89,18 @@ var win = window,
 			});
 
 			$(doc.body).on('contextmenu', view.stopEvent);
+
+			view.listenTo(device, 'resize', function () {
+				$wrapper.css({
+					width: device.get('width') + 'px',
+					height: device.get('height') + 'px'
+				});
+
+				console.log(arguments);
+
+			});
+
+			device.onResize();
 
 		},
 
@@ -203,7 +217,8 @@ var win = window,
 
 			var view = this;
 
-			view.$el.removeData().unbind().remove().empty();
+			// view.$el.removeData().unbind().remove().empty(); // use with jQuery
+			view.$el.remove().empty();
 
 			view.remove();
 			view.unbind();

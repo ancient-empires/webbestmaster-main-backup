@@ -20,23 +20,12 @@
 	border: 0.1rem solid #C0C0C0;
 	border-radius: 0.2rem;
 	width: 80%;
-	-webkit-transform: translate3d(-50%, -50%, 0);
 	transform: translate3d(-50%, -50%, 0);
-}
-
-@-webkit-keyframes show-in {
-	0% { opacity: 0; }
-	100% { opacity: 1; }
 }
 
 @keyframes show-in {
 	0% { opacity: 0; }
 	100% { opacity: 1; }
-}
-
-@-webkit-keyframes show-out {
-	0% { opacity: 1; }
-	100% { opacity: 0; }
 }
 
 @keyframes show-out {
@@ -45,12 +34,6 @@
 }
 
 .popup-show-in {
-	-webkit-animation-duration: 0.5s;
-	-webkit-animation-iteration-count: 1;
-	-webkit-animation-name: show-in;
-	-webkit-animation-fill-mode: forwards;
-	-webkit-transform-origin: center center;
-
 	animation-duration: 0.5s;
 	animation-iteration-count: 1;
 	animation-name: show-in;
@@ -59,12 +42,6 @@
 }
 
 .popup-show-out {
-	-webkit-animation-duration: 0.2s;
-	-webkit-animation-iteration-count: 1;
-	-webkit-animation-name: show-out;
-	-webkit-animation-fill-mode: forwards;
-	-webkit-transform-origin: center center;
-
 	animation-duration: 0.2s;
 	animation-iteration-count: 1;
 	animation-name: show-out;

@@ -5,6 +5,7 @@ import Backbone from './../../lib/backbone';
 import _ from './../../lib/lodash';
 import BaseView from './../view/core/base';
 import HomeView from './../view/home/home-view';
+import TangramView from './../view/tangram/tangram-view';
 import mediator from './../../services/mediator';
 
 var win = window,
@@ -12,11 +13,16 @@ var win = window,
 	Router = Backbone.Router.extend({
 
 		routes: {
-			'': 'home'
+			'': 'home',
+			'tangram': 'tangram'
 		},
 
 		home: function () {
 			new HomeView();
+		},
+
+		tangram: function () {
+			new TangramView();
 		},
 
 		url: {
