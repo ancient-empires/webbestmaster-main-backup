@@ -5,7 +5,7 @@
 		gulp = require('gulp'),
 		uglify = require('gulp-uglify'),
 		clean = require('gulp-rimraf'),
-		cssBase64 = require('gulp-css-base64'),
+		//cssBase64 = require('gulp-css-base64'),
 		cssimport = require('gulp-cssimport'),
 		minifyCss = require('gulp-minify-css'),
 		minifyHTML = require('gulp-minify-html'),
@@ -23,8 +23,8 @@
 			'html',
 			'es6-import',
 			'uglify-js',
-			'import-css', 'sass', 'css-base64', 'minify-css',
-			'clean-base64'
+			'import-css', 'sass', /*'css-base64', */'minify-css'
+			//'clean-base64'
 		);
 
 	});
@@ -79,14 +79,14 @@
 				.pipe(gulp.dest('./dist/www/css'));
 	});
 
-	gulp.task('css-base64', ['sass', 'copy-i'], function () {
-		return gulp.src('./dist/www/css/main.css')
-			.pipe(cssBase64())
-			.pipe(clean({force: true})) // remove original file (imported css)
-			.pipe(gulp.dest('./dist/www/css'));
-	});
+	//gulp.task('css-base64', ['sass', 'copy-i'], function () {
+	//	return gulp.src('./dist/www/css/main.css')
+	//		.pipe(cssBase64())
+	//		.pipe(clean({force: true})) // remove original file (imported css)
+	//		.pipe(gulp.dest('./dist/www/css'));
+	//});
 
-	gulp.task('minify-css', ['css-base64'], function () {
+	gulp.task('minify-css', ['sass'], function () {
 		return gulp.src('./dist/www/css/main.css')
 			.pipe(minifyCss())
 			.pipe(clean({force: true})) // remove original file (imported css)
