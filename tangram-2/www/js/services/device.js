@@ -89,6 +89,10 @@ var win = window,
 				device.onUp(e);
 			}, false);
 
+			device.on('change:actionIsActive', function (self, actionIsActive) {
+				device.publish('deviceActionIsActive', actionIsActive);
+			});
+
 		},
 
 		getEvents: function (e) {
@@ -215,7 +219,7 @@ var win = window,
 				startEventXY = device.getAverageXY(events.events),
 				pointData = device.getPointData();
 
-			// set start EVENTs position
+			// set start events position
 			device.set('startDownEventXY', startEventXY);
 
 			// set start point position

@@ -2,7 +2,7 @@
 /*global console */
 
 var logger = {
-	isEnable: false,
+	isEnable: true,
 	log: function () {
 		return this.isEnable && console.log.apply(console, arguments);
 	}

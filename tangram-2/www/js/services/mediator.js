@@ -1,6 +1,8 @@
 'use strict';
 /*global window */
 
+import log from './log';
+
 var mediator;
 
 function subscribe(channel, fn) {
@@ -21,6 +23,8 @@ function publish(channel) {
 
 	var list = mediator.channels[channel],
 		args;
+
+	log('publish -', channel, arguments);
 
 	if ( !list ) {
 		return this;

@@ -1,6 +1,8 @@
 'use strict';
 /*global window */
 
+import log from './services/log';
+
 import mediator from './services/mediator';
 
 // init all librares
@@ -20,7 +22,6 @@ import info from './services/info';
 import device from './services/device';
 import androidAds from './services/android-ads';
 import lang from './services/lang';
-import log from './services/log';
 import tm from './services/template-master';
 import util from './services/util';
 

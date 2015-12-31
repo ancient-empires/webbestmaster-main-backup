@@ -66,14 +66,12 @@ var win = window,
 		initStatic: function () {
 
 			var view = this,
-				isTouch = info.get('isTouch', true),
+				isTouch = device.get('isTouch'),
 				eventTypesIndex = Number(isTouch),
 				types = view.eventTypes,
-				fontSize,
-				proto = BaseView.prototype,
-				$wrapper = $(view.selectors.wrapper);
+				fontSize;
 
-			proto.$wrapper = $wrapper;
+			view.constructor.prototype.$wrapper = $(view.selectors.wrapper);
 
 			// adjust font size
 			fontSize = Math.round(14 * Math.pow(docElem.clientWidth * docElem.clientHeight / 153600, 0.5)); // 153600 = 320 * 480
@@ -91,15 +89,18 @@ var win = window,
 			$(doc.body).on('contextmenu', view.stopEvent);
 
 			view.listenTo(device, 'resize', function () {
-				$wrapper.css({
-					width: device.get('width') + 'px',
-					height: device.get('height') + 'px'
-				});
-
+				view.resizeWrapper();
 			});
 
-			device.onResize();
+			view.resizeWrapper();
 
+		},
+
+		resizeWrapper: function () {
+			this.constructor.prototype.$wrapper.css({
+				width: device.get('width') + 'px',
+				height: device.get('height') + 'px'
+			});
 		},
 
 		constructor: function () {
