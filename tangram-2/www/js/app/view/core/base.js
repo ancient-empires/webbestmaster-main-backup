@@ -96,8 +96,6 @@ var win = window,
 					height: device.get('height') + 'px'
 				});
 
-				console.log(arguments);
-
 			});
 
 			device.onResize();
