@@ -2,6 +2,7 @@
 /*global window */
 
 import Backbone from './../lib/backbone';
+import mediator from './mediator';
 
 var win = window,
 	doc = win.document,
@@ -20,6 +21,8 @@ var win = window,
 			var device = this;
 
 			device.bindEventListeners();
+
+			mediator.installTo(device);
 
 			device.onResize();
 
@@ -40,15 +43,18 @@ var win = window,
 			var device = this,
 				width = docElem.clientWidth,
 				height = docElem.clientHeight,
-				orientation = width > height ? '-' : '|';
+				orientation = width > height ? '-' : '|',
+				data = {
+					width: width,
+					height: height,
+					orientation: orientation
+				};
 
-			device.set({
-				width: width,
-				height: height,
-				orientation: orientation
-			});
+			device.set(data);
 
 			device.trigger('resize');
+
+			device.publish('resize', data);
 
 		}
 
