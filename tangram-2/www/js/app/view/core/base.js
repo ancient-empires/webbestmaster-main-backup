@@ -418,8 +418,8 @@ var win = window,
 				name: 'need-confirm',
 				cssClass: 'popup-title',
 				data: {
-					a,
-					b,
+					a: a,
+					b: b,
 					answer: answer,
 					answers: util.assortArray(answers),
 					url: data.url
@@ -524,7 +524,7 @@ var win = window,
 						}
 					],
 					data: {
-						lang,
+						lang: lang,
 						url: info.getLinkToStore()
 					}
 				});
