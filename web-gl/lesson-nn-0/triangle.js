@@ -36,7 +36,7 @@
 
 
 	// Попробуем инициализировать данные шейдеры. Для начала получим контекст WebGL:
-	var canvas = document.querySelector('.js-canvas');
+	var canvas = document.querySelector('.js-canvas-triangle');
 	var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
 
 	var size = Math.min(window.innerWidth, window.innerHeight);
