@@ -211,7 +211,7 @@ var Tan = Backbone.Model.extend({
 		}
 
 		if (anglesLength === 4) {
-			return tan.isInFourAngle.apply(tan, tan.getCoordinates().concat([xy]));
+			return tan.isInFourangle.apply(tan, tan.getCoordinates().concat([xy]));
 		}
 
 	},
@@ -238,7 +238,7 @@ var Tan = Backbone.Model.extend({
 
 	},
 
-	isInFourAngle: function (xy1, xy2, xy3, xy4, xy0) {
+	isInFourangle: function (xy1, xy2, xy3, xy4, xy0) {
 
 		var tan = this;
 
