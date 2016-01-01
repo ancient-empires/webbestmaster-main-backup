@@ -83,7 +83,11 @@ var Tan = Backbone.Model.extend({
 
 	setStateActiveDeActive: function (self, isActive) {
 
-		this.drawActiveDeActive(isActive);
+		var tan = this;
+
+		tan.drawActiveDeActive(isActive);
+
+		tan.moveToUpDown(isActive)
 
 	},
 
@@ -92,6 +96,18 @@ var Tan = Backbone.Model.extend({
 		var tan = this;
 
 		tan.setStyles(isActive && tan.activeStyles);
+
+	},
+
+	moveToUpDown: function (isActive) {
+
+		if (!isActive) {
+			return;
+		}
+
+		var node = this.get('node');
+
+		node.parentElement.appendChild(node);
 
 	},
 

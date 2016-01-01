@@ -5,6 +5,7 @@ var gOldOnError,
 	slice = Array.prototype.slice,
 	logger = {
 		isEnable: true,
+		xhr: new XMLHttpRequest(),
 		log: function () {
 
 			if (!this.isEnable) {
@@ -20,16 +21,18 @@ var gOldOnError,
 				return;
 			}
 
-			var args = slice.call(arguments).map(function (arg) {
+			var logger = this,
+				xhr = logger.xhr,
+				args = slice.call(arguments).map(function (arg) {
 					return (arg && typeof arg === 'object') ? JSON.stringify(arg) : String(arg);
-				}).join(' '),
-				xhr = new XMLHttpRequest();
+				}).join(' ');
 
 			xhr.open('POST', '/log/', false);
 
 			xhr.send(args);
 
 		}
+
 	};
 
 function log() {
@@ -46,8 +49,6 @@ window.onerror = function (errorMsg, url, lineNumber) {
 	if (gOldOnError) {
 		return gOldOnError(errorMsg, url, lineNumber);
 	}
-
-	return false;
 
 };
 
