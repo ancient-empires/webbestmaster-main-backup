@@ -42,10 +42,8 @@ var Tan = Backbone.Model.extend({
 
 		}));
 
-		tan.set('centerXY', {
-			x: sumX / coordinatesLength,
-			y: sumY / coordinatesLength
-		});
+		tan.set('centerX', sumX / coordinatesLength);
+		tan.set('centerY', sumY / coordinatesLength);
 
 		// data for transform matrix
 		tan.set('dx', 0);
