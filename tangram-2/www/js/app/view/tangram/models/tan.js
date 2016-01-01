@@ -23,17 +23,17 @@ var Tan = Backbone.Model.extend({
 	initialize: function (data) {
 
 		var tan = this,
-			scale = data.scale,
-			coordinates = data.coordinates;
+			scale = data.scale;
 
-		coordinates.forEach(function (xy, index) {
-			tan.set('x' + index, xy.x * scale);
-			tan.set('y' + index, xy.y * scale);
-		});
+		// push init coordinates to real tan coordinates
+		tan.set('coordinates', data.coordinates.map(function (xy) {
+			return { x: xy.x * scale, y: xy.y * scale };
+		}));
 
-		tan.set('anglesLength', coordinates.length);
-
-		//tan.setLastAccept();
+		// data for transform matrix
+		tan.set('dx', 0);
+		tan.set('dy', 0);
+		tan.set('rotate', 0);
 
 		tan.bindEventListeners();
 
@@ -61,7 +61,7 @@ var Tan = Backbone.Model.extend({
 
 	move: function (dxdy) {
 
-		if ( !this.get('isActive') ) {
+		if (!this.get('isActive')) {
 			return;
 		}
 
@@ -118,10 +118,10 @@ var Tan = Backbone.Model.extend({
 			i, len;
 
 		for (i = 0, len = tan.get('anglesLength'); i < len; i += 1) {
-			arr.push({
+			arr[i] = {
 				x: tan.get('x' + i),
 				y: tan.get('y' + i)
-			});
+			};
 		}
 
 		return arr;
@@ -145,7 +145,7 @@ var Tan = Backbone.Model.extend({
 
 		var tan = this,
 			tanNode = tan.get('node'),
-			polygonCoordinates = tan.getPolygonCoordinates();
+			polygonCoordinates = tan.getInitialPolygonCoordinates();
 
 		if (!tanNode) {
 			tanNode = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
@@ -193,19 +193,22 @@ var Tan = Backbone.Model.extend({
 
 	},
 
-	getPolygonCoordinates: function () {
+	getInitialPolygonCoordinates: function () {
 
-		return this.getCoordinates().map(function (xy) {
-			return xy.x + ',' + xy.y ;
+		var tan = this,
+			scale = tan.get('scale');
+
+		return tan.get('coordinates').map(function (xy) {
+			return xy.x + ',' + xy.y;
 		}).join(' ');
 
 	},
 
 	isIn: function (xy) {
 
-	var tan = this,
-		anglesLength = tan.get('anglesLength');
-		
+		var tan = this,
+			anglesLength = tan.get('anglesLength');
+
 		if (anglesLength === 3) {
 			return tan.isInTriangle.apply(tan, tan.getCoordinates().concat([xy]));
 		}
