@@ -23,12 +23,29 @@ var Tan = Backbone.Model.extend({
 	initialize: function (data) {
 
 		var tan = this,
-			scale = data.scale;
+			scale = data.scale,
+			sumX = 0,
+			sumY = 0,
+			coordinates = data.coordinates,
+			coordinatesLength = coordinates.length;
 
 		// push init coordinates to real tan coordinates
-		tan.set('coordinates', data.coordinates.map(function (xy) {
-			return { x: xy.x * scale, y: xy.y * scale };
+		tan.set('coordinates', coordinates.map(function (xy) {
+
+			var x = xy.x * scale,
+				y = xy.y * scale;
+
+			sumX += x;
+			sumY += y;
+
+			return { x: x, y: y };
+
 		}));
+
+		tan.set('centerXY', {
+			x: sumX / coordinatesLength,
+			y: sumY / coordinatesLength
+		});
 
 		// data for transform matrix
 		tan.set('dx', 0);
