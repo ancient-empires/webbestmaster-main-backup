@@ -3,6 +3,7 @@
 
 import Backbone from './../lib/backbone';
 import mediator from './mediator';
+import log from './log';
 
 var win = window,
 	doc = win.document,
@@ -172,18 +173,46 @@ var win = window,
 
 			var device = this,
 				startEvents = device.get('pinchStartEvents'),
-				before,
-				after;
 
-			before = Math.pow(startEvents[0].x - startEvents[1].x, 2) + Math.pow(startEvents[0].y - startEvents[1].y, 2);
+				startXY0 = startEvents[0],
+				startXY1 = startEvents[1],
+				startXY0X = startXY0.x,
+				startXY0Y = startXY0.y,
+				startXY1X = startXY1.x,
+				startXY1Y = startXY1.y,
+				startVectorX = startXY1X - startXY0X,
+				startVectorY = startXY1Y - startXY0Y,
+
+				currentXY0 = events[0],
+				currentXY1 = events[1],
+				currentXY0X = currentXY0.x,
+				currentXY0Y = currentXY0.y,
+				currentXY1X = currentXY1.x,
+				currentXY1Y = currentXY1.y,
+				currentVectorX = currentXY1X - currentXY0X,
+				currentVectorY = currentXY1Y - currentXY0Y,
+
+				before,
+				after,
+				startDeltaAngle;
+
+			// get scale
+			before = Math.pow(startXY0X - startXY1X, 2) + Math.pow(startXY0Y - startXY1Y, 2);
 			before = Math.pow(before, 0.5);
 
-			after = Math.pow(events[0].x - events[1].x, 2) + Math.pow(events[0].y - events[1].y, 2);
+			after = Math.pow(currentXY0X - currentXY1X, 2) + Math.pow(currentXY0Y - currentXY1Y, 2);
 			after = Math.pow(after, 0.5);
 
+			// get angle
+			//startDeltaAngle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
+			startDeltaAngle = Math.atan2(currentVectorY - startVectorY, currentVectorX - startVectorX) * 180 / Math.PI;
+
+			log(startDeltaAngle);
+
 			return {
-				scale: (after / before) || 1
-			};
+				scale: (after / before) || 1,
+				startDeltaAngle: startDeltaAngle
+			}
 
 		},
 
