@@ -10,9 +10,9 @@ var Tan = Backbone.Model.extend({
 	},
 
 	activeStyles: {
-		fill: '#c0c',
-		stroke: '#0cc',
-		'stroke-width': 0.03
+		fill: '#0c0',
+		stroke: '#c00',
+		'stroke-width': 0.02
 	},
 
 	nodeAttributes: {
