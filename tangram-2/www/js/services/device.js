@@ -40,7 +40,7 @@ var win = window,
 
 			device.collectInfo();
 
-			device.setPointData({ x: 0, y: 0, scale: 1 });
+			device.setPointData({x: 0, y: 0, scale: 1});
 
 			device.bindEventListeners();
 
@@ -92,8 +92,8 @@ var win = window,
 
 			device.on('change:actionIsActive', function (self, actionIsActive) {
 
-				if ( actionIsActive ) {
-					device.publish('deviceActionIsActive', actionIsActive, {xy: device.get('startDownEventXY') });
+				if (actionIsActive) {
+					device.publish('deviceActionIsActive', actionIsActive, {xy: device.get('startDownEventXY')});
 				} else {
 					device.publish('deviceActionIsActive', actionIsActive);
 				}
@@ -194,7 +194,10 @@ var win = window,
 
 				before,
 				after,
-				startDeltaAngle;
+				startAngle,
+				currentAngle,
+				deltaAngle,
+				toDeg = 180 / Math.PI;
 
 			// get scale
 			before = Math.pow(startXY0X - startXY1X, 2) + Math.pow(startXY0Y - startXY1Y, 2);
@@ -204,14 +207,15 @@ var win = window,
 			after = Math.pow(after, 0.5);
 
 			// get angle
-			//startDeltaAngle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
-			startDeltaAngle = Math.atan2(currentVectorY - startVectorY, currentVectorX - startVectorX) * 180 / Math.PI;
+			startAngle = Math.atan2(startVectorY, startVectorX) * toDeg;
+			currentAngle = Math.atan2(currentVectorY, currentVectorX) * toDeg;
 
-			log(startDeltaAngle);
+			//startDeltaAngle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
+			deltaAngle = currentAngle - startAngle;
 
 			return {
 				scale: (after / before) || 1,
-				startDeltaAngle: startDeltaAngle
+				deltaAngle: deltaAngle
 			}
 
 		},
@@ -278,7 +282,7 @@ var win = window,
 
 		onMove: function (e) {
 
-			if ( !this.get('actionIsActive') ) {
+			if (!this.get('actionIsActive')) {
 				return false;
 			}
 
@@ -295,18 +299,18 @@ var win = window,
 				dy,
 				scale;
 
-			dx = lastEventXY.x - currentEventXY.x;
-			x = currentPointData.x - dx;
+			dx = currentEventXY.x - lastEventXY.x;
+			x = currentPointData.x + dx;
 
-			dy = lastEventXY.y - currentEventXY.y;
-			y = currentPointData.y - dy;
+			dy = currentEventXY.y - lastEventXY.y;
+			y = currentPointData.y + dy;
 
 			device.set('currentPointData', {
 				x: x,
 				y: y
 			});
 
-			if ( device.get('pinchIsActive') ) { // zooming
+			if (device.get('pinchIsActive')) { // zooming
 				pinchData = device.getPinchData(events.events);
 				scale = pinchData.scale;
 				device.setPointData({
@@ -338,14 +342,14 @@ var win = window,
 				eventsArrLength = eventsArr.length,
 				isTouch = device.get('isTouch');
 
-			if ( !eventsArrLength && isTouch && device.get('pinchIsActive') ) { // 2 fingers -> 0 finger
+			if (!eventsArrLength && isTouch && device.get('pinchIsActive')) { // 2 fingers -> 0 finger
 				device.set('pinchIsActive', false);
 				device.set('actionIsActive', false);
 				//device.setContainerSize();
 				return;
 			}
 
-			if ( !eventsArrLength || !isTouch) { // if is not touch device - stop moving
+			if (!eventsArrLength || !isTouch) { // if is not touch device - stop moving
 				device.set('actionIsActive', false);
 				//this.sliding();
 				device.clearLogMoving();

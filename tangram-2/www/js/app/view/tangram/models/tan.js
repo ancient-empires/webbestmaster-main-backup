@@ -71,8 +71,8 @@ var Tan = Backbone.Model.extend({
 			coordinates = tan.getCoordinates();
 
 		_.each(coordinates, function (xy) {
-			xy.x -= dx;
-			xy.y -= dy;
+			xy.x += dx;
+			xy.y += dy;
 		});
 
 		tan.setCoordinates(coordinates);
@@ -195,10 +195,7 @@ var Tan = Backbone.Model.extend({
 
 	getPolygonCoordinates: function () {
 
-		var tan = this,
-			scale = tan.get('scale');
-
-		return tan.getCoordinates().map(function (xy) {
+		return this.getCoordinates().map(function (xy) {
 			return xy.x + ',' + xy.y ;
 		}).join(' ');
 

@@ -1,7 +1,68 @@
-(function (gi2825) {
+(function (gi1995) {
+(function () {
+'use strict';
+/*global console */
+
+var gOldOnError,
+	slice = Array.prototype.slice,
+	logger = {
+		isEnable: true,
+		xhr: new XMLHttpRequest(),
+		log: function () {
+
+			if (!this.isEnable) {
+				return;
+			}
+
+			console.log.apply(console, arguments);
+
+		},
+		sendToServer: function () {
+
+			if (!this.isEnable) {
+				return;
+			}
+
+			var logger = this,
+				xhr = logger.xhr,
+				args = slice.call(arguments).map(function (arg) {
+					return (arg && typeof arg === 'object') ? JSON.stringify(arg) : String(arg);
+				}).join(' ');
+
+			xhr.open('POST', '/log/', false);
+
+			xhr.send(args);
+
+		}
+
+	};
+
+function log() {
+	logger.sendToServer.apply(logger, arguments);
+	return logger.log.apply(logger, arguments);
+}
+
+gOldOnError = window.onerror;
+
+window.onerror = function (errorMsg, url, lineNumber) {
+
+	log.apply(null, arguments);
+
+	if (gOldOnError) {
+		return gOldOnError(errorMsg, url, lineNumber);
+	}
+
+};
+
+gi1995['/www/js/services/log.js'] = log;
+
+
+}());
 (function () {
 'use strict';
 /*global window */
+
+var log = gi1995['/www/js/services/log.js'] || window.log;
 
 var mediator;
 
@@ -23,6 +84,8 @@ function publish(channel) {
 
 	var list = mediator.channels[channel],
 		args;
+
+	log('publish -', channel, arguments);
 
 	if ( !list ) {
 		return this;
@@ -79,7 +142,7 @@ mediator = {
 	}
 };
 
-gi2825['/www/js/services/mediator.js'] = mediator;
+gi1995['/www/js/services/mediator.js'] = mediator;
 
 }());
 (function () {
@@ -7406,7 +7469,7 @@ info = {
 
 info.init();
 
-gi2825['/www/js/services/info.js'] = info;
+gi1995['/www/js/services/info.js'] = info;
 
 
 }());
@@ -7414,7 +7477,9 @@ gi2825['/www/js/services/info.js'] = info;
 'use strict';
 /*global window */
 
-var Backbone = gi2825['/www/js/lib/backbone.js'] || window.Backbone;
+var Backbone = gi1995['/www/js/lib/backbone.js'] || window.Backbone;
+var mediator = gi1995['/www/js/services/mediator.js'] || window.mediator;
+var log = gi1995['/www/js/services/log.js'] || window.log;
 
 var win = window,
 	doc = win.document,
@@ -7428,23 +7493,350 @@ var win = window,
 			orientation: ''
 		},
 
+		eventTypes: {
+			down: ['mousedown', 'touchstart'],
+			move: ['mousemove', 'touchmove'],
+			up: ['mouseup', 'touchend']
+		},
+
+		events: {},
+
+		mapEventType: {
+			mousedown: 'down',
+			touchstart: 'down',
+			mousemove: 'move',
+			touchmove: 'move',
+			mouseup: 'up',
+			touchend: 'up'
+		},
+
 		initialize: function () {
 
 			var device = this;
 
+			device.collectInfo();
+
+			device.setPointData({x: 0, y: 0, scale: 1});
+
 			device.bindEventListeners();
+
+			mediator.installTo(device);
 
 			device.onResize();
 
 		},
 
+		collectInfo: function () {
+
+			var device = this,
+				isTouch = 'ontouchstart' in doc,
+				eventTypesIndex = Number(isTouch),
+				types = device.eventTypes,
+				events = device.events;
+
+			// set is touch
+			device.set('isTouch', isTouch);
+
+			// set events names - touch or mouse
+			_.each(types, function (typesArr, key) {
+				events[key] = typesArr[eventTypesIndex];
+			});
+
+		},
+
 		bindEventListeners: function () {
 
-			var device = this;
+			var device = this,
+				events = device.events,
+				body = doc.body;
 
 			win.addEventListener('resize', function () {
 				device.onResize();
 			}, false);
+
+			body.addEventListener(events.down, function (e) {
+				device.onDown(e);
+			}, false);
+
+			body.addEventListener(events.move, function (e) {
+				device.onMove(e);
+			}, false);
+
+			body.addEventListener(events.up, function (e) {
+				device.onUp(e);
+			}, false);
+
+			device.on('change:actionIsActive', function (self, actionIsActive) {
+
+				if (actionIsActive) {
+					device.publish('deviceActionIsActive', actionIsActive, {xy: device.get('startDownEventXY')});
+				} else {
+					device.publish('deviceActionIsActive', actionIsActive);
+				}
+
+			});
+
+		},
+
+		getEvents: function (e) {
+
+			//e = e.originalEvent; // for jQ like
+
+			var device = this,
+				evt = {
+					events: [],
+					length: 0,
+					type: ''
+				},
+				events = e.touches || [e];
+
+			evt.length = events.length;
+			evt.type = device.mapEventType[e.type];
+
+			_.each(events, function (e) {
+				evt.events.push({
+					x: e.clientX,
+					y: e.clientY
+				});
+			});
+
+			return evt;
+
+		},
+
+		getAverageXY: function (arr) {
+
+			var sumX = 0,
+				sumY = 0,
+				count = arr.length;
+
+			_.each(arr, function (xy) {
+				sumX += xy.x;
+				sumY += xy.y;
+			});
+
+			return {
+				x: sumX / count,
+				y: sumY / count
+			};
+
+		},
+
+		logMoving: function (xy) {
+
+			var device = this,
+				logMoving = device.get('log-moving');
+
+			if (logMoving.length > 10) {
+				logMoving.shift(); // delete first item
+			}
+
+			logMoving.push({
+				x: xy.x,
+				y: xy.y,
+				timeStamp: Date.now()
+			});
+
+			//device.set('log-moving', logMoving);
+
+		},
+
+		clearLogMoving: function () {
+			this.set('log-moving', []);
+		},
+
+		getPinchData: function (events) {
+
+			var device = this,
+				startEvents = device.get('pinchStartEvents'),
+
+				startXY0 = startEvents[0],
+				startXY1 = startEvents[1],
+				startXY0X = startXY0.x,
+				startXY0Y = startXY0.y,
+				startXY1X = startXY1.x,
+				startXY1Y = startXY1.y,
+				startVectorX = startXY1X - startXY0X,
+				startVectorY = startXY1Y - startXY0Y,
+
+				currentXY0 = events[0],
+				currentXY1 = events[1],
+				currentXY0X = currentXY0.x,
+				currentXY0Y = currentXY0.y,
+				currentXY1X = currentXY1.x,
+				currentXY1Y = currentXY1.y,
+				currentVectorX = currentXY1X - currentXY0X,
+				currentVectorY = currentXY1Y - currentXY0Y,
+
+				before,
+				after,
+				startAngle,
+				currentAngle,
+				deltaAngle,
+				toDeg = 180 / Math.PI;
+
+			// get scale
+			before = Math.pow(startXY0X - startXY1X, 2) + Math.pow(startXY0Y - startXY1Y, 2);
+			before = Math.pow(before, 0.5);
+
+			after = Math.pow(currentXY0X - currentXY1X, 2) + Math.pow(currentXY0Y - currentXY1Y, 2);
+			after = Math.pow(after, 0.5);
+
+			// get angle
+			startAngle = Math.atan2(startVectorY, startVectorX) * toDeg;
+			currentAngle = Math.atan2(currentVectorY, currentVectorX) * toDeg;
+
+			//startDeltaAngle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
+			deltaAngle = currentAngle - startAngle;
+
+			return {
+				scale: (after / before) || 1,
+				deltaAngle: deltaAngle
+			}
+
+		},
+
+		setPointData: function (xys) {
+
+			var device = this;
+
+			if (xys.hasOwnProperty('x')) {
+				device.set('pointDataX', xys.x);
+			}
+
+			if (xys.hasOwnProperty('y')) {
+				device.set('pointDataY', xys.y);
+			}
+
+			if (xys.hasOwnProperty('scale')) {
+				device.set('pointDataScale', xys.scale);
+			}
+
+			return device;
+		},
+
+		getPointData: function () {
+
+			var device = this;
+
+			return {
+				x: device.get('pointDataX'),
+				y: device.get('pointDataY'),
+				scale: device.get('pointDataScale')
+			};
+
+		},
+
+		onDown: function (e) {
+
+			var device = this,
+				events = device.getEvents(e),
+				startEventXY = device.getAverageXY(events.events),
+				pointData = device.getPointData();
+
+			// set start events position
+			device.set('startDownEventXY', startEventXY);
+
+			// set start point position
+			device.set('startPointData', pointData);
+			device.set('currentPointData', pointData);
+
+			device.set('actionIsActive', true);
+
+			device.clearLogMoving();
+			device.logMoving(startEventXY);
+
+			// detect start zooming
+			if (events.length === 2) {
+				device.set('pinchIsActive', true);
+				device.set('pinchStartEvents', events.events);
+			} else {
+				device.set('pinchIsActive', false);
+			}
+
+		},
+
+		onMove: function (e) {
+
+			if (!this.get('actionIsActive')) {
+				return false;
+			}
+
+			var device = this,
+				events = device.getEvents(e),
+				currentEventXY = device.getAverageXY(events.events),
+				currentPointData = device.get('currentPointData'),
+				logMoving = device.get('log-moving'),
+				lastEventXY = logMoving[logMoving.length - 1],
+				pinchData,
+				x,
+				y,
+				dx,
+				dy,
+				scale;
+
+			dx = currentEventXY.x - lastEventXY.x;
+			x = currentPointData.x + dx;
+
+			dy = currentEventXY.y - lastEventXY.y;
+			y = currentPointData.y + dy;
+
+			device.set('currentPointData', {
+				x: x,
+				y: y
+			});
+
+			if (device.get('pinchIsActive')) { // zooming
+				pinchData = device.getPinchData(events.events);
+				scale = pinchData.scale;
+				device.setPointData({
+					x: x * scale,
+					y: y * scale,
+					scale: scale
+				});
+			} else { // just moving
+				device.setPointData({
+					x: x,
+					y: y
+				});
+			}
+
+			device.publish('deviceMoving', {
+				dx: dx,
+				dy: dy
+			});
+
+			device.logMoving(currentEventXY);
+
+		},
+
+		onUp: function (e) {
+
+			var device = this,
+				events = device.getEvents(e),
+				eventsArr = events.events,
+				eventsArrLength = eventsArr.length,
+				isTouch = device.get('isTouch');
+
+			if (!eventsArrLength && isTouch && device.get('pinchIsActive')) { // 2 fingers -> 0 finger
+				device.set('pinchIsActive', false);
+				device.set('actionIsActive', false);
+				//device.setContainerSize();
+				return;
+			}
+
+			if (!eventsArrLength || !isTouch) { // if is not touch device - stop moving
+				device.set('actionIsActive', false);
+				//this.sliding();
+				device.clearLogMoving();
+				return;
+			}
+
+			if (eventsArrLength === 1 && isTouch) { // 2 fingers -> 1 finger
+				device.set('pinchIsActive', false);
+				//device.setContainerSize();
+				device.onDown(e);
+			}
 
 		},
 
@@ -7453,15 +7845,18 @@ var win = window,
 			var device = this,
 				width = docElem.clientWidth,
 				height = docElem.clientHeight,
-				orientation = width > height ? '-' : '|';
+				orientation = width > height ? '-' : '|',
+				data = {
+					width: width,
+					height: height,
+					orientation: orientation
+				};
 
-			device.set({
-				width: width,
-				height: height,
-				orientation: orientation
-			});
+			device.set(data);
 
 			device.trigger('resize');
+
+			device.publish('resize', data);
 
 		}
 
@@ -7469,13 +7864,13 @@ var win = window,
 
 device = new Device();
 
-gi2825['/www/js/services/device.js'] = device;
+gi1995['/www/js/services/device.js'] = device;
 }());
 (function () {
 'use strict';
 /*global window, Date */
 
-var info = gi2825['/www/js/services/info.js'] || window.info;
+var info = gi1995['/www/js/services/info.js'] || window.info;
 
 var win = window,
 	androidAds = {
@@ -7521,7 +7916,7 @@ var win = window,
 
 	androidAds.init();
 
-gi2825['/www/js/services/android-ads.js'] = androidAds;
+gi1995['/www/js/services/android-ads.js'] = androidAds;
 
 }());
 (function () {
@@ -7547,7 +7942,7 @@ var en = {
 
 };
 
-gi2825['/www/js/i18n/en.js'] = en;
+gi1995['/www/js/i18n/en.js'] = en;
 }());
 (function () {
 'use strict';
@@ -7572,21 +7967,21 @@ var ru = {
 
 };
 
-gi2825['/www/js/i18n/ru.js'] = ru;
+gi1995['/www/js/i18n/ru.js'] = ru;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var info = gi2825['/www/js/services/info.js'] || window.info;
-var en = gi2825['/www/js/i18n/en.js'] || window.en;
-var ru = gi2825['/www/js/i18n/ru.js'] || window.ru;
+var info = gi1995['/www/js/services/info.js'] || window.info;
+var en = gi1995['/www/js/i18n/en.js'] || window.en;
+var ru = gi1995['/www/js/i18n/ru.js'] || window.ru;
 
 var lang = {
 
 	attr: {},
 
-	languages: { en, ru },
+	languages: { en: en, ru: ru },
 
 	set: function (lang) {
 		this.attr = this.languages[lang];
@@ -7600,27 +7995,8 @@ var lang = {
 
 lang.set(info.get('language'));
 
-gi2825['/www/js/services/lang.js'] = lang;
+gi1995['/www/js/services/lang.js'] = lang;
 
-
-
-}());
-(function () {
-'use strict';
-/*global console */
-
-var logger = {
-	isEnable: false,
-	log: function () {
-		return this.isEnable && console.log.apply(console, arguments);
-	}
-};
-
-function log() {
-	return logger.log.apply(logger, arguments);
-}
-
-gi2825['/www/js/services/log.js'] = log;
 
 
 }());
@@ -7628,7 +8004,7 @@ gi2825['/www/js/services/log.js'] = log;
 'use strict';
 /*global window */
 
-var doT = gi2825['/www/js/lib/dot.js'] || window.doT;
+var doT = gi1995['/www/js/lib/dot.js'] || window.doT;
 
 var doc = window.document,
 		templateMaster = {
@@ -7662,7 +8038,7 @@ var doc = window.document,
 
 templateMaster.init();
 
-gi2825['/www/js/services/template-master.js'] = templateMaster;
+gi1995['/www/js/services/template-master.js'] = templateMaster;
 
 
 
@@ -7739,7 +8115,7 @@ var win = window,
 
 	};
 
-gi2825['/www/js/services/util.js'] = util;
+gi1995['/www/js/services/util.js'] = util;
 }());
 (function () {
 'use strict';
@@ -7782,7 +8158,7 @@ var win = window,
 
 };
 
-gi2825['/www/js/sound/player-android.js'] = androidPlayer;
+gi1995['/www/js/sound/player-android.js'] = androidPlayer;
 }());
 (function () {
 'use strict';
@@ -7839,7 +8215,7 @@ var win = window,
 
 	};
 
-gi2825['/www/js/sound/player-ios.js'] = iosPlayer;
+gi1995['/www/js/sound/player-ios.js'] = iosPlayer;
 
 
 }());
@@ -7847,7 +8223,7 @@ gi2825['/www/js/sound/player-ios.js'] = iosPlayer;
 'use strict';
 /*global window */
 
-var info = gi2825['/www/js/services/info.js'] || window.info;
+var info = gi1995['/www/js/services/info.js'] || window.info;
 
 var win = window,
 	webPlayer = {
@@ -7921,17 +8297,17 @@ var win = window,
 
 };
 
-gi2825['/www/js/sound/player-web.js'] = webPlayer;
+gi1995['/www/js/sound/player-web.js'] = webPlayer;
 
 }());
 (function () {
 'use strict';
 /*global window */
 
-var androidPlayer = gi2825['/www/js/sound/player-android.js'] || window.androidPlayer;
-var iosPlayer = gi2825['/www/js/sound/player-ios.js'] || window.iosPlayer;
-var webPlayer = gi2825['/www/js/sound/player-web.js'] || window.webPlayer;
-var info = gi2825['/www/js/services/info.js'] || window.info;
+var androidPlayer = gi1995['/www/js/sound/player-android.js'] || window.androidPlayer;
+var iosPlayer = gi1995['/www/js/sound/player-ios.js'] || window.iosPlayer;
+var webPlayer = gi1995['/www/js/sound/player-web.js'] || window.webPlayer;
+var info = gi1995['/www/js/services/info.js'] || window.info;
 
 var win = window,
 	soundMaster = {
@@ -8069,7 +8445,7 @@ var win = window,
 
 soundMaster.init();
 
-gi2825['/www/js/sound/sound-master.js'] = soundMaster;
+gi1995['/www/js/sound/sound-master.js'] = soundMaster;
 
 
 }());
@@ -8077,16 +8453,16 @@ gi2825['/www/js/sound/sound-master.js'] = soundMaster;
 'use strict';
 /*global window */
 
-var Backbone = gi2825['/www/js/lib/backbone.js'] || window.Backbone;
-var $ = gi2825['/www/js/lib/jbone.js'] || window.$;
-var _ = gi2825['/www/js/lib/lodash.js'] || window._;
-var info = gi2825['/www/js/services/info.js'] || window.info;
-//var tm = gi2825['/www/js/services/template-master.js'] || window.tm;
-var util = gi2825['/www/js/services/util.js'] || window.util;
-var mediator = gi2825['/www/js/services/mediator.js'] || window.mediator;
-var sm = gi2825['/www/js/sound/sound-master.js'] || window.sm;
-var lang = gi2825['/www/js/services/lang.js'] || window.lang;
-var device = gi2825['/www/js/services/device.js'] || window.device;
+var Backbone = gi1995['/www/js/lib/backbone.js'] || window.Backbone;
+var $ = gi1995['/www/js/lib/jbone.js'] || window.$;
+var _ = gi1995['/www/js/lib/lodash.js'] || window._;
+var info = gi1995['/www/js/services/info.js'] || window.info;
+//var tm = gi1995['/www/js/services/template-master.js'] || window.tm;
+var util = gi1995['/www/js/services/util.js'] || window.util;
+var mediator = gi1995['/www/js/services/mediator.js'] || window.mediator;
+var sm = gi1995['/www/js/sound/sound-master.js'] || window.sm;
+var lang = gi1995['/www/js/services/lang.js'] || window.lang;
+var device = gi1995['/www/js/services/device.js'] || window.device;
 
 var win = window,
 	doc = win.document,
@@ -8142,14 +8518,12 @@ var win = window,
 		initStatic: function () {
 
 			var view = this,
-				isTouch = info.get('isTouch', true),
+				isTouch = device.get('isTouch'),
 				eventTypesIndex = Number(isTouch),
 				types = view.eventTypes,
-				fontSize,
-				proto = BaseView.prototype,
-				$wrapper = $(view.selectors.wrapper);
+				fontSize;
 
-			proto.$wrapper = $wrapper;
+			view.constructor.prototype.$wrapper = $(view.selectors.wrapper);
 
 			// adjust font size
 			fontSize = Math.round(14 * Math.pow(docElem.clientWidth * docElem.clientHeight / 153600, 0.5)); // 153600 = 320 * 480
@@ -8167,15 +8541,18 @@ var win = window,
 			$(doc.body).on('contextmenu', view.stopEvent);
 
 			view.listenTo(device, 'resize', function () {
-				$wrapper.css({
-					width: device.get('width') + 'px',
-					height: device.get('height') + 'px'
-				});
-
+				view.resizeWrapper();
 			});
 
-			device.onResize();
+			view.resizeWrapper();
 
+		},
+
+		resizeWrapper: function () {
+			this.constructor.prototype.$wrapper.css({
+				width: device.get('width') + 'px',
+				height: device.get('height') + 'px'
+			});
 		},
 
 		constructor: function () {
@@ -8493,8 +8870,8 @@ var win = window,
 				name: 'need-confirm',
 				cssClass: 'popup-title',
 				data: {
-					a,
-					b,
+					a: a,
+					b: b,
 					answer: answer,
 					answers: util.assortArray(answers),
 					url: data.url
@@ -8599,7 +8976,7 @@ var win = window,
 						}
 					],
 					data: {
-						lang,
+						lang: lang,
 						url: info.getLinkToStore()
 					}
 				});
@@ -8744,14 +9121,14 @@ var win = window,
 
 	});
 
-gi2825['/www/js/app/view/core/base.js'] = BaseView;
+gi1995['/www/js/app/view/core/base.js'] = BaseView;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi2825['/www/js/app/view/core/base.js'] || window.BaseView;
-var tm = gi2825['/www/js/services/template-master.js'] || window.tm;
+var BaseView = gi1995['/www/js/app/view/core/base.js'] || window.BaseView;
+var tm = gi1995['/www/js/services/template-master.js'] || window.tm;
 
 var HomeView = BaseView.extend({
 
@@ -8771,16 +9148,23 @@ var HomeView = BaseView.extend({
 
 });
 
-gi2825['/www/js/app/view/home/home-view.js'] = HomeView;
+gi1995['/www/js/app/view/home/home-view.js'] = HomeView;
 }());
 (function () {
-var Backbone = gi2825['/www/js/lib/backbone.js'] || window.Backbone;
+var Backbone = gi1995['/www/js/lib/backbone.js'] || window.Backbone;
+var mediator = gi1995['/www/js/services/mediator.js'] || window.mediator;
 
 var Tan = Backbone.Model.extend({
 
 	styles: {
 		fill: '#c00',
 		stroke: '#0c0',
+		'stroke-width': 0.02
+	},
+
+	activeStyles: {
+		fill: '#0c0',
+		stroke: '#c00',
 		'stroke-width': 0.02
 	},
 
@@ -8791,15 +9175,92 @@ var Tan = Backbone.Model.extend({
 
 	initialize: function (data) {
 
-		var scale = data.scale,
+		var tan = this,
+			scale = data.scale,
 			coordinates = data.coordinates;
 
 		coordinates.forEach(function (xy, index) {
-			this.set('x' + index, xy.x * scale);
-			this.set('y' + index, xy.y * scale);
-		}, this);
+			tan.set('x' + index, xy.x * scale);
+			tan.set('y' + index, xy.y * scale);
+		});
 
-		this.set('anglesLength', coordinates.length);
+		tan.set('anglesLength', coordinates.length);
+
+		//tan.setLastAccept();
+
+		tan.bindEventListeners();
+
+	},
+
+	setLastAccept: function () {
+		return this.set('last-accept', Date.now());
+	},
+
+	getLastAccept: function () {
+		return this.get('last-accept');
+	},
+
+	bindEventListeners: function () {
+
+		var tan = this;
+
+		mediator.installTo(tan);
+
+		tan.on('change:isActive', tan.setStateActiveDeActive);
+
+		tan.subscribe('deviceMoving', tan.move);
+
+	},
+
+	move: function (dxdy) {
+
+		if ( !this.get('isActive') ) {
+			return;
+		}
+
+		var tan = this,
+			dx = dxdy.dx,
+			dy = dxdy.dy,
+			coordinates = tan.getCoordinates();
+
+		_.each(coordinates, function (xy) {
+			xy.x += dx;
+			xy.y += dy;
+		});
+
+		tan.setCoordinates(coordinates);
+
+		tan.reDraw();
+
+	},
+
+	setStateActiveDeActive: function (self, isActive) {
+
+		var tan = this;
+
+		tan.drawActiveDeActive(isActive);
+
+		tan.moveToUpDown(isActive)
+
+	},
+
+	drawActiveDeActive: function (isActive) {
+
+		var tan = this;
+
+		tan.setStyles(isActive && tan.activeStyles);
+
+	},
+
+	moveToUpDown: function (isActive) {
+
+		if (!isActive) {
+			return;
+		}
+
+		var node = this.get('node');
+
+		node.parentElement.appendChild(node);
 
 	},
 
@@ -8820,6 +9281,19 @@ var Tan = Backbone.Model.extend({
 
 	},
 
+	setCoordinates: function (coordinates) {
+
+		var tan = this;
+
+		_.each(coordinates, function (xy, i) {
+			tan.set('x' + i, xy.x);
+			tan.set('y' + i, xy.y);
+		});
+
+		return tan;
+
+	},
+
 	drawTo: function (drawNode) {
 
 		var tan = this,
@@ -8837,11 +9311,21 @@ var Tan = Backbone.Model.extend({
 
 	},
 
-	setStyles: function () {
+	reDraw: function () {
+
+		var tan = this,
+			tanNode = tan.get('node'),
+			polygonCoordinates = tan.getPolygonCoordinates();
+
+		tanNode.setAttribute('points', polygonCoordinates);
+
+	},
+
+	setStyles: function (stylesArg) {
 
 		var tan = this,
 			node = tan.get('node'),
-			styles = tan.styles,
+			styles = stylesArg || tan.styles,
 			nodeAttributes = tan.nodeAttributes,
 			styleStr = '',
 			attr = document.createAttribute('style');
@@ -8864,32 +9348,40 @@ var Tan = Backbone.Model.extend({
 
 	getPolygonCoordinates: function () {
 
-		var tan = this,
-			scale = tan.get('scale');
-
-		return tan.getCoordinates().map(function (xy) {
+		return this.getCoordinates().map(function (xy) {
 			return xy.x + ',' + xy.y ;
 		}).join(' ');
 
 	},
 
-	isIn: function (x, y) {
+	isIn: function (xy) {
 
 	var tan = this,
 		anglesLength = tan.get('anglesLength');
 		
 		if (anglesLength === 3) {
-			return tan.isInTriangle(tan.getCoordinates().concat(x,y ))
+			return tan.isInTriangle.apply(tan, tan.getCoordinates().concat([xy]));
 		}
 
+		if (anglesLength === 4) {
+			return tan.isInFourAngle.apply(tan, tan.getCoordinates().concat([xy]));
+		}
 
 	},
 
 	// x0, y0 - point coordinates
 
-	isInTriangle: function (x1, y1, x2, y2, x3, y3, x0, y0) {
+	isInTriangle: function (xy1, xy2, xy3, xy0) {
 
-		var a, b, c;
+		var a, b, c,
+			x1 = xy1.x,
+			y1 = xy1.y,
+			x2 = xy2.x,
+			y2 = xy2.y,
+			x3 = xy3.x,
+			y3 = xy3.y,
+			x0 = xy0.x,
+			y0 = xy0.y;
 
 		a = (x1 - x0) * (y2 - y1) - (x2 - x1) * (y1 - y0);
 		b = (x2 - x0) * (y3 - y2) - (x3 - x2) * (y2 - y0);
@@ -8897,18 +9389,27 @@ var Tan = Backbone.Model.extend({
 
 		return (a >= 0 && b >= 0 && c >= 0) || (a <= 0 && b <= 0 && c <= 0);
 
-	}
+	},
 
+	isInFourAngle: function (xy1, xy2, xy3, xy4, xy0) {
+
+		var tan = this;
+
+		return tan.isInTriangle(xy1, xy2, xy3, xy0) || tan.isInTriangle(xy3, xy4, xy1, xy0);
+
+	}
 
 });
 
-gi2825['/www/js/app/view/tangram/models/tan.js'] = Tan;
+gi1995['/www/js/app/view/tangram/models/tan.js'] = Tan;
 }());
 (function () {
-var Backbone = gi2825['/www/js/lib/backbone.js'] || window.Backbone;
-var Tan = gi2825['/www/js/app/view/tangram/models/tan.js'] || window.Tan;
-var _ = gi2825['/www/js/lib/lodash.js'] || window._;
-var device = gi2825['/www/js/services/device.js'] || window.device;
+var Backbone = gi1995['/www/js/lib/backbone.js'] || window.Backbone;
+var Tan = gi1995['/www/js/app/view/tangram/models/tan.js'] || window.Tan;
+var _ = gi1995['/www/js/lib/lodash.js'] || window._;
+var device = gi1995['/www/js/services/device.js'] || window.device;
+var mediator = gi1995['/www/js/services/mediator.js'] || window.mediator;
+var log = gi1995['/www/js/services/log.js'] || window.log;
 
 var tansInfo = {
 	triangleBig: {
@@ -8965,11 +9466,67 @@ var TanCollection = Backbone.Collection.extend({
 
 	initialize: function () {
 
-		this.detectScale();
+		var collection = this;
+
+		collection.detectScale();
+		collection.bindEventListeners();
+
+	},
+
+	bindEventListeners: function () {
+
+		var collection = this;
+
+		mediator.installTo(collection);
+
+		collection.subscribe('deviceActionIsActive', collection.activateDeActiveTans);
+
+	},
+
+	activateDeActiveTans: function (isActive, data) {
+
+		var collection = this,
+			activeTan;
+
+		if (!isActive) {
+			return collection.deActiveAll();
+		}
+
+		collection.each(function (tan) {
+
+			// touch XY is not in tan
+			if ( !tan.isIn(data.xy) ) {
+				return;
+			}
+
+			if ( !activeTan ) {
+				return activeTan = tan;
+			}
+
+			if ( tan.getLastAccept() > activeTan.getLastAccept() ) {
+				activeTan = tan;
+			}
+
+		});
+
+		if ( activeTan ) {
+			activeTan.set('isActive', true);
+			activeTan.setLastAccept();
+		}
+
+	},
+
+	deActiveAll: function () {
+
+		this.each(function (tan) {
+			tan.set('isActive', false);
+		});
 
 	},
 
 	detectScale: function () {
+
+		// TODO: SET SCALE!!!!!
 
 		var scale = 200;
 
@@ -9038,15 +9595,15 @@ var TanCollection = Backbone.Collection.extend({
 
 });
 
-gi2825['/www/js/app/view/tangram/models/tan-collection.js'] = TanCollection;
+gi1995['/www/js/app/view/tangram/models/tan-collection.js'] = TanCollection;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi2825['/www/js/app/view/core/base.js'] || window.BaseView;
-var tm = gi2825['/www/js/services/template-master.js'] || window.tm;
-var TanCollection = gi2825['/www/js/app/view/tangram/models/tan-collection.js'] || window.TanCollection;
+var BaseView = gi1995['/www/js/app/view/core/base.js'] || window.BaseView;
+var tm = gi1995['/www/js/services/template-master.js'] || window.tm;
+var TanCollection = gi1995['/www/js/app/view/tangram/models/tan-collection.js'] || window.TanCollection;
 
 var TangramView = BaseView.extend({
 
@@ -9074,18 +9631,18 @@ var TangramView = BaseView.extend({
 
 });
 
-gi2825['/www/js/app/view/tangram/tangram-view.js'] = TangramView;
+gi1995['/www/js/app/view/tangram/tangram-view.js'] = TangramView;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var Backbone = gi2825['/www/js/lib/backbone.js'] || window.Backbone;
-var _ = gi2825['/www/js/lib/lodash.js'] || window._;
-var BaseView = gi2825['/www/js/app/view/core/base.js'] || window.BaseView;
-var HomeView = gi2825['/www/js/app/view/home/home-view.js'] || window.HomeView;
-var TangramView = gi2825['/www/js/app/view/tangram/tangram-view.js'] || window.TangramView;
-var mediator = gi2825['/www/js/services/mediator.js'] || window.mediator;
+var Backbone = gi1995['/www/js/lib/backbone.js'] || window.Backbone;
+var _ = gi1995['/www/js/lib/lodash.js'] || window._;
+var BaseView = gi1995['/www/js/app/view/core/base.js'] || window.BaseView;
+var HomeView = gi1995['/www/js/app/view/home/home-view.js'] || window.HomeView;
+var TangramView = gi1995['/www/js/app/view/tangram/tangram-view.js'] || window.TangramView;
+var mediator = gi1995['/www/js/services/mediator.js'] || window.mediator;
 
 var win = window,
 	router,
@@ -9190,20 +9747,20 @@ router.subscribe('route-to-popup', router.routeToPopup);
 router.subscribe('router-hide-popup', router.hidePopup);
 router.subscribe('navigate', router.navigate);
 
-gi2825['/www/js/app/router/router.js'] = router;
+gi1995['/www/js/app/router/router.js'] = router;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi2825['/www/js/app/view/core/base.js'] || window.BaseView;
-var $ = gi2825['/www/js/lib/jbone.js'] || window.$;
-var _ = gi2825['/www/js/lib/lodash.js'] || window._;
-var lang = gi2825['/www/js/services/lang.js'] || window.lang;
-var info = gi2825['/www/js/services/info.js'] || window.info;
-var device = gi2825['/www/js/services/device.js'] || window.device;
-var tm = gi2825['/www/js/services/template-master.js'] || window.tm;
-var mediator = gi2825['/www/js/services/mediator.js'] || window.mediator;
+var BaseView = gi1995['/www/js/app/view/core/base.js'] || window.BaseView;
+var $ = gi1995['/www/js/lib/jbone.js'] || window.$;
+var _ = gi1995['/www/js/lib/lodash.js'] || window._;
+var lang = gi1995['/www/js/services/lang.js'] || window.lang;
+var info = gi1995['/www/js/services/info.js'] || window.info;
+var device = gi1995['/www/js/services/device.js'] || window.device;
+var tm = gi1995['/www/js/services/template-master.js'] || window.tm;
+var mediator = gi1995['/www/js/services/mediator.js'] || window.mediator;
 
 var win = window,
 	HintView,
@@ -9607,19 +10164,19 @@ mediator.installTo(hintMaster);
 
 hintMaster.subscribe('showHint', hintMaster.showHint);
 
-gi2825['/www/js/app/view/core/hint.js'] = hintMaster;
+gi1995['/www/js/app/view/core/hint.js'] = hintMaster;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi2825['/www/js/app/view/core/base.js'] || window.BaseView;
-var $ = gi2825['/www/js/lib/jbone.js'] || window.$;
-var _ = gi2825['/www/js/lib/lodash.js'] || window._;
-var sm = gi2825['/www/js/sound/sound-master.js'] || window.sm;
-var tm = gi2825['/www/js/services/template-master.js'] || window.tm;
-var info = gi2825['/www/js/services/info.js'] || window.info;
-var mediator = gi2825['/www/js/services/mediator.js'] || window.mediator;
+var BaseView = gi1995['/www/js/app/view/core/base.js'] || window.BaseView;
+var $ = gi1995['/www/js/lib/jbone.js'] || window.$;
+var _ = gi1995['/www/js/lib/lodash.js'] || window._;
+var sm = gi1995['/www/js/sound/sound-master.js'] || window.sm;
+var tm = gi1995['/www/js/services/template-master.js'] || window.tm;
+var info = gi1995['/www/js/services/info.js'] || window.info;
+var mediator = gi1995['/www/js/services/mediator.js'] || window.mediator;
 
 var win = window,
 	PopupView,
@@ -9804,43 +10361,44 @@ mediator.installTo(popupMaster);
 
 popupMaster.subscribe('showPopup', popupMaster.showPopup);
 
-gi2825['/www/js/app/view/core/popup.js'] = popupMaster;
+gi1995['/www/js/app/view/core/popup.js'] = popupMaster;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var mediator = gi2825['/www/js/services/mediator.js'] || window.mediator;
+var log = gi1995['/www/js/services/log.js'] || window.log;
+
+var mediator = gi1995['/www/js/services/mediator.js'] || window.mediator;
 
 // init all librares
-var polyfillClassList = gi2825['/www/js/lib/polyfill-class-list.js'] || window.polyfillClassList;
-var shim = gi2825['/www/js/lib/shim.js'] || window.shim;
-var shimES5 = gi2825['/www/js/lib/shim-es5.js'] || window.shimES5;
-var shamES5 = gi2825['/www/js/lib/sham-es5.js'] || window.shamES5;
-var _ = gi2825['/www/js/lib/lodash.js'] || window._;
-var $ = gi2825['/www/js/lib/jbone.js'] || window.$;
-var Deferred = gi2825['/www/js/lib/deferred.js'] || window.Deferred;
-var Backbone = gi2825['/www/js/lib/backbone.js'] || window.Backbone;
-var fastclick = gi2825['/www/js/lib/fastclick.js'] || window.fastclick;
-var doT = gi2825['/www/js/lib/dot.js'] || window.doT;
+var polyfillClassList = gi1995['/www/js/lib/polyfill-class-list.js'] || window.polyfillClassList;
+var shim = gi1995['/www/js/lib/shim.js'] || window.shim;
+var shimES5 = gi1995['/www/js/lib/shim-es5.js'] || window.shimES5;
+var shamES5 = gi1995['/www/js/lib/sham-es5.js'] || window.shamES5;
+var _ = gi1995['/www/js/lib/lodash.js'] || window._;
+var $ = gi1995['/www/js/lib/jbone.js'] || window.$;
+var Deferred = gi1995['/www/js/lib/deferred.js'] || window.Deferred;
+var Backbone = gi1995['/www/js/lib/backbone.js'] || window.Backbone;
+var fastclick = gi1995['/www/js/lib/fastclick.js'] || window.fastclick;
+var doT = gi1995['/www/js/lib/dot.js'] || window.doT;
 
 // init all services
-var info = gi2825['/www/js/services/info.js'] || window.info;
-var device = gi2825['/www/js/services/device.js'] || window.device;
-var androidAds = gi2825['/www/js/services/android-ads.js'] || window.androidAds;
-var lang = gi2825['/www/js/services/lang.js'] || window.lang;
-var log = gi2825['/www/js/services/log.js'] || window.log;
-var tm = gi2825['/www/js/services/template-master.js'] || window.tm;
-var util = gi2825['/www/js/services/util.js'] || window.util;
+var info = gi1995['/www/js/services/info.js'] || window.info;
+var device = gi1995['/www/js/services/device.js'] || window.device;
+var androidAds = gi1995['/www/js/services/android-ads.js'] || window.androidAds;
+var lang = gi1995['/www/js/services/lang.js'] || window.lang;
+var tm = gi1995['/www/js/services/template-master.js'] || window.tm;
+var util = gi1995['/www/js/services/util.js'] || window.util;
 
 // init sound players
-var sm = gi2825['/www/js/sound/sound-master.js'] || window.sm;
+var sm = gi1995['/www/js/sound/sound-master.js'] || window.sm;
 
-var router = gi2825['/www/js/app/router/router.js'] || window.router;
+var router = gi1995['/www/js/app/router/router.js'] || window.router;
 
-var BaseView = gi2825['/www/js/app/view/core/base.js'] || window.BaseView;
-var hintMaster = gi2825['/www/js/app/view/core/hint.js'] || window.hintMaster;
-var popupMaster = gi2825['/www/js/app/view/core/popup.js'] || window.popupMaster;
+var BaseView = gi1995['/www/js/app/view/core/base.js'] || window.BaseView;
+var hintMaster = gi1995['/www/js/app/view/core/hint.js'] || window.hintMaster;
+var popupMaster = gi1995['/www/js/app/view/core/popup.js'] || window.popupMaster;
 
 // todo: - test - enable fast click
 new FastClick(window.document.body); // test it decide
