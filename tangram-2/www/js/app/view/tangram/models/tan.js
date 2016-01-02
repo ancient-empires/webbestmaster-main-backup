@@ -32,10 +32,17 @@ var Tan = Backbone.Model.extend({
 
 		var tan = this,
 			scale = data.scale,
-			sumX = 0,
-			sumY = 0,
-			coordinates = data.coordinates,
-			coordinatesLength = coordinates.length;
+			maxX = -Infinity,
+			maxY = -Infinity,
+			minX = Infinity,
+			minY = Infinity,
+			sizeX,
+			sizeY,
+			halfSizeX,
+			halfSizeY,
+			rotateOriginX,
+			rotateOriginY,
+			coordinates = data.coordinates;
 
 		// push init coordinates to real tan coordinates
 		tan.set('coordinates', coordinates.map(function (xy) {
@@ -43,20 +50,39 @@ var Tan = Backbone.Model.extend({
 			var x = xy.x * scale,
 				y = xy.y * scale;
 
-			sumX += x;
-			sumY += y;
+			maxX = x > maxX ? x : maxX;
+			maxY = y > maxY ? y : maxY;
+			minX = x < minX ? x : minX;
+			minY = y < minY ? y : minY;
 
 			return { x: x, y: y };
 
 		}));
 
-		tan.set('centerX', sumX / coordinatesLength);
-		tan.set('centerY', sumY / coordinatesLength);
+		sizeX = maxX - minX;
+		sizeY = maxY - minY;
 
-		// data for transform matrix
-		tan.set('dx', 0);
-		tan.set('dy', 0);
-		tan.set('rotate', 0);
+		halfSizeX = sizeX / 2;
+		halfSizeY = sizeY / 2;
+
+		rotateOriginX = minX + halfSizeX;
+		rotateOriginY = minY + halfSizeY;
+
+		tan.set({
+			maxX: maxX,
+			maxY: maxY,
+			minX: minX,
+			minY: minY,
+			sizeX: sizeX,
+			sizeY: sizeY,
+			halfSizeX: halfSizeX,
+			halfSizeY: halfSizeY,
+			dx: 0,
+			dy: 0,
+			rotate: 0,
+			rotateOriginX: rotateOriginX,
+			rotateOriginY: rotateOriginY
+		});
 
 		tan.bindEventListeners();
 
@@ -200,6 +226,8 @@ var Tan = Backbone.Model.extend({
 
 		var tan = this,
 			rotate = tan.get('rotate'),
+			rotateOriginX = tan.get('rotateOriginX'),
+			rotateOriginY = tan.get('rotateOriginY'),
 			dx = tan.get('dx'),
 			dy = tan.get('dy');
 
@@ -209,7 +237,7 @@ var Tan = Backbone.Model.extend({
 				dy: dy,
 				rotate: rotate
 			},
-			attribute: ['translate(', dx, ',', dy, ') rotate(', rotate, ')'].join('')
+			attribute: ['translate(', dx, ',', dy, ') rotate(', rotate, ' ', rotateOriginX, ' ', rotateOriginY, ')'].join('')
 		}
 
 	},
