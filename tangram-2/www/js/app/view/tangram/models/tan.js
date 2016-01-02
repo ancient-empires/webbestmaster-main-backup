@@ -89,6 +89,8 @@ var Tan = Backbone.Model.extend({
 		tan.set({
 			maxX: maxX,
 			maxY: maxY,
+			//centerX: minX + halfSizeX,
+			//centerY: minY + halfSizeY,
 			minX: minX,
 			minY: minY,
 			sizeX: sizeX,
