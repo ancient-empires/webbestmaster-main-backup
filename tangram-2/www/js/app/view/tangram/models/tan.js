@@ -28,10 +28,28 @@ var Tan = Backbone.Model.extend({
 
 	},
 
-	initialize: function (data) {
+	initialize: function () {
+
+		var tan = this;
+
+		tan.initCoordinates();
+
+		tan.bindEventListeners();
+
+	},
+
+	setLastAccept: function () {
+		return this.set('last-accept', Date.now());
+	},
+
+	getLastAccept: function () {
+		return this.get('last-accept');
+	},
+
+	initCoordinates: function () {
 
 		var tan = this,
-			scale = data.scale,
+			scale = tan.get('scale'),
 			maxX = -Infinity,
 			maxY = -Infinity,
 			minX = Infinity,
@@ -42,7 +60,7 @@ var Tan = Backbone.Model.extend({
 			halfSizeY,
 			rotateOriginX,
 			rotateOriginY,
-			coordinates = data.coordinates;
+			coordinates = tan.get('coordinates');
 
 		// push init coordinates to real tan coordinates
 		tan.set('coordinates', coordinates.map(function (xy) {
@@ -84,16 +102,6 @@ var Tan = Backbone.Model.extend({
 			rotateOriginY: rotateOriginY
 		});
 
-		tan.bindEventListeners();
-
-	},
-
-	setLastAccept: function () {
-		return this.set('last-accept', Date.now());
-	},
-
-	getLastAccept: function () {
-		return this.get('last-accept');
 	},
 
 	bindEventListeners: function () {
