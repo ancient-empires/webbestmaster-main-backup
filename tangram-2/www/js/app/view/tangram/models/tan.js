@@ -20,6 +20,14 @@ var Tan = Backbone.Model.extend({
 		'stroke-alignment': 'center'
 	},
 
+	setBy: function (key, deltaValue) {
+
+		var tan = this;
+
+		return tan.set(key, tan.get(key) + deltaValue);
+
+	},
+
 	initialize: function (data) {
 
 		var tan = this,
@@ -74,23 +82,26 @@ var Tan = Backbone.Model.extend({
 
 	},
 
-	move: function (dxdy) {
+	move: function (data) {
 
-		if (!this.get('isActive')) {
+		var tan = this;
+
+		if (!tan.get('isActive')) {
 			return;
 		}
 
-		var tan = this,
-			dx = dxdy.dx,
-			dy = dxdy.dy,
-			coordinates = tan.getCoordinates();
+		var	dx = data.dx,
+			dy = data.dy;
 
-		_.each(coordinates, function (xy) {
-			xy.x += dx;
-			xy.y += dy;
-		});
+		tan.setBy('dx', data.dx);
+		tan.setBy('dy', data.dy);
 
-		tan.setCoordinates(coordinates);
+		//_.each(coordinates, function (xy) {
+		//	xy.x += dx;
+		//	xy.y += dy;
+		//});
+		//
+		//tan.setCoordinates(coordinates);
 
 		tan.reDraw();
 
@@ -129,20 +140,21 @@ var Tan = Backbone.Model.extend({
 	getCoordinates: function () {
 
 		var tan = this,
-			arr = [],
-			i, len;
+			coordinates = tan.get('coordinates'),
+			dx = tan.get('dx'),
+			dy = tan.get('dy'),
+			rotate = tan.get('rotate');
 
-		for (i = 0, len = tan.get('anglesLength'); i < len; i += 1) {
-			arr[i] = {
-				x: tan.get('x' + i),
-				y: tan.get('y' + i)
-			};
-		}
-
-		return arr;
+		return coordinates.map(function (xy) {
+			return {
+				x: xy.x + dx,
+				y: xy.y + dy
+			}
+		});
 
 	},
 
+/*
 	setCoordinates: function (coordinates) {
 
 		var tan = this;
@@ -155,6 +167,7 @@ var Tan = Backbone.Model.extend({
 		return tan;
 
 	},
+*/
 
 	drawTo: function (drawNode) {
 
@@ -177,9 +190,27 @@ var Tan = Backbone.Model.extend({
 
 		var tan = this,
 			tanNode = tan.get('node'),
-			polygonCoordinates = tan.getPolygonCoordinates();
+			transformation = tan.getTransform().attribute;
 
-		tanNode.setAttribute('points', polygonCoordinates);
+		tanNode.setAttribute('transform', transformation);
+
+	},
+
+	getTransform: function () {
+
+		var tan = this,
+			rotate = tan.get('rotate'),
+			dx = tan.get('dx'),
+			dy = tan.get('dy');
+
+		return {
+			data: {
+				dx: dx,
+				dy: dy,
+				rotate: rotate
+			},
+			attribute: ['translate(', dx, ',', dy, ') rotate(', rotate, ')'].join('')
+		}
 
 	},
 
@@ -222,14 +253,15 @@ var Tan = Backbone.Model.extend({
 	isIn: function (xy) {
 
 		var tan = this,
-			anglesLength = tan.get('anglesLength');
+			coordinates = tan.getCoordinates(),
+			anglesLength = coordinates.length;
 
 		if (anglesLength === 3) {
-			return tan.isInTriangle.apply(tan, tan.getCoordinates().concat([xy]));
+			return tan.isInTriangle.apply(tan, coordinates.concat([xy]));
 		}
 
 		if (anglesLength === 4) {
-			return tan.isInFourangle.apply(tan, tan.getCoordinates().concat([xy]));
+			return tan.isInFourangle.apply(tan, coordinates.concat([xy]));
 		}
 
 	},
