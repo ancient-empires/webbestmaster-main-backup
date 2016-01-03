@@ -386,11 +386,11 @@ var win = window,
 
 			// try to detect double click
 			// and auto trigger event
-			device.checkDblTap();
 
 			if (!eventsArrLength && isTouch && pinchIsActive) { // 2 fingers -> 0 finger
 				device.set('pinchIsActive', false);
 				device.set('actionIsActive', false);
+				device.checkDblTap();
 				//device.setContainerSize();
 				return;
 			}
@@ -398,6 +398,7 @@ var win = window,
 			if (!eventsArrLength || !isTouch) { // if is not touch device - stop moving
 				device.set('actionIsActive', false);
 				//this.sliding();
+				device.checkDblTap();
 				device.clearLogMoving();
 				return;
 			}
