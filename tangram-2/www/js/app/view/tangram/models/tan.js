@@ -73,7 +73,7 @@ var Tan = Backbone.Model.extend({
 			minX = x < minX ? x : minX;
 			minY = y < minY ? y : minY;
 
-			return { x: x, y: y };
+			return {x: x, y: y};
 
 		}));
 
@@ -89,8 +89,8 @@ var Tan = Backbone.Model.extend({
 		tan.set({
 			maxX: maxX,
 			maxY: maxY,
-			//centerX: minX + halfSizeX,
-			//centerY: minY + halfSizeY,
+			centerX: minX + halfSizeX,
+			centerY: minY + halfSizeY,
 			minX: minX,
 			minY: minY,
 			sizeX: sizeX,
@@ -116,6 +116,21 @@ var Tan = Backbone.Model.extend({
 		tan.on('change:isActive', tan.setStateActiveDeActive);
 
 		tan.subscribe('deviceAction:moving', tan.move);
+		tan.subscribe('deviceAction:dblTap', tan.flip);
+
+	},
+
+	flip: function () {
+
+		var tan = this;
+
+		if (!tan.get('isActive')) {
+			return;
+		}
+
+		tan.set('isFlip', !tan.get('isFlip'));
+
+		tan.reDraw();
 
 	},
 
@@ -127,7 +142,7 @@ var Tan = Backbone.Model.extend({
 			return;
 		}
 
-		var	dx = data.dx,
+		var dx = data.dx,
 			dy = data.dy;
 
 		tan.setBy('dx', data.dx);
@@ -181,7 +196,22 @@ var Tan = Backbone.Model.extend({
 			dx = tan.get('dx'),
 			dy = tan.get('dy'),
 			rotate = tan.get('rotate'),
-			isFlip = tan.get('isFlip');
+			isFlip = tan.get('isFlip'),
+			centerX,
+			sizeX;
+
+		if (isFlip) {
+			sizeX = tan.get('sizeX');
+			centerX = tan.get('centerX');
+			return coordinates.map(function (xy) {
+				var x = xy.x;
+				x += x > centerX ? -sizeX : sizeX;
+				return {
+					x: x + dx,
+					y: xy.y + dy
+				}
+			});
+		}
 
 		return coordinates.map(function (xy) {
 			return {
@@ -192,20 +222,20 @@ var Tan = Backbone.Model.extend({
 
 	},
 
-/*
-	setCoordinates: function (coordinates) {
+	/*
+	 setCoordinates: function (coordinates) {
 
-		var tan = this;
+	 var tan = this;
 
-		_.each(coordinates, function (xy, i) {
-			tan.set('x' + i, xy.x);
-			tan.set('y' + i, xy.y);
-		});
+	 _.each(coordinates, function (xy, i) {
+	 tan.set('x' + i, xy.x);
+	 tan.set('y' + i, xy.y);
+	 });
 
-		return tan;
+	 return tan;
 
-	},
-*/
+	 },
+	 */
 
 	drawTo: function (drawNode) {
 
@@ -249,7 +279,7 @@ var Tan = Backbone.Model.extend({
 			scaleStr = 'scale(-1,1)',
 			attribute = [];
 
-		if (isFlip || 1) {
+		if (isFlip) {
 			flipDx = -2 * tan.get('minX') - dx - tan.get('sizeX');
 			attribute.push(scaleStr);
 			attribute.push(
@@ -273,13 +303,11 @@ var Tan = Backbone.Model.extend({
 		);
 
 		return {
-			data: {
-				dx: dx,
-				dy: dy,
-				rotate: rotate,
-				isFlip: isFlip,
-				flipDx: flipDx
-			},
+			dx: dx,
+			dy: dy,
+			rotate: rotate,
+			isFlip: isFlip,
+			flipDx: flipDx,
 			attribute: attribute.join(' ')
 		}
 
