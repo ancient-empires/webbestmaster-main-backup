@@ -205,7 +205,7 @@ var Tan = Backbone.Model.extend({
 			centerX = tan.get('centerX');
 			return coordinates.map(function (xy) {
 				var x = xy.x;
-				x += x > centerX ? -sizeX : sizeX;
+				x += 2 * (centerX - x);
 				return {
 					x: x + dx,
 					y: xy.y + dy
