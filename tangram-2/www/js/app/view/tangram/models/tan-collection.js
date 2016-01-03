@@ -73,7 +73,7 @@ var TanCollection = Backbone.Collection.extend({
 
 		mediator.installTo(collection);
 
-		collection.subscribe('deviceActionIsActive', collection.activateDeActiveTans);
+		collection.subscribe('deviceAction:isActive', collection.activateDeActiveTans);
 
 	},
 

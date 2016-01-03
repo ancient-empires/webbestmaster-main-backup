@@ -38,6 +38,8 @@ var win = window,
 
 			var device = this;
 
+			device.clearLogDown();
+
 			device.collectInfo();
 
 			device.setPointData({x: 0, y: 0, scale: 1});
@@ -93,9 +95,9 @@ var win = window,
 			device.on('change:actionIsActive', function (self, actionIsActive) {
 
 				if (actionIsActive) {
-					device.publish('deviceActionIsActive', actionIsActive, {xy: device.get('startDownEventXY')});
+					device.publish('deviceAction:isActive', actionIsActive, {xy: device.get('startDownEventXY')});
 				} else {
-					device.publish('deviceActionIsActive', actionIsActive);
+					device.publish('deviceAction:isActive', actionIsActive);
 				}
 
 			});
@@ -146,6 +148,34 @@ var win = window,
 
 		},
 
+		logDown: function (events) {
+
+			var device = this,
+				logDown = device.get('log-down'),
+				xy;
+
+			if (events.length !== 1) {
+				return;
+			}
+
+			if (logDown.length > 10) {
+				logDown.shift(); // delete first item
+			}
+
+			xy = events.events[0];
+
+			logDown.push({
+				x: xy.x,
+				y: xy.y,
+				timeStamp: Date.now()
+			});
+
+		},
+
+		clearLogDown: function () {
+			return this.set('log-down', []);
+		},
+
 		logMoving: function (xy) {
 
 			var device = this,
@@ -166,7 +196,7 @@ var win = window,
 		},
 
 		clearLogMoving: function () {
-			this.set('log-moving', []);
+			return this.set('log-moving', []);
 		},
 
 		getPinchData: function (events) {
@@ -269,6 +299,7 @@ var win = window,
 
 			device.clearLogMoving();
 			device.logMoving(startEventXY);
+			device.logDown(events);
 
 			// detect start zooming
 			if (events.length === 2) {
@@ -325,7 +356,7 @@ var win = window,
 				});
 			}
 
-			device.publish('deviceMoving', {
+			device.publish('deviceAction:moving', {
 				dx: dx,
 				dy: dy
 			});
@@ -340,9 +371,14 @@ var win = window,
 				events = device.getEvents(e),
 				eventsArr = events.events,
 				eventsArrLength = eventsArr.length,
-				isTouch = device.get('isTouch');
+				isTouch = device.get('isTouch'),
+				pinchIsActive = device.get('pinchIsActive');
 
-			if (!eventsArrLength && isTouch && device.get('pinchIsActive')) { // 2 fingers -> 0 finger
+			// try to detect double click
+			// and auto trigger event
+			device.checkDblTap();
+
+			if (!eventsArrLength && isTouch && pinchIsActive) { // 2 fingers -> 0 finger
 				device.set('pinchIsActive', false);
 				device.set('actionIsActive', false);
 				//device.setContainerSize();
@@ -361,6 +397,32 @@ var win = window,
 				//device.setContainerSize();
 				device.onDown(e);
 			}
+
+		},
+
+		checkDblTap: function () {
+
+			var device = this,
+				downLog = device.get('log-down'),
+				downLogLength = downLog.length,
+				lastDown = downLog[downLogLength - 1],
+				preLastDown = downLog[downLogLength - 2];
+
+			if ( downLogLength < 2 ) {
+				return;
+			}
+
+			// timer check
+			if ( (lastDown.timeStamp - preLastDown.timeStamp) > 300 ) {
+				return;
+			}
+
+			// coordinates check
+			if ( Math.abs(lastDown.x - preLastDown.x) > 10 || Math.abs(lastDown.y - preLastDown.y) > 10 ) {
+				return;
+			}
+
+			device.publish('deviceAction:dblTap', lastDown);
 
 		},
 

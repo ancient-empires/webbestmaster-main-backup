@@ -115,7 +115,7 @@ var Tan = Backbone.Model.extend({
 
 		tan.on('change:isActive', tan.setStateActiveDeActive);
 
-		tan.subscribe('deviceMoving', tan.move);
+		tan.subscribe('deviceAction:moving', tan.move);
 
 	},
 
