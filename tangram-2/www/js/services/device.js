@@ -38,6 +38,8 @@ var win = window,
 
 			var device = this;
 
+			device.clearLogMoving();
+
 			device.clearLogDown();
 
 			device.collectInfo();
@@ -95,9 +97,9 @@ var win = window,
 			device.on('change:actionIsActive', function (self, actionIsActive) {
 
 				if (actionIsActive) {
-					device.publish('deviceAction:isActive', actionIsActive, {xy: device.get('startDownEventXY')});
+					self.publish('deviceAction:isActive', actionIsActive, {xy: self.get('startDownEventXY')});
 				} else {
-					device.publish('deviceAction:isActive', actionIsActive);
+					self.publish('deviceAction:isActive', actionIsActive, {xy: self.logMovingGetLast()});
 				}
 
 			});
@@ -197,6 +199,14 @@ var win = window,
 
 		clearLogMoving: function () {
 			return this.set('log-moving', []);
+		},
+
+		logMovingGetLast: function () {
+
+			var logMoving = this.get('log-moving');
+
+			return logMoving[logMoving.length - 1];
+
 		},
 
 		getPinchData: function (events) {
