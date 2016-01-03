@@ -101,7 +101,8 @@ var Tan = Backbone.Model.extend({
 			dy: 0,
 			rotate: 0,
 			rotateOriginX: rotateOriginX,
-			rotateOriginY: rotateOriginY
+			rotateOriginY: rotateOriginY,
+			isFlip: false
 		});
 
 	},
@@ -179,7 +180,8 @@ var Tan = Backbone.Model.extend({
 			coordinates = tan.get('coordinates'),
 			dx = tan.get('dx'),
 			dy = tan.get('dy'),
-			rotate = tan.get('rotate');
+			rotate = tan.get('rotate'),
+			isFlip = tan.get('isFlip');
 
 		return coordinates.map(function (xy) {
 			return {
@@ -239,15 +241,46 @@ var Tan = Backbone.Model.extend({
 			rotateOriginX = tan.get('rotateOriginX'),
 			rotateOriginY = tan.get('rotateOriginY'),
 			dx = tan.get('dx'),
-			dy = tan.get('dy');
+			flipDx,
+			dy = tan.get('dy'),
+			isFlip = tan.get('isFlip'),
+			translateSrt = 'translate(dx,dy)',
+			rotateSrt = 'rotate(angle rotateOriginX rotateOriginY)',
+			scaleStr = 'scale(-1,1)',
+			attribute = [];
+
+		if (isFlip || 1) {
+			flipDx = -2 * tan.get('minX') - dx - tan.get('sizeX');
+			attribute.push(scaleStr);
+			attribute.push(
+				translateSrt
+					.replace('dx', flipDx)
+					.replace('dy', dy)
+			);
+		} else {
+			attribute.push(
+				translateSrt
+					.replace('dx', dx)
+					.replace('dy', dy)
+			);
+		}
+
+		attribute.push(
+			rotateSrt
+				.replace('angle', rotate)
+				.replace('rotateOriginX', rotateOriginX)
+				.replace('rotateOriginY', rotateOriginY)
+		);
 
 		return {
 			data: {
 				dx: dx,
 				dy: dy,
-				rotate: rotate
+				rotate: rotate,
+				isFlip: isFlip,
+				flipDx: flipDx
 			},
-			attribute: ['translate(', dx, ',', dy, ') rotate(', rotate, ' ', rotateOriginX, ' ', rotateOriginY, ')'].join('')
+			attribute: attribute.join(' ')
 		}
 
 	},
