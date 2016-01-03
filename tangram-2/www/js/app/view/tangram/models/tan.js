@@ -102,7 +102,8 @@ var Tan = Backbone.Model.extend({
 			rotate: 0,
 			rotateOriginX: rotateOriginX,
 			rotateOriginY: rotateOriginY,
-			isFlip: false
+			isFlip: false,
+			isActive: false
 		});
 
 	},
