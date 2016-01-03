@@ -197,11 +197,9 @@ var Tan = Backbone.Model.extend({
 			dy = tan.get('dy'),
 			rotate = tan.get('rotate'),
 			isFlip = tan.get('isFlip'),
-			centerX,
-			sizeX;
+			centerX;
 
 		if (isFlip) {
-			sizeX = tan.get('sizeX');
 			centerX = tan.get('centerX');
 			return coordinates.map(function (xy) {
 				var x = xy.x;
