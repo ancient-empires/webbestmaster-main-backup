@@ -216,6 +216,17 @@ var Tan = Backbone.Model.extend({
 
 	},
 
+	getCenterCoordinates: function () {
+
+		var tan = this;
+
+		return {
+			x: tan.get('dx') + tan.get('centerX'),
+			y: tan.get('dy') + tan.get('centerY')
+		}
+
+	},
+
 	/*
 	 setCoordinates: function (coordinates) {
 

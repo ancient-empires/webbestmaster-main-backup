@@ -86,6 +86,7 @@ var TanCollection = Backbone.Collection.extend({
 		if (!hoveredTan) {
 			log('no hovered tan');
 			log('deactive all tans');
+			collection.publish('rotater:hide');
 			collection.deActiveAll();
 			return;
 		}
@@ -97,9 +98,10 @@ var TanCollection = Backbone.Collection.extend({
 			return;
 		}
 
-
-		log('show rotater');
-
+		collection.deActiveAll();
+		collection.publish('rotater:connectTan', {
+			tan: hoveredTan
+		});
 
 	},
 

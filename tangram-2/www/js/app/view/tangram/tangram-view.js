@@ -4,6 +4,7 @@
 import BaseView from './../core/base';
 import tm from './../../../services/template-master';
 import TanCollection from './models/tan-collection';
+import RotaterModel from './rotater/rotater-model';
 
 var TangramView = BaseView.extend({
 
@@ -22,6 +23,10 @@ var TangramView = BaseView.extend({
 		tanCollection.createTans();
 		tanCollection.addDrawFieldTo(view.$el);
 		tanCollection.drawTans();
+
+		view.set('rotaterModel', new RotaterModel({
+			parentView: view
+		}));
 
 		view.render();
 
