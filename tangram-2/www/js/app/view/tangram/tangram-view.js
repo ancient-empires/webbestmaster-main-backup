@@ -8,7 +8,9 @@ import RotaterModel from './rotater/rotater-model';
 
 var TangramView = BaseView.extend({
 
-	events: {},
+	events: {
+		scroll: 'stopEvent'
+	},
 
 	initialize: function () {
 

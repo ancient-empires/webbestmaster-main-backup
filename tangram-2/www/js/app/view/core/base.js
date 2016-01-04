@@ -126,7 +126,7 @@ var win = window,
 				newEvents.scroll = null; // let gc clean ram
 				delete newEvents.scroll;
 				_.each(noScrollEvents, function (name) {
-					newEvents[name] = 'stopEvent';
+					newEvents[name] = 'preventDefaultEvent';
 				});
 			}
 
@@ -374,6 +374,16 @@ var win = window,
 
 			e.preventDefault();
 			e.stopPropagation();
+
+		},
+
+		preventDefaultEvent: function (e) {
+
+			if (!e) {
+				return;
+			}
+
+			e.preventDefault();
 
 		},
 
