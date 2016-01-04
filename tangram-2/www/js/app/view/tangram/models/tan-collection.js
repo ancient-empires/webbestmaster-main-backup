@@ -81,27 +81,53 @@ var TanCollection = Backbone.Collection.extend({
 	activateDeActiveTans: function (isActive, data) {
 
 		var collection = this,
-			hoveredTan = collection.getHoveredTan(data);
-
-		if (!hoveredTan) {
-			log('no hovered tan');
-			log('deactive all tans');
-			collection.publish('rotater:hide');
-			collection.deActiveAll();
-			return;
-		}
-
-		if (isActive) {
-			collection.deActiveAll();
-			hoveredTan.set('isActive', true);
-			hoveredTan.setLastAccept();
-			return;
-		}
+			hoveredTan = collection.getHoveredTan(data),
+			rotater = collection.getData('rotater'),
+			isInRingRotater = rotater.isInRing(data);
 
 		collection.deActiveAll();
-		collection.publish('rotater:connectTan', {
-			tan: hoveredTan
-		});
+
+		if (isActive) {
+
+			if (isInRingRotater) {
+
+				rotater.setStartData(data);
+
+			} else {
+
+				rotater.deActivate();
+				if (hoveredTan) {
+					hoveredTan.set('isActive', true);
+					collection.setData('lastActiveTan', hoveredTan);
+				} else {
+
+
+				}
+
+
+			}
+
+
+		} else {
+
+			// stop rotating if needed
+
+			if ( rotater.get('isActive') ) {
+
+				rotater.endRotating();
+
+			} else {
+
+				if (hoveredTan) {
+					rotater.connectTan({
+						tan: hoveredTan
+					});
+				}
+
+			}
+
+
+		}
 
 	},
 

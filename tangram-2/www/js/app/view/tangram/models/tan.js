@@ -159,6 +159,11 @@ var Tan = Backbone.Model.extend({
 
 		var tan = this;
 
+		if (isActive) {
+			tan.publish('rotater:deActivate');
+			tan.setLastAccept();
+		}
+
 		tan.drawActiveDeActive(isActive);
 
 		tan.moveToUpDown(isActive)

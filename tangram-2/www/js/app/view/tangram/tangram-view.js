@@ -13,7 +13,8 @@ var TangramView = BaseView.extend({
 	initialize: function () {
 
 		var view = this,
-			tanCollection = new TanCollection();
+			tanCollection = new TanCollection(),
+			rotater = new RotaterModel();
 
 		view.setElement(tm.tmplFn.tangram());
 
@@ -23,10 +24,11 @@ var TangramView = BaseView.extend({
 		tanCollection.createTans();
 		tanCollection.addDrawFieldTo(view.$el);
 		tanCollection.drawTans();
+		tanCollection.setData('rotater', rotater);
 
-		view.set('rotaterModel', new RotaterModel({
+		rotater.initialize({
 			parentView: view
-		}));
+		});
 
 		view.render();
 
