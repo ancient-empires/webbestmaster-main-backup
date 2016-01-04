@@ -230,8 +230,7 @@ var win = window,
 				after,
 				startAngle,
 				currentAngle,
-				deltaAngle,
-				toDeg = 180 / Math.PI;
+				deltaAngle;
 
 			// get scale
 			before = Math.pow(startXY0X - startXY1X, 2) + Math.pow(startXY0Y - startXY1Y, 2);
@@ -241,11 +240,9 @@ var win = window,
 			after = Math.pow(after, 0.5);
 
 			// get angle
-			startAngle = Math.atan2(startVectorY, startVectorX) * toDeg;
-			currentAngle = Math.atan2(currentVectorY, currentVectorX) * toDeg;
-
-			//startDeltaAngle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
-			deltaAngle = currentAngle - startAngle;
+			startAngle = Math.atan2(startVectorY, startVectorX);
+			currentAngle = Math.atan2(currentVectorY, currentVectorX);
+			deltaAngle = (currentAngle - startAngle) * 180 / Math.PI;
 
 			return {
 				scale: (after / before) || 1,

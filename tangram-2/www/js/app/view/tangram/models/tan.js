@@ -194,36 +194,53 @@ var Tan = Backbone.Model.extend({
 
 		var tan = this,
 			coordinates = tan.get('coordinates'),
-			countedCoordinates,
+			toRad = Math.PI / 180,
 			dx = tan.get('dx'),
 			dy = tan.get('dy'),
 			rotate = tan.get('rotate'),
 			isFlip = tan.get('isFlip'),
-			centerX;
+			centerX = tan.get('centerX'),
+			centerY = tan.get('centerY');
 
-		if (isFlip) {
-			centerX = tan.get('centerX');
-			countedCoordinates = coordinates.map(function (xy) {
-				var x = xy.x;
-				x += 2 * (centerX - x);
-				return {
-					x: x + dx,
-					y: xy.y + dy
-				}
-			});
-		} else {
-			countedCoordinates = coordinates.map(function (xy) {
-				return {
-					x: xy.x + dx,
-					y: xy.y + dy
-				}
-			});
-		}
+		return coordinates.map(function (xy) {
 
-		// count here coordinates relative from angle
-		return countedCoordinates;
+			var x = isFlip ? (xy.x + 2 * (centerX - xy.x)) : xy.x,
+				y = xy.y,
+				centeredX = x - centerX,
+				centeredY = y - centerY,
+				lineSize = Math.sqrt(centeredX * centeredX + centeredY * centeredY),
+				centeredAngle = Math.atan2(centeredY, centeredX),
+				newAngle = centeredAngle + rotate * (isFlip ? -1 : 1) * toRad,
+				newX = Math.cos(newAngle) * lineSize,
+				newY = Math.sin(newAngle) * lineSize,
+				rotateDeltaX = newX - centeredX,
+				rotateDeltaY = newY - centeredY;
+
+			return {
+				x: x + dx + rotateDeltaX,
+				y: y + dy + rotateDeltaY
+			}
+
+		});
 
 	},
+
+	getAngleBetweenLines: function (xy0, xy1, xy2, xy3) { // (xy0, xy1) - begin and end of first line, (xy2, xy3) - begin and end of second line
+
+		var beginX = xy1.x - xy0.x,
+			beginY = xy1.y - xy0.y,
+			endX = xy3.x - xy2.x,
+			endY = xy3.y - xy2.y;
+
+		return (Math.atan2(endY, endX) - Math.atan2(beginY, beginX)) * 180 / Math.PI;
+
+	},
+
+	//getAngleFromPoint: function (x, y) {
+	//
+	//	return Math.atan2(y, x) * 180 / Math.PI;
+	//
+	//},
 
 	getCenterCoordinates: function () {
 
