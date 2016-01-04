@@ -1,20 +1,15 @@
 'use strict';
 /*global console */
 
-var gOldOnError,
+var log,
+	gOldOnError,
 	slice = Array.prototype.slice,
 	logger = {
 		isEnable: true,
 		remoteLog: false,
 		xhr: new XMLHttpRequest(),
 		log: function () {
-
-			if (!this.isEnable) {
-				return;
-			}
-
 			console.log.apply(console, arguments);
-
 		},
 		sendToServer: function () {
 
@@ -36,10 +31,10 @@ var gOldOnError,
 
 	};
 
-function log() {
+log = logger.isEnable ? (function () {
 	logger.sendToServer.apply(logger, arguments);
 	return logger.log.apply(logger, arguments);
-}
+}) : (function () {});
 
 gOldOnError = window.onerror;
 
