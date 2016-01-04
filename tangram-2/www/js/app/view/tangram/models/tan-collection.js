@@ -83,15 +83,22 @@ var TanCollection = Backbone.Collection.extend({
 		var collection = this,
 			hoveredTan = collection.getHoveredTan(data);
 
-		if (!hoveredTan || !isActive) {
+		if (!hoveredTan) {
 			log('no hovered tan');
 			log('deactive all tans');
 			collection.deActiveAll();
 			return;
 		}
 
-		hoveredTan.set('isActive', true);
-		hoveredTan.setLastAccept();
+		if (isActive) {
+			hoveredTan.set('isActive', true);
+			hoveredTan.setLastAccept();
+			return;
+		}
+
+
+		log('show rotater');
+
 
 	},
 
@@ -103,7 +110,7 @@ var TanCollection = Backbone.Collection.extend({
 		return hoveredTan && hoveredTan.flip();
 
 	},
-	
+
 	getHoveredTan: function (xy) {
 
 		var collection = this,
@@ -112,15 +119,15 @@ var TanCollection = Backbone.Collection.extend({
 		collection.each(function (tan) {
 
 			// touch XY is not in tan
-			if ( !tan.isIn(xy) ) {
+			if (!tan.isIn(xy)) {
 				return;
 			}
 
-			if ( !hoveredTan ) {
+			if (!hoveredTan) {
 				return hoveredTan = tan;
 			}
 
-			if ( tan.getLastAccept() > hoveredTan.getLastAccept() ) {
+			if (tan.getLastAccept() > hoveredTan.getLastAccept()) {
 				hoveredTan = tan;
 			}
 
@@ -129,7 +136,7 @@ var TanCollection = Backbone.Collection.extend({
 		return hoveredTan;
 
 	},
-	
+
 	deActiveAll: function () {
 
 		this.each(function (tan) {
