@@ -134,9 +134,10 @@ var TanCollection = Backbone.Collection.extend({
 	flipTan: function (data) {
 
 		var collection = this,
+			rotater = collection.getData('rotater'),
 			hoveredTan = collection.getHoveredTan(data);
 
-		return hoveredTan && hoveredTan.flip();
+		return hoveredTan && rotater.get('tan') === hoveredTan && hoveredTan.flip();
 
 	},
 

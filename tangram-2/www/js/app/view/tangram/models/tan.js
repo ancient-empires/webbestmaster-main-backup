@@ -194,6 +194,7 @@ var Tan = Backbone.Model.extend({
 
 		var tan = this,
 			coordinates = tan.get('coordinates'),
+			countedCoordinates,
 			dx = tan.get('dx'),
 			dy = tan.get('dy'),
 			rotate = tan.get('rotate'),
@@ -202,7 +203,7 @@ var Tan = Backbone.Model.extend({
 
 		if (isFlip) {
 			centerX = tan.get('centerX');
-			return coordinates.map(function (xy) {
+			countedCoordinates = coordinates.map(function (xy) {
 				var x = xy.x;
 				x += 2 * (centerX - x);
 				return {
@@ -210,14 +211,17 @@ var Tan = Backbone.Model.extend({
 					y: xy.y + dy
 				}
 			});
+		} else {
+			countedCoordinates = coordinates.map(function (xy) {
+				return {
+					x: xy.x + dx,
+					y: xy.y + dy
+				}
+			});
 		}
 
-		return coordinates.map(function (xy) {
-			return {
-				x: xy.x + dx,
-				y: xy.y + dy
-			}
-		});
+		// count here coordinates relative from angle
+		return countedCoordinates;
 
 	},
 
