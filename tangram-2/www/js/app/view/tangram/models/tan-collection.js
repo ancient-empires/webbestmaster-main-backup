@@ -91,6 +91,7 @@ var TanCollection = Backbone.Collection.extend({
 		}
 
 		if (isActive) {
+			collection.deActiveAll();
 			hoveredTan.set('isActive', true);
 			hoveredTan.setLastAccept();
 			return;

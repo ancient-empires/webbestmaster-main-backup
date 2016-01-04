@@ -361,6 +361,8 @@ var win = window,
 			}
 
 			device.publish('deviceAction:moving', {
+				x: currentEventXY.x,
+				y: currentEventXY.y,
 				dx: dx,
 				dy: dy
 			});
