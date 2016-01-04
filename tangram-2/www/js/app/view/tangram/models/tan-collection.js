@@ -74,42 +74,62 @@ var TanCollection = Backbone.Collection.extend({
 		mediator.installTo(collection);
 
 		collection.subscribe('deviceAction:isActive', collection.activateDeActiveTans);
+		collection.subscribe('deviceAction:dblTap', collection.flipTan);
 
 	},
 
 	activateDeActiveTans: function (isActive, data) {
 
 		var collection = this,
-			activeTan;
+			hoveredTan = collection.getHoveredTan(data);
 
-		if (!isActive) {
-			return collection.deActiveAll();
+		if (!hoveredTan || !isActive) {
+			log('no hovered tan');
+			log('deactive all tans');
+			collection.deActiveAll();
+			return;
 		}
+
+		hoveredTan.set('isActive', true);
+		hoveredTan.setLastAccept();
+
+	},
+
+	flipTan: function (data) {
+
+		var collection = this,
+			hoveredTan = collection.getHoveredTan(data);
+
+		return hoveredTan && hoveredTan.flip();
+
+	},
+	
+	getHoveredTan: function (xy) {
+
+		var collection = this,
+			hoveredTan;
 
 		collection.each(function (tan) {
 
 			// touch XY is not in tan
-			if ( !tan.isIn(data.xy) ) {
+			if ( !tan.isIn(xy) ) {
 				return;
 			}
 
-			if ( !activeTan ) {
-				return activeTan = tan;
+			if ( !hoveredTan ) {
+				return hoveredTan = tan;
 			}
 
-			if ( tan.getLastAccept() > activeTan.getLastAccept() ) {
-				activeTan = tan;
+			if ( tan.getLastAccept() > hoveredTan.getLastAccept() ) {
+				hoveredTan = tan;
 			}
 
 		});
 
-		if ( activeTan ) {
-			activeTan.set('isActive', true);
-			activeTan.setLastAccept();
-		}
+		return hoveredTan;
 
 	},
-
+	
 	deActiveAll: function () {
 
 		this.each(function (tan) {

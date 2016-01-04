@@ -117,17 +117,12 @@ var Tan = Backbone.Model.extend({
 		tan.on('change:isActive', tan.setStateActiveDeActive);
 
 		tan.subscribe('deviceAction:moving', tan.move);
-		tan.subscribe('deviceAction:dblTap', tan.flip);
 
 	},
 
 	flip: function () {
 
 		var tan = this;
-
-		if (!tan.get('isActive')) {
-			return;
-		}
 
 		tan.set('isFlip', !tan.get('isFlip'));
 

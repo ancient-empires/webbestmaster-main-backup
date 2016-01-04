@@ -95,13 +95,7 @@ var win = window,
 			}, false);
 
 			device.on('change:actionIsActive', function (self, actionIsActive) {
-
-				if (actionIsActive) {
-					self.publish('deviceAction:isActive', actionIsActive, {xy: self.get('startDownEventXY')});
-				} else {
-					self.publish('deviceAction:isActive', actionIsActive, {xy: self.logMovingGetLast()});
-				}
-
+				self.publish('deviceAction:isActive', actionIsActive, self.logMovingGetLast());
 			});
 
 		},
@@ -305,11 +299,11 @@ var win = window,
 			device.set('startPointData', pointData);
 			device.set('currentPointData', pointData);
 
-			device.set('actionIsActive', true);
-
 			device.clearLogMoving();
 			device.logMoving(startEventXY);
 			device.logDown(events);
+
+			device.set('actionIsActive', true);
 
 			// detect start zooming
 			if (events.length === 2) {
