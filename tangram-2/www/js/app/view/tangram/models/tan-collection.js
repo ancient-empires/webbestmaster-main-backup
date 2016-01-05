@@ -8,23 +8,28 @@ import log from './../../../../services/log';
 var tansInfo = {
 	triangleBig: {
 		count: 2,
-		coordinates: [{x: 0, y: 0}, {x: 1, y: 0}, {x: 0.5, y: 0.5}]
+		coordinates: [{x: 0, y: 0}, {x: 1, y: 0}, {x: 0.5, y: 0.5}],
+		parts: 4
 	},
 	triangleMedium: {
 		count: 1,
-		coordinates: [{x: 0, y: 0.5}, {x: 0.5, y: 1}, {x: 0, y: 1}]
+		coordinates: [{x: 0, y: 0.5}, {x: 0.5, y: 1}, {x: 0, y: 1}],
+		parts: 4
 	},
 	triangleSmall: {
 		count: 2,
-		coordinates: [{x: 0.25, y: 0.25}, {x: 0.5, y: 0.5}, {x: 0.25, y: 0.75}]
+		coordinates: [{x: 0.25, y: 0.25}, {x: 0.5, y: 0.5}, {x: 0.25, y: 0.75}],
+		parts: 2
 	},
 	square: {
 		count: 1,
-		coordinates: [{x: 0.5, y: 0.5}, {x: 0.75, y: 0.75}, {x: 0.5, y: 1}, {x: 0.25, y: 0.75}]
+		coordinates: [{x: 0.5, y: 0.5}, {x: 0.75, y: 0.75}, {x: 0.5, y: 1}, {x: 0.25, y: 0.75}],
+		parts: 2
 	},
 	parallelogram: {
 		count: 1,
-		coordinates: [{x: 0, y: 0}, {x: 0.25, y: 0.25}, {x: 0.25, y: 0.75}, {x: 0, y: 0.5}]
+		coordinates: [{x: 0, y: 0}, {x: 0.25, y: 0.25}, {x: 0.25, y: 0.75}, {x: 0, y: 0.5}],
+		parts: 2
 	}
 };
 
@@ -76,6 +81,8 @@ var TanCollection = Backbone.Collection.extend({
 		collection.subscribe('deviceAction:isActive', collection.activateDeActiveTans);
 		collection.subscribe('deviceAction:dblTap', collection.flipTan);
 
+		collection.subscribe('tan:align', collection.align);
+
 	},
 
 	activateDeActiveTans: function (isActive, data) {
@@ -112,20 +119,20 @@ var TanCollection = Backbone.Collection.extend({
 
 			// stop rotating if needed
 
-			if ( rotater.get('isActive') ) {
+			if (rotater.get('isActive')) {
 
 				rotater.endRotating();
 
 			} else {
 
 				if (hoveredTan) {
+					collection.align({tan: hoveredTan});
 					rotater.connectTan({
 						tan: hoveredTan
 					});
 				}
 
 			}
-
 
 		}
 
@@ -138,6 +145,66 @@ var TanCollection = Backbone.Collection.extend({
 			hoveredTan = collection.getHoveredTan(data);
 
 		return hoveredTan && rotater.get('tan') === hoveredTan && hoveredTan.flip();
+
+	},
+
+	align: function (data) {
+
+		var collection = this,
+			alignData = collection.getAlignData(data);
+
+
+		console.log(alignData);
+
+
+	},
+
+	getAlignData: function (data) {
+
+		var collection = this,
+			alignTan = data.tan,
+			alignTanCoordinates = alignTan.getAlignCoordinates(),
+			align = {},
+			minPath = Infinity,
+			otherTansCoordinates = [],
+			pow = Math.pow.bind(Math);
+
+		collection.each(function (tan) {
+			if (tan === alignTan) {
+				return;
+			}
+			otherTansCoordinates = otherTansCoordinates.concat(tan.getAlignCoordinates());
+		});
+
+		otherTansCoordinates.forEach(function (otherXY) {
+
+			alignTanCoordinates.forEach(function (alignXY) {
+
+				var otherX = otherXY.x,
+					otherY = otherXY.y,
+					alignX = alignXY.x,
+					alignY = alignXY.y,
+					curPath = pow(otherX - alignX, 2) + pow(otherY - alignY, 2);
+
+				if (curPath > minPath) {
+					return;
+				}
+
+				minPath = curPath;
+
+				align = {
+					otherX: otherX,
+					otherY: otherY,
+					alignX: alignX,
+					alignY: alignY,
+					minPath: Math.sqrt(minPath)
+				}
+
+			});
+
+		});
+
+		return align;
 
 	},
 
@@ -193,6 +260,7 @@ var TanCollection = Backbone.Collection.extend({
 			for (var i = 0, len = data.count; i < len; i += 1) {
 				this.add({
 					coordinates: data.coordinates,
+					parts: data.parts,
 					count: len,
 					scale: this.getData('scale')
 				});

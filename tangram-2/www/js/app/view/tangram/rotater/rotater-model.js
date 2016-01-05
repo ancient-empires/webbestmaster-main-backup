@@ -205,6 +205,8 @@ var RotaterModel = Backbone.Model.extend({
 
 		tan.set('rotate', tanRotate);
 
+		tan.publish('tan:align', {tan: tan});
+
 		tan.reDraw();
 
 	}

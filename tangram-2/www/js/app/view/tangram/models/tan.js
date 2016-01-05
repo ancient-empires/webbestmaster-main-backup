@@ -225,6 +225,38 @@ var Tan = Backbone.Model.extend({
 
 	},
 
+	getAlignCoordinates: function () {
+
+		var tan = this,
+			getAlignCoordinatesOfLine = tan.getAlignCoordinatesOfLine,
+			parts = tan.get('parts'),
+			coordinates = tan.getCoordinates(),
+			alignCoordinates = [];
+
+		coordinates.forEach(function (xy, index, arr) {
+			alignCoordinates = alignCoordinates.concat(getAlignCoordinatesOfLine(xy, arr[index + 1] || arr[0], parts));
+		});
+
+		return coordinates.concat(alignCoordinates);
+
+	},
+
+	getAlignCoordinatesOfLine: function getAlignCoordinatesOfLine(xy0, xy1, parts) {
+
+		var centerXY = {
+			x: (xy0.x + xy1.x) / 2,
+			y: (xy0.y + xy1.y) / 2
+		};
+
+		if (parts === 2) {
+			return [centerXY];
+		}
+
+		// parts === 4
+		return [centerXY].concat(getAlignCoordinatesOfLine(xy0, centerXY, 2), getAlignCoordinatesOfLine(centerXY, xy1, 2));
+
+	},
+
 	getAngleBetweenLines: function (xy0, xy1, xy2, xy3) { // (xy0, xy1) - begin and end of first line, (xy2, xy3) - begin and end of second line
 
 		var beginX = xy1.x - xy0.x,
