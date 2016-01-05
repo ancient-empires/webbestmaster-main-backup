@@ -551,9 +551,22 @@ var win = window,
 			return this.set(key, this.get(key) + delta);
 		},
 
-		set: function (key, value) {
-			this.attr[key] = value;
-			return value;
+		set: function (keyOrObj, value) {
+
+			var self = this,
+				attr = self.attr;
+
+			if (typeof keyOrObj === 'string') {
+				attr[keyOrObj] = value;
+				return self;
+			}
+
+			Object.keys(keyOrObj).forEach(function (key) {
+				this[key] = keyOrObj[key];
+			}, attr);
+
+			return self;
+
 		},
 		get: function (key) {
 			return this.attr[key];

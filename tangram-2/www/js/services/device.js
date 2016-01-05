@@ -14,7 +14,8 @@ var win = window,
 		defaults: {
 			width: 0,
 			height: 0,
-			orientation: ''
+			orientation: '',
+			minScreenSize: 153600 // 153600 = 320 * 480
 		},
 
 		eventTypes: {
@@ -439,7 +440,8 @@ var win = window,
 				data = {
 					width: width,
 					height: height,
-					orientation: orientation
+					orientation: orientation,
+					spaceSize: width * height
 				};
 
 			device.set(data);

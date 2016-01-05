@@ -14,7 +14,8 @@ var win = window,
 
 		routes: {
 			'': 'home',
-			'tangram': 'tangram'
+			'tangram': 'tangram',
+			'tangram-constructor': 'tangramConstructor'
 		},
 
 		home: function () {
@@ -23,6 +24,12 @@ var win = window,
 
 		tangram: function () {
 			new TangramView();
+		},
+
+		tangramConstructor: function () {
+			new TangramView({
+				mode: 'constructor'
+			});
 		},
 
 		url: {

@@ -146,13 +146,10 @@ var TanCollection = Backbone.Collection.extend({
 
 		collection.each(function (tan) {
 
-
 			//tan.getTriangles();
 			console.log(tan.getTriangles());
 
 		});
-
-
 
 	},
 

@@ -1,4 +1,4 @@
-(function (gi8002) {
+(function (gi6244) {
 (function () {
 'use strict';
 /*global console */
@@ -50,7 +50,7 @@ window.onerror = function (errorMsg, url, lineNumber) {
 
 };
 
-gi8002['/www/js/services/log.js'] = log;
+gi6244['/www/js/services/log.js'] = log;
 
 
 }());
@@ -58,7 +58,7 @@ gi8002['/www/js/services/log.js'] = log;
 'use strict';
 /*global window */
 
-var log = gi8002['/www/js/services/log.js'] || window.log;
+var log = gi6244['/www/js/services/log.js'] || window.log;
 
 var mediator;
 
@@ -138,7 +138,7 @@ mediator = {
 	}
 };
 
-gi8002['/www/js/services/mediator.js'] = mediator;
+gi6244['/www/js/services/mediator.js'] = mediator;
 
 }());
 (function () {
@@ -7465,7 +7465,7 @@ info = {
 
 info.init();
 
-gi8002['/www/js/services/info.js'] = info;
+gi6244['/www/js/services/info.js'] = info;
 
 
 }());
@@ -7473,9 +7473,9 @@ gi8002['/www/js/services/info.js'] = info;
 'use strict';
 /*global window */
 
-var Backbone = gi8002['/www/js/lib/backbone.js'] || window.Backbone;
-var mediator = gi8002['/www/js/services/mediator.js'] || window.mediator;
-var log = gi8002['/www/js/services/log.js'] || window.log;
+var Backbone = gi6244['/www/js/lib/backbone.js'] || window.Backbone;
+var mediator = gi6244['/www/js/services/mediator.js'] || window.mediator;
+var log = gi6244['/www/js/services/log.js'] || window.log;
 
 var win = window,
 	doc = win.document,
@@ -7486,7 +7486,8 @@ var win = window,
 		defaults: {
 			width: 0,
 			height: 0,
-			orientation: ''
+			orientation: '',
+			minScreenSize: 153600 // 153600 = 320 * 480
 		},
 
 		eventTypes: {
@@ -7911,7 +7912,8 @@ var win = window,
 				data = {
 					width: width,
 					height: height,
-					orientation: orientation
+					orientation: orientation,
+					spaceSize: width * height
 				};
 
 			device.set(data);
@@ -7926,13 +7928,13 @@ var win = window,
 
 device = new Device();
 
-gi8002['/www/js/services/device.js'] = device;
+gi6244['/www/js/services/device.js'] = device;
 }());
 (function () {
 'use strict';
 /*global window, Date */
 
-var info = gi8002['/www/js/services/info.js'] || window.info;
+var info = gi6244['/www/js/services/info.js'] || window.info;
 
 var win = window,
 	androidAds = {
@@ -7978,7 +7980,7 @@ var win = window,
 
 	androidAds.init();
 
-gi8002['/www/js/services/android-ads.js'] = androidAds;
+gi6244['/www/js/services/android-ads.js'] = androidAds;
 
 }());
 (function () {
@@ -8004,7 +8006,7 @@ var en = {
 
 };
 
-gi8002['/www/js/i18n/en.js'] = en;
+gi6244['/www/js/i18n/en.js'] = en;
 }());
 (function () {
 'use strict';
@@ -8029,15 +8031,15 @@ var ru = {
 
 };
 
-gi8002['/www/js/i18n/ru.js'] = ru;
+gi6244['/www/js/i18n/ru.js'] = ru;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var info = gi8002['/www/js/services/info.js'] || window.info;
-var en = gi8002['/www/js/i18n/en.js'] || window.en;
-var ru = gi8002['/www/js/i18n/ru.js'] || window.ru;
+var info = gi6244['/www/js/services/info.js'] || window.info;
+var en = gi6244['/www/js/i18n/en.js'] || window.en;
+var ru = gi6244['/www/js/i18n/ru.js'] || window.ru;
 
 var lang = {
 
@@ -8057,7 +8059,7 @@ var lang = {
 
 lang.set(info.get('language'));
 
-gi8002['/www/js/services/lang.js'] = lang;
+gi6244['/www/js/services/lang.js'] = lang;
 
 
 
@@ -8066,7 +8068,7 @@ gi8002['/www/js/services/lang.js'] = lang;
 'use strict';
 /*global window */
 
-var doT = gi8002['/www/js/lib/dot.js'] || window.doT;
+var doT = gi6244['/www/js/lib/dot.js'] || window.doT;
 
 var doc = window.document,
 		templateMaster = {
@@ -8100,7 +8102,7 @@ var doc = window.document,
 
 templateMaster.init();
 
-gi8002['/www/js/services/template-master.js'] = templateMaster;
+gi6244['/www/js/services/template-master.js'] = templateMaster;
 
 
 
@@ -8177,7 +8179,7 @@ var win = window,
 
 	};
 
-gi8002['/www/js/services/util.js'] = util;
+gi6244['/www/js/services/util.js'] = util;
 }());
 (function () {
 'use strict';
@@ -8220,7 +8222,7 @@ var win = window,
 
 };
 
-gi8002['/www/js/sound/player-android.js'] = androidPlayer;
+gi6244['/www/js/sound/player-android.js'] = androidPlayer;
 }());
 (function () {
 'use strict';
@@ -8277,7 +8279,7 @@ var win = window,
 
 	};
 
-gi8002['/www/js/sound/player-ios.js'] = iosPlayer;
+gi6244['/www/js/sound/player-ios.js'] = iosPlayer;
 
 
 }());
@@ -8285,7 +8287,7 @@ gi8002['/www/js/sound/player-ios.js'] = iosPlayer;
 'use strict';
 /*global window */
 
-var info = gi8002['/www/js/services/info.js'] || window.info;
+var info = gi6244['/www/js/services/info.js'] || window.info;
 
 var win = window,
 	webPlayer = {
@@ -8359,17 +8361,17 @@ var win = window,
 
 };
 
-gi8002['/www/js/sound/player-web.js'] = webPlayer;
+gi6244['/www/js/sound/player-web.js'] = webPlayer;
 
 }());
 (function () {
 'use strict';
 /*global window */
 
-var androidPlayer = gi8002['/www/js/sound/player-android.js'] || window.androidPlayer;
-var iosPlayer = gi8002['/www/js/sound/player-ios.js'] || window.iosPlayer;
-var webPlayer = gi8002['/www/js/sound/player-web.js'] || window.webPlayer;
-var info = gi8002['/www/js/services/info.js'] || window.info;
+var androidPlayer = gi6244['/www/js/sound/player-android.js'] || window.androidPlayer;
+var iosPlayer = gi6244['/www/js/sound/player-ios.js'] || window.iosPlayer;
+var webPlayer = gi6244['/www/js/sound/player-web.js'] || window.webPlayer;
+var info = gi6244['/www/js/services/info.js'] || window.info;
 
 var win = window,
 	soundMaster = {
@@ -8507,7 +8509,7 @@ var win = window,
 
 soundMaster.init();
 
-gi8002['/www/js/sound/sound-master.js'] = soundMaster;
+gi6244['/www/js/sound/sound-master.js'] = soundMaster;
 
 
 }());
@@ -8515,16 +8517,16 @@ gi8002['/www/js/sound/sound-master.js'] = soundMaster;
 'use strict';
 /*global window */
 
-var Backbone = gi8002['/www/js/lib/backbone.js'] || window.Backbone;
-var $ = gi8002['/www/js/lib/jbone.js'] || window.$;
-var _ = gi8002['/www/js/lib/lodash.js'] || window._;
-var info = gi8002['/www/js/services/info.js'] || window.info;
-//var tm = gi8002['/www/js/services/template-master.js'] || window.tm;
-var util = gi8002['/www/js/services/util.js'] || window.util;
-var mediator = gi8002['/www/js/services/mediator.js'] || window.mediator;
-var sm = gi8002['/www/js/sound/sound-master.js'] || window.sm;
-var lang = gi8002['/www/js/services/lang.js'] || window.lang;
-var device = gi8002['/www/js/services/device.js'] || window.device;
+var Backbone = gi6244['/www/js/lib/backbone.js'] || window.Backbone;
+var $ = gi6244['/www/js/lib/jbone.js'] || window.$;
+var _ = gi6244['/www/js/lib/lodash.js'] || window._;
+var info = gi6244['/www/js/services/info.js'] || window.info;
+//var tm = gi6244['/www/js/services/template-master.js'] || window.tm;
+var util = gi6244['/www/js/services/util.js'] || window.util;
+var mediator = gi6244['/www/js/services/mediator.js'] || window.mediator;
+var sm = gi6244['/www/js/sound/sound-master.js'] || window.sm;
+var lang = gi6244['/www/js/services/lang.js'] || window.lang;
+var device = gi6244['/www/js/services/device.js'] || window.device;
 
 var win = window,
 	doc = win.document,
@@ -9065,9 +9067,22 @@ var win = window,
 			return this.set(key, this.get(key) + delta);
 		},
 
-		set: function (key, value) {
-			this.attr[key] = value;
-			return value;
+		set: function (keyOrObj, value) {
+
+			var self = this,
+				attr = self.attr;
+
+			if (typeof keyOrObj === 'string') {
+				attr[keyOrObj] = value;
+				return self;
+			}
+
+			Object.keys(keyOrObj).forEach(function (key) {
+				this[key] = keyOrObj[key];
+			}, attr);
+
+			return self;
+
 		},
 		get: function (key) {
 			return this.attr[key];
@@ -9193,14 +9208,14 @@ var win = window,
 
 	});
 
-gi8002['/www/js/app/view/core/base.js'] = BaseView;
+gi6244['/www/js/app/view/core/base.js'] = BaseView;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi8002['/www/js/app/view/core/base.js'] || window.BaseView;
-var tm = gi8002['/www/js/services/template-master.js'] || window.tm;
+var BaseView = gi6244['/www/js/app/view/core/base.js'] || window.BaseView;
+var tm = gi6244['/www/js/services/template-master.js'] || window.tm;
 
 var HomeView = BaseView.extend({
 
@@ -9220,24 +9235,24 @@ var HomeView = BaseView.extend({
 
 });
 
-gi8002['/www/js/app/view/home/home-view.js'] = HomeView;
+gi6244['/www/js/app/view/home/home-view.js'] = HomeView;
 }());
 (function () {
-var Backbone = gi8002['/www/js/lib/backbone.js'] || window.Backbone;
-var mediator = gi8002['/www/js/services/mediator.js'] || window.mediator;
+var Backbone = gi6244['/www/js/lib/backbone.js'] || window.Backbone;
+var mediator = gi6244['/www/js/services/mediator.js'] || window.mediator;
 
 var Tan = Backbone.Model.extend({
 
 	styles: {
 		fill: '#c00',
 		stroke: '#0c0',
-		'stroke-width': 0.02
+		'stroke-width': 0.01
 	},
 
 	activeStyles: {
 		fill: '#0c0',
 		stroke: '#c00',
-		'stroke-width': 0.02
+		'stroke-width': 0.01
 	},
 
 	nodeAttributes: {
@@ -9676,30 +9691,132 @@ var Tan = Backbone.Model.extend({
 
 		return tan.isInTriangle(xy1, xy2, xy3, xy0) || tan.isInTriangle(xy3, xy4, xy1, xy0);
 
+	},
+
+	getTriangles: function () {
+
+		var tan = this,
+			getAlignCoordinatesOfLine = tan.getAlignCoordinatesOfLine,
+			coordinates = tan.getCoordinates(),
+			triangles,
+			pow = Math.pow.bind(Math),
+			midCoordinates = [],
+			midCoordinate,
+			paths,
+			maxPathIndex,
+			maxSizeXY0,
+			maxSizeXY1,
+			midAngle,
+			diagonal0Size,
+			diagonal1Size;
+
+		switch (tan.get('type')) {
+
+			case 'triangleBig':
+
+				coordinates.forEach(function (xy, index, arr) {
+					midCoordinates = midCoordinates.concat(getAlignCoordinatesOfLine(xy, arr[index + 1] || arr[0], 2));
+				});
+
+				triangles = [
+					[coordinates[0], midCoordinates[0], midCoordinates[2]], //0
+					[coordinates[1], midCoordinates[0], midCoordinates[1]], // 1
+					[coordinates[2], midCoordinates[1], midCoordinates[2]], // 2
+					midCoordinates // inner
+				];
+
+				break;
+
+			case 'triangleMedium':
+
+				// find bigger side
+				paths = coordinates.map(function (xy, index, arr) {
+
+					var next = arr[index + 1] || arr[0];
+
+					return pow(xy.x - next.x, 2) + pow(xy.y - next.y, 2);
+
+				});
+
+				maxPathIndex = paths.indexOf(Math.max.apply(Math, paths));
+
+				maxSizeXY0 = coordinates[maxPathIndex];
+				maxSizeXY1 = coordinates[maxPathIndex + 1] || coordinates[0];
+
+				midCoordinate = getAlignCoordinatesOfLine(maxSizeXY0, maxSizeXY1, 2)[0];
+
+				midAngle = coordinates[maxPathIndex - 1] || coordinates[coordinates.length - 1];
+
+				triangles = [
+					[midAngle, midCoordinate, maxSizeXY0],
+					[midAngle, midCoordinate, maxSizeXY1]
+				];
+
+				break;
+
+			case 'triangleSmall':
+
+				triangles = [coordinates];
+
+				break;
+
+			case 'square':
+
+				triangles = [
+					[coordinates[0], coordinates[1], coordinates[2]],
+					[coordinates[2], coordinates[3], coordinates[0]]
+				];
+
+				break;
+
+			case 'parallelogram':
+
+				diagonal0Size = pow(coordinates[0].x - coordinates[2].x, 2) + pow(coordinates[0].y - coordinates[2].y, 2),
+				diagonal1Size = pow(coordinates[1].x - coordinates[3].x, 2) + pow(coordinates[1].y - coordinates[3].y, 2);
+
+				if (diagonal0Size > diagonal1Size) {
+					triangles = [
+						[coordinates[2], coordinates[1], coordinates[3]],
+						[coordinates[0], coordinates[1], coordinates[3]]
+					];
+				} else {
+					triangles = [
+						[coordinates[3], coordinates[2], coordinates[0]],
+						[coordinates[1], coordinates[2], coordinates[0]]
+					];
+				}
+
+				break;
+
+		}
+
+		return triangles;
+
+
 	}
 
 });
 
-gi8002['/www/js/app/view/tangram/models/tan.js'] = Tan;
+gi6244['/www/js/app/view/tangram/models/tan.js'] = Tan;
 }());
 (function () {
-var Backbone = gi8002['/www/js/lib/backbone.js'] || window.Backbone;
-var Tan = gi8002['/www/js/app/view/tangram/models/tan.js'] || window.Tan;
-var _ = gi8002['/www/js/lib/lodash.js'] || window._;
-var device = gi8002['/www/js/services/device.js'] || window.device;
-var mediator = gi8002['/www/js/services/mediator.js'] || window.mediator;
-var log = gi8002['/www/js/services/log.js'] || window.log;
+var Backbone = gi6244['/www/js/lib/backbone.js'] || window.Backbone;
+var Tan = gi6244['/www/js/app/view/tangram/models/tan.js'] || window.Tan;
+var _ = gi6244['/www/js/lib/lodash.js'] || window._;
+var device = gi6244['/www/js/services/device.js'] || window.device;
+var mediator = gi6244['/www/js/services/mediator.js'] || window.mediator;
+var log = gi6244['/www/js/services/log.js'] || window.log;
 
 var tansInfo = {
 	triangleBig: {
 		count: 2,
 		coordinates: [{x: 0, y: 0}, {x: 1, y: 0}, {x: 0.5, y: 0.5}],
-		parts: 4
+		parts: 2
 	},
 	triangleMedium: {
 		count: 1,
 		coordinates: [{x: 0, y: 0.5}, {x: 0.5, y: 1}, {x: 0, y: 1}],
-		parts: 4
+		parts: 2
 	},
 	triangleSmall: {
 		count: 2,
@@ -9818,7 +9935,23 @@ var TanCollection = Backbone.Collection.extend({
 
 			}
 
+			collection.checkTangram();
+
 		}
+
+	},
+
+	checkTangram: function () {
+
+		var collection = this;
+
+
+		collection.each(function (tan) {
+
+			//tan.getTriangles();
+			console.log(tan.getTriangles());
+
+		});
 
 	},
 
@@ -9942,13 +10075,14 @@ var TanCollection = Backbone.Collection.extend({
 
 	createTans: function () {
 
-		_.each(tansInfo, function (data) {
+		_.each(tansInfo, function (data, key) {
 			for (var i = 0, len = data.count; i < len; i += 1) {
 				this.add({
 					coordinates: data.coordinates,
 					parts: data.parts,
 					count: len,
-					scale: this.getData('scale')
+					scale: this.getData('scale'),
+					type: key
 				});
 			}
 		}, this);
@@ -10000,14 +10134,14 @@ var TanCollection = Backbone.Collection.extend({
 
 });
 
-gi8002['/www/js/app/view/tangram/models/tan-collection.js'] = TanCollection;
+gi6244['/www/js/app/view/tangram/models/tan-collection.js'] = TanCollection;
 }());
 (function () {
-var Backbone = gi8002['/www/js/lib/backbone.js'] || window.Backbone;
-var _ = gi8002['/www/js/lib/lodash.js'] || window._;
-var mediator = gi8002['/www/js/services/mediator.js'] || window.mediator;
-var info = gi8002['/www/js/services/info.js'] || window.info;
-var log = gi8002['/www/js/services/log.js'] || window.log;
+var Backbone = gi6244['/www/js/lib/backbone.js'] || window.Backbone;
+var _ = gi6244['/www/js/lib/lodash.js'] || window._;
+var mediator = gi6244['/www/js/services/mediator.js'] || window.mediator;
+var info = gi6244['/www/js/services/info.js'] || window.info;
+var log = gi6244['/www/js/services/log.js'] || window.log;
 
 'use strict';
 /*global window */
@@ -10229,16 +10363,17 @@ var RotaterModel = Backbone.Model.extend({
 });
 
 
-gi8002['/www/js/app/view/tangram/rotater/rotater-model.js'] = RotaterModel;
+gi6244['/www/js/app/view/tangram/rotater/rotater-model.js'] = RotaterModel;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi8002['/www/js/app/view/core/base.js'] || window.BaseView;
-var tm = gi8002['/www/js/services/template-master.js'] || window.tm;
-var TanCollection = gi8002['/www/js/app/view/tangram/models/tan-collection.js'] || window.TanCollection;
-var RotaterModel = gi8002['/www/js/app/view/tangram/rotater/rotater-model.js'] || window.RotaterModel;
+var BaseView = gi6244['/www/js/app/view/core/base.js'] || window.BaseView;
+var tm = gi6244['/www/js/services/template-master.js'] || window.tm;
+var TanCollection = gi6244['/www/js/app/view/tangram/models/tan-collection.js'] || window.TanCollection;
+var RotaterModel = gi6244['/www/js/app/view/tangram/rotater/rotater-model.js'] || window.RotaterModel;
+var device = gi6244['/www/js/services/device.js'] || window.device;
 
 var TangramView = BaseView.extend({
 
@@ -10246,12 +10381,25 @@ var TangramView = BaseView.extend({
 		scroll: 'stopEvent'
 	},
 
-	initialize: function () {
+	initialize: function (dataArg) {
 
 		var view = this,
+			data = dataArg || {},
 			tanCollection = new TanCollection(),
 			rotater = new RotaterModel(),
-			scale = 200;
+			mode = data.mode || 'normal',
+			scale;
+
+		view.set('mode', mode);
+
+		view.set({
+			minX: 0,
+			minY: 0,
+			maxX: device.get('width'),
+			maxY: device.get('height')
+		});
+
+		scale = view.detectScale();
 
 		view.setElement(tm.tmplFn.tangram());
 
@@ -10272,22 +10420,43 @@ var TangramView = BaseView.extend({
 
 		return BaseView.prototype.initialize.apply(view, arguments);
 
+	},
+
+	detectScale: function () {
+
+		var view = this,
+			scale,
+			minScreenSize = device.get('minScreenSize'),
+			spaceSize = (view.get('maxX') - view.get('minX')) * (view.get('maxY') - view.get('minY'));
+
+		if (view.get('mode') === 'constructor') {
+
+			scale = Math.round(spaceSize / minScreenSize * 130);
+
+		}
+
+		view.set('scale', scale);
+
+		console.log(view.get('scale'));
+
+		return scale;
+
 	}
 
 });
 
-gi8002['/www/js/app/view/tangram/tangram-view.js'] = TangramView;
+gi6244['/www/js/app/view/tangram/tangram-view.js'] = TangramView;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var Backbone = gi8002['/www/js/lib/backbone.js'] || window.Backbone;
-var _ = gi8002['/www/js/lib/lodash.js'] || window._;
-var BaseView = gi8002['/www/js/app/view/core/base.js'] || window.BaseView;
-var HomeView = gi8002['/www/js/app/view/home/home-view.js'] || window.HomeView;
-var TangramView = gi8002['/www/js/app/view/tangram/tangram-view.js'] || window.TangramView;
-var mediator = gi8002['/www/js/services/mediator.js'] || window.mediator;
+var Backbone = gi6244['/www/js/lib/backbone.js'] || window.Backbone;
+var _ = gi6244['/www/js/lib/lodash.js'] || window._;
+var BaseView = gi6244['/www/js/app/view/core/base.js'] || window.BaseView;
+var HomeView = gi6244['/www/js/app/view/home/home-view.js'] || window.HomeView;
+var TangramView = gi6244['/www/js/app/view/tangram/tangram-view.js'] || window.TangramView;
+var mediator = gi6244['/www/js/services/mediator.js'] || window.mediator;
 
 var win = window,
 	router,
@@ -10295,7 +10464,8 @@ var win = window,
 
 		routes: {
 			'': 'home',
-			'tangram': 'tangram'
+			'tangram': 'tangram',
+			'tangram-constructor': 'tangramConstructor'
 		},
 
 		home: function () {
@@ -10304,6 +10474,12 @@ var win = window,
 
 		tangram: function () {
 			new TangramView();
+		},
+
+		tangramConstructor: function () {
+			new TangramView({
+				mode: 'constructor'
+			});
 		},
 
 		url: {
@@ -10392,20 +10568,20 @@ router.subscribe('route-to-popup', router.routeToPopup);
 router.subscribe('router-hide-popup', router.hidePopup);
 router.subscribe('navigate', router.navigate);
 
-gi8002['/www/js/app/router/router.js'] = router;
+gi6244['/www/js/app/router/router.js'] = router;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi8002['/www/js/app/view/core/base.js'] || window.BaseView;
-var $ = gi8002['/www/js/lib/jbone.js'] || window.$;
-var _ = gi8002['/www/js/lib/lodash.js'] || window._;
-var lang = gi8002['/www/js/services/lang.js'] || window.lang;
-var info = gi8002['/www/js/services/info.js'] || window.info;
-var device = gi8002['/www/js/services/device.js'] || window.device;
-var tm = gi8002['/www/js/services/template-master.js'] || window.tm;
-var mediator = gi8002['/www/js/services/mediator.js'] || window.mediator;
+var BaseView = gi6244['/www/js/app/view/core/base.js'] || window.BaseView;
+var $ = gi6244['/www/js/lib/jbone.js'] || window.$;
+var _ = gi6244['/www/js/lib/lodash.js'] || window._;
+var lang = gi6244['/www/js/services/lang.js'] || window.lang;
+var info = gi6244['/www/js/services/info.js'] || window.info;
+var device = gi6244['/www/js/services/device.js'] || window.device;
+var tm = gi6244['/www/js/services/template-master.js'] || window.tm;
+var mediator = gi6244['/www/js/services/mediator.js'] || window.mediator;
 
 var win = window,
 	HintView,
@@ -10809,19 +10985,19 @@ mediator.installTo(hintMaster);
 
 hintMaster.subscribe('showHint', hintMaster.showHint);
 
-gi8002['/www/js/app/view/core/hint.js'] = hintMaster;
+gi6244['/www/js/app/view/core/hint.js'] = hintMaster;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi8002['/www/js/app/view/core/base.js'] || window.BaseView;
-var $ = gi8002['/www/js/lib/jbone.js'] || window.$;
-var _ = gi8002['/www/js/lib/lodash.js'] || window._;
-var sm = gi8002['/www/js/sound/sound-master.js'] || window.sm;
-var tm = gi8002['/www/js/services/template-master.js'] || window.tm;
-var info = gi8002['/www/js/services/info.js'] || window.info;
-var mediator = gi8002['/www/js/services/mediator.js'] || window.mediator;
+var BaseView = gi6244['/www/js/app/view/core/base.js'] || window.BaseView;
+var $ = gi6244['/www/js/lib/jbone.js'] || window.$;
+var _ = gi6244['/www/js/lib/lodash.js'] || window._;
+var sm = gi6244['/www/js/sound/sound-master.js'] || window.sm;
+var tm = gi6244['/www/js/services/template-master.js'] || window.tm;
+var info = gi6244['/www/js/services/info.js'] || window.info;
+var mediator = gi6244['/www/js/services/mediator.js'] || window.mediator;
 
 var win = window,
 	PopupView,
@@ -11006,44 +11182,44 @@ mediator.installTo(popupMaster);
 
 popupMaster.subscribe('showPopup', popupMaster.showPopup);
 
-gi8002['/www/js/app/view/core/popup.js'] = popupMaster;
+gi6244['/www/js/app/view/core/popup.js'] = popupMaster;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var log = gi8002['/www/js/services/log.js'] || window.log;
+var log = gi6244['/www/js/services/log.js'] || window.log;
 
-var mediator = gi8002['/www/js/services/mediator.js'] || window.mediator;
+var mediator = gi6244['/www/js/services/mediator.js'] || window.mediator;
 
 // init all librares
-var polyfillClassList = gi8002['/www/js/lib/polyfill-class-list.js'] || window.polyfillClassList;
-var shim = gi8002['/www/js/lib/shim.js'] || window.shim;
-var shimES5 = gi8002['/www/js/lib/shim-es5.js'] || window.shimES5;
-var shamES5 = gi8002['/www/js/lib/sham-es5.js'] || window.shamES5;
-var _ = gi8002['/www/js/lib/lodash.js'] || window._;
-var $ = gi8002['/www/js/lib/jbone.js'] || window.$;
-var Deferred = gi8002['/www/js/lib/deferred.js'] || window.Deferred;
-var Backbone = gi8002['/www/js/lib/backbone.js'] || window.Backbone;
-var fastclick = gi8002['/www/js/lib/fastclick.js'] || window.fastclick;
-var doT = gi8002['/www/js/lib/dot.js'] || window.doT;
+var polyfillClassList = gi6244['/www/js/lib/polyfill-class-list.js'] || window.polyfillClassList;
+var shim = gi6244['/www/js/lib/shim.js'] || window.shim;
+var shimES5 = gi6244['/www/js/lib/shim-es5.js'] || window.shimES5;
+var shamES5 = gi6244['/www/js/lib/sham-es5.js'] || window.shamES5;
+var _ = gi6244['/www/js/lib/lodash.js'] || window._;
+var $ = gi6244['/www/js/lib/jbone.js'] || window.$;
+var Deferred = gi6244['/www/js/lib/deferred.js'] || window.Deferred;
+var Backbone = gi6244['/www/js/lib/backbone.js'] || window.Backbone;
+var fastclick = gi6244['/www/js/lib/fastclick.js'] || window.fastclick;
+var doT = gi6244['/www/js/lib/dot.js'] || window.doT;
 
 // init all services
-var info = gi8002['/www/js/services/info.js'] || window.info;
-var device = gi8002['/www/js/services/device.js'] || window.device;
-var androidAds = gi8002['/www/js/services/android-ads.js'] || window.androidAds;
-var lang = gi8002['/www/js/services/lang.js'] || window.lang;
-var tm = gi8002['/www/js/services/template-master.js'] || window.tm;
-var util = gi8002['/www/js/services/util.js'] || window.util;
+var info = gi6244['/www/js/services/info.js'] || window.info;
+var device = gi6244['/www/js/services/device.js'] || window.device;
+var androidAds = gi6244['/www/js/services/android-ads.js'] || window.androidAds;
+var lang = gi6244['/www/js/services/lang.js'] || window.lang;
+var tm = gi6244['/www/js/services/template-master.js'] || window.tm;
+var util = gi6244['/www/js/services/util.js'] || window.util;
 
 // init sound players
-var sm = gi8002['/www/js/sound/sound-master.js'] || window.sm;
+var sm = gi6244['/www/js/sound/sound-master.js'] || window.sm;
 
-var router = gi8002['/www/js/app/router/router.js'] || window.router;
+var router = gi6244['/www/js/app/router/router.js'] || window.router;
 
-var BaseView = gi8002['/www/js/app/view/core/base.js'] || window.BaseView;
-var hintMaster = gi8002['/www/js/app/view/core/hint.js'] || window.hintMaster;
-var popupMaster = gi8002['/www/js/app/view/core/popup.js'] || window.popupMaster;
+var BaseView = gi6244['/www/js/app/view/core/base.js'] || window.BaseView;
+var hintMaster = gi6244['/www/js/app/view/core/hint.js'] || window.hintMaster;
+var popupMaster = gi6244['/www/js/app/view/core/popup.js'] || window.popupMaster;
 
 // todo: - test - enable fast click
 new FastClick(window.document.body); // test it decide
