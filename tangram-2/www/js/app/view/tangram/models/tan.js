@@ -451,6 +451,108 @@ var Tan = Backbone.Model.extend({
 
 		return tan.isInTriangle(xy1, xy2, xy3, xy0) || tan.isInTriangle(xy3, xy4, xy1, xy0);
 
+	},
+
+	getTriangles: function () {
+
+		var tan = this,
+			getAlignCoordinatesOfLine = tan.getAlignCoordinatesOfLine,
+			coordinates = tan.getCoordinates(),
+			triangles,
+			pow = Math.pow.bind(Math),
+			midCoordinates = [],
+			midCoordinate,
+			paths,
+			maxPathIndex,
+			maxSizeXY0,
+			maxSizeXY1,
+			midAngle,
+			diagonal0Size,
+			diagonal1Size;
+
+		switch (tan.get('type')) {
+
+			case 'triangleBig':
+
+				coordinates.forEach(function (xy, index, arr) {
+					midCoordinates = midCoordinates.concat(getAlignCoordinatesOfLine(xy, arr[index + 1] || arr[0], 2));
+				});
+
+				triangles = [
+					[coordinates[0], midCoordinates[0], midCoordinates[2]], //0
+					[coordinates[1], midCoordinates[0], midCoordinates[1]], // 1
+					[coordinates[2], midCoordinates[1], midCoordinates[2]], // 2
+					midCoordinates // inner
+				];
+
+				break;
+
+			case 'triangleMedium':
+
+				// find bigger side
+				paths = coordinates.map(function (xy, index, arr) {
+
+					var next = arr[index + 1] || arr[0];
+
+					return pow(xy.x - next.x, 2) + pow(xy.y - next.y, 2);
+
+				});
+
+				maxPathIndex = paths.indexOf(Math.max.apply(Math, paths));
+
+				maxSizeXY0 = coordinates[maxPathIndex];
+				maxSizeXY1 = coordinates[maxPathIndex + 1] || coordinates[0];
+
+				midCoordinate = getAlignCoordinatesOfLine(maxSizeXY0, maxSizeXY1, 2)[0];
+
+				midAngle = coordinates[maxPathIndex - 1] || coordinates[coordinates.length - 1];
+
+				triangles = [
+					[midAngle, midCoordinate, maxSizeXY0],
+					[midAngle, midCoordinate, maxSizeXY1]
+				];
+
+				break;
+
+			case 'triangleSmall':
+
+				triangles = [coordinates];
+
+				break;
+
+			case 'square':
+
+				triangles = [
+					[coordinates[0], coordinates[1], coordinates[2]],
+					[coordinates[2], coordinates[3], coordinates[0]]
+				];
+
+				break;
+
+			case 'parallelogram':
+
+				diagonal0Size = pow(coordinates[0].x - coordinates[2].x, 2) + pow(coordinates[0].y - coordinates[2].y, 2),
+				diagonal1Size = pow(coordinates[1].x - coordinates[3].x, 2) + pow(coordinates[1].y - coordinates[3].y, 2);
+
+				if (diagonal0Size > diagonal1Size) {
+					triangles = [
+						[coordinates[2], coordinates[1], coordinates[3]],
+						[coordinates[0], coordinates[1], coordinates[3]]
+					];
+				} else {
+					triangles = [
+						[coordinates[3], coordinates[2], coordinates[0]],
+						[coordinates[1], coordinates[2], coordinates[0]]
+					];
+				}
+
+				break;
+
+		}
+
+		return triangles;
+
+
 	}
 
 });

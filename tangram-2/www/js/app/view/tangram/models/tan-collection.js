@@ -133,7 +133,26 @@ var TanCollection = Backbone.Collection.extend({
 
 			}
 
+			collection.checkTangram();
+
 		}
+
+	},
+
+	checkTangram: function () {
+
+		var collection = this;
+
+
+		collection.each(function (tan) {
+
+
+			//tan.getTriangles();
+			console.log(tan.getTriangles());
+
+		});
+
+
 
 	},
 
@@ -257,13 +276,14 @@ var TanCollection = Backbone.Collection.extend({
 
 	createTans: function () {
 
-		_.each(tansInfo, function (data) {
+		_.each(tansInfo, function (data, key) {
 			for (var i = 0, len = data.count; i < len; i += 1) {
 				this.add({
 					coordinates: data.coordinates,
 					parts: data.parts,
 					count: len,
-					scale: this.getData('scale')
+					scale: this.getData('scale'),
+					type: key
 				});
 			}
 		}, this);
