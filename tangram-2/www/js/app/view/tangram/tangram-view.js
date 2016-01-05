@@ -62,14 +62,10 @@ var TangramView = BaseView.extend({
 			spaceSize = (view.get('maxX') - view.get('minX')) * (view.get('maxY') - view.get('minY'));
 
 		if (view.get('mode') === 'constructor') {
-
-			scale = Math.round(spaceSize / minScreenSize * 130);
-
+			scale = Math.round( Math.sqrt(spaceSize / minScreenSize ) * 130 );
 		}
 
 		view.set('scale', scale);
-
-		console.log(view.get('scale'));
 
 		return scale;
 
