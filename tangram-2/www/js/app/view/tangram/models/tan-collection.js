@@ -150,11 +150,20 @@ var TanCollection = Backbone.Collection.extend({
 	align: function (data) {
 
 		var collection = this,
-			alignData = collection.getAlignData(data);
+			tan = data.tan,
+			alignData = collection.getAlignData(data),
+			maxAlignPath = collection.getData('maxAlignPath');
 
+		if (alignData.pathSize > maxAlignPath) {
+			return;
+		}
 
-		log(alignData);
+		tan.move({
+			dx: alignData.otherX - alignData.alignX,
+			dy: alignData.otherY - alignData.alignY
+		});
 
+		collection.publish('rotater:moveTo', tan.getCenterCoordinates());
 
 	},
 
@@ -196,7 +205,7 @@ var TanCollection = Backbone.Collection.extend({
 					otherY: otherY,
 					alignX: alignX,
 					alignY: alignY,
-					minPath: Math.sqrt(minPath)
+					pathSize: Math.sqrt(minPath)
 				}
 
 			});
@@ -242,6 +251,7 @@ var TanCollection = Backbone.Collection.extend({
 	},
 
 	setScale: function (scale) {
+		this.setData('maxAlignPath', scale / 10);
 		this.setData('scale', scale);
 	},
 

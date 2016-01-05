@@ -63,6 +63,7 @@ var RotaterModel = Backbone.Model.extend({
 		//rotater.subscribe('rotater:connectTan', rotater.connectTan);
 
 		rotater.subscribe('rotater:deActivate', rotater.deActivate);
+		rotater.subscribe('rotater:moveTo', rotater.moveTo);
 
 	},
 
@@ -143,12 +144,20 @@ var RotaterModel = Backbone.Model.extend({
 
 		var rotater = this,
 			tan = rotater.get('tan'),
-			$rotater = rotater.get('$rotater'),
-			centerXY = tan.getCenterCoordinates();
+			$rotater = rotater.get('$rotater');
 
-		$rotater.css(rotater.get('cssTransformName'), 'translate3d(' + centerXY.x + 'px,' + centerXY.y + 'px,0)');
+		rotater.moveTo(tan.getCenterCoordinates());
 
 		$rotater.removeClass('rotater--hidden');
+
+	},
+
+	moveTo: function (data) {
+
+		var rotater = this,
+			$rotater = rotater.get('$rotater');
+
+		$rotater.css(rotater.get('cssTransformName'), 'translate3d(' + data.x + 'px,' + data.y + 'px,0)');
 
 	},
 

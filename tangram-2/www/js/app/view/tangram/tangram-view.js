@@ -23,7 +23,7 @@ var TangramView = BaseView.extend({
 
 		view.set('tan-collection', tanCollection);
 
-		tanCollection.setData('scale', scale);
+		tanCollection.setScale(scale);
 		tanCollection.createTans();
 		tanCollection.addDrawFieldTo(view.$el);
 		tanCollection.drawTans();

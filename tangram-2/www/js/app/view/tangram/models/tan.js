@@ -116,7 +116,7 @@ var Tan = Backbone.Model.extend({
 
 		tan.on('change:isActive', tan.setStateActiveDeActive);
 
-		tan.subscribe('deviceAction:moving', tan.move);
+		tan.subscribe('deviceAction:moving', tan.onMove);
 
 	},
 
@@ -130,26 +130,21 @@ var Tan = Backbone.Model.extend({
 
 	},
 
-	move: function (data) {
+	onMove: function (data) {
 
 		var tan = this;
+		return tan.get('isActive') && tan.move(data);
 
-		if (!tan.get('isActive')) {
-			return;
-		}
+	},
 
-		var dx = data.dx,
+	move: function (data) {
+
+		var tan = this,
+			dx = data.dx,
 			dy = data.dy;
 
 		tan.setBy('dx', data.dx);
 		tan.setBy('dy', data.dy);
-
-		//_.each(coordinates, function (xy) {
-		//	xy.x += dx;
-		//	xy.y += dy;
-		//});
-		//
-		//tan.setCoordinates(coordinates);
 
 		tan.reDraw();
 
