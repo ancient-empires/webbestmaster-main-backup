@@ -37,7 +37,7 @@ var RotaterModel = Backbone.Model.extend({
 			parentView = rotater.get('parentView'),
 			parent$el = parentView.$el,
 			size = rotater.get('size'),
-			$rotater = $('<div class="rotater hidden"></div>');
+			$rotater = $('<div class="rotater rotater--hidden"></div>');
 
 		$rotater.css({
 			width: size + 'px',
@@ -148,7 +148,7 @@ var RotaterModel = Backbone.Model.extend({
 
 		$rotater.css(rotater.get('cssTransformName'), 'translate3d(' + centerXY.x + 'px,' + centerXY.y + 'px,0)');
 
-		$rotater.removeClass('hidden');
+		$rotater.removeClass('rotater--hidden');
 
 	},
 
@@ -167,7 +167,7 @@ var RotaterModel = Backbone.Model.extend({
 		var rotater = this,
 			$rotater = rotater.get('$rotater');
 
-		$rotater.addClass('hidden');
+		$rotater.addClass('rotater--hidden');
 
 	},
 
