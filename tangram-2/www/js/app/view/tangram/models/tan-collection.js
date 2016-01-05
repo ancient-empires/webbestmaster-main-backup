@@ -9,12 +9,12 @@ var tansInfo = {
 	triangleBig: {
 		count: 2,
 		coordinates: [{x: 0, y: 0}, {x: 1, y: 0}, {x: 0.5, y: 0.5}],
-		parts: 4
+		parts: 2
 	},
 	triangleMedium: {
 		count: 1,
 		coordinates: [{x: 0, y: 0.5}, {x: 0.5, y: 1}, {x: 0, y: 1}],
-		parts: 4
+		parts: 2
 	},
 	triangleSmall: {
 		count: 2,

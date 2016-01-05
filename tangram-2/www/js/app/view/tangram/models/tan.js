@@ -6,13 +6,13 @@ var Tan = Backbone.Model.extend({
 	styles: {
 		fill: '#c00',
 		stroke: '#0c0',
-		'stroke-width': 0.02
+		'stroke-width': 0.01
 	},
 
 	activeStyles: {
 		fill: '#0c0',
 		stroke: '#c00',
-		'stroke-width': 0.02
+		'stroke-width': 0.01
 	},
 
 	nodeAttributes: {
