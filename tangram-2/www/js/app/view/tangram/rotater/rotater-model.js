@@ -22,7 +22,7 @@ var RotaterModel = Backbone.Model.extend({
 
 		rotater.set({
 			cssTransformName: info.get('cssJsPrefix', true).css + 'transform',
-			size: 200,
+			size: data.size,
 			isActive: false
 		});
 

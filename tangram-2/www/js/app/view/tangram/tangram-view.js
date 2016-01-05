@@ -16,20 +16,22 @@ var TangramView = BaseView.extend({
 
 		var view = this,
 			tanCollection = new TanCollection(),
-			rotater = new RotaterModel();
+			rotater = new RotaterModel(),
+			scale = 200;
 
 		view.setElement(tm.tmplFn.tangram());
 
 		view.set('tan-collection', tanCollection);
 
-		tanCollection.detectScale();
+		tanCollection.setData('scale', scale);
 		tanCollection.createTans();
 		tanCollection.addDrawFieldTo(view.$el);
 		tanCollection.drawTans();
 		tanCollection.setData('rotater', rotater);
 
 		rotater.initialize({
-			parentView: view
+			parentView: view,
+			size: scale
 		});
 
 		view.render();

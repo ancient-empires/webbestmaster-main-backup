@@ -67,7 +67,6 @@ var TanCollection = Backbone.Collection.extend({
 
 		var collection = this;
 
-		collection.detectScale();
 		collection.bindEventListeners();
 
 	},
@@ -154,7 +153,7 @@ var TanCollection = Backbone.Collection.extend({
 			alignData = collection.getAlignData(data);
 
 
-		console.log(alignData);
+		log(alignData);
 
 
 	},
@@ -242,16 +241,8 @@ var TanCollection = Backbone.Collection.extend({
 
 	},
 
-	detectScale: function () {
-
-		// TODO: SET SCALE!!!!!
-
-		var scale = 200;
-
+	setScale: function (scale) {
 		this.setData('scale', scale);
-
-		return scale;
-
 	},
 
 	createTans: function () {
