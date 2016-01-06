@@ -102,7 +102,7 @@ var TangramView = BaseView.extend({
 			maxPatternY = -Infinity,
 			scale,
 			minScreenSize = device.get('minScreenSize'),
-			spaceSize = (view.get('maxX') - view.get('minX')) * (view.get('maxY') - view.get('minY'));
+			spaceSize = (maxX - minX) * (maxY - minY);
 
 		if (view.get('mode') === 'constructor') {
 
