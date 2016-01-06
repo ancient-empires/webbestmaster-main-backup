@@ -40,7 +40,7 @@ var TangramView = BaseView.extend({
 
 		var pattern = tangrams.data[0].data[0];
 
-		scale = view.detectScale();
+		scale = view.detectScale(pattern);
 
 		view.setElement(tm.tmplFn.tangram({
 			mode: mode
@@ -86,16 +86,54 @@ var TangramView = BaseView.extend({
 
 	},
 
-	detectScale: function () {
+	detectScale: function (pattern) {
 
 		var view = this,
+			minX = view.get('minX'),
+			minY = view.get('minY'),
+			maxX = view.get('maxX'),
+			maxY = view.get('maxY'),
+			sizeX = maxX - minX,
+			sizeY = maxY - minY,
+			viewQ = sizeX / sizeY,
+			patternQ,
+			atoms = pattern.data,
+			maxPatternX = -Infinity,
+			maxPatternY = -Infinity,
 			scale,
 			minScreenSize = device.get('minScreenSize'),
 			spaceSize = (view.get('maxX') - view.get('minX')) * (view.get('maxY') - view.get('minY'));
 
 		if (view.get('mode') === 'constructor') {
-			scale = Math.round( Math.sqrt(spaceSize / minScreenSize ) * 130 );
+
+			scale = Math.round(Math.sqrt(spaceSize / minScreenSize) * 130);
+
+			view.set('scale', scale);
+
+			return scale;
+
 		}
+
+		atoms.forEach(function (atom) {
+
+			var x = atom[0],
+				y = atom[1];
+
+			if (x > maxPatternX) {
+				maxPatternX = x;
+			}
+
+			if (y > maxPatternY) {
+				maxPatternY = y;
+			}
+
+		});
+
+		patternQ = maxPatternX / maxPatternY;
+
+		scale = (patternQ > viewQ) ? (sizeX / maxPatternX) : (sizeY / maxPatternY);
+
+		scale = Math.round(scale * 0.75);
 
 		view.set('scale', scale);
 

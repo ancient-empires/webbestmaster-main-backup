@@ -389,7 +389,6 @@ var TanCollection = Backbone.Collection.extend({
 		var collections = this,
 			triangles = pattern.data.map(collections.atomToTriangle);
 
-
 		collections.publish('tangram-view:drawPattern', {
 			triangles: triangles
 		});
