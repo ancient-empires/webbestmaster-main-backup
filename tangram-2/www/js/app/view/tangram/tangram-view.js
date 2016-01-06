@@ -6,6 +6,7 @@ import tm from './../../../services/template-master';
 import TanCollection from './models/tan-collection';
 import RotaterModel from './rotater/rotater-model';
 import device from './../../../services/device';
+import mediator from './../../../services/mediator';
 import tangrams from './../../data/tangrams';
 
 var TangramView = BaseView.extend({
@@ -45,6 +46,8 @@ var TangramView = BaseView.extend({
 			mode: mode
 		}));
 
+		view.bindEventListeners();
+
 		view.set('tan-collection', tanCollection);
 
 		tanCollection.setScale(scale);
@@ -62,6 +65,24 @@ var TangramView = BaseView.extend({
 		view.render();
 
 		return BaseView.prototype.initialize.apply(view, arguments);
+
+	},
+
+	bindEventListeners: function () {
+
+		var view = this;
+
+		view.subscribe('tangram-view:drawPattern', view.drawPattern);
+
+	},
+
+	drawPattern: function (data) {
+
+		var view = this,
+			triangles = data.triangles;
+
+		console.log('drawPattern');
+		console.log(triangles);
 
 	},
 
@@ -84,7 +105,7 @@ var TangramView = BaseView.extend({
 
 	saveAtoms: function () {
 
-		this.get('tan-collection').saveAtoms();
+		this.publish('tan-collection:saveAtoms');
 
 	}
 

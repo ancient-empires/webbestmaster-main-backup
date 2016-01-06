@@ -35,7 +35,7 @@ var tansInfo = {
 };
 
 var atomInfo = {
-	coordinates: [{x: 0, y: 0}, {x: 0, y: 0.25}, {x: 0.25, y: 0}]
+	sideSize: 0.25
 };
 
 var TanCollection = Backbone.Collection.extend({
@@ -86,6 +86,7 @@ var TanCollection = Backbone.Collection.extend({
 		collection.subscribe('deviceAction:dblTap', collection.flipTan);
 
 		collection.subscribe('tan:align', collection.align);
+		collection.subscribe('tan-collection:saveAtoms', collection.saveAtoms);
 
 	},
 
@@ -181,8 +182,8 @@ var TanCollection = Backbone.Collection.extend({
 
 		return tangramAtoms.map(function (xya) {
 			return [
-				(Math.round( (xya[0] - minX) * 1e8 ) / 1e8) || 0,
-				(Math.round( (xya[1] - minY) * 1e8 ) / 1e8) || 0,
+				(Math.round((xya[0] - minX) * 1e8) / 1e8) || 0,
+				(Math.round((xya[1] - minY) * 1e8) / 1e8) || 0,
 				xya[2]
 			];
 		});
@@ -200,7 +201,7 @@ var TanCollection = Backbone.Collection.extend({
 			tangramAtomsStr = JSON.stringify(tangramAtoms),
 			tangramHash = sha1.hash(tangramAtomsStr).slice(0, 6),
 			tangramName = $('.js-saved-atoms-name').val().trim(),
-			result = JSON.stringify({ name: tangramName, hash: tangramHash, data: tangramAtoms });
+			result = JSON.stringify({name: tangramName, hash: tangramHash, data: tangramAtoms});
 
 		console.log(result);
 
@@ -385,13 +386,36 @@ var TanCollection = Backbone.Collection.extend({
 
 	initPattern: function (pattern) {
 
+		var collections = this,
+			triangles = pattern.data.map(collections.atomToTriangle);
 
 
+		collections.publish('tangram-view:drawPattern', {
+			triangles: triangles
+		});
 
+	},
 
+	atomToTriangle: function (atom) {
 
+		var angleRight = atom[2] - 45,
+			angleLeft = angleRight + 90,
+			sideSize = atomInfo.sideSize;
 
-
+		return [
+			{
+				x: atom[0],
+				y: atom[1]
+			},
+			{
+				x: Math.cos(angleLeft) * sideSize,
+				y: Math.sin(angleLeft) * sideSize
+			},
+			{
+				x: Math.cos(angleRight) * sideSize,
+				y: Math.sin(angleRight) * sideSize
+			}
+		];
 
 	}
 
