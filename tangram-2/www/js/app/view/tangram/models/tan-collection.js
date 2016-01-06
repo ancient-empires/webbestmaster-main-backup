@@ -38,6 +38,20 @@ var atomInfo = {
 	sideSize: 0.25
 };
 
+var patternInfo = {
+	polygon: {
+		styles: {
+			fill: '#333',
+			stroke: '#333',
+			'stroke-width': '2px'
+		},
+		attributes: {
+			'stroke-linejoin': 'round',
+			'stroke-alignment': 'center'
+		}
+	}
+};
+
 var TanCollection = Backbone.Collection.extend({
 
 	model: Tan,
@@ -148,9 +162,20 @@ var TanCollection = Backbone.Collection.extend({
 	checkTangram: function () {
 
 		var collection = this,
-
 			tangramAtoms = collection.getTangramAtoms(),
-			answerAtoms = collection.getAnswerAtoms();
+			answerAtoms = collection.getAnswerAtoms(),
+			isDone;
+
+		tangramAtoms = tangramAtoms.map(JSON.stringify);
+		answerAtoms = answerAtoms.map(JSON.stringify);
+
+		isDone = tangramAtoms.every(function (atomStr) {
+			return answerAtoms.indexOf(atomStr) !== -1;
+		});
+
+		if (isDone) {
+			alert('--- tangram is done ---', isDone);
+		}
 
 	},
 
@@ -191,6 +216,8 @@ var TanCollection = Backbone.Collection.extend({
 	},
 
 	getAnswerAtoms: function () {
+
+		return this.getData('pattern');
 
 	},
 
@@ -386,33 +413,156 @@ var TanCollection = Backbone.Collection.extend({
 
 	initPattern: function (pattern) {
 
-		var collections = this,
-			triangles = pattern.data.map(collections.atomToTriangle);
+		var collection = this,
+			atomToTriangle = collection.atomToTriangle,
+			scale = collection.getData('scale'),
+			triangles = pattern.data,
+			patternDeltaX,
+			patternDeltaY,
+			viewSizeX = collection.getData('sizeX'),
+			viewSizeY = collection.getData('sizeY'),
+			patternMaxX = -Infinity,
+			patternMaxY = -Infinity;
 
-		collections.publish('tangram-view:drawPattern', {
-			triangles: triangles
+		collection.setData('pattern', triangles);
+
+		triangles = triangles.map(function (atom) {
+			return atomToTriangle(atom, scale);
 		});
+
+		triangles.forEach(function (triangle) {
+
+			var rightAngle = triangle[0],
+				x = rightAngle.x,
+				y = rightAngle.y;
+
+			if (x > patternMaxX) {
+				patternMaxX = x;
+			}
+
+			if (y > patternMaxY) {
+				patternMaxY = y;
+			}
+
+		});
+
+		patternDeltaX = Math.round((viewSizeX - patternMaxX) / 2);
+		patternDeltaY = Math.round((viewSizeY - patternMaxY) / 2);
+
+		collection.setData({
+			patternDeltaX: patternDeltaX,
+			patternDeltaY: patternDeltaY
+		});
+
+		triangles = triangles.map(function (triangle) {
+			return triangle.map(function (xy) {
+				return {
+					x: xy.x + patternDeltaX,
+					y: xy.y + patternDeltaY
+				}
+			});
+		});
+
+		collection.setData('initedPattern', triangles);
 
 	},
 
-	atomToTriangle: function (atom) {
+	drawPattern: function () {
 
-		var angleRight = atom[2] - 45,
+		var collection = this,
+			coordinatesToPolygon = collection.coordinatesToPolygon.bind(collection),
+			pattern = collection.getData('initedPattern'),
+			width = collection.getData('sizeX'),
+			height = collection.getData('sizeY'),
+			svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+			attributes = {
+				x: '0px',
+				y: '0px',
+				width: width + 'px',
+				height: height + 'px',
+				viewBox: [0, 0, width, height].join(' ')
+			};
+
+		Object.keys(attributes).forEach(function (key) {
+			var attr = document.createAttribute(key);
+			attr.value = attributes[key];
+			svg.setAttributeNode(attr);
+		});
+
+		pattern.forEach(function (triangle) {
+			var polygon = coordinatesToPolygon(triangle);
+			svg.appendChild(polygon);
+		});
+
+		$(svg).css({
+			position: 'absolute',
+			top: 0,
+			left: 0,
+			zIndex: -1
+		});
+
+		document.body.appendChild(svg);
+
+	},
+
+	coordinatesToPolygon: function (coordinates, stylesArg) {
+
+		var collection = this,
+			polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon'),
+			styles = stylesArg || patternInfo.polygon.styles,
+			attributes = patternInfo.polygon.attributes,
+			styleStr = '',
+			attr = document.createAttribute('style');
+
+		// set position
+		polygon.setAttribute('points', coordinates.map(function (xy) {
+			return xy.x + ',' + xy.y;
+		}).join(' '));
+
+		// set styles
+		Object.keys(styles).forEach(function (key) {
+			//var value = (key === 'stroke-width') ? styles[key] * collection.getData('scale') : styles[key];
+			styleStr += key + ':' + styles[key] + ';';
+		});
+
+		attr.value = styleStr;
+		polygon.setAttributeNode(attr);
+
+		Object.keys(attributes).forEach(function (key) {
+			var attr = document.createAttribute(key);
+			attr.value = attributes[key];
+			polygon.setAttributeNode(attr);
+		});
+
+
+		return polygon;
+
+	},
+
+	atomToTriangle: function (atom, scale) {
+
+		var x = atom[0] * scale,
+			y = atom[1] * scale,
+			angleRight = atom[2] - 45,
 			angleLeft = angleRight + 90,
-			sideSize = atomInfo.sideSize;
+			toRad = Math.PI / 180,
+			sideSize = atomInfo.sideSize * scale;
+
+		angleRight = angleRight * toRad;
+		angleLeft = angleLeft * toRad;
 
 		return [
 			{
-				x: atom[0],
-				y: atom[1]
+				x: x,
+				y: y
 			},
 			{
-				x: Math.cos(angleLeft) * sideSize,
-				y: Math.sin(angleLeft) * sideSize
+				x: x - Math.cos(angleLeft) * sideSize,
+				y: y - Math.sin(angleLeft) * sideSize
 			},
 			{
-				x: Math.cos(angleRight) * sideSize,
-				y: Math.sin(angleRight) * sideSize
+				x: x - Math.cos(angleRight) * sideSize,
+				y: y - Math.sin(angleRight) * sideSize
 			}
 		];
 

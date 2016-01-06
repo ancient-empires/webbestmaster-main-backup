@@ -24,14 +24,24 @@ var TangramView = BaseView.extend({
 			rotater = new RotaterModel(),
 			mode = data.mode || 'normal',
 			scale,
+			minX = 0,
+			minY = 0,
+			maxX = device.get('width'),
+			maxY = device.get('height'),
+			sizeX = maxX - minX,
+			sizeY = maxY - minY,
 			viewData = {
-				minX: 0,
-				minY: 0,
-				maxX: device.get('width'),
-				maxY: device.get('height')
+				minX: minX,
+				minY: minY,
+				maxX: maxX,
+				maxY: maxY,
+				sizeX: sizeX,
+				sizeY: sizeY
 			};
 
 		view.set('mode', mode);
+
+		view.set('tan-collection', tanCollection);
 
 		view.set(viewData);
 		tanCollection.setData(viewData);
@@ -48,10 +58,9 @@ var TangramView = BaseView.extend({
 
 		view.bindEventListeners();
 
-		view.set('tan-collection', tanCollection);
-
 		tanCollection.setScale(scale);
 		tanCollection.initPattern(pattern);
+		tanCollection.drawPattern();
 		tanCollection.createTans();
 		tanCollection.addDrawFieldTo(view.$el);
 		tanCollection.drawTans();
@@ -72,16 +81,17 @@ var TangramView = BaseView.extend({
 
 		var view = this;
 
-		view.subscribe('tangram-view:drawPattern', view.drawPattern);
+		//view.subscribe('tangram-view:drawPattern', view.drawPattern);
 
 	},
 
 	drawPattern: function (data) {
 
 		var view = this,
-			triangles = data.triangles;
+			triangles = data.triangles,
+			scale = view.get('scale');
 
-		console.log('drawPattern');
+		console.log('drawPattern!!!!');
 		console.log(triangles);
 
 	},
@@ -129,11 +139,16 @@ var TangramView = BaseView.extend({
 
 		});
 
+		view.get('tan-collection').setData({
+			patternWidth: maxPatternX,
+			patternHeight: maxPatternY
+		});
+
 		patternQ = maxPatternX / maxPatternY;
 
 		scale = (patternQ > viewQ) ? (sizeX / maxPatternX) : (sizeY / maxPatternY);
 
-		scale = Math.round(scale * 0.75);
+		scale = Math.round(scale / 2);
 
 		view.set('scale', scale);
 
