@@ -4,6 +4,7 @@ import _ from './../../../../lib/lodash';
 import device from './../../../../services/device';
 import mediator from './../../../../services/mediator';
 import log from './../../../../services/log';
+import sha1 from './../../../../lib/sha1';
 
 var tansInfo = {
 	triangleBig: {
@@ -195,12 +196,13 @@ var TanCollection = Backbone.Collection.extend({
 	saveAtoms: function () {
 
 		var collection = this,
-			tangramAtoms = collection.getTangramAtoms();
+			tangramAtoms = collection.getTangramAtoms(),
+			tangramAtomsStr = JSON.stringify(tangramAtoms),
+			tangramHash = sha1.hash(tangramAtomsStr).slice(0, 6),
+			tangramName = $('.js-saved-atoms-name').val().trim(),
+			result = JSON.stringify({ name: tangramName, hash: tangramHash, data: tangramAtoms });
 
-
-		//console.log();
-		//
-		console.log(JSON.stringify(tangramAtoms));
+		console.log(result);
 
 	},
 
