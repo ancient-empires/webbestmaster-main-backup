@@ -33,6 +33,10 @@ var tansInfo = {
 	}
 };
 
+var atomInfo = {
+	coordinates: [{x: 0, y: 0}, {x: 0, y: 0.25}, {x: 0.25, y: 0}]
+};
+
 var TanCollection = Backbone.Collection.extend({
 
 	model: Tan,
@@ -142,14 +146,54 @@ var TanCollection = Backbone.Collection.extend({
 	checkTangram: function () {
 
 		var collection = this,
-			tangramAtoms = [];
+
+			tangramAtoms = collection.getTangramAtoms(),
+			answerAtoms = collection.getAnswerAtoms();
+
+	},
+
+	getTangramAtoms: function () {
+
+		var collection = this,
+			tangramAtoms = [],
+			minX = Infinity,
+			minY = Infinity;
 
 		collection.each(function (tan) {
 			tangramAtoms = tangramAtoms.concat(tan.getAtoms());
 		});
 
+		tangramAtoms.forEach(function (xya) {
 
-		console.log(tangramAtoms);
+			var x = xya[0],
+				y = xya[1];
+
+			if (x < minX) {
+				minX = x;
+			}
+
+			if (y < minY) {
+				minY = y;
+			}
+
+		});
+
+		return tangramAtoms.map(function (xya) {
+			return [ xya[0] - minX, xya[1] - minY, xya[2] ];
+		});
+
+	},
+
+	getAnswerAtoms: function () {
+
+	},
+
+	saveAtoms: function () {
+
+		var collection = this,
+			tangramAtoms = collection.getTangramAtoms();
+
+		console.log(JSON.stringify(tangramAtoms));
 
 	},
 

@@ -10,7 +10,8 @@ import device from './../../../services/device';
 var TangramView = BaseView.extend({
 
 	events: {
-		scroll: 'stopEvent'
+		scroll: 'stopEvent',
+		'click .js-save-atoms': 'saveAtoms'
 	},
 
 	initialize: function (dataArg) {
@@ -68,6 +69,12 @@ var TangramView = BaseView.extend({
 		view.set('scale', scale);
 
 		return scale;
+
+	},
+
+	saveAtoms: function () {
+
+		this.get('tan-collection').saveAtoms();
 
 	}
 
