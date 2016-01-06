@@ -27,7 +27,7 @@
 
 <div class="js-wrapper wrapper"></div>
 
-<script class="js-template" type="text/x-template"  data-name="home">
+<script class="js-template" type="text/x-template" data-name="home">
 
 	<section class="screen">
 		<h1>Tangram-2</h1>
@@ -41,22 +41,23 @@
 </script>
 
 
-<script class="js-template" type="text/x-template"  data-name="tangram">
+<script class="js-template" type="text/x-template" data-name="tangram">
 
 	<section class="screen">
 
+		{{? it.mode === 'constructor' }}
 		<button class="js-save-atoms save-atoms">save-atoms</button>
 		<input type="text" class="js-saved-atoms-name saved-atoms-name-input"/>
+		{{?}}
 
 	</section>
 
 </script>
 
 
-
 <!-- FW -->
 
-<script class="js-template" type="text/x-template"  data-name="popup-wrapper">
+<script class="js-template" type="text/x-template" data-name="popup-wrapper">
 
 	<div class="popup-wrapper js-popup-wrapper">
 
@@ -66,7 +67,7 @@
 
 </script>
 
-<script class="js-template" type="text/x-template"  data-name="notification">
+<script class="js-template" type="text/x-template" data-name="notification">
 
 	<div class="popup-text js-stop-event js-back">
 		{{= it.text }}
@@ -74,7 +75,7 @@
 
 </script>
 
-<script class="js-template" type="text/x-template"  data-name="need-confirm">
+<script class="js-template" type="text/x-template" data-name="need-confirm">
 
 	<div class="popup-text js-stop-event">
 
@@ -102,7 +103,7 @@
 
 </script>
 
-<script class="js-template" type="text/x-template"  data-name="rate-us">
+<script class="js-template" type="text/x-template" data-name="rate-us">
 
 	<div class="popup-text js-stop-event rate-us-wrapper">
 
@@ -128,7 +129,7 @@
 
 </script>
 
-<script class="js-template" type="text/x-template"  data-name="hint">
+<script class="js-template" type="text/x-template" data-name="hint">
 
 	<div class="hint-wrapper js-hint-wrapper">
 		<div class="js-no-scroll hint-focus js-hint-focus"></div>

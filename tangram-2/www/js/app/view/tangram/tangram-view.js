@@ -6,6 +6,7 @@ import tm from './../../../services/template-master';
 import TanCollection from './models/tan-collection';
 import RotaterModel from './rotater/rotater-model';
 import device from './../../../services/device';
+import tangrams from './../../data/tangrams';
 
 var TangramView = BaseView.extend({
 
@@ -21,24 +22,33 @@ var TangramView = BaseView.extend({
 			tanCollection = new TanCollection(),
 			rotater = new RotaterModel(),
 			mode = data.mode || 'normal',
-			scale;
+			scale,
+			viewData = {
+				minX: 0,
+				minY: 0,
+				maxX: device.get('width'),
+				maxY: device.get('height')
+			};
 
 		view.set('mode', mode);
 
-		view.set({
-			minX: 0,
-			minY: 0,
-			maxX: device.get('width'),
-			maxY: device.get('height')
-		});
+		view.set(viewData);
+		tanCollection.setData(viewData);
+
+		// get test tangram
+
+		var pattern = tangrams.data[0].data[0];
 
 		scale = view.detectScale();
 
-		view.setElement(tm.tmplFn.tangram());
+		view.setElement(tm.tmplFn.tangram({
+			mode: mode
+		}));
 
 		view.set('tan-collection', tanCollection);
 
 		tanCollection.setScale(scale);
+		tanCollection.initPattern(pattern);
 		tanCollection.createTans();
 		tanCollection.addDrawFieldTo(view.$el);
 		tanCollection.drawTans();

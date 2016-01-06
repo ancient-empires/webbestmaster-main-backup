@@ -381,6 +381,18 @@ var TanCollection = Backbone.Collection.extend({
 			tan.drawTo(svg);
 		});
 
+	},
+
+	initPattern: function (pattern) {
+
+
+
+
+
+
+
+
+
 	}
 
 });
