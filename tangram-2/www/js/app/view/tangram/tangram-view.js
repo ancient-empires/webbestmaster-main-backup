@@ -48,7 +48,7 @@ var TangramView = BaseView.extend({
 
 		// get test tangram
 
-		var pattern = tangrams.data[0].data[0];
+		var pattern = tangrams.data[0].data[1];
 
 		scale = view.detectScale(pattern);
 
