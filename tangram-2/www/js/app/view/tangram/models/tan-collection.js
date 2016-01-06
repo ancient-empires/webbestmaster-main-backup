@@ -269,10 +269,16 @@ var TanCollection = Backbone.Collection.extend({
 		var collection = this,
 			alignTan = data.tan,
 			alignTanCoordinates = alignTan.getAlignCoordinates(),
+			initedPattern = collection.getData('initedPattern'),
 			align = {},
 			minPath = Infinity,
 			otherTansCoordinates = [],
 			pow = Math.pow.bind(Math);
+
+		// TODO: difficult hard
+		initedPattern.forEach(function (triangle) {
+			otherTansCoordinates = otherTansCoordinates.concat(triangle);
+		});
 
 		collection.each(function (tan) {
 			if (tan === alignTan) {
@@ -469,6 +475,7 @@ var TanCollection = Backbone.Collection.extend({
 
 	drawPattern: function () {
 
+		// TODO: difficult hard
 		var collection = this,
 			coordinatesToPolygon = collection.coordinatesToPolygon.bind(collection),
 			pattern = collection.getData('initedPattern'),

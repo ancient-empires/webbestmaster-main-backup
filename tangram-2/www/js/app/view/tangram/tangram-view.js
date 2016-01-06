@@ -148,7 +148,7 @@ var TangramView = BaseView.extend({
 
 		scale = (patternQ > viewQ) ? (sizeX / maxPatternX) : (sizeY / maxPatternY);
 
-		scale = Math.round(scale / 2);
+		scale = Math.round(scale * 0.66);
 
 		view.set('scale', scale);
 
