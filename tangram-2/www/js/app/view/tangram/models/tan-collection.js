@@ -141,14 +141,15 @@ var TanCollection = Backbone.Collection.extend({
 
 	checkTangram: function () {
 
-		var collection = this;
+		var collection = this,
+			tangramAtoms = [];
 
 		collection.each(function (tan) {
-
-			//tan.getTriangles();
-			console.log(tan.getTriangles());
-
+			tangramAtoms = tangramAtoms.concat(tan.getAtoms());
 		});
+
+
+		console.log(tangramAtoms);
 
 	},
 
@@ -234,7 +235,7 @@ var TanCollection = Backbone.Collection.extend({
 	getHoveredTan: function (xy) {
 
 		var collection = this,
-			hoveredTan;
+			hoveredTan = false;
 
 		collection.each(function (tan) {
 

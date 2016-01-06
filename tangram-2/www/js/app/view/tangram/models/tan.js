@@ -453,7 +453,7 @@ var Tan = Backbone.Model.extend({
 
 	},
 
-	getTriangles: function () {
+	getAtoms: function () {
 
 		var tan = this,
 			triangles;
@@ -500,13 +500,41 @@ var Tan = Backbone.Model.extend({
 
 		var tan = this,
 			divideTriangle = tan.divideTriangle.bind(tan),
+			triangleToAtom = tan.triangleToAtom.bind(tan),
 			triangles = [];
 
 		trianglesArr.forEach(function (triangleParent) {
 			triangles = triangles.concat(divideTriangle(triangleParent));
 		});
 
-		return triangles;
+		return triangles.map(triangleToAtom);
+
+	},
+
+	triangleToAtom: function (triangle) {
+
+		// get center and angle
+
+		var tan = this,
+			scale = tan.get('scale'),
+			rightAngle = triangle[0],   // first angle is 90deg - see tan.divideTriangle
+			rightAngleX = rightAngle.x,
+			rightAngleY = rightAngle.y,
+			midCoordinate = tan.getAlignCoordinatesOfLine(triangle[1],  triangle[2], 2)[0],
+			midX = midCoordinate.x,
+			midY = midCoordinate.y,
+			angle = Math.atan2(rightAngleY - midY, rightAngleX - midX) * 180 / Math.PI;
+
+		angle = Math.round(angle / 45) * 45;
+		angle = angle || 0; // -0 to 0
+
+		rightAngleX = Math.round( (rightAngleX / scale) * 1e8 ) / 1e8;
+		rightAngleY = Math.round( (rightAngleY / scale) * 1e8 ) / 1e8;
+
+		rightAngleX = rightAngleX || 0;
+		rightAngleY = rightAngleY || 0;
+
+		return [rightAngleX, rightAngleY, angle];
 
 	},
 
