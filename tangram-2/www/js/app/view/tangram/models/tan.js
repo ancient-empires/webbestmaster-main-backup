@@ -525,16 +525,11 @@ var Tan = Backbone.Model.extend({
 			midY = midCoordinate.y,
 			angle = Math.atan2(rightAngleY - midY, rightAngleX - midX) * 180 / Math.PI;
 
-		angle = Math.round(angle / 45) * 45;
-		angle = angle || 0; // -0 to 0
-
-		rightAngleX = Math.round( (rightAngleX / scale) * 1e8 ) / 1e8;
-		rightAngleY = Math.round( (rightAngleY / scale) * 1e8 ) / 1e8;
-
-		rightAngleX = rightAngleX || 0;
-		rightAngleY = rightAngleY || 0;
-
-		return [rightAngleX, rightAngleY, angle];
+		return [
+			rightAngleX / scale,
+			rightAngleY / scale,
+			(Math.round(angle / 45) * 45) || 0 // -0 to 0
+		];
 
 	},
 

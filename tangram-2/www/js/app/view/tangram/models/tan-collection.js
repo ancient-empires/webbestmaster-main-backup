@@ -179,7 +179,11 @@ var TanCollection = Backbone.Collection.extend({
 		});
 
 		return tangramAtoms.map(function (xya) {
-			return [ xya[0] - minX, xya[1] - minY, xya[2] ];
+			return [
+				(Math.round( (xya[0] - minX) * 1e8 ) / 1e8) || 0,
+				(Math.round( (xya[1] - minY) * 1e8 ) / 1e8) || 0,
+				xya[2]
+			];
 		});
 
 	},
@@ -193,6 +197,9 @@ var TanCollection = Backbone.Collection.extend({
 		var collection = this,
 			tangramAtoms = collection.getTangramAtoms();
 
+
+		//console.log();
+		//
 		console.log(JSON.stringify(tangramAtoms));
 
 	},
