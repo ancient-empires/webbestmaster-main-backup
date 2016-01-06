@@ -513,7 +513,6 @@ var Tan = Backbone.Model.extend({
 	divideTriangle: function (triangle) {
 
 		// find max side
-
 		var tan = this,
 			getAlignCoordinatesOfLine = tan.getAlignCoordinatesOfLine,
 			coordinates = triangle,
@@ -543,9 +542,10 @@ var Tan = Backbone.Model.extend({
 
 		midAngle = coordinates[maxPathIndex - 1] || coordinates[2];
 
+		// point with right angle (90deg) at first
 		return [
-			[midAngle, midCoordinate, maxSizeXY0],
-			[midAngle, midCoordinate, maxSizeXY1]
+			[midCoordinate, midAngle, maxSizeXY0],
+			[midCoordinate, midAngle, maxSizeXY1]
 		];
 
 	},
