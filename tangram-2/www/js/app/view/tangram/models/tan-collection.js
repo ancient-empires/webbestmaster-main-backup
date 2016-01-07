@@ -174,7 +174,7 @@ var TanCollection = Backbone.Collection.extend({
 		});
 
 		if (isDone) {
-			alert('--- tangram is done ---', isDone);
+			log('--- tangram is done ---', isDone);
 		}
 
 	},
