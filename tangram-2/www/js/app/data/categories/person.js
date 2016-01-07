@@ -1,3 +1,6 @@
+'use strict';
+/*global window */
+
 var category = {
 
 	name: 'person',

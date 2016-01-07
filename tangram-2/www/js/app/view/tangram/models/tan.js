@@ -1,3 +1,6 @@
+'use strict';
+/*global window */
+
 import Backbone from './../../../../lib/backbone';
 import mediator from './../../../../services/mediator';
 

@@ -1,12 +1,11 @@
+'use strict';
+/*global window */
+
 import Backbone from './../../../../lib/backbone';
 import _ from './../../../../lib/lodash';
 import mediator from './../../../../services/mediator';
 import info from './../../../../services/info';
 import log from './../../../../services/log';
-
-'use strict';
-/*global window */
-/*global */
 
 var RotaterModel = Backbone.Model.extend({
 
@@ -214,12 +213,11 @@ var RotaterModel = Backbone.Model.extend({
 
 		tan.set('rotate', tanRotate);
 
-		tan.publish('tan:align', {tan: tan});
+		tan.publish('tan-collection:align', {tan: tan});
 
 		tan.reDraw();
 
 	}
-
 
 });
 

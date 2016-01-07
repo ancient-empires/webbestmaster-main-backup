@@ -1,3 +1,6 @@
+'use strict';
+/*global window */
+
 import Backbone from './../../../../lib/backbone';
 import Tan from './tan';
 import _ from './../../../../lib/lodash';
@@ -102,7 +105,7 @@ var TanCollection = Backbone.Collection.extend({
 			collection.checkTangram();
 		});
 
-		collection.subscribe('tan:align', collection.align);
+		collection.subscribe('tan-collection:align', collection.align);
 		collection.subscribe('tan-collection:saveAtoms', collection.saveAtoms);
 
 	},
@@ -171,7 +174,7 @@ var TanCollection = Backbone.Collection.extend({
 
 		isDone = tangramAtoms.every(function (atomStr) {
 
-			if (answerAtoms.indexOf(atomStr) === -1){
+			if (answerAtoms.indexOf(atomStr) === -1) {
 				console.log(answerAtoms);
 				console.log(atomStr);
 			}
@@ -275,8 +278,12 @@ var TanCollection = Backbone.Collection.extend({
 
 		var collection = this,
 			tan = data.tan,
-			alignData = collection.getAlignData(data),
+			alignData,
 			maxAlignPath = collection.getData('maxAlignPath');
+
+		collection.moveToBox(tan);
+
+		alignData = collection.getAlignData(data);
 
 		if (alignData.pathSize > maxAlignPath) {
 			return;
@@ -288,6 +295,49 @@ var TanCollection = Backbone.Collection.extend({
 		});
 
 		collection.publish('rotater:moveTo', tan.getCenterCoordinates());
+
+	},
+
+	moveToBox: function (tan) {
+
+		var collection = this,
+			maxX = collection.getData('maxX'),
+			maxY = collection.getData('maxY'),
+			minX = collection.getData('minX'),
+			minY = collection.getData('minY'),
+			dx = undefined,
+			dy = undefined,
+			coordinates = tan.getCoordinates();
+
+		coordinates.forEach(function (xy) {
+
+			var x = xy.x,
+				y = xy.y;
+
+			if (x > maxX) {
+				dx = x - maxX;
+			}
+
+			if (y > maxY) {
+				dy = y - maxY;
+			}
+
+			if (x < minX) {
+				dx = x - minX;
+			}
+
+			if (y < minY) {
+				dy = y - minY;
+			}
+
+		});
+
+		if (dx || dy) {
+			tan.move({
+				dx: -dx || 0,
+				dy: -dy || 0
+			});
+		}
 
 	},
 
