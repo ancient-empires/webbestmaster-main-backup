@@ -37,7 +37,8 @@ var TangramView = BaseView.extend({
 				maxY: maxY,
 				sizeX: sizeX,
 				sizeY: sizeY
-			};
+			},
+			patternSvg;
 
 		view.set('mode', mode);
 
@@ -47,7 +48,6 @@ var TangramView = BaseView.extend({
 		tanCollection.setData(viewData);
 
 		// get test tangram
-
 		var pattern = tangrams.data[0].data[1];
 
 		scale = view.detectScale(pattern);
@@ -60,11 +60,13 @@ var TangramView = BaseView.extend({
 
 		tanCollection.setScale(scale);
 		tanCollection.initPattern(pattern);
-		tanCollection.drawPattern();
+		patternSvg = tanCollection.drawPattern();
 		tanCollection.createTans();
 		tanCollection.addDrawFieldTo(view.$el);
 		tanCollection.drawTans();
 		tanCollection.setData('rotater', rotater);
+
+		view.$el.append(patternSvg);
 
 		rotater.initialize({
 			parentView: view,

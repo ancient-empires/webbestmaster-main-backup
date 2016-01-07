@@ -1,7 +1,7 @@
 .wrapper {
-	color: #333;
-	font-family: HelveticaNeueCyr, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
-	line-height: 125%;
+  color: #333;
+  font-family: HelveticaNeueCyr, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
+  line-height: 125%;
 }
 
 .save-atoms {
@@ -17,3 +17,12 @@
   left: 130px;
   top: 30px;
 }
+
+.tangram-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+

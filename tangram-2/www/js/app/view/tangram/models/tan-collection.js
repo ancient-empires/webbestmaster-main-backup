@@ -581,7 +581,8 @@ var TanCollection = Backbone.Collection.extend({
 				y: '0px',
 				width: width + 'px',
 				height: height + 'px',
-				viewBox: [0, 0, width, height].join(' ')
+				viewBox: [0, 0, width, height].join(' '),
+				'class': 'tangram-pattern'
 			};
 
 		Object.keys(attributes).forEach(function (key) {
@@ -595,14 +596,7 @@ var TanCollection = Backbone.Collection.extend({
 			svg.appendChild(polygon);
 		});
 
-		$(svg).css({
-			position: 'absolute',
-			top: 0,
-			left: 0,
-			zIndex: -1
-		});
-
-		document.body.appendChild(svg);
+		return svg;
 
 	},
 
