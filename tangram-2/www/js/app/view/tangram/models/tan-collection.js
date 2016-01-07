@@ -270,15 +270,14 @@ var TanCollection = Backbone.Collection.extend({
 			alignTan = data.tan,
 			alignTanCoordinates = alignTan.getAlignCoordinates(),
 			initedPattern = collection.getData('initedPattern'),
+			initedPatternAlignPoints = collection.getInitedPatternAlignPoints(),
 			align = {},
 			minPath = Infinity,
 			otherTansCoordinates = [],
 			pow = Math.pow.bind(Math);
 
 		// TODO: difficult hard
-		initedPattern.forEach(function (triangle) {
-			otherTansCoordinates = otherTansCoordinates.concat(triangle);
-		});
+		otherTansCoordinates = otherTansCoordinates.concat(initedPatternAlignPoints);
 
 		collection.each(function (tan) {
 			if (tan === alignTan) {
@@ -317,6 +316,10 @@ var TanCollection = Backbone.Collection.extend({
 
 		return align;
 
+	},
+
+	getInitedPatternAlignPoints: function () {
+		return this.getData('patternAlignPoints')
 	},
 
 	getHoveredTan: function (xy) {
@@ -428,7 +431,8 @@ var TanCollection = Backbone.Collection.extend({
 			viewSizeX = collection.getData('sizeX'),
 			viewSizeY = collection.getData('sizeY'),
 			patternMaxX = -Infinity,
-			patternMaxY = -Infinity;
+			patternMaxY = -Infinity,
+			alignPoints = [];
 
 		collection.setData('pattern', triangles);
 
@@ -461,14 +465,27 @@ var TanCollection = Backbone.Collection.extend({
 		});
 
 		triangles = triangles.map(function (triangle) {
-			return triangle.map(function (xy) {
+			return triangle.map(function (xy, index) {
+
+				var x = xy.x + patternDeltaX,
+					y = xy.y + patternDeltaY;
+
+				// add to align point big side only
+				if (index) {
+					alignPoints.push({
+						x: x,
+						y: y
+					});
+				}
+
 				return {
-					x: xy.x + patternDeltaX,
-					y: xy.y + patternDeltaY
+					x: x,
+					y: y
 				}
 			});
 		});
 
+		collection.setData('patternAlignPoints', alignPoints);
 		collection.setData('initedPattern', triangles);
 
 	},
