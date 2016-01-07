@@ -97,7 +97,10 @@ var TanCollection = Backbone.Collection.extend({
 		mediator.installTo(collection);
 
 		collection.subscribe('deviceAction:isActive', collection.activateDeActiveTans);
-		collection.subscribe('deviceAction:dblTap', collection.flipTan);
+		collection.subscribe('deviceAction:dblTap', function (data) {
+			collection.flipTan(data);
+			collection.checkTangram();
+		});
 
 		collection.subscribe('tan:align', collection.align);
 		collection.subscribe('tan-collection:saveAtoms', collection.saveAtoms);
@@ -162,14 +165,17 @@ var TanCollection = Backbone.Collection.extend({
 	checkTangram: function () {
 
 		var collection = this,
-			tangramAtoms = collection.getTangramAtoms(),
-			answerAtoms = collection.getAnswerAtoms(),
+			tangramAtoms = collection.prepareToEquals(collection.getTangramAtoms()),
+			answerAtoms = collection.prepareToEquals(collection.getAnswerAtoms()),
 			isDone;
 
-		tangramAtoms = tangramAtoms.map(JSON.stringify);
-		answerAtoms = answerAtoms.map(JSON.stringify);
-
 		isDone = tangramAtoms.every(function (atomStr) {
+
+			if (answerAtoms.indexOf(atomStr) === -1){
+				console.log(answerAtoms);
+				console.log(atomStr);
+			}
+
 			return answerAtoms.indexOf(atomStr) !== -1;
 		});
 
@@ -177,6 +183,27 @@ var TanCollection = Backbone.Collection.extend({
 			log('--- tangram is done ---', isDone);
 		}
 
+	},
+
+	prepareToEquals: function (arrAtoms) {
+
+		var strictNumber = this.strictNumber;
+
+		return arrAtoms
+			.map(function (atom) {
+				return [
+					strictNumber(atom[0]),
+					strictNumber(atom[1]),
+					atom[2]
+				];
+
+			})
+			.map(JSON.stringify);
+
+	},
+
+	strictNumber: function (number) {
+		return parseFloat(String(number).slice(0, 6));
 	},
 
 	getTangramAtoms: function () {

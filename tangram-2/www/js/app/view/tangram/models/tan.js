@@ -6,13 +6,13 @@ var Tan = Backbone.Model.extend({
 	styles: {
 		fill: '#c00',
 		stroke: '#0c0',
-		'stroke-width': 0.01
+		'stroke-width': '1px'
 	},
 
 	activeStyles: {
 		fill: '#0c0',
 		stroke: '#c00',
-		'stroke-width': 0.01
+		'stroke-width': '1px'
 	},
 
 	nodeAttributes: {
@@ -381,9 +381,15 @@ var Tan = Backbone.Model.extend({
 			attr = document.createAttribute('style');
 
 		Object.keys(styles).forEach(function (key) {
+			styleStr += key + ':' + styles[key] + ';';
+		});
+/*
+
+		Object.keys(styles).forEach(function (key) {
 			var value = (key === 'stroke-width') ? styles[key] * tan.get('scale') : styles[key];
 			styleStr += key + ':' + value + ';';
 		});
+*/
 
 		attr.value = styleStr;
 		node.setAttributeNode(attr);
