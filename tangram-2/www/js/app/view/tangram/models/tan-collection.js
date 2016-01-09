@@ -459,13 +459,14 @@ var TanCollection = Backbone.Collection.extend({
 
 	},
 
-	createDrawElement: function () {
+	createDrawElement: function ($node) {
 
 		// device
 		var collection = this,
 			width = device.get('width'),
 			height = device.get('height'),
-			svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+			//svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+			svg = $node.find('svg')[0],
 			attributes = {
 				x: '0px',
 				y: '0px',
@@ -488,7 +489,8 @@ var TanCollection = Backbone.Collection.extend({
 
 	addDrawFieldTo: function ($node) {
 
-		$node.append(this.createDrawElement());
+		//$node.append(this.createDrawElement($node));
+		this.createDrawElement($node);
 
 	},
 

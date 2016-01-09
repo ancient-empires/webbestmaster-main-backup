@@ -7,18 +7,19 @@ import mediator from './../../../../services/mediator';
 var Tan = Backbone.Model.extend({
 
 	styles: {
-		fill: '#c00',
 		stroke: '#0c0',
-		'stroke-width': '1px'
+		'stroke-width': '1px',
+		'fill-opacity': 1
 	},
 
 	activeStyles: {
-		fill: '#0c0',
 		stroke: '#c00',
-		'stroke-width': '1px'
+		'stroke-width': '1px',
+		'fill-opacity': 0.5
 	},
 
 	nodeAttributes: {
+		fill: "url(#pat1)",
 		'stroke-linejoin': 'round',
 		'stroke-alignment': 'center'
 	},
