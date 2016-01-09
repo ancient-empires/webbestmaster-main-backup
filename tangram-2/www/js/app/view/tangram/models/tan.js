@@ -469,19 +469,19 @@ var Tan = Backbone.Model.extend({
 
 		switch (tan.get('type')) {
 
-			case 'triangleBig':
+			case 'triangle-big':
 
 				triangles = tan.getTrianglesForTriangleBig();
 
 				break;
 
-			case 'triangleMedium':
+			case 'triangle-medium':
 
 				triangles = tan.getTrianglesForTriangleMedium();
 
 				break;
 
-			case 'triangleSmall':
+			case 'triangle-small':
 
 				triangles = tan.getTrianglesForTriangleSmall();
 

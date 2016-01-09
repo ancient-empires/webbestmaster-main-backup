@@ -13,27 +13,32 @@ var tansInfo = {
 	triangleBig: {
 		count: 2,
 		coordinates: [{x: 0, y: 0}, {x: 1, y: 0}, {x: 0.5, y: 0.5}],
-		parts: 2
+		parts: 2,
+		type: 'triangle-big'
 	},
 	triangleMedium: {
 		count: 1,
 		coordinates: [{x: 0, y: 0.5}, {x: 0.5, y: 1}, {x: 0, y: 1}],
-		parts: 2
+		parts: 2,
+		type: 'triangle-medium'
 	},
 	triangleSmall: {
 		count: 2,
 		coordinates: [{x: 0.25, y: 0.25}, {x: 0.5, y: 0.5}, {x: 0.25, y: 0.75}],
-		parts: 2
+		parts: 2,
+		type: 'triangle-small'
 	},
 	square: {
 		count: 1,
 		coordinates: [{x: 0.5, y: 0.5}, {x: 0.75, y: 0.75}, {x: 0.5, y: 1}, {x: 0.25, y: 0.75}],
-		parts: 2
+		parts: 2,
+		type: 'square'
 	},
 	parallelogram: {
 		count: 1,
 		coordinates: [{x: 0, y: 0}, {x: 0.25, y: 0.25}, {x: 0.25, y: 0.75}, {x: 0, y: 0.5}],
-		parts: 2
+		parts: 2,
+		type: 'parallelogram'
 	}
 };
 
@@ -447,7 +452,7 @@ var TanCollection = Backbone.Collection.extend({
 					parts: data.parts,
 					count: len,
 					scale: this.getData('scale'),
-					type: key
+					type: data.type
 				});
 			}
 		}, this);
