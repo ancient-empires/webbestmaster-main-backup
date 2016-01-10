@@ -104,12 +104,15 @@ var RotaterModel = Backbone.Model.extend({
 
 	connectTan: function (data) {
 
-		var rotater = this;
+		var rotater = this,
+			tan = data.tan;
 
 		rotater.set({
-			tan: data.tan,
+			tan: tan,
 			isActive: true
 		});
+
+		tan.drawActiveDeActive(true);
 
 		rotater.showNode();
 
@@ -128,6 +131,8 @@ var RotaterModel = Backbone.Model.extend({
 			startRotatingCursorY: data.y,
 			startRotateTanAngle: tan.get('rotate')
 		});
+
+		tan.drawActiveDeActive(true);
 
 	},
 
@@ -214,6 +219,8 @@ var RotaterModel = Backbone.Model.extend({
 		tan.set('rotate', tanRotate);
 
 		tan.publish('tan-collection:align', {tan: tan});
+
+		tan.drawActiveDeActive(true);
 
 		tan.reDraw();
 

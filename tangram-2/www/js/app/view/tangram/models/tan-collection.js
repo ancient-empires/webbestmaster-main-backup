@@ -434,6 +434,7 @@ var TanCollection = Backbone.Collection.extend({
 
 		this.each(function (tan) {
 			tan.set('isActive', false);
+			tan.drawActiveDeActive(false);
 		});
 
 	},
