@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Tangram</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<link rel="stylesheet" href="css/reset.css"/>
+	<link rel="stylesheet" href="css/fw-styles.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+
+	<script src="js/services/bro-2.js" type="text/javascript"></script>
+
+	<!-- services -->
+	<script src="js/services/info.js" type="text/javascript"></script>
+	<script src="js/services/bro.js" type="text/javascript"></script>
+	<script src="js/services/player.js" type="text/javascript"></script>
+	<script src="js/services/sound-list.js" type="text/javascript"></script>
+	<script src="js/services/viewer.js" type="text/javascript"></script>
+	<script src="js/services/status-bar.js" type="text/javascript"></script>
+	<script src="js/services/ui.js" type="text/javascript"></script>
+	<script src="js/controllers/dataBase.js" type="text/javascript"></script>
+
+	<!-- langs -->
+	<!--<script src="js/lang/lang-ar.js" type="text/javascript"></script>-->
+	<!--<script src="js/lang/lang-de.js" type="text/javascript"></script>-->
+	<script src="js/lang/lang-en.js" type="text/javascript"></script>
+	<!--<script src="js/lang/lang-es.js" type="text/javascript"></script>-->
+	<script src="js/lang/lang-ru.js" type="text/javascript"></script>
+	<script src="js/lang/lang-zh.js" type="text/javascript"></script>
+
+	<!-- main js -->
+	<script src="js/main.js" type="text/javascript"></script>
+
+	<!-- controllers -->
+	<script src="js/controllers/tangram.js" type="text/javascript"></script>
+	<script src="js/controllers/timer.js" type="text/javascript"></script>
+
+	<!-- figures -->
+	<script src="js/figures/people_1.js" type="text/javascript"></script>
+	<script src="js/figures/people_2.js" type="text/javascript"></script>
+	<script src="js/figures/people_3.js" type="text/javascript"></script>
+	<script src="js/figures/people_4.js" type="text/javascript"></script>
+	<script src="js/figures/bird_1.js" type="text/javascript"></script>
+	<script src="js/figures/bird_2.js" type="text/javascript"></script>
+	<script src="js/figures/animal_1.js" type="text/javascript"></script>
+	<script src="js/figures/animal_2.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<!-- status bar -->
+<div class="js-status-bar status-bar">
+	<div class="js-back status-bar-back" onclick="viewer.back();player.play(soundList.click);"><span></span></div>
+	<div class="js-more status-bar-more" onclick="viewer.show('more-page');player.play(soundList.click);"><span></span></div>
+	<div class="js-play-again status-bar-play-again" onclick="player.playQuestionAgain();"><span></span></div>
+	<div class="js-score status-bar-score"><span text="score">score</span><span>:</span>&nbsp;<span class="js-score-field">0</span></div>
+</div>
+<!-- status bar -->
+
+<div id="wrapper">
+
+</div>
+
+<div id="wrapper-for-transition" class="to-right">
+
+</div>
+
+<div class="js-template hidden" template-id="title-page" onshow="statusBar.show(['more']);statusBar.needShowBackButton(false);">
+	<div class="page">
+
+		<div class="page title-page">
+
+			<img class="title-page-name" src="img/i/tangram-title-name.svg" alt=""/>
+
+			<div class="table full-area">
+				<div class="table-row">
+					<div class="table-cell">
+						{{ if (info.isTouch) { }}
+							<div ontouchend='info.set("difficult", "tower");viewer.show("category-list-page");player.play(soundList.click);' class="title-button tower">{{= lang[info.lang].easy }}</div>
+							<div ontouchend='info.set("difficult", "king");viewer.show("category-list-page");player.play(soundList.click);' class="title-button king">{{= lang[info.lang].hard }}</div>
+							<div style="display: none" ontouchend='viewer.show("my-collection-page");player.play(soundList.click);' class="title-button my-collection">{{= lang[info.lang].myCollection }}</div>
+							<div ontouchend='viewer.show("setting-page");player.play(soundList.click);' class="title-button settings">{{= lang[info.lang].settings }}</div>
+						{{ } else { }}
+							<div onclick='info.set("difficult", "tower");viewer.show("category-list-page");player.play(soundList.click);' class="title-button tower">{{= lang[info.lang].easy }}</div>
+							<div onclick='info.set("difficult", "king");viewer.show("category-list-page");player.play(soundList.click);' class="title-button king">{{= lang[info.lang].hard }}</div>
+							<div style="display: none" onclick='viewer.show("my-collection-page");player.play(soundList.click);' class="title-button my-collection">{{= lang[info.lang].myCollection }}</div>
+							<div onclick='viewer.show("setting-page");player.play(soundList.click);' class="title-button settings">{{= lang[info.lang].settings }}</div>
+						{{ }; }}
+					</div>
+				</div>
+			</div>
+
+		</div>
+		
+		<a class="pay-pal-button" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=PPZGUP7DJ43LJ"></a>
+
+	</div>
+</div>
+
+
+<div class="js-template hidden" template-id="tangram-page" onshow="statusBar.hideStatusBar();tangram.start();">
+	<div class="page tangram-page">
+		<div class="top-bar-bg"></div>
+		{{ if (info.isTouch) { }}
+			<div ontouchend="tangram.mover.reflectFigure();" class="reflect-button js-reflect-button"></div>
+		{{ } else { }}
+			<div onclick="tangram.mover.reflectFigure();" class="reflect-button js-reflect-button"></div>
+		{{ }; }}
+		<div class="rotater js-rotater">
+			<div class="rotater-inner-point js-rotater-inner-point"></div>
+		</div>
+		<div class="thumb-wrapper js-thumb-wrapper"></div>
+		<div class="save-button-wrapper js-save-button-wrapper"><span></span></div>
+		<div class="reset-tangram js-reset-tangram"></div>
+		<div class="timer-wrapper js-timer-wrapper">0:00</div>
+		{{ if (info.isTouch) { }}
+		<div class="tangram-back-button status-bar-back" ontouchend="tangram.back();"><span></span></div>
+		{{ } else { }}
+		<div class="tangram-back-button status-bar-back" onclick="tangram.back();"><span></span></div>
+		{{ }; }}
+
+		<svg class="hidden-but-showed">
+			<defs>
+				{{ $.createSimpleArray(1,7).forEach(function(value){ }}
+					<pattern id="pattern-{{= value }}" patternUnits="userSpaceOnUse" width="768" height="768">
+						<image xlink:href="img/preview/{{= info.tangramPattern }}-{{= value }}.jpg" x="0" y="0" width="384" height="384"/>
+					</pattern>
+				{{ });  }}
+			</defs>
+		</svg>
+
+		<div class="hint-button js-hint-button"><span></span></div>
+
+		<div class="arrow-left js-arrow-left"><img src="img/i/spacer.png" alt=""/></div>
+		<div class="arrow-right js-arrow-right"><img src="img/i/spacer.png" alt=""/></div>
+
+	</div>
+</div>
+
+<div class="js-template hidden" template-id="category-list-page" onshow="statusBar.show([]); main.setImageColor();">
+	<div class="page category-list-page">
+
+		<h1 class="category-top-header">{{= lang[info.lang].categories }}:</h1>
+
+		<div class="categories-page">
+
+			<div class="categories-wrapper clear-fix">
+				{{ for (var key in categories) { }}
+				<div class="category-wrapper">
+					<div class="category-button-wrapper js-category-button-wrapper" data-onclick='info.set("currentCategoryName", "{{= key }}");viewer.show("images-of-categories-page");player.play(soundList.click);'>
+						<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= categories[key].svg }}');">
+							<img src="img/i/spacer.png" alt=""/>
+						</div>
+					</div>
+					<h2>{{= categories[key]['name_' + info.lang] }}</h2>
+				</div>
+				{{ }; }}
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div class="js-template hidden" template-id="my-collection-page" onshow="collection.show();statusBar.show([]);">
+	<div class="page my-collection-page">
+
+		<h1>my-collection-page</h1>
+
+		<div class="my-collection-list-wrapper js-my-collection-list-wrapper"></div>
+
+	</div>
+</div>
+
+<div class="js-template hidden" template-id="my-collection-list">
+
+	{{ arr.forEach(function(obj){ }}
+		<div class="list-item-wrapper">
+			{{= obj.figureSVG }}
+		</div>
+	{{ }); }}
+
+</div>
+
+<div class="js-template hidden" template-id="images-of-categories-page" onshow="statusBar.show([]);main.setImageColor();main.setPreviewState();">
+
+	<h1 class="category-top-header">{{= categories[info.currentCategoryName]['name_' + info.lang] }}:</h1>
+
+	<div class="page images-of-categories">
+
+		{{ categories[info.currentCategoryName].figures.forEach(function(figure, index){ }}
+		<div class="category-wrapper" figure-id="{{= figure.id }}">
+			<div class="category-button-wrapper js-category-button-wrapper" data-onclick='info.set("imageNumber", {{= index }});viewer.show("tangram-page");player.play(soundList.click);'>
+				<div class="category-button clear-fix js-category-button" style="background-image: url('data:image/svg+xml;utf8,{{= figure.svg }}');">
+					<img src="img/i/spacer.png" alt=""/>
+				</div>
+			</div>
+			<div class="save-icon js-save-icon"></div>
+			<div class="timestamp js-timestamp">0:00</div>
+			<div class="remove-icon js-remove-icon"></div>
+		</div>
+		{{ }); }}
+
+	</div>
+
+</div>
+
+<!-- services - -->
+
+<div class="js-template hidden" template-id="more-page" onshow="statusBar.show([]);main.setMorePage();">
+
+	<div class="page more-page">
+		<div class="table more-wrapper">
+			<div class="table-row" style="display: none;">
+				<div class="table-cell">
+					<h2 class="more-header">{{= lang[info.lang].language }}:</h2>
+
+					<div class="select-wrapper clear-fix">
+						<div>{{= lang[info.lang].languageName }}</div>
+						<select class="js-language-select">
+							{{ for (var key in lang) { }}
+							{{ if (key === info.lang) { }}
+							<option value="{{= key }}" selected>{{= lang[key].languageName }}</option>
+							{{ } else { }}
+							<option value="{{= key }}">{{= lang[key].languageName }}</option>
+							{{ }; }}
+							{{ }; }}
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="table-row sharing-table-row">
+				<div class="table-cell sharing-cell">
+					<div class="share-link-container clear-fix">
+						<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fstatlex.com%2F" class="share-link facebook" target="_blank">Facebook</a>
+						<a href="https://twitter.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link twitter" target="_blank">Twitter</a>
+						<a href="https://plus.google.com/share?url=http%3A%2F%2Fstatlex.com%2F" class="share-link google" target="_blank">Google+</a>
+						<a href="http://vk.com/share.php?url=http%3A%2F%2Fstatlex.com%2F" class="share-link vk" target="_blank">vk</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="table-row center-text">
+				<div class="table-cell">
+					<p class="thanks-header">{{= lang[info.lang].thanks }}:</p>
+					<p class="thanks-paragraph"><a href="http://www.behance.net/RuAnn" target="_blank">{{= lang[info.lang].designerName }} - {{= lang[info.lang].designer }}</a></p>
+				</div>
+			</div>
+
+			<div class="table-row">
+				<div class="table-cell">
+					<p class="main-site-link">&copy;&nbsp;<a href="http://statlex.com" target="_blank">statlex.com</a></p>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="js-template hidden" template-id="setting-page" onshow="statusBar.show([]);main.setSettingPage();">
+
+	<div class="page setting-page lang-{{= info.lang }}">
+
+		<div class="table full-area">
+			<div class="table-row">
+				<div class="table-cell header-cell">
+					<h1>{{= lang[info.lang].settings}}</h1>
+				</div>
+			</div>
+
+			{{ if (info.isFreeVersion) { }}
+				<div class="table-row">
+					<div class="table-cell">
+						<a href="https://itunes.apple.com/us/app/classic-tangram-puzzle-game/id831855931?ls=1&mt=8" target="_blank" class="title-button buy-button">{{= lang[info.lang].buyAdsFree }}</a>
+					</div>
+				</div>
+			{{ }; }}
+
+			<div class="table-row">
+
+				<div class="table-cell">
+
+					<h2 class="more-header">{{= lang[info.lang].language }}:</h2>
+
+					<div class="select-wrapper clear-fix">
+						<div>{{= lang[info.lang].languageName }}</div>
+						<select class="js-language-select">
+							{{ for (var key in lang) { }}
+							{{ if (key === info.lang) { }}
+							<option value="{{= key }}" selected>{{= lang[key].languageName }}</option>
+							{{ } else { }}
+							<option value="{{= key }}">{{= lang[key].languageName }}</option>
+							{{ }; }}
+							{{ }; }}
+						</select>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="table-row">
+				<div class="table-cell">
+					<label>
+						<h2 class="more-header">
+							<!--<img class="stopwatch" src="img/i/stopwatch.svg" alt=""/>-->
+							{{= lang[info.lang].timer }}
+						</h2>
+						{{ if (info.timerIsActive) { }}
+						<input type="checkbox" class="custom-check-box" checked="checked" save="timerIsActive"/>
+						{{ } else { }}
+						<input type="checkbox" class="custom-check-box" save="timerIsActive"/>
+						{{ }; }}
+					</label>
+				</div>
+			</div>
+
+			<div class="table-row" style="display: none;">
+				<div class="table-cell">
+					<label>
+						<h2 class="more-header">{{= lang[info.lang].sound }}:</h2>
+						{{ if (info.soundIsActive) { }}
+						<input type="checkbox" class="custom-check-box" checked="checked" save="soundIsActive"/>
+						{{ } else { }}
+						<input type="checkbox" class="custom-check-box" save="soundIsActive"/>
+						{{ }; }}
+					</label>
+				</div>
+			</div>
+
+			<div class="table-row">
+
+				{{ if (!info.isIOS6) { }}
+
+				<div class="table-cell tangram-preview-wrapper">
+
+					{{ info.tangramPatterns.forEach(function(item){ }}
+					{{ if (item === info.tangramPattern) { }}
+					<div data-onclick="main.setPreview(this)" pattern-name="{{= item }}" class="tangram-preview {{= item }} js-tangram-preview active">
+						<div class="tangram-preview-inner-block">
+							<img src="img/preview/tangram-frame.svg" alt=""/>
+						</div>
+					</div>
+					{{ } else { }}
+					<div data-onclick="main.setPreview(this)" pattern-name="{{= item }}" class="tangram-preview {{= item }} js-tangram-preview">
+						<div class="tangram-preview-inner-block">
+							<img src="img/preview/tangram-frame.svg" alt=""/>
+						</div>
+					</div>
+					{{ }; }}
+					{{ }); }}
+
+				</div>
+
+				{{ }; }}
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="js-splash-screen splash-screen">
+	<div class="js-good-answer good-answer"></div>
+	<div class="js-bad-answer bad-answer"></div>
+</div>
+
+<div class="js-alert alert-wrapper table hidden">
+	<div class="table-row">
+		<div class="table-cell">
+			<div class="alert-form">
+				<div class="js-alert-message alert-message"></div>
+				<div class="js-alert-button alert-ok-button"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="js-confirm custom-confirm alert-wrapper table hidden">
+	<div class="table-row">
+		<div class="table-cell">
+			<div class="alert-form">
+				<div class="js-confirm-message alert-message"></div>
+				<div class="js-confirm-button-ok alert-ok-button"></div>
+				<div class="js-confirm-button-cancel alert-ok-button alert-cancel-button"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="js-logger logger-wrapper">
+	<div class="js-logger-inner-block logger-inner-block">Logger:<br></div>
+</div>
+
+<!-- services + -->
+
+</body>
+</html>

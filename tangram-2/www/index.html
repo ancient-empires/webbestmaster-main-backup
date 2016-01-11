@@ -27,14 +27,31 @@
 
 <div class="js-wrapper wrapper"></div>
 
+<script class="js-template" type="text/x-template" data-name="header">
+
+	<div class="header">
+
+		{{? it.isBack }}
+		<div class="header--back">&nbsp;</div>
+		{{?}}
+
+		<div class="header--setting">&nbsp;</div>
+
+		<div class="header--title">{{= it.lang.get(it.title) }}</div>
+
+	</div>
+</script>
+
 <script class="js-template" type="text/x-template" data-name="home">
 
 	<section class="screen">
-		<h1>Tangram-2</h1>
+
+		{{= it.tm.tmplFn.header(it) }}
 
 		<button data-route="tangram">to view</button>
 
 		<button data-route="tangram-constructor">constructor</button>
+
 
 	</section>
 
@@ -54,10 +71,13 @@
 			<defs>
 				{{ var size = it.size; }}
 				<pattern id="default" width="{{= size }}px" height="{{= size }}px" patternUnits="userSpaceOnUse">
-					<image x="0" y="0" width="{{= size }}px" height="{{= size }}px" xlink:href="images/square.jpg"></image>
+					<image x="0" y="0" width="{{= size }}px" height="{{= size }}px"
+						   xlink:href="images/square.jpg"></image>
 				</pattern>
-				<pattern id="triangle-medium-pattern" width="{{= size }}px" height="{{= size }}px" patternUnits="userSpaceOnUse" patternTransform="translate({{= size / 2 }}, 0) rotate(135)">
-					<image x="0" y="0" width="{{= size }}px" height="{{= size }}px" xlink:href="images/square.jpg"></image>
+				<pattern id="triangle-medium-pattern" width="{{= size }}px" height="{{= size }}px"
+						 patternUnits="userSpaceOnUse" patternTransform="translate({{= size / 2 }}, 0) rotate(135)">
+					<image x="0" y="0" width="{{= size }}px" height="{{= size }}px"
+						   xlink:href="images/square.jpg"></image>
 				</pattern>
 			</defs>
 		</svg>

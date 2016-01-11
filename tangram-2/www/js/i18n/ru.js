@@ -16,7 +16,11 @@ var ru = {
 		rateNow: 'Оценить',
 		remindMeLater: 'Напомнить позже',
 		noThanks: 'Нет, спасибо'
-	}
+	},
+
+	// tangram
+	tangram: 'танграм',
+	person: 'человечки'
 
 };
 

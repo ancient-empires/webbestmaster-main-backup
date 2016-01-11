@@ -3,6 +3,7 @@
 
 import BaseView from './../core/base';
 import tm from './../../../services/template-master';
+import lang from './../../../services/lang';
 
 var HomeView = BaseView.extend({
 
@@ -12,7 +13,12 @@ var HomeView = BaseView.extend({
 
 		var view = this;
 
-		view.setElement(tm.tmplFn.home());
+		view.setElement(tm.tmplFn.home({
+			tm: tm,
+			lang: lang,
+			isBack: !false,
+			title: 'tangram'
+		}));
 
 		view.render();
 

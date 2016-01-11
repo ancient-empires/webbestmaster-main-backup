@@ -16,7 +16,11 @@ var en = {
 		rateNow: 'Rate Now',
 		remindMeLater: 'Remind Me Later',
 		noThanks: 'No, Thanks'
-	}
+	},
+
+	// tangram
+	tangram: 'tangram',
+	person: 'person'
 
 };
 
