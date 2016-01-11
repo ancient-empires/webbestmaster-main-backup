@@ -53,7 +53,8 @@ var TangramView = BaseView.extend({
 		scale = view.detectScale(pattern);
 
 		view.setElement(tm.tmplFn.tangram({
-			mode: mode
+			mode: mode,
+			size: scale
 		}));
 
 		view.bindEventListeners();

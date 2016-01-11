@@ -19,7 +19,7 @@ var Tan = Backbone.Model.extend({
 	},
 
 	nodeAttributes: {
-		fill: "url(#pat1)",
+		fill: 'default',
 		'stroke-linejoin': 'round',
 		'stroke-alignment': 'center'
 	},
@@ -400,7 +400,11 @@ var Tan = Backbone.Model.extend({
 
 		Object.keys(nodeAttributes).forEach(function (key) {
 			var attr = document.createAttribute(key);
-			attr.value = nodeAttributes[key];
+			if (key === 'fill') {
+				attr.value = 'url(#' + (tan.get('patternId') || nodeAttributes[key]) + ')';
+			} else {
+				attr.value = nodeAttributes[key];
+			}
 			node.setAttributeNode(attr);
 		});
 

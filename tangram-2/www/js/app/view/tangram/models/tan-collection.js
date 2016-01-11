@@ -10,31 +10,44 @@ import log from './../../../../services/log';
 import sha1 from './../../../../lib/sha1';
 
 var tansInfo = {
-	triangleBig: {
-		count: 2,
+	'triangleBig-1': {
+		count: 1,
 		coordinates: [{x: 0, y: 0}, {x: 1, y: 0}, {x: 0.5, y: 0.5}],
 		parts: 2,
 		type: 'triangle-big'
 	},
-	triangleMedium: {
+	'triangleBig-2': {
 		count: 1,
-		coordinates: [{x: 0, y: 0.5}, {x: 0.5, y: 1}, {x: 0, y: 1}],
+		coordinates: [{x: 0.5, y: 0.5}, {x: 1, y: 0}, {x: 1, y: 1}],
 		parts: 2,
-		type: 'triangle-medium'
+		type: 'triangle-big'
 	},
-	triangleSmall: {
-		count: 2,
+	'triangleMedium': {
+		count: 1,
+		coordinates: [{x: 0.5, y: 0}, {x: 0.5 + 0.5 / Math.SQRT2, y: 0.5 / Math.SQRT2}, {x: 0.5 - 0.5 / Math.SQRT2, y: 0.5 / Math.SQRT2}],
+		parts: 2,
+		type: 'triangle-medium',
+		patternId: 'triangle-medium-pattern'
+	},
+	'triangleSmall-1': {
+		count: 1,
 		coordinates: [{x: 0.25, y: 0.25}, {x: 0.5, y: 0.5}, {x: 0.25, y: 0.75}],
 		parts: 2,
 		type: 'triangle-small'
 	},
-	square: {
+	'triangleSmall-2': {
+		count: 1,
+		coordinates: [{x: 0.75, y: 0.75}, {x: 1, y: 1}, {x: 0.5, y: 1}],
+		parts: 2,
+		type: 'triangle-small'
+	},
+	'square': {
 		count: 1,
 		coordinates: [{x: 0.5, y: 0.5}, {x: 0.75, y: 0.75}, {x: 0.5, y: 1}, {x: 0.25, y: 0.75}],
 		parts: 2,
 		type: 'square'
 	},
-	parallelogram: {
+	'parallelogram': {
 		count: 1,
 		coordinates: [{x: 0, y: 0}, {x: 0.25, y: 0.25}, {x: 0.25, y: 0.75}, {x: 0, y: 0.5}],
 		parts: 2,
@@ -453,7 +466,8 @@ var TanCollection = Backbone.Collection.extend({
 					parts: data.parts,
 					count: len,
 					scale: this.getData('scale'),
-					type: data.type
+					type: data.type,
+					patternId: data.patternId || null
 				});
 			}
 		}, this);
@@ -466,7 +480,7 @@ var TanCollection = Backbone.Collection.extend({
 		var collection = this,
 			width = device.get('width'),
 			height = device.get('height'),
-			//svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+		//svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
 			svg = $node.find('svg')[0],
 			attributes = {
 				x: '0px',

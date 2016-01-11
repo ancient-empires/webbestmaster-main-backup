@@ -52,9 +52,12 @@
 
 		<svg>
 			<defs>
-				<!-- patternTransform="rotate(35)" -->
-				<pattern id="pat1" width="400px" height="400px" patternUnits="userSpaceOnUse"  >
-					<image x="0" y="0" width="400px" height="400px" xlink:href="images/square.jpg"></image>
+				{{ var size = it.size; }}
+				<pattern id="default" width="{{= size }}px" height="{{= size }}px" patternUnits="userSpaceOnUse">
+					<image x="0" y="0" width="{{= size }}px" height="{{= size }}px" xlink:href="images/square.jpg"></image>
+				</pattern>
+				<pattern id="triangle-medium-pattern" width="{{= size }}px" height="{{= size }}px" patternUnits="userSpaceOnUse" patternTransform="translate({{= size / 2 }}, 0) rotate(135)">
+					<image x="0" y="0" width="{{= size }}px" height="{{= size }}px" xlink:href="images/square.jpg"></image>
 				</pattern>
 			</defs>
 		</svg>
