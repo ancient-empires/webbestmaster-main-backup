@@ -26,8 +26,8 @@ info = {
 	savedItem: 'cool-book-stories',
 	attr: {},
 	systemAttr: {},
-	defaultLanguage: 'ru',
-	availableLanguages: ['ru'],
+	defaultLanguage: 'en',
+	availableLanguages: ['en'],
 	//availableLanguages: ['ru', 'en'],
 
 	init: function () {

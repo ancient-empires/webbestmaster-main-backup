@@ -48,23 +48,28 @@
 
 		<div class="title-game-name">tangram</div>
 
-		<div class="screen--button-wrapper_split_second">
+		<!-- 七 巧 板 -->
 
-			<div class="screen--button">.play regular.</div>
-			<div class="screen--button">.play master.</div>
-			<div class="screen--button">.setting.</div>
-			<div class="screen--button">.share.</div>
+		<div class="screen--button-wrapper_split_second">
+			<div class="screen--button js-set-play-regular" data-route="sections">{{= it.lang.get('play-regular') }}</div>
+			<div class="screen--button js-set-play-master" data-route="sections">{{= it.lang.get('play-master') }}</div>
+			<div class="screen--button">{{= it.lang.get('setting') }}</div>
+			<div class="screen--button">{{= it.lang.get('share') }}</div>
 		</div>
 
 		<button data-route="tangram">to view</button>
 
 		<button data-route="tangram-constructor">constructor</button>
 
-
 	</section>
 
 </script>
 
+<script class="js-template" type="text/x-template" data-name="sections">
+
+
+
+</script>
 
 <script class="js-template" type="text/x-template" data-name="tangram">
 

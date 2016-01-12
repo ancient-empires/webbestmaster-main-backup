@@ -19,6 +19,14 @@ var en = {
 	},
 
 	// tangram
+
+		// title menu
+	'play-regular': 'play regular',
+	'play-master': 'play master',
+	'setting': 'setting',
+	'share': 'share',
+
+		// sections
 	tangram: 'tangram',
 	person: 'person'
 
