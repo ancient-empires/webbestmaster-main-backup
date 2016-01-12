@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'origram';
+  src: url('../font/origram.otf');
+}
+
 body {
   background-image: url(../i/main-bg.jpg);
   background-repeat: no-repeat;
@@ -32,4 +37,41 @@ body {
   z-index: -1;
 }
 
+.title-game-name {
+  font-family: origram, "Courier New", Courier, monospace;
+  text-align: center;
+  color: #fff;
+  letter-spacing: 0.75rem;
+  font-size: 2.5rem;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  transform: translate3d(0, -700%, 0);
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
+}
 
+.screen--button-wrapper_split_second {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 50%;
+}
+
+.screen--button {
+  width: 40%;
+  margin: 0 auto 1rem;
+  padding: 0.7rem;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 0.4rem;
+  background-image: linear-gradient(top, #fff, #D4D4D4);
+  box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.8);
+  transition: all linear 0.3s;
+}
+
+.screen--button:active {
+  background-image: linear-gradient(top, #D4D4D4, #fff);
+  box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0);
+}

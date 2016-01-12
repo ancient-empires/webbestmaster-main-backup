@@ -28,6 +28,7 @@
 		gulp.watch('./www/js/**/*', ['js-watch']);
 		gulp.watch('./www/images/**/*', ['copy-data']);
 		gulp.watch('./www/i/**/*', ['copy-data']);
+		gulp.watch('./www/font/**/*', ['copy-data']);
 	});
 
 	// helper for clean
@@ -131,7 +132,7 @@
 	// copy data
 	gulp.task('copy-data', function () {
 
-		['images', 'i'].forEach(function (dir) {
+		['images', 'i', 'font'].forEach(function (dir) {
 			return gulp.src('./www/' + dir + '/**/*')
 				.pipe(gulp.dest('./dist/www/' + dir));
 		});
