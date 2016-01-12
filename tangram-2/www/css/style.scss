@@ -42,13 +42,13 @@ body {
   text-align: center;
   color: #fff;
   letter-spacing: 0.75rem;
-  font-size: 2.5rem;
+  font-size: 2.9rem;
   position: absolute;
   top: 50%;
   left: 0;
   width: 100%;
-  transform: translate3d(0, -700%, 0);
-  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
+  transform: translate3d(0, -660%, 0);
+  @extend .luxury-3d-Text;
 }
 
 .screen--button-wrapper_split_second {
@@ -60,18 +60,15 @@ body {
 }
 
 .screen--button {
-  width: 40%;
-  margin: 0 auto 1rem;
+  width: 45%;
+  margin: 0 auto 0.55rem;
   padding: 0.7rem;
   background-color: #fff;
   text-align: center;
-  border-radius: 0.4rem;
-  background-image: linear-gradient(top, #fff, #D4D4D4);
-  box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.8);
-  transition: all linear 0.3s;
+  border-radius: 0.2rem;
+  @extend .luxury-3d-Button;
 }
 
 .screen--button:active {
-  background-image: linear-gradient(top, #D4D4D4, #fff);
-  box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0);
+  @extend .luxury-3d-Button_active;
 }
