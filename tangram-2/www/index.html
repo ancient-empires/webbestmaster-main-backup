@@ -51,7 +51,8 @@
 		<!-- 七 巧 板 -->
 
 		<div class="screen--button-wrapper_split_second">
-			<div class="screen--button js-set-play-regular" data-route="sections">{{= it.lang.get('play-regular') }}</div>
+			<div class="screen--button js-set-play-regular" data-route="sections">{{= it.lang.get('play-regular') }}
+			</div>
 			<div class="screen--button js-set-play-master" data-route="sections">{{= it.lang.get('play-master') }}</div>
 			<div class="screen--button">{{= it.lang.get('setting') }}</div>
 			<div class="screen--button">{{= it.lang.get('share') }}</div>
@@ -72,13 +73,17 @@
 		<div class="scroll-area-container js-scroll-area-container">
 			<div class="scroll-area-content">
 				<p class="section-header ellipsis">{{= it.lang.get(it.sectionHeader) }}</p>
-				{{~ it.sections :section }}
-				<div class="section-preview" data-route="sections/{{= section.originalName }}">
-					{{= section.preview.svgText }}
-					{{? section.name }}
-					<p class="section-preview-name ellipsis">{{= it.lang.get(section.name) }}</p>
+				{{~ it.items :item:index }}
+					{{? item.name }}
+					<div class="section-preview" data-route="sections/{{= item.originalName }}">
+						{{= item.preview.svgText }}
+						<p class="section-preview-name ellipsis">{{= it.lang.get(item.name) }}</p>
+					</div>
+					{{??}}
+					<div class="section-preview" data-route="sections/{{= it.originalName }}/{{= index }}">
+						{{= item.preview.svgText }}
+					</div>
 					{{?}}
-				</div>
 				{{~}}
 			</div>
 		</div>

@@ -17,19 +17,19 @@ var SectionsView = BaseView.extend({
 	initialize: function (name) {
 
 		var view = this,
-			section,
-			sections;
+			items;
 
 		if (name) {
-			sections = view.getPrepareSection(name);
+			items = view.getPrepareSection(name);
 		} else {
-			sections = view.getPrepareSections();
+			items = view.getPrepareSections();
 		}
 
 		view.setElement(tm.get('sections')({
 			sectionHeader: name || 'sections',
+			originalName: name || 'sections',
 			lang: lang,
-			sections: sections
+			items: items
 		}));
 
 		view.render();
