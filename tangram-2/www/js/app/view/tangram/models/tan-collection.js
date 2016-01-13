@@ -467,7 +467,8 @@ var TanCollection = Backbone.Collection.extend({
 					count: len,
 					scale: this.getData('scale'),
 					type: data.type,
-					patternId: data.patternId || null
+					patternId: data.patternId || null,
+					key: key
 				});
 			}
 		}, this);

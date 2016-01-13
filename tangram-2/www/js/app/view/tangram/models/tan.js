@@ -7,13 +7,13 @@ import mediator from './../../../../services/mediator';
 var Tan = Backbone.Model.extend({
 
 	styles: {
-		stroke: '#0c0',
+		stroke: '#fff',
 		'stroke-width': '1px',
 		'fill-opacity': 1
 	},
 
 	activeStyles: {
-		stroke: '#c00',
+		stroke: '#fff',
 		'stroke-width': '1px',
 		'fill-opacity': 0.5
 	},
@@ -309,10 +309,134 @@ var Tan = Backbone.Model.extend({
 			tanNode = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
 			tan.set('node', tanNode);
 			tan.setStyles();
+			tan.initPositionIn(drawNode);
 			drawNode.appendChild(tanNode);
 		}
 
 		tanNode.setAttribute('points', polygonCoordinates);
+
+	},
+
+	getBoundingCoordinates: function () {
+
+		var tan = this,
+			maxX = -Infinity,
+			maxY = -Infinity,
+			minX = Infinity,
+			minY = Infinity;
+
+		tan.getCoordinates().forEach(function (xy) {
+
+			var x = xy.x,
+				y = xy.y;
+
+			if (x > maxX) {
+				maxX = x;
+			}
+
+			if (y > maxY) {
+				maxY = y;
+			}
+
+			if (x < minX) {
+				minX = x;
+			}
+
+			if (y < minY) {
+				minY = y;
+			}
+
+		});
+
+		return {
+			minX: minX,
+			minY: minY,
+			maxX: maxX,
+			maxY: maxY,
+			width: maxX - minX,
+			height: maxY - minY
+		}
+
+	},
+
+	initPositionIn: function (drawNode) {
+
+		var tan = this,
+			tanKey = tan.get('key'),
+			rotate,
+			coordinates,
+			margin = 10,
+			boxWidth = parseInt(drawNode.getAttribute('width'), 10),
+			boxHeight = parseInt(drawNode.getAttribute('height'), 10);
+
+		rotate = 0;
+
+		switch (tanKey) {
+
+			case 'triangleBig-1':
+				tan.set('rotate', 45);
+				coordinates = tan.getBoundingCoordinates();
+				tan.move({
+					dx: margin - coordinates.minX,
+					dy: boxHeight - coordinates.maxY - margin
+				});
+				break;
+
+			case 'triangleBig-2':
+				tan.set('rotate', -135);
+				coordinates = tan.getBoundingCoordinates();
+				tan.move({
+					dx: boxWidth - coordinates.maxX - margin,
+					dy: boxHeight - coordinates.maxY - margin
+				});
+				break;
+
+			case 'triangleMedium':
+				tan.set('rotate', -90);
+				coordinates = tan.getBoundingCoordinates();
+				tan.move({
+					dx: boxWidth - coordinates.maxX - margin,
+					dy: boxHeight / 2 - coordinates.maxY + coordinates.height / 2
+				});
+				break;
+
+			case 'triangleSmall-1':
+				tan.set('rotate', -45);
+				coordinates = tan.getBoundingCoordinates();
+				tan.move({
+					dx: boxWidth - coordinates.maxX - margin,
+					dy: margin - coordinates.minY
+				});
+				break;
+
+			case 'triangleSmall-2':
+				tan.set('rotate', -45);
+				coordinates = tan.getBoundingCoordinates();
+				tan.move({
+					dx: margin - coordinates.minX,
+					dy: margin - coordinates.minY
+				});
+				break;
+
+			case 'square':
+				//tan.set('rotate', 45);
+				coordinates = tan.getBoundingCoordinates();
+				tan.move({
+					dx: boxWidth / 2 - coordinates.maxX + coordinates.width / 2,
+					dy: boxHeight - coordinates.maxY - margin
+				});
+				break;
+
+			case 'parallelogram':
+				//tan.set('rotate', -90);
+				coordinates = tan.getBoundingCoordinates();
+				tan.move({
+					dx: margin - coordinates.minX,
+					dy: boxHeight / 2 - coordinates.maxY + coordinates.height / 2
+				});
+				break;
+
+		}
 
 	},
 
@@ -387,13 +511,13 @@ var Tan = Backbone.Model.extend({
 		Object.keys(styles).forEach(function (key) {
 			styleStr += key + ':' + styles[key] + ';';
 		});
-/*
+		/*
 
-		Object.keys(styles).forEach(function (key) {
-			var value = (key === 'stroke-width') ? styles[key] * tan.get('scale') : styles[key];
-			styleStr += key + ':' + value + ';';
-		});
-*/
+		 Object.keys(styles).forEach(function (key) {
+		 var value = (key === 'stroke-width') ? styles[key] * tan.get('scale') : styles[key];
+		 styleStr += key + ':' + value + ';';
+		 });
+		 */
 
 		attr.value = styleStr;
 		node.setAttributeNode(attr);
@@ -534,7 +658,7 @@ var Tan = Backbone.Model.extend({
 			rightAngle = triangle[0],   // first angle is 90deg - see tan.divideTriangle
 			rightAngleX = rightAngle.x,
 			rightAngleY = rightAngle.y,
-			midCoordinate = tan.getAlignCoordinatesOfLine(triangle[1],  triangle[2], 2)[0],
+			midCoordinate = tan.getAlignCoordinatesOfLine(triangle[1], triangle[2], 2)[0],
 			midX = midCoordinate.x,
 			midY = midCoordinate.y,
 			angle = Math.atan2(rightAngleY - midY, rightAngleX - midX) * 180 / Math.PI;
