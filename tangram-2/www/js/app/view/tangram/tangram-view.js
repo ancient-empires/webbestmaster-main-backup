@@ -8,6 +8,10 @@ import RotaterModel from './rotater/rotater-model';
 import device from './../../../services/device';
 import mediator from './../../../services/mediator';
 import tangrams from './../../data/tangrams';
+import _ from './../../../lib/lodash';
+import tanCollection from './../tangram/models/tan-collection';
+
+var tanCollectionProto = tanCollection.prototype;
 
 var TangramView = BaseView.extend({
 
@@ -38,7 +42,12 @@ var TangramView = BaseView.extend({
 				sizeX: sizeX,
 				sizeY: sizeY
 			},
-			patternSvg;
+			patternSvg,
+			name = data.name || 'person',
+			index = data.index || 0,
+			pattern = _.find(tangrams.data, {name: name}).data[index];
+
+		console.log(mode);
 
 		view.set('mode', mode);
 
@@ -48,7 +57,7 @@ var TangramView = BaseView.extend({
 		tanCollection.setData(viewData);
 
 		// get test tangram
-		var pattern = tangrams.data[0].data[1];
+		//var pattern = tangrams.data[0].data[0];
 
 		scale = view.detectScale(pattern);
 
@@ -111,15 +120,20 @@ var TangramView = BaseView.extend({
 			viewQ = sizeX / sizeY,
 			patternQ,
 			atoms = pattern.data,
-			maxPatternX = -Infinity,
-			maxPatternY = -Infinity,
+			patternMaxX = -Infinity,
+			patternMaxY = -Infinity,
+			patternMinX = Infinity,
+			patternMinY = Infinity,
+			patterSizeX,
+			patterSizeY,
 			scale,
+			atomToTriangle = tanCollectionProto.atomToTriangle,
 			minScreenSize = device.get('minScreenSize'),
 			spaceSize = (maxX - minX) * (maxY - minY);
 
 		if (view.get('mode') === 'constructor') {
 
-			scale = Math.round(Math.sqrt(spaceSize / minScreenSize) * 130);
+			scale = Math.round(Math.sqrt(spaceSize / minScreenSize) * 150);
 
 			view.set('scale', scale);
 
@@ -129,29 +143,48 @@ var TangramView = BaseView.extend({
 
 		atoms.forEach(function (atom) {
 
-			var x = atom[0],
-				y = atom[1];
+			var triangle = atomToTriangle(atom, 1);
 
-			if (x > maxPatternX) {
-				maxPatternX = x;
-			}
+			triangle.forEach(function (xy) {
 
-			if (y > maxPatternY) {
-				maxPatternY = y;
-			}
+				var x = xy.x,
+					y = xy.y;
+
+				if (x > patternMaxX) {
+					patternMaxX = x;
+				}
+
+				if (y > patternMaxY) {
+					patternMaxY = y;
+				}
+
+				if (x < patternMinX) {
+					patternMinX = x;
+				}
+
+				if (y < patternMinY) {
+					patternMinY = y;
+				}
+
+			});
 
 		});
+
+		patterSizeX = patternMaxX - patternMinX;
+		patterSizeY = patternMaxY - patternMinY;
 
 		view.get('tan-collection').setData({
-			patternWidth: maxPatternX,
-			patternHeight: maxPatternY
+			patternWidth: patterSizeX,
+			patternHeight: patterSizeY
 		});
 
-		patternQ = maxPatternX / maxPatternY;
+		patternQ = patterSizeX / patterSizeY;
 
-		scale = (patternQ > viewQ) ? (sizeX / maxPatternX) : (sizeY / maxPatternY);
+		scale = (patternQ > viewQ) ? (sizeX / patterSizeX) : (sizeY / patterSizeY);
 
-		scale = Math.round(scale * 0.66);
+		scale = Math.round(scale * 0.75);
+
+		console.log(scale * 0.75);
 
 		view.set('scale', scale);
 

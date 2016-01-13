@@ -15,9 +15,10 @@ var win = window,
 
 		routes: {
 			'': 'home',
+			'sections/:name/:index': 'tangram',
 			'sections/:name': 'section',
 			'sections': 'sections',
-			'tangram': 'tangram',
+			//'tangram': 'tangram',
 			'tangram-constructor': 'tangramConstructor'
 		},
 
@@ -33,8 +34,11 @@ var win = window,
 			new SectionsView(name);
 		},
 
-		tangram: function () {
-			new TangramView();
+		tangram: function (name, index) {
+			new TangramView({
+				name: name,
+				index: index
+			});
 		},
 
 		tangramConstructor: function () {
