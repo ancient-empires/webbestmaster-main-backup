@@ -69,12 +69,19 @@
 
 	<section class="screen">
 
-		{{~ it.sections :section:index }}
-
-		<div>{{= it.lang.get(section.name) }}</div>
-
-		{{~}}
-
+		<div class="scroll-area-container js-scroll-area-container">
+			<div class="scroll-area-content">
+				<p class="section-header ellipsis">{{= it.lang.get(it.sectionHeader) }}</p>
+				{{~ it.sections :section }}
+				<div class="section-preview" data-route="sections/{{= section.originalName }}">
+					{{= section.preview.svgText }}
+					{{? section.name }}
+					<p class="section-preview-name ellipsis">{{= it.lang.get(section.name) }}</p>
+					{{?}}
+				</div>
+				{{~}}
+			</div>
+		</div>
 
 	</section>
 

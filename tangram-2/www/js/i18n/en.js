@@ -27,6 +27,7 @@ var en = {
 	'share': 'share',
 
 		// sections
+	sections: 'sections',
 	tangram: 'tangram',
 	person: 'person'
 

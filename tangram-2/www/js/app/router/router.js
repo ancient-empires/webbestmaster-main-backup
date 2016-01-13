@@ -15,6 +15,7 @@ var win = window,
 
 		routes: {
 			'': 'home',
+			'sections/:name': 'section',
 			'sections': 'sections',
 			'tangram': 'tangram',
 			'tangram-constructor': 'tangramConstructor'
@@ -26,6 +27,10 @@ var win = window,
 
 		sections: function () {
 			new SectionsView();
+		},
+
+		section: function (name) {
+			new SectionsView(name);
 		},
 
 		tangram: function () {

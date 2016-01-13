@@ -72,3 +72,48 @@ body {
 .screen--button:active {
   @extend .luxury-3d-Button_active;
 }
+
+.scroll-area-content {
+  text-align: center;
+  font-size: 0;
+  line-height: 0;
+  padding-bottom: 3rem;
+}
+
+.section-preview {
+  width: 5rem;
+  display: inline-block;
+  //height: 6rem;
+  margin: 0.45rem;
+  padding: 0.2rem;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 0.2rem;
+  @extend .luxury-3d-Button;
+}
+
+.section-preview:active {
+  @extend .luxury-3d-Button_active;
+}
+
+.section-preview-image {
+  width: 5rem;
+  height: 5rem;
+  display: block;
+}
+
+.section-preview-name {
+  font-size: 0.9rem;
+  line-height: 1rem;
+}
+
+.section-header {
+  @extend .luxury-3d-Text;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 2rem;
+  padding: 1rem 0;
+  width: 90%;
+  @include prefix(box-sizing, border-box);
+  margin: 0 auto;
+}

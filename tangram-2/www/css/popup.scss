@@ -16,7 +16,7 @@
   line-height: 1.5rem;
   background-color: #FFFFFF;
   box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.5);
-  box-sizing: border-box;
+  @include prefix(box-sizing, border-box);
   border: 0.1rem solid #C0C0C0;
   border-radius: 0.2rem;
   width: 80%;

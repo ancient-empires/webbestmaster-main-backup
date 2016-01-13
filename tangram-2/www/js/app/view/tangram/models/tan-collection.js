@@ -651,7 +651,6 @@ var TanCollection = Backbone.Collection.extend({
 			polygon.setAttributeNode(attr);
 		});
 
-
 		return polygon;
 
 	},

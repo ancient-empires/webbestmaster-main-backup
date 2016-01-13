@@ -10,6 +10,27 @@ var tangrams = {
 	data: [
 		person,
 		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
+		person,
 		person
 	]
 
