@@ -37,7 +37,7 @@ PopupView = BaseView.extend({
 
 		view.extendFromObj(data); // name, parentView, data(objToView)
 
-		view.setElement(tm.tmplFn['popup-wrapper']());
+		view.setElement(tm.get('popup-wrapper')());
 
 		if (data.cssClass) {
 			view.$el.addClass(data.cssClass);
@@ -115,7 +115,7 @@ PopupView = BaseView.extend({
 			append$el = view.get('append$el'),
 			data = view.get('data') || {},
 			sound = view.get('sound'),
-			$content = $(tm.tmplFn[view.get('name')](data)),
+			$content = $(tm.get( [view.get('name')](data) )),
 			$container = view.$el.find(view.selectors.popupContainer),
 			onShow = view.get('onShow'),
 			context;

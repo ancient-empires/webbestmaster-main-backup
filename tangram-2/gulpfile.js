@@ -32,12 +32,14 @@
 	});
 
 	// helper for clean
-	var clearTasks = ['index.html', 'css', 'js', 'images'].map(function (dir) {
+	var clearTasks = ['index.html', 'css', 'js', 'images', 'i', 'font'].map(function (dir) {
 
 		var taskName = 'clear-dir_' + dir;
 
-		gulp.task(taskName, function (cd) {
-			return clean('./dist/www/' + dir, cd);
+		gulp.task(taskName, function () {
+			return gulp
+				.src('./dist/www/' + dir, { read: false })
+				.pipe(clean({ force: true }));
 		});
 
 		return taskName;
@@ -46,6 +48,10 @@
 
 	// clear distributive directory
 	gulp.task('clear-dist', function () {
+		var dir = 'i';
+		clean('./dist/www/' + dir, function (cd) {
+			console.log(cd);
+		});
 		return gulp.start.apply(gulp, clearTasks);
 	});
 

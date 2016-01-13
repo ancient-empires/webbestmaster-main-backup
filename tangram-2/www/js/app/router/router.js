@@ -6,6 +6,7 @@ import _ from './../../lib/lodash';
 import BaseView from './../view/core/base';
 import HomeView from './../view/home/home-view';
 import TangramView from './../view/tangram/tangram-view';
+import SectionsView from './../view/sections/sections-view';
 import mediator from './../../services/mediator';
 
 var win = window,
@@ -14,12 +15,17 @@ var win = window,
 
 		routes: {
 			'': 'home',
+			'sections': 'sections',
 			'tangram': 'tangram',
 			'tangram-constructor': 'tangramConstructor'
 		},
 
 		home: function () {
 			new HomeView();
+		},
+
+		sections: function () {
+			new SectionsView();
 		},
 
 		tangram: function () {

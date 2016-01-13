@@ -1,7 +1,7 @@
 'use strict';
 /*global window */
 
-import person from './categories/person';
+import person from './sections/person';
 
 var tangrams = {
 

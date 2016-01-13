@@ -41,13 +41,13 @@ body {
   font-family: origram, "Courier New", Courier, monospace;
   text-align: center;
   color: #fff;
-  letter-spacing: 0.75rem;
-  font-size: 2.9rem;
+  letter-spacing: 0.45rem;
+  font-size: 3.5rem;
   position: absolute;
   top: 50%;
   left: 0;
   width: 100%;
-  transform: translate3d(0, -660%, 0);
+  transform: translate3d(0, -620%, 0);
   @extend .luxury-3d-Text;
 }
 

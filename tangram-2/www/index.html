@@ -57,9 +57,9 @@
 			<div class="screen--button">{{= it.lang.get('share') }}</div>
 		</div>
 
-		<button data-route="tangram">to view</button>
+		<!--<button data-route="tangram">to view</button>-->
 
-		<button data-route="tangram-constructor">constructor</button>
+		<!--<button data-route="tangram-constructor">constructor</button>-->
 
 	</section>
 
@@ -67,7 +67,16 @@
 
 <script class="js-template" type="text/x-template" data-name="sections">
 
+	<section class="screen">
 
+		{{~ it.sections :section:index }}
+
+		<div>{{= it.lang.get(section.name) }}</div>
+
+		{{~}}
+
+
+	</section>
 
 </script>
 
