@@ -8,6 +8,7 @@ import device from './../../../../services/device';
 import mediator from './../../../../services/mediator';
 import log from './../../../../services/log';
 import sha1 from './../../../../lib/sha1';
+import info from './../../../../services/info';
 
 var tansInfo = {
 	'triangleBig-1': {
@@ -379,8 +380,9 @@ var TanCollection = Backbone.Collection.extend({
 			otherTansCoordinates = [],
 			pow = Math.pow.bind(Math);
 
-		// TODO: difficult hard
-		otherTansCoordinates = otherTansCoordinates.concat(initedPatternAlignPoints);
+		if (info.get('gameDifficult') === 'regular') {
+			otherTansCoordinates = otherTansCoordinates.concat(initedPatternAlignPoints);
+		}
 
 		collection.each(function (tan) {
 			if (tan === alignTan) {
@@ -615,6 +617,10 @@ var TanCollection = Backbone.Collection.extend({
 				viewBox: [0, 0, width, height].join(' '),
 				'class': 'tangram-pattern'
 			};
+
+		if (info.get('gameDifficult') !== 'regular') {
+			attributes.viewBox = [0, 0, width * 3.5, height * 3.5].join(' ');
+		}
 
 		Object.keys(attributes).forEach(function (key) {
 			var attr = document.createAttribute(key);
