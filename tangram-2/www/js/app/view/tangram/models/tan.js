@@ -392,29 +392,32 @@ var Tan = Backbone.Model.extend({
 				break;
 
 			case 'triangleMedium':
-				tan.set('rotate', -90);
+				tan.set('rotate', 90);
 				coordinates = tan.getBoundingCoordinates();
 				tan.move({
-					dx: boxWidth - coordinates.maxX - margin,
-					dy: boxHeight / 2 - coordinates.maxY + coordinates.height / 2
+					dx: margin - coordinates.minX,
+					//dx: boxWidth - coordinates.maxX - margin,
+					//dy: boxHeight / 2 - coordinates.maxY + coordinates.height / 2
+					dy: boxHeight - coordinates.maxY - margin * 4 - coordinates.height
 				});
 				break;
 
 			case 'triangleSmall-1':
-				tan.set('rotate', -45);
+				//tan.set('rotate', 0);
 				coordinates = tan.getBoundingCoordinates();
 				tan.move({
 					dx: boxWidth - coordinates.maxX - margin,
-					dy: margin - coordinates.minY
+					//dy: margin - coordinates.minY
+					dy: boxHeight - coordinates.maxY - margin * 2 - coordinates.height
 				});
 				break;
 
 			case 'triangleSmall-2':
-				tan.set('rotate', -45);
+				tan.set('rotate', -90);
 				coordinates = tan.getBoundingCoordinates();
 				tan.move({
 					dx: margin - coordinates.minX,
-					dy: margin - coordinates.minY
+					dy: boxHeight - coordinates.maxY - margin * 2 - coordinates.height
 				});
 				break;
 
@@ -431,8 +434,10 @@ var Tan = Backbone.Model.extend({
 				//tan.set('rotate', -90);
 				coordinates = tan.getBoundingCoordinates();
 				tan.move({
-					dx: margin - coordinates.minX,
-					dy: boxHeight / 2 - coordinates.maxY + coordinates.height / 2
+					//dx: margin - coordinates.minX,
+					dx: boxWidth - coordinates.maxX - margin,
+					//dy: boxHeight / 2 - coordinates.maxY + coordinates.height / 2
+					dy: boxHeight - coordinates.maxY - margin * 4 - coordinates.height
 				});
 				break;
 
