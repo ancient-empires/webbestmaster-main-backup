@@ -9,6 +9,7 @@ import mediator from './../../../../services/mediator';
 import log from './../../../../services/log';
 import sha1 from './../../../../lib/sha1';
 import info from './../../../../services/info';
+import tangramSuccessfulView from './../../tangram-successful/tangram-successful-view';
 
 var tansInfo = {
 	'triangleBig-1': {
@@ -198,6 +199,12 @@ var TanCollection = Backbone.Collection.extend({
 			tangramAtoms = collection.prepareToEquals(collection.getTangramAtoms()),
 			answerAtoms = collection.prepareToEquals(collection.getAnswerAtoms()),
 			isDone;
+
+		collection.setData('success-view', new tangramSuccessfulView({
+			data : 1
+		}));
+
+		return;
 
 		isDone = tangramAtoms.every(function (atomStr) {
 

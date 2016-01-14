@@ -11,6 +11,7 @@ import mediator from './../../../services/mediator';
 import sm from './../../../sound/sound-master';
 import lang from './../../../services/lang';
 import device from './../../../services/device';
+import log from './../../../services/log';
 
 var win = window,
 	doc = win.document,
@@ -230,7 +231,7 @@ var win = window,
 
 		hide: function () {
 
-			console.log('base view hide');
+			log('base view hide');
 
 			var view = this,
 				$el = view.$el,
@@ -348,7 +349,7 @@ var win = window,
 
 			view.hidePopupByRouter();
 
-			view.publish('showPopup', data, popup);
+			view.publish('show-popup', data, popup);
 
 			popup.view.set('deferred', deferred);
 

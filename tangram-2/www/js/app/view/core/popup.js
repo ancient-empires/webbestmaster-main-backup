@@ -25,7 +25,12 @@ PopupView = BaseView.extend({
 		popupContainer: '.js-popup-container'
 	},
 
-	initialize: function (data) { // timeout, cssClass, from, data {text, header ...}, append$el, sound, onShow {context, fn}, onHide {context, fn}
+	initialize: function (data) {
+
+	// timeout, cssClass, from,
+	// data {text, header ...},
+	// append$el, sound,
+	// onShow {context, fn}, onHide {context, fn}
 
 		var view = this,
 			popupUrl = view.popupUrl,
@@ -190,6 +195,6 @@ popupMaster = {
 
 mediator.installTo(popupMaster);
 
-popupMaster.subscribe('showPopup', popupMaster.showPopup);
+popupMaster.subscribe('show-popup', popupMaster.showPopup);
 
 export default popupMaster;

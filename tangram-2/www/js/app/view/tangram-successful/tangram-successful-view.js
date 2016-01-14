@@ -7,19 +7,17 @@ import lang from './../../../services/lang';
 import $ from './../../../lib/jbone';
 import info from './../../../services/info';
 
-var HomeView = BaseView.extend({
+var tangramSuccessfulView = BaseView.extend({
 
 	events: {
-		'click .js-set-game-difficult': 'setGameDifficult'
+		'scroll': 'stopEvent'
 	},
 
 	initialize: function () {
 
 		var view = this;
 
-		view.setElement(tm.get('home')({
-			lang: lang
-		}));
+		view.setElement(tm.get('tangram-successful')());
 
 		view.render();
 
@@ -27,18 +25,14 @@ var HomeView = BaseView.extend({
 
 	},
 
-	setGameDifficult: function (e) {
+	render: function () {
 
-		var view = this,
-			$node = $(e.currentTarget),
-			difficult = $node.attr('data-difficult');
+		var view = this;
 
-		info.set('gameDifficult', difficult);
-
-		view.publish('navigate', 'sections', {trigger: true});
+		this.$wrapper.append(view.$el);
 
 	}
 
 });
 
-export default HomeView;
+export default tangramSuccessfulView;
