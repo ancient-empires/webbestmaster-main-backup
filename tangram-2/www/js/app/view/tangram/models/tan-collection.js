@@ -263,8 +263,8 @@ var TanCollection = Backbone.Collection.extend({
 
 		return tangramAtoms.map(function (xya) {
 			return [
-				(Math.round((xya[0] - minX) * 1e8) / 1e8) || 0,
-				(Math.round((xya[1] - minY) * 1e8) / 1e8) || 0,
+				(Math.round((xya[0] - minX) * 1e6) / 1e6) || 0,
+				(Math.round((xya[1] - minY) * 1e6) / 1e6) || 0,
 				xya[2]
 			];
 		});
@@ -475,7 +475,8 @@ var TanCollection = Backbone.Collection.extend({
 					count: len,
 					scale: this.getData('scale'),
 					type: data.type,
-					patternId: data.patternId || null
+					patternId: data.patternId || null,
+					key: key
 				});
 			}
 		}, this);
