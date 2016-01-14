@@ -27,32 +27,34 @@
 
 <div class="js-wrapper wrapper"></div>
 
+<!--
 <script class="js-template" type="text/x-template" data-name="header">
 
 	<div class="header">
 
 		{{? it.isBack }}
-		<div class="header--back">&nbsp;</div>
+		<div class="header&#45;&#45;back">&nbsp;</div>
 		{{?}}
 
-		<div class="header--setting">&nbsp;</div>
+		<div class="header&#45;&#45;setting">&nbsp;</div>
 
-		<div class="header--title">{{= it.lang.get(it.title) }}</div>
+		<div class="header&#45;&#45;title">{{= it.lang.get(it.title) }}</div>
 
 	</div>
 </script>
+-->
 
 <script class="js-template" type="text/x-template" data-name="home">
 
 	<section class="screen">
 
-		<div class="title-game-name">tangram</div>
-
-		<!-- 七 巧 板 -->
+		<div class="screen--button-wrapper_split_first">
+			<div class="title-game-name">tangram</div>
+			<!-- 七 巧 板 -->
+		</div>
 
 		<div class="screen--button-wrapper_split_second">
-			<div class="screen--button js-set-play-regular" data-route="sections">{{= it.lang.get('play-regular') }}
-			</div>
+			<div class="screen--button js-set-play-regular" data-route="sections">{{= it.lang.get('play-regular') }}</div>
 			<div class="screen--button js-set-play-master" data-route="sections">{{= it.lang.get('play-master') }}</div>
 			<div class="screen--button">{{= it.lang.get('setting') }}</div>
 			<div class="screen--button">{{= it.lang.get('share') }}</div>

@@ -27,11 +27,11 @@
 }
 
 .hint-container-show-in {
-  animation-duration: 0.5s;
-  animation-iteration-count: 1;
-  animation-name: hint-bg-show-in;
-  animation-fill-mode: forwards;
-  transform-origin: center center;
+  @include prefix(animation-duration, 0.5s);
+  @include prefix(animation-iteration-count, 1);
+  @include prefix(animation-name, hint-bg-show-in);
+  @include prefix(animation-fill-mode, forwards);
+  @include prefix(transform-origin, center center);
 }
 
 .hint-container-show-in-no-animation {
@@ -39,11 +39,11 @@
 }
 
 .hint-container-show-out {
-  animation-duration: 0.2s;
-  animation-iteration-count: 1;
-  animation-name: hint-bg-show-out;
-  animation-fill-mode: forwards;
-  transform-origin: center center;
+  @include prefix(animation-duration, 0.2s);
+  @include prefix(animation-iteration-count, 1);
+  @include prefix(animation-name, hint-bg-show-out);
+  @include prefix(animation-fill-mode, forwards);
+  @include prefix(transform-origin, center center);
 }
 
 /*
@@ -74,7 +74,7 @@
   color: #333;
   margin-top: 1.2rem;
   text-align: center;
-  transform: translate3d(0, 1.5rem, 0);
+  @include prefix(transform, translate3d(0, 1.5rem, 0));
   z-index: 1;
   border: 0.2rem solid #333;
 }
@@ -118,18 +118,30 @@
   }
 }
 
+@-webkit-keyframes hint-text-show-in {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 1.3rem, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+
 .hint-container-show-in-no-animation .hint-text {
   opacity: 1;
-  transform: translate3d(0, -0.5rem, 0);
+  @include prefix(transform, translate3d(0, -0.5rem, 0));
 }
 
 .hint-container-show-in .hint-text {
-  animation-delay: 0.5s;
-  animation-duration: 0.5s;
-  animation-iteration-count: 1;
-  animation-name: hint-text-show-in;
-  animation-fill-mode: forwards;
-  transform-origin: center center;
+
+  @include prefix(animation-delay, 0.5s);
+  @include prefix(animation-duration, 0.5s);
+  @include prefix(animation-iteration-count, 1);
+  @include prefix(animation-name, hint-text-show-in);
+  @include prefix(animation-fill-mode, forwards);
+  @include prefix(transform-origin, center center);
 }
 
 
