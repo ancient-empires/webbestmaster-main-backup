@@ -23,7 +23,7 @@ info = {
 	},
 
 	ls: win.localStorage,
-	savedItem: 'cool-book-stories',
+	savedItem: 'tangram-2',
 	attr: {},
 	systemAttr: {},
 	defaultLanguage: 'en',
@@ -218,12 +218,12 @@ info = {
 
 		var info = this,
 			defaultSettings = {
-				installTime: Date.now(),
 				versionCode: 1,
 				screenAnimation: info.get('isAndroid', true) ? 'off' : 'on',
+				gameDifficult: 'regular',
 				//screenAnimation: 'off',
-				storyByStory: info.isNormal ? 'off' : 'on',
-				hint: {}
+				//storyByStory: info.isNormal ? 'off' : 'on',
+				//hint: {}
 				//autoSave: 'on', // auto save game after every turn
 				//confirmTurn: 'off', // game turn
 				//confirmMove: 'off', // move unit
@@ -236,6 +236,7 @@ info = {
 				//unitAnimation: 'off',
 				//difficult: 'easy', // easy, normal, hard
 				//gameSpeed: '3' // 1..5, use string type
+				installTime: Date.now()
 			},
 			key,
 			value;

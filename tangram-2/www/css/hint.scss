@@ -135,7 +135,6 @@
 }
 
 .hint-container-show-in .hint-text {
-
   @include prefix(animation-delay, 0.5s);
   @include prefix(animation-duration, 0.5s);
   @include prefix(animation-iteration-count, 1);
