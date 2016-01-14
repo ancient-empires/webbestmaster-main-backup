@@ -6,6 +6,7 @@ import tm from './../../../services/template-master';
 import TanCollection from './models/tan-collection';
 import RotaterModel from './rotater/rotater-model';
 import device from './../../../services/device';
+import log from './../../../services/log';
 import mediator from './../../../services/mediator';
 import tangrams from './../../data/tangrams';
 import _ from './../../../lib/lodash';
@@ -47,7 +48,7 @@ var TangramView = BaseView.extend({
 			index = data.index || 0,
 			pattern = _.find(tangrams.data, {name: name}).data[index];
 
-		console.log(mode);
+		log(mode);
 
 		view.set('mode', mode);
 
@@ -66,7 +67,7 @@ var TangramView = BaseView.extend({
 			size: scale
 		}));
 
-		view.bindEventListeners();
+		//view.bindEventListeners();
 
 		tanCollection.setScale(scale);
 		tanCollection.initPattern(pattern);
@@ -89,6 +90,20 @@ var TangramView = BaseView.extend({
 
 	},
 
+	hide: function () {
+
+		var view = this,
+			tanCollection = view.get('tan-collection');
+
+		tanCollection.destroy();
+
+		// base hide
+
+		BaseView.prototype.hide.apply(view, arguments);
+
+	},
+
+/*
 	bindEventListeners: function () {
 
 		var view = this;
@@ -96,7 +111,9 @@ var TangramView = BaseView.extend({
 		//view.subscribe('tangram-view:drawPattern', view.drawPattern);
 
 	},
+*/
 
+/*
 	drawPattern: function (data) {
 
 		var view = this,
@@ -107,6 +124,7 @@ var TangramView = BaseView.extend({
 		console.log(triangles);
 
 	},
+*/
 
 	detectScale: function (pattern) {
 

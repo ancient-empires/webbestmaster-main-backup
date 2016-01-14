@@ -103,6 +103,14 @@ var TanCollection = Backbone.Collection.extend({
 
 	},
 
+	emptyData: function () {
+
+		this.attr = {};
+
+		return this;
+
+	},
+
 	initialize: function () {
 
 		var collection = this;
@@ -467,8 +475,7 @@ var TanCollection = Backbone.Collection.extend({
 					count: len,
 					scale: this.getData('scale'),
 					type: data.type,
-					patternId: data.patternId || null,
-					key: key
+					patternId: data.patternId || null
 				});
 			}
 		}, this);
@@ -625,8 +632,7 @@ var TanCollection = Backbone.Collection.extend({
 
 	coordinatesToPolygon: function (coordinates, stylesArg) {
 
-		var collection = this,
-			polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon'),
+		var polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon'),
 			styles = stylesArg || patternInfo.polygon.styles,
 			attributes = patternInfo.polygon.attributes,
 			styleStr = '',
@@ -682,6 +688,28 @@ var TanCollection = Backbone.Collection.extend({
 				y: y - Math.sin(angleRight) * sideSize
 			}
 		];
+
+	},
+
+	destroy: function () {
+
+		var collection = this,
+			rotater = collection.getData('rotater'),
+			tan;
+
+		rotater.destroy();
+
+		collection.unsubscribe();
+
+		collection.emptyData();
+
+		tan = collection.first();
+		while (tan) {
+			tan.destroy();
+			tan = collection.first();
+		}
+
+		collection.reset();
 
 	}
 

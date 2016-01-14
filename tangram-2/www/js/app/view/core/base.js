@@ -222,17 +222,23 @@ var win = window,
 			view.remove();
 			view.unbind();
 
-			Backbone.View.prototype.remove.call(view);
+
+
+			return Backbone.View.prototype.remove.call(view);
 
 		},
 
 		hide: function () {
+
+			console.log('base view hide');
 
 			var view = this,
 				$el = view.$el,
 				animationEnd = info.get('animationEnd', true),
 				isScreenAnimation = info.get('screenAnimation') === 'on',
 				deferred = $.Deferred();
+
+			view.empty();
 
 			view.unsubscribe();
 
@@ -569,7 +575,17 @@ var win = window,
 
 		},
 		get: function (key) {
+
 			return this.attr[key];
+
+		},
+
+		empty: function () {
+
+			this.attr = {};
+
+			return this;
+
 		},
 
 		extendFromObj: function (data) {

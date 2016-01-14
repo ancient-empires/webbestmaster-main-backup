@@ -782,6 +782,21 @@ var Tan = Backbone.Model.extend({
 			[coordinates[1], coordinates[2], coordinates[0]]
 		];
 
+	},
+
+	destroy: function () {
+
+		console.log('tan destroy');
+
+		var tan = this,
+			node = tan.get('node');
+
+		tan.unsubscribe();
+
+		node.parentNode.removeChild(node);
+
+		return Backbone.Model.prototype.destroy.apply(tan, arguments);
+
 	}
 
 });

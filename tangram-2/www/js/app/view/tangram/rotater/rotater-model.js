@@ -36,7 +36,7 @@ var RotaterModel = Backbone.Model.extend({
 			parentView = rotater.get('parentView'),
 			parent$el = parentView.$el,
 			size = rotater.get('size'),
-			$rotater = $('<div class="rotater rotater__hidden">&nbsp;</div>');
+			$rotater = $('<div class="rotater rotater__hidden"></div>');
 
 		$rotater.css({
 			width: size + 'px',
@@ -223,6 +223,18 @@ var RotaterModel = Backbone.Model.extend({
 		tan.drawActiveDeActive(true);
 
 		tan.reDraw();
+
+	},
+
+	destroy: function () {
+
+		var rotater = this;
+
+		rotater.unsubscribe();
+
+		rotater.get('$rotater').off().remove();
+
+		return Backbone.Model.prototype.destroy.apply(rotater, arguments);
 
 	}
 
