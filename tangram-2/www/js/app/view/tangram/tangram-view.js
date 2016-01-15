@@ -98,12 +98,17 @@ var TangramView = BaseView.extend({
 	hide: function () {
 
 		var view = this,
-			tanCollection = view.get('tan-collection');
+			tanCollection = view.get('tan-collection'),
+			$svg = view.$el.find('svg'),
+			removedItems = ['image', 'pattern', 'defs', 'polygon'];
 
 		tanCollection.destroy();
 
-		// base hide
+		removedItems.forEach(function (item) {
+			$svg.find(item).remove();
+		});
 
+		// base hide
 		BaseView.prototype.hide.apply(view, arguments);
 
 	},

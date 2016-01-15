@@ -13,8 +13,8 @@ var TangramSuccessfulView = BaseView.extend({
 
 	events: {
 		'scroll': 'stopEvent',
-		'click .js-one-more-tangram': 'oneMoreTangram',
-		'click .js-restart-tangram': 'restartTangram'
+		'click .js-one-more-tangram': 'oneMoreTangram'
+		//'click .js-restart-tangram': 'restartTangram'
 	},
 
 	initialize: function (data) {
@@ -88,11 +88,25 @@ var TangramSuccessfulView = BaseView.extend({
 
 		view.hide();
 
-	},
-
-	restartTangram: function () {
-		console.log('restart tangram');
 	}
+
+/*
+	restartTangram: function (e) {
+
+		var view = this,
+			$node = $(e.currentTarget),
+			index = $node.attr('data-index'),
+			name = $node.attr('data-name');
+
+		view.publish('tangram-view', {
+			name: name,
+			index: index
+		});
+
+		view.hide();
+
+	}
+*/
 
 });
 
