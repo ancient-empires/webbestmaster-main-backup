@@ -18,17 +18,21 @@ $btnBgEnd: #f5f5f5;
 
 
 
-.luxury-3d-Text {
+.luxury-3d-text {
   text-shadow: $luxury3dDiagonal;
 }
 
-.luxury-3d-Button {
+.luxury-3d-text-vertical-shadow {
+  text-shadow: $luxury3dVertical;
+}
+
+.luxury-3d-button {
   box-shadow: $luxury3dVertical;
   border-radius: 0.2rem;
   @include prefix-property(background-image, linear-gradient(top, $btnBgStart, $btnBgEnd));
 }
 
-.luxury-3d-Button_active {
+.luxury-3d-button_active {
   box-shadow: $luxury3dVerticalPushed;
   @include prefix-property(background-image, linear-gradient(top, $btnBgEnd, $btnBgStart));
 }
