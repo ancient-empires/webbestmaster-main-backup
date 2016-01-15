@@ -69,6 +69,11 @@ var TangramView = BaseView.extend({
 
 		//view.bindEventListeners();
 
+		tanCollection.setData('tangram-info', {
+			name: name,
+			index: Number(index)
+		});
+
 		tanCollection.setScale(scale);
 		tanCollection.initPattern(pattern);
 		patternSvg = tanCollection.drawPattern();
