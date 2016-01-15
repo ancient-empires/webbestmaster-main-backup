@@ -133,6 +133,10 @@ router.subscribe('route-to-popup', router.routeToPopup);
 router.subscribe('router-hide-popup', router.hidePopup);
 router.subscribe('navigate', router.navigate);
 
+router.on('route', function (route, data) {
+	router.publish('route', route, data)
+});
+
 // TODO: remove it from CORE
 router.subscribe('tangram-view', function (data) {
 	new TangramView(data);

@@ -200,10 +200,8 @@ var TanCollection = Backbone.Collection.extend({
 			answerAtoms = collection.prepareToEquals(collection.getAnswerAtoms()),
 			isDone;
 
-		collection.setData('success-view', new TangramSuccessfulView(collection.getData('tangram-info')));
 
-		return;
-
+/*
 		isDone = tangramAtoms.every(function (atomStr) {
 
 			if (answerAtoms.indexOf(atomStr) === -1) {
@@ -214,9 +212,16 @@ var TanCollection = Backbone.Collection.extend({
 			return answerAtoms.indexOf(atomStr) !== -1;
 		});
 
-		if (isDone) {
-			log('--- tangram is done ---', isDone);
+		if (!isDone) {
+			return;
 		}
+*/
+
+		console.log('tangram is DONE');
+
+		collection.unsubscribe();
+
+		collection.setData('success-view', new TangramSuccessfulView(collection.getData('tangram-info')));
 
 	},
 

@@ -30,6 +30,8 @@ var TangramSuccessfulView = BaseView.extend({
 
 		view.render();
 
+		view.subscribe('route', view.hide);
+
 		return BaseView.prototype.initialize.apply(view, arguments);
 
 	},
@@ -83,6 +85,8 @@ var TangramSuccessfulView = BaseView.extend({
 			name: name,
 			index: index
 		});
+
+		view.hide();
 
 	},
 
