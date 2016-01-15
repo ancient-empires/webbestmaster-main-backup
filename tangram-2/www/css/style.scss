@@ -3,6 +3,11 @@
   src: url('../font/origram.otf');
 }
 
+@font-face {
+  font-family: 'icons';
+  src: url('../font/icomoon.ttf');
+}
+
 body {
   background-image: url(../i/main-bg.jpg);
   background-repeat: no-repeat;
@@ -74,7 +79,6 @@ body {
   padding: 0.7rem;
   background-color: #fff;
   text-align: center;
-  border-radius: 0.2rem;
   @extend .luxury-3d-Button;
 }
 
@@ -97,7 +101,6 @@ body {
   padding: 0.2rem;
   background-color: #fff;
   text-align: center;
-  border-radius: 0.2rem;
   @extend .luxury-3d-Button;
 }
 

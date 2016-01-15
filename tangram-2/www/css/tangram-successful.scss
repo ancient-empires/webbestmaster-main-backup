@@ -1,0 +1,36 @@
+.one-more-tangram-wrapper {
+  font-family: icons;
+}
+
+.one-more-tangram {
+  font-weight: bold;
+  position: absolute;
+  bottom: 2rem;
+  width: 3.5rem;
+  padding: 0.7rem;
+  background-color: #fff;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 2rem;
+  @extend .luxury-3d-Button;
+  left: 50%;
+}
+
+.one-more-tangram_left {
+  @extend .one-more-tangram;
+  margin-left: -9.05rem;
+}
+
+.one-more-tangram_center {
+  @extend .one-more-tangram;
+  margin-left: -2.45rem;
+}
+
+.one-more-tangram_right {
+  @extend .one-more-tangram;
+  margin-left: 4.15rem;
+}
+
+.one-more-tangram:active {
+  @extend .luxury-3d-Button_active;
+}

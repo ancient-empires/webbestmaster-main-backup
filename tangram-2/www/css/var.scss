@@ -24,6 +24,7 @@ $btnBgEnd: #f5f5f5;
 
 .luxury-3d-Button {
   box-shadow: $luxury3dVertical;
+  border-radius: 0.2rem;
   @include prefix-property(background-image, linear-gradient(top, $btnBgStart, $btnBgEnd));
 }
 
