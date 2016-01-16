@@ -21,6 +21,7 @@ var TangramView = BaseView.extend({
 		scroll: 'stopEvent',
 		'click .js-save-atoms': 'saveAtoms',
 		'click .js-tangram-menu-button': 'menu'
+		//'click .js-back-to-section': 'backToSection'
 	},
 
 	initialize: function (dataArg) {
@@ -117,28 +118,28 @@ var TangramView = BaseView.extend({
 
 	},
 
-/*
-	bindEventListeners: function () {
+	/*
+	 bindEventListeners: function () {
 
-		var view = this;
+	 var view = this;
 
-		//view.subscribe('tangram-view:drawPattern', view.drawPattern);
+	 //view.subscribe('tangram-view:drawPattern', view.drawPattern);
 
-	},
-*/
+	 },
+	 */
 
-/*
-	drawPattern: function (data) {
+	/*
+	 drawPattern: function (data) {
 
-		var view = this,
-			triangles = data.triangles,
-			scale = view.get('scale');
+	 var view = this,
+	 triangles = data.triangles,
+	 scale = view.get('scale');
 
-		console.log('drawPattern!!!!');
-		console.log(triangles);
+	 console.log('drawPattern!!!!');
+	 console.log(triangles);
 
-	},
-*/
+	 },
+	 */
 
 	detectScale: function (pattern) {
 
@@ -239,7 +240,6 @@ var TangramView = BaseView.extend({
 			cssClass: 'myClass',
 			name: 'tangram-menu',
 			data: {
-				dd: 55,
 				lang: lang
 			},
 			extraEvents: [
@@ -247,8 +247,27 @@ var TangramView = BaseView.extend({
 					selector: '.js-reset-tangram',
 					event: 'click',
 					fn: function () {
+
 						view.hide();
 						mediator.publish('tangram-view', tangramInfo);
+
+					}
+				},
+				{
+					selector: '.js-back-to-section',
+					event: 'click',
+					fn: function (e) {
+
+						e.stopPropagation();
+
+						view.hide();
+
+						var fragment = Backbone.history.fragment;
+						fragment = fragment.split('/');
+						fragment.pop();
+
+						BaseView.prototype.backTo(fragment.join('/'));
+
 					}
 				}
 			]
