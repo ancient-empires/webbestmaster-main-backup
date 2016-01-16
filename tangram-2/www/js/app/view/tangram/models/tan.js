@@ -3,6 +3,7 @@
 
 import Backbone from './../../../../lib/backbone';
 import mediator from './../../../../services/mediator';
+import info from './../../../../services/info';
 
 var Tan = Backbone.Model.extend({
 
@@ -365,7 +366,7 @@ var Tan = Backbone.Model.extend({
 			tanKey = tan.get('key'),
 			rotate,
 			coordinates,
-			margin = 10,
+			margin = info.get('remSize', true),
 			boxWidth = parseInt(drawNode.getAttribute('width'), 10),
 			boxHeight = parseInt(drawNode.getAttribute('height'), 10);
 
@@ -432,12 +433,15 @@ var Tan = Backbone.Model.extend({
 
 			case 'parallelogram':
 				//tan.set('rotate', -90);
+				tan.set('rotate', 45);
+				var parallelogramHeight = tan.getBoundingCoordinates().height;
+				tan.set('rotate', 0);
 				coordinates = tan.getBoundingCoordinates();
 				tan.move({
 					//dx: margin - coordinates.minX,
 					dx: boxWidth - coordinates.maxX - margin,
 					//dy: boxHeight / 2 - coordinates.maxY + coordinates.height / 2
-					dy: boxHeight - coordinates.maxY - margin * 4 - coordinates.height
+					dy: boxHeight - coordinates.maxY - margin * 4 - parallelogramHeight
 				});
 				break;
 
