@@ -152,7 +152,7 @@ PopupView = BaseView.extend({
 
 			if (onHide) {
 				context = onHide.context || view;
-				context[onHide.fn].apply(context, onHide.args);
+				context[onHide.fn].apply(context, onHide.args || []);
 			}
 
 			BaseView.prototype.hide.call(view);

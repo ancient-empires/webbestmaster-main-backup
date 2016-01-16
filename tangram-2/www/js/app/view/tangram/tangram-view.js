@@ -89,6 +89,8 @@ var TangramView = BaseView.extend({
 
 		view.$el.append(patternSvg);
 
+		view.set('$menuButton', view.$el.find('.js-tangram-menu-button'));
+
 		rotater.initialize({
 			parentView: view,
 			size: scale
@@ -233,14 +235,28 @@ var TangramView = BaseView.extend({
 
 	menu: function () {
 
+		var view = this;
+
+		return view.get('menu-is-open') ? view.hideMenu() : view.showMenu();
+
+	},
+
+	showMenu: function () {
+
 		var view = this,
 			tangramInfo = view.get('tangram-info');
+
+		view.set('menu-is-open', true);
 
 		view.showPopup({
 			cssClass: 'myClass',
 			name: 'tangram-menu',
 			data: {
 				lang: lang
+			},
+			onHide: {
+				fn: 'hideMenu',
+				context: view
 			},
 			extraEvents: [
 				{
@@ -273,6 +289,19 @@ var TangramView = BaseView.extend({
 			]
 
 		});
+
+		view.get('$menuButton').addClass('tangram-menu-button_active');
+
+	},
+
+	hideMenu: function () {
+
+		var view = this,
+			$menuButton = view.get('$menuButton');
+
+		mediator.publish('router-hide-popup');
+		view.set('menu-is-open', false);
+		return $menuButton && $menuButton.removeClass('tangram-menu-button_active');
 
 	}
 
