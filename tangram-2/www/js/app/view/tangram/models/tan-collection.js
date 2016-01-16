@@ -338,11 +338,12 @@ var TanCollection = Backbone.Collection.extend({
 
 	moveToBox: function (tan) {
 
-		var collection = this,
+		var fontSize = info.get('remSize', true),
+			collection = this,
 			maxX = collection.getData('maxX'),
 			maxY = collection.getData('maxY'),
 			minX = collection.getData('minX'),
-			minY = collection.getData('minY'),
+			minY = collection.getData('minY') + fontSize * 1.5,
 			dx = undefined,
 			dy = undefined,
 			coordinates = tan.getCoordinates();
