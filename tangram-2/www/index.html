@@ -74,7 +74,10 @@
 
 		<div class="scroll-area-container js-scroll-area-container">
 			<div class="scroll-area-content">
-				<p class="section-header ellipsis">{{= it.lang.get(it.sectionHeader) }}</p>
+				<div class="screen-back js-back">&#xf040;</div>
+				<div class="section-header-wrapper">
+					<p class="section-header ellipsis">{{= it.lang.get(it.sectionHeader) }}</p>
+				</div>
 				{{~ it.items :item:index }}
 					{{? item.name }}
 					<div class="section-preview" data-route="sections/{{= item.originalName }}">
