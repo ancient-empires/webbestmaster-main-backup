@@ -398,7 +398,7 @@ var Tan = Backbone.Model.extend({
 					dx: margin - coordinates.minX,
 					//dx: boxWidth - coordinates.maxX - margin,
 					//dy: boxHeight / 2 - coordinates.maxY + coordinates.height / 2
-					dy: boxHeight - coordinates.maxY - margin * 5 - coordinates.height
+					dy: boxHeight - coordinates.maxY - margin * 4 - coordinates.height
 				});
 				break;
 
@@ -791,12 +791,11 @@ var Tan = Backbone.Model.extend({
 
 	destroy: function () {
 
-		console.log('tan destroy');
-
 		var tan = this,
 			node = tan.get('node');
 
 		tan.unsubscribe();
+		mediator.uninstallFrom(tan);
 
 		node.parentNode.removeChild(node);
 

@@ -29,7 +29,7 @@ PopupView = BaseView.extend({
 
 	// timeout, cssClass, from,
 	// data {text, header ...},
-	// append$el, sound,
+	// sound,
 	// onShow {context, fn}, onHide {context, fn}
 
 		var view = this,
@@ -117,10 +117,10 @@ PopupView = BaseView.extend({
 	render: function () {
 
 		var view = this,
-			append$el = view.get('append$el'),
+			//append$el = view.get('append$el'),
 			data = view.get('data') || {},
 			sound = view.get('sound'),
-			$content = $(tm.get( [view.get('name')](data) )),
+			$content = $(tm.get(view.get('name'))(data)),
 			$container = view.$el.find(view.selectors.popupContainer),
 			onShow = view.get('onShow'),
 			context;
@@ -147,7 +147,8 @@ PopupView = BaseView.extend({
 		view.showOutAnimation().then(function () {
 
 			var onHide = view.get('onHide'),
-				context;
+				context,
+				deferred = view.get('deferred');
 
 			if (onHide) {
 				context = onHide.context || view;
@@ -156,7 +157,7 @@ PopupView = BaseView.extend({
 
 			BaseView.prototype.hide.call(view);
 
-			view.get('deferred').resolve();
+			deferred.resolve();
 
 		});
 

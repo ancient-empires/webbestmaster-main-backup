@@ -8,6 +8,7 @@ import RotaterModel from './rotater/rotater-model';
 import device from './../../../services/device';
 import log from './../../../services/log';
 import mediator from './../../../services/mediator';
+import lang from './../../../services/lang';
 import tangrams from './../../data/tangrams';
 import _ from './../../../lib/lodash';
 import tanCollection from './../tangram/models/tan-collection';
@@ -18,7 +19,8 @@ var TangramView = BaseView.extend({
 
 	events: {
 		scroll: 'stopEvent',
-		'click .js-save-atoms': 'saveAtoms'
+		'click .js-save-atoms': 'saveAtoms',
+		'click .js-tangram-menu-button': 'menu'
 	},
 
 	initialize: function (dataArg) {
@@ -46,7 +48,11 @@ var TangramView = BaseView.extend({
 			patternSvg,
 			name = data.name || 'person',
 			index = data.index || 0,
-			pattern = _.find(tangrams.data, {name: name}).data[index];
+			pattern = _.find(tangrams.data, {name: name}).data[index],
+			tangramInfo = {
+				name: name,
+				index: Number(index)
+			};
 
 		log(mode);
 
@@ -69,10 +75,8 @@ var TangramView = BaseView.extend({
 
 		//view.bindEventListeners();
 
-		tanCollection.setData('tangram-info', {
-			name: name,
-			index: Number(index)
-		});
+		tanCollection.setData('tangram-info', tangramInfo);
+		view.set('tangram-info', tangramInfo);
 
 		tanCollection.setScale(scale);
 		tanCollection.initPattern(pattern);
@@ -223,6 +227,33 @@ var TangramView = BaseView.extend({
 	saveAtoms: function () {
 
 		this.publish('tan-collection:saveAtoms');
+
+	},
+
+	menu: function () {
+
+		var view = this,
+			tangramInfo = view.get('tangram-info');
+
+		view.showPopup({
+			cssClass: 'myClass',
+			name: 'tangram-menu',
+			data: {
+				dd: 55,
+				lang: lang
+			},
+			extraEvents: [
+				{
+					selector: '.js-reset-tangram',
+					event: 'click',
+					fn: function () {
+						view.hide();
+						mediator.publish('tangram-view', tangramInfo);
+					}
+				}
+			]
+
+		});
 
 	}
 

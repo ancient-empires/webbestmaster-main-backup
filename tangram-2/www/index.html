@@ -117,7 +117,7 @@
 
 	<section class="screen">
 
-		<div class="tangram-menu-button">
+		<div class="tangram-menu-button js-tangram-menu-button">
 			<div class="tangram-menu-button-line_0">&nbsp;</div>
 			<div class="tangram-menu-button-line_1">&nbsp;</div>
 			<div class="tangram-menu-button-line_2">&nbsp;</div>
@@ -147,6 +147,14 @@
 
 </script>
 
+<script class="js-template" type="text/x-template" data-name="tangram-menu">
+
+	<h1 class="tangram-menu--header">{{= it.lang.get('menu') }}</h1>
+
+	<div class="screen--button js-reset-tangram">{{= it.lang.get('reset') }}</div>
+	<div class="screen--button js-back">{{= it.lang.get('exit') }}</div>
+
+</script>
 
 <!-- FW -->
 

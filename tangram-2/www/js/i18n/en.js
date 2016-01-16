@@ -20,6 +20,10 @@ var en = {
 
 	// tangram
 
+	menu: 'menu',
+	exit: 'exit',
+	reset: 'reset',
+
 		// title menu
 	'play-regular': 'play regular',
 	'play-master': 'play master',

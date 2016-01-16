@@ -242,6 +242,7 @@ var win = window,
 			view.empty();
 
 			view.unsubscribe();
+			mediator.uninstallFrom(view);
 
 			view.undelegateEvents();
 

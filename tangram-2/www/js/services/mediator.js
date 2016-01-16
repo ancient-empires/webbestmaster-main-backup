@@ -78,6 +78,12 @@ mediator = {
 		obj.subscribe = subscribe;
 		obj.publish = publish;
 		obj.unsubscribe = unsubscribe;
+	},
+	uninstallFrom: function (obj) {
+		['subscribe', 'publish', 'unsubscribe'].forEach(function (methodName) {
+			obj[methodName] = null;
+			delete obj[methodName];
+		});
 	}
 };
 

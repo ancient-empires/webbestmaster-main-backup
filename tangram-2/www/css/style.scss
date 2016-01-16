@@ -176,7 +176,11 @@ body {
   @extend .tangram-menu-button-line;
 }
 
-
+.tangram-menu--header {
+  text-align: center;
+  text-transform: capitalize;
+  padding-bottom: 1rem;
+}
 
 
 

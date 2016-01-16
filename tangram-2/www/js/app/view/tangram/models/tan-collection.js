@@ -201,12 +201,12 @@ var TanCollection = Backbone.Collection.extend({
 			isDone;
 
 
-/*
+
 		isDone = tangramAtoms.every(function (atomStr) {
 
 			if (answerAtoms.indexOf(atomStr) === -1) {
-				console.log(answerAtoms);
-				console.log(atomStr);
+				log(answerAtoms);
+				log(atomStr);
 			}
 
 			return answerAtoms.indexOf(atomStr) !== -1;
@@ -215,9 +215,8 @@ var TanCollection = Backbone.Collection.extend({
 		if (!isDone) {
 			return;
 		}
-*/
 
-		console.log('tangram is DONE');
+		log('tangram is DONE');
 
 		collection.unsubscribe('deviceAction:isActive');
 		collection.unsubscribe('deviceAction:dblTap');
@@ -719,6 +718,8 @@ var TanCollection = Backbone.Collection.extend({
 		rotater.destroy();
 
 		collection.unsubscribe();
+
+		mediator.uninstallFrom(collection);
 
 		collection.emptyData();
 

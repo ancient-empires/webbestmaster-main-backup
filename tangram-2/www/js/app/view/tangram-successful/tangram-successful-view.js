@@ -4,6 +4,7 @@
 import BaseView from './../core/base';
 import tm from './../../../services/template-master';
 import lang from './../../../services/lang';
+import mediator from './../../../services/mediator';
 import $ from './../../../lib/jbone';
 import _ from './../../../lib/lodash';
 import info from './../../../services/info';
@@ -81,12 +82,14 @@ var TangramSuccessfulView = BaseView.extend({
 			index = $node.attr('data-index'),
 			name = $node.attr('data-name');
 
-		view.publish('tangram-view', {
+		view.hide();
+
+		mediator.publish('hide-main-view');
+
+		mediator.publish('tangram-view', {
 			name: name,
 			index: index
 		});
-
-		view.hide();
 
 	}
 

@@ -231,6 +231,7 @@ var RotaterModel = Backbone.Model.extend({
 		var rotater = this;
 
 		rotater.unsubscribe();
+		mediator.uninstallFrom(rotater);
 
 		rotater.get('$rotater').off().remove();
 
