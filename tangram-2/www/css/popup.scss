@@ -51,7 +51,7 @@
 }
 
 .popup-show-in {
-  @include prefix(animation-duration, 0.5s);
+  @include prefix(animation-duration, 0.3s);
   @include prefix(animation-iteration-count, 1);
   @include prefix(animation-name, show-in);
   @include prefix(animation-fill-mode, forwards);

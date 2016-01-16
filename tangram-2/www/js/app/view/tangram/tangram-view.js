@@ -216,7 +216,7 @@ var TangramView = BaseView.extend({
 
 		scale = Math.round(scale * 0.75);
 
-		console.log(scale * 0.75);
+		log(scale * 0.75);
 
 		view.set('scale', scale);
 
