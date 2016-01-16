@@ -16,7 +16,7 @@ body {
 }
 
 .wrapper {
-  color: #333;
+  color: $textColor;
   font-family: HelveticaNeueCyr, "Helvetica Neue Light", "Lucida Grande", "Calibri", "Arial", sans-serif;
   line-height: 125%;
 }
@@ -139,3 +139,48 @@ body {
   z-index: 5;
   //background-color: rgba(0, 0, 0, 0.5);
 }
+
+// menu button
+.tangram-menu-button {
+  position: absolute;
+  width: 3rem;
+  height: 2.2rem;
+  top: 0.6rem;
+  left: 0.6rem;
+  z-index: 1;
+  opacity: 0.75;
+  @extend .luxury-3d-button;
+}
+
+.tangram-menu-button-line {
+  position: absolute;
+  width: 70%;
+  left: 15%;
+  height: 10%;
+  background-color: $textColor;
+  @include prefix(transition, all ease-out 0.3s);
+}
+
+.tangram-menu-button-line_0 {
+  top: 20%;
+  @extend .tangram-menu-button-line;
+}
+
+.tangram-menu-button-line_1 {
+  top: 45%;
+  @extend .tangram-menu-button-line;
+}
+
+.tangram-menu-button-line_2 {
+  top: 70%;
+  @extend .tangram-menu-button-line;
+}
+
+
+
+
+
+
+
+
+
