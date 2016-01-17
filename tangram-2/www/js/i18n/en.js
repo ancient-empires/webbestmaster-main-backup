@@ -27,13 +27,16 @@ var en = {
 		// title menu
 	'play-regular': 'play regular',
 	'play-master': 'play master',
-	'setting': 'setting',
-	'share': 'share',
+	//'share': 'share',
 
 		// sections
 	sections: 'sections',
 	tangram: 'tangram',
-	person: 'person'
+	person: 'person',
+
+	// settings
+
+	settings: 'settings'
 
 };
 

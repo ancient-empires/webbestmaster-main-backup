@@ -461,7 +461,7 @@ var win = window,
 		checkConnection: function () {
 
 			var deferred = $.Deferred(),
-				src = 'https://www.gstatic.com/android/market_images/web/play_one_bar_logo.png?t=' + Math.random(),
+				src = 'https://www.google.com/favicon.ico?t=' + Date.now(),
 				$img = $('<img alt=""/>');
 
 			$img.on('load', function () {

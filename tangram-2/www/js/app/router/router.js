@@ -1,13 +1,14 @@
 'use strict';
 /*global window */
 
+import mediator from './../../services/mediator';
 import Backbone from './../../lib/backbone';
 import _ from './../../lib/lodash';
 import BaseView from './../view/core/base';
 import HomeView from './../view/home/home-view';
 import TangramView from './../view/tangram/tangram-view';
 import SectionsView from './../view/sections/sections-view';
-import mediator from './../../services/mediator';
+import SettingsView from './../view/settings/settings-view';
 
 var win = window,
 	router,
@@ -18,6 +19,7 @@ var win = window,
 			'sections/:name/:index': 'tangram',
 			'sections/:name': 'section',
 			'sections': 'sections',
+			'settings': 'settings',
 			//'tangram': 'tangram',
 			'tangram-constructor': 'tangramConstructor'
 		},
@@ -28,6 +30,10 @@ var win = window,
 
 		sections: function () {
 			new SectionsView();
+		},
+
+		settings: function () {
+			new SettingsView();
 		},
 
 		section: function (name) {

@@ -56,8 +56,8 @@
 		<div class="screen--button-wrapper_split_second">
 			<div class="screen--button js-set-game-difficult" data-difficult="regular" >{{= it.lang.get('play-regular') }}</div>
 			<div class="screen--button js-set-game-difficult" data-difficult="master" >{{= it.lang.get('play-master') }}</div>
-			<div class="screen--button">{{= it.lang.get('setting') }}</div>
-			<div class="screen--button">{{= it.lang.get('share') }}</div>
+			<div class="screen--button" data-route="settings" >{{= it.lang.get('settings') }}</div>
+			<!--<div class="screen&#45;&#45;button">{{= it.lang.get('share') }}</div>-->
 		</div>
 
 		<!--<button data-route="tangram">to view</button>-->
@@ -157,6 +157,30 @@
 
 	<div class="screen--button js-reset-tangram">{{= it.lang.get('reset') }}</div>
 	<div class="screen--button js-back-to-section">{{= it.lang.get('exit') }}</div>
+
+</script>
+
+<script class="js-template" type="text/x-template" data-name="settings">
+
+	<section class="screen">
+
+		<div class="scroll-area-container js-scroll-area-container">
+			<div class="scroll-area-content">
+				<div class="screen-back js-back">&#xf040;</div>
+				<div class="section-header-wrapper">
+					<p class="section-header ellipsis">{{= it.lang.get('settings') }}</p>
+				</div>
+
+				<h1>settings page</h1>
+
+
+
+			</div>
+		</div>
+
+
+
+	</section>
 
 </script>
 
