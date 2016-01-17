@@ -96,6 +96,8 @@ var TangramView = BaseView.extend({
 			size: scale
 		});
 
+		view.subscribe('tangram-is-done', view.hideMenuButton);
+
 		view.render();
 
 		return BaseView.prototype.initialize.apply(view, arguments);
@@ -231,6 +233,10 @@ var TangramView = BaseView.extend({
 
 		this.publish('tan-collection:saveAtoms');
 
+	},
+
+	hideMenuButton: function () {
+		this.$el.find('.js-tangram-menu-button').addClass('tangram-menu-button_hidden');
 	},
 
 	menu: function () {

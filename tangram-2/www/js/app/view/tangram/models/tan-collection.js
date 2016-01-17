@@ -221,6 +221,7 @@ var TanCollection = Backbone.Collection.extend({
 		collection.unsubscribe('deviceAction:isActive');
 		collection.unsubscribe('deviceAction:dblTap');
 		collection.publish('rotater:deActivate');
+		collection.publish('tangram-is-done');
 		collection.deActiveAll();
 		collection.setData('success-view', new TangramSuccessfulView(collection.getData('tangram-info')));
 
