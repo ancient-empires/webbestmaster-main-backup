@@ -100,6 +100,8 @@ var RotaterModel = Backbone.Model.extend({
 		tan.set('rotate', rotater.get('startRotateTanAngle') + deltaAngle * isFlip);
 		tan.reDraw();
 
+		rotater.moveTo(tan.getCenterCoordinates());
+
 	},
 
 	connectTan: function (data) {
@@ -125,6 +127,7 @@ var RotaterModel = Backbone.Model.extend({
 			tanCenterXY = tan.getCenterCoordinates();
 
 		rotater.set({
+			angle: tan.get('rotate' || 0),
 			tanCenterX: tanCenterXY.x,
 			tanCenterY: tanCenterXY.y,
 			startRotatingCursorX: data.x,
@@ -159,9 +162,13 @@ var RotaterModel = Backbone.Model.extend({
 	moveTo: function (data) {
 
 		var rotater = this,
+			rotate = data.isFlip ? (180 - data.rotate) : data.rotate,
 			$rotater = rotater.get('$rotater');
 
-		$rotater.css(rotater.get('cssTransformName'), 'translate3d(' + data.x + 'px,' + data.y + 'px,0)');
+		$rotater.css(
+			rotater.get('cssTransformName'),
+			'translate3d(' + data.x + 'px,' + data.y + 'px,0) rotate(' + rotate + 'deg)'
+		);
 
 	},
 
@@ -223,6 +230,8 @@ var RotaterModel = Backbone.Model.extend({
 		tan.drawActiveDeActive(true);
 
 		tan.reDraw();
+
+		rotater.moveTo(tan.getCenterCoordinates());
 
 	},
 
