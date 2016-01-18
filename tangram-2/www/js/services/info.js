@@ -223,7 +223,8 @@ info = {
 
 				// extra - tangram
 				tangramTexture: 0,
-				gameDifficult: 'regular'
+				gameDifficult: 'regular',
+				doneTangrams: []
 				//screenAnimation: 'off',
 				//storyByStory: info.isNormal ? 'off' : 'on',
 				//hint: {}

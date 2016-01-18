@@ -4,6 +4,7 @@
 import BaseView from './../core/base';
 import tm from './../../../services/template-master';
 import lang from './../../../services/lang';
+import info from './../../../services/info';
 import tangrams from './../../data/tangrams';
 import tanCollection from './../tangram/models/tan-collection';
 import _ from './../../../lib/lodash';
@@ -29,7 +30,8 @@ var SectionsView = BaseView.extend({
 			sectionHeader: name || 'sections',
 			originalName: name || 'sections',
 			lang: lang,
-			items: items
+			items: items,
+			doneTangrams: info.get('doneTangrams')
 		}));
 
 		view.render();
@@ -60,6 +62,8 @@ var SectionsView = BaseView.extend({
 
 		return _.find(tangrams.data, {name: name}).data.map(function (figure) {
 			return {
+				hash: figure.hash,
+				//name: figure.name,
 				preview: view.createPreviewSection(figure.data)
 			};
 		});

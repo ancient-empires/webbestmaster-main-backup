@@ -84,9 +84,13 @@
 						<p class="section-preview-name ellipsis">{{= it.lang.get(item.name) }}</p>
 					</div>
 					{{??}}
-					<div class="section-preview" data-route="sections/{{= it.originalName }}/{{= index }}">
-						{{= item.preview.svgText }}
-					</div>
+					{{? it.doneTangrams.indexOf(item.hash) !== -1 }}
+						<div class="section-preview" data-route="sections/{{= it.originalName }}/{{= index }}"><div class="section-preview-tick">&#xf03a;</div>{{= item.preview.svgText }}</div>
+							{{??}}
+						<div class="section-preview" data-route="sections/{{= it.originalName }}/{{= index }}">
+							{{= item.preview.svgText }}
+						</div>
+					{{?}}
 					{{?}}
 				{{~}}
 			</div>

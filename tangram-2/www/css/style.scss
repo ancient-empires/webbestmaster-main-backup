@@ -103,11 +103,22 @@ body {
   padding: 0.2rem;
   background-color: #fff;
   text-align: center;
+  position: relative;
   @extend .luxury-3d-button;
 }
 
 .section-preview:active {
   @extend .luxury-3d-button_active;
+}
+
+.section-preview-tick {
+  font-family: icons;
+  position: absolute;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+  top: -0.2rem;
+  right: 0;
+  color: #0c0;
 }
 
 .section-preview-image {

@@ -58,6 +58,7 @@ var TangramView = BaseView.extend({
 
 		view.set(viewData);
 		tanCollection.setData(viewData);
+		tanCollection.setData('hash', pattern.hash);
 
 		// get test tangram
 		//var pattern = tangrams.data[0].data[0];
