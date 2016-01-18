@@ -63,7 +63,7 @@ button:focus {
 
 .ellipsis {
   white-space: nowrap;
-  overflow: hidden;
+  overflow-x: hidden;
   text-overflow: ellipsis;
   display: block;
   width: 100%;

@@ -36,7 +36,13 @@ var en = {
 
 	// settings
 
-	settings: 'settings'
+	settings: 'settings',
+	timer: 'timer',
+	sound: 'sound',
+	'tangram-texture': 'tangram texture',
+	about: 'about',
+	'e-mail': 'e-mail',
+	'other-apps': 'other-apps'
 
 };
 

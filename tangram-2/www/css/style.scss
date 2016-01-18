@@ -79,6 +79,8 @@ body {
   padding: 0.7rem;
   background-color: #fff;
   text-align: center;
+  font-size: 1rem;
+  line-height: 1.15rem;
   @extend .luxury-3d-button;
 }
 
@@ -123,12 +125,19 @@ body {
   @extend .luxury-3d-text;
   text-align: center;
   font-size: 2rem;
+  line-height: 3rem;
+  //@include prefix(box-sizing, border-box);
+}
+
+.section-sub-header {
+  font-size: 1.5rem;
   line-height: 2rem;
-  @include prefix(box-sizing, border-box);
+  padding-bottom: 0.3rem;
+  @extend .luxury-3d-text;
 }
 
 .section-header-wrapper {
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   margin: 0 3rem;
 }
 

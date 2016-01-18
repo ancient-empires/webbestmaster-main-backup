@@ -100,7 +100,7 @@
 				.pipe(gulp.dest('./dist/www/css'));
 		});
 
-		gulp.task('minify-css', /*['autoprefix'],*/ function () {
+		gulp.task('minify-css', ['sass'], function () { // autoprefix
 			return gulp.src('./dist/www/css/main.css')
 				.pipe(minifyCss())
 				.pipe(clean({force: true})) // remove original file (imported css)

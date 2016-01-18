@@ -59,7 +59,7 @@
 			<div class="screen--button" data-route="settings" >{{= it.lang.get('settings') }}</div>
 			<!--<div class="screen&#45;&#45;button">{{= it.lang.get('share') }}</div>-->
 
-			<div class="screen--button" data-route="tangram-constructor">constructor developers only</div>
+			<div class="screen--button" data-route="tangram-constructor">constructor (developers only)</div>
 
 		</div>
 
@@ -170,14 +170,33 @@
 					<p class="section-header ellipsis">{{= it.lang.get('settings') }}</p>
 				</div>
 
-				<h1>settings page</h1>
+				<div class="settings-section">
+					<div class="screen--button">{{= it.lang.get('timer') }}</div>
+					<div class="screen--button">{{= it.lang.get('sound') }}</div>
+				</div>
 
+				<div class="settings-section">
+					<div class="section-sub-header">{{= it.lang.get('tangram-texture') }}</div>
 
+					{{~ [0, 1, 2, 3, 4] :number}}
+					<div class="screen--button tangram-texture-preview" style="background-image: url(i/tangram-texture/texture-{{= number }}.jpg)">&nbsp;</div>
+					{{~}}
+
+				</div>
+
+				<div class="settings-section">
+					<div class="screen--button">{{= it.lang.get('other-apps') }}</div>
+					<div class="screen--button">{{= it.lang.get('about') }}</div>
+					<div class="screen--button">{{= it.lang.get('e-mail') }}</div>
+				</div>
+
+				<div class="settings-section">
+					<div class="screen--button">{{= it.lang.get('reset') }}</div>
+				</div>
 
 			</div>
+
 		</div>
-
-
 
 	</section>
 
