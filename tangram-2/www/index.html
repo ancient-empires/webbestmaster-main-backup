@@ -133,7 +133,7 @@
 
 		<svg>
 			<defs>
-				{{ var size = it.size, textureName = it.info.get('tangramTexture'), texturePath = 'i/tangram-texture/texture-' + textureName + '.jpg'; }}
+				{{ var size = it.size, textureName = it.info.get('tangramTexture'), texturePath = 'i/tangram-texture/' + textureName + '.jpg'; }}
 				<pattern id="default" width="{{= size }}px" height="{{= size }}px" patternUnits="userSpaceOnUse">
 					<image x="0" y="0" width="{{= size }}px" height="{{= size }}px" xlink:href="{{= texturePath }}"></image>
 				</pattern>
@@ -182,27 +182,35 @@
 
 					<div>{{= typeof tangramTexture }}</div>
 
-					{{~ [0, 1, 2, 3, 4] :number}}
+					<div class="tangram-texture-preview-wrapper self-to-stream">
+					{{~ [0, 1, 2, 3, 4, 5, 6, 7, 8] :number}}
 
-					{{? number === tangramTexture }}
-					<div data-index="{{= number }}" class="screen--button js-tangram-texture-preview tangram-texture-preview tangram-texture-preview_active" style="background-image: url(i/tangram-texture/texture-{{= number }}.jpg)">&nbsp;</div>
-					{{??}}
-					<div data-index="{{= number }}" class="screen--button js-tangram-texture-preview tangram-texture-preview" style="background-image: url(i/tangram-texture/texture-{{= number }}.jpg)">&nbsp;</div>
-					{{?}}
-
-					{{~}}
-
+						{{? number === tangramTexture }}
+								<div data-index="{{= number }}" class="screen--button js-tangram-texture-preview tangram-texture-preview tangram-texture-preview_active">
+									<img class="tangram-texture-preview-image" src="i/tangram-texture/{{= number }}.jpg" alt=""/>
+									<img class="tangram-texture-preview-frame" src="i/tangram-frame.svg" alt=""/>
+								</div>
+							{{??}}
+								<div data-index="{{= number }}" class="screen--button js-tangram-texture-preview tangram-texture-preview">
+									<img class="tangram-texture-preview-image" src="i/tangram-texture/{{= number }}.jpg" alt=""/>
+									<img class="tangram-texture-preview-frame" src="i/tangram-frame.svg" alt=""/>
+								</div>
+							{{?}}
+						{{~}}
+					</div>
 				</div>
 
-				<div class="settings-section">
+				<!--<div class="settings-section">-->
 					<!--<div class="screen&#45;&#45;button">{{= it.lang.get('other-apps') }}</div>-->
-					<div class="screen--button">{{= it.lang.get('about') }}</div>
+					<!--<div class="screen&#45;&#45;button">{{= it.lang.get('about') }}</div>-->
 					<!--<div class="screen&#45;&#45;button">{{= it.lang.get('e-mail') }}</div>-->
-				</div>
+				<!--</div>-->
 
+<!--
 				<div class="settings-section">
-					<div class="screen--button">{{= it.lang.get('reset') }}</div>
+					<div class="screen&#45;&#45;button">{{= it.lang.get('reset') }}</div>
 				</div>
+-->
 
 			</div>
 
