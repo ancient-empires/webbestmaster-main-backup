@@ -48,10 +48,6 @@
 
 	// clear distributive directory
 	gulp.task('clear-dist', function () {
-		var dir = 'i';
-		clean('./dist/www/' + dir, function (cd) {
-			cd();
-		});
 		return gulp.start.apply(gulp, clearTasks);
 	});
 
