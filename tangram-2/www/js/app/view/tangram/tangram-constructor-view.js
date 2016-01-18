@@ -4,6 +4,7 @@ import TanCollection from './models/tan-collection';
 import RotaterModel from './rotater/rotater-model';
 import device from './../../../services/device';
 import log from './../../../services/log';
+import info from './../../../services/info';
 import mediator from './../../../services/mediator';
 import lang from './../../../services/lang';
 import tangrams from './../../data/tangrams';
@@ -50,7 +51,8 @@ var TangramConstructorView = TangramView.extend({
 
 		view.setElement(tm.get('tangram')({
 			mode: 'constructor',
-			size: scale
+			size: scale,
+			info: info
 		}));
 
 		tanCollection.setScale(scale);

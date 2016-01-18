@@ -133,15 +133,13 @@
 
 		<svg>
 			<defs>
-				{{ var size = it.size; }}
+				{{ var size = it.size, textureName = it.info.get('tangramTexture'), texturePath = 'i/tangram-texture/texture-' + textureName + '.jpg'; }}
 				<pattern id="default" width="{{= size }}px" height="{{= size }}px" patternUnits="userSpaceOnUse">
-					<image x="0" y="0" width="{{= size }}px" height="{{= size }}px"
-						   xlink:href="images/square.jpg"></image>
+					<image x="0" y="0" width="{{= size }}px" height="{{= size }}px" xlink:href="{{= texturePath }}"></image>
 				</pattern>
 				<pattern id="triangle-medium-pattern" width="{{= size }}px" height="{{= size }}px"
 						 patternUnits="userSpaceOnUse" patternTransform="translate({{= size / 2 }}, 0) rotate(135)">
-					<image x="0" y="0" width="{{= size }}px" height="{{= size }}px"
-						   xlink:href="images/square.jpg"></image>
+					<image x="0" y="0" width="{{= size }}px" height="{{= size }}px" xlink:href="{{= texturePath }}"></image>
 				</pattern>
 			</defs>
 		</svg>
