@@ -137,22 +137,24 @@ var win = window,
 
 			view.attr = {};
 
-			view.setClassNames();
+			//view.setClassNames();
 
 			mediator.installTo(view);
 
 			return Backbone.View.prototype.constructor.apply(view, arguments);
 		},
 
+/*
 		setClassNames: function () {
 
-			this.classNames = {};
+			var classNames = this.classNames = {};
 
 			_.each(this.selectors, function (value, key) {
-				this[key] = value.replace(/\./g, ' ').trim();
-			}, this.classNames);
+				classNames[key] = value.replace(/\./g, ' ').trim();
+			});
 
 		},
+*/
 
 		getFullEventNameAndSelector: function (eventNameAndSelector) {
 

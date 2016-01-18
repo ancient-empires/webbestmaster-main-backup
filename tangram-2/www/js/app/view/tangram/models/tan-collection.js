@@ -482,19 +482,21 @@ var TanCollection = Backbone.Collection.extend({
 
 	createTans: function () {
 
+		var collection = this;
+
 		_.each(tansInfo, function (data, key) {
 			for (var i = 0, len = data.count; i < len; i += 1) {
-				this.add({
+				collection.add({
 					coordinates: data.coordinates,
 					parts: data.parts,
 					count: len,
-					scale: this.getData('scale'),
+					scale: collection.getData('scale'),
 					type: data.type,
 					patternId: data.patternId || null,
 					key: key
 				});
 			}
-		}, this);
+		});
 
 	},
 
