@@ -40,3 +40,6 @@ $textColor: #333;
   @include prefix-property(background-image, linear-gradient(top, $btnBgEnd, $btnBgStart));
 }
 
+.stroked-text {
+  text-shadow: 1px 1px 0 #f5f5f5, -1px -1px 0 #f5f5f5, 1px -1px 0 #f5f5f5, -1px 1px 0 #f5f5f5;
+}

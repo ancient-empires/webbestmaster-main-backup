@@ -31,7 +31,7 @@ var SectionsView = BaseView.extend({
 			originalName: name || 'sections',
 			lang: lang,
 			items: items,
-			doneTangrams: info.get('doneTangrams')
+			doneTangrams: info.getDoneTangrams()
 		}));
 
 		view.render();
@@ -42,17 +42,41 @@ var SectionsView = BaseView.extend({
 
 	getPrepareSections: function () {
 
-		var view = this;
+		var view = this,
+			getSectionInfo = view.getSectionInfo;
 
 		// img, name
 		return tangrams.data.map(function (section) {
-			var originalName = section.name;
-			return {
-				originalName: originalName,
-				name: lang.get(originalName),
-				preview: view.createPreviewSection(section.data[0].data)
-			};
+
+			var sectionInfo = getSectionInfo(section);
+			sectionInfo.preview = view.createPreviewSection(section.data[0].data);
+
+			return sectionInfo;
+
 		});
+
+	},
+
+	getSectionInfo: function (section) {
+
+		var originalName, sectionData, length, allDoneTangrams , doneTangrams;
+
+		originalName = section.name;
+		sectionData = section.data;
+		length = sectionData.length;
+
+		allDoneTangrams = info.getDoneTangrams();
+
+		doneTangrams = sectionData.filter(function (tangram) {
+			return allDoneTangrams.indexOf(tangram.hash) !== -1;
+		});
+
+		return {
+			originalName: originalName,
+			name: lang.get(originalName),
+			length: length,
+			doneTangrams: doneTangrams
+		}
 
 	},
 
@@ -67,7 +91,6 @@ var SectionsView = BaseView.extend({
 				preview: view.createPreviewSection(figure.data)
 			};
 		});
-
 
 	},
 

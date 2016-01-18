@@ -224,7 +224,8 @@ info = {
 				// extra - tangram
 				tangramTexture: 0,
 				gameDifficult: 'regular',
-				doneTangrams: []
+				doneTangramsRegular: [],
+				doneTangramsMaster: []
 				//screenAnimation: 'off',
 				//storyByStory: info.isNormal ? 'off' : 'on',
 				//hint: {}
@@ -265,6 +266,43 @@ info = {
 	getLinkToStore: function (type) { // pro or normal
 		return this.link[this.get('os', true)][type || 'normal'];
 		//return this.link[this.get('os', true)][type || (this.isNormal ? 'normal' : 'pro')];
+	},
+
+	// extra tangram
+
+	getDoneTangrams: function () {
+
+		var info = this,
+			gameDifficult = info.get('gameDifficult');
+
+		if (gameDifficult === 'regular') {
+			return info.get('doneTangramsRegular');
+		}
+
+		// master case
+		return info.get('doneTangramsMaster');
+
+	},
+
+	pushToDoneTangrams: function (hash) {
+
+		var info = this,
+			gameDifficult = info.get('gameDifficult'),
+			doneTangramsName,
+			doneTangrams;
+
+		if (gameDifficult === 'regular') {
+			doneTangramsName = 'doneTangramsRegular';
+		} else { // master case
+			doneTangramsName = 'doneTangramsMaster';
+		}
+
+		doneTangrams = info.get(doneTangramsName);
+
+		doneTangrams.push(hash);
+
+		info.set(doneTangramsName, doneTangrams);
+
 	}
 
 };

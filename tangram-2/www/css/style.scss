@@ -107,18 +107,29 @@ body {
   @extend .luxury-3d-button;
 }
 
+.section-preview-done-info {
+  font-size: .7rem;
+  line-height: .7rem;
+  text-align: right;
+  margin: -0.1rem 0 -0.4rem;
+  position: relative;
+  z-index: 1;
+  @extend .stroked-text;
+}
+
 .section-preview:active {
   @extend .luxury-3d-button_active;
 }
 
 .section-preview-tick {
-  font-family: icons;
-  position: absolute;
+  @extend .section-preview-done-info;
   font-size: 1.2rem;
   line-height: 1.2rem;
-  top: -0.2rem;
-  right: 0;
-  color: #0c0;
+  font-family: icons;
+}
+
+.section-preview-no-tick {
+  opacity: 0;
 }
 
 .section-preview-image {

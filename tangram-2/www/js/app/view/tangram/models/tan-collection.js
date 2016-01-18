@@ -198,9 +198,7 @@ var TanCollection = Backbone.Collection.extend({
 		var collection = this,
 			tangramAtoms = collection.prepareToEquals(collection.getTangramAtoms()),
 			answerAtoms = collection.prepareToEquals(collection.getAnswerAtoms()),
-			isDone,
-			hash,
-			doneTangrams;
+			isDone;
 
 		isDone = tangramAtoms.every(function (atomStr) {
 
@@ -218,9 +216,7 @@ var TanCollection = Backbone.Collection.extend({
 
 		log('tangram is DONE');
 
-		doneTangrams = info.get('doneTangrams');
-		doneTangrams.push(collection.getData('hash'));
-		info.set('doneTangrams', doneTangrams);
+		info.pushToDoneTangrams(collection.getData('hash'));
 
 		collection.unsubscribe('deviceAction:isActive');
 		collection.unsubscribe('deviceAction:dblTap');
