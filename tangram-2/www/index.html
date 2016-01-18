@@ -178,8 +178,18 @@
 				<div class="settings-section">
 					<div class="section-sub-header">{{= it.lang.get('tangram-texture') }}</div>
 
+					{{var tangramTexture = Number(it.info.get('tangramTexture')); }}
+
+					<div>{{= typeof tangramTexture }}</div>
+
 					{{~ [0, 1, 2, 3, 4] :number}}
-					<div class="screen--button tangram-texture-preview" style="background-image: url(i/tangram-texture/texture-{{= number }}.jpg)">&nbsp;</div>
+
+					{{? number === tangramTexture }}
+					<div data-index="{{= number }}" class="screen--button js-tangram-texture-preview tangram-texture-preview tangram-texture-preview_active" style="background-image: url(i/tangram-texture/texture-{{= number }}.jpg)">&nbsp;</div>
+					{{??}}
+					<div data-index="{{= number }}" class="screen--button js-tangram-texture-preview tangram-texture-preview" style="background-image: url(i/tangram-texture/texture-{{= number }}.jpg)">&nbsp;</div>
+					{{?}}
+
 					{{~}}
 
 				</div>

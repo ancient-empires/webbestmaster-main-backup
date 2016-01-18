@@ -218,9 +218,12 @@ info = {
 
 		var info = this,
 			defaultSettings = {
-				versionCode: 1,
 				screenAnimation: info.get('isAndroid', true) ? 'off' : 'on',
-				gameDifficult: 'regular',
+				installTime: Date.now(),
+
+				// extra - tangram
+				tangramTexture: 0,
+				gameDifficult: 'regular'
 				//screenAnimation: 'off',
 				//storyByStory: info.isNormal ? 'off' : 'on',
 				//hint: {}
@@ -236,7 +239,6 @@ info = {
 				//unitAnimation: 'off',
 				//difficult: 'easy', // easy, normal, hard
 				//gameSpeed: '3' // 1..5, use string type
-				installTime: Date.now()
 			},
 			key,
 			value;

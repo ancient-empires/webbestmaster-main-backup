@@ -27,6 +27,11 @@
   height: 6.5rem;
   margin: 0.8rem;
   @extend .tangram-texture-item;
+  opacity: 0.5;
+}
+
+.tangram-texture-preview_active {
+  opacity: 1;
 }
 
 .tangram-texture-preview:after {
