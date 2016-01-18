@@ -50,7 +50,7 @@
 	gulp.task('clear-dist', function () {
 		var dir = 'i';
 		clean('./dist/www/' + dir, function (cd) {
-			console.log(cd);
+			cd();
 		});
 		return gulp.start.apply(gulp, clearTasks);
 	});
