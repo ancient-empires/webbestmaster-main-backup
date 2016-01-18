@@ -40,9 +40,9 @@ var en = {
 	//timer: 'timer',
 	//sound: 'sound',
 	'tangram-texture': 'tangram texture',
-	about: 'about',
-	'e-mail': 'e-mail',
-	'other-apps': 'other apps'
+	about: 'about'
+	//'e-mail': 'e-mail',
+	//'other-apps': 'other apps'
 
 };
 
