@@ -8,10 +8,7 @@ import mediator from './../../../services/mediator';
 import lang from './../../../services/lang';
 import tangrams from './../../data/tangrams';
 import _ from './../../../lib/lodash';
-import tanCollection from './../tangram/models/tan-collection';
 import TangramView from './tangram-view';
-
-var tanCollectionProto = tanCollection.prototype;
 
 var TangramConstructorView = TangramView.extend({
 
