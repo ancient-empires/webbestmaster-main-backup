@@ -19,7 +19,7 @@ var TangramView = BaseView.extend({
 
 	events: {
 		scroll: 'stopEvent',
-		'click .js-save-atoms': 'saveAtoms',
+		//'click .js-save-atoms': 'saveAtoms',
 		'click .js-tangram-menu-button': 'menu'
 		//'click .js-back-to-section': 'backToSection'
 	},
@@ -30,7 +30,6 @@ var TangramView = BaseView.extend({
 			data = dataArg || {},
 			tanCollection = new TanCollection(),
 			rotater = new RotaterModel(),
-			mode = data.mode || 'normal',
 			scale,
 			minX = 0,
 			minY = 0,
@@ -55,10 +54,6 @@ var TangramView = BaseView.extend({
 				index: Number(index)
 			};
 
-		log(mode);
-
-		view.set('mode', mode);
-
 		view.set('tan-collection', tanCollection);
 
 		view.set(viewData);
@@ -70,7 +65,6 @@ var TangramView = BaseView.extend({
 		scale = view.detectScale(pattern);
 
 		view.setElement(tm.get('tangram')({
-			mode: mode,
 			size: scale
 		}));
 
@@ -165,18 +159,7 @@ var TangramView = BaseView.extend({
 			patterSizeY,
 			scale,
 			atomToTriangle = tanCollectionProto.atomToTriangle,
-			minScreenSize = device.get('minScreenSize'),
-			spaceSize = (maxX - minX) * (maxY - minY);
-
-		if (view.get('mode') === 'constructor') {
-
-			scale = Math.round(Math.sqrt(spaceSize / minScreenSize) * 150);
-
-			view.set('scale', scale);
-
-			return scale;
-
-		}
+			minScreenSize = device.get('minScreenSize');
 
 		atoms.forEach(function (atom) {
 
@@ -226,12 +209,6 @@ var TangramView = BaseView.extend({
 		view.set('scale', scale);
 
 		return scale;
-
-	},
-
-	saveAtoms: function () {
-
-		this.publish('tan-collection:saveAtoms');
 
 	},
 
