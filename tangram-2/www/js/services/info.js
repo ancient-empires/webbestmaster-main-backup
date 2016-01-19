@@ -284,7 +284,13 @@ info = {
 
 	},
 
-	pushToDoneTangrams: function (hash) {
+/*
+	getDoneTangramsHash: function () {
+
+	},
+*/
+
+	pushToDoneTangrams: function (data) {
 
 		var info = this,
 			gameDifficult = info.get('gameDifficult'),
@@ -299,7 +305,7 @@ info = {
 
 		doneTangrams = info.get(doneTangramsName);
 
-		doneTangrams.push(hash);
+		doneTangrams.push(data);
 
 		info.set(doneTangramsName, doneTangrams);
 

@@ -26,7 +26,10 @@ var tansInfo = {
 	},
 	'triangleMedium': {
 		count: 1,
-		coordinates: [{x: 0.5, y: 0}, {x: 0.5 + 0.5 / Math.SQRT2, y: 0.5 / Math.SQRT2}, {x: 0.5 - 0.5 / Math.SQRT2, y: 0.5 / Math.SQRT2}],
+		coordinates: [{x: 0.5, y: 0}, {x: 0.5 + 0.5 / Math.SQRT2, y: 0.5 / Math.SQRT2}, {
+			x: 0.5 - 0.5 / Math.SQRT2,
+			y: 0.5 / Math.SQRT2
+		}],
 		parts: 2,
 		type: 'triangle-medium',
 		patternId: 'triangle-medium-pattern'
@@ -216,7 +219,10 @@ var TanCollection = Backbone.Collection.extend({
 
 		log('tangram is DONE');
 
-		info.pushToDoneTangrams(collection.getData('hash'));
+		info.pushToDoneTangrams({
+			hash: collection.getData('hash'),
+			figure: collection.saveFigures()
+		});
 
 		collection.unsubscribe('deviceAction:isActive');
 		collection.unsubscribe('deviceAction:dblTap');
@@ -224,6 +230,30 @@ var TanCollection = Backbone.Collection.extend({
 		collection.publish('tangram-is-done');
 		collection.deActiveAll();
 		collection.setData('success-view', new TangramSuccessfulView(collection.getData('tangram-info')));
+
+	},
+
+	saveFigures: function () {
+
+		var collection = this,
+			strictNumber = collection.strictNumber,
+			data = [],
+			scale = collection.getData('scale');
+
+		collection.each(function (tan) {
+			data.push(
+				tan
+					.getCoordinates()
+					.map(function (xy) {
+						return {
+							x: strictNumber(xy.x / scale),
+							y: strictNumber(xy.y / scale)
+						}
+					})
+			);
+		});
+
+		return data;
 
 	},
 

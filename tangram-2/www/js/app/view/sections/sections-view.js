@@ -59,7 +59,7 @@ var SectionsView = BaseView.extend({
 
 	getSectionInfo: function (section) {
 
-		var originalName, sectionData, length, allDoneTangrams , doneTangrams;
+		var originalName, sectionData, length, allDoneTangrams, doneTangramsHashs;
 
 		originalName = section.name;
 		sectionData = section.data;
@@ -67,30 +67,144 @@ var SectionsView = BaseView.extend({
 
 		allDoneTangrams = info.getDoneTangrams();
 
-		doneTangrams = sectionData.filter(function (tangram) {
-			return allDoneTangrams.indexOf(tangram.hash) !== -1;
+		doneTangramsHashs = sectionData.filter(function (tangram) {
+			return _.find(allDoneTangrams, {hash: tangram.hash});
 		});
 
 		return {
 			originalName: originalName,
 			name: lang.get(originalName),
 			length: length,
-			doneTangrams: doneTangrams
+			doneTangramsHashs: doneTangramsHashs
 		}
 
 	},
 
 	getPrepareSection: function (name) {
 
-		var view = this;
+		var view = this,
+			doneTangramsHashs = info.getDoneTangrams().map(function (data) {
+				return data.hash;
+			});
 
 		return _.find(tangrams.data, {name: name}).data.map(function (figure) {
+			var hash = figure.hash;
+
+			if (doneTangramsHashs.indexOf(hash) !== -1) {
+				return {
+					hash: hash,
+					tick: true,
+					//name: figure.name,
+					preview: view.createDoneTangramPreviewSection(hash)
+				};
+			}
+
 			return {
-				hash: figure.hash,
+				hash: hash,
 				//name: figure.name,
 				preview: view.createPreviewSection(figure.data)
 			};
 		});
+
+	},
+
+	createDoneTangramPreviewSection: function (hash) {
+
+		var tempDiv = document.createElement('div'),
+			view = this,
+			doneTangramsHashs = info.getDoneTangrams(),
+			data = _.find(doneTangramsHashs, {hash: hash}),
+			figure = data.figure,
+			patternDeltaX,
+			patternDeltaY,
+			size = 2.5,
+			viewSizeX = size,
+			viewSizeY = size,
+			patternSizeX,
+			patternSizeY,
+			patternMaxX = -Infinity,
+			patternMaxY = -Infinity,
+			patternMinX = Infinity,
+			patternMinY = Infinity,
+			svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+			svgAttributes = {
+				x: '0px',
+				y: '0px',
+				width: size + 'px',
+				height: size + 'px',
+				viewBox: [0, 0, size, size].join(' '),
+				'class': 'section-preview-image'
+			},
+			polygonAttributes = {
+				fill: '#333',
+				stroke: '#f5f5f5',
+				'stroke-width': '0.03px'
+			},
+			coordinatesToPolygon = tanCollectionProto.coordinatesToPolygon;
+
+
+		figure.forEach(function (tan) {
+
+			tan.forEach(function (xy) {
+
+				var x = xy.x,
+					y = xy.y;
+
+				if (x > patternMaxX) {
+					patternMaxX = x;
+				}
+
+				if (y > patternMaxY) {
+					patternMaxY = y;
+				}
+
+				if (x < patternMinX) {
+					patternMinX = x;
+				}
+
+				if (y < patternMinY) {
+					patternMinY = y;
+				}
+
+			});
+
+		});
+
+
+		patternSizeX = patternMaxX + patternMinX;
+		patternSizeY = patternMaxY + patternMinY;
+
+		patternDeltaX = (viewSizeX - patternSizeX) / 2;
+		patternDeltaY = (viewSizeY - patternSizeY) / 2;
+
+		figure = figure.map(function (tan) {
+			return tan.map(function (xy) {
+				return {
+					x: xy.x + patternDeltaX,
+					y: xy.y + patternDeltaY
+				}
+			});
+		});
+
+		Object.keys(svgAttributes).forEach(function (key) {
+			var attr = document.createAttribute(key);
+			attr.value = svgAttributes[key];
+			svg.setAttributeNode(attr);
+		});
+
+		figure.forEach(function (tan) {
+			var polygon = coordinatesToPolygon(tan, polygonAttributes);
+			svg.appendChild(polygon);
+		});
+
+		tempDiv.appendChild(svg);
+
+		return {
+			svg: svg,
+			svgText: tempDiv.innerHTML
+		};
+
+
 
 	},
 

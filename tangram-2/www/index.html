@@ -80,12 +80,12 @@
 				{{~ it.items :item:index }}
 					{{? item.name }}
 					<div class="section-preview" data-route="sections/{{= item.originalName }}">
-						<div class="section-preview-done-info">{{= item.doneTangrams.length }} / {{= item.length }}</div>
+						<div class="section-preview-done-info">{{= item.doneTangramsHashs.length }} / {{= item.length }}</div>
 						{{= item.preview.svgText }}
 						<p class="section-preview-name ellipsis">{{= it.lang.get(item.name) }}</p>
 					</div>
 					{{??}}
-						{{? it.doneTangrams.indexOf(item.hash) !== -1 }}
+						{{? item.tick }}
 							<div class="section-preview" data-route="sections/{{= it.originalName }}/{{= index }}"><div class="section-preview-tick">&#xf03a;</div>{{= item.preview.svgText }}</div>
 								{{??}}
 							<div class="section-preview" data-route="sections/{{= it.originalName }}/{{= index }}"><div class="section-preview-tick section-preview-no-tick">&#xf03a;</div>{{= item.preview.svgText }}
