@@ -15,9 +15,24 @@
 	<meta name="description" content="">
 
 </head>
-<body>
+<body onload="webGLStart();">
+	<h1>http://devburn.ru/webgl-%D1%83%D1%80%D0%BE%D0%BA-1-%D1%82%D1%80%D0%B5%D1%83%D0%B3%D0%BE%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA-%D0%B8-%D0%BA%D0%B2%D0%B0%D0%B4%D1%80%D0%B0%D1%82/</h1>
+	<canvas id="lesson01-canvas" style="border: none;" width="500" height="500"></canvas>
 
-<h1><a href="http://devburn.ru/%D1%83%D1%80%D0%BE%D0%BA%D0%B8-webgl/" target="_blank">link to lessons</a></h1>
+	<script>
+
+		function webGLStart() {
+			var canvas = document.getElementById("lesson01-canvas");
+			initGL(canvas);
+			initShaders();
+			initBuffers();
+
+			gl.clearColor(0.0, 0.0, 0.0, 1.0);
+			gl.enable(gl.DEPTH_TEST);
+
+			drawScene();
+		}
+	</script>
 
 
 </body>
