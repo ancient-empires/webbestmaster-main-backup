@@ -431,7 +431,13 @@ var TanCollection = Backbone.Collection.extend({
 			if (tan === alignTan) {
 				return;
 			}
+
+			if (!tan.getLastAccept()) { // do not catch not activeted tans
+				return;
+			}
+
 			otherTansCoordinates = otherTansCoordinates.concat(tan.getAlignCoordinates());
+
 		});
 
 		otherTansCoordinates.forEach(function (otherXY) {
@@ -522,7 +528,7 @@ var TanCollection = Backbone.Collection.extend({
 					count: len,
 					scale: collection.getData('scale'),
 					type: data.type,
-					patternId: data.patternId || null,
+					patternId: data.patternId || 'default', // tan.nodeAttributes.patternId
 					key: key
 				});
 			}

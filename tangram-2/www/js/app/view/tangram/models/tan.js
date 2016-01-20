@@ -538,7 +538,7 @@ var Tan = Backbone.Model.extend({
 		Object.keys(nodeAttributes).forEach(function (key) {
 			var attr = document.createAttribute(key);
 			if (key === 'fill') {
-				attr.value = 'url(#' + (tan.get('patternId') || nodeAttributes[key]) + ')';
+				attr.value = 'url(#' + tan.get('patternId') + ')';
 			} else {
 				attr.value = nodeAttributes[key];
 			}
