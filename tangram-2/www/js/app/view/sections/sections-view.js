@@ -68,7 +68,10 @@ var SectionsView = BaseView.extend({
 		allDoneTangrams = info.getDoneTangrams();
 
 		doneTangramsHashs = sectionData.filter(function (tangram) {
-			return _.find(allDoneTangrams, {hash: tangram.hash});
+			// _.find(allDoneTangrams, {hash: doneTangram.hash}) - is not work
+			return _.find(allDoneTangrams, function (doneTangram) {
+				return tangram.hash === doneTangram.hash;
+			});
 		});
 
 		return {
@@ -203,7 +206,6 @@ var SectionsView = BaseView.extend({
 			svg: svg,
 			svgText: tempDiv.innerHTML
 		};
-
 
 
 	},
