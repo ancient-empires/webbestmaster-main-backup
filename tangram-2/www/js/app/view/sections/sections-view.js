@@ -90,7 +90,10 @@ var SectionsView = BaseView.extend({
 				return data.hash;
 			});
 
-		return _.find(tangrams.data, {name: name}).data.map(function (figure) {
+		return _.find(tangrams.data, function (data) {
+			//{name: name}
+			return data.name === name;
+		}).data.map(function (figure) {
 			var hash = figure.hash;
 
 			if (doneTangramsHashs.indexOf(hash) !== -1) {
@@ -116,7 +119,10 @@ var SectionsView = BaseView.extend({
 		var tempDiv = document.createElement('div'),
 			view = this,
 			doneTangramsHashs = info.getDoneTangrams(),
-			data = _.find(doneTangramsHashs, {hash: hash}),
+			data = _.find(doneTangramsHashs, function (data) {
+				// {hash: hash}
+				return data.hash === hash;
+			}),
 			figure = data.figure,
 			patternDeltaX,
 			patternDeltaY,

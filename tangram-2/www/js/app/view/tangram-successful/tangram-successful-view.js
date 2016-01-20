@@ -40,7 +40,11 @@ var TangramSuccessfulView = BaseView.extend({
 	getSectionInfo: function (data) {
 
 		var view = this,
-			section = _.find(tangrams.data, {name: data.name}),
+			name = data.name,
+			section = _.find(tangrams.data, function (data) {
+				// {name: name}
+				return data.name === name;
+			}),
 			sectionLength = section.data.length,
 			nextIndex,
 			prevIndex,

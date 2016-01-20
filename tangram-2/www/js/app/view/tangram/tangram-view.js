@@ -48,7 +48,10 @@ var TangramView = BaseView.extend({
 			patternSvg,
 			name = data.name || 'person',
 			index = data.index || 0,
-			pattern = _.find(tangrams.data, {name: name}).data[index],
+			pattern = _.find(tangrams.data, function (data) {
+				// {name: name}
+				return data.name === name;
+			}).data[index],
 			tangramInfo = {
 				name: name,
 				index: Number(index)
