@@ -515,8 +515,21 @@ var TanCollection = Backbone.Collection.extend({
 	},
 
 	setScale: function (scale) {
-		this.setData('maxAlignPath', scale / 10);
-		this.setData('scale', scale);
+
+		var collection = this,
+			maxAlignPath;
+
+		if (collection.getData('mode') === 'constructor') {
+			maxAlignPath = scale / 3;
+		} else {
+			maxAlignPath = scale / 10;
+		}
+
+		collection.setData({
+			maxAlignPath: maxAlignPath,
+			scale: scale
+		});
+
 	},
 
 	createTans: function () {
