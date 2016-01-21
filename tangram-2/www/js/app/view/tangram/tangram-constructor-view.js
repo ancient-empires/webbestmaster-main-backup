@@ -55,6 +55,8 @@ var TangramConstructorView = TangramView.extend({
 			info: info
 		}));
 
+		tanCollection.setData('mode', 'constructor');
+
 		tanCollection.setScale(scale);
 		tanCollection.initPattern({
 			data: []

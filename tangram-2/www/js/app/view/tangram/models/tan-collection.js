@@ -421,19 +421,22 @@ var TanCollection = Backbone.Collection.extend({
 			align = {},
 			minPath = Infinity,
 			otherTansCoordinates = [],
-			pow = Math.pow.bind(Math);
+			pow = Math.pow.bind(Math),
+			isConstructorMode = collection.getData('mode') === 'constructor';
 
 		if (info.get('gameDifficult') === 'regular') {
 			otherTansCoordinates = otherTansCoordinates.concat(initedPatternAlignPoints);
 		}
 
 		collection.each(function (tan) {
+
 			if (tan === alignTan) {
 				return;
 			}
 
-			if (!tan.getLastAccept()) { // do not catch not activeted tans
-				return;
+									// do not catch not activeted tans
+			if (!isConstructorMode && !tan.getLastAccept()) {
+				return
 			}
 
 			otherTansCoordinates = otherTansCoordinates.concat(tan.getAlignCoordinates());
