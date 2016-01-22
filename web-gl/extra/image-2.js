@@ -77,7 +77,7 @@
 		gl.enableVertexAttribArray(vertexTextureAttribute);
 
 		var scale = gl.getUniformLocation(shaderProgram, 'scale');
-		var solidColor = gl.getUniformLocation(shaderProgram, 'solid_color');
+		//var solidColor = gl.getUniformLocation(shaderProgram, 'solid_color');
 		shaderProgram.samplerUniform = gl.getUniformLocation(shaderProgram, "uSampler");
 
 		// init shaders - end
@@ -136,9 +136,6 @@
 		imageTexture.image.onload = function () {
 			handleLoadedTexture(gl, imageTexture);
 
-
-
-
 			gl.viewport(0, 0, glViewportWidth, glViewportHeight);
 			gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
@@ -156,11 +153,11 @@
 			//	gl.uniformMatrix4fv(pMatrixUniform, false, pMatrix);
 			//	gl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
 			gl.uniform1f(scale, 1);
-			gl.uniform4f(solidColor, 1, 0, 1, 0.5);
+			//gl.uniform4f(solidColor, 1, 0, 1, 0.5);
 			gl.drawArrays(gl.TRIANGLE_STRIP, 0, numItems);
 
 		};
-		imageTexture.image.src = "../image/nehe.gif";
+		imageTexture.image.src = "../image/logo.png";
 
 
 /*
