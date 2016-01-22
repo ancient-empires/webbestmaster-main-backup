@@ -426,8 +426,7 @@ var TanCollection = Backbone.Collection.extend({
 			align = {},
 			minPath = Infinity,
 			otherTansCoordinates = [],
-			pow = Math.pow.bind(Math),
-			isConstructorMode = collection.getData('mode') === 'constructor';
+			pow = Math.pow.bind(Math);
 
 		if (info.get('gameDifficult') === 'regular') {
 			otherTansCoordinates = otherTansCoordinates.concat(initedPatternAlignPoints);
@@ -435,16 +434,20 @@ var TanCollection = Backbone.Collection.extend({
 
 		collection.each(function (tan) {
 
+			var addedCoordinates;
+
 			if (tan === alignTan) {
 				return;
 			}
 
-									// do not catch not activeted tans
-			if (!isConstructorMode && !tan.getLastAccept()) {
-				return
+			// do not catch not activeted tans
+			if (tan.getLastAccept()) {
+				addedCoordinates = tan.getAlignCoordinates();
+			} else {
+				addedCoordinates = [{x: 0, y: 0}];
 			}
 
-			otherTansCoordinates = otherTansCoordinates.concat(tan.getAlignCoordinates());
+			otherTansCoordinates = otherTansCoordinates.concat(addedCoordinates);
 
 		});
 
