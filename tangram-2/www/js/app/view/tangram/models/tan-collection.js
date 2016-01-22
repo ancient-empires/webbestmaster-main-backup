@@ -329,7 +329,7 @@ var TanCollection = Backbone.Collection.extend({
 			tangramName = $('.js-saved-atoms-name').val().trim(),
 			result = JSON.stringify({name: tangramName, hash: tangramHash, data: tangramAtoms});
 
-		console.log(result);
+		console.log(result + ',\n');
 
 	},
 
