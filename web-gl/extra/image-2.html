@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+	<!-- mobile device -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- do not call phone -->
+	<meta name="format-detection" content="telephone=no">
+
+	<script src="image-2.js" type="text/javascript"></script>
+
+</head>
+<body>
+
+<script class="js-shader-vertex" type="text/x-template">
+	attribute vec3 aVertexPosition;
+	attribute vec2 aTextureCoord;
+
+	varying vec2 vTextureCoord;
+
+	void main(void) {
+	gl_Position = vec4(aVertexPosition, 1.0);
+	vTextureCoord = aTextureCoord;
+	}
+</script>
+
+<script class="js-shader-fragment" type="text/x-template">
+	precision mediump float;
+
+	varying vec2 vTextureCoord;
+
+	uniform sampler2D uSampler;
+
+	void main(void) {
+	gl_FragColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t ));
+	}
+
+</script>
+
+<canvas id="canvas" width="400" height="300"></canvas>
+
+</body>
+</html>
