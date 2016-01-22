@@ -339,7 +339,12 @@ var TanCollection = Backbone.Collection.extend({
 			rotater = collection.getData('rotater'),
 			hoveredTan = collection.getHoveredTan(data);
 
-		return hoveredTan && rotater.get('tan') === hoveredTan && hoveredTan.flip();
+		if (hoveredTan && rotater.get('tan') === hoveredTan) {
+			hoveredTan.flip();
+			collection.align({
+				tan: hoveredTan
+			});
+		}
 
 	},
 
