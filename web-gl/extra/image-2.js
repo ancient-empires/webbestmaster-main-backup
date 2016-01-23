@@ -127,7 +127,10 @@
 		// init buffer - end
 
 		// small preparing
-		gl.clearColor(0.0, 0.0, 0.0, 1.0);
+		gl.enable(gl.BLEND); // enable alpha channel
+		gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA); // do not know, but need for alpha channel
+
+		gl.clearColor(0.0, 0.0, 0.0, 1.0); // clear canvas
 		gl.enable(gl.DEPTH_TEST);
 
 		// get texture
