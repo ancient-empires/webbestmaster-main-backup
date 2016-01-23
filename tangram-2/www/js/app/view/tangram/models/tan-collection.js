@@ -255,7 +255,7 @@ var TanCollection = Backbone.Collection.extend({
 				return true;
 			}
 
-			if ((Math.abs(atom[0] - testAtom[0]) + Math.abs(atom[1] - testAtom[1])) < 0.1) {
+			if ((Math.abs(atom[0] - testAtom[0]) + Math.abs(atom[1] - testAtom[1])) < 0.01) {
 				isIn = true;
 				return false;
 			}
@@ -396,6 +396,11 @@ var TanCollection = Backbone.Collection.extend({
 
 		alignData = collection.getAlignData(data);
 
+		if (!alignData) {
+			log('no align data');
+			return;
+		}
+
 		if (alignData.pathSize > maxAlignPath) {
 			return;
 		}
@@ -459,7 +464,7 @@ var TanCollection = Backbone.Collection.extend({
 			alignTan = data.tan,
 			alignTanCoordinates = alignTan.getAlignCoordinates(),
 			initedPattern = collection.getData('initedPattern'),
-			align = {},
+			align,
 			minPath = Infinity,
 			otherTansCoordinates = [],
 			pow = Math.pow.bind(Math),
@@ -482,12 +487,11 @@ var TanCollection = Backbone.Collection.extend({
 				}
 
 				// do not catch not activeted tans
-				if (tan.getLastAccept()) {
-					addedCoordinates = tan.getAlignCoordinates();
-				} else {
-					addedCoordinates = [{x: 0, y: 0}];
+				if ( !tan.getLastAccept() ) {
+					return;
 				}
 
+				addedCoordinates = tan.getAlignCoordinates();
 				otherTansCoordinates = otherTansCoordinates.concat(addedCoordinates);
 
 			});

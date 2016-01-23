@@ -32,7 +32,9 @@ var en = {
 		// sections
 	sections: 'sections',
 	tangram: 'tangram',
-	person: 'person',
+
+	person: 'en person',
+	animal: 'en animal',
 
 	// settings
 
