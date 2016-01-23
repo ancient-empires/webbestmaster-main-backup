@@ -422,34 +422,40 @@ var TanCollection = Backbone.Collection.extend({
 			alignTan = data.tan,
 			alignTanCoordinates = alignTan.getAlignCoordinates(),
 			initedPattern = collection.getData('initedPattern'),
-			initedPatternAlignPoints = collection.getInitedPatternAlignPoints(),
 			align = {},
 			minPath = Infinity,
 			otherTansCoordinates = [],
-			pow = Math.pow.bind(Math);
+			pow = Math.pow.bind(Math),
+			gameDifficult = info.get('gameDifficult');
 
-		if (info.get('gameDifficult') === 'regular') {
-			otherTansCoordinates = otherTansCoordinates.concat(initedPatternAlignPoints);
+		// align to pattern only
+		if (gameDifficult === 'regular') {
+			otherTansCoordinates = otherTansCoordinates.concat(collection.getInitedPatternAlignPoints());
 		}
 
-		collection.each(function (tan) {
+		// align to other tans only
+		if (gameDifficult === 'master' || collection.getData('mode') === 'constructor') {
 
-			var addedCoordinates;
+			collection.each(function (tan) {
 
-			if (tan === alignTan) {
-				return;
-			}
+				var addedCoordinates;
 
-			// do not catch not activeted tans
-			if (tan.getLastAccept()) {
-				addedCoordinates = tan.getAlignCoordinates();
-			} else {
-				addedCoordinates = [{x: 0, y: 0}];
-			}
+				if (tan === alignTan) {
+					return;
+				}
 
-			otherTansCoordinates = otherTansCoordinates.concat(addedCoordinates);
+				// do not catch not activeted tans
+				if (tan.getLastAccept()) {
+					addedCoordinates = tan.getAlignCoordinates();
+				} else {
+					addedCoordinates = [{x: 0, y: 0}];
+				}
 
-		});
+				otherTansCoordinates = otherTansCoordinates.concat(addedCoordinates);
+
+			});
+
+		}
 
 		otherTansCoordinates.forEach(function (otherXY) {
 
@@ -530,7 +536,7 @@ var TanCollection = Backbone.Collection.extend({
 		if (collection.getData('mode') === 'constructor') {
 			maxAlignPath = scale / 3;
 		} else {
-			maxAlignPath = scale / 10;
+			maxAlignPath = scale / 8;
 		}
 
 		collection.setData({
