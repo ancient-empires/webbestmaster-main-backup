@@ -199,19 +199,21 @@ var TanCollection = Backbone.Collection.extend({
 	checkTangram: function () {
 
 		var collection = this,
-			tangramAtoms = collection.prepareToEquals(collection.getTangramAtoms()),
-			answerAtoms = collection.prepareToEquals(collection.getAnswerAtoms()),
+			tangramAtoms = collection.getTangramAtoms(),
+			answerAtoms = collection.getAnswerAtoms(),
 			isDone;
 
-		isDone = tangramAtoms.every(function (atomStr) {
+		isDone = collection.isEqualAtomsArray(tangramAtoms, answerAtoms);
 
-			if (answerAtoms.indexOf(atomStr) === -1) {
-				log(answerAtoms);
-				log(atomStr);
-			}
-
-			return answerAtoms.indexOf(atomStr) !== -1;
-		});
+		//isDone = tangramAtoms.every(function (atomStr) {
+		//
+		//	if (answerAtoms.indexOf(atomStr) === -1) {
+		//		log(answerAtoms);
+		//		log(atomStr);
+		//	}
+		//
+		//	return answerAtoms.indexOf(atomStr) !== -1;
+		//});
 
 		if (!isDone) {
 			return;
@@ -230,6 +232,39 @@ var TanCollection = Backbone.Collection.extend({
 		collection.publish('tangram-is-done');
 		collection.deActiveAll();
 		collection.setData('success-view', new TangramSuccessfulView(collection.getData('tangram-info')));
+
+	},
+
+	isEqualAtomsArray: function (arr0, arr1) {
+
+		var isInAtoms = this.isInAtoms;
+
+		return arr0.every(function (atom) {
+			return isInAtoms(arr1, atom)
+		});
+
+	},
+
+	isInAtoms: function (arr, testAtom) {
+
+		var isIn = false;
+
+		arr.every(function (atom) {
+
+			if (atom[2] !== testAtom[2]) {
+				return true;
+			}
+
+			if ((Math.abs(atom[0] - testAtom[0]) + Math.abs(atom[1] - testAtom[1])) < 0.1) {
+				isIn = true;
+				return false;
+			}
+
+			return true;
+
+		});
+
+		return isIn;
 
 	},
 
@@ -257,22 +292,24 @@ var TanCollection = Backbone.Collection.extend({
 
 	},
 
-	prepareToEquals: function (arrAtoms) {
+	/*
+	 prepareToEquals: function (arrAtoms) {
 
-		var strictNumber = this.strictNumber;
+	 var strictNumber = this.strictNumber;
 
-		return arrAtoms
-			.map(function (atom) {
-				return [
-					strictNumber(atom[0]),
-					strictNumber(atom[1]),
-					atom[2]
-				];
+	 return arrAtoms
+	 .map(function (atom) {
+	 return [
+	 strictNumber(atom[0]),
+	 strictNumber(atom[1]),
+	 atom[2]
+	 ];
 
-			})
-			.map(JSON.stringify);
+	 })
+	 .map(JSON.stringify);
 
-	},
+	 },
+	 */
 
 	strictNumber: function (number) {
 		return parseFloat(String(number).slice(0, 6));
