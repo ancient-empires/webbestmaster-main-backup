@@ -1,9 +1,12 @@
 'use strict';
 /*global window */
 
+import $ from './../lib/jbone';
+import Queue from './../lib/queue';
+
 var win = window,
-	//doc = win.document,
-	//docElem = doc.documentElement,
+//doc = win.document,
+//docElem = doc.documentElement,
 	util = {
 
 		assortArray: function (arr) {
@@ -64,6 +67,49 @@ var win = window,
 				s: util.formatTime(date.getUTCSeconds()),
 				ms: util.formatTime(date.getUTCMilliseconds())
 			};
+
+		},
+
+		loadImage: function (src) {
+
+			var def = $.Deferred(),
+				$img = $(new Image());
+
+			$img.one('load error', def.resolve);
+
+			$img.attr('src', src);
+
+			return def.promise();
+
+		},
+
+		loadImages: function (srcs) {
+
+			var loadImage = this.loadImage,
+				queue = new Queue();
+
+			srcs.forEach(function (src) {
+				queue.push(function () {
+					return loadImage(src);
+				});
+			});
+
+			return queue.run();
+
+		},
+
+		preLoadInterfaceImages: function () {
+
+			// load interface images
+			return this.loadImages([
+				//'main-bg.jpg', // load from css
+				'rotate-bg.svg',
+				'tangram-frame.svg'
+			].concat([0, 1, 2, 3, 4, 5, 6, 7, 8].map(function (index) {
+				return 'tangram-texture/' + index + '.jpg';
+			})).map(function (path) {
+				return 'i/' + path;
+			}));
 
 		}
 

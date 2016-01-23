@@ -16,6 +16,7 @@ import Deferred from './lib/deferred';
 import Backbone from './lib/backbone';
 import fastclick from './lib/fastclick';
 import doT from './lib/dot';
+import Queue from './lib/queue';
 
 // init all services
 import info from './services/info';
@@ -49,6 +50,10 @@ new FastClick(window.document.body); // test it decide
 	Deferred.installInto($);
 
 	win.$ = win.jQuery = win.jquery = $;
+
+	util.preLoadInterfaceImages().always(function () {
+		log('All interface images has been loaded');
+	});
 
 	BaseView.prototype.initStatic();
 
