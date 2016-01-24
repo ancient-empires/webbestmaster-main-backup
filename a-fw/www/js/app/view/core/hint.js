@@ -113,7 +113,7 @@ HintView = BaseView.extend({
 		view.extendFromObj(data);
 		view.extendFromObj(hintsMap[hintName]);
 
-		view.setElement(tm.tmplFn.hint({
+		view.setElement(tm.get('hint')({
 			text: lang.get('hint')[hintName]
 		}));
 
