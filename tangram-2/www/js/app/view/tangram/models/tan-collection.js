@@ -203,6 +203,10 @@ var TanCollection = Backbone.Collection.extend({
 			answerAtoms = collection.getAnswerAtoms(),
 			isDone;
 
+		if (collection.getData('mode') === 'constructor') {
+			return;
+		}
+
 		isDone = collection.isTansOnPattern(answerAtoms, tangramAtoms);
 
 		//isDone = tangramAtoms.every(function (atomStr) {
