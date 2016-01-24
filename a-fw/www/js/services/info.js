@@ -3,6 +3,7 @@
 
 var win = window,
 	doc = win.document,
+	navigator = win.navigator,
 	docElem = doc.documentElement,
 	info,
 	isNormal = false;
@@ -23,11 +24,11 @@ info = {
 	},
 
 	ls: win.localStorage,
-	savedItem: 'cool-book-stories',
+	savedItem: 'app-name',
 	attr: {},
 	systemAttr: {},
-	defaultLanguage: 'ru',
-	availableLanguages: ['ru'],
+	defaultLanguage: 'en',
+	availableLanguages: ['en'],
 	//availableLanguages: ['ru', 'en'],
 
 	init: function () {
@@ -58,10 +59,10 @@ info = {
 		var info = this,
 			lang;
 
-		lang = info.get('language') || navigator.language || navigator.userLanguage || this.defaultLanguage;
+		lang = info.get('language') || navigator.language || navigator.userLanguage || info.defaultLanguage;
 		lang = lang.split('-')[0].toLowerCase();
 		lang = (info.availableLanguages.indexOf(lang) === -1) ? info.defaultLanguage : lang;
-		lang = lang.toLowerCase();
+		//lang = lang.toLowerCase();
 		info.set('language', lang);
 
 	},
@@ -69,7 +70,7 @@ info = {
 	setOS: function () {
 
 		var info = this,
-			ua = win.navigator.userAgent,
+			ua = navigator.userAgent,
 			isIE = /MSIE/.test(ua),
 			isAndroid = (/android/i).test(ua),
 			isIOS = /iPad|iPhone|iPod/.test(ua);
@@ -101,7 +102,7 @@ info = {
 
 	getAndroidVersion: function () {
 
-		var match = win.navigator.userAgent.toLowerCase().match(/android\s([0-9\.]*)/);
+		var match = navigator.userAgent.toLowerCase().match(/android\s([0-9\.]*)/);
 
 		return match && match[1];
 
@@ -218,12 +219,17 @@ info = {
 
 		var info = this,
 			defaultSettings = {
-				installTime: Date.now(),
-				versionCode: 1,
 				screenAnimation: info.get('isAndroid', true) ? 'off' : 'on',
+				installTime: Date.now()
+
+				// extra - tangram
+				//tangramTexture: 0,
+				//gameDifficult: 'regular',
+				//doneTangramsRegular: [],
+				//doneTangramsMaster: []
 				//screenAnimation: 'off',
-				storyByStory: info.isNormal ? 'off' : 'on',
-				hint: {}
+				//storyByStory: info.isNormal ? 'off' : 'on',
+				//hint: {}
 				//autoSave: 'on', // auto save game after every turn
 				//confirmTurn: 'off', // game turn
 				//confirmMove: 'off', // move unit
