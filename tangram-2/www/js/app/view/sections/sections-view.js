@@ -15,24 +15,37 @@ var SectionsView = BaseView.extend({
 
 	events: {},
 
-	initialize: function (name) {
+	initialize: function (data) {
 
 		var view = this,
-			items;
+			items,
+			section,
+			sectionId,
+			isSections = data.isSections;
 
-		if (name) {
-			items = view.getPrepareSection(name);
-		} else {
+		if (isSections) {
 			items = view.getPrepareSections();
+			view.setElement(tm.get('sections')({
+				sectionHeader: 'sections',
+				isSections: true,
+				lang: lang,
+				items: items,
+				doneTangrams: info.getDoneTangrams()
+			}));
+		} else {
+			sectionId = data.id;
+			items = view.getPrepareSection(sectionId);
+			section = view.getSectionById(sectionId);
+			view.setElement(tm.get('sections')({
+				sectionHeader: section.name,
+				isSections: false,
+				id: sectionId,
+				lang: lang,
+				items: items,
+				doneTangrams: info.getDoneTangrams()
+			}));
 		}
 
-		view.setElement(tm.get('sections')({
-			sectionHeader: name || 'sections',
-			originalName: name || 'sections',
-			lang: lang,
-			items: items,
-			doneTangrams: info.getDoneTangrams()
-		}));
 
 		view.render();
 
@@ -59,41 +72,36 @@ var SectionsView = BaseView.extend({
 
 	getSectionInfo: function (section) {
 
-		var originalName, sectionData, length, allDoneTangrams, doneTangramsHashs;
-
-		originalName = section.name;
-		sectionData = section.data;
-		length = sectionData.length;
+		var sectionData, allDoneTangrams, doneTangramsHashs, sectionId;
 
 		allDoneTangrams = info.getDoneTangrams();
 
+		sectionData = section.data;
+
 		doneTangramsHashs = sectionData.filter(function (tangram) {
-			// _.find(allDoneTangrams, {hash: doneTangram.hash}) - is not work
 			return _.find(allDoneTangrams, function (doneTangram) {
 				return tangram.hash === doneTangram.hash;
 			});
 		});
 
 		return {
-			originalName: originalName,
-			name: lang.get(originalName),
-			length: length,
+			//originalName: originalName,
+			name: section.name,
+			id: section.id,
+			length: sectionData.length,
 			doneTangramsHashs: doneTangramsHashs
 		}
 
 	},
 
-	getPrepareSection: function (name) {
+	getPrepareSection: function (id) {
 
 		var view = this,
 			doneTangramsHashs = info.getDoneTangrams().map(function (data) {
 				return data.hash;
 			});
 
-		return _.find(tangrams.data, function (data) {
-			//{name: name}
-			return data.name === name;
-		}).data.map(function (figure) {
+		return view.getSectionById(id).data.map(function (figure) {
 			var hash = figure.hash;
 
 			if (doneTangramsHashs.indexOf(hash) !== -1) {
@@ -110,6 +118,15 @@ var SectionsView = BaseView.extend({
 				//name: figure.name,
 				preview: view.createPreviewSection(figure.data)
 			};
+		});
+
+	},
+
+	getSectionById: function (id) {
+
+		return _.find(tangrams.data, function (section) {
+			//{name: name}
+			return section.id === id;
 		});
 
 	},

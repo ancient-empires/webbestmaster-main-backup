@@ -17,8 +17,8 @@ var win = window,
 
 		routes: {
 			'': 'home',
-			'sections/:name/:index': 'tangram',
-			'sections/:name': 'section',
+			'sections/:id/:index': 'tangram',
+			'sections/:id': 'section',
 			'sections': 'sections',
 			'settings': 'settings',
 			//'tangram': 'tangram',
@@ -30,20 +30,24 @@ var win = window,
 		},
 
 		sections: function () {
-			new SectionsView();
+			new SectionsView({
+				isSections: true
+			});
 		},
 
 		settings: function () {
 			new SettingsView();
 		},
 
-		section: function (name) {
-			new SectionsView(name);
+		section: function (id) {
+			new SectionsView({
+				id: id
+			});
 		},
 
-		tangram: function (name, index) {
+		tangram: function (id, index) {
 			new TangramView({
-				name: name,
+				id: id,
 				index: index
 			});
 		},

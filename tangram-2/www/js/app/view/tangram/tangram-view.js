@@ -46,14 +46,14 @@ var TangramView = BaseView.extend({
 				sizeY: sizeY
 			},
 			patternSvg,
-			name = data.name || 'person',
-			index = data.index || 0,
+			sectionId = data.id,
+			index = data.index,
 			pattern = _.find(tangrams.data, function (data) {
 				// {name: name}
-				return data.name === name;
+				return data.id === sectionId;
 			}).data[index],
 			tangramInfo = {
-				name: name,
+				id: sectionId,
 				index: Number(index)
 			};
 
@@ -207,7 +207,7 @@ var TangramView = BaseView.extend({
 
 		scale = (patternQ > viewQ) ? (sizeX / patterSizeX) : (sizeY / patterSizeY);
 
-		scale = Math.min(Math.round(scale * 0.75), 230); // 200 is max
+		scale = Math.min(scale, 230); // 230 is max
 
 		view.set('scale', scale);
 

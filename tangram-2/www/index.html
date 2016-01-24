@@ -77,22 +77,31 @@
 				<div class="section-header-wrapper">
 					<p class="section-header ellipsis">{{= it.lang.get(it.sectionHeader) }}</p>
 				</div>
+
+				{{ var isSections = it.isSections; }}
+
 				{{~ it.items :item:index }}
-					{{? item.name }}
-					<div class="section-preview" data-route="sections/{{= item.originalName }}">
-						<div class="section-preview-done-info">{{= item.doneTangramsHashs.length }} / {{= item.length }}</div>
-						{{= item.preview.svgText }}
-						<p class="section-preview-name ellipsis">{{= it.lang.get(item.originalName) }}</p>
-					</div>
+
+					{{? isSections}}
+						<div class="section-preview" data-route="sections/{{= item.id }}">
+							<div class="section-preview-done-info">{{= item.doneTangramsHashs.length }} / {{= item.length }}</div>
+							{{= item.preview.svgText }}
+							<p class="section-preview-name ellipsis">{{= it.lang.get(item.name) }}</p>
+						</div>
+
 					{{??}}
+
 						{{? item.tick }}
-							<div class="section-preview" data-route="sections/{{= it.originalName }}/{{= index }}"><div class="section-preview-tick">&#xf03a;</div>{{= item.preview.svgText }}</div>
-								{{??}}
-							<div class="section-preview" data-route="sections/{{= it.originalName }}/{{= index }}"><div class="section-preview-tick section-preview-no-tick">&#xf03a;</div>{{= item.preview.svgText }}
-							</div>
+						<div class="section-preview" data-route="sections/{{= it.id }}/{{= index }}"><div class="section-preview-tick">&#xf03a;</div>{{= item.preview.svgText }}</div>
+						{{??}}
+						<div class="section-preview" data-route="sections/{{= it.id }}/{{= index }}"><div class="section-preview-tick section-preview-no-tick">&#xf03a;</div>{{= item.preview.svgText }}</div>
 						{{?}}
+
 					{{?}}
+
 				{{~}}
+
+
 			</div>
 		</div>
 
@@ -109,10 +118,10 @@
 
 			<div class="one-more-tangram-check">&#xf03a;</div>
 
-			<div class="js-one-more-tangram one-more-tangram_left" data-name="{{= it.name }}" data-index="{{= it.nextIndex }}">&#xf040;</div>
+			<div class="js-one-more-tangram one-more-tangram_left" data-id="{{= it.id }}" data-index="{{= it.nextIndex }}">&#xf040;</div>
 			<!--<button class="js-restart-tangram" data-name="{{= it.name }}" data-index="{{= it.index }}" >restart tangram</button>-->
-			<div class="js-one-more-tangram one-more-tangram_center" data-name="{{= it.name }}" data-index="{{= it.index }}">&#xf087;</div>
-			<div class="js-one-more-tangram one-more-tangram_right" data-name="{{= it.name }}" data-index="{{= it.nextIndex }}">&#xf03e;</div>
+			<div class="js-one-more-tangram one-more-tangram_center" data-id="{{= it.id }}" data-index="{{= it.index }}">&#xf087;</div>
+			<div class="js-one-more-tangram one-more-tangram_right" data-id="{{= it.id }}" data-index="{{= it.nextIndex }}">&#xf03e;</div>
 
 		</div>
 

@@ -40,10 +40,10 @@ var TangramSuccessfulView = BaseView.extend({
 	getSectionInfo: function (data) {
 
 		var view = this,
-			name = data.name,
+			id = data.id,
 			section = _.find(tangrams.data, function (data) {
 				// {name: name}
-				return data.name === name;
+				return data.id === id;
 			}),
 			sectionLength = section.data.length,
 			nextIndex,
@@ -65,7 +65,7 @@ var TangramSuccessfulView = BaseView.extend({
 			nextIndex: nextIndex,
 			prevIndex: prevIndex,
 			section: section,
-			name: data.name,
+			id: data.id,
 			index: data.index
 		};
 
@@ -84,14 +84,14 @@ var TangramSuccessfulView = BaseView.extend({
 		var view = this,
 			$node = $(e.currentTarget),
 			index = $node.attr('data-index'),
-			name = $node.attr('data-name');
+			id = $node.attr('data-id');
 
 		view.hide();
 
 		mediator.publish('hide-main-view');
 
 		mediator.publish('tangram-view', {
-			name: name,
+			id: id,
 			index: index
 		});
 
