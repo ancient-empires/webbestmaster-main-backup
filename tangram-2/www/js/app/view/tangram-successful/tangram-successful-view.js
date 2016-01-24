@@ -45,17 +45,17 @@ var TangramSuccessfulView = BaseView.extend({
 				// {name: name}
 				return data.id === id;
 			}),
-			sectionLength = section.data.length,
+			lastIndex = section.data.length - 1,
 			nextIndex,
 			prevIndex,
 			index = data.index;
 
-		if (index === sectionLength - 1) { // index === lastIndex
+		if (index === lastIndex) { // index === lastIndex
 			nextIndex = 0;
 			prevIndex = index - 1;
 		} else if (!index) { // index === 0
 			nextIndex = 1;
-			prevIndex = sectionLength - 1;
+			prevIndex = lastIndex;
 		} else {
 			nextIndex = index + 1;
 			prevIndex = index - 1;
@@ -66,7 +66,7 @@ var TangramSuccessfulView = BaseView.extend({
 			prevIndex: prevIndex,
 			section: section,
 			id: data.id,
-			index: data.index
+			index: index
 		};
 
 	},
