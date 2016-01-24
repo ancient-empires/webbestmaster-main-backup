@@ -11,6 +11,7 @@ import mediator from './../../../services/mediator';
 import sm from './../../../sound/sound-master';
 import lang from './../../../services/lang';
 import device from './../../../services/device';
+import log from './../../../services/log';
 
 var win = window,
 	doc = win.document,
@@ -66,14 +67,12 @@ var win = window,
 		initStatic: function () {
 
 			var view = this,
-				isTouch = info.get('isTouch', true),
+				isTouch = device.get('isTouch'),
 				eventTypesIndex = Number(isTouch),
 				types = view.eventTypes,
-				fontSize,
-				proto = BaseView.prototype,
-				$wrapper = $(view.selectors.wrapper);
+				fontSize;
 
-			proto.$wrapper = $wrapper;
+			view.constructor.prototype.$wrapper = $(view.selectors.wrapper);
 
 			// adjust font size
 			fontSize = Math.round(14 * Math.pow(docElem.clientWidth * docElem.clientHeight / 153600, 0.5)); // 153600 = 320 * 480
@@ -91,15 +90,18 @@ var win = window,
 			$(doc.body).on('contextmenu', view.stopEvent);
 
 			view.listenTo(device, 'resize', function () {
-				$wrapper.css({
-					width: device.get('width') + 'px',
-					height: device.get('height') + 'px'
-				});
-
+				view.resizeWrapper();
 			});
 
-			device.onResize();
+			view.resizeWrapper();
 
+		},
+
+		resizeWrapper: function () {
+			this.constructor.prototype.$wrapper.css({
+				width: device.get('width') + 'px',
+				height: device.get('height') + 'px'
+			});
 		},
 
 		constructor: function () {
@@ -125,7 +127,7 @@ var win = window,
 				newEvents.scroll = null; // let gc clean ram
 				delete newEvents.scroll;
 				_.each(noScrollEvents, function (name) {
-					newEvents[name] = 'stopEvent';
+					newEvents[name] = 'preventDefaultEvent';
 				});
 			}
 
@@ -135,22 +137,24 @@ var win = window,
 
 			view.attr = {};
 
-			view.setClassNames();
+			//view.setClassNames();
 
 			mediator.installTo(view);
 
 			return Backbone.View.prototype.constructor.apply(view, arguments);
 		},
 
-		setClassNames: function () {
+		/*
+		 setClassNames: function () {
 
-			this.classNames = {};
+		 var classNames = this.classNames = {};
 
-			_.each(this.selectors, function (value, key) {
-				this[key] = value.replace(/\./g, ' ').trim();
-			}, this.classNames);
+		 _.each(this.selectors, function (value, key) {
+		 classNames[key] = value.replace(/\./g, ' ').trim();
+		 });
 
-		},
+		 },
+		 */
 
 		getFullEventNameAndSelector: function (eventNameAndSelector) {
 
@@ -166,7 +170,7 @@ var win = window,
 
 		},
 
-	 	// still not implemented
+		// still not implemented
 		//initialize: function() {
 		//	console.log('base initialize');
 		//},
@@ -221,11 +225,15 @@ var win = window,
 			view.remove();
 			view.unbind();
 
-			Backbone.View.prototype.remove.call(view);
+
+
+			return Backbone.View.prototype.remove.call(view);
 
 		},
 
 		hide: function () {
+
+			log('base view hide');
 
 			var view = this,
 				$el = view.$el,
@@ -233,7 +241,10 @@ var win = window,
 				isScreenAnimation = info.get('screenAnimation') === 'on',
 				deferred = $.Deferred();
 
+			view.empty();
+
 			view.unsubscribe();
+			mediator.uninstallFrom(view);
 
 			view.undelegateEvents();
 
@@ -341,7 +352,7 @@ var win = window,
 
 			view.hidePopupByRouter();
 
-			view.publish('showPopup', data, popup);
+			view.publish('show-popup', data, popup);
 
 			popup.view.set('deferred', deferred);
 
@@ -373,6 +384,16 @@ var win = window,
 
 			e.preventDefault();
 			e.stopPropagation();
+
+		},
+
+		preventDefaultEvent: function (e) {
+
+			if (!e) {
+				return;
+			}
+
+			e.preventDefault();
 
 		},
 
@@ -417,8 +438,8 @@ var win = window,
 				name: 'need-confirm',
 				cssClass: 'popup-title',
 				data: {
-					a,
-					b,
+					a: a,
+					b: b,
 					answer: answer,
 					answers: util.assortArray(answers),
 					url: data.url
@@ -442,7 +463,7 @@ var win = window,
 		checkConnection: function () {
 
 			var deferred = $.Deferred(),
-				src = 'https://www.gstatic.com/android/market_images/web/play_one_bar_logo.png?t=' + Math.random(),
+				src = 'https://www.google.com/favicon.ico?t=' + Date.now(),
 				$img = $('<img alt=""/>');
 
 			$img.on('load', function () {
@@ -523,7 +544,7 @@ var win = window,
 						}
 					],
 					data: {
-						lang,
+						lang: lang,
 						url: info.getLinkToStore()
 					}
 				});
@@ -540,12 +561,35 @@ var win = window,
 			return this.set(key, this.get(key) + delta);
 		},
 
-		set: function (key, value) {
-			this.attr[key] = value;
-			return value;
+		set: function (keyOrObj, value) {
+
+			var self = this,
+				attr = self.attr;
+
+			if (typeof keyOrObj === 'string') {
+				attr[keyOrObj] = value;
+				return self;
+			}
+
+			Object.keys(keyOrObj).forEach(function (key) {
+				this[key] = keyOrObj[key];
+			}, attr);
+
+			return self;
+
 		},
 		get: function (key) {
+
 			return this.attr[key];
+
+		},
+
+		empty: function () {
+
+			this.attr = {};
+
+			return this;
+
 		},
 
 		extendFromObj: function (data) {
