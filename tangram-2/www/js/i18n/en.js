@@ -30,18 +30,18 @@ var en = {
 	//'share': 'share',
 
 		// sections
-	sections: 'sections',
-	tangram: 'tangram',
+	sections: 'en sections',
+	tangram: 'en tangram',
 
 	person: 'en person',
 	animal: 'en animal',
 
 	// settings
 
-	settings: 'settings',
+	settings: 'en settings',
 	//timer: 'timer',
 	//sound: 'sound',
-	'tangram-texture': 'tangram texture'
+	'tangram-texture': 'en tangram texture'
 	//about: 'about'
 	//'e-mail': 'e-mail',
 	//'other-apps': 'other apps'
