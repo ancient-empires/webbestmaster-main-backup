@@ -25,7 +25,12 @@ PopupView = BaseView.extend({
 		popupContainer: '.js-popup-container'
 	},
 
-	initialize: function (data) { // timeout, cssClass, from, data {text, header ...}, append$el, sound, onShow {context, fn}, onHide {context, fn}
+	initialize: function (data) {
+
+		// timeout, cssClass, from,
+		// data {text, header ...},
+		// sound,
+		// onShow {context, fn}, onHide {context, fn}
 
 		var view = this,
 			popupUrl = view.popupUrl,
@@ -37,7 +42,7 @@ PopupView = BaseView.extend({
 
 		view.extendFromObj(data); // name, parentView, data(objToView)
 
-		view.setElement(tm.tmplFn['popup-wrapper']());
+		view.setElement(tm.get('popup-wrapper')());
 
 		if (data.cssClass) {
 			view.$el.addClass(data.cssClass);
@@ -112,10 +117,10 @@ PopupView = BaseView.extend({
 	render: function () {
 
 		var view = this,
-			append$el = view.get('append$el'),
+		//append$el = view.get('append$el'),
 			data = view.get('data') || {},
 			sound = view.get('sound'),
-			$content = $(tm.tmplFn[view.get('name')](data)),
+			$content = $(tm.get(view.get('name'))(data)),
 			$container = view.$el.find(view.selectors.popupContainer),
 			onShow = view.get('onShow'),
 			context;
@@ -142,16 +147,17 @@ PopupView = BaseView.extend({
 		view.showOutAnimation().then(function () {
 
 			var onHide = view.get('onHide'),
-				context;
+				context,
+				deferred = view.get('deferred');
 
 			if (onHide) {
 				context = onHide.context || view;
-				context[onHide.fn].apply(context, onHide.args);
+				context[onHide.fn].apply(context, onHide.args || []);
 			}
 
 			BaseView.prototype.hide.call(view);
 
-			view.get('deferred').resolve();
+			deferred.resolve();
 
 		});
 
@@ -190,6 +196,6 @@ popupMaster = {
 
 mediator.installTo(popupMaster);
 
-popupMaster.subscribe('showPopup', popupMaster.showPopup);
+popupMaster.subscribe('show-popup', popupMaster.showPopup);
 
 export default popupMaster;
