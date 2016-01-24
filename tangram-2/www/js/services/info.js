@@ -3,6 +3,7 @@
 
 var win = window,
 	doc = win.document,
+	navigator = win.navigator,
 	docElem = doc.documentElement,
 	info,
 	isNormal = false;
@@ -58,10 +59,10 @@ info = {
 		var info = this,
 			lang;
 
-		lang = info.get('language') || navigator.language || navigator.userLanguage || this.defaultLanguage;
+		lang = info.get('language') || navigator.language || navigator.userLanguage || info.defaultLanguage;
 		lang = lang.split('-')[0].toLowerCase();
 		lang = (info.availableLanguages.indexOf(lang) === -1) ? info.defaultLanguage : lang;
-		lang = lang.toLowerCase();
+		//lang = lang.toLowerCase();
 		info.set('language', lang);
 
 	},
@@ -69,7 +70,7 @@ info = {
 	setOS: function () {
 
 		var info = this,
-			ua = win.navigator.userAgent,
+			ua = navigator.userAgent,
 			isIE = /MSIE/.test(ua),
 			isAndroid = (/android/i).test(ua),
 			isIOS = /iPad|iPhone|iPod/.test(ua);
@@ -101,7 +102,7 @@ info = {
 
 	getAndroidVersion: function () {
 
-		var match = win.navigator.userAgent.toLowerCase().match(/android\s([0-9\.]*)/);
+		var match = navigator.userAgent.toLowerCase().match(/android\s([0-9\.]*)/);
 
 		return match && match[1];
 
