@@ -32,14 +32,12 @@
 	});
 
 	// helper for clean
-	var clearTasks = ['index.html', 'css', 'js', 'images', 'i', 'font'].map(function (dir) {
+	var clearTasks = ['index.html', 'css', 'js', 'images'].map(function (dir) {
 
 		var taskName = 'clear-dir_' + dir;
 
-		gulp.task(taskName, function () {
-			return gulp
-				.src('./dist/www/' + dir, { read: false })
-				.pipe(clean({ force: true }));
+		gulp.task(taskName, function (cd) {
+			return clean('./dist/www/' + dir, cd);
 		});
 
 		return taskName;
@@ -111,8 +109,8 @@
 	// JS
 	gulp.task('js', function () {
 		console.log('!!! enable uglify-js');
-		//return gulp.start('es6-import', 'uglify-js');
-		return gulp.start('es6-import');
+		return gulp.start('es6-import', 'uglify-js');
+		//return gulp.start('es6-import');
 	});
 
 	gulp.task('js-watch', function () {
