@@ -203,7 +203,7 @@ var TanCollection = Backbone.Collection.extend({
 			answerAtoms = collection.getAnswerAtoms(),
 			isDone;
 
-		isDone = collection.isEqualAtomsArray(tangramAtoms, answerAtoms);
+		isDone = collection.isTansOnPattern(answerAtoms, tangramAtoms);
 
 		//isDone = tangramAtoms.every(function (atomStr) {
 		//
@@ -235,12 +235,12 @@ var TanCollection = Backbone.Collection.extend({
 
 	},
 
-	isEqualAtomsArray: function (arr0, arr1) {
+	isTansOnPattern: function (pattern, tans) {
 
 		var isInAtoms = this.isInAtoms;
 
-		return arr0.every(function (atom) {
-			return isInAtoms(arr1, atom)
+		return pattern.every(function (atom) {
+			return isInAtoms(tans, atom);
 		});
 
 	},
@@ -422,8 +422,8 @@ var TanCollection = Backbone.Collection.extend({
 			maxY = collection.getData('maxY'),
 			minX = collection.getData('minX'),
 			minY = collection.getData('minY') + fontSize * 1.5,
-			dx = undefined,
-			dy = undefined,
+			dx,
+			dy,
 			coordinates = tan.getCoordinates();
 
 		coordinates.forEach(function (xy) {
