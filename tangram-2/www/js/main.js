@@ -38,6 +38,8 @@ import popupMaster from './app/view/core/popup';
 // todo: - test - enable fast click
 new FastClick(window.document.body); // test it decide
 
+util.checkCache();
+
 (function back() {
 
 	var win = window;
