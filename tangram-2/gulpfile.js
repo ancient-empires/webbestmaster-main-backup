@@ -18,7 +18,7 @@
 	// gulp <task> <othertask>.
 
 	gulp.task('default', ['clear-dist'], function () {
-		return gulp.start('html', 'css', 'js', 'copy-data');
+		return gulp.start('app-cache', 'html', 'css', 'js', 'copy-data');
 	});
 
 	// watch
@@ -26,18 +26,19 @@
 		gulp.watch('./www/*.html', ['html']);
 		gulp.watch('./www/css/**/*', ['css']);
 		gulp.watch('./www/js/**/*', ['js-watch']);
-		gulp.watch('./www/images/**/*', ['copy-data']);
+		//gulp.watch('./www/images/**/*', ['copy-data']);
 		gulp.watch('./www/i/**/*', ['copy-data']);
 		gulp.watch('./www/font/**/*', ['copy-data']);
 	});
 
 	// helper for clean
-	var clearTasks = ['index.html', 'css', 'js', 'images'].map(function (dir) {
+	var clearTasks = ['index.html', 'app-cache.mf', 'css', 'js', 'i', 'font' /*, 'images'*/].map(function (dir) {
 
 		var taskName = 'clear-dir_' + dir;
 
 		gulp.task(taskName, function (cd) {
-			return clean('./dist/www/' + dir, cd);
+			return gulp.src('./dist/www/' + dir, { read: false })
+				.pipe(clean({force: true}, cd));
 		});
 
 		return taskName;
@@ -47,6 +48,12 @@
 	// clear distributive directory
 	gulp.task('clear-dist', function () {
 		return gulp.start.apply(gulp, clearTasks);
+	});
+
+	// HTML
+	gulp.task('app-cache', function () {
+		return gulp.src('./www/*.mf')
+			.pipe(gulp.dest('./dist/www/'));
 	});
 
 	// HTML
@@ -131,7 +138,7 @@
 	// copy data
 	gulp.task('copy-data', function () {
 
-		['images', 'i', 'font'].forEach(function (dir) {
+		[ /*'images', */ 'i', 'font'].forEach(function (dir) {
 			return gulp.src('./www/' + dir + '/**/*')
 				.pipe(gulp.dest('./dist/www/' + dir));
 		});
