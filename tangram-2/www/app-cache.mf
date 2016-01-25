@@ -5,7 +5,7 @@ CACHE MANIFEST
 
 CACHE:
 
-/favicon.ico
+#/favicon.ico
 
 index.html
 

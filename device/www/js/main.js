@@ -11,7 +11,7 @@ nav = win.navigator;
 info = {
 
 	app: {
-		href: 'http:wbm.herokuapp.com/t2/www/'
+		href: 'http://wbm.herokuapp.com/t2/www/'
 	},
 
 	defaultLanguage: 'en',
@@ -47,7 +47,7 @@ function checkConnection(resolve, reject) {
 	img.addEventListener('load', resolve, false);
 	img.addEventListener('error', reject, false);
 
-	img.src = 'http://google.com/qfavicon.ico?' + Date.now();
+	img.src = 'http://google.com/favicon.ico?' + Date.now();
 
 }
 
