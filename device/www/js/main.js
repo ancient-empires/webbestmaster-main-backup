@@ -20,7 +20,7 @@ info = {
 
 	localization: {
 		en: {
-			needConnectionForFirstTime: 'need internet connection,<br />first time only.'
+			needConnectionForFirstTime: 'need internet connection<br/>on first application launch'
 		}
 	},
 
