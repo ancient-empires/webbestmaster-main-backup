@@ -5,11 +5,14 @@ import BaseView from './../core/base';
 import tm from './../../../services/template-master';
 import lang from './../../../services/lang';
 import info from './../../../services/info';
+import log from './../../../services/log';
+import sha1 from './../../../lib/sha1';
 import tangrams from './../../data/tangrams';
 import tanCollection from './../tangram/models/tan-collection';
 import _ from './../../../lib/lodash';
 
-var tanCollectionProto = tanCollection.prototype;
+var tanCollectionProto = tanCollection.prototype,
+	sectionsCache = {};
 
 var SectionsView = BaseView.extend({
 
@@ -22,6 +25,10 @@ var SectionsView = BaseView.extend({
 			section,
 			sectionId,
 			isSections = data.isSections;
+
+		view.subscribe('previewSectionHelper:savedData', view.setCachedPreviewSection);
+
+		view.publish('previewSectionHelper:publishData');
 
 		if (isSections) {
 			items = view.getPrepareSections();
@@ -233,7 +240,25 @@ var SectionsView = BaseView.extend({
 
 	},
 
+	setCachedPreviewSection: function (data) {
+		sectionsCache = data;
+	},
+
+	getCachedPreviewSection: function (triangles) {
+
+		var key = triangles.join('');
+		return sectionsCache[key];
+
+	},
+
 	createPreviewSection: function (triangles) {
+
+		var previewSection = this.getCachedPreviewSection(triangles);
+
+		if (previewSection) {
+			log('createPreviewSection fromCache');
+			return previewSection;
+		}
 
 		var tempDiv = document.createElement('div'),
 			atomToTriangle = tanCollectionProto.atomToTriangle,

@@ -23,6 +23,8 @@ var HomeView = BaseView.extend({
 
 		view.render();
 
+		view.publish('previewSectionHelper:initialize');
+
 		return BaseView.prototype.initialize.apply(view, arguments);
 
 	},

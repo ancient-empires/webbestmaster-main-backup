@@ -35,6 +35,8 @@ import BaseView from './app/view/core/base';
 import hintMaster from './app/view/core/hint';
 import popupMaster from './app/view/core/popup';
 
+import previewSectionHelper from './app/view/sections/preview-section-helper';
+
 // todo: - test - enable fast click
 new FastClick(window.document.body); // test it decide
 
