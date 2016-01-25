@@ -11,7 +11,7 @@ nav = win.navigator;
 info = {
 
 	app: {
-		href: 'http://elitapp.com/'
+		href: 'http:wbm.herokuapp.com/t2/www/'
 	},
 
 	defaultLanguage: 'en',
