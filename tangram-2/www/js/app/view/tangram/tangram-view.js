@@ -164,7 +164,11 @@ var TangramView = BaseView.extend({
 			patterSizeY,
 			scale,
 			atomToTriangle = tanCollectionProto.atomToTriangle,
-			minScreenSize = device.get('minScreenSize');
+			minScreenSize = device.get('minScreenSize'),
+			spaceSize = (maxX - minX) * (maxY - minY),
+			maxScale;
+
+		maxScale = Math.round(Math.sqrt(spaceSize / minScreenSize) * 150);
 
 		atoms.forEach(function (atom) {
 
@@ -207,7 +211,9 @@ var TangramView = BaseView.extend({
 
 		scale = (patternQ > viewQ) ? (sizeX / patterSizeX) : (sizeY / patterSizeY);
 
-		scale = Math.min(scale, 230); // 230 is max
+		scale = scale * 0.75;
+
+		scale = Math.min(scale, maxScale);
 
 		view.set('scale', scale);
 
