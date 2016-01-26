@@ -17,8 +17,8 @@ PopupView = BaseView.extend({
 
 	events: {
 		//'click .js-popup-container': 'stopEvent'
-		'click': 'hidePopupByRouter',
-		'scroll': 'stopEvent'
+		//'click': 'hidePopupByRouter',
+		scroll: 'stopEvent'
 	},
 
 	selectors: {
@@ -30,6 +30,7 @@ PopupView = BaseView.extend({
 	// timeout, cssClass, from,
 	// data {text, header ...},
 	// sound,
+	// hideOnClick
 	// onShow {context, fn}, onHide {context, fn}
 
 		var view = this,
@@ -38,6 +39,10 @@ PopupView = BaseView.extend({
 
 		if (url.indexOf(popupUrl) === -1) {
 			view.publish('route-to-popup');
+		}
+
+		if (data.hideOnClick) {
+			view.events.click = 'hidePopupByRouter';
 		}
 
 		view.extendFromObj(data); // name, parentView, data(objToView)
@@ -55,6 +60,8 @@ PopupView = BaseView.extend({
 		view.showInAnimation();
 
 		view.bindEventListeners();
+
+		view.set('deferred', $.Deferred());
 
 		view.subscribe('hide-popup', view.hide);
 

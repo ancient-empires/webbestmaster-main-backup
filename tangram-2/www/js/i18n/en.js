@@ -7,8 +7,9 @@ var en = {
 	shortLanguageName: 'Eng',
 	appName: 'Tangram-2',
 
-	notification: {
-	},
+	newVersionIsAvailable: 'A new version of this app is available. Load it?',
+
+	notification: {},
 
 	// rate us block
 	rateUs: {

@@ -237,7 +237,7 @@
 
 <script class="js-template" type="text/x-template" data-name="popup-wrapper">
 
-	<div class="popup-wrapper js-popup-wrapper">
+	<div class="popup-wrapper">
 
 		<div class="popup-container js-popup-container"></div>
 
@@ -301,6 +301,28 @@
 
 		<div class="rate-us-button-negative js-back js-rate-us-no-thanks">
 			{{= rateUsLang.noThanks }}
+		</div>
+
+	</div>
+
+</script>
+
+<script class="js-template" type="text/x-template" data-name="new-version-is-available">
+
+	<div class="popup-text rate-us-wrapper">
+
+		{{ var lang = it.lang; }}
+
+		<p class="rate-us-header">
+			{{= lang.get('newVersionIsAvailable') }}
+		</p>
+
+		<div class="rate-us-button js-update-cache">
+			.yes.
+		</div>
+
+		<div class="rate-us-button-negative js-back">
+			.no.
 		</div>
 
 	</div>

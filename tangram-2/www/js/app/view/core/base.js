@@ -520,34 +520,35 @@ var win = window,
 				// save date-us data
 				info.set('rate-us', dateUsData);
 
-				return view.showPopup({
-					name: 'rate-us',
-					cssClass: 'popup-title',
-					extraEvents: [
-						{
-							selector: '.js-rate-us-rate-now',
-							event: 'click',
-							fn: function () {
-								var dateUsData = info.get('rate-us') || {};
-								dateUsData.lastRateNow = Date.now();
-								info.set('rate-us', dateUsData);
+				mediator.publish('show-popup', {
+						name: 'rate-us',
+						cssClass: 'popup-title',
+						extraEvents: [
+							{
+								selector: '.js-rate-us-rate-now',
+								event: 'click',
+								fn: function () {
+									var dateUsData = info.get('rate-us') || {};
+									dateUsData.lastRateNow = Date.now();
+									info.set('rate-us', dateUsData);
+								}
+							},
+							{
+								selector: '.js-rate-us-no-thanks',
+								event: 'click',
+								fn: function () {
+									var dateUsData = info.get('rate-us') || {};
+									dateUsData.lastNoThanks = Date.now();
+									info.set('rate-us', dateUsData);
+								}
 							}
-						},
-						{
-							selector: '.js-rate-us-no-thanks',
-							event: 'click',
-							fn: function () {
-								var dateUsData = info.get('rate-us') || {};
-								dateUsData.lastNoThanks = Date.now();
-								info.set('rate-us', dateUsData);
-							}
+						],
+						data: {
+							lang: lang,
+							url: info.getLinkToStore()
 						}
-					],
-					data: {
-						lang: lang,
-						url: info.getLinkToStore()
 					}
-				});
+				);
 
 			});
 

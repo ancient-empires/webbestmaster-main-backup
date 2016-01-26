@@ -240,8 +240,9 @@ var TangramView = BaseView.extend({
 
 		view.set('menu-is-open', true);
 
-		view.showPopup({
-			cssClass: 'myClass',
+		view.publish('show-popup', {
+			//cssClass: 'myClass',
+			hideOnClick: true,
 			name: 'tangram-menu',
 			data: {
 				lang: lang
