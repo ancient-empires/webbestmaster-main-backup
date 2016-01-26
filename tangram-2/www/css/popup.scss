@@ -21,6 +21,33 @@
   border-radius: 0.2rem;
   width: 80%;
   @include prefix(transform, translate3d(-50%, -50%, 0));
+  text-align: center;
+}
+
+.popup-header {
+  font-size: 1.1rem;
+  line-height: 130%;
+  padding-bottom: 0.5rem;
+}
+
+.popup-wide-button,
+.popup-wide-button-negative {
+  display: block;
+  height: 1.9rem;
+  width: 90%;
+  padding-top: .6rem;
+  margin: .4rem auto .6rem;
+  @extend .luxury-3d-button;
+}
+
+.popup-wide-button:active,
+.popup-wide-button-negative:active {
+  box-shadow: none;
+}
+
+.popup-wide-button-negative {
+  margin-top: 1.6rem;
+  opacity: 0.6;
 }
 
 @keyframes show-in {

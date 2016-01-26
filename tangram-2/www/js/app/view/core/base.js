@@ -436,7 +436,7 @@ var win = window,
 
 			return view.showPopup({
 				name: 'need-confirm',
-				cssClass: 'popup-title',
+				//cssClass: 'popup-title',
 				data: {
 					a: a,
 					b: b,
@@ -522,7 +522,7 @@ var win = window,
 
 				mediator.publish('show-popup', {
 						name: 'rate-us',
-						cssClass: 'popup-title',
+						//cssClass: 'popup-title',
 						extraEvents: [
 							{
 								selector: '.js-rate-us-rate-now',

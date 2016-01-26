@@ -71,7 +71,7 @@ var win = window,
 
 			mediator.publish('show-popup', {
 					name: 'new-version-is-available',
-					cssClass: 'popup-title',
+					//cssClass: 'popup-title',
 					extraEvents: [
 						{
 							selector: '.js-update-cache',

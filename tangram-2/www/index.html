@@ -247,7 +247,7 @@
 
 <script class="js-template" type="text/x-template" data-name="notification">
 
-	<div class="popup-text js-stop-event js-back">
+	<div class="js-stop-event js-back">
 		{{= it.text }}
 	</div>
 
@@ -255,7 +255,7 @@
 
 <script class="js-template" type="text/x-template" data-name="need-confirm">
 
-	<div class="popup-text js-stop-event">
+	<div class="js-stop-event">
 
 		<div class="external-link-icon">&nbsp;</div>
 
@@ -283,23 +283,23 @@
 
 <script class="js-template" type="text/x-template" data-name="rate-us">
 
-	<div class="popup-text js-stop-event rate-us-wrapper">
+	<div class="js-stop-event">
 
 		{{ var rateUsLang = it.lang.get('rateUs'); }}
 
-		<p class="rate-us-header">
+		<p class="popup-header">
 			{{= rateUsLang.header }}
 		</p>
 
-		<div class="rate-us-button js-external-link js-back js-rate-us-rate-now" data-href="{{= it.url }}">
+		<div class="popup-wide-button js-external-link js-back js-rate-us-rate-now" data-href="{{= it.url }}">
 			{{= rateUsLang.rateNow }}
 		</div>
 
-		<div class="rate-us-button js-back">
+		<div class="popup-wide-button js-back">
 			{{= rateUsLang.remindMeLater }}
 		</div>
 
-		<div class="rate-us-button-negative js-back js-rate-us-no-thanks">
+		<div class="popup-wide-button-negative js-back js-rate-us-no-thanks">
 			{{= rateUsLang.noThanks }}
 		</div>
 
@@ -309,19 +309,19 @@
 
 <script class="js-template" type="text/x-template" data-name="new-version-is-available">
 
-	<div class="popup-text rate-us-wrapper">
+	<div>
 
 		{{ var lang = it.lang; }}
 
-		<p class="rate-us-header">
+		<p class="popup-header">
 			{{= lang.get('newVersionIsAvailable') }}
 		</p>
 
-		<div class="rate-us-button js-update-cache">
+		<div class="popup-wide-button js-update-cache">
 			.yes.
 		</div>
 
-		<div class="rate-us-button-negative js-back">
+		<div class="popup-wide-button-negative js-back">
 			.no.
 		</div>
 
