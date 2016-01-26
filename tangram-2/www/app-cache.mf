@@ -1,6 +1,6 @@
 CACHE MANIFEST
 # 2016-01-25:v0.1
-# v.0.1
+# v.0.0.1
 
 # AddType text/cache-manifest .appcache
 

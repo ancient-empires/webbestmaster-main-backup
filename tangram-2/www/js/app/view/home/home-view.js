@@ -10,6 +10,7 @@ import info from './../../../services/info';
 var HomeView = BaseView.extend({
 
 	events: {
+		scroll: 'stopEvent',
 		'click .js-set-game-difficult': 'setGameDifficult'
 	},
 
