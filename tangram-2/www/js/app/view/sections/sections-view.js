@@ -69,7 +69,8 @@ var SectionsView = BaseView.extend({
 		return tangrams.data.map(function (section) {
 
 			var sectionInfo = getSectionInfo(section);
-			sectionInfo.preview = view.createPreviewSection(section.data[0].data);
+
+			sectionInfo.preview = view.createPreviewSection(section.data[0]);
 
 			return sectionInfo;
 
@@ -79,7 +80,7 @@ var SectionsView = BaseView.extend({
 
 	getSectionInfo: function (section) {
 
-		var sectionData, allDoneTangrams, doneTangramsHashs, sectionId;
+		var sectionData, allDoneTangrams, doneTangramsHashs;
 
 		allDoneTangrams = info.getDoneTangrams();
 
@@ -123,7 +124,7 @@ var SectionsView = BaseView.extend({
 			return {
 				hash: hash,
 				//name: figure.name,
-				preview: view.createPreviewSection(figure.data)
+				preview: view.createPreviewSection(figure)
 			};
 		});
 
@@ -141,7 +142,7 @@ var SectionsView = BaseView.extend({
 	createDoneTangramPreviewSection: function (hash) {
 
 		var tempDiv = document.createElement('div'),
-			view = this,
+			//view = this,
 			doneTangramsHashs = info.getDoneTangrams(),
 			data = _.find(doneTangramsHashs, function (data) {
 				// {hash: hash}
@@ -233,7 +234,7 @@ var SectionsView = BaseView.extend({
 		tempDiv.appendChild(svg);
 
 		return {
-			svg: svg,
+			//svg: svg,
 			svgText: tempDiv.innerHTML
 		};
 
@@ -244,16 +245,16 @@ var SectionsView = BaseView.extend({
 		sectionsCache = data;
 	},
 
-	getCachedPreviewSection: function (triangles) {
+	getCachedPreviewSection: function (key) {
 
-		var key = triangles.join('');
 		return sectionsCache[key];
 
 	},
 
-	createPreviewSection: function (triangles) {
+	createPreviewSection: function (item) {
 
-		var previewSection = this.getCachedPreviewSection(triangles);
+		var triangles = item.data,
+			previewSection = this.getCachedPreviewSection(item.hash);
 
 		if (previewSection) {
 			log('createPreviewSection fromCache');
@@ -349,7 +350,7 @@ var SectionsView = BaseView.extend({
 		tempDiv.appendChild(svg);
 
 		return {
-			svg: svg,
+			//svg: svg,
 			svgText: tempDiv.innerHTML
 		};
 

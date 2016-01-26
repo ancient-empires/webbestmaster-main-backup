@@ -65,7 +65,7 @@ var sectionViewProto = SectionView.prototype,
 
 				sectionData.forEach(function (item) {
 					queue.push(function () {
-						return self.initializePreviewSection(item.data);
+						return self.initializePreviewSection(item);
 					});
 				});
 
@@ -74,18 +74,19 @@ var sectionViewProto = SectionView.prototype,
 			});
 
 			queue.run().then(function () {
+				log(self);
 				log(length);
 				log('----- end initializeTangramPreview');
 			});
 
 		},
 
-		initializePreviewSection: function (triangles) {
+		initializePreviewSection: function (item) {
 
 			var self = this,
 				defer = $.Deferred(),
-				key = triangles.join(''),
-				result = sectionViewProto.createPreviewSection(triangles);
+				key = item.hash,
+				result = sectionViewProto.createPreviewSection(item);
 
 			self.setData(key, result);
 
