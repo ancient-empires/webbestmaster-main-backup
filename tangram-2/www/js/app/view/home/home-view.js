@@ -6,8 +6,6 @@ import tm from './../../../services/template-master';
 import lang from './../../../services/lang';
 import $ from './../../../lib/jbone';
 import info from './../../../services/info';
-import util from './../../../services/util';
-import log from './../../../services/log';
 
 var HomeView = BaseView.extend({
 
@@ -24,9 +22,6 @@ var HomeView = BaseView.extend({
 		}));
 
 		view.render().then(function () {
-			util.preLoadInterfaceImages().always(function () {
-				log('All interface images has been loaded');
-			});
 			view.publish('previewSectionHelper:initialize');
 		});
 

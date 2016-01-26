@@ -4,6 +4,8 @@
 import tangrams from './../../data/tangrams';
 import SectionView from './sections-view';
 import mediator from './../../../services/mediator';
+import util from './../../../services/util';
+import log from './../../../services/log';
 import log from './../../../services/log';
 import info from './../../../services/info';
 import Queue from './../../../lib/queue';
@@ -29,6 +31,10 @@ var sectionViewProto = SectionView.prototype,
 			self.initializeTangramPreview();
 
 			self.unsubscribe('previewSectionHelper:initialize');
+
+			util.preLoadInterfaceImages().always(function () {
+				log('All interface images has been loaded');
+			});
 
 		},
 

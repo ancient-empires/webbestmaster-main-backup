@@ -73,16 +73,16 @@ var win = window,
 		checkCache: function () {
 
 			// Check if a new cache is available on page load.
-			window.addEventListener('load', function(e) {
+			win.addEventListener('load', function (e) {
 
-				window.applicationCache.addEventListener('updateready', function(e) {
-					if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
+				win.applicationCache.addEventListener('updateready', function (e) {
+					if (win.applicationCache.status == win.applicationCache.UPDATEREADY) {
 						// Browser downloaded a new app cache.
 						// Swap it in and reload the page to get the new hotness.
 
 						if (confirm('A new version of this site is available. Load it?')) {
-						 	window.applicationCache.swapCache();
-							window.location.reload();
+							win.applicationCache.swapCache();
+							win.location.reload();
 						}
 
 					} else {
@@ -130,10 +130,10 @@ var win = window,
 				'rotate-bg.svg',
 				'tangram-frame.svg'
 			].concat([0, 1, 2, 3, 4, 5, 6, 7, 8].map(function (index) {
-				return 'tangram-texture/' + index + '.jpg';
-			})).map(function (path) {
-				return 'i/' + path;
-			}));
+					return 'tangram-texture/' + index + '.jpg';
+				})).map(function (path) {
+					return 'i/' + path;
+				}));
 
 		}
 
