@@ -55,10 +55,6 @@ util.checkCache();
 
 	win.$ = win.jQuery = win.jquery = $;
 
-	util.preLoadInterfaceImages().always(function () {
-		log('All interface images has been loaded');
-	});
-
 	BaseView.prototype.initStatic();
 
 	Backbone.history.start();
