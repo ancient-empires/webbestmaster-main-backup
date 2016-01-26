@@ -21,9 +21,9 @@ var HomeView = BaseView.extend({
 			lang: lang
 		}));
 
-		view.render();
-
-		view.publish('previewSectionHelper:initialize');
+		view.render().then(function () {
+			view.publish('previewSectionHelper:initialize');
+		});
 
 		return BaseView.prototype.initialize.apply(view, arguments);
 
