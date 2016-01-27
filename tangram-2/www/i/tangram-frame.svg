@@ -3,11 +3,9 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="111.089px" height="111.09px" viewBox="0 0 111.089 111.09" enable-background="new 0 0 111.089 111.09"
 	 xml:space="preserve">
-<polygon fill="none" stroke="#FFFFFF" stroke-miterlimit="10" points="111.089,0 111.089,111.09 55.544,55.544 "/>
-<polygon fill="none" stroke="#FFFFFF" stroke-miterlimit="10" points="111.089,0 55.544,55.544 0,0 "/>
-<polygon fill="none" stroke="#FFFFFF" stroke-miterlimit="10" points="55.544,111.09 0,55.544 0,111.09 "/>
-<polygon fill="none" stroke="#FFFFFF" stroke-miterlimit="10" points="83.318,83.317 55.544,111.09 111.089,111.09 "/>
-<rect x="35.907" y="63.678" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -42.6448 63.6794)" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" width="39.274" height="39.276"/>
-<polygon fill="none" stroke="#FFFFFF" stroke-miterlimit="10" points="27.773,27.772 27.773,83.317 0,55.544 0,0 "/>
-<polygon fill="none" stroke="#FFFFFF" stroke-miterlimit="10" points="55.544,55.544 27.773,27.772 27.773,83.317 "/>
+<line fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="0" y1="0" x2="111.089" y2="111.09"/>
+<line fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="111.089" y1="0" x2="27.772" y2="83.317"/>
+<line fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="0" y1="55.545" x2="55.544" y2="111.09"/>
+<line fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="27.772" y1="27.637" x2="27.772" y2="83.317"/>
+<line fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="55.544" y1="111.09" x2="83.181" y2="83.317"/>
 </svg>
