@@ -463,7 +463,7 @@ var win = window,
 		checkConnection: function () {
 
 			var deferred = $.Deferred(),
-				src = 'https://www.google.com/favicon.ico?t=' + Date.now(),
+				src = 'https://www.google.com/favicon.ico?' + Date.now(),
 				$img = $('<img alt=""/>');
 
 			$img.on('load', function () {
@@ -491,16 +491,24 @@ var win = window,
 			//lastRemindMeLater = dateUsData.lastRemindMeLater,
 				lastNoThanks = dateUsData.lastNoThanks,
 				lastRateNow = dateUsData.lastRateNow,
-				showPeriod = 86400e3 * 2,
-				noThanksPeriod = showPeriod * 3; // try to show every two days
+				showPeriod = 86400e3, // one day
+				noThanksPeriod = showPeriod * 2; // try to show every two days
+
+			// do not show if user use app less than a minute
+			if ( now - info.get('installTime') < 60e3 ) {
+				log('do not show if user use app less than a minute');
+				return;
+			}
 
 			if (lastShow && (now - lastShow < showPeriod)) {
+				log('do not show popup too often');
 				// do not show popup too often
 				//console.log('do not show popup too often');
 				return;
 			}
 
 			if (lastRateNow) {
+				log('rate by rate now');
 				// rate by rate now
 				//console.log('it had been rate by rate now');
 				return;
@@ -513,6 +521,11 @@ var win = window,
 
 			// do not show any popup if user is offline
 			view.checkConnection().done(function () {
+
+				if (win.location.hash.indexOf('show-popup=popup') !== -1) {
+					log('popup is open');
+					return;
+				}
 
 				// set last show time
 				dateUsData.lastShow = now;
