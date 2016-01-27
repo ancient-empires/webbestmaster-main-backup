@@ -117,7 +117,7 @@ var TangramView = BaseView.extend({
 		});
 
 		// base hide
-		BaseView.prototype.hide.apply(view, arguments);
+		return BaseView.prototype.hide.apply(view, arguments);
 
 	},
 
@@ -265,17 +265,17 @@ var TangramView = BaseView.extend({
 				{
 					selector: '.js-back-to-section',
 					event: 'click',
-					fn: function (e) {
+					fn: function () {
 
-						e.stopPropagation();
+						view.hide().done(function () {
 
-						view.hide();
+							var fragment = Backbone.history.fragment;
+							fragment = fragment.split('/');
+							fragment.pop();
 
-						var fragment = Backbone.history.fragment;
-						fragment = fragment.split('/');
-						fragment.pop();
+							BaseView.prototype.backTo(fragment.join('/'));
 
-						BaseView.prototype.backTo(fragment.join('/'));
+						});
 
 					}
 				}
@@ -292,7 +292,12 @@ var TangramView = BaseView.extend({
 		var view = this,
 			$menuButton = view.get('$menuButton');
 
-		mediator.publish('router-hide-popup');
+		/*
+		 if (view.get('need-hide-by-router')) {
+		 mediator.publish('router-hide-popup');
+		 }
+		 */
+
 		view.set('menu-is-open', false);
 		return $menuButton && $menuButton.removeClass('tangram-menu-button_active');
 

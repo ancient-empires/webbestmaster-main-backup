@@ -219,7 +219,8 @@ info = {
 
 		var info = this,
 			defaultSettings = {
-				screenAnimation: info.get('isAndroid', true) ? 'off' : 'on',
+				//screenAnimation: info.get('isAndroid', true) ? 'off' : 'on',
+				screenAnimation: 'on',
 				installTime: Date.now(),
 
 				// extra - tangram

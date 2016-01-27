@@ -172,11 +172,16 @@ PopupView = BaseView.extend({
 
 	// actions
 	showInAnimation: function () {
+
+		// todo: add check for animation is on/off
+
 		var view = this;
 		view.$el.addClass('popup-show-in');
 	},
 
 	showOutAnimation: function () {
+
+		// todo: add check for animation is on/off
 
 		var view = this,
 			$el = view.$el,
