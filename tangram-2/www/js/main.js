@@ -39,8 +39,7 @@ import previewSectionHelper from './app/view/sections/preview-section-helper';
 
 import appCache from './services/app-cache';
 
-// todo: - test - enable fast click
-new FastClick(window.document.body); // test it decide
+new FastClick(window.document.body);
 
 (function back() {
 
