@@ -3,7 +3,7 @@
 
 var section = {
 
-	id: 'personsss',
+	id: 'id_section_1',
 	name: 'person',
 	data: [
 		// 9
