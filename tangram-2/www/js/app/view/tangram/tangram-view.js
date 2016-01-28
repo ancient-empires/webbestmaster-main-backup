@@ -168,7 +168,7 @@ var TangramView = BaseView.extend({
 			spaceSize = (maxX - minX) * (maxY - minY),
 			maxScale;
 
-		maxScale = Math.round(Math.sqrt(spaceSize / minScreenSize) * 150);
+		maxScale = Math.round(Math.sqrt(spaceSize / minScreenSize) * 180);
 
 		atoms.forEach(function (atom) {
 

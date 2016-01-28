@@ -31,11 +31,11 @@ var en = {
 	//'share': 'share',
 
 		// sections
-	sections: 'en sections',
-	tangram: 'en tangram',
+	sections: 'sections',
+	tangram: 'tangram',
 
-	person: 'en person',
-	animal: 'en animal',
+	person: 'person',
+	animal: 'animal',
 
 	// settings
 

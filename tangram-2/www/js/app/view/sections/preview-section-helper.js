@@ -22,7 +22,7 @@ var sectionViewProto = SectionView.prototype,
 			var self = this,
 				$progressBarWrapper = $('<div class="progress-bar-wrapper progress-bar-wrapper_hidden"><div class="progress-bar js-progress-bar">&nbsp;</div></div>');
 
-			$('.js-title-game-name').append($progressBarWrapper);
+			$('.js-wrapper').append($progressBarWrapper);
 
 			self.setData('$progressBarWrapper', $progressBarWrapper);
 
