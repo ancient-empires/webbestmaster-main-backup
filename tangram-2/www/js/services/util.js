@@ -86,6 +86,28 @@ var win = window,
 
 		},
 
+/*
+		hexToDecimal: function (hex) {
+
+			return parseInt(hex, 16);
+
+		},
+
+		decimalToHex: function (decimal) {
+
+			return decimal.toString(16);
+
+		},
+
+		getRandomColor: function () {
+
+			return '#' + [0, 0, 0].map(function () {
+				return this.decimalToHex(this.getRandomBetween(0, 256));
+			}, this).join('');
+
+		},
+*/
+
 		// tangram
 
 		preLoadInterfaceImages: function () {
