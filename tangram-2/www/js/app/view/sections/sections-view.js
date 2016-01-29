@@ -267,7 +267,7 @@ var SectionsView = BaseView.extend({
 			atomToTriangle = tanCollectionProto.atomToTriangle,
 			patternDeltaX,
 			patternDeltaY,
-			size = 2.5,
+			size = 2.7,
 			viewSizeX = size,
 			viewSizeY = size,
 			patternSizeX,
