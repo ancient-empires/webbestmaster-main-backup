@@ -6,11 +6,11 @@ import SectionView from './sections-view';
 import mediator from './../../../services/mediator';
 import util from './../../../services/util';
 import log from './../../../services/log';
-import log from './../../../services/log';
 import info from './../../../services/info';
 import Queue from './../../../lib/queue';
 import sha1 from './../../../lib/sha1';
 import $ from './../../../lib/jbone';
+import db from './../../../services/db';
 
 var sectionViewProto = SectionView.prototype,
 	previewSectionHelper = {
@@ -74,23 +74,33 @@ var sectionViewProto = SectionView.prototype,
 
 		},
 
-/*
-		hasKey: function (key) {
+		/*
+		 hasKey: function (key) {
 
-			return this.attr.hasOwnProperty(key);
+		 return this.attr.hasOwnProperty(key);
 
-		},
-*/
+		 },
+		 */
 
 		initializeTangramPreview: function () {
 
 			var self = this,
 				length = 0,
-				queue = new Queue();
+				queue = new Queue(),
+				currentTangramsVersion = info.get('tangrams-version');
 
 			self.setData('donePreviews', 0);
 
 			log('----- start initializeTangramPreview');
+
+			if (currentTangramsVersion !== tangrams.version) {
+
+				db.refreshPreviewTable().done(function () {
+					info.set('tangrams-version', tangrams.version);
+					self.initializeTangramPreview();
+				});
+				return;
+			}
 
 			// initTans
 			tangrams.data.forEach(function (section) {
@@ -120,21 +130,29 @@ var sectionViewProto = SectionView.prototype,
 
 			var self = this,
 				defer = $.Deferred(),
-				key = item.hash,
-				result = sectionViewProto.createPreviewSection(item);
+				key = item.hash;
 
-			self.setData(key, result);
+			db.getPreviewByHash(key).done(function (data) {
 
-			setTimeout(function () {
-				log('one tangram has been resolve');
-				defer.resolve();
 				self.increaseProgressBar();
 
-				if ( self.getData('donePreviews') === 10) {
-					self.getData('$progressBarWrapper').removeClass('progress-bar-wrapper_hidden');
+				var result,
+					svgText;
+
+				if (data) {
+					self.setData(key, data.svgText);
+					defer.resolve();
+					return;
 				}
 
-			}, 0);
+				result = sectionViewProto.createPreviewSection(item);
+				svgText = result.svgText;
+				self.setData(key, svgText);
+				db.pushPreview(key, svgText).done(function () {
+					defer.resolve();
+				});
+
+			});
 
 			return defer.promise();
 
@@ -161,6 +179,10 @@ var sectionViewProto = SectionView.prototype,
 
 			self.setData('donePreviews', donePreviews);
 
+			if (self.getData('donePreviews') === 10) {
+				self.getData('$progressBarWrapper').removeClass('progress-bar-wrapper_hidden');
+			}
+
 			return donePreviews;
 
 		},
@@ -171,7 +193,7 @@ var sectionViewProto = SectionView.prototype,
 				animationEnd = info.get('transitionEnd', true),
 				$progressBarWrapper = self.getData('$progressBarWrapper');
 
-			$progressBarWrapper.one(animationEnd, function() {
+			$progressBarWrapper.one(animationEnd, function () {
 				self.removeData('$progressBarWrapper');
 				self.removeData('$progressBar');
 				$progressBarWrapper.empty().remove();

@@ -5,7 +5,7 @@ var log,
 	gOldOnError,
 	slice = Array.prototype.slice,
 	logger = {
-		isEnable: !true,
+		isEnable: true,
 		remoteLog: false,
 		xhr: new XMLHttpRequest(),
 		log: function () {

@@ -25,6 +25,7 @@ import androidAds from './services/android-ads';
 import lang from './services/lang';
 import tm from './services/template-master';
 import util from './services/util';
+import db from './services/db';
 
 // init sound players
 import sm from './sound/sound-master';
@@ -56,8 +57,9 @@ new FastClick(window.document.body);
 
 	BaseView.prototype.initStatic();
 
-	Backbone.history.start();
-
-	win.setTimeout(androidAds.showAd, 3e3);
+	db.init().done(function () {
+		Backbone.history.start();
+		win.setTimeout(androidAds.showAd, 3e3);
+	});
 
 }());

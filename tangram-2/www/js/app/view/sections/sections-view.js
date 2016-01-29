@@ -258,7 +258,9 @@ var SectionsView = BaseView.extend({
 
 		if (previewSection) {
 			log('createPreviewSection fromCache');
-			return previewSection;
+			return {
+				svgText: previewSection
+			};
 		}
 
 		var tempDiv = document.createElement('div'),
@@ -350,7 +352,6 @@ var SectionsView = BaseView.extend({
 		tempDiv.appendChild(svg);
 
 		return {
-			//svg: svg,
 			svgText: tempDiv.innerHTML
 		};
 
