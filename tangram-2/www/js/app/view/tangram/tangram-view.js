@@ -88,14 +88,19 @@ var TangramView = BaseView.extend({
 			svg: patternSvg
 		}, function (data) {
 
-			var $canvas = $(data.canvas);
+			var $canvas = $(data.canvas),
+				gameDifficult = info.get('gameDifficult');
 
-			$canvas.css({
-				top: data.top + 'px',
-				left: data.left + 'px'
-			});
 
-			$canvas.addClass('tangram-pattern');
+			if (gameDifficult === 'regular') {
+				$canvas.addClass('tangram-pattern-regular');
+				$canvas.css({
+					top: data.top + 'px',
+					left: data.left + 'px'
+				});
+			} else {
+				$canvas.addClass('tangram-pattern-master');
+			}
 
 			view.$el.append($canvas);
 

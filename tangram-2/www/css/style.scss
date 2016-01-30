@@ -35,11 +35,17 @@ body {
   top: 30px;
 }
 
-.tangram-pattern {
+.tangram-pattern-regular {
   position: absolute;
-  //top: 0;
-  //left: 0;
   z-index: -1;
+}
+
+.tangram-pattern-master {
+  @extend .tangram-pattern-regular;
+  top: 1rem;
+  left: 1rem;
+  @include prefix(transform, scale(0.34));
+  @include prefix(transform-origin, left top);
 }
 
 .title-game-name {

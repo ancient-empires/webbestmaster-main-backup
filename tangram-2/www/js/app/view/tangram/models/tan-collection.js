@@ -729,7 +729,6 @@ var TanCollection = Backbone.Collection.extend({
 
 	drawPattern: function () {
 
-		// TODO: difficult hard
 		var collection = this,
 			coordinatesToPolygon = collection.coordinatesToPolygon.bind(collection),
 			pattern = collection.getData('initedPattern'),
@@ -744,10 +743,6 @@ var TanCollection = Backbone.Collection.extend({
 				viewBox: [0, 0, width, height].join(' '),
 				xmlns: 'http://www.w3.org/2000/svg'
 			};
-
-		if (info.get('gameDifficult') !== 'regular') {
-			attributes.viewBox = [0, 0, width * 3.5, height * 3.5].join(' ');
-		}
 
 		Object.keys(attributes).forEach(function (key) {
 			var attr = document.createAttribute(key);
