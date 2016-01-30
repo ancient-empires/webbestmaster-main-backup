@@ -8,12 +8,15 @@ import RotaterModel from './rotater/rotater-model';
 import device from './../../../services/device';
 import log from './../../../services/log';
 import info from './../../../services/info';
+import util from './../../../services/util';
 import mediator from './../../../services/mediator';
 import lang from './../../../services/lang';
 import tangrams from './../../data/tangrams';
 import _ from './../../../lib/lodash';
+import $ from './../../../lib/jbone';
 
-var tanCollectionProto = TanCollection.prototype;
+var win = window,
+	tanCollectionProto = TanCollection.prototype;
 
 var TangramView = BaseView.extend({
 
@@ -81,12 +84,29 @@ var TangramView = BaseView.extend({
 		tanCollection.setScale(scale);
 		tanCollection.initPattern(pattern);
 		patternSvg = tanCollection.drawPattern();
+		util.svgToCanvas({
+			svg: patternSvg
+		}, function (data) {
+
+			var $canvas = $(data.canvas);
+
+			$canvas.css({
+				top: data.top + 'px',
+				left: data.left + 'px'
+			});
+
+			$canvas.addClass('tangram-pattern');
+
+			view.$el.append($canvas);
+
+		});
+		//view.drawSvgAsCanvas(patternSvg);
 		tanCollection.createTans();
 		tanCollection.addDrawFieldTo(view.$el);
 		tanCollection.drawTans();
 		tanCollection.setData('rotater', rotater);
 
-		view.$el.append(patternSvg);
+		//view.$el.append(patternSvg);
 
 		view.set('$menuButton', view.$el.find('.js-tangram-menu-button'));
 

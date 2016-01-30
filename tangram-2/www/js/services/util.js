@@ -4,10 +4,142 @@
 import $ from './../lib/jbone';
 import Queue from './../lib/queue';
 
-var win = window,
+var arrayProto = Array.prototype,
+	win = window,
 //doc = win.document,
 //docElem = doc.documentElement,
 	util = {
+
+		tempDiv: document.createElement('div'),
+		forEach: arrayProto.forEach,
+		DOMURL: win.URL || win.webkitURL || win,
+
+		svgBoundingBox: function (svg) {
+
+			var maxX = -Infinity,
+				maxY = -Infinity,
+				minX = Infinity,
+				minY = Infinity,
+				polygons = svg.querySelectorAll('*');
+
+			arrayProto.forEach.call(polygons, function (polygon) {
+
+				var polygonPoints = polygon.points,
+					len,
+					i,
+					point,
+					x,
+					y;
+
+				for (i = 0, len = polygonPoints.length; i < len; i += 1) {
+					point = polygonPoints.getItem(i);
+
+					x = point.x;
+					y = point.y;
+
+					if (x > maxX) {
+						maxX = x;
+					}
+
+					if (y > maxY) {
+						maxY = y;
+					}
+
+					if (x < minX) {
+						minX = x;
+					}
+
+					if (y < minY) {
+						minY = y;
+					}
+
+				}
+
+			});
+
+			return {
+				maxX: maxX,
+				maxY: maxY,
+				minX: minX,
+				minY: minY,
+				width: parseFloat(svg.getAttribute('width')),
+				height: parseFloat(svg.getAttribute('height')),
+				sizeX: maxX - minX,
+				sizeY: maxY - minY
+			}
+
+		},
+
+		svgToCanvas: function (data, cb) { // data -> svg + padding
+
+			var util = this,
+				svg = data.svg,
+				svgBoundingBox = util.svgBoundingBox(svg),
+				svgText = util.getOuterHtml(svg),
+				minX = svgBoundingBox.minX,
+				minY = svgBoundingBox.minY,
+				sizeX = svgBoundingBox.sizeX,
+				sizeY = svgBoundingBox.sizeY,
+				padding = data.hasOwnProperty('padding') ? data.padding : 5, // 5 px
+				dblPadding = padding * 2,
+				canvas = document.createElement('canvas'),
+				//canvasStyle = canvas.style,
+				ctx = canvas.getContext('2d'),
+				DOMURL = util.DOMURL,
+				img = new Image(),
+				svgBlob,
+				url,
+				left = minX - padding,
+				top = minY - padding;
+
+			sizeX += dblPadding;
+			sizeY += dblPadding;
+
+			canvas.width = sizeX;
+			canvas.height = sizeY;
+
+			svgBlob = new Blob([svgText], {type: 'image/svg+xml;charset=utf-8'});
+			url = DOMURL.createObjectURL(svgBlob);
+
+			img.addEventListener('load', function onLoad() {
+				img.removeEventListener('load', onLoad, false);
+				ctx.drawImage(this, left, top, sizeX, sizeY, 0, 0, sizeX, sizeY);
+				DOMURL.revokeObjectURL(url);
+				cb({
+					canvas: canvas,
+					left: left,
+					top: top,
+					sizeX: sizeX,
+					sizeY: sizeY,
+					width: svgBoundingBox.width,
+					height: svgBoundingBox.height
+				});
+			}, false);
+
+			img.src = url;
+
+		},
+
+		toArray: function (likeArray) {
+
+			return Array.prototype.slice.call(likeArray);
+
+		},
+
+		getOuterHtml: function (node) {
+
+			var util = this,
+				tempDiv = util.tempDiv,
+				outerHtml;
+
+			tempDiv.appendChild(node);
+
+			outerHtml = tempDiv.innerHTML;
+			tempDiv.removeChild(node);
+
+			return outerHtml;
+
+		},
 
 		assortArray: function (arr) {
 			return arr.sort(function () {

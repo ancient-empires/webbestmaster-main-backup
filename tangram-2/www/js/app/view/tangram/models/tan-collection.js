@@ -624,7 +624,8 @@ var TanCollection = Backbone.Collection.extend({
 				y: '0px',
 				width: width + 'px',
 				height: height + 'px',
-				viewBox: [0, 0, width, height].join(' ')
+				viewBox: [0, 0, width, height].join(' '),
+				xmlns: 'http://www.w3.org/2000/svg'
 			};
 
 		Object.keys(attributes).forEach(function (key) {
@@ -741,7 +742,7 @@ var TanCollection = Backbone.Collection.extend({
 				width: width + 'px',
 				height: height + 'px',
 				viewBox: [0, 0, width, height].join(' '),
-				'class': 'tangram-pattern'
+				xmlns: 'http://www.w3.org/2000/svg'
 			};
 
 		if (info.get('gameDifficult') !== 'regular') {
