@@ -324,6 +324,7 @@ var Tan = Backbone.Model.extend({
 
 		if (!tanNode) {
 			tanNode = document.createElement('div');
+			tanNode.innerHTML = '&nbsp;'
 			$tanNode = $(tanNode);
 			tan.set('node', tanNode);
 			tan.setStyles();
