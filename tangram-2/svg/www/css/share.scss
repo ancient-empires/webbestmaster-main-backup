@@ -1,0 +1,40 @@
+.share-link-wrapper {
+	font-size: 0;
+	line-height: 0;
+}
+
+.share-link {
+	display: inline-block;
+	width: 2rem;
+	height: 2rem;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+	background-position: 0 0;
+	margin: 0 0.5rem;
+	line-height: 1rem;
+	font-size: 1rem;
+	overflow: hidden;
+	text-decoration: none;
+	background-image: url(../i/share-icons.svg);
+}
+
+.share-link-facebook {
+	background-position: 0 0;
+}
+
+.share-link-twitter {
+	background-position: 0 25%;
+}
+
+.share-link-google {
+	background-position: 0 75%;
+}
+
+.share-link-linkedin {
+	background-position: 0 100%;
+}
+
+.share-link-vk {
+	background-position: 0 50%;
+}
+

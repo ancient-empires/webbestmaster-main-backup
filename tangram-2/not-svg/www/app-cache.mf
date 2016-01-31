@@ -1,0 +1,33 @@
+CACHE MANIFEST
+# 2016-01-25:v0.1
+# v.0.0.1
+
+# AddType text/cache-manifest .appcache
+
+CACHE:
+
+#/favicon.ico
+
+index.html
+
+css/main.css
+
+js/main.js
+
+font/icomoon.ttf
+font/origram.otf
+
+i/tangram-texture/0.jpg
+i/tangram-texture/1.jpg
+i/tangram-texture/2.jpg
+i/tangram-texture/3.jpg
+i/tangram-texture/4.jpg
+i/tangram-texture/5.jpg
+i/tangram-texture/6.jpg
+i/tangram-texture/7.jpg
+i/tangram-texture/8.jpg
+
+i/main-bg.jpg
+i/rotate-bg.svg
+i/tangram-frame.svg
+

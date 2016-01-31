@@ -1,0 +1,46 @@
+.settings-section {
+  text-align: center;
+  //font-size: 1rem;
+  //line-height: 1.15rem;
+  padding-bottom: 2rem;
+}
+
+.settings-on-off-button {
+  @extend .luxury-3d-button;
+}
+
+.settings-on-off-button:active {
+  @extend .luxury-3d-button_active;
+}
+
+.tangram-texture-preview-wrapper {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 22rem;
+}
+
+.tangram-texture-preview {
+  width: 25%;
+  float: left;
+  margin: 2.6%;
+  padding: 1.5%;
+  opacity: 0.5;
+}
+
+.tangram-texture-preview_active {
+  opacity: 1;
+}
+
+.tangram-texture-preview-image {
+  display: block;
+  width: 100%;
+}
+
+.tangram-texture-preview-frame {
+  display: block;
+  width: 100%;
+  margin-top: -100%;
+  position: relative;
+  z-index: 1;
+}
+

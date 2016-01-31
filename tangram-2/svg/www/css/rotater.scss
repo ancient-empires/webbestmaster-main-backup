@@ -1,0 +1,15 @@
+.rotater {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-image: url(../i/rotate-bg.svg);
+  width: 100px;
+  height: 100px;
+  opacity: 0.66;
+  //border-radius: 50%;
+  transition: opacity 0.1s ease-out;
+}
+
+.rotater__hidden {
+  visibility: hidden;
+}

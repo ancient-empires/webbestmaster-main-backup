@@ -1,0 +1,349 @@
+<!doctype html>
+<!--<html manifest="app-cache.mf">-->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>tangram-2</title>
+
+	<!-- mobile device -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- do not call phone -->
+	<meta name="format-detection" content="telephone=no">
+
+	<!-- add site icon -->
+	<!--<link rel="icon" href="i/favicon.ico" type="image/x-icon">-->
+
+	<!-- iPhone icon -->
+	<!--<link rel="apple-touch-icon" href="i/iphone.jpg"/>-->
+
+	<!-- keywords and description -->
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<link rel="stylesheet" href="css/main.css"/>
+
+</head>
+<body>
+
+<div class="js-wrapper wrapper"></div>
+
+<!--
+<script class="js-template" type="text/x-template" data-name="header">
+
+	<div class="header">
+
+		{{? it.isBack }}
+		<div class="header&#45;&#45;back">&nbsp;</div>
+		{{?}}
+
+		<div class="header&#45;&#45;setting">&nbsp;</div>
+
+		<div class="header&#45;&#45;title">{{= it.lang.get(it.title) }}</div>
+
+	</div>
+</script>
+-->
+
+<script class="js-template" type="text/x-template" data-name="home">
+
+	<section class="screen">
+
+		<div class="screen--button-wrapper_split_first">
+			<div class="title-game-name">tangram</div>
+			<!-- 七 巧 板 -->
+		</div>
+
+		<div class="screen--button-wrapper_split_second">
+			<div class="screen--button js-set-game-difficult" data-difficult="regular" >{{= it.lang.get('play-regular') }}</div>
+			<div class="screen--button js-set-game-difficult" data-difficult="master" >{{= it.lang.get('play-master') }}</div>
+			<div class="screen--button" data-route="settings" >{{= it.lang.get('settings') }}</div>
+			<!--<div class="screen&#45;&#45;button">{{= it.lang.get('share') }}</div>-->
+
+			<div class="screen--button" data-route="tangram-constructor">constructor (developers only)</div>
+
+		</div>
+
+	</section>
+
+</script>
+
+<script class="js-template" type="text/x-template" data-name="sections">
+
+	<section class="screen">
+
+		<div class="scroll-area-container js-scroll-area-container">
+			<div class="scroll-area-content">
+				<div class="screen-back js-back">&#xf040;</div>
+				<div class="section-header-wrapper">
+					<p class="section-header ellipsis">{{= it.lang.get(it.sectionHeader) }}</p>
+				</div>
+
+				{{ var isSections = it.isSections; }}
+
+				{{~ it.items :item:index }}
+
+					{{? isSections}}
+						<div class="section-preview" data-route="sections/{{= item.id }}">
+							<div class="section-preview-done-info">{{= item.doneTangramsHashs.length }} / {{= item.length }}</div>
+							{{= item.preview.svgText }}
+							<p class="section-preview-name ellipsis">{{= it.lang.get(item.name) }}</p>
+						</div>
+
+					{{??}}
+
+						{{? item.tick }}
+						<div class="section-preview" data-route="sections/{{= it.id }}/{{= index }}"><div class="section-preview-tick">&#xf03a;</div>{{= item.preview.svgText }}</div>
+						{{??}}
+						<div class="section-preview" data-route="sections/{{= it.id }}/{{= index }}"><div class="section-preview-tick section-preview-no-tick">&#xf03a;</div>{{= item.preview.svgText }}</div>
+						{{?}}
+
+					{{?}}
+
+				{{~}}
+
+
+			</div>
+		</div>
+
+	</section>
+
+</script>
+
+<script class="js-template" type="text/x-template" data-name="tangram-successful">
+
+	<div class="screen-disable">
+
+		<div class="one-more-tangram-wrapper popup-show-in">
+			<div class="screen-back js-back">&#xf040;</div>
+
+			<div class="one-more-tangram-check">&#xf03a;</div>
+
+			<div class="js-one-more-tangram one-more-tangram_left" data-id="{{= it.id }}" data-index="{{= it.nextIndex }}">&#xf040;</div>
+			<!--<button class="js-restart-tangram" data-name="{{= it.name }}" data-index="{{= it.index }}" >restart tangram</button>-->
+			<div class="js-one-more-tangram one-more-tangram_center" data-id="{{= it.id }}" data-index="{{= it.index }}">&#xf087;</div>
+			<div class="js-one-more-tangram one-more-tangram_right" data-id="{{= it.id }}" data-index="{{= it.nextIndex }}">&#xf03e;</div>
+
+		</div>
+
+	</div>
+
+</script>
+
+<script class="js-template" type="text/x-template" data-name="tangram">
+
+	<section class="screen">
+
+		<div class="tangram-menu-button js-tangram-menu-button">
+			<div class="tangram-menu-button-line_0">&nbsp;</div>
+			<div class="tangram-menu-button-line_1">&nbsp;</div>
+			<div class="tangram-menu-button-line_2">&nbsp;</div>
+		</div>
+
+		{{? it.mode === 'constructor' }}
+		<button class="js-save-atoms save-atoms">save-atoms</button>
+		<input type="text" class="js-saved-atoms-name saved-atoms-name-input"/>
+		{{?}}
+
+		<svg>
+			<defs>
+				{{ var size = it.size, textureName = it.info.get('tangramTexture'), texturePath = 'i/tangram-texture/' + textureName + '.jpg'; }}
+				<pattern id="default" width="{{= size }}px" height="{{= size }}px" patternUnits="userSpaceOnUse">
+					<image x="0" y="0" width="{{= size }}px" height="{{= size }}px" xlink:href="{{= texturePath }}"></image>
+				</pattern>
+				<pattern id="triangle-medium-pattern" width="{{= size }}px" height="{{= size }}px"
+						 patternUnits="userSpaceOnUse" patternTransform="translate({{= size / 2 }}, 0) rotate(135)">
+					<image x="0" y="0" width="{{= size }}px" height="{{= size }}px" xlink:href="{{= texturePath }}"></image>
+				</pattern>
+			</defs>
+		</svg>
+
+	</section>
+
+</script>
+
+<script class="js-template" type="text/x-template" data-name="tangram-menu">
+
+	<h1 class="tangram-menu--header">{{= it.lang.get('menu') }}</h1>
+
+	<div class="screen--button js-reset-tangram">{{= it.lang.get('reset') }}</div>
+	<div class="screen--button js-back-to-section">{{= it.lang.get('exit') }}</div>
+
+</script>
+
+<script class="js-template" type="text/x-template" data-name="settings">
+
+	<section class="screen">
+
+		<div class="scroll-area-container js-scroll-area-container">
+			<div class="scroll-area-content">
+				<div class="screen-back js-back">&#xf040;</div>
+				<div class="section-header-wrapper">
+					<p class="section-header ellipsis">{{= it.lang.get('settings') }}</p>
+				</div>
+
+<!--
+				<div class="settings-section">
+					<div class="screen&#45;&#45;button">{{= it.lang.get('timer') }}</div>
+					<div class="screen&#45;&#45;button">{{= it.lang.get('sound') }}</div>
+				</div>
+-->
+
+				<div class="settings-section">
+					<div class="section-sub-header">{{= it.lang.get('tangram-texture') }}</div>
+
+					{{var tangramTexture = Number(it.info.get('tangramTexture')); }}
+
+					<div>{{= typeof tangramTexture }}</div>
+
+					<div class="tangram-texture-preview-wrapper self-to-stream">
+					{{~ [0, 1, 2, 3, 4, 5, 6, 7, 8] :number}}
+
+						{{? number === tangramTexture }}
+								<div data-index="{{= number }}" class="screen--button js-tangram-texture-preview tangram-texture-preview tangram-texture-preview_active">
+									<img class="tangram-texture-preview-image" src="i/tangram-texture/{{= number }}.jpg" alt=""/>
+									<img class="tangram-texture-preview-frame" src="i/tangram-frame.svg" alt=""/>
+								</div>
+							{{??}}
+								<div data-index="{{= number }}" class="screen--button js-tangram-texture-preview tangram-texture-preview">
+									<img class="tangram-texture-preview-image" src="i/tangram-texture/{{= number }}.jpg" alt=""/>
+									<img class="tangram-texture-preview-frame" src="i/tangram-frame.svg" alt=""/>
+								</div>
+							{{?}}
+						{{~}}
+					</div>
+				</div>
+
+				<!--<div class="settings-section">-->
+					<!--<div class="screen&#45;&#45;button">{{= it.lang.get('other-apps') }}</div>-->
+					<!--<div class="screen&#45;&#45;button">{{= it.lang.get('about') }}</div>-->
+					<!--<div class="screen&#45;&#45;button">{{= it.lang.get('e-mail') }}</div>-->
+				<!--</div>-->
+
+<!--
+				<div class="settings-section">
+					<div class="screen&#45;&#45;button">{{= it.lang.get('reset') }}</div>
+				</div>
+-->
+
+			</div>
+
+		</div>
+
+	</section>
+
+</script>
+
+<!-- FW -->
+
+<script class="js-template" type="text/x-template" data-name="popup-wrapper">
+
+	<div class="popup-wrapper">
+
+		<div class="popup-container js-popup-container"></div>
+
+	</div>
+
+</script>
+
+<script class="js-template" type="text/x-template" data-name="notification">
+
+	<div class="js-stop-event js-back">
+		{{= it.text }}
+	</div>
+
+</script>
+
+<script class="js-template" type="text/x-template" data-name="need-confirm">
+
+	<div class="js-stop-event">
+
+		<div class="external-link-icon">&nbsp;</div>
+
+		<p class="external-link-question">{{= it.a }} + {{= it.b }} = ?</p>
+
+		{{~it.answers :answer:index}}
+
+		{{? index === 3 }}
+		<div class="clear"></div>
+		{{?}}
+
+		{{? answer === it.answer }}
+		<div class="external-link-answer-button js-external-link js-back" data-href="{{= it.url }}">
+			{{= answer }}
+		</div>
+		{{??}}
+		<div class="external-link-answer-button js-back">
+			{{= answer }}
+		</div>
+		{{?}}
+		{{~ }}
+	</div>
+
+</script>
+
+<script class="js-template" type="text/x-template" data-name="rate-us">
+
+	<div class="js-stop-event">
+
+		{{ var rateUsLang = it.lang.get('rateUs'); }}
+
+		<p class="popup-header">
+			{{= rateUsLang.header }}
+		</p>
+
+		<div class="popup-wide-button js-external-link js-back js-rate-us-rate-now" data-href="{{= it.url }}">
+			{{= rateUsLang.rateNow }}
+		</div>
+
+		<div class="popup-wide-button js-back">
+			{{= rateUsLang.remindMeLater }}
+		</div>
+
+		<div class="popup-wide-button-negative js-back js-rate-us-no-thanks">
+			{{= rateUsLang.noThanks }}
+		</div>
+
+	</div>
+
+</script>
+
+<script class="js-template" type="text/x-template" data-name="new-version-is-available">
+
+	<div>
+
+		{{ var lang = it.lang; }}
+
+		<p class="popup-header">
+			{{= lang.get('newVersionIsAvailable') }}
+		</p>
+
+		<div class="popup-wide-button js-update-cache">
+			.yes.
+		</div>
+
+		<div class="popup-wide-button-negative js-back">
+			.no.
+		</div>
+
+	</div>
+
+</script>
+
+<script class="js-template" type="text/x-template" data-name="hint">
+
+	<div class="hint-wrapper js-hint-wrapper">
+		<div class="js-no-scroll hint-focus js-hint-focus"></div>
+		<div class="js-hint-text hint-text">
+			<span class="js-hint-arrow hint-arrow">&nbsp;</span>
+			<span class="js-hint-arrow hint-arrow-border">&nbsp;</span>
+			{{= it.text.split('|').join('<br \/>') }}
+		</div>
+	</div>
+
+</script>
+
+<script src="js/main.js" class="js-main-js" type="text/javascript" async></script>
+
+</body>
+</html>

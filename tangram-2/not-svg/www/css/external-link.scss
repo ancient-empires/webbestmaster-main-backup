@@ -1,0 +1,30 @@
+.external-link-icon {
+	background-image: url(../i/link-external.svg);
+	width: 4rem;
+	height: 4rem;
+	background-repeat: no-repeat;
+	background-size: contain;
+	margin: 0 auto 0.2rem;
+	background-position: center center;
+}
+
+.external-link-question {
+	font-size: 1.6rem;
+	line-height: 150%;
+}
+
+.external-link-answer-button {
+	display: inline-block;
+	width: 2.8rem;
+	height: 1.8rem;
+	padding-top: 1rem;
+	line-height: 100%;
+	margin: 0.4rem 0.5rem 0.6rem;
+	background-color: #ECECEC;
+	border-radius: 0.4rem;
+	box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
+}
+
+.external-link-answer-button:active {
+	box-shadow: none;
+}
