@@ -2,7 +2,7 @@
 /*global window */
 
 import info from './services/info';
-info.set('dev-mode', !false);
+info.set('dev-mode', false);
 
 import log from './services/log';
 
