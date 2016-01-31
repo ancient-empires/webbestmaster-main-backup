@@ -528,12 +528,15 @@ var Tan = Backbone.Model.extend({
 				.replace('dy', dy + 'px')
 		);
 
-		attribute.push(
-			rotateSrt.replace('angle', rotate + 'deg')
-		);
-
 		if (isFlip) {
+			attribute.push(
+				rotateSrt.replace('angle', -rotate + 'deg')
+			);
 			attribute.push(scaleStr);
+		} else {
+			attribute.push(
+				rotateSrt.replace('angle', rotate + 'deg')
+			);
 		}
 
 		return {
