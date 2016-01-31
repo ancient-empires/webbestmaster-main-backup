@@ -36,7 +36,7 @@ Queue.prototype = {
 		}
 
 		result = self.getNext()();
-		if (result.always) {
+		if (result && result.always) {
 			result.always(self.run.bind(self));
 		} else {
 			self.run();

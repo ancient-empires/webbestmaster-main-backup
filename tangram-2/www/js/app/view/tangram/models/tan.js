@@ -8,6 +8,8 @@ import device from './../../../../services/device';
 
 var Tan = Backbone.Model.extend({
 
+/*
+	svg-version
 	styles: {
 		stroke: '#fff',
 		'stroke-width': '1px',
@@ -25,6 +27,7 @@ var Tan = Backbone.Model.extend({
 		'stroke-linejoin': 'round',
 		'stroke-alignment': 'center'
 	},
+*/
 
 	setBy: function (key, deltaValue) {
 
@@ -184,7 +187,7 @@ var Tan = Backbone.Model.extend({
 
 		var tan = this;
 
-		tan.setStyles(isActive && tan.activeStyles);
+		tan.setStyles(isActive);
 
 	},
 
@@ -329,8 +332,7 @@ var Tan = Backbone.Model.extend({
 			$tanNode.css({
 				width: tan.get('sizeX') + 'px',
 				height: tan.get('sizeY') + 'px',
-				backgroundColor: '#c00',
-				backgroundImage: '-webkit-linear-gradient(left, #fff, #000)'
+				backgroundImage: 'url(i/tan-textures/texture-' + info.get('tangramTexture') + '-' + tan.get('key') + '.png)'
 			});
 
 			$tanNode.addClass('tan');
@@ -596,43 +598,16 @@ var Tan = Backbone.Model.extend({
 	},
 */
 
-	setStyles: function (stylesArg) {
-
-		console.error('set style is\'t implemented');
-		console.error(stylesArg);
-
-		return;
+	setStyles: function (isActive) {
 
 		var tan = this,
-			node = tan.get('node'),
-			styles = stylesArg || tan.styles,
-			nodeAttributes = tan.nodeAttributes,
-			styleStr = '',
-			attr = document.createAttribute('style');
+			$node = $(tan.get('node'));
 
-		Object.keys(styles).forEach(function (key) {
-			styleStr += key + ':' + styles[key] + ';';
-		});
-		/*
-
-		 Object.keys(styles).forEach(function (key) {
-		 var value = (key === 'stroke-width') ? styles[key] * tan.get('scale') : styles[key];
-		 styleStr += key + ':' + value + ';';
-		 });
-		 */
-
-		attr.value = styleStr;
-		node.setAttributeNode(attr);
-
-		Object.keys(nodeAttributes).forEach(function (key) {
-			var attr = document.createAttribute(key);
-			if (key === 'fill') {
-				attr.value = 'url(#' + tan.get('patternId') + ')';
-			} else {
-				attr.value = nodeAttributes[key];
-			}
-			node.setAttributeNode(attr);
-		});
+		if (isActive) {
+			$node.addClass('tan_active');
+		} else {
+			$node.removeClass('tan_active');
+		}
 
 	},
 

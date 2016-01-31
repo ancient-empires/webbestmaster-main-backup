@@ -1,11 +1,13 @@
 'use strict';
 /*global console */
 
+import info from './info';
+
 var log,
 	gOldOnError,
 	slice = Array.prototype.slice,
 	logger = {
-		isEnable: true,
+		isEnable: info.get('dev-mode'),
 		remoteLog: false,
 		xhr: new XMLHttpRequest(),
 		log: function () {

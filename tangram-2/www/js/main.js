@@ -1,7 +1,11 @@
 'use strict';
 /*global window */
 
+import info from './services/info';
+info.set('dev-mode', !false);
+
 import log from './services/log';
+
 
 import mediator from './services/mediator';
 
@@ -19,7 +23,6 @@ import doT from './lib/dot';
 import Queue from './lib/queue';
 
 // init all services
-import info from './services/info';
 import device from './services/device';
 import androidAds from './services/android-ads';
 import lang from './services/lang';

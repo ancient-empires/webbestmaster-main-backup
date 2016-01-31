@@ -60,7 +60,28 @@
 			<div class="screen--button" data-route="settings" >{{= it.lang.get('settings') }}</div>
 			<!--<div class="screen&#45;&#45;button">{{= it.lang.get('share') }}</div>-->
 
-			<div class="screen--button" data-route="tangram-constructor">constructor (developers only)</div>
+			{{? it.info.get('dev-mode') }}
+			<div class="screen--button" data-route="tangram-constructor">constructor</div>
+			<div class="screen--button js-save-textures">save textures</div>
+
+			{{ var size = it.textureInfo.size; }}
+
+			{{~ it.textureInfo.textures :texture:index }}
+				<svg xmlns="http://www.w3.org/2000/svg" width="{{= size }}" height="{{= size }}" class="js-save-texture-svg" data-name="{{= index }}">
+					<defs>
+						<pattern id="default" width="{{= size }}px" height="{{= size }}px" patternUnits="userSpaceOnUse">
+							<image x="0" y="0" width="{{= size }}px" height="{{= size }}px" xlink:href="{{= texture }}"></image>
+						</pattern>
+						<pattern id="triangle-medium-pattern" width="{{= size }}px" height="{{= size }}px"
+								 patternUnits="userSpaceOnUse" patternTransform="translate({{= size / 2 }}, 0) rotate(135)">
+							<image x="0" y="0" width="{{= size }}px" height="{{= size }}px" xlink:href="{{= texture }}"></image>
+						</pattern>
+					</defs>
+				</svg>
+
+			{{~}}
+
+			{{?}}
 
 		</div>
 
@@ -101,7 +122,6 @@
 					{{?}}
 
 				{{~}}
-
 
 			</div>
 		</div>
@@ -148,7 +168,7 @@
 		<div class="tans-wrapper js-tans-wrapper"></div>
 
 <!-- svg-version
-		<svg>
+		<svg xmlns="http://www.w3.org/2000/svg">
 			<defs>
 				{{ var size = it.size, textureName = it.info.get('tangramTexture'), texturePath = 'i/tangram-texture/' + textureName + '.jpg'; }}
 				<pattern id="default" width="{{= size }}px" height="{{= size }}px" patternUnits="userSpaceOnUse">
@@ -204,17 +224,17 @@
 					{{~ [0, 1, 2, 3, 4, 5, 6, 7, 8] :number}}
 
 						{{? number === tangramTexture }}
-								<div data-index="{{= number }}" class="screen--button js-tangram-texture-preview tangram-texture-preview tangram-texture-preview_active">
-									<img class="tangram-texture-preview-image" src="i/tangram-texture/{{= number }}.jpg" alt=""/>
-									<img class="tangram-texture-preview-frame" src="i/tangram-frame.svg" alt=""/>
-								</div>
-							{{??}}
-								<div data-index="{{= number }}" class="screen--button js-tangram-texture-preview tangram-texture-preview">
-									<img class="tangram-texture-preview-image" src="i/tangram-texture/{{= number }}.jpg" alt=""/>
-									<img class="tangram-texture-preview-frame" src="i/tangram-frame.svg" alt=""/>
-								</div>
-							{{?}}
-						{{~}}
+							<div data-index="{{= number }}" class="screen--button js-tangram-texture-preview tangram-texture-preview tangram-texture-preview_active">
+								<img class="tangram-texture-preview-image" src="i/tangram-texture/{{= number }}.jpg" alt=""/>
+								<img class="tangram-texture-preview-frame" src="i/tangram-frame.svg" alt=""/>
+							</div>
+						{{??}}
+							<div data-index="{{= number }}" class="screen--button js-tangram-texture-preview tangram-texture-preview">
+								<img class="tangram-texture-preview-image" src="i/tangram-texture/{{= number }}.jpg" alt=""/>
+								<img class="tangram-texture-preview-frame" src="i/tangram-frame.svg" alt=""/>
+							</div>
+						{{?}}
+					{{~}}
 					</div>
 				</div>
 

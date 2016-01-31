@@ -10,55 +10,7 @@ import log from './../../../../services/log';
 import sha1 from './../../../../lib/sha1';
 import info from './../../../../services/info';
 import TangramSuccessfulView from './../../tangram-successful/tangram-successful-view';
-
-var tansInfo = {
-	'triangleBig-1': {
-		count: 1,
-		coordinates: [{x: 0, y: 0}, {x: 1, y: 0}, {x: 0.5, y: 0.5}],
-		parts: 2,
-		type: 'triangle-big'
-	},
-	'triangleBig-2': {
-		count: 1,
-		coordinates: [{x: 0.5, y: 0.5}, {x: 1, y: 0}, {x: 1, y: 1}],
-		parts: 2,
-		type: 'triangle-big'
-	},
-	'triangleMedium': {
-		count: 1,
-		coordinates: [{x: 0.5, y: 0}, {x: 0.5 + 0.5 / Math.SQRT2, y: 0.5 / Math.SQRT2}, {
-			x: 0.5 - 0.5 / Math.SQRT2,
-			y: 0.5 / Math.SQRT2
-		}],
-		parts: 2,
-		type: 'triangle-medium',
-		patternId: 'triangle-medium-pattern'
-	},
-	'triangleSmall-1': {
-		count: 1,
-		coordinates: [{x: 0.25, y: 0.25}, {x: 0.5, y: 0.5}, {x: 0.25, y: 0.75}],
-		parts: 2,
-		type: 'triangle-small'
-	},
-	'triangleSmall-2': {
-		count: 1,
-		coordinates: [{x: 0.75, y: 0.75}, {x: 1, y: 1}, {x: 0.5, y: 1}],
-		parts: 2,
-		type: 'triangle-small'
-	},
-	'square': {
-		count: 1,
-		coordinates: [{x: 0.5, y: 0.5}, {x: 0.75, y: 0.75}, {x: 0.5, y: 1}, {x: 0.25, y: 0.75}],
-		parts: 2,
-		type: 'square'
-	},
-	'parallelogram': {
-		count: 1,
-		coordinates: [{x: 0, y: 0}, {x: 0.25, y: 0.25}, {x: 0.25, y: 0.75}, {x: 0, y: 0.5}],
-		parts: 2,
-		type: 'parallelogram'
-	}
-};
+import tansInfo from './tans-info';
 
 var atomInfo = {
 	sideSize: 0.25
@@ -644,7 +596,8 @@ var TanCollection = Backbone.Collection.extend({
 				y: '0px',
 				width: width + 'px',
 				height: height + 'px',
-				viewBox: [0, 0, width, height].join(' ')
+ 				xmlns: 'http://www.w3.org/2000/svg',
+ 				viewBox: [0, 0, width, height].join(' ')
 			};
 
 		Object.keys(attributes).forEach(function (key) {
@@ -762,6 +715,7 @@ var TanCollection = Backbone.Collection.extend({
 				width: width + 'px',
 				height: height + 'px',
 				viewBox: [0, 0, width, height].join(' '),
+				xmlns: 'http://www.w3.org/2000/svg',
 				'class': 'tangram-pattern'
 			};
 

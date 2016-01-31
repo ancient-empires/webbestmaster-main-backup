@@ -167,6 +167,7 @@ var SectionsView = BaseView.extend({
 				width: size + 'px',
 				height: size + 'px',
 				viewBox: [0, 0, size, size].join(' '),
+				xmlns: 'http://www.w3.org/2000/svg',
 				'class': 'section-preview-image'
 			},
 			polygonAttributes = {
@@ -283,6 +284,7 @@ var SectionsView = BaseView.extend({
 				width: size + 'px',
 				height: size + 'px',
 				viewBox: [0, 0, size, size].join(' '),
+				xmlns: 'http://www.w3.org/2000/svg',
 				'class': 'section-preview-image'
 			},
 			polygonAttributes = {
