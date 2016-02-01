@@ -172,7 +172,7 @@ var RotaterModel = Backbone.Model.extend({
 
 		rotater.moveTo(tan.getCenterCoordinates());
 
-		$rotater.removeClass('rotater__hidden').removeClass('state-mover');
+		$rotater.removeClass('rotater__hidden').addClass('state-rotater').removeClass('state-mover');
 
 	},
 
@@ -181,7 +181,7 @@ var RotaterModel = Backbone.Model.extend({
 		var rotater = this,
 			$rotater = rotater.get('$rotater');
 
-		$rotater.removeClass('rotater__hidden').addClass('state-mover');
+		$rotater.removeClass('rotater__hidden').addClass('state-mover').removeClass('state-rotater');
 
 	},
 
@@ -213,7 +213,7 @@ var RotaterModel = Backbone.Model.extend({
 		var rotater = this,
 			$rotater = rotater.get('$rotater');
 
-		$rotater.addClass('rotater__hidden');
+		$rotater.removeClass('state-rotater').removeClass('state-mover').addClass('rotater__hidden');
 
 	},
 
