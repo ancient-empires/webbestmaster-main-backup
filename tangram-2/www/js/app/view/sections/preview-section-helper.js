@@ -22,12 +22,11 @@ var sectionViewProto = SectionView.prototype,
 			var self = this,
 				$progressBarWrapper = $('<div class="progress-bar-wrapper progress-bar-wrapper_hidden"><div class="progress-bar js-progress-bar">&nbsp;</div></div>');
 
-			$('.js-wrapper').append($progressBarWrapper);
-
 			self.setData('$progressBarWrapper', $progressBarWrapper);
 
 			self.setData('$progressBar', $progressBarWrapper.find('.js-progress-bar'));
 
+			//$('.js-wrapper').append($progressBarWrapper);
 			//self.initializeTangramPreview();
 
 			self.checkDb();
