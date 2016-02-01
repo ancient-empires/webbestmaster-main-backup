@@ -9,6 +9,7 @@ import mediator from './../../../../services/mediator';
 import log from './../../../../services/log';
 import sha1 from './../../../../lib/sha1';
 import info from './../../../../services/info';
+import util from './../../../../services/util';
 import TangramSuccessfulView from './../../tangram-successful/tangram-successful-view';
 import tansInfo from './tans-info';
 
@@ -111,6 +112,11 @@ var TanCollection = Backbone.Collection.extend({
 			} else {
 
 				rotater.deActivate();
+
+				if (!hoveredTan) {
+					hoveredTan = collection.getNearestTan(data);
+				}
+
 				if (hoveredTan) {
 					hoveredTan.set('isActive', true);
 					collection.setData('lastActiveTan', hoveredTan);
@@ -132,6 +138,10 @@ var TanCollection = Backbone.Collection.extend({
 				rotater.endRotating();
 
 			} else {
+
+				if (!hoveredTan) {
+					hoveredTan = collection.getNearestTan(data);
+				}
 
 				if (hoveredTan) {
 					collection.align({tan: hoveredTan});
@@ -330,7 +340,7 @@ var TanCollection = Backbone.Collection.extend({
 
 		var collection = this,
 			rotater = collection.getData('rotater'),
-			hoveredTan = collection.getHoveredTan(data);
+			hoveredTan = collection.getHoveredTan(data) || collection.getNearestTan(data);
 
 		if (hoveredTan && rotater.get('tan') === hoveredTan) {
 			hoveredTan.flip();
@@ -443,7 +453,7 @@ var TanCollection = Backbone.Collection.extend({
 				}
 
 				// do not catch not activeted tans
-				if ( !tan.getLastAccept() ) {
+				if (!tan.getLastAccept()) {
 					return;
 				}
 
@@ -516,6 +526,35 @@ var TanCollection = Backbone.Collection.extend({
 
 	},
 
+	getNearestTan: function (xy) {
+
+		var collection = this,
+			getPathBetween = util.getPathBetween,
+			nearest = {
+				tan: false,
+				pathSize: Infinity
+			},
+			maxPath = collection.getData('maxPathToTan');
+
+		// find nearest tan
+		collection.each(function (tan) {
+			var pathSize = getPathBetween(xy, tan.getCenterCoordinates());
+
+			if (pathSize > nearest.pathSize) {
+				return;
+			}
+
+			nearest = {
+				tan: tan,
+				pathSize: pathSize
+			}
+
+		});
+
+		return (nearest.pathSize < maxPath) && nearest.tan;
+
+	},
+
 	deActiveAll: function () {
 
 		this.each(function (tan) {
@@ -537,6 +576,7 @@ var TanCollection = Backbone.Collection.extend({
 		}
 
 		collection.setData({
+			maxPathToTan: scale / 2,
 			maxAlignPath: maxAlignPath,
 			scale: scale
 		});
@@ -582,37 +622,37 @@ var TanCollection = Backbone.Collection.extend({
 
 	},
 
-/* svg-version
-	createDrawElement: function ($node) {
+	/* svg-version
+	 createDrawElement: function ($node) {
 
-		// device
-		var collection = this,
-			width = device.get('width'),
-			height = device.get('height'),
-		//svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-			svg = $node.find('svg')[0],
-			attributes = {
-				x: '0px',
-				y: '0px',
-				width: width + 'px',
-				height: height + 'px',
- 				xmlns: 'http://www.w3.org/2000/svg',
- 				viewBox: [0, 0, width, height].join(' ')
-			};
+	 // device
+	 var collection = this,
+	 width = device.get('width'),
+	 height = device.get('height'),
+	 //svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+	 svg = $node.find('svg')[0],
+	 attributes = {
+	 x: '0px',
+	 y: '0px',
+	 width: width + 'px',
+	 height: height + 'px',
+	 xmlns: 'http://www.w3.org/2000/svg',
+	 viewBox: [0, 0, width, height].join(' ')
+	 };
 
-		Object.keys(attributes).forEach(function (key) {
-			var attr = document.createAttribute(key);
-			attr.value = attributes[key];
-			svg.setAttributeNode(attr);
-		});
+	 Object.keys(attributes).forEach(function (key) {
+	 var attr = document.createAttribute(key);
+	 attr.value = attributes[key];
+	 svg.setAttributeNode(attr);
+	 });
 
-		collection.setData('draw-node', svg);
+	 collection.setData('draw-node', svg);
 
-		return svg;
+	 return svg;
 
-	},
+	 },
 
-*/
+	 */
 	addDrawFieldTo: function ($node) {
 
 		//$node.append(this.createDrawElement($node));

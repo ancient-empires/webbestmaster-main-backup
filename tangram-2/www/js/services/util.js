@@ -275,6 +275,12 @@ var arrayProto = Array.prototype,
 
 			return this.loadImages(imagesPath);
 
+		},
+
+		getPathBetween: function (xy0, xy1) {
+
+			return Math.sqrt( Math.pow(xy0.x - xy1.x, 2) + Math.pow(xy0.y - xy1.y, 2));
+
 		}
 
 	};
