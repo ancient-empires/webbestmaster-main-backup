@@ -28,7 +28,9 @@ var sectionViewProto = SectionView.prototype,
 
 			self.setData('$progressBar', $progressBarWrapper.find('.js-progress-bar'));
 
-			self.initializeTangramPreview();
+			//self.initializeTangramPreview();
+
+			self.checkDb();
 
 			self.unsubscribe('previewSectionHelper:initialize');
 
@@ -82,6 +84,21 @@ var sectionViewProto = SectionView.prototype,
 		 },
 		 */
 
+		checkDb: function () {
+
+			var currentTangramsVersion = info.get('tangrams-version');
+
+			if (currentTangramsVersion === tangrams.version) {
+				return;
+			}
+
+			db.refreshPreviewTable().done(function () {
+				info.set('tangrams-version', tangrams.version);
+			});
+
+		},
+
+/*
 		initializeTangramPreview: function () {
 
 			var self = this,
@@ -125,6 +142,7 @@ var sectionViewProto = SectionView.prototype,
 			});
 
 		},
+*/
 
 		initializePreviewSection: function (item) {
 
@@ -155,6 +173,25 @@ var sectionViewProto = SectionView.prototype,
 			});
 
 			return defer.promise();
+
+		},
+
+		pushToPreviewSection: function (data) {
+
+			var self = this,
+				key = data.key,
+				svgText = data.svgText;
+
+			db.getPreviewByHash(key).done(function (data) {
+
+				if (data) {
+					return;
+				}
+
+				self.setData(key, svgText);
+				db.pushPreview(key, svgText);
+
+			});
 
 		},
 
@@ -207,6 +244,7 @@ var sectionViewProto = SectionView.prototype,
 
 mediator.installTo(previewSectionHelper);
 
+previewSectionHelper.subscribe('previewSectionHelper:pushToPreviewSection', previewSectionHelper.pushToPreviewSection);
 previewSectionHelper.subscribe('previewSectionHelper:initialize', previewSectionHelper.initialize);
 previewSectionHelper.subscribe('previewSectionHelper:publishData', previewSectionHelper.publishData);
 

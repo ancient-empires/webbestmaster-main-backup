@@ -255,7 +255,8 @@ var SectionsView = BaseView.extend({
 	createPreviewSection: function (item) {
 
 		var triangles = item.data,
-			previewSection = this.getCachedPreviewSection(item.hash);
+			key = item.hash,
+			previewSection = this.getCachedPreviewSection(key);
 
 		if (previewSection) {
 			log('createPreviewSection fromCache');
@@ -264,7 +265,9 @@ var SectionsView = BaseView.extend({
 			};
 		}
 
-		var tempDiv = document.createElement('div'),
+		var view = this,
+			svgText,
+			tempDiv = document.createElement('div'),
 			atomToTriangle = tanCollectionProto.atomToTriangle,
 			patternDeltaX,
 			patternDeltaY,
@@ -353,8 +356,15 @@ var SectionsView = BaseView.extend({
 
 		tempDiv.appendChild(svg);
 
+		svgText = tempDiv.innerHTML;
+
+		view.publish('previewSectionHelper:pushToPreviewSection', {
+			key: key,
+			svgText: svgText
+		});
+
 		return {
-			svgText: tempDiv.innerHTML
+			svgText: svgText
 		};
 
 	}
