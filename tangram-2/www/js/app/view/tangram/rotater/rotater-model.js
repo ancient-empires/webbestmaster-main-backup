@@ -15,13 +15,18 @@ var RotaterModel = Backbone.Model.extend({
 			return;
 		}
 
-		var rotater = this;
+		var rotater = this,
+			size = data.size * 1.2,
+			size050 = size / 2,
+			size025 = size / 4;
 
 		rotater.set(data);
 
 		rotater.set({
 			cssTransformName: info.get('cssJsPrefix', true).css + 'transform',
-			size: data.size,
+			size: size,
+			size050: size050,
+			size025: size025,
 			isActive: false
 		});
 
@@ -36,13 +41,14 @@ var RotaterModel = Backbone.Model.extend({
 			parentView = rotater.get('parentView'),
 			parent$el = parentView.$el,
 			size = rotater.get('size'),
+			size050 = rotater.get('size050'),
 			$rotater = $('<div class="rotater rotater__hidden">&nbsp;</div>');
 
 		$rotater.css({
 			width: size + 'px',
 			height: size + 'px',
-			top: -size / 2 + 'px',
-			left: -size / 2 + 'px'
+			top: -size050 + 'px',
+			left: -size050 + 'px'
 		});
 
 		rotater.set('$rotater', $rotater);
@@ -202,8 +208,10 @@ var RotaterModel = Backbone.Model.extend({
 		var tan = rotater.get('tan'),
 			centerXY = tan.getCenterCoordinates(),
 			size = rotater.get('size'),
-			max = size / 2 * 1.1,
-			min = size / 4,
+			//max = size / 2 * 1.1,
+			max = rotater.get('size050') * 1.1,
+			//min = size / 4,
+			min = rotater.get('size025'),
 			distance = Math.sqrt(Math.pow(centerXY.x - xy.x, 2) + Math.pow(centerXY.y - xy.y, 2));
 
 		return (distance > min) && (distance < max);
