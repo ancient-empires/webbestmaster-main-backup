@@ -164,6 +164,8 @@ var Tan = Backbone.Model.extend({
 		tan.setBy('dx', data.dx);
 		tan.setBy('dy', data.dy);
 
+		tan.publish('rotater:moveTo', tan.getCenterCoordinates());
+
 		tan.reDraw();
 
 	},

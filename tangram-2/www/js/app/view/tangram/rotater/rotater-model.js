@@ -69,6 +69,17 @@ var RotaterModel = Backbone.Model.extend({
 
 		rotater.subscribe('rotater:deActivate', rotater.deActivate);
 		rotater.subscribe('rotater:moveTo', rotater.moveTo);
+		rotater.subscribe('rotater:showMoverXY', rotater.showMoverXY);
+
+	},
+
+	showMoverXY: function (xy) {
+
+		var rotater = this;
+
+		rotater.moveTo(xy);
+
+		rotater.showMoverNode();
 
 	},
 
@@ -161,7 +172,16 @@ var RotaterModel = Backbone.Model.extend({
 
 		rotater.moveTo(tan.getCenterCoordinates());
 
-		$rotater.removeClass('rotater__hidden');
+		$rotater.removeClass('rotater__hidden').removeClass('state-mover');
+
+	},
+
+	showMoverNode: function () {
+
+		var rotater = this,
+			$rotater = rotater.get('$rotater');
+
+		$rotater.removeClass('rotater__hidden').addClass('state-mover');
 
 	},
 

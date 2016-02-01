@@ -120,6 +120,7 @@ var TanCollection = Backbone.Collection.extend({
 				if (hoveredTan) {
 					hoveredTan.set('isActive', true);
 					collection.setData('lastActiveTan', hoveredTan);
+					collection.publish('rotater:showMoverXY', hoveredTan.getCenterCoordinates());
 				} else {
 
 
