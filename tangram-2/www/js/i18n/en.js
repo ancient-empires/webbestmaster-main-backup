@@ -39,10 +39,10 @@ var en = {
 
 	// settings
 
-	settings: 'en settings',
+	settings: 'settings',
 	//timer: 'timer',
 	//sound: 'sound',
-	'tangram-texture': 'en tangram texture'
+	'tangram-texture': 'tangram texture'
 	//about: 'about'
 	//'e-mail': 'e-mail',
 	//'other-apps': 'other apps'

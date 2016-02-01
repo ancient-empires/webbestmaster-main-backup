@@ -3,6 +3,8 @@
 
 import $ from './../lib/jbone';
 import Queue from './../lib/queue';
+// tangram
+import tansInfo from './../app/view/tangram/models/tans-info';
 
 var arrayProto = Array.prototype,
 	win = window,
@@ -252,15 +254,26 @@ var arrayProto = Array.prototype,
 		preLoadInterfaceImages: function () {
 
 			// load interface images
-			return this.loadImages([
-				//'main-bg.jpg', // load from css
-				'rotate-bg.svg',
-				'tangram-frame.svg'
-			].concat([0, 1, 2, 3, 4, 5, 6, 7, 8].map(function (index) {
-				return 'tangram-texture/' + index + '.jpg';
-			})).map(function (path) {
+			var imagesPath = ['rotate-bg.svg', 'tangram-frame.svg'],
+				i;
+
+			for (i = 0; i < 9; i += 1) {
+
+				// push texture for settings
+				imagesPath.push('tangram-texture/' + i + '.jpg');
+
+				// tan textures
+				Object.keys(tansInfo).forEach(function (key) {
+					imagesPath.push('tan-textures/texture-' + i + '-' + key + '.png');
+				});
+
+			}
+
+			imagesPath = imagesPath.map(function (path) {
 				return 'i/' + path;
-			}));
+			});
+
+			return this.loadImages(imagesPath);
 
 		}
 
