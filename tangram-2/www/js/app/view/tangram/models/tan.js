@@ -511,32 +511,15 @@ var Tan = Backbone.Model.extend({
 
 		var tan = this,
 			rotate = tan.get('rotate'),
-			//rotateOriginX = tan.get('rotateOriginX'),
-			//rotateOriginY = tan.get('rotateOriginY'),
 			dx = tan.get('dx'),
-			//flipDx,
 			dy = tan.get('dy'),
 			isFlip = tan.get('isFlip'),
-			translateSrt = 'translate3d(dx,dy,0)',
-			rotateSrt = 'rotate(angle)',
-			scaleStr = 'scale(-1,1)',
-			attribute = [];
-
-		attribute.push(
-			translateSrt
-				.replace('dx', dx + 'px')
-				.replace('dy', dy + 'px')
-		);
+			style;
 
 		if (isFlip) {
-			attribute.push(
-				rotateSrt.replace('angle', -rotate + 'deg')
-			);
-			attribute.push(scaleStr);
+			style = 'translate3d(' + dx + 'px,' + dy + 'px,0) rotate(' + (-rotate) + 'deg) scale(-1, 1)';
 		} else {
-			attribute.push(
-				rotateSrt.replace('angle', rotate + 'deg')
-			);
+			style = 'translate3d(' + dx + 'px,' + dy + 'px,0) rotate(' + rotate + 'deg)';
 		}
 
 		return {
@@ -545,7 +528,7 @@ var Tan = Backbone.Model.extend({
 			rotate: rotate,
 			isFlip: isFlip,
 			//flipDx: flipDx,
-			style: attribute.join(' ')
+			style: style
 		}
 
 	},
