@@ -27,9 +27,9 @@ var ColumnView = BaseView.extend({
 		var view = this,
 			$columnContainer = view.get('$column-container');
 
-		$columnContainer.on('animationiteration', function () {
+		$columnContainer.on(info.get('animationIteration', true), function () {
 
-			//log('s111');
+			log('s111');
 
 		});
 

@@ -47,7 +47,7 @@ info = {
 		info.setOS();
 		info.detectCssJsPrefix();
 		info.detectTransitionEndEventName();
-		info.detectAnimationEndEventName();
+		info.detectAnimationEventNames();
 
 		//set settings
 		info.setSettings();
@@ -143,44 +143,25 @@ info = {
 
 	detectTransitionEndEventName: function () {
 
-		var i,
-			el = doc.createElement('div'),
-			transitions = {
-				'transition': 'transitionend',
-				'OTransition': 'otransitionend',  // oTransitionEnd in very old Opera
-				'MozTransition': 'transitionend',
-				'WebkitTransition': 'webkitTransitionEnd'
-			},
-			transitionEnd = 'transitionend';
-
-		for (i in transitions) {
-			if (transitions.hasOwnProperty(i) && el.style[i] !== undefined) {
-				transitionEnd = transitions[i];
-			}
+		if (doc.createElement('div').style.WebkitTransition === undefined) {
+			this.set('transitionEnd', 'transitionend', true);
+		} else {
+			this.set('transitionEnd', 'webkitTransitionEnd', true);
 		}
-
-		this.set('transitionEnd', transitionEnd, true);
 
 	},
 
-	detectAnimationEndEventName: function () {
-		var i,
-			el = doc.createElement('div'),
-			animations = {
-				'animation': 'animationend',
-				'OAnimation': 'oAnimationEnd',  // oAnimationEnd in very old Opera
-				'MozAnimation': 'animationend',
-				'WebkitAnimation': 'webkitAnimationEnd'
-			},
-			animationEnd = 'animationend';
+	detectAnimationEventNames: function () {
 
-		for (i in animations) {
-			if (animations.hasOwnProperty(i) && el.style[i] !== undefined) {
-				animationEnd = animations[i];
-			}
+		if (doc.createElement('div').style.WebkitAnimation === undefined) {
+			this.set('animationEnd', 'animationend', true);
+			this.set('animationStart', 'animationstart', true);
+			this.set('animationIteration', 'animationiteration', true);
+		} else {
+			this.set('animationEnd', 'webkitAnimationEnd', true);
+			this.set('animationStart', 'webkitAnimationStart', true);
+			this.set('animationIteration', 'webkitAnimationIteration', true);
 		}
-
-		this.set('animationEnd', animationEnd, true);
 
 	},
 
