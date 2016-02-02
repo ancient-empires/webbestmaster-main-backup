@@ -1,0 +1,89 @@
+/*
+@font-face {
+	font-family: 'Comic Sans MS';
+	src: url('../font/Comic%20Sans%20MS.ttf');
+}
+*/
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  color: $textColor;
+}
+
+.screen {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  @include prefix(transition, opacity ease-in 0.5s);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@keyframes screen-show-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes screen-show-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.show-view-animation {
+  @include prefix(animation-duration, 0.7s);
+  @include prefix(animation-iteration-count, 1);
+  @include prefix(animation-name, screen-show-in);
+  @include prefix(animation-fill-mode, forwards);
+  @include prefix(transform-origin, center center);
+}
+
+.show-view-no-animation {
+  opacity: 1;
+  @include prefix(transition, none);
+}
+
+@keyframes screen-show-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes screen-show-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.hide-view-animation {
+  @include prefix(animation-duration, 0.7s);
+  @include prefix(animation-iteration-count, 1);
+  @include prefix(animation-name, screen-show-out);
+  @include prefix(animation-fill-mode, forwards);
+  @include prefix(transform-origin, center center);
+}
+
+.scroll-area-container {
+  @include prefix(overflow-scrolling, touch);
+  height: 100%;
+  overflow: auto;
+}
+
+
+

@@ -1,0 +1,45 @@
+$luxury3dDiagonal: 1px 1px 0 #ccc, 2px 2px 0 #ccc, 2px 2px 1px rgba(0, 0, 0, 0.4);
+$luxury3dVertical: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 2px 1px rgba(0, 0, 0, 0.4);
+$luxury3dVerticalPushed: 0 1px 1px rgba(0, 0, 0, 0.4);
+$btnBgStart: #fff;
+$btnBgEnd: #f5f5f5;
+
+// main
+$textColor: #333;
+
+// main
+@mixin prefix($property, $value) {
+  @each $prefix in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+    #{$prefix + $property}: $value;
+  }
+}
+
+// main
+@mixin prefix-property($property, $value) {
+  @each $prefix in ('-webkit-', '-moz-', '-ms-', '-o-', '') {
+    #{$property}: #{$prefix + $value};
+  }
+}
+
+.luxury-3d-text {
+  text-shadow: $luxury3dDiagonal;
+}
+
+.luxury-3d-text-vertical-shadow {
+  text-shadow: $luxury3dVertical;
+}
+
+.luxury-3d-button {
+  box-shadow: $luxury3dVertical;
+  border-radius: 0.2rem;
+  @include prefix-property(background-image, linear-gradient(top, $btnBgStart, $btnBgEnd));
+}
+
+.luxury-3d-button_active {
+  box-shadow: $luxury3dVerticalPushed;
+  @include prefix-property(background-image, linear-gradient(top, $btnBgEnd, $btnBgStart));
+}
+
+.stroked-text {
+  text-shadow: 1px 1px 0 #f5f5f5, -1px -1px 0 #f5f5f5, 1px -1px 0 #f5f5f5, -1px 1px 0 #f5f5f5;
+}
