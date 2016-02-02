@@ -38,10 +38,11 @@ var GameCollection = Backbone.Collection.extend({
 		var i = 0;
 
 		collection.each(function (model) {
-
 			setTimeout(function () {
 				model.spin();
-			}, 300 * i++)
+			}, (i * 300));
+
+			i += 1;
 
 		});
 

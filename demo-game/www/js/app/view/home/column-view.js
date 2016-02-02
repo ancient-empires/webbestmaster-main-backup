@@ -31,8 +31,6 @@ var ColumnView = BaseView.extend({
 
 			log('s111');
 
-
-
 		});
 
 		$columnContainer.on(info.get('animationEnd', true), function () {
@@ -64,7 +62,6 @@ var ColumnView = BaseView.extend({
 		//	return;
 		//
 		//}
-
 		view.set('state', 'roll-begin');
 
 		view.get('$column-container').addClass('animation-roll-begin');

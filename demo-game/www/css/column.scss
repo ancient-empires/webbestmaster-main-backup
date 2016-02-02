@@ -29,64 +29,40 @@ $columnSize: $itemCount * $itemSize;
 }
 
 .animation-roll-begin {
-  @include prefix(animation-timing-function, linear);
-  //@include prefix(animation-timing-function, cubic-bezier(0.4, 0, 1, 1));
-  @include prefix(animation-duration, 3s);
+  //@include prefix(animation-timing-function, cubic-bezier(0.5, 0, 1, 1));
+  @include prefix(animation-timing-function, ease-in);
+  @include prefix(animation-duration, 2s);
   @include prefix(animation-iteration-count, 1);
   @include prefix(animation-name, roll-begin);
-  @include prefix(animation-fill-mode, none);
-  //@include prefix(transform-origin, center center);
+  //@include prefix(animation-fill-mode, none);
+  @include prefix(transform-origin, center center);
 }
 
-@keyframes roll-begin {
-  0% {
-    transform: translate3d(0, 0, 0)
-  }
-
-  30% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  101% {
-    transform: translate3d(0, $columnSize, 0);
-  }
-}
-
-/*
 @-webkit-keyframes roll-begin {
   0% {
-    -webkit-transform: translate3d(0, 0, 0)
+    -webkit-transform: translate3d(0, 0, 0);
   }
+
   100% {
-    -webkit-transform: translate3d(0, $columnSize, 0)
+    -webkit-transform: translate3d(0, $columnSize, 0);
   }
 }
-*/
 
 .animation-roll-roll {
   @include prefix(animation-timing-function, linear);
-  @include prefix(animation-duration, 2s);
+  @include prefix(animation-duration, 1s);
   @include prefix(animation-iteration-count, infinite);
   @include prefix(animation-name, roll-roll);
-  //@include prefix(animation-fill-mode, forwards);
-  //@include prefix(transform-origin, center center);
-}
-
-@keyframes roll-roll {
-  0% {
-    transform: translate3d(0, 0, 0)
-  }
-  100% {
-    transform: translate3d(0, $columnSize, 0)
-  }
+  @include prefix(animation-fill-mode, both);
+  @include prefix(transform-origin, center center);
 }
 
 @-webkit-keyframes roll-roll {
   0% {
-    -webkit-transform: translate3d(0, 0, 0)
+    -webkit-transform: translate3d(0, 0, 0);
   }
   100% {
-    -webkit-transform: translate3d(0, $columnSize, 0)
+    -webkit-transform: translate3d(0, $columnSize, 0);
   }
 }
 

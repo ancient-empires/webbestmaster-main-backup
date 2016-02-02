@@ -73,7 +73,7 @@
 	// minify css
 
 	gulp.task('css', function () {
-		return gulp.start('import-css', 'sass', /*'autoprefix', */'minify-css');
+		return gulp.start('import-css', 'sass', /*'autoprefix', */ 'minify-css');
 	});
 
 		gulp.task('import-css', function () {
@@ -96,6 +96,7 @@
 		//		.pipe(gulp.dest('./dist/www/css'));
 		//});
 
+/*
 		gulp.task('autoprefix', ['sass'], function () {
 			return gulp.src('./dist/www/css/main.css')
 				.pipe(autoprefixer({
@@ -105,6 +106,7 @@
 				.pipe(clean({force: true})) // remove original file (imported css)
 				.pipe(gulp.dest('./dist/www/css'));
 		});
+*/
 
 		gulp.task('minify-css', ['sass'], function () { // autoprefix
 			return gulp.src('./dist/www/css/main.css')
