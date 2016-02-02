@@ -4,19 +4,13 @@
 import BaseView from './../core/base';
 import tm from './../../../services/template-master';
 
-var HomeView = BaseView.extend({
-
-	events: {
-		//scroll: 'stopEvent'
-	},
+var ColumnView = BaseView.extend({
 
 	initialize: function () {
 
 		var view = this;
 
-		view.setElement(tm.get('home')());
-
-		view.render();
+		view.setElement(tm.get('column')());
 
 		return BaseView.prototype.initialize.apply(view, arguments);
 
@@ -24,4 +18,4 @@ var HomeView = BaseView.extend({
 
 });
 
-export default HomeView;
+export default ColumnView;

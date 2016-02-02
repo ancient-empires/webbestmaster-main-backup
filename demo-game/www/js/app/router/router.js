@@ -5,7 +5,7 @@ import mediator from './../../services/mediator';
 import Backbone from './../../lib/backbone';
 import _ from './../../lib/lodash';
 import BaseView from './../view/core/base';
-import HomeView from './../view/home/home-view';
+import HomeView from './../view/home/game-view';
 
 var win = window,
 	router,
