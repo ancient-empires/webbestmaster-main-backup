@@ -8,7 +8,7 @@ var log,
 	slice = Array.prototype.slice,
 	logger = {
 		isEnable: info.get('dev-mode'),
-		remoteLog: false,
+		remoteLog: !false,
 		xhr: new XMLHttpRequest(),
 		log: function () {
 			console.log.apply(console, arguments);

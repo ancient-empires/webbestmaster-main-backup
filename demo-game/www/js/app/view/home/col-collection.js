@@ -29,6 +29,22 @@ var GameCollection = Backbone.Collection.extend({
 			this.createColumn();
 		}
 
+	},
+
+	spin: function () {
+
+		var collection = this;
+
+		var i = 0;
+
+		collection.each(function (model) {
+
+			setTimeout(function () {
+				model.spin();
+			}, 300 * i++)
+
+		});
+
 	}
 
 });

@@ -3,11 +3,14 @@
 
 import BaseView from './../core/base';
 import tm from './../../../services/template-master';
-import GameCollection from './game-collection';
+import ColCollection from './col-collection';
 
 var HomeView = BaseView.extend({
 
 	events: {
+
+		'click .js-spin': 'spin'
+
 		//scroll: 'stopEvent'
 	},
 
@@ -17,7 +20,7 @@ var HomeView = BaseView.extend({
 
 		view.setElement(tm.get('home')());
 
-		view.set('game-collection', new GameCollection());
+		view.set('col-collection', new ColCollection());
 
 		view.render();
 
@@ -30,11 +33,17 @@ var HomeView = BaseView.extend({
 		var view = this,
 			$wrapper = view.$el.find('.js-columns-wrapper');
 
-		view.get('game-collection').each(function (model) {
+		view.get('col-collection').each(function (model) {
 			$wrapper.append(model.get('view').$el);
 		});
 
 		return BaseView.prototype.render.apply(view, arguments);
+
+	},
+
+	spin: function () {
+
+		this.get('col-collection').spin();
 
 	}
 

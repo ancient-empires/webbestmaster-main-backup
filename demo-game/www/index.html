@@ -38,7 +38,7 @@
 
 		</div>
 
-		<div>spin</div>
+		<div class="js-spin" style="padding: 10px; background-color: #c00;">spin</div>
 
 	</section>
 
@@ -47,11 +47,16 @@
 
 <script class="js-template" type="text/x-template" data-name="column">
 
-	<div class="js-column-wrapper">
+	<div class="column-wrapper">
 
-		{{ for (var i = 1; i <= 9; i += 1) { }}
-		<img class="column-item" src="i/item/sym{{= i }}.png" alt="{{= i }}">
-		{{ }; }}
+		<div class="js-column-container column-container">
+				{{ for (var i = 1; i <= 9; i += 1) { }}
+				<img class="column-item" src="i/item/sym{{= i }}.png" alt="{{= i }}">
+				{{ }; }}
+				{{ for (var i = 1; i <= 9; i += 1) { }}
+				<img class="column-item" src="i/item/sym{{= i }}.png" alt="{{= i }}">
+				{{ }; }}
+		</div>
 
 	</div>
 

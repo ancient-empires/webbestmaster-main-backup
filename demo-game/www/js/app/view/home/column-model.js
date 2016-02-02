@@ -14,6 +14,15 @@ var ColumnModel = Backbone.Model.extend({
 
 		model.set('view', view);
 
+	},
+
+	spin: function () {
+
+		var model = this;
+
+		model.get('view').spin();
+
+
 	}
 
 });
