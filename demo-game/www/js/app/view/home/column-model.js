@@ -7,10 +7,20 @@ import ColumnView from './column-view';
 
 var ColumnModel = Backbone.Model.extend({
 
-	initialize: function () {
+	initialize: function (data) {
 
 		var model = this,
-			view = new ColumnView();
+			stopIndex = Math.floor(Math.random() * 9),
+			view;
+
+		view = new ColumnView(data);
+
+		model.set('stop-index', stopIndex);
+		view.set('stop-index', 0);
+
+		view.moveTo({
+			stopIndex: stopIndex
+		});
 
 		model.set('view', view);
 
@@ -27,9 +37,12 @@ var ColumnModel = Backbone.Model.extend({
 
 	stop: function () {
 
-		var model = this;
+		var model = this,
+			stopIndex = Math.floor(Math.random() * 9);
 
-		model.get('view').stop();
+		model.set('stop-index', stopIndex);
+
+		model.get('view').stop(stopIndex);
 
 	}
 

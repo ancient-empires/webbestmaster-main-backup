@@ -80,7 +80,7 @@ $columnSize: $itemCount * $itemSize;
     transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translate3d(0, 8rem, 0);
+    transform: translate3d(0, $itemSize * 2, 0);
   }
 }
 

@@ -49,7 +49,10 @@
 
 	<div class="column-wrapper">
 
-		<div class="js-column-container column-container">
+		<div class="js-column-container column-container {{= it.cssClass }}">
+				{{ for (var i = 1; i <= 9; i += 1) { }}
+				<img class="column-item" src="i/item/sym{{= i }}.png" alt="{{= i }}">
+				{{ }; }}
 				{{ for (var i = 1; i <= 9; i += 1) { }}
 				<img class="column-item" src="i/item/sym{{= i }}.png" alt="{{= i }}">
 				{{ }; }}
@@ -61,6 +64,32 @@
 	</div>
 
 </script>
+
+<script class="js-template" type="text/x-template" data-name="column-keyframes">
+
+	@keyframes animation-{{= it.cssClass }} {
+		0% {
+			transform: translate3d(0, {{= it.begin }}, 0);
+		}
+
+		100% {
+			transform: translate3d(0, {{= it.end }}, 0);
+		}
+
+	}
+
+	.{{= it.cssClass }} {
+		animation-timing-function: ease-out;
+		animation-duration: 2s;
+		animation-iteration-count: 1;
+		animation-name: animation-{{= it.cssClass }};
+		animation-fill-mode: {{= it.fill }};
+		transform-origin: center center;
+	}
+
+
+</script>
+
 <!-- FW -->
 
 <script class="js-template" type="text/x-template" data-name="popup-wrapper">

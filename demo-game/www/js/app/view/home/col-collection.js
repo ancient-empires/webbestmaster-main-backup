@@ -17,9 +17,9 @@ var GameCollection = Backbone.Collection.extend({
 
 	},
 
-	createColumn: function () {
+	createColumn: function (data) {
 
-		this.add({});
+		this.add(data);
 
 	},
 
@@ -29,7 +29,9 @@ var GameCollection = Backbone.Collection.extend({
 			i;
 
 		for (i = 0; i < count; i += 1) {
-			collection.createColumn();
+			collection.createColumn({
+				index: i
+			});
 			collection.last().get('view').set('is-last', i + 1 === count);
 		}
 
@@ -47,7 +49,7 @@ var GameCollection = Backbone.Collection.extend({
 
 			setTimeout(function () {
 				model.spin();
-			}, (i * 300));
+			}, (i * 333));
 
 		});
 
@@ -65,7 +67,7 @@ var GameCollection = Backbone.Collection.extend({
 
 			setTimeout(function () {
 				model.stop();
-			}, (i * 300));
+			}, (i * 333));
 
 		});
 
