@@ -29,7 +29,12 @@ var ColumnView = BaseView.extend({
 
 		$columnContainer.on(info.get('animationIteration', true), function () {
 
-			log('s111');
+			var viewState = view.get('state'),
+				$columnContainer = view.get('$column-container');
+
+			if (viewState === 'roll-end') {
+				$columnContainer.removeClass('animation-roll-roll').addClass('animation-roll-end');
+			}
 
 		});
 
@@ -38,13 +43,24 @@ var ColumnView = BaseView.extend({
 			var viewState = view.get('state'),
 				$columnContainer = view.get('$column-container');
 
-			switch (viewState) {
+			if (viewState === 'roll-begin') {
+				// switch to roll-roll
+				$columnContainer.removeClass('animation-roll-begin').addClass('animation-roll-roll');
+				view.set('state', 'roll-roll');
 
-				case 'roll-begin':
-					// switch to roll-roll
-					view.set('state', 'roll-roll');
-					$columnContainer.addClass('animation-roll-roll');
-					break;
+				if (view.get('is-last')) {
+					view.publish('game-model:set-state', 'main-spin');
+				}
+
+			}
+
+			if (viewState === 'roll-end') {
+
+				$columnContainer.removeClass('animation-roll-end');
+
+				if (view.get('is-last')) {
+					view.publish('game-model:set-state', 'idle');
+				}
 
 			}
 
@@ -56,17 +72,29 @@ var ColumnView = BaseView.extend({
 
 		var view = this;
 
-		//if (view.get('state')) {
-		//	view.set('state', 0);
-		//	view.get('$column-container').removeClass('animation-roll-roll').removeClass('animation-roll-begin');
-		//	return;
-		//
-		//}
 		view.set('state', 'roll-begin');
 
-		view.get('$column-container').addClass('animation-roll-begin');
+		view.get('$column-container')
+			.removeClass('animation-roll-end')
+			.removeClass('animation-roll-roll')
+			.addClass('animation-roll-begin');
+
+	},
+
+	stop: function () {
+
+		var view = this;
+
+		view.set('state', 'roll-end');
 
 	}
+
+
+
+
+
+
+
 
 });
 

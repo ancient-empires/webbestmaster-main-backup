@@ -4,6 +4,7 @@
 import BaseView from './../core/base';
 import tm from './../../../services/template-master';
 import ColCollection from './col-collection';
+import GameModel from './game-model';
 
 var HomeView = BaseView.extend({
 
@@ -17,6 +18,8 @@ var HomeView = BaseView.extend({
 	initialize: function () {
 
 		var view = this;
+
+		view.set('model', new GameModel());
 
 		view.setElement(tm.get('home')());
 
@@ -43,10 +46,24 @@ var HomeView = BaseView.extend({
 
 	spin: function () {
 
-		this.get('col-collection').spin();
+		var view = this,
+			model = view.get('model');
+
+		switch (model.get('state')) {
+
+			case 'idle':
+				view.get('col-collection').spin();
+				model.set('state', 'begin-spin');
+				break;
+
+			case 'main-spin':
+				view.get('col-collection').stop();
+				model.set('state', 'end-spin');
+
+		}
+
 
 	}
-
 
 });
 

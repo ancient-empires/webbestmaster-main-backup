@@ -23,7 +23,16 @@ var ColumnModel = Backbone.Model.extend({
 		model.get('view').spin();
 
 
+	},
+
+	stop: function () {
+
+		var model = this;
+
+		model.get('view').stop();
+
 	}
+
 
 });
 

@@ -29,22 +29,21 @@ $columnSize: $itemCount * $itemSize;
 }
 
 .animation-roll-begin {
-  //@include prefix(animation-timing-function, cubic-bezier(0.5, 0, 1, 1));
-  @include prefix(animation-timing-function, ease-in);
+  @include prefix(animation-timing-function, cubic-bezier(0.5, 0, 1, 1));
+  //@include prefix(animation-timing-function, ease-in);
   @include prefix(animation-duration, 2s);
   @include prefix(animation-iteration-count, 1);
   @include prefix(animation-name, roll-begin);
-  @include prefix(animation-fill-mode, none);
+  @include prefix(animation-fill-mode, forward);
   @include prefix(transform-origin, center center);
 }
 
-@-webkit-keyframes roll-begin {
+@keyframes roll-begin {
   0% {
-    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
-
   100% {
-    -webkit-transform: translate3d(0, $columnSize, 0);
+    transform: translate3d(0, 0.99 * $columnSize, 0); // trust me, I am engineer
   }
 }
 
@@ -57,12 +56,37 @@ $columnSize: $itemCount * $itemSize;
   @include prefix(transform-origin, center center);
 }
 
-@-webkit-keyframes roll-roll {
+@keyframes roll-roll {
   0% {
-    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    -webkit-transform: translate3d(0, $columnSize, 0);
+    transform: translate3d(0, $columnSize, 0);
   }
 }
+
+.animation-roll-end {
+  @include prefix(animation-timing-function, ease-out);
+  //@include prefix(animation-timing-function, ease-in);
+  @include prefix(animation-duration, 2s);
+  @include prefix(animation-iteration-count, 1);
+  @include prefix(animation-name, roll-end);
+  @include prefix(animation-fill-mode, both);
+  @include prefix(transform-origin, center center);
+}
+
+@keyframes roll-end {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 8rem, 0);
+  }
+}
+
+
+
+
+
+
 
