@@ -15,9 +15,9 @@ var GameModel = Backbone.Model.extend({
 
 		/*
 		* idle 			- 100% ready to work
-		* begin-spin 	- start of spin, wheel get a first round
-		* main-spin		- spin in progress
-		* end-spin		- spin is stopping
+		* spin-begin 	- start of spin, wheel get a first round
+		* spin-main		- spin in progress
+		* spin-end		- spin is stopping
 		*
 		*
 		* */

@@ -15,9 +15,11 @@ var ColumnView = BaseView.extend({
 
 		view.setElement(tm.get('column')());
 
-		view.set('$column-container', view.$el.find('.js-column-container'));
-
-		view.set('transitionEnd', info.get('transitionEnd', true));
+		view.set({
+			'$column-container': view.$el.find('.js-column-container'),
+			'transitionEnd': info.get('transitionEnd', true),
+			'column-size': data.columnSize
+		});
 
 		return BaseView.prototype.initialize.apply(view, arguments);
 
@@ -46,6 +48,8 @@ var ColumnView = BaseView.extend({
 		$columnContainer.css({
 			top: -view.get('stop-index') * 4  + 'rem'
 		});
+
+		view.publish('game-model:set-state', 'spin-main');
 
 	},
 

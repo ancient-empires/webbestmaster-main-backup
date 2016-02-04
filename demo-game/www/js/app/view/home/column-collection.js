@@ -5,6 +5,8 @@ import BaseView from './../core/base';
 import Backbone from './../../../lib/backbone';
 import ColumnModel from './column-model';
 
+var columnSize = 9;
+
 var GameCollection = Backbone.Collection.extend({
 
 	model: ColumnModel,
@@ -17,9 +19,11 @@ var GameCollection = Backbone.Collection.extend({
 
 	},
 
-	createColumn: function (data) {
+	createColumn: function () {
 
-		this.add(data);
+		this.add({
+			'column-size': columnSize
+		});
 
 	},
 
@@ -29,9 +33,7 @@ var GameCollection = Backbone.Collection.extend({
 			i;
 
 		for (i = 0; i < count; i += 1) {
-			collection.createColumn({
-				index: i
-			});
+			collection.createColumn();
 			collection.last().get('view').set('is-last', i + 1 === count);
 		}
 

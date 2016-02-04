@@ -28,6 +28,7 @@ $columnSize: $itemCount * $itemSize;
   //-webkit-filter: blur(10px);
 }
 
+/*
 .a-roll-begin {
   @include prefix(animation-timing-function, cubic-bezier(0.5, 0, 1, 1));
   //@include prefix(animation-timing-function, ease-in);
@@ -46,17 +47,18 @@ $columnSize: $itemCount * $itemSize;
     transform: translate3d(0, 0.99 * $columnSize, 0); // trust me, I am engineer
   }
 }
+*/
 
 .a-roll {
   @include prefix(animation-timing-function, linear);
   @include prefix(animation-duration, 1s);
   @include prefix(animation-iteration-count, infinite);
-  @include prefix(animation-name, roll-roll);
+  @include prefix(animation-name, k-roll);
   @include prefix(animation-fill-mode, none);
   @include prefix(transform-origin, center center);
 }
 
-@keyframes roll-roll {
+@keyframes k-roll {
   0% {
     transform: translate3d(0, -$columnSize, 0);
   }
@@ -65,6 +67,7 @@ $columnSize: $itemCount * $itemSize;
   }
 }
 
+/*
 .a-roll-end {
   @include prefix(animation-timing-function, ease-out);
   //@include prefix(animation-timing-function, ease-in);
@@ -83,6 +86,7 @@ $columnSize: $itemCount * $itemSize;
     transform: translate3d(0, $itemSize * 2, 0);
   }
 }
+*/
 
 
 

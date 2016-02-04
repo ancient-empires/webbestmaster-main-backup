@@ -3,7 +3,7 @@
 
 import BaseView from './../core/base';
 import tm from './../../../services/template-master';
-import ColCollection from './col-collection';
+import ColCollection from './column-collection';
 import GameModel from './game-model';
 
 var HomeView = BaseView.extend({
@@ -23,7 +23,7 @@ var HomeView = BaseView.extend({
 
 		view.setElement(tm.get('home')());
 
-		view.set('col-collection', new ColCollection());
+		view.set('column-collection', new ColCollection());
 
 		view.render();
 
@@ -36,7 +36,7 @@ var HomeView = BaseView.extend({
 		var view = this,
 			$wrapper = view.$el.find('.js-columns-wrapper');
 
-		view.get('col-collection').each(function (model) {
+		view.get('column-collection').each(function (model) {
 			$wrapper.append(model.get('view').$el);
 		});
 
@@ -52,13 +52,13 @@ var HomeView = BaseView.extend({
 		switch (model.get('state')) {
 
 			case 'idle':
-				view.get('col-collection').spin();
-				model.set('state', 'begin-spin');
+				view.get('column-collection').spin();
+				model.set('state', 'spin-begin');
 				break;
 
-			case 'main-spin':
-				view.get('col-collection').stop();
-				model.set('state', 'end-spin');
+			case 'spin-main':
+				view.get('column-collection').stop();
+				model.set('state', 'spin-end');
 
 		}
 

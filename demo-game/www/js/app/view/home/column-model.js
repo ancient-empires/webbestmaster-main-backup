@@ -7,54 +7,22 @@ import ColumnView from './column-view';
 
 var ColumnModel = Backbone.Model.extend({
 
-	initialize: function (data) {
+	initialize: function () {
 
 		var model = this,
-			columnSize = 9,
-			startIndex = Math.floor(Math.random() * columnSize),
-			stopIndex = startIndex,
+			columnSize = model.get('column-size'),
+			stopIndex = Math.floor(Math.random() * columnSize),
 			view;
 
-		console.log(startIndex);
-
-		view = new ColumnView(data);
-
-		view.set('column-size', columnSize);
-
-		//model.set('start-index', startIndex);
-		//model.set('stop-index', stopIndex);
-		//model.set('column-size', columnSize);
+		view = new ColumnView({
+			columnSize: columnSize
+		});
 
 		model.set('view', view);
-
-		//model.bindEventListeners();
-
-		//model.trigger('change:stop-index');
 
 		view.moveTo({
 			stopIndex: stopIndex,
 			isInstant: true
-		});
-
-	},
-
-	bindEventListeners: function () {
-
-		return;
-
-		var model = this,
-			view = model.get('view');
-
-		model.on('change:stop-index', function () {
-
-			var model = this,
-				view = model.get('view'),
-				stopIndex = model.get('stop-index');
-
-			view.moveTo({
-				stopIndex: stopIndex
-			});
-
 		});
 
 	},
