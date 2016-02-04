@@ -11,79 +11,15 @@ var ColumnView = BaseView.extend({
 
 	initialize: function (data) {
 
-		var view = this,
-			index = data.index,
-			cssClass = 'column-container-' + index;
+		var view = this;
 
-		view.setElement(tm.get('column')({
-			cssClass: cssClass
-		}));
-
-		view.set({
-			index: index,
-			'animation-roll-begin-class': 'animation-roll-begin-' + index,
-			'animation-roll-end-class': 'animation-roll-end-' + index,
-			cssClass: cssClass
-		});
+		view.setElement(tm.get('column')());
 
 		view.set('$column-container', view.$el.find('.js-column-container'));
 
-		view.bindEventListeners();
-
-		view.initStyles();
+		view.set('transitionEnd', info.get('transitionEnd', true));
 
 		return BaseView.prototype.initialize.apply(view, arguments);
-
-	},
-
-	bindEventListeners: function () {
-
-		var view = this,
-			$columnContainer = view.get('$column-container');
-
-		$columnContainer.on(info.get('animationIteration', true), function () {
-
-			var viewState = view.get('state'),
-				$columnContainer = view.get('$column-container');
-
-			if (viewState === 'roll-end') {
-				$columnContainer
-					.removeClass('animation-roll-roll')
-					.addClass(view.get('animation-roll-end-class'));
-			}
-
-		});
-
-		$columnContainer.on(info.get('animationEnd', true), function () {
-
-			var viewState = view.get('state'),
-				$columnContainer = view.get('$column-container');
-
-			if (viewState === 'roll-begin') {
-				// switch to roll-roll
-				$columnContainer
-					.removeClass(view.get('animation-roll-begin-class'))
-					.addClass('animation-roll-roll');
-
-				view.set('state', 'roll-roll');
-
-				if (view.get('is-last')) {
-					view.publish('game-model:set-state', 'main-spin');
-				}
-
-			}
-
-			if (viewState === 'roll-end') {
-
-				//$columnContainer.removeClass('animation-roll-end');
-
-				if (view.get('is-last')) {
-					view.publish('game-model:set-state', 'idle');
-				}
-
-			}
-
-		});
 
 	},
 
@@ -91,78 +27,96 @@ var ColumnView = BaseView.extend({
 
 		var view = this;
 
-		view.set('state', 'roll-begin');
-
-
 		view.moveTo({
-			stopIndex: view.get('stop-index') + 1,
-			fill: 'both'
+			stopIndex: view.get('stop-index'),
+			type: 'begin'
+		}).done(function () {
+			view.turn();
 		});
 
-		//view.get('$column-container')
-		//.removeClass(view.get('animation-roll-end-class'))
-		//.removeClass('animation-roll-roll')
-		//.addClass(view.get('animation-roll-begin-class'));
-
 	},
 
-	stop: function (stopIndex) {
+	turn: function () {
 
-		var view = this;
+		var view = this,
+			$columnContainer = view.get('$column-container');
 
-		view.moveTo({
-			stopIndex: stopIndex
+		$columnContainer.addClass('a-roll');
+
+		$columnContainer.css({
+			top: -view.get('stop-index') * 4  + 'rem'
 		});
-
-		view.set('state', 'roll-end');
-
-	},
-
-	initStyles: function () {
-
-		var view = this,
-			$wrapper = view.$wrapper,
-			$animationStyle = $('<style type="text/css"></style>');
-
-		view.set('$animationStyle', $animationStyle);
-
-		$wrapper.append($animationStyle);
-
-	},
-
-	createAnimationStyle: function (data) {
-
-		var view = this,
-			style = tm.get('column-keyframes')({
-				cssClass: view.get('cssClass'),
-				begin: 4 * (data.begin || 0) + 'rem',
-				end: 4 * data.end + 'rem',
-				fill: data.fill || 'both'
-			});
-
-		view.get('$animationStyle').html(style);
 
 	},
 
 	moveTo: function (data) {
 
 		var view = this,
-			stopIndex = data.stopIndex;
+			defer = $.Deferred(),
+			transitionTimeFn,
+			stopIndex = data.stopIndex,
+			isInstant = data.isInstant,
+			columnStopIndex = view.get('stop-index'),
+			columnSize = view.get('column-size'),
+			transitionEnd = view.get('transitionEnd'),
+			$columnContainer = view.get('$column-container');
 
-		//view.get('$column-container').removeClass(view.get('cssClass'));
+		if (isInstant) {
+			$columnContainer.css({
+				transition: 'none',
+				transform: 'translate3d(0,' + -(stopIndex + columnSize) * 4 + 'rem,0)'
+			});
 
-		view.createAnimationStyle({
-			begin: view.get('stop-index'),
-			end: stopIndex,
-			fill: data.fill
-		});
+			view.set('stop-index', stopIndex);
 
-		//setTimeout(function () {
-		//	view.get('$column-container').addClass(view.get('cssClass'));
-		//}, 200);
+			return defer.resolve();
 
+		}
+
+		switch ( data.type ) {
+
+			case 'begin':
+				transitionTimeFn = 'ease-in';
+				break;
+
+			case 'end':
+				transitionTimeFn = 'ease-out';
+				break;
+
+			case 'linear':
+				transitionTimeFn = 'linear';
+				break;
+
+			default :
+				transitionTimeFn = 'linear';
+
+		}
+
+		if (stopIndex < columnStopIndex) {
+			$columnContainer.css({
+				transition: 'transform 1s ' + transitionTimeFn,
+				transform: 'translate3d(0,' + -(stopIndex + columnSize) * 4 + 'rem,0)'
+			});
+			$columnContainer.one(transitionEnd, function () {
+				defer.resolve();
+			});
+		} else {
+			$columnContainer.css({
+				transition: 'transform 1s ' + transitionTimeFn,
+				transform: 'translate3d(0,' + -stopIndex * 4 + 'rem,0)'
+			});
+			$columnContainer.one(transitionEnd, function () {
+				$columnContainer.css({
+					transition: 'none',
+					transform: 'translate3d(0,' + -(stopIndex + columnSize) * 4 + 'rem,0)'
+				});
+				defer.resolve();
+			});
+		}
 
 		view.set('stop-index', stopIndex);
+
+		return defer.promise();
 
 	}
 

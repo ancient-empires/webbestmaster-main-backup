@@ -49,15 +49,15 @@
 
 	<div class="column-wrapper">
 
-		<div class="js-column-container column-container {{= it.cssClass }}">
+		<div class="js-column-container column-container">
 				{{ for (var i = 1; i <= 9; i += 1) { }}
-				<img class="column-item" src="i/item/sym{{= i }}.png" alt="{{= i }}">
+				<img class="column-item d-column-item-0" src="i/item/sym{{= i }}.png" alt="{{= i - 1 }}">
 				{{ }; }}
 				{{ for (var i = 1; i <= 9; i += 1) { }}
-				<img class="column-item" src="i/item/sym{{= i }}.png" alt="{{= i }}">
+				<img class="column-item d-column-item-1" src="i/item/sym{{= i }}.png" alt="{{= i - 1 }}">
 				{{ }; }}
 				{{ for (var i = 1; i <= 9; i += 1) { }}
-				<img class="column-item" src="i/item/sym{{= i }}.png" alt="{{= i }}">
+				<img class="column-item d-column-item-2" src="i/item/sym{{= i }}.png" alt="{{= i - 1 }}">
 				{{ }; }}
 		</div>
 
@@ -75,7 +75,6 @@
 		100% {
 			transform: translate3d(0, {{= it.end }}, 0);
 		}
-
 	}
 
 	.{{= it.cssClass }} {
@@ -83,10 +82,9 @@
 		animation-duration: 2s;
 		animation-iteration-count: 1;
 		animation-name: animation-{{= it.cssClass }};
-		animation-fill-mode: {{= it.fill }};
+		animation-fill-mode: both;
 		transform-origin: center center;
 	}
-
 
 </script>
 

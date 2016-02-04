@@ -10,19 +10,52 @@ var ColumnModel = Backbone.Model.extend({
 	initialize: function (data) {
 
 		var model = this,
-			stopIndex = Math.floor(Math.random() * 9),
+			columnSize = 9,
+			startIndex = Math.floor(Math.random() * columnSize),
+			stopIndex = startIndex,
 			view;
+
+		console.log(startIndex);
 
 		view = new ColumnView(data);
 
-		model.set('stop-index', stopIndex);
-		view.set('stop-index', 0);
+		view.set('column-size', columnSize);
 
-		view.moveTo({
-			stopIndex: stopIndex
-		});
+		//model.set('start-index', startIndex);
+		//model.set('stop-index', stopIndex);
+		//model.set('column-size', columnSize);
 
 		model.set('view', view);
+
+		//model.bindEventListeners();
+
+		//model.trigger('change:stop-index');
+
+		view.moveTo({
+			stopIndex: stopIndex,
+			isInstant: true
+		});
+
+	},
+
+	bindEventListeners: function () {
+
+		return;
+
+		var model = this,
+			view = model.get('view');
+
+		model.on('change:stop-index', function () {
+
+			var model = this,
+				view = model.get('view'),
+				stopIndex = model.get('stop-index');
+
+			view.moveTo({
+				stopIndex: stopIndex
+			});
+
+		});
 
 	},
 
@@ -31,7 +64,6 @@ var ColumnModel = Backbone.Model.extend({
 		var model = this;
 
 		model.get('view').spin();
-
 
 	},
 
