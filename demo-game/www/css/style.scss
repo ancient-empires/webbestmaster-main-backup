@@ -1,0 +1,26 @@
+body {
+  background-image: url(../i/main-bg.jpg);
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+}
+
+.button-spin {
+  margin: 0 auto;
+  background-image: url(../i/button-spin.png);
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  width: 327 * 0.5px;
+  height: 121 * 0.5px;
+  position: relative;
+  left: 337px;
+  margin-bottom: 100px;
+}
+
+.button-spin_disable {
+  -webkit-pointer-events: none;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+

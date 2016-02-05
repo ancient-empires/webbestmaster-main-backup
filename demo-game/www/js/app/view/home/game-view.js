@@ -64,9 +64,8 @@ var HomeView = BaseView.extend({
 					model.set('state', 'idle');
 					view.get('column-collection').each(function (model) {
 						model.get('view').set('state', 'idle');
-					})
-				}, 5000);
-
+					});
+				}, 3300);
 
 		}
 

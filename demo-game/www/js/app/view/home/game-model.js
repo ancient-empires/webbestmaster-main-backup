@@ -3,6 +3,7 @@
 /*global */
 
 import Backbone from '../../../lib/backbone';
+import $ from '../../../lib/jbone';
 import log from '../../../services/log';
 import mediator from '../../../services/mediator';
 
@@ -30,6 +31,8 @@ var GameModel = Backbone.Model.extend({
 
 		mediator.installTo(model);
 
+		//model.set('$button-spin', $('.js-spin'));
+
 		model.bindEventListeners();
 
 	},
@@ -50,6 +53,12 @@ var GameModel = Backbone.Model.extend({
 			state = model.get('state');
 
 		log('model state is', state);
+
+		if (state === 'idle' || state === 'spin-main') {
+			$('.js-spin').removeClass('button-spin_disable');
+		} else {
+			$('.js-spin').addClass('button-spin_disable');
+		}
 
 	},
 
