@@ -60,6 +60,14 @@ var HomeView = BaseView.extend({
 				view.get('column-collection').stop();
 				model.set('state', 'spin-end');
 
+				setTimeout(function () {
+					model.set('state', 'idle');
+					view.get('column-collection').each(function (model) {
+						model.get('view').set('state', 'idle');
+					})
+				}, 5000);
+
+
 		}
 
 
