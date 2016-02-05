@@ -50,15 +50,24 @@
 	<div class="column-wrapper">
 
 		<div class="js-column-container column-container">
-				{{ for (var i = 1; i <= 9; i += 1) { }}
-				<img class="column-item d-column-item-0" src="i/item/sym{{= i }}.png" alt="{{= i - 1 }}">
-				{{ }; }}
-				{{ for (var i = 1; i <= 9; i += 1) { }}
-				<img class="column-item d-column-item-1" src="i/item/sym{{= i }}.png" alt="{{= i - 1 }}">
-				{{ }; }}
-				{{ for (var i = 1; i <= 9; i += 1) { }}
-				<img class="column-item d-column-item-2" src="i/item/sym{{= i }}.png" alt="{{= i - 1 }}">
-				{{ }; }}
+
+			{{ var items = ['bonus', 'elli', 'lame', 'lion', 'metal-man', 'wild', 'wild-small-1', 'wild-small-2']; }}
+
+			{{ items = items.sort(function(){ return Math.random() - 0.5; }); }}
+			{{~items :item:i}}
+				<img class="column-item item-image-{{= item }}" src="i/item/item-{{= item }}.png" alt="{{= i - 1 }}">
+			{{~}}
+
+			{{ items = items.sort(function(){ return Math.random() - 0.5; }); }}
+			{{~items :item:i}}
+			<img class="column-item item-image-{{= item }}" src="i/item/item-{{= item }}.png" alt="{{= i - 1 }}">
+			{{~}}
+
+			{{ items = items.sort(function(){ return Math.random() - 0.5; }); }}
+			{{~items :item:i}}
+			<img class="column-item item-image-{{= item }}" src="i/item/item-{{= item }}.png" alt="{{= i - 1 }}">
+			{{~}}
+
 		</div>
 
 	</div>

@@ -1,4 +1,4 @@
-$itemSize: 4rem;
+$itemSize: 76px;
 $itemCount: 9;
 $wrapperSize: 5 * $itemSize;
 $columnSize: $itemCount * $itemSize;
@@ -76,13 +76,7 @@ $itemWidth: 138px;
   //margin-top: -100%;
 //}
 
-.column-item {
-  //float: left;
-  display: block;
-  width: $itemSize;
-  height: $itemSize;
-  //-webkit-filter: blur(10px);
-}
+
 
 /*
 .a-roll-begin {
