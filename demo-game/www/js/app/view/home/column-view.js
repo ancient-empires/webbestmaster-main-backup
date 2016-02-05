@@ -38,10 +38,20 @@ var ColumnView = BaseView.extend({
 
 	},
 
+	stop: function (lastIndex) {
+
+		var view = this;
+
+		view.set('state', 'spin-end');
+
+	},
+
 	turn: function () {
 
 		var view = this,
 			$columnContainer = view.get('$column-container');
+
+		$columnContainer.off();
 
 		$columnContainer.addClass('a-roll');
 
@@ -49,7 +59,34 @@ var ColumnView = BaseView.extend({
 			top: -view.get('stop-index') * 4  + 'rem'
 		});
 
-		view.publish('game-model:set-state', 'spin-main');
+		if (view.get('is-last')) {
+			view.publish('game-model:set-state', 'spin-main');
+		}
+
+		$columnContainer.on(info.get('animationIteration', true), function () {
+
+			if (view.get('state') === 'spin-end') {
+
+				$columnContainer.removeClass('a-roll');
+				$columnContainer.css({
+					top: 0
+				});
+
+				view.moveTo({
+					stopIndex: view.get('stop-index'),
+					isInstant: true
+				});
+
+				setTimeout(function () {
+					view.moveTo({
+						stopIndex: Math.floor(Math.random() * 9),
+						type: 'end'
+					});
+				}, 0);
+
+			}
+
+		});
 
 	},
 

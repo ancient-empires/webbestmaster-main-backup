@@ -40,7 +40,7 @@ var ColumnModel = Backbone.Model.extend({
 		var model = this,
 			stopIndex = Math.floor(Math.random() * 9);
 
-		model.set('stop-index', stopIndex);
+		//model.set('stop-index', stopIndex);
 
 		model.get('view').stop(stopIndex);
 
