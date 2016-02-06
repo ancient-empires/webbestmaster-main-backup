@@ -17,8 +17,8 @@ info = {
 
 	link: {
 		ios: {
-			normal: '',
-			pro: ''
+			normal: 'https://itunes.apple.com/by/app/audioskazki-s-kartinkami/id1055098339?mt=8',
+			pro: 'https://itunes.apple.com/by/app/audioskazki-s-kartinkami/id1055098339?mt=8'
 		},
 		android: {
 			normal: 'market://details?id=com.elitapp.coolbook',

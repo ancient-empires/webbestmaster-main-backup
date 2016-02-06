@@ -16,7 +16,7 @@
 	// gulp - run 'default' task
 	// gulp <task> <othertask>.
 
-	gulp.task('default', ['clear-dist'], function () {
+	gulp.task('default', /*['clear-dist'],*/ function () {
 
 		gulp.start(
 			'copy-i', 'copy-font',
