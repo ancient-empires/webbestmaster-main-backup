@@ -7,6 +7,8 @@ import info from './../../../services/info';
 import log from './../../../services/log';
 import $ from './../../../lib/jbone';
 
+var delta = 25;
+
 var ColumnView = BaseView.extend({
 
 	initialize: function (data) {
@@ -56,7 +58,7 @@ var ColumnView = BaseView.extend({
 		$columnContainer.addClass('a-roll');
 
 		$columnContainer.css({
-			top: -view.get('stop-index') * 76 + 'px'
+			top: (-view.get('stop-index') * 76 - delta) + 'px'
 		});
 
 		if (view.get('is-last')) {
@@ -69,14 +71,13 @@ var ColumnView = BaseView.extend({
 
 				$columnContainer.removeClass('a-roll');
 				$columnContainer.css({
-					top: 0
+					top: -delta + 'px'
 				});
 
 				view.moveTo({
 					stopIndex: view.get('stop-index'),
 					isInstant: true
 				});
-
 				setTimeout(function () {
 					view.moveTo({
 						stopIndex: Math.floor(Math.random() * 9),
@@ -105,7 +106,7 @@ var ColumnView = BaseView.extend({
 		if (isInstant) {
 			$columnContainer.css({
 				transition: 'none',
-				transform: 'translate3d(0,' + -(stopIndex + columnSize) * 76 + 'px,0)'
+				transform: 'translate3d(0,' + (-(stopIndex + columnSize) * 76 - delta) + 'px,0)'
 			});
 
 			view.set('stop-index', stopIndex);
@@ -136,7 +137,7 @@ var ColumnView = BaseView.extend({
 		if (stopIndex < columnStopIndex) {
 			$columnContainer.css({
 				transition: 'transform 1s ' + transitionTimeFn,
-				transform: 'translate3d(0,' + -(stopIndex + columnSize) * 76 + 'px,0)'
+				transform: 'translate3d(0,' + (-(stopIndex + columnSize) * 76 - delta) + 'px,0)'
 			});
 			$columnContainer.one(transitionEnd, function () {
 				defer.resolve();
@@ -144,12 +145,12 @@ var ColumnView = BaseView.extend({
 		} else {
 			$columnContainer.css({
 				transition: 'transform 1s ' + transitionTimeFn,
-				transform: 'translate3d(0,' + -stopIndex * 76 + 'px,0)'
+				transform: 'translate3d(0,' + (-stopIndex * 76 - delta) + 'px,0)'
 			});
 			$columnContainer.one(transitionEnd, function () {
 				$columnContainer.css({
 					transition: 'none',
-					transform: 'translate3d(0,' + -(stopIndex + columnSize) * 76 + 'px,0)'
+					transform: 'translate3d(0,' + (-(stopIndex + columnSize) * 76 - delta) + 'px,0)'
 				});
 				defer.resolve();
 			});

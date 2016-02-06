@@ -3,20 +3,26 @@
   width: $itemWidth;
 }
 
+//.item-image-bonus,
+//.item-image-wild,
+
+
 .item-image-elli,
 .item-image-lame,
 .item-image-lion,
 .item-image-metal-man,
 .item-image-wild-small-1,
 .item-image-wild-small-2 {
-  height: 102px;
-  margin: -25px 0;
+  //height: 102px;
+  height: $itemHeight + 25;
+  margin: 0 0 -25px;
 }
 
 .item-image-bonus,
 .item-image-wild {
-  height: 202px;
-  margin: -25px 0;
+  height: $itemHeight * 3 + 25;
+  //height: 202px;
+  margin: 0 0 -25px;
 }
 
 
