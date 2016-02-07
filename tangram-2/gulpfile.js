@@ -18,7 +18,7 @@
 	// gulp <task> <othertask>.
 
 	gulp.task('default', /*['clear-dist'],*/ function () {
-		return gulp.start('app-cache', 'html', 'css', 'js', 'copy-data');
+		return gulp.start(/*'app-cache', */ 'html', 'css', 'js', 'copy-data');
 	});
 
 	// watch
