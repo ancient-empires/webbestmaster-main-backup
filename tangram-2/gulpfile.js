@@ -27,7 +27,7 @@
 		gulp.watch('./www/css/**/*', ['css']);
 		gulp.watch('./www/js/**/*', ['js-watch']);
 		//gulp.watch('./www/images/**/*', ['copy-data']);
-		gulp.watch('./www/app-cache.mf', ['app-cache']);
+		//gulp.watch('./www/app-cache.mf', ['app-cache']);
 		gulp.watch('./www/i/**/*', ['copy-data']);
 		gulp.watch('./www/font/**/*', ['copy-data']);
 	});
