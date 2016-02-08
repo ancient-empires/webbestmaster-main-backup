@@ -254,7 +254,7 @@ var arrayProto = Array.prototype,
 		preLoadInterfaceImages: function () {
 
 			// load interface images
-			var imagesPath = ['rotate-bg.svg', 'tangram-frame.svg', 'mover.jpg'],
+			var imagesPath = ['rotate-bg.svg', 'tangram-frame.svg', 'mover-bg.svg'],
 				i;
 
 			for (i = 0; i < 9; i += 1) {
