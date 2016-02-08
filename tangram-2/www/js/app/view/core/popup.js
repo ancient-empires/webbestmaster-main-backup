@@ -90,7 +90,7 @@ PopupView = BaseView.extend({
 			timeout = view.get('timeout');
 
 		if (timeout) {
-			clearTimeout(view.get('timeoutId'))
+			clearTimeout(view.get('timeoutId'));
 		}
 
 		view.unbindExtraEvents();

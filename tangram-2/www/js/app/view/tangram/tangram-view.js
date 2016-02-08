@@ -244,12 +244,12 @@ var TangramView = BaseView.extend({
 			//cssClass: 'myClass',
 			hideOnClick: true,
 			name: 'tangram-menu',
-			data: {
-				lang: lang
-			},
 			onHide: {
 				fn: 'hideMenu',
 				context: view
+			},
+			data: {
+				lang: lang
 			},
 			extraEvents: [
 				{
@@ -267,15 +267,11 @@ var TangramView = BaseView.extend({
 					event: 'click',
 					fn: function () {
 
-						view.hide().done(function () {
+						var fragment = Backbone.history.fragment;
+						fragment = fragment.split('/');
+						fragment.pop();
 
-							var fragment = Backbone.history.fragment;
-							fragment = fragment.split('/');
-							fragment.pop();
-
-							BaseView.prototype.backTo(fragment.join('/'));
-
-						});
+						BaseView.prototype.backTo(fragment.join('/'));
 
 					}
 				}
