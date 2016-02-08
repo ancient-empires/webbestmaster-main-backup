@@ -31,14 +31,15 @@ var HomeView = BaseView.extend({
 			textureInfo: textureInfo
 		}));
 
+		view.publish('previewSectionHelper:initialize');
+
 		view.render().then(function () {
 
-			if (view.get('isHidden') || info.get('dev-mode')) {
+			if (view.get('isHidden')) {
 				return;
 			}
 
-			view.publish('previewSectionHelper:initialize');
-			view.publish('app-cache:check-cache');
+			//view.publish('app-cache:check-cache');
 			view.rateUsPopup();
 
 		});

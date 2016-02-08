@@ -19,7 +19,7 @@
   @include prefix(box-sizing, border-box);
   border: 0.1rem solid #C0C0C0;
   border-radius: 0.2rem;
-  width: 80%;
+  width: 75%;
   @include prefix(transform, translate3d(-50%, -50%, 0));
   text-align: center;
 }
@@ -35,8 +35,8 @@
   display: block;
   height: 1.9rem;
   width: 90%;
-  padding-top: .6rem;
-  margin: .4rem auto .6rem;
+  padding-top: 0.6rem;
+  margin: 0.4rem auto 0.7rem;
   @extend .luxury-3d-button;
 }
 
@@ -52,13 +52,17 @@
 
 .popup-close {
   position: absolute;
-  right: -0.5rem;
-  top: -0.4rem;
-  font-size: 2.2rem;
-  padding: 0.2rem 0.3rem 0.5rem 0.3rem;
+  right: -1.5rem;
+  top: -1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
   background-color: #FFF;
   box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.4);
   border-radius: 0.2rem;
+  background-image: url(../i/popup-close-icon.svg);
+  @include prefix(background-size, 50% 50%);
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 @keyframes show-in {

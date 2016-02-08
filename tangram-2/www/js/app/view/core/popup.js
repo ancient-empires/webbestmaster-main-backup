@@ -47,7 +47,7 @@ PopupView = BaseView.extend({
 
 		view.extendFromObj(data); // name, parentView, data(objToView)
 
-		view.setElement(tm.get('popup-wrapper')());
+		view.setElement(tm.get('popup-wrapper')(data));
 
 		if (data.cssClass) {
 			view.$el.addClass(data.cssClass);

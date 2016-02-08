@@ -265,7 +265,11 @@
 	<div class="popup-wrapper">
 
 		<div class="popup-container js-popup-container">
-			<div class="popup-close">&times;</div>
+			{{? it.hideOnClick }}
+			<div class="popup-close">&nbsp;</div>
+			{{??}}
+			<div class="popup-close js-hide-popup">&nbsp;</div>
+			{{?}}
 		</div>
 
 	</div>
