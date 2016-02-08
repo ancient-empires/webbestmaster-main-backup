@@ -243,6 +243,8 @@ var win = window,
 
 			view.empty();
 
+			view.set('isHidden', true);
+
 			view.unsubscribe();
 			mediator.uninstallFrom(view);
 

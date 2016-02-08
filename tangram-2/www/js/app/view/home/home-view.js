@@ -33,13 +33,14 @@ var HomeView = BaseView.extend({
 
 		view.render().then(function () {
 
-			if (info.get('dev-mode')) {
+			if (view.get('isHidden') || info.get('dev-mode')) {
 				return;
 			}
 
 			view.publish('previewSectionHelper:initialize');
 			view.publish('app-cache:check-cache');
 			view.rateUsPopup();
+
 		});
 
 		return BaseView.prototype.initialize.apply(view, arguments);
