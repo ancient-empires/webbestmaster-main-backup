@@ -202,13 +202,8 @@ info = {
 			defaultSettings = {
 				//screenAnimation: info.get('isAndroid', true) ? 'off' : 'on',
 				screenAnimation: 'on',
-				installTime: Date.now(),
+				installTime: Date.now()
 
-				// extra - tangram
-				tangramTexture: 0,
-				gameDifficult: 'regular',
-				doneTangramsRegular: [],
-				doneTangramsMaster: []
 				//screenAnimation: 'off',
 				//storyByStory: info.isNormal ? 'off' : 'on',
 				//hint: {}
@@ -249,49 +244,6 @@ info = {
 	getLinkToStore: function (type) { // pro or normal
 		return this.link[this.get('os', true)][type || 'normal'];
 		//return this.link[this.get('os', true)][type || (this.isNormal ? 'normal' : 'pro')];
-	},
-
-	// extra tangram
-
-	getDoneTangrams: function () {
-
-		var info = this,
-			gameDifficult = info.get('gameDifficult');
-
-		if (gameDifficult === 'regular') {
-			return info.get('doneTangramsRegular');
-		}
-
-		// master case
-		return info.get('doneTangramsMaster');
-
-	},
-
-	/*
-	 getDoneTangramsHash: function () {
-
-	 },
-	 */
-
-	pushToDoneTangrams: function (data) {
-
-		var info = this,
-			gameDifficult = info.get('gameDifficult'),
-			doneTangramsName,
-			doneTangrams;
-
-		if (gameDifficult === 'regular') {
-			doneTangramsName = 'doneTangramsRegular';
-		} else { // master case
-			doneTangramsName = 'doneTangramsMaster';
-		}
-
-		doneTangrams = info.get(doneTangramsName);
-
-		doneTangrams.push(data);
-
-		info.set(doneTangramsName, doneTangrams);
-
 	}
 
 };
