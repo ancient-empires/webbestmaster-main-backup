@@ -279,7 +279,24 @@ var arrayProto = Array.prototype,
 
 			return Math.sqrt( Math.pow(xy0.x - xy1.x, 2) + Math.pow(xy0.y - xy1.y, 2));
 
-		}
+		},
+
+		requestAnimationFrame: (function () {
+
+			var requestAnimationFrame = window.requestAnimationFrame ||
+				window.webkitRequestAnimationFrame ||
+				window.mozRequestAnimationFrame ||
+				window.oRequestAnimationFrame ||
+				window.msRequestAnimationFrame ||
+				function(callback) {
+					window.setTimeout(callback, 16.6666);
+				};
+
+			return function(callback) {
+				requestAnimationFrame(callback);
+			};
+
+		}())
 
 	};
 

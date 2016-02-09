@@ -3,6 +3,7 @@
 
 import BaseView from './../core/base';
 import tm from './../../../services/template-master';
+import util from './../../../services/util';
 import log from './../../../services/log';
 
 var HomeView = BaseView.extend({
@@ -20,6 +21,28 @@ var HomeView = BaseView.extend({
 		view.setElement(tm.get('home')());
 
 		view.render();
+
+
+
+
+
+
+
+
+/*
+		util.requestAnimationFrame(anim);
+
+		function anim() {
+
+			util.requestAnimationFrame(anim);
+
+			console.log(Date.now());
+
+		}
+*/
+
+
+
 
 		return BaseView.prototype.initialize.apply(view, arguments);
 
