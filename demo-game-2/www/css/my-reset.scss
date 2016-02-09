@@ -1,0 +1,160 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, audio, canvas, details, figcaption,
+figure, footer, header, hgroup, mark, menu, meter, nav,
+output, progress, section, summary, time, video {
+  @include prefix(tap-highlight-color, transparent);
+  @include prefix(user-select, none);
+  @include prefix(font-smoothing, antialiased);
+  @include prefix(text-size-adjust, 100%);
+}
+
+input:focus,
+button:focus {
+  outline: none;
+}
+
+/* custom classes */
+.clear {
+  display: block;
+  clear: both;
+  float: none;
+}
+
+.back-to-stream {
+  display: block;
+  clear: both;
+}
+
+.self-to-stream {
+  display: block;
+}
+
+.self-to-stream:after {
+  content: '';
+  display: block;
+  clear: both;
+  width: 0;
+  height: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.disable {
+  opacity: 0.45;
+  @include prefix(pointer-events, none);
+}
+
+.disable-event {
+  @include prefix(pointer-events, none);
+}
+
+.block {
+  display: block;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  width: 100%;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.ta-center {
+  text-align: center;
+}
+
+.ta-left {
+  text-align: left;
+}
+
+.ta-right {
+  text-align: right;
+}
+
+.width-25 {
+  width: 25%;
+}
+
+.width-33 {
+  width: 33.333333%;
+}
+
+.width-50 {
+  width: 50%;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.width-a {
+  width: auto;
+}
+
+.height-100 {
+  height: 100%;
+}
+
+.height-a {
+  height: auto;
+}
+
+.full-size {
+  width: 100%;
+  height: 100%;
+}
+
+.scroll-touch {
+  @include prefix(overflow-scrolling, touch);
+  overflow: auto;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.opacity50 {
+  opacity: 0.5;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.pos-rel {
+  position: relative;
+}
+
+.pos-fix {
+  position: fixed;
+}
+
+.pos-abs {
+  position: absolute;
+}
+
+.pos-stat {
+  position: static;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
