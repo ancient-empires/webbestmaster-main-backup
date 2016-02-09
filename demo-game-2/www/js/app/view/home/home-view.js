@@ -25,15 +25,17 @@ var HomeView = BaseView.extend({
 		//view.set('wheelCollection', wheelCollection);
 		//view.set('render', render);
 
-		wheelCollection.initializeWheels({
-			wheelCount: 6
-		});
-
 		view.setElement(tm.get('home')());
 
 		render.appendTo(view.$el.get(0));
 
 		view.render();
+
+		render.preLoadAssets().done(function () {
+			wheelCollection.initializeWheels({
+				wheelCount: 6
+			});
+		});
 
 
 /*

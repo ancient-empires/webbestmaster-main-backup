@@ -3,6 +3,7 @@
 /*global */
 
 import Backbone from './../../../lib/backbone';
+import mediator from './../../../services/mediator';
 import log from './../../../services/log';
 import WheelModel from './wheel-model';
 
@@ -54,6 +55,8 @@ var WheelCollection = Backbone.Collection.extend({
 
 		var wheelCollection = this;
 
+		mediator.installTo(wheelCollection);
+
 		wheelCollection.initDataStore();
 
 	},
@@ -66,9 +69,12 @@ var WheelCollection = Backbone.Collection.extend({
 
 		for (i = 0; i < len; i += 1) {
 			collection.initializeWheel();
+			collection.publish('render:increase-wheel');
 		}
 
-
+		collection.publish('render:draw-wheels', {
+			wheels: collection.toJSON()
+		});
 
 	},
 
