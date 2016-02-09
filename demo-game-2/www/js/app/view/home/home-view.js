@@ -5,6 +5,8 @@ import BaseView from './../core/base';
 import tm from './../../../services/template-master';
 import util from './../../../services/util';
 import log from './../../../services/log';
+import WheelCollection from './wheel-collection';
+import Render from './render';
 
 var HomeView = BaseView.extend({
 
@@ -16,17 +18,22 @@ var HomeView = BaseView.extend({
 
 	initialize: function () {
 
-		var view = this;
+		var view = this,
+			wheelCollection = new WheelCollection(),
+			render = new Render();
+
+		//view.set('wheelCollection', wheelCollection);
+		//view.set('render', render);
+
+		wheelCollection.initializeWheels({
+			wheelCount: 6
+		});
 
 		view.setElement(tm.get('home')());
 
+		render.appendTo(view.$el.get(0));
+
 		view.render();
-
-
-
-
-
-
 
 
 /*

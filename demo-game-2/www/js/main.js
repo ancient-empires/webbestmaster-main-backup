@@ -2,7 +2,7 @@
 /*global window */
 
 import info from './services/info';
-info.set('dev-mode', false);
+info.set('dev-mode', !false);
 
 import log from './services/log';
 
@@ -21,6 +21,7 @@ import Backbone from './lib/backbone';
 import fastclick from './lib/fastclick';
 import doT from './lib/dot';
 import Queue from './lib/queue';
+import PIXI from './lib/pixi';
 
 // init all services
 import device from './services/device';
