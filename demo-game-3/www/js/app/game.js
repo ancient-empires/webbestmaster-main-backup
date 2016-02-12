@@ -12,7 +12,7 @@ var game = {
 		}
 	},
 
-	textures: {
+	frameTextures: {
 		logo: {
 			path: 'i/game/logo.png',
 			texture: null,
@@ -31,8 +31,12 @@ var game = {
 		}
 	},
 
-	stage: null,
-	renderer: null,
+	gameStage: null,
+	gameRenderer: null,
+	frameStage: null,
+	frameRenderer: null,
+	effectStage: null,
+	effectRenderer: null,
 
 	initialize: function (cd) {
 
@@ -43,7 +47,7 @@ var game = {
 		game.initTextures(function () {
 
 			game.initSprites();
-			game.renderer.render(game.stage);
+			game.frameRenderer.render(game.frameStage);
 			cd();
 
 		});
@@ -52,28 +56,34 @@ var game = {
 
 	initCanvas: function () {
 
-		var game = this;
+		var game = this,
+			width = game.original.full.w,
+			height = game.original.full.h;
 
-		var stage = new PIXI.Container();
+		game.gameStage = new PIXI.Container();
+		game.gameRenderer = PIXI.autoDetectRenderer(width, height, { transparent: true });
+		game.gameRenderer.view.className = 'game-renderer';
+		document.body.appendChild(game.gameRenderer.view);
 
-		var renderer = PIXI.autoDetectRenderer(game.original.full.w, game.original.full.h, {
-			transparent: true
-		});
+		game.frameStage = new PIXI.Container();
+		game.frameRenderer = PIXI.autoDetectRenderer(width, height, { transparent: true });
+		game.frameRenderer.view.className = 'frame-renderer';
+		document.body.appendChild(game.frameRenderer.view);
 
-		game.stage = stage;
-		game.renderer = renderer;
-
-		document.body.appendChild(renderer.view);
+		game.effectStage = new PIXI.Container();
+		game.effectRenderer = PIXI.autoDetectRenderer(width, height, { transparent: true });
+		game.effectRenderer.view.className = 'effect-renderer';
+		document.body.appendChild(game.effectRenderer.view);
 
 	},
 
 	initTextures: function (cb) {
 
 		var game = this;
-		var gameTextures = game.textures;
+		var frameTextures = game.frameTextures;
 		var loader = PIXI.loader;
 
-		util.eachHash(gameTextures, function (item, key) {
+		util.eachHash(frameTextures, function (item, key) {
 			loader.add(key, item.path);
 		});
 
@@ -86,7 +96,7 @@ var game = {
 				log('textures are loaded');
 
 				util.eachHash(resources, function (value, key) {
-					gameTextures[key].texture = value;
+					frameTextures[key].texture = value;
 				});
 
 				cb();
@@ -98,10 +108,10 @@ var game = {
 	initSprites: function () {
 
 		var game = this;
-		var gameTextures = game.textures;
-		var stage = game.stage;
+		var frameTextures = game.frameTextures;
+		var frameStage = game.frameStage;
 
-		util.eachHash(gameTextures, function (spriteData) {
+		util.eachHash(frameTextures, function (spriteData) {
 
 			var sprite = new PIXI.Sprite(spriteData.texture.texture);
 
@@ -110,7 +120,7 @@ var game = {
 			sprite.width = spriteData.w;
 			sprite.height = spriteData.h;
 
-			stage.addChild(sprite);
+			frameStage.addChild(sprite);
 
 		});
 
