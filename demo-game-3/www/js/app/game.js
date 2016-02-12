@@ -1,48 +1,49 @@
 import PIXI from './../lib/pixi';
-import _ from './../lib/lodash';
+import util from './../lib/util';
 import log from './../services/log';
 
 
 var game = {
 
+	original: {
+		full: {
+			w: 780,
+			h: 520
+		}
+	},
+
 	textures: {
 		logo: {
 			path: 'i/game/logo.png',
-			texture: null
+			texture: null,
+			x: 48,
+			y: 13,
+			w: 209,
+			h: 145
+		},
+		frame: {
+			path: 'i/game/frame.png',
+			texture: null,
+			x: 9,
+			y: 16,
+			w: 761,
+			h: 495
 		}
 	},
 
 	stage: null,
 	renderer: null,
 
-	original: {
-		full: {
-			w: 780,
-			h: 530
-		}
-	},
-
-	positions: {
-
-		logo: {
-			x: 48,
-			y: 13,
-			w: 209,
-			h: 145
-		}
-
-	},
-
 	initialize: function (cd) {
 
-		var app = this;
+		var game = this;
 
-		app.initCanvas();
+		game.initCanvas();
 
-		app.initTextures(function () {
+		game.initTextures(function () {
 
-			app.initSprites();
-			app.renderer.render(app.stage);
+			game.initSprites();
+			game.renderer.render(game.stage);
 			cd();
 
 		});
@@ -51,16 +52,16 @@ var game = {
 
 	initCanvas: function () {
 
-		var app = this;
+		var game = this;
 
 		var stage = new PIXI.Container();
 
-		var renderer = PIXI.autoDetectRenderer(app.original.full.w, app.original.full.h, {
+		var renderer = PIXI.autoDetectRenderer(game.original.full.w, game.original.full.h, {
 			transparent: true
 		});
 
-		app.stage = stage;
-		app.renderer = renderer;
+		game.stage = stage;
+		game.renderer = renderer;
 
 		document.body.appendChild(renderer.view);
 
@@ -72,7 +73,7 @@ var game = {
 		var gameTextures = game.textures;
 		var loader = PIXI.loader;
 
-		_.each(gameTextures, function (item, key) {
+		util.eachHash(gameTextures, function (item, key) {
 			loader.add(key, item.path);
 		});
 
@@ -84,7 +85,7 @@ var game = {
 
 				log('textures are loaded');
 
-				_.each(resources, function (value, key) {
+				util.eachHash(resources, function (value, key) {
 					gameTextures[key].texture = value;
 				});
 
@@ -100,35 +101,20 @@ var game = {
 		var gameTextures = game.textures;
 		var stage = game.stage;
 
-		_.each(game.positions, function (position, key) {
+		util.eachHash(gameTextures, function (spriteData) {
 
-			var sprite = new PIXI.Sprite(gameTextures[key].texture.texture);
+			var sprite = new PIXI.Sprite(spriteData.texture.texture);
 
-			sprite.position.x = position.x;
-			sprite.position.y = position.y;
-			sprite.width = position.w;
-			sprite.height = position.h;
+			sprite.position.x = spriteData.x;
+			sprite.position.y = spriteData.y;
+			sprite.width = spriteData.w;
+			sprite.height = spriteData.h;
 
 			stage.addChild(sprite);
 
 		});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
-
 
 };
 

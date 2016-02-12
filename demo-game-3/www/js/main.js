@@ -8,9 +8,8 @@
 
 	import info from './services/info';
 
-	import $ from './lib/jbone';
 	import PIXI from './lib/pixi';
-	import _ from './lib/lodash';
+	import util from './lib/util';
 
 	import log from './services/log';
 
