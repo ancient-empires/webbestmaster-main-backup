@@ -2,7 +2,6 @@ import PIXI from './../lib/pixi';
 import util from './../lib/util';
 import log from './../services/log';
 
-
 var game = {
 
 	original: {
@@ -60,20 +59,13 @@ var game = {
 			width = game.original.full.w,
 			height = game.original.full.h;
 
-		game.gameStage = new PIXI.Container();
-		game.gameRenderer = PIXI.autoDetectRenderer(width, height, { transparent: true });
-		game.gameRenderer.view.className = 'game-renderer';
-		document.body.appendChild(game.gameRenderer.view);
-
-		game.frameStage = new PIXI.Container();
-		game.frameRenderer = PIXI.autoDetectRenderer(width, height, { transparent: true });
-		game.frameRenderer.view.className = 'frame-renderer';
-		document.body.appendChild(game.frameRenderer.view);
-
-		game.effectStage = new PIXI.Container();
-		game.effectRenderer = PIXI.autoDetectRenderer(width, height, { transparent: true });
-		game.effectRenderer.view.className = 'effect-renderer';
-		document.body.appendChild(game.effectRenderer.view);
+		['game', 'frame', 'effect'].forEach(function (value) {
+			var renderer = PIXI.autoDetectRenderer(width, height, { transparent: true });
+			game[value + 'Stage'] = new PIXI.Container();
+			game[value + 'Renderer'] = renderer;
+			renderer.view.className = value + '-renderer';
+			document.body.appendChild(renderer.view);
+		});
 
 	},
 
