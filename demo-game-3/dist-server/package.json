@@ -1,0 +1,22 @@
+{
+  "name": "heroku",
+  "version": "0.0.1",
+  "description": "heroku",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": "https://github.com/webbestmaster/heroku",
+  "license": "MIT",
+  "author": "me",
+  "dependencies": {
+    "mime-types": "^2.1.7",
+    "path": "^0.12.7",
+    "express": "^4.13.3",
+    "multiparty": "^4.1.2",
+    "deferred": "^0.7.4",
+    "rimraf": "^2.5.0",
+    "tinify": "^1.1.1"
+  }
+}
