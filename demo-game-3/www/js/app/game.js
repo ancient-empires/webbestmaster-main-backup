@@ -53,6 +53,7 @@ var game = {
 			game.createWheels();
 			game.drawWheels();
 			game.bindEventListeners();
+			cd();
 		});
 
 	},
@@ -168,8 +169,9 @@ var game = {
 	initCanvas: function () {
 
 		var game = this,
-			width = game.original.full.w,
-			height = game.original.full.h;
+			q = 1,
+			width = game.original.full.w * q,
+			height = game.original.full.h * q;
 
 		//gameStage
 		//gameRenderer
@@ -182,6 +184,8 @@ var game = {
 			var renderer = PIXI.autoDetectRenderer(width, height, {transparent: true});
 			game[value + 'Stage'] = new PIXI.Container();
 			game[value + 'Renderer'] = renderer;
+			game[value + 'Stage'].scale.x = q;
+			game[value + 'Stage'].scale.y = q;
 			renderer.view.className = value + '-renderer';
 			document.body.appendChild(renderer.view);
 		});
