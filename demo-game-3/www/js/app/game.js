@@ -179,7 +179,7 @@ var game = {
 		//effectRenderer
 
 		['game', 'frame', 'effect'].forEach(function (value) {
-			var renderer = PIXI.autoDetectRenderer(width, height, { transparent: true });
+			var renderer = PIXI.autoDetectRenderer(width, height, {transparent: true});
 			game[value + 'Stage'] = new PIXI.Container();
 			game[value + 'Renderer'] = renderer;
 			renderer.view.className = value + '-renderer';
@@ -268,12 +268,14 @@ var game = {
 
 			var newWheel = new Wheel({
 				itemHeight: wheelsData.item.h,
-				position: 0,
+				position: Math.floor(Math.random() * wheelsData.wheelItemCount),
 				tilingSprite: tilingSprite,
 				wheelItemCount: wheelsData.wheelItemCount
 			});
 
 			wheels.push(newWheel);
+
+			newWheel.updatePosition();
 
 		});
 
