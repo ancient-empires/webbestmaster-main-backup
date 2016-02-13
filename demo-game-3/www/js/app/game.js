@@ -1,11 +1,14 @@
 import PIXI from './../lib/pixi';
 import util from './../lib/util';
+import Deferred from './../lib/deferred';
 import log from './../services/log';
-import wheels from './wheels';
+import wheelsData from './wheels-data';
 
 var game = {
 
-	wheels: wheels,
+	//wheelsData: wheelsData,
+
+	wheels: [],
 
 	original: {
 		full: {
@@ -16,7 +19,7 @@ var game = {
 
 	frameTextures: {
 		logo: {
-			path: 'i/game/logo.png',
+			path: 'i/game/frame/logo.png',
 			texture: null,
 			x: 48,
 			y: 13,
@@ -24,7 +27,7 @@ var game = {
 			h: 145
 		},
 		frame: {
-			path: 'i/game/frame.png',
+			path: 'i/game/frame/frame.png',
 			texture: null,
 			x: 9,
 			y: 16,
@@ -32,6 +35,8 @@ var game = {
 			h: 495
 		}
 	},
+
+	gameTextures: {},
 
 	gameStage: null,
 	gameRenderer: null,
@@ -46,12 +51,11 @@ var game = {
 
 		game.initCanvas();
 
-		game.initTextures(function () {
-
-			game.initSprites();
+		game.initTextures().done(function () {
+			game.initFrameSprites();
 			game.frameRenderer.render(game.frameStage);
-			cd();
-
+			game.createWheels();
+			game.drawWheels();
 		});
 
 	},
@@ -72,35 +76,72 @@ var game = {
 
 	},
 
-	initTextures: function (cb) {
+	initTextures: function () {
 
+		var defer = new Deferred();
 		var game = this;
-		var frameTextures = game.frameTextures;
+
 		var loader = PIXI.loader;
 
+		var frameTextures = game.frameTextures;
+		game.defineGameTextures();
+		var gameTextures = game.gameTextures;
+
 		util.eachHash(frameTextures, function (item, key) {
-			loader.add(key, item.path);
+			loader.add('frameTextures/' + key, item.path);
+		});
+
+		util.eachHash(gameTextures, function (item, key) {
+			loader.add('gameTextures/' + key, item.path);
 		});
 
 		loader
 			.on('progress', function () {
-				log('on loading progress');
+				log('on loading texture progress');
 			})
 			.load(function (loader, resources) {
 
-				log('textures are loaded');
-
 				util.eachHash(resources, function (value, key) {
-					frameTextures[key].texture = value;
+
+					var path = key.split('/');
+
+					game[path[0]][path[1]].texture = value;
+
 				});
 
-				cb();
+				defer.resolve();
 
 			});
 
+		return defer.promise();
+
 	},
 
-	initSprites: function () {
+	defineGameTextures: function () {
+
+		var game = this;
+
+		var gameTextures = game.gameTextures;
+
+		//var wheelsData = game.wheelsData;
+
+		var itemWidth = wheelsData.item.w;
+		var itemHeight = wheelsData.item.h;
+
+		util.eachHash(wheelsData.item.list, function (value, key) {
+
+			gameTextures[key] = {
+				w: itemWidth,
+				h: itemHeight * 2,
+				path: value.path,
+				texture: null
+			};
+
+		});
+
+	},
+
+	initFrameSprites: function () {
 
 		var game = this;
 		var frameTextures = game.frameTextures;
@@ -118,6 +159,71 @@ var game = {
 			frameStage.addChild(sprite);
 
 		});
+
+	},
+
+	createWheels: function () {
+
+		var game = this;
+
+		var wheels = game.wheels;
+
+		wheelsData.wheels.forEach(function (wheelData) {
+
+			// create container
+			var stage = new PIXI.Container();
+
+			stage.position.x = wheelData.x;
+			stage.position.y = wheelData.y;
+
+			game.gameStage.addChild(stage);
+
+			var newWheel = {
+				stage: stage,
+				sprites: {}
+			},
+				i = 0;
+
+			// created double of every sprite to show overlay sprite on sprite
+
+			util.eachHash(game.gameTextures, function (obj, key) {
+
+				newWheel.sprites[key] = {
+					index: i,
+					arr: []
+				};
+
+				var sprite = new PIXI.Sprite(obj.texture.texture);
+
+				newWheel.sprites[key].arr.push(sprite);
+
+				stage.addChild(sprite);
+
+				i += 1;
+
+			});
+
+			util.eachHash(game.gameTextures, function (obj, key) {
+
+				var sprite = new PIXI.Sprite(obj.texture.texture);
+
+				newWheel.sprites[key].arr.push(sprite);
+
+				stage.addChild(sprite);
+
+			});
+
+			wheels.push(newWheel);
+
+		});
+
+	},
+
+	drawWheels: function () {
+
+		var game = this;
+
+		game.gameRenderer.render(game.gameStage);
 
 	}
 

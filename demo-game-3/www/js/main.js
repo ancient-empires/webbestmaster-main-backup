@@ -9,7 +9,10 @@
 	import info from './services/info';
 
 	import PIXI from './lib/pixi';
+	import Deferred from './lib/deferred';
 	import util from './lib/util';
+
+
 
 	import log from './services/log';
 
