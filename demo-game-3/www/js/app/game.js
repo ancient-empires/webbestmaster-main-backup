@@ -1,8 +1,11 @@
 import PIXI from './../lib/pixi';
 import util from './../lib/util';
 import log from './../services/log';
+import wheels from './wheels';
 
 var game = {
+
+	wheels: wheels,
 
 	original: {
 		full: {
