@@ -243,6 +243,8 @@ var game = {
 
 			var sprite = new PIXI.Sprite(spriteData.texture.texture);
 
+			spriteData.sprite = sprite;
+
 			sprite.position.x = spriteData.x;
 			sprite.position.y = spriteData.y;
 			sprite.width = spriteData.w;
@@ -251,6 +253,12 @@ var game = {
 			frameStage.addChild(sprite);
 
 		});
+
+/*
+		var blurFilter = new PIXI.filters.BlurFilter();
+		blurFilter.blur = 100;
+		frameTextures.logo.sprite.filters = [blurFilter];
+*/
 
 	},
 

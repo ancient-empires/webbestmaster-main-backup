@@ -3,6 +3,7 @@ var frameData = {
 		logo: {
 			path: 'i/game/frame/logo.png',
 			texture: null,
+			sprite: null,
 			x: 48,
 			y: 13,
 			w: 209,
@@ -11,6 +12,7 @@ var frameData = {
 		frame: {
 			path: 'i/game/frame/frame.png',
 			texture: null,
+			sprite: null,
 			x: 9,
 			y: 16,
 			w: 761,
