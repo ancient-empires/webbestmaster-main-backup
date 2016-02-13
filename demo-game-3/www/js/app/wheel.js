@@ -26,13 +26,13 @@ Wheel.prototype.updatePosition = function () {
 
 		case 'spin-main':
 
-			//this.updateSpinMain();
+			this.updateSpinMain();
 
 			break;
 
 		case 'spin-end':
 
-			//this.updateSpinEnd();
+			this.updateSpinEnd();
 
 			break;
 
@@ -62,7 +62,7 @@ Wheel.prototype.updateSpinBegin = function () {
 	var wheel = this;
 	var tIncrease = wheel.tIncrease;
 
-	var	t = wheel.t + tIncrease;
+	var t = wheel.t + tIncrease;
 	var a = wheel.a;
 	var v = a * t;
 	var vMax = wheel.vMax;
@@ -83,7 +83,7 @@ Wheel.prototype.updateSpinBegin = function () {
 
 	wheel.beginPath = position - wheel.beginSpinStartPosition;
 
-	wheel.sIncrease =  v * tIncrease;
+	wheel.sIncrease = v * tIncrease;
 	wheel.eedStopping = false;
 	wheel.t = 0;
 
@@ -91,6 +91,93 @@ Wheel.prototype.updateSpinBegin = function () {
 		wheel.beginSpinCb();
 		wheel.beginSpinCb = null;
 	}
+
+};
+
+Wheel.prototype.updateSpinMain = function () {
+
+	this.position += this.sIncrease;
+
+	if (this.position >= this.wheelItemCount) {
+
+		this.position %= this.wheelItemCount;
+	}
+
+};
+
+Wheel.prototype.endSpin = function (position) {
+
+	var wheel = this;
+
+	wheel.state = 'spin-end';
+	wheel.t = 0;
+	wheel.a = wheel.endA;
+	wheel.endSpinStopPosition = position;
+
+};
+
+
+Wheel.prototype.updateSpinEnd = function () {
+
+	var wheel = this,
+		v = wheel.v,
+		tIncrease = wheel.tIncrease,
+		t = wheel.t,
+		position = wheel.position,
+		sIncrease = wheel.sIncrease,
+		wheelItemCount = wheel.wheelItemCount,
+		needStopping = wheel.needStopping;
+
+	if (!v) {
+		return;
+	}
+
+	if (!needStopping) { // wait for position to begin ending
+
+		position += sIncrease;
+
+		wheel.position = position;
+
+		// detect starting of ending
+		var deltaPath = (position + wheel.beginPath - wheel.endSpinStopPosition) % wheelItemCount;
+
+		if (Math.abs(deltaPath) >= sIncrease) {
+			return;
+		}
+
+		wheel.lastPosition = position /*- deltaPath*/,
+		wheel.needStopping = true;
+		wheel.deltaPath = deltaPath;
+
+		return;
+
+	}
+
+	var a = wheel.a;
+
+	position = wheel.lastPosition + v * t + a * t * t / 2;
+	position += wheel.deltaPath * ( a * t / v );
+	position -= Math.sin((v - a * t) / v * Math.PI) * 1.2;
+
+	wheel.position = position % wheelItemCount;
+
+	t += tIncrease;
+
+	wheel.t = (Math.round(t * 100) / 100);
+
+	if (t <= wheel.beginTime) {
+		return;
+	}
+
+	wheel.position = wheel.endSpinStopPosition;
+	wheel.v = 0;
+	wheel.t = 0;
+
+	if (wheel.endSpinCb) {
+		wheel.endSpinCb();
+		wheel.endSpinCb = null;
+	}
+
 
 };
 

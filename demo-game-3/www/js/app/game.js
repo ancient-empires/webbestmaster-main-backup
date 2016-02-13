@@ -88,19 +88,15 @@ var game = {
 
 			case 'spin':
 
-/*
-				collection.setSpinState('spin-end');
+				game.state = 'spin-end';
 
-				collection.endSpin();
-*/
+				game.endSpin();
 
 				break;
-
 
 		}
 
 	},
-
 
 	beginSpin: function () {
 
@@ -114,17 +110,30 @@ var game = {
 			}, 300 * index);
 		});
 
-		console.log('implement callback for last wheel here');
-
 		wheels[wheels.length - 1].beginSpinCb = function () {
 			game.state = 'spin';
 			console.log('collection state is - spin');
-		}
+		};
 
-/*
-		collection.last().set('beginSpinCb', function () {
+	},
+
+	endSpin: function () {
+
+		var game = this;
+
+		var wheels = game.wheels;
+
+		wheels.forEach(function (wheel, index) {
+			setTimeout(function () {
+				wheel.endSpin(Math.floor(Math.random() * wheel.wheelItemCount));
+			}, 300 * index);
 		});
-*/
+
+		wheels[wheels.length - 1].endSpinCb = function () {
+			game.state = 'ready';
+			game.isAnimate = false;
+			console.log('collection state is - ready');
+		};
 
 	},
 
@@ -162,12 +171,12 @@ var game = {
 			width = game.original.full.w,
 			height = game.original.full.h;
 
-		//gameStage: null,
-		//gameRenderer: null,
-		//frameStage: null,
-		//frameRenderer: null,
-		//effectStage: null,
-		//effectRenderer: null,
+		//gameStage
+		//gameRenderer
+		//frameStage
+		//frameRenderer
+		//effectStage
+		//effectRenderer
 
 		['game', 'frame', 'effect'].forEach(function (value) {
 			var renderer = PIXI.autoDetectRenderer(width, height, { transparent: true });
@@ -250,7 +259,6 @@ var game = {
 
 		wheelsData.wheels.forEach(function (wheelData) {
 
-			//var sprite = new PIXI.extras.TilingSprite(texture, render.get('itemWidth'), wheelVisibleItemSize * itemHeight);
 			var tilingSprite = new PIXI.extras.TilingSprite(mainSpriteTexture, wheelsData.item.w, wheelData.hi * wheelsData.item.h);
 
 			tilingSprite.position.x = wheelData.x;
