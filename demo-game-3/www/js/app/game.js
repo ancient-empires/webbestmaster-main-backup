@@ -3,6 +3,8 @@ import util from './../lib/util';
 import Deferred from './../lib/deferred';
 import log from './../services/log';
 import wheelsData from './wheels-data';
+import frameData from './frame-data';
+import Wheel from './wheel';
 
 var game = {
 
@@ -17,26 +19,18 @@ var game = {
 		}
 	},
 
-	frameTextures: {
-		logo: {
-			path: 'i/game/frame/logo.png',
-			texture: null,
-			x: 48,
-			y: 13,
-			w: 209,
-			h: 145
-		},
-		frame: {
-			path: 'i/game/frame/frame.png',
-			texture: null,
-			x: 9,
-			y: 16,
-			w: 761,
-			h: 495
+	state: 'ready',
+
+	isAnimate: false,
+
+	frameTextures: frameData.textures,
+
+	gameTextures: {
+		mainSprite: {
+			path: 'i/game/game/items-sprite.png',
+			texture: null
 		}
 	},
-
-	gameTextures: {},
 
 	gameStage: null,
 	gameRenderer: null,
@@ -49,6 +43,8 @@ var game = {
 
 		var game = this;
 
+		game.animateWheels = game.animateWheels.bind(game);
+
 		game.initCanvas();
 
 		game.initTextures().done(function () {
@@ -56,7 +52,107 @@ var game = {
 			game.frameRenderer.render(game.frameStage);
 			game.createWheels();
 			game.drawWheels();
+			game.bindEventListeners();
 		});
+
+	},
+
+	bindEventListeners: function () {
+
+		var game = this;
+
+		document.querySelector('.js-spin').addEventListener('click', function () {
+
+			game.spin();
+
+		}, false);
+
+	},
+
+	spin: function () {
+
+		var game = this,
+			spinState = game.state;
+
+		switch (spinState) {
+
+			case 'ready':
+
+				game.state = 'spin-begin';
+
+				game.startAnimateWheels();
+
+				game.beginSpin();
+
+				break;
+
+			case 'spin':
+
+/*
+				collection.setSpinState('spin-end');
+
+				collection.endSpin();
+*/
+
+				break;
+
+
+		}
+
+	},
+
+
+	beginSpin: function () {
+
+		var game = this;
+
+		var wheels = game.wheels;
+
+		wheels.forEach(function (wheel, index) {
+			setTimeout(function () {
+				wheel.beginSpin();
+			}, 300 * index);
+		});
+
+		console.log('implement callback for last wheel here');
+
+		wheels[wheels.length - 1].beginSpinCb = function () {
+			game.state = 'spin';
+			console.log('collection state is - spin');
+		}
+
+/*
+		collection.last().set('beginSpinCb', function () {
+		});
+*/
+
+	},
+
+	startAnimateWheels: function () {
+
+		var game = this;
+
+		game.isAnimate = true;
+
+		game.animateWheels(); //
+
+	},
+
+	animateWheels: function () {
+
+		if (this.isAnimate) {
+
+			requestAnimationFrame(this.animateWheels);
+
+			var wheels = this.wheels;
+
+			for (var i = 0, len = wheels.length; i < len; i += 1) {
+				wheels[i].updatePosition();
+			}
+
+			this.drawWheels();
+
+		}
 
 	},
 
@@ -65,6 +161,13 @@ var game = {
 		var game = this,
 			width = game.original.full.w,
 			height = game.original.full.h;
+
+		//gameStage: null,
+		//gameRenderer: null,
+		//frameStage: null,
+		//frameRenderer: null,
+		//effectStage: null,
+		//effectRenderer: null,
 
 		['game', 'frame', 'effect'].forEach(function (value) {
 			var renderer = PIXI.autoDetectRenderer(width, height, { transparent: true });
@@ -84,7 +187,7 @@ var game = {
 		var loader = PIXI.loader;
 
 		var frameTextures = game.frameTextures;
-		game.defineGameTextures();
+
 		var gameTextures = game.gameTextures;
 
 		util.eachHash(frameTextures, function (item, key) {
@@ -117,30 +220,6 @@ var game = {
 
 	},
 
-	defineGameTextures: function () {
-
-		var game = this;
-
-		var gameTextures = game.gameTextures;
-
-		//var wheelsData = game.wheelsData;
-
-		var itemWidth = wheelsData.item.w;
-		var itemHeight = wheelsData.item.h;
-
-		util.eachHash(wheelsData.item.list, function (value, key) {
-
-			gameTextures[key] = {
-				w: itemWidth,
-				h: itemHeight * 2,
-				path: value.path,
-				texture: null
-			};
-
-		});
-
-	},
-
 	initFrameSprites: function () {
 
 		var game = this;
@@ -167,50 +246,23 @@ var game = {
 		var game = this;
 
 		var wheels = game.wheels;
+		var mainSpriteTexture = game.gameTextures.mainSprite.texture.texture;
 
 		wheelsData.wheels.forEach(function (wheelData) {
 
-			// create container
-			var stage = new PIXI.Container();
+			//var sprite = new PIXI.extras.TilingSprite(texture, render.get('itemWidth'), wheelVisibleItemSize * itemHeight);
+			var tilingSprite = new PIXI.extras.TilingSprite(mainSpriteTexture, wheelsData.item.w, wheelData.hi * wheelsData.item.h);
 
-			stage.position.x = wheelData.x;
-			stage.position.y = wheelData.y;
+			tilingSprite.position.x = wheelData.x;
+			tilingSprite.position.y = wheelData.y;
 
-			game.gameStage.addChild(stage);
+			game.gameStage.addChild(tilingSprite);
 
-			var newWheel = {
-				stage: stage,
-				sprites: {}
-			},
-				i = 0;
-
-			// created double of every sprite to show overlay sprite on sprite
-
-			util.eachHash(game.gameTextures, function (obj, key) {
-
-				newWheel.sprites[key] = {
-					index: i,
-					arr: []
-				};
-
-				var sprite = new PIXI.Sprite(obj.texture.texture);
-
-				newWheel.sprites[key].arr.push(sprite);
-
-				stage.addChild(sprite);
-
-				i += 1;
-
-			});
-
-			util.eachHash(game.gameTextures, function (obj, key) {
-
-				var sprite = new PIXI.Sprite(obj.texture.texture);
-
-				newWheel.sprites[key].arr.push(sprite);
-
-				stage.addChild(sprite);
-
+			var newWheel = new Wheel({
+				itemHeight: wheelsData.item.h,
+				position: 0,
+				tilingSprite: tilingSprite,
+				wheelItemCount: wheelsData.wheelItemCount
 			});
 
 			wheels.push(newWheel);
