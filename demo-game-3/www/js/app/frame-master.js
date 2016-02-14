@@ -62,6 +62,10 @@ var frameMaster = {
 
 		});
 
+		frame.updateAnimateLogo();
+		frame.isAnimate = true; // for updateAnimateLogo
+		frame.animate(); // for updateAnimateLogo
+
 	},
 
 	draw: function () {
@@ -72,7 +76,34 @@ var frameMaster = {
 
 		if (this.isAnimate) {
 			requestAnimationFrame(this.animate);
+			this.updateAnimateLogo();
 			this.renderer.render(this.stage); // see this.draw
+		}
+
+	},
+
+
+	// todo: remove this code -> create normal animator object and logic
+	logoFrame: 100,
+
+	updateAnimateLogo: function () {
+
+		var frame = this;
+
+		var logoSprite = frameTextures.textures.logo.sprite;
+
+		var filter = new PIXI.filters.PixelateFilter();
+
+		filter.size = new PIXI.Point(frame.logoFrame / 10, frame.logoFrame / 10);
+
+		logoSprite.filters = [filter];
+
+		frame.logoFrame -= 1;
+
+		if (frame.logoFrame < 0) {
+			logoSprite.filters = null;
+			frame.isAnimate = false;
+			frame.draw();
 		}
 
 	}
