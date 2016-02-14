@@ -13,9 +13,13 @@ var frameMaster = {
 	stage: null,
 	renderer: null,
 
+	isAnimate: false,
+
 	init: function () {
 
 		var frame = this;
+
+		frame.animate = frame.animate.bind(frame);
 
 		frame.initCanvas();
 
@@ -62,6 +66,15 @@ var frameMaster = {
 
 	draw: function () {
 		this.renderer.render(this.stage);
+	},
+
+	animate: function () {
+
+		if (this.isAnimate) {
+			requestAnimationFrame(this.animate);
+			this.renderer.render(this.stage); // see this.draw
+		}
+
 	}
 
 };
