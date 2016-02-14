@@ -3,8 +3,10 @@ import util from './../lib/util';
 import Deferred from './../lib/deferred';
 import log from './../services/log';
 import wheelsData from './wheels-data';
-import frameData from './frame-data';
 import Wheel from './wheel';
+import textureMaster from './texture-master';
+import frameMaster from './frame-master';
+import gameTextures from './game-textures';
 
 var game = {
 
@@ -23,21 +25,10 @@ var game = {
 
 	isAnimate: false,
 
-	frameTextures: frameData.textures,
-
-	gameTextures: {
-		mainSprite: {
-			path: 'i/game/game/items-sprite.png',
-			texture: null
-		}
-	},
-
-	gameStage: null,
-	gameRenderer: null,
-	frameStage: null,
-	frameRenderer: null,
-	effectStage: null,
-	effectRenderer: null,
+	stage: null,
+	renderer: null,
+	//effectStage: null,
+	//effectRenderer: null,
 
 	initialize: function (cd) {
 
@@ -47,12 +38,14 @@ var game = {
 
 		game.initCanvas();
 
-		game.initTextures().done(function () {
-			game.initFrameSprites();
-			game.frameRenderer.render(game.frameStage);
+		textureMaster.initTextures().done(function () {
+			frameMaster.initSprites();
+			frameMaster.draw();
+
 			game.createWheels();
 			game.drawWheels();
 			game.bindEventListeners();
+
 			cd();
 		});
 
@@ -127,7 +120,7 @@ var game = {
 		wheels.forEach(function (wheel, index) {
 			setTimeout(function () {
 				wheel.endSpin(Math.floor(Math.random() * wheel.wheelItemCount));
-			}, 300 * index);
+			}, 500 * index);
 		});
 
 		wheels[wheels.length - 1].endSpinCb = function () {
@@ -144,7 +137,7 @@ var game = {
 
 		game.isAnimate = true;
 
-		game.animateWheels(); //
+		game.animateWheels();
 
 	},
 
@@ -171,93 +164,25 @@ var game = {
 		var game = this,
 			q = 1,
 			width = game.original.full.w * q,
-			height = game.original.full.h * q;
+			height = game.original.full.h * q,
+			renderer;
 
-		//gameStage
-		//gameRenderer
-		//frameStage
-		//frameRenderer
-		//effectStage
-		//effectRenderer
-
-		['game', 'frame', 'effect'].forEach(function (value) {
-			var renderer = PIXI.autoDetectRenderer(width, height, {transparent: true});
-			game[value + 'Stage'] = new PIXI.Container();
-			game[value + 'Renderer'] = renderer;
-			game[value + 'Stage'].scale.x = q;
-			game[value + 'Stage'].scale.y = q;
-			renderer.view.className = value + '-renderer';
-			document.body.appendChild(renderer.view);
-		});
-
-	},
-
-	initTextures: function () {
-
-		var defer = new Deferred();
-		var game = this;
-
-		var loader = PIXI.loader;
-
-		var frameTextures = game.frameTextures;
-
-		var gameTextures = game.gameTextures;
-
-		util.eachHash(frameTextures, function (item, key) {
-			loader.add('frameTextures/' + key, item.path);
-		});
-
-		util.eachHash(gameTextures, function (item, key) {
-			loader.add('gameTextures/' + key, item.path);
-		});
-
-		loader
-			.on('progress', function () {
-				log('on loading texture progress');
-			})
-			.load(function (loader, resources) {
-
-				util.eachHash(resources, function (value, key) {
-
-					var path = key.split('/');
-
-					game[path[0]][path[1]].texture = value;
-
-				});
-
-				defer.resolve();
-
-			});
-
-		return defer.promise();
-
-	},
-
-	initFrameSprites: function () {
-
-		var game = this;
-		var frameTextures = game.frameTextures;
-		var frameStage = game.frameStage;
-
-		util.eachHash(frameTextures, function (spriteData) {
-
-			var sprite = new PIXI.Sprite(spriteData.texture.texture);
-
-			spriteData.sprite = sprite;
-
-			sprite.position.x = spriteData.x;
-			sprite.position.y = spriteData.y;
-			sprite.width = spriteData.w;
-			sprite.height = spriteData.h;
-
-			frameStage.addChild(sprite);
-
-		});
+		renderer = PIXI.autoDetectRenderer(width, height, {transparent: true});
+		game.stage = new PIXI.Container();
+		game.renderer = renderer;
+		game.stage.scale.x = q;
+		game.stage.scale.y = q;
+		renderer.view.className = 'game-renderer';
+		document.body.appendChild(renderer.view);
 
 /*
-		var blurFilter = new PIXI.filters.BlurFilter();
-		blurFilter.blur = 100;
-		frameTextures.logo.sprite.filters = [blurFilter];
+		renderer = PIXI.autoDetectRenderer(width, height, {transparent: true});
+		game[value + 'Stage'] = new PIXI.Container();
+		game[value + 'Renderer'] = renderer;
+		game[value + 'Stage'].scale.x = q;
+		game[value + 'Stage'].scale.y = q;
+		renderer.view.className = value + '-renderer';
+		document.body.appendChild(renderer.view);
 */
 
 	},
@@ -267,7 +192,7 @@ var game = {
 		var game = this;
 
 		var wheels = game.wheels;
-		var mainSpriteTexture = game.gameTextures.mainSprite.texture.texture;
+		var mainSpriteTexture = gameTextures.textures.mainSprite.texture.texture;
 
 		wheelsData.wheels.forEach(function (wheelData) {
 
@@ -276,7 +201,7 @@ var game = {
 			tilingSprite.position.x = wheelData.x;
 			tilingSprite.position.y = wheelData.y;
 
-			game.gameStage.addChild(tilingSprite);
+			game.stage.addChild(tilingSprite);
 
 			var newWheel = new Wheel({
 				itemHeight: wheelsData.item.h,
@@ -297,7 +222,7 @@ var game = {
 
 		var game = this;
 
-		game.gameRenderer.render(game.gameStage);
+		game.renderer.render(game.stage);
 
 	}
 

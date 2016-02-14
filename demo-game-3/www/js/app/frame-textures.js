@@ -1,4 +1,5 @@
-var frameData = {
+var frameTextures = {
+
 	textures: {
 		logo: {
 			path: 'i/game/frame/logo.png',
@@ -19,6 +20,7 @@ var frameData = {
 			h: 495
 		}
 	}
+
 };
 
-export default frameData;
+export default frameTextures;
