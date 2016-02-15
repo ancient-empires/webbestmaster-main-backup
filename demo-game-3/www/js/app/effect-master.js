@@ -2,6 +2,7 @@ import util from './../lib/util';
 //import frameTextures from './frame-textures';
 
 import MovieClipWrapper from './../lib/movie-clip-wrapper';
+import wheelsData from './wheels-data';
 
 var effectMaster = {
 
@@ -26,6 +27,21 @@ var effectMaster = {
 
 	},
 
+	getCellPosition: function (x, y) {
+
+		var wheel = wheelsData.wheels[x];
+
+		if (wheel.hi <= y){
+			return null;
+		}
+
+		return {
+			x: wheel.x,
+			y: wheel.y + y * wheelsData.item.h
+		}
+
+	},
+
 	initSprites: function () {
 
 
@@ -37,19 +53,32 @@ var effectMaster = {
 			frames.push('club-' + i);
 		}
 
-		var movie = PIXI.extras.MovieClip.fromFrames(frames);
+		for (i = 0; i < 6; i += 1) {
 
-		var movieClipWrapper = new MovieClipWrapper(movie);
+			for (var j = 0; j < 7; j += 1) {
 
-		//movie.visible = false;
+				var position = effect.getCellPosition(i, j);
 
-		effect.stage.addChild(movie);
+				if (!position) {
+					continue;
+				}
 
-		effect.clips.push(movieClipWrapper);
+				var movie = PIXI.extras.MovieClip.fromFrames(frames);
+				effect.stage.addChild(movie);
 
-		movieClipWrapper.play(function () {
-			console.log('play');
-		});
+
+				movie.position.x = position.x;
+				movie.position.y = position.y;
+
+				var movieClipWrapper = new MovieClipWrapper(movie);
+				effect.clips.push(movieClipWrapper);
+
+				movieClipWrapper.play();
+
+			}
+
+		}
+
 
 		//movieClipWrapper.play();
 		//movieClipWrapper.loop(false);

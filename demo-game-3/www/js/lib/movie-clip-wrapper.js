@@ -107,5 +107,3 @@ MovieClipWrapper.prototype.update = function () {
 };
 
 export default MovieClipWrapper;
-
-
