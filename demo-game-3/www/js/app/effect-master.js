@@ -1,6 +1,8 @@
 import util from './../lib/util';
 //import frameTextures from './frame-textures';
 
+import MovieClipWrapper from './../lib/movie-clip-wrapper';
+
 var effectMaster = {
 
 	original: {
@@ -8,6 +10,20 @@ var effectMaster = {
 			w: 780,
 			h: 520
 		}
+	},
+
+	clips: [],
+
+	update: function () {
+
+		// update clips states
+		var clips = this.clips,
+			i, len;
+
+		for (i = 0, len = clips.length; i < len; i += 1) {
+			clips[i].update();
+		}
+
 	},
 
 	initSprites: function () {
@@ -18,18 +34,27 @@ var effectMaster = {
 		var frames = [];
 
 		for (var i = 0; i < 105; i++) {
-			// magically works since the spritesheet was loaded with the pixi loader
-			frames.push(PIXI.Texture.fromFrame('club-' + i));
+			frames.push('club-' + i);
 		}
 
-		// create a MovieClip (brings back memories from the days of Flash, right ?)
-		var movie = new PIXI.extras.MovieClip(frames);
+		var movie = PIXI.extras.MovieClip.fromFrames(frames);
 
-		movie.visible = false;
+		var movieClipWrapper = new MovieClipWrapper(movie);
+
+		//movie.visible = false;
 
 		effect.stage.addChild(movie);
 
-		movie.play();
+		effect.clips.push(movieClipWrapper);
+
+		movieClipWrapper.play(function () {
+			console.log('play');
+		});
+
+		//movieClipWrapper.play();
+		//movieClipWrapper.loop(false);
+
+
 
 		/*
 				var frame = this;
