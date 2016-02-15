@@ -121,10 +121,7 @@ var effectMaster = {
 
 		movieClipWrapper.className = 'sparkle';
 
-		movieClipWrapper.play(function () {
-			console.log('!!!!!');
-		});
-
+		movieClipWrapper.play();
 
 	}
 
