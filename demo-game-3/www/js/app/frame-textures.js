@@ -9,7 +9,7 @@ var frameTextures = {
 			y: 13,
 			w: 209,
 			h: 145
-		},
+		}
 /*
 		frame: {
 			path: 'i/game/frame/frame.png',
