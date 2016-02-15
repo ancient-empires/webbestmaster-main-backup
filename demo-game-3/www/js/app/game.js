@@ -6,6 +6,7 @@ import wheelsData from './wheels-data';
 import Wheel from './wheel';
 import textureMaster from './texture-master';
 import frameMaster from './frame-master';
+import effectMaster from './effect-master';
 import gameTextures from './game-textures';
 
 var game = {
@@ -39,6 +40,7 @@ var game = {
 
 		textureMaster.initTextures().done(function () {
 			frameMaster.initSprites();
+			effectMaster.initSprites();
 			game.createWheels();
 			game.redraw();
 			game.bindEventListeners();
@@ -182,8 +184,9 @@ var game = {
 		stageMain.addChild(stageFrame);
 		stageMain.addChild(stageEffect);
 
-		// link stage with frameMaster
+		// link stage with frameMaster and effectMaster
 		frameMaster.stage = stageFrame;
+		effectMaster.stage = stageEffect;
 
 		game.stageMain = stageMain;
 		game.stageWheels = stageWheels;

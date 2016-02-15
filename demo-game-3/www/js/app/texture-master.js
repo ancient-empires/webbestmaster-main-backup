@@ -23,6 +23,8 @@ var textureMaster = {
 			loader.add('gameTextures/' + key, item.path);
 		});
 
+		loader.add('i/game/effect/club-win-animation.json');
+
 		loader
 			.on('progress', function () {
 				log('on loading texture progress');

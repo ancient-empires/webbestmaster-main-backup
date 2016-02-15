@@ -1,0 +1,1381 @@
+{
+  "frames": {
+    "club-0": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-1": {
+      "frame": {
+        "x": 125,
+        "y": 0,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-2": {
+      "frame": {
+        "x": 250,
+        "y": 0,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-3": {
+      "frame": {
+        "x": 375,
+        "y": 0,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-4": {
+      "frame": {
+        "x": 500,
+        "y": 0,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-5": {
+      "frame": {
+        "x": 625,
+        "y": 0,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-6": {
+      "frame": {
+        "x": 750,
+        "y": 0,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-7": {
+      "frame": {
+        "x": 875,
+        "y": 0,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-8": {
+      "frame": {
+        "x": 0,
+        "y": 70,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-9": {
+      "frame": {
+        "x": 125,
+        "y": 70,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-10": {
+      "frame": {
+        "x": 250,
+        "y": 70,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-11": {
+      "frame": {
+        "x": 375,
+        "y": 70,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-12": {
+      "frame": {
+        "x": 500,
+        "y": 70,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-13": {
+      "frame": {
+        "x": 625,
+        "y": 70,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-14": {
+      "frame": {
+        "x": 750,
+        "y": 70,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-15": {
+      "frame": {
+        "x": 875,
+        "y": 70,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-16": {
+      "frame": {
+        "x": 0,
+        "y": 140,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-17": {
+      "frame": {
+        "x": 125,
+        "y": 140,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-18": {
+      "frame": {
+        "x": 250,
+        "y": 140,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-19": {
+      "frame": {
+        "x": 375,
+        "y": 140,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-20": {
+      "frame": {
+        "x": 500,
+        "y": 140,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-21": {
+      "frame": {
+        "x": 625,
+        "y": 140,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-22": {
+      "frame": {
+        "x": 750,
+        "y": 140,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-23": {
+      "frame": {
+        "x": 875,
+        "y": 140,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-24": {
+      "frame": {
+        "x": 0,
+        "y": 210,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-25": {
+      "frame": {
+        "x": 125,
+        "y": 210,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-26": {
+      "frame": {
+        "x": 250,
+        "y": 210,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-27": {
+      "frame": {
+        "x": 375,
+        "y": 210,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-28": {
+      "frame": {
+        "x": 500,
+        "y": 210,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-29": {
+      "frame": {
+        "x": 625,
+        "y": 210,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-30": {
+      "frame": {
+        "x": 750,
+        "y": 210,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-31": {
+      "frame": {
+        "x": 875,
+        "y": 210,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-32": {
+      "frame": {
+        "x": 0,
+        "y": 280,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-33": {
+      "frame": {
+        "x": 125,
+        "y": 280,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-34": {
+      "frame": {
+        "x": 250,
+        "y": 280,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-35": {
+      "frame": {
+        "x": 375,
+        "y": 280,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-36": {
+      "frame": {
+        "x": 500,
+        "y": 280,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-37": {
+      "frame": {
+        "x": 625,
+        "y": 280,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-38": {
+      "frame": {
+        "x": 750,
+        "y": 280,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-39": {
+      "frame": {
+        "x": 875,
+        "y": 280,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-40": {
+      "frame": {
+        "x": 0,
+        "y": 350,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-41": {
+      "frame": {
+        "x": 125,
+        "y": 350,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-42": {
+      "frame": {
+        "x": 250,
+        "y": 350,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-43": {
+      "frame": {
+        "x": 375,
+        "y": 350,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-44": {
+      "frame": {
+        "x": 500,
+        "y": 350,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-45": {
+      "frame": {
+        "x": 625,
+        "y": 350,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-46": {
+      "frame": {
+        "x": 750,
+        "y": 350,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-47": {
+      "frame": {
+        "x": 875,
+        "y": 350,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-48": {
+      "frame": {
+        "x": 0,
+        "y": 420,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-49": {
+      "frame": {
+        "x": 125,
+        "y": 420,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-50": {
+      "frame": {
+        "x": 250,
+        "y": 420,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-51": {
+      "frame": {
+        "x": 375,
+        "y": 420,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-52": {
+      "frame": {
+        "x": 500,
+        "y": 420,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-53": {
+      "frame": {
+        "x": 625,
+        "y": 420,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-54": {
+      "frame": {
+        "x": 750,
+        "y": 420,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-55": {
+      "frame": {
+        "x": 875,
+        "y": 420,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-56": {
+      "frame": {
+        "x": 0,
+        "y": 490,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-57": {
+      "frame": {
+        "x": 125,
+        "y": 490,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-58": {
+      "frame": {
+        "x": 250,
+        "y": 490,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-59": {
+      "frame": {
+        "x": 375,
+        "y": 490,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-60": {
+      "frame": {
+        "x": 500,
+        "y": 490,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-61": {
+      "frame": {
+        "x": 625,
+        "y": 490,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-62": {
+      "frame": {
+        "x": 750,
+        "y": 490,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-63": {
+      "frame": {
+        "x": 875,
+        "y": 490,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-64": {
+      "frame": {
+        "x": 0,
+        "y": 560,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-65": {
+      "frame": {
+        "x": 125,
+        "y": 560,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-66": {
+      "frame": {
+        "x": 250,
+        "y": 560,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-67": {
+      "frame": {
+        "x": 375,
+        "y": 560,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-68": {
+      "frame": {
+        "x": 500,
+        "y": 560,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-69": {
+      "frame": {
+        "x": 625,
+        "y": 560,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-70": {
+      "frame": {
+        "x": 750,
+        "y": 560,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-71": {
+      "frame": {
+        "x": 875,
+        "y": 560,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-72": {
+      "frame": {
+        "x": 0,
+        "y": 630,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-73": {
+      "frame": {
+        "x": 125,
+        "y": 630,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-74": {
+      "frame": {
+        "x": 250,
+        "y": 630,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-75": {
+      "frame": {
+        "x": 375,
+        "y": 630,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-76": {
+      "frame": {
+        "x": 500,
+        "y": 630,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-77": {
+      "frame": {
+        "x": 625,
+        "y": 630,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-78": {
+      "frame": {
+        "x": 750,
+        "y": 630,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-79": {
+      "frame": {
+        "x": 875,
+        "y": 630,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-80": {
+      "frame": {
+        "x": 0,
+        "y": 700,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-81": {
+      "frame": {
+        "x": 125,
+        "y": 700,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-82": {
+      "frame": {
+        "x": 250,
+        "y": 700,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-83": {
+      "frame": {
+        "x": 375,
+        "y": 700,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-84": {
+      "frame": {
+        "x": 500,
+        "y": 700,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-85": {
+      "frame": {
+        "x": 625,
+        "y": 700,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-86": {
+      "frame": {
+        "x": 750,
+        "y": 700,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-87": {
+      "frame": {
+        "x": 875,
+        "y": 700,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-88": {
+      "frame": {
+        "x": 0,
+        "y": 770,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-89": {
+      "frame": {
+        "x": 125,
+        "y": 770,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-90": {
+      "frame": {
+        "x": 250,
+        "y": 770,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-91": {
+      "frame": {
+        "x": 375,
+        "y": 770,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-92": {
+      "frame": {
+        "x": 500,
+        "y": 770,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-93": {
+      "frame": {
+        "x": 625,
+        "y": 770,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-94": {
+      "frame": {
+        "x": 750,
+        "y": 770,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-95": {
+      "frame": {
+        "x": 875,
+        "y": 770,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-96": {
+      "frame": {
+        "x": 0,
+        "y": 840,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-97": {
+      "frame": {
+        "x": 125,
+        "y": 840,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-98": {
+      "frame": {
+        "x": 250,
+        "y": 840,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-99": {
+      "frame": {
+        "x": 375,
+        "y": 840,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-100": {
+      "frame": {
+        "x": 500,
+        "y": 840,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-101": {
+      "frame": {
+        "x": 625,
+        "y": 840,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-102": {
+      "frame": {
+        "x": 750,
+        "y": 840,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-103": {
+      "frame": {
+        "x": 875,
+        "y": 840,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    },
+    "club-104": {
+      "frame": {
+        "x": 0,
+        "y": 910,
+        "w": 125,
+        "h": 70
+      },
+      "rotated": false,
+      "sourceSize": {
+        "w": 125,
+        "h": 70
+      }
+    }
+  },
+  "meta": {
+    "app": "",
+    "version": "1.0",
+    "image": "club-win-animation.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1024,
+      "h": 1024
+    },
+    "scale": "1",
+    "smartupdate": ""
+  }
+}
