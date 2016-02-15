@@ -1,3 +1,9 @@
+var id = 0;
+
+function getNextId() {
+	return id += 1;
+}
+
 function MovieClipWrapper(clip) {
 
 	var wrapper = this;
@@ -10,6 +16,9 @@ function MovieClipWrapper(clip) {
 	wrapper.mode = 'play';
 	wrapper.playOneCb = null;
 	wrapper.playCb = null;
+
+	wrapper.id = getNextId();
+	wrapper.className = '';
 
 }
 

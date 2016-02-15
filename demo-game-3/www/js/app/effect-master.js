@@ -73,6 +73,8 @@ var effectMaster = {
 				var movieClipWrapper = new MovieClipWrapper(movie);
 				effect.clips.push(movieClipWrapper);
 
+				movieClipWrapper.className = 'club';
+
 				movieClipWrapper.play();
 
 			}
