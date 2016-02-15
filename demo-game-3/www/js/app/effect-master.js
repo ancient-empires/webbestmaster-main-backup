@@ -1,5 +1,5 @@
 import util from './../lib/util';
-//import frameTextures from './frame-textures';
+import effectTextures from './effect-textures';
 
 import MovieClipWrapper from './../lib/movie-clip-wrapper';
 import wheelsData from './wheels-data';
@@ -44,6 +44,14 @@ var effectMaster = {
 
 	initSprites: function () {
 
+		var effect = this;
+
+		effect.initClubsMovies();
+		effect.initSparklesMovies();
+
+	},
+
+	initClubsMovies: function () {
 
 		var effect = this;
 
@@ -81,62 +89,44 @@ var effectMaster = {
 
 		}
 
+	},
 
-		//movieClipWrapper.play();
-		//movieClipWrapper.loop(false);
+	initSparklesMovies: function () {
 
 
+		var effect = this;
 
-		/*
-				var frame = this;
-				var frameStage = frame.stage;
+		var frames = [];
 
-				util.eachHash(frameTextures.textures, function (spriteData) {
+		for (var i = 0; i < 3; i++) {
+			frames.push('i/game/effect/sparkles/sparkles-' + i + '.png');
+		}
 
-					var sprite = new PIXI.Sprite(spriteData.texture.texture);
+		var movie = PIXI.extras.MovieClip.fromImages(frames);
+		effect.stage.addChild(movie);
 
-					spriteData.sprite = sprite;
+		movie.position.x = 240;
+		movie.position.y = 35;
 
-					sprite.position.x = spriteData.x;
-					sprite.position.y = spriteData.y;
-					sprite.width = spriteData.w;
-					sprite.height = spriteData.h;
+		movie.rotation = Math.PI / 2;
+		movie.anchor.x = 0.2;
+		movie.anchor.y = 0.2;
+		movie.scale.x = 0.3333;
+		movie.scale.y = 0.3333;
 
-					frameStage.addChild(sprite);
+		movie.animationSpeed = 0.1;
 
-				});
-		*/
+		var movieClipWrapper = new MovieClipWrapper(movie);
+		effect.clips.push(movieClipWrapper);
 
-		//frame.updateAnimateLogo();
+		movieClipWrapper.className = 'sparkle';
+
+		movieClipWrapper.play(function () {
+			console.log('!!!!!');
+		});
+
 
 	}
-
-	/*
-	 // todo: remove this code -> create normal animator object and logic
-	 logoFrame: 100,
-
-	 updateAnimateLogo: function () {
-
-	 var frame = this;
-
-	 var logoSprite = frameTextures.textures.logo.sprite;
-
-	 var filter = new PIXI.filters.PixelateFilter();
-
-	 filter.size = new PIXI.Point(frame.logoFrame / 10, frame.logoFrame / 10);
-
-	 logoSprite.filters = [filter];
-
-	 frame.logoFrame -= 1;
-
-	 if (frame.logoFrame < 0) {
-	 logoSprite.filters = null;
-	 frame.isAnimate = false;
-	 frame.draw();
-	 }
-
-	 }
-	 */
 
 };
 

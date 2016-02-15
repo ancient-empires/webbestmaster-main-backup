@@ -1,6 +1,7 @@
 import Deferred from './../lib/deferred';
 import frameTextures from './frame-textures';
 import gameTextures from './game-textures';
+import effectTextures from './effect-textures';
 import util from './../lib/util';
 import log from './../services/log';
 
@@ -14,6 +15,7 @@ var textureMaster = {
 
 		var frameTexturesData = frameTextures.textures;
 		var gameTexturesData = gameTextures.textures;
+		var effectTexturesData = effectTextures.textures;
 
 		util.eachHash(frameTexturesData, function (item, key) {
 			loader.add('frameTextures/' + key, item.path);
@@ -21,6 +23,10 @@ var textureMaster = {
 
 		util.eachHash(gameTexturesData, function (item, key) {
 			loader.add('gameTextures/' + key, item.path);
+		});
+
+		util.eachHash(effectTexturesData, function (item, key) {
+			loader.add('effectTextures/' + key, item.path);
 		});
 
 		loader.add('i/game/effect/club-win-animation.json');
@@ -44,6 +50,10 @@ var textureMaster = {
 
 						case 'gameTextures':
 							gameTexturesData[name].texture = value;
+							break;
+
+						case 'effectTextures':
+							effectTexturesData[name].texture = value;
 							break;
 
 					}
