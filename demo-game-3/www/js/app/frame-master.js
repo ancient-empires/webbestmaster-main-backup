@@ -10,38 +10,6 @@ var frameMaster = {
 		}
 	},
 
-	stage: null,
-	renderer: null,
-
-	isAnimate: false,
-
-	init: function () {
-
-		var frame = this;
-
-		frame.animate = frame.animate.bind(frame);
-
-		frame.initCanvas();
-
-	},
-
-	initCanvas: function () {
-
-		var frame = this,
-			q = 1,
-			width = frame.original.full.w * q,
-			height = frame.original.full.h * q;
-
-		var renderer = PIXI.autoDetectRenderer(width, height, {transparent: true});
-		frame.stage = new PIXI.Container();
-		frame.renderer = renderer;
-		frame.stage.scale.x = q;
-		frame.stage.scale.y = q;
-		renderer.view.className = 'frame-renderer';
-		document.body.appendChild(renderer.view);
-
-	},
-
 	initSprites: function () {
 
 		var frame = this;
@@ -62,27 +30,11 @@ var frameMaster = {
 
 		});
 
-		frame.updateAnimateLogo();
-		frame.isAnimate = true; // for updateAnimateLogo
-		frame.animate(); // for updateAnimateLogo
+		//frame.updateAnimateLogo();
 
-	},
+	}
 
-	draw: function () {
-		this.renderer.render(this.stage);
-	},
-
-	animate: function () {
-
-		if (this.isAnimate) {
-			requestAnimationFrame(this.animate);
-			this.updateAnimateLogo();
-			this.renderer.render(this.stage); // see this.draw
-		}
-
-	},
-
-
+/*
 	// todo: remove this code -> create normal animator object and logic
 	logoFrame: 100,
 
@@ -107,9 +59,8 @@ var frameMaster = {
 		}
 
 	}
+*/
 
 };
-
-frameMaster.init();
 
 export default frameMaster;

@@ -21,14 +21,11 @@ var game = {
 		}
 	},
 
+	i: true,
+
 	state: 'ready',
 
 	isAnimate: false,
-
-	stage: null,
-	renderer: null,
-	//effectStage: null,
-	//effectRenderer: null,
 
 	initialize: function (cd) {
 
@@ -38,14 +35,13 @@ var game = {
 
 		game.initCanvas();
 
+		game.redraw = game.redraw.bind(game);
+
 		textureMaster.initTextures().done(function () {
 			frameMaster.initSprites();
-			frameMaster.draw();
-
 			game.createWheels();
-			game.drawWheels();
+			game.redraw();
 			game.bindEventListeners();
-
 			cd();
 		});
 
@@ -73,8 +69,6 @@ var game = {
 			case 'ready':
 
 				game.state = 'spin-begin';
-
-				game.startAnimateWheels();
 
 				game.beginSpin();
 
@@ -131,6 +125,7 @@ var game = {
 
 	},
 
+/*
 	startAnimateWheels: function () {
 
 		var game = this;
@@ -140,10 +135,11 @@ var game = {
 		game.animateWheels();
 
 	},
+*/
 
 	animateWheels: function () {
 
-		if (this.isAnimate) {
+		//if (this.isAnimate) {
 
 			requestAnimationFrame(this.animateWheels);
 
@@ -153,9 +149,7 @@ var game = {
 				wheels[i].updatePosition();
 			}
 
-			this.drawWheels();
-
-		}
+		//}
 
 	},
 
@@ -165,25 +159,36 @@ var game = {
 			q = 1,
 			width = game.original.full.w * q,
 			height = game.original.full.h * q,
-			renderer;
+			renderer,
+			stageMain, stageWheels, stageFrame, stageEffect;
 
+		// init renderer
 		renderer = PIXI.autoDetectRenderer(width, height, {transparent: true});
-		game.stage = new PIXI.Container();
 		game.renderer = renderer;
-		game.stage.scale.x = q;
-		game.stage.scale.y = q;
 		renderer.view.className = 'game-renderer';
 		document.body.appendChild(renderer.view);
 
-/*
-		renderer = PIXI.autoDetectRenderer(width, height, {transparent: true});
-		game[value + 'Stage'] = new PIXI.Container();
-		game[value + 'Renderer'] = renderer;
-		game[value + 'Stage'].scale.x = q;
-		game[value + 'Stage'].scale.y = q;
-		renderer.view.className = value + '-renderer';
-		document.body.appendChild(renderer.view);
-*/
+		// init main stage
+		stageMain = new PIXI.Container();
+		stageMain.scale.x = q;
+		stageMain.scale.y = q;
+
+		// init child stages
+		stageWheels = new PIXI.Container();
+		stageFrame = new PIXI.Container();
+		stageEffect = new PIXI.Container();
+
+		stageMain.addChild(stageWheels);
+		stageMain.addChild(stageFrame);
+		stageMain.addChild(stageEffect);
+
+		// link stage with frameMaster
+		frameMaster.stage = stageFrame;
+
+		game.stageMain = stageMain;
+		game.stageWheels = stageWheels;
+		game.stageFrame = stageFrame;
+		game.stageEffect = stageEffect;
 
 	},
 
@@ -201,7 +206,7 @@ var game = {
 			tilingSprite.position.x = wheelData.x;
 			tilingSprite.position.y = wheelData.y;
 
-			game.stage.addChild(tilingSprite);
+			game.stageWheels.addChild(tilingSprite);
 
 			var newWheel = new Wheel({
 				itemHeight: wheelsData.item.h,
@@ -218,11 +223,25 @@ var game = {
 
 	},
 
-	drawWheels: function () {
+	redraw: function () {
 
-		var game = this;
+		requestAnimationFrame(this.redraw);
 
-		game.renderer.render(game.stage);
+/*
+		// do not each frame, draw odd frame only
+		if (this.i = !this.i) { // here use single "=" for small optimization
+			return;
+		}
+*/
+
+		var wheels = this.wheels,
+			i, len;
+
+		for (i = 0, len = wheels.length; i < len; i += 1) {
+			wheels[i].updatePosition();
+		}
+
+		this.renderer.render(this.stageMain);
 
 	}
 
