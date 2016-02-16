@@ -7,8 +7,9 @@ var ru = {
 	shortLanguageName: 'Рус',
 	appName: 'Танграм-2',
 
-	notification: {
-	},
+	notification: {},
+
+	fullVersion: 'Full Version',
 
 	// rate us block
 	rateUs: {

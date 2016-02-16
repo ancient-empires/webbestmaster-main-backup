@@ -14,12 +14,12 @@ info = {
 
 	link: {
 		ios: {
-			normal: '',
-			pro: ''
+			normal: 'ios-url-normal',
+			pro: 'ios-url-pro'
 		},
 		android: {
-			normal: '',
-			pro: ''
+			normal: 'android-url-normal',
+			pro: 'android-url-pro'
 		}
 	},
 

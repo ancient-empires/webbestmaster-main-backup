@@ -274,3 +274,16 @@ body {
 .tan_active {
   opacity: 0.5;
 }
+
+.market-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-decoration: underline;
+  color: #fff;
+  text-shadow: 1px 1px 0 #000;
+  z-index: 1;
+  font-size: 1rem;
+  line-height: 1rem;
+  padding: 1rem;
+}

@@ -11,6 +11,8 @@ var en = {
 
 	notification: {},
 
+	fullVersion: 'Full Version',
+
 	// rate us block
 	rateUs: {
 		header: 'If you like out app, please rate it. Thanks!',
