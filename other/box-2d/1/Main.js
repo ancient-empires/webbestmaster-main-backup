@@ -3,9 +3,7 @@ var box2d = {
 	b2BodyDef: Box2D.Dynamics.b2BodyDef,
 	b2Body: Box2D.Dynamics.b2Body,
 	b2FixtureDef: Box2D.Dynamics.b2FixtureDef,
-	b2Fixture: Box2D.Dynamics.b2Fixture,
 	b2World: Box2D.Dynamics.b2World,
-	b2MassData: Box2D.Collision.Shapes.b2MassData,
 	b2PolygonShape: Box2D.Collision.Shapes.b2PolygonShape,
 	b2CircleShape: Box2D.Collision.Shapes.b2CircleShape,
 	b2DebugDraw: Box2D.Dynamics.b2DebugDraw
@@ -15,41 +13,29 @@ var SCALE = 30;
 
 var stage, world;
 
-function init() {
+setInterval(tick, 16);
 
-	stage = new createjs.Stage(document.getElementById('canvas'));
+function newBall() {
 
-	setupPhysics();
+	var fixDef = new box2d.b2FixtureDef();
+	fixDef.density = 1;
+	fixDef.friction = 0.5;
 
-	stage.mouseDown = function () {
+	fixDef.restitution = 0.5;
 
-		var fixDef = new box2d.b2FixtureDef();
-		fixDef.density = 1;
-		fixDef.friction = 0.5;
+	var bodyDef = new box2d.b2BodyDef();
+	bodyDef.type = box2d.b2Body.b2_dynamicBody;
 
-		fixDef.restitution = 0.5;
+	bodyDef.position.x = Math.random() * 400 / SCALE;
+	bodyDef.position.y = 0;
 
-		var bodyDef = new box2d.b2BodyDef();
-		bodyDef.type = box2d.b2Body.b2_dynamicBody;
+	fixDef.shape = new box2d.b2CircleShape(Math.random() * 100 / SCALE);
 
-		bodyDef.position.x = Math.random() * 400 / SCALE;
-		bodyDef.position.y = 0;
-
-		fixDef.shape = new box2d.b2CircleShape(Math.random() * 100 / SCALE);
-		//fixDef.shape.SetAsBox(400/SCALE, 20 / SCALE);
-
- 		world.CreateBody(bodyDef).CreateFixture(fixDef);
-
-	};
-
-	createjs.Ticker.addEventListener(this);
-	createjs.Ticker.setFPS(60);
-	createjs.Ticker.useRAF = true;
+	world.CreateBody(bodyDef).CreateFixture(fixDef);
 
 }
 
-
-function setupPhysics() {
+function init() {
 
 	world = new box2d.b2World(new box2d.b2Vec2(0, 50), true);
 
@@ -65,42 +51,45 @@ function setupPhysics() {
 	bodyDef.position.y = 600 / SCALE;
 
 	fixDef.shape = new box2d.b2PolygonShape();
-	fixDef.shape.SetAsBox(400/SCALE, 20 / SCALE);
+	fixDef.shape.SetAsBox(400 / SCALE, 20 / SCALE);
 
-	world.CreateBody(bodyDef).CreateFixture(fixDef);
+	// add object to world
+	// you can save link to your object to change the object in future
+	var body = world.CreateBody(bodyDef); 	// world.CreateBody(bodyDef)
+	body.CreateFixture(fixDef);				// .CreateFixture(fixDef);
 
-	// setup debug draw
+	// setup DEBUG draw
 	var debugDraw = new box2d.b2DebugDraw();
-	debugDraw.SetSprite(stage.canvas.getContext('2d'));
+	debugDraw.SetSprite(document.getElementById('debug').getContext('2d'));
 	debugDraw.SetDrawScale(SCALE);
-
 	debugDraw.SetFlags(box2d.b2DebugDraw.e_shapeBit | box2d.b2DebugDraw.e_jointBit);
-
 	world.SetDebugDraw(debugDraw);
 
 }
 
+var i = 0;
 
 function tick() {
 
-	stage.update();
+	// update world step
+	world.Step(1 / 60, 10, 10); // use "world.Step(1 / 60, 3, 3);" to more fast counting
+
+	// update Debug canvas
 	world.DrawDebugData();
-	world.Step(1/60, 10, 10);
+
+	// here you can update your objects drawing
+	// ..code..
+
+	// in END of step
+	// cause you CAN NOT destroy any object while counting of physics in progress
 	world.ClearForces();
 
-}
-
-createjs.Ticker.addEventListener("tick", handleTick);
-
-var i = 0;
-
-function handleTick(event) {
-	tick();
+	// here you can destroy needless objects
+	// ..code..
 
 	i++;
-	if (i < 2){
-		stage.mouseDown();
-
+	if (i < 5) {
+		newBall();
 	}
-}
 
+}
