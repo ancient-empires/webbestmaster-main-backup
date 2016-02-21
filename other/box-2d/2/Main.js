@@ -30,7 +30,7 @@ function init() {
 
 	bodyDef.position.x = 400 / SCALE;
 	bodyDef.position.y = 600 / SCALE;
-	bodyDef.angle = 0.2;
+	//bodyDef.angle = -0.1;
 
 	fixDef.shape = new box2d.b2PolygonShape();
 	fixDef.shape.SetAsBox(400 / SCALE, 20 / SCALE);
@@ -115,12 +115,21 @@ function createObjects() {
 
 	// joint bodyes
 	var joint1 = new box2d.b2RevoluteJointDef();
+
+	// add MOTOR!!!
+	joint1.motorSpeed = -2;
+	joint1.maxMotorTorque = 10;
+	joint1.enableMotor = true;
+
 	joint1.Initialize(wheel1.body, chassis.body, wheel1.body.GetWorldCenter());
 	world.CreateJoint(joint1);
+
+
 
 	var joint2 = new box2d.b2RevoluteJointDef();
 	joint2.Initialize(wheel2.body, chassis.body, wheel2.body.GetWorldCenter());
 	world.CreateJoint(joint2);
+
 
 }
 
