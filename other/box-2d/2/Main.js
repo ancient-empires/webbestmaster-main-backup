@@ -130,6 +130,16 @@ function createObjects() {
 	joint2.Initialize(wheel2.body, chassis.body, wheel2.body.GetWorldCenter());
 	world.CreateJoint(joint2);
 
+	// IMPULS!!!!
+	setTimeout(function () {
+		wheel2.body.ApplyImpulse(
+			new box2d.b2Vec2(
+				Math.cos(45 * (Math.PI / 180)) * 500,
+				Math.sin(45 * (Math.PI / 180)) * 500
+			),
+			wheel2.body.GetWorldCenter()
+		);
+	}, 5e3)
 
 }
 
