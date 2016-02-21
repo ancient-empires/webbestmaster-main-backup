@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://box2d-javascript-fun.appspot.com/05/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Box2D Javascript Fun : 05 : Web Workers and Box2D and Page Visibility API</title>
+    <link rel="author" href="http://profiles.google.com/sethladd">
+    <script src="./Box2D Javascript Fun _ 05 _ Web Workers and Box2D and Page Visibility API_files/cb=gapi.loaded_1" async=""></script><script src="./Box2D Javascript Fun _ 05 _ Web Workers and Box2D and Page Visibility API_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Box2D Javascript Fun _ 05 _ Web Workers and Box2D and Page Visibility API_files/plusone.js" gapi_processed="true"></script><script src="./Box2D Javascript Fun _ 05 _ Web Workers and Box2D and Page Visibility API_files/stats.js"></script>
+    <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <h1>Box2D running in a Web worker controlled by <a href="https://developer.mozilla.org/en/API/PageVisibility/Page_Visibility_API">Page Visibility API</a></h1>
+    <canvas id="c0" width="640" height="480" style="border: 1px solid black"></canvas>
+
+    <script>
+    // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+    window.requestAnimFrame = (function(){
+          return  window.requestAnimationFrame       || 
+                  window.webkitRequestAnimationFrame || 
+                  window.mozRequestAnimationFrame    || 
+                  window.oRequestAnimationFrame      || 
+                  window.msRequestAnimationFrame     || 
+                  function(/* function */ callback, /* DOMElement */ element){
+                    window.setTimeout(callback, 1000 / 60);
+                  };
+    })();
+    </script>
+    
+    <script>
+    
+    var stats = new Stats();
+    document.body.appendChild(stats.domElement);
+    
+    var SCALE = 30;
+    
+    function Entity(id, x, y) {
+      this.id = id;
+      this.x = x;
+      this.y = y;
+      this.angle = 0;
+    }
+    
+    Entity.prototype.update = function(state) {
+      this.x = state.x;
+      this.y = state.y;
+      this.angle = state.a;
+    }
+    
+    Entity.prototype.draw = function(ctx) {
+      ctx.fillStyle = 'black';
+      ctx.beginPath();
+      ctx.arc(this.x * SCALE, this.y * SCALE, 2, 0, Math.PI * 2, true);
+      ctx.closePath();
+      ctx.fill();
+    }
+    
+    function CircleEntity(id, x, y, radius) {
+      Entity.call(this, id, x, y);
+      this.radius = radius;
+    }
+    CircleEntity.prototype = new Entity();
+    CircleEntity.prototype.constructor = CircleEntity;
+    
+    CircleEntity.prototype.draw = function(ctx) {
+      ctx.fillStyle = 'blue';
+      ctx.beginPath();
+      ctx.arc(this.x * SCALE, this.y * SCALE, this.radius * SCALE, 0, Math.PI * 2, true);
+      ctx.closePath();
+      ctx.fill();
+      
+      Entity.prototype.draw.call(this, ctx);
+    }
+    
+    function RectangleEntity(id, x, y, halfWidth, halfHeight) {
+      Entity.call(this, id, x, y);
+      this.halfWidth = halfWidth;
+      this.halfHeight = halfHeight;
+    }
+    RectangleEntity.prototype = new Entity();
+    RectangleEntity.prototype.constructor = RectangleEntity;
+    
+    RectangleEntity.prototype.draw = function(ctx) {
+      ctx.save();
+      ctx.translate(this.x * SCALE, this.y * SCALE);
+      ctx.rotate(this.angle);
+      ctx.translate(-(this.x) * SCALE, -(this.y) * SCALE);
+      ctx.fillStyle = 'red';
+      ctx.fillRect((this.x-this.halfWidth) * SCALE,
+                   (this.y-this.halfHeight) * SCALE,
+                   (this.halfWidth*2) * SCALE,
+                   (this.halfHeight*2) * SCALE);
+      ctx.restore();
+      
+      Entity.prototype.draw.call(this, ctx);
+    }
+    
+    function randomEntity(id) {
+      var x = Math.random() * 20;
+      var y = Math.random() * 10;
+      
+      if (Math.random() > 0.5) {
+        return new CircleEntity(id, x, y, Math.random() + 0.1);
+      } else {
+        return new RectangleEntity(id, x, y, Math.random() + 0.1, Math.random() + 0.1);
+      }
+    }
+    
+    var world = {};
+    for (var i = 0; i < 150; i++) {
+      world[i] = randomEntity(i);
+    }
+    
+    var worker = new Worker('physics.js');
+    worker.postMessage({'cmd': 'bodies', 'msg': world});
+    
+    document.addEventListener('webkitvisibilitychange', function() {
+      if (document.webkitHidden) {
+        worker.postMessage({'cmd': 'hidden'});
+        console.log('page now hidden, sent msg to worker');
+      } else {
+        worker.postMessage({'cmd': 'visible'});
+        console.log('page now visible, sent msg to worker');
+      }
+    }, false);
+    
+    worker.onmessage = function(e) {
+      for (var id in e.data) {
+        var entity = world[id];
+        if (entity) entity.update(e.data[id]);
+      }
+    };
+    
+    var ctx = document.getElementById("c0").getContext("2d");
+    
+    (function loop() {
+      ctx.clearRect(0, 0, 640, 480);
+      for (var id in world) {
+        var entity = world[id];
+        entity.draw(ctx);
+      }
+      stats.update();
+      requestAnimFrame(loop);
+    })();
+    </script><div class="stats" style="cursor: pointer; width: 80px; opacity: 0.9; z-index: 10001;"><div style="padding: 2px 0px 3px; background-color: rgb(8, 8, 24);"><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(0, 255, 255); margin: 0px 0px 1px 3px;"><span style="font-weight:bold">51 FPS</span> (0-56)</div><canvas width="74" height="30" style="display: block; margin-left: 3px;"></canvas></div><div style="padding: 2px 0px 3px; display: none; background-color: rgb(8, 24, 8);"><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(0, 255, 0); margin: 0px 0px 1px 3px;"><span style="font-weight:bold">83 MS</span> (12-32374)</div><canvas width="74" height="30" style="display: block; margin-left: 3px;"></canvas></div><div style="padding: 2px 0px 3px; display: none; background-color: rgb(24, 8, 13);"><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(255, 0, 128); margin: 0px 0px 1px 3px;"><span style="font-weight:bold">10 MB</span> (10-10)</div><canvas width="74" height="30" style="display: block; margin-left: 3px;"></canvas></div></div>
+    
+    <p>
+      <a href="http://blog.sethladd.com/2011/09/box2d-web-workers-and-page-visibility.html">Read matching blog post for explanation</a>
+    </p>
+    
+      <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 450px; height: 15px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 450px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" tabindex="0" vspace="0" width="100%" id="I0_1456061469360" name="I0_1456061469360" src="./Box2D Javascript Fun _ 05 _ Web Workers and Box2D and Page Visibility API_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div>
+  
+<iframe name="oauth2relay911654525" id="oauth2relay911654525" src="./Box2D Javascript Fun _ 05 _ Web Workers and Box2D and Page Visibility API_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

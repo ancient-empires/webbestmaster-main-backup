@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://box2d-javascript-fun.appspot.com/00/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Box2D Javascript Fun : 00 : Most Basic Box2D Example</title>
+    <link rel="author" href="http://profiles.google.com/sethladd">
+    <script src="./Box2D Javascript Fun _ 00 _ Most Basic Box2D Example_files/cb=gapi.loaded_1" async=""></script><script src="./Box2D Javascript Fun _ 00 _ Most Basic Box2D Example_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Box2D Javascript Fun _ 00 _ Most Basic Box2D Example_files/plusone.js" gapi_processed="true"></script><script src="./Box2D Javascript Fun _ 00 _ Most Basic Box2D Example_files/Box2d.min.js"></script>
+    <script src="./Box2D Javascript Fun _ 00 _ Most Basic Box2D Example_files/stats.js"></script>
+    <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+  </head>
+  <body>
+    
+    <canvas id="c" width="640" height="480" style="border: 1px solid black"></canvas>
+  
+    <script>
+    // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+    window.requestAnimFrame = (function(){
+          return  window.requestAnimationFrame       || 
+                  window.webkitRequestAnimationFrame || 
+                  window.mozRequestAnimationFrame    || 
+                  window.oRequestAnimationFrame      || 
+                  window.msRequestAnimationFrame     || 
+                  function(/* function */ callback, /* DOMElement */ element){
+                    window.setTimeout(callback, 1000 / 60);
+                  };
+    })();
+    
+    var stats = new Stats();
+    document.body.appendChild(stats.domElement);
+    
+    var canvas = document.getElementById("c");
+    var ctx = canvas.getContext("2d");
+  
+    var world;
+  
+    function init() {
+       var   b2Vec2 = Box2D.Common.Math.b2Vec2
+        , b2BodyDef = Box2D.Dynamics.b2BodyDef
+        , b2Body = Box2D.Dynamics.b2Body
+        , b2FixtureDef = Box2D.Dynamics.b2FixtureDef
+        , b2Fixture = Box2D.Dynamics.b2Fixture
+        , b2World = Box2D.Dynamics.b2World
+        , b2MassData = Box2D.Collision.Shapes.b2MassData
+        , b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape
+        , b2CircleShape = Box2D.Collision.Shapes.b2CircleShape
+        , b2DebugDraw = Box2D.Dynamics.b2DebugDraw
+          ;
+     
+       world = new b2World(
+             new b2Vec2(0, 10)    //gravity
+          ,  true                 //allow sleep
+       );
+       
+       var SCALE = 30;
+     
+       var fixDef = new b2FixtureDef;
+       fixDef.density = 1.0;
+       fixDef.friction = 0.5;
+       fixDef.restitution = 0.2;
+     
+       var bodyDef = new b2BodyDef;
+     
+       //create ground
+       bodyDef.type = b2Body.b2_staticBody;
+       
+       // positions the center of the object (not upper left!)
+       bodyDef.position.x = canvas.width / 2 / SCALE;
+       bodyDef.position.y = (canvas.height / SCALE) - 1;
+       
+       fixDef.shape = new b2PolygonShape;
+       
+       // half width, half height. eg actual height here is 1 unit
+       fixDef.shape.SetAsBox((canvas.width / SCALE) / 2, 0.5 / 2);
+       world.CreateBody(bodyDef).CreateFixture(fixDef);
+     
+       //create dynamic circle object
+       bodyDef.type = b2Body.b2_dynamicBody;
+       fixDef.shape = new b2CircleShape(
+          Math.random() + 0.1 //radius
+       );
+       bodyDef.position.x = Math.random() * 25;
+       bodyDef.position.y = Math.random() * 10;
+       world.CreateBody(bodyDef).CreateFixture(fixDef);
+       
+       // create dynamic polygon object
+       bodyDef.type = b2Body.b2_dynamicBody;
+       fixDef.shape = new b2PolygonShape;
+       fixDef.shape.SetAsBox(
+             Math.random() + 0.1 //half width
+          ,  Math.random() + 0.1 //half height
+       );
+       bodyDef.position.x = Math.random() * 25;
+       bodyDef.position.y = Math.random() * 10;
+       world.CreateBody(bodyDef).CreateFixture(fixDef);
+     
+       //setup debug draw
+       var debugDraw = new b2DebugDraw();
+       debugDraw.SetSprite(document.getElementById("c").getContext("2d"));
+       debugDraw.SetDrawScale(SCALE);
+       debugDraw.SetFillAlpha(0.3);
+       debugDraw.SetLineThickness(1.0);
+       debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+       world.SetDebugDraw(debugDraw);
+     
+       // restart
+       setTimeout(init, 3000);
+    }; // init()
+  
+    function update() {
+       world.Step(
+             1 / 60   //frame-rate
+          ,  10       //velocity iterations
+          ,  10       //position iterations
+       );
+       world.DrawDebugData();
+       world.ClearForces();
+     
+       stats.update();
+       requestAnimFrame(update);
+    }; // update()
+  
+    init();
+    requestAnimFrame(update);
+    
+    </script><div class="stats" style="cursor: pointer; width: 80px; opacity: 0.9; z-index: 10001;"><div style="padding: 2px 0px 3px; background-color: rgb(8, 8, 24);"><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(0, 255, 255); margin: 0px 0px 1px 3px;"><span style="font-weight:bold">60 FPS</span> (49-60)</div><canvas width="74" height="30" style="display: block; margin-left: 3px;"></canvas></div><div style="padding: 2px 0px 3px; display: none; background-color: rgb(8, 24, 8);"><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(0, 255, 0); margin: 0px 0px 1px 3px;"><span style="font-weight:bold">33 MS</span> (4-197)</div><canvas width="74" height="30" style="display: block; margin-left: 3px;"></canvas></div><div style="padding: 2px 0px 3px; display: none; background-color: rgb(24, 8, 13);"><div style="font-family: Helvetica, Arial, sans-serif; text-align: left; font-size: 9px; color: rgb(255, 0, 128); margin: 0px 0px 1px 3px;"><span style="font-weight:bold">10 MB</span> (10-10)</div><canvas width="74" height="30" style="display: block; margin-left: 3px;"></canvas></div></div>
+    
+    <div style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 450px; height: 15px; background: transparent;" id="___plusone_0"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 450px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" tabindex="0" vspace="0" width="100%" id="I0_1456061372052" name="I0_1456061372052" src="./Box2D Javascript Fun _ 00 _ Most Basic Box2D Example_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div>
+  
+<iframe name="oauth2relay891364501" id="oauth2relay891364501" src="./Box2D Javascript Fun _ 00 _ Most Basic Box2D Example_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

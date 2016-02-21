@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)https://box2d-javascript-fun.appspot.com/04/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Box2D Javascript Fun : 04 : Vary the update frequency and paint frequency</title>
+    <link rel="author" href="http://profiles.google.com/sethladd">
+    <style>
+    div.box {
+      width: 650px;
+      float: left;
+    }
+    </style>
+    <script src="./Box2D Javascript Fun _ 04 _ Vary the update frequency and paint frequency_files/cb=gapi.loaded_1" async=""></script><script src="./Box2D Javascript Fun _ 04 _ Vary the update frequency and paint frequency_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Box2D Javascript Fun _ 04 _ Vary the update frequency and paint frequency_files/plusone.js" gapi_processed="true"></script><script src="./Box2D Javascript Fun _ 04 _ Vary the update frequency and paint frequency_files/stats.js"></script>
+    <script src="./Box2D Javascript Fun _ 04 _ Vary the update frequency and paint frequency_files/Box2D.js"></script>
+    <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="box" id="sim0">
+     <div>
+       <canvas id="c0" width="640" height="480" style="border: 1px solid black"></canvas>
+     </div>
+     <div>
+      FPS (zero for "random"): <input type="range" min="0" max="60" class="fps" value="60"> <output class="fps-output">60</output>
+     </div>
+     <div>
+      Box2D Time Step (Hz): <input type="range" min="1" max="60" class="step-freq" value="60"> <output class="step-freq-output">60</output>
+     </div>
+     <div>
+      Adaptive Box2D Time Step: <input type="checkbox" class="adaptive-step-freq"> (use delta from last world.step() ?)
+     </div>
+     <div>
+      Update Hz (How often we call world.step()): <input type="range" min="1" max="60" class="update-rate" value="60"> <output class="update-rate-output">60</output>
+     </div>
+     <div>
+      Num bodies: <input type="number" min="1" max="150" class="num-bodies" value="100">
+     </div>
+     <div>
+      Run Simulation: <input type="checkbox" class="run-sim" checked="">
+     </div>
+    </div>
+    
+    <div class="box" id="sim1">
+     <div>
+       <canvas id="c1" width="640" height="480" style="border: 1px solid black"></canvas>
+     </div>
+     <div>
+      FPS (zero for "random"): <input type="range" min="0" max="60" class="fps" value="30"> <output class="fps-output">30</output>
+     </div>
+     <div>
+      Box2D Time Step (Hz): <input type="range" min="1" max="60" class="step-freq" value="30"> <output class="step-freq-output">30</output>
+     </div>
+     <div>
+      Adaptive Box2D Time Step: <input type="checkbox" class="adaptive-step-freq"> (use delta from last world.step() ?)
+     </div>
+     <div>
+      Update Hz (How often we call world.step()): <input type="range" min="1" max="60" class="update-rate" value="30"> <output class="update-rate-output">30</output>
+     </div>
+     <div>
+      Num bodies: <input type="number" min="1" max="150" class="num-bodies" value="100">
+     </div>
+     <div>
+      Run Simulation: <input type="checkbox" class="run-sim" checked="">
+     </div>
+    </div>
+    
+    <div style="clear:both;padding-top: 20px">
+      <button id="start-sim" style="width: 300px; display:block; margin-left: auto; margin-right: auto">Start Sim</button>
+    </div>
+    
+    <script>
+    // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+    window.requestAnimFrame = (function(){
+          return  window.requestAnimationFrame       || 
+                  window.webkitRequestAnimationFrame || 
+                  window.mozRequestAnimationFrame    || 
+                  window.oRequestAnimationFrame      || 
+                  window.msRequestAnimationFrame     || 
+                  function(/* function */ callback, /* DOMElement */ element){
+                    window.setTimeout(callback, 1000 / 60);
+                  };
+    })();
+    </script>
+    
+    <!-- set listeners and handlers -->
+    <script>
+    var linkInputOutput = function(selector) {
+      var inputs = document.querySelectorAll("input." + selector);
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener("change", function(e) {
+          var output = e.target.parentNode.querySelector("output." + selector + "-output");
+          if (e.target.disabled) {
+            output.value = '';
+          } else {
+            if (e.target.value === '0') {
+              output.value = 'RANDOM';
+            } else {
+              output.value = e.target.value;
+            }
+          }
+        });
+      }
+    }
+    
+    linkInputOutput("fps");
+    linkInputOutput("step-freq");
+    linkInputOutput("update-rate");
+    
+    (function() {
+      var adaptives = document.querySelectorAll("input.adaptive-step-freq");
+      for (var i = 0; i < adaptives.length; i++) {
+        adaptives[i].addEventListener("change", function(e) {
+          var stepRangeFreq = e.target.parentNode.parentNode.querySelector("input.step-freq");
+          var stepRangeFreqOutput = e.target.parentNode.parentNode.querySelector("output.step-freq-output");
+          if (e.target.checked) {
+            stepRangeFreq.disabled = true;
+            stepRangeFreqOutput.value = '';
+          } else {
+            stepRangeFreq.disabled = false;
+            stepRangeFreqOutput.value = stepRangeFreq.value;
+          }
+        });
+      }
+    })();
+    
+    (function() {
+      var startButton = document.getElementById("start-sim");
+      var bs = [];
+      startButton.addEventListener("click", function() {
+        var boxes = document.querySelectorAll("div.box");
+        for (var i = 0; i < boxes.length; i++) {
+          var stepRate = boxes[i].querySelector("input.step-freq").value;
+          var frameRate = boxes[i].querySelector("input.fps").value;
+          var adaptive = boxes[i].querySelector("input.adaptive-step-freq").checked;
+          var updateRate = boxes[i].querySelector("input.update-rate").value;
+          var numBodies = boxes[i].querySelector("input.num-bodies").value;
+          var runSim = boxes[i].querySelector("input.run-sim").checked;
+          if (bs[i]) bs[i].kill();
+          if (runSim) {
+            bs[i] = new bTest("c" + i, stepRate, frameRate, adaptive, updateRate, numBodies);
+          } else {
+            bs[i] = null;
+          }
+        }
+      });
+    })();
+    </script>
+    
+    <script>
+    
+    var   b2Vec2 = Box2D.Common.Math.b2Vec2
+     , b2BodyDef = Box2D.Dynamics.b2BodyDef
+     , b2Body = Box2D.Dynamics.b2Body
+     , b2FixtureDef = Box2D.Dynamics.b2FixtureDef
+     , b2Fixture = Box2D.Dynamics.b2Fixture
+     , b2World = Box2D.Dynamics.b2World
+     , b2MassData = Box2D.Collision.Shapes.b2MassData
+     , b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape
+     , b2CircleShape = Box2D.Collision.Shapes.b2CircleShape
+     , b2DebugDraw = Box2D.Dynamics.b2DebugDraw
+       ;
+  
+    function bTest(canvasId, intervalRate, frameRate, adaptive, updateRate, numBodies) {
+      this.canvasElem = document.getElementById(canvasId);
+      this.stats = new Stats();
+      this.canvasElem.parentNode.appendChild(this.stats.domElement);
+      
+      this.canvasId = canvasId;
+      this.intervalRate = parseInt(intervalRate);
+      this.frameRate = parseInt(frameRate);
+      this.adaptive = adaptive;
+      this.updateRate = parseInt(updateRate);
+      this.numBodies = parseInt(numBodies);
+      
+      if (this.frameRate === 0) {
+        this.random = true;
+      } else {
+        this.random = false;
+      }
+      
+      this.killed = false;
+      
+      this.lastUpdate = Date.now();
+      this.lastPaint = Date.now();
+      
+      this.world = new b2World(
+            new b2Vec2(0, 10)    //gravity
+         ,  true                 //allow sleep
+      );
+    
+      var SCALE = 30;
+  
+      this.fixDef = new b2FixtureDef;
+      this.fixDef.density = 1.0;
+      this.fixDef.friction = 0.5;
+      this.fixDef.restitution = 0.2;
+  
+      this.bodyDef = new b2BodyDef;
+  
+      //create ground
+      this.bodyDef.type = b2Body.b2_staticBody;
+    
+      // positions the center of the object (not upper left!)
+      this.bodyDef.position.x = 640 / 2 / SCALE;
+      this.bodyDef.position.y = 480 / SCALE;
+    
+      this.fixDef.shape = new b2PolygonShape;
+    
+      // half width, half height. eg actual height here is 1 unit
+      this.fixDef.shape.SetAsBox((600 / SCALE) / 2, (10/SCALE) / 2);
+      this.world.CreateBody(this.bodyDef).CreateFixture(this.fixDef);
+  
+      //create some objects
+      this.bodyDef.type = b2Body.b2_dynamicBody;
+      for(var i = 0; i < this.numBodies; ++i) {
+         if(Math.random() > 0.5) {
+            this.fixDef.shape = new b2PolygonShape;
+            this.fixDef.shape.SetAsBox(
+                  Math.random() + 0.1 //half width
+               ,  Math.random() + 0.1 //half height
+            );
+         } else {
+            this.fixDef.shape = new b2CircleShape(
+               Math.random() + 0.1 //radius
+            );
+         }
+         this.bodyDef.position.x = Math.random() * 25;
+         this.bodyDef.position.y = Math.random() * 10;
+         this.world.CreateBody(this.bodyDef).CreateFixture(this.fixDef);
+      }
+  
+      //setup debug draw
+      this.debugDraw = new b2DebugDraw();
+      this.debugDraw.SetSprite(this.canvasElem.getContext("2d"));
+      this.debugDraw.SetDrawScale(SCALE);
+      this.debugDraw.SetFillAlpha(0.3);
+      this.debugDraw.SetLineThickness(1.0);
+      this.debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+      this.world.SetDebugDraw(this.debugDraw);
+  
+      var that = this;
+      
+      (function loop() {
+        var now = Date.now();
+        var diffUpdate = now - that.lastUpdate;
+        var diffPaint = now - that.lastPaint;
+        
+        // update
+        
+        if (that.updateRate === 60 || diffUpdate > (1000.0/that.updateRate)) {
+          that.update(now, diffUpdate);
+        } else {
+          //console.log("skipped update");
+        }
+        
+        // draw
+        var fps = that.frameRate;
+        
+        if (that.random) {
+          fps = Math.floor((60-19)*Math.random()) + 20;
+        }
+        
+        if (that.frameRate === 60 || diffPaint > (1000.0/fps)) {
+          that.draw(now, diffPaint);
+        } else {
+          //console.log("skipped draw");
+        }
+        
+        if (!that.killed) {
+          requestAnimFrame(loop);
+        } else {
+          console.log("killed " + that.canvasId);
+        }
+      })();
+    }
+    
+    bTest.prototype.draw = function(now, delta) {
+      this.world.DrawDebugData();
+      this.stats.update();
+      this.lastPaint = now;
+    }
+    
+    bTest.prototype.update = function(now, delta) {
+      var stepRate = (this.adaptive) ? (delta) / 1000 : (1 / this.intervalRate);
+      this.world.Step(
+             stepRate   //frame-rate
+          ,  10       //velocity iterations
+          ,  10       //position iterations
+       );
+       this.world.ClearForces();
+       this.lastUpdate = now;
+    }
+    
+    bTest.prototype.kill = function() {
+      this.killed = true;
+      var s = this.canvasElem.parentNode.querySelector("div.stats");
+      this.canvasElem.parentNode.removeChild(s);
+    }
+    </script>
+    
+    <p>
+      <a href="http://blog.sethladd.com/2011/09/box2d-update-rate-and-paint-rate-for.html">Read matching blog post for explanation</a>
+    </p>
+    
+      <div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 450px; height: 15px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 450px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" tabindex="0" vspace="0" width="100%" id="I0_1456061468443" name="I0_1456061468443" src="./Box2D Javascript Fun _ 04 _ Vary the update frequency and paint frequency_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div>
+  
+<iframe name="oauth2relay504793096" id="oauth2relay504793096" src="./Box2D Javascript Fun _ 04 _ Vary the update frequency and paint frequency_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>
