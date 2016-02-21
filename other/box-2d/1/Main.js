@@ -60,6 +60,42 @@ function newShape() {
 
 }
 
+function newShapes() {
+
+	var fixDef = new box2d.b2FixtureDef();
+	fixDef.density = 1;
+	fixDef.friction = 1;
+	fixDef.restitution = 0.5;
+
+	// create SINGLE body
+	var bodyDef = new box2d.b2BodyDef();
+	bodyDef.type = box2d.b2Body.b2_dynamicBody;
+
+	bodyDef.position.x = Math.random() * 400 / SCALE;
+	bodyDef.position.y = 0;
+
+	var polys = [
+		[{x: -1, y: -1}, {x: 1, y: -1}, {x: 1, y: 1}, {x: -1, y: 1}], // box
+		[{x: 1, y: -1.5}, {x: 2, y: 0}, {x: 1, y: 1.5}]  // arrow
+	];
+
+	var body = world.CreateBody(bodyDef);
+
+	for (var j = 0; j < polys.length; j++) {
+		var points = polys[j];
+		var vecs = [];
+		for (var i = 0; i < points.length; i++) {
+			var vec = new box2d.b2Vec2();
+			vec.Set(points[i].x, points[i].y);
+			vecs[i] = vec;
+		}
+		fixDef.shape = new box2d.b2PolygonShape();
+		fixDef.shape.SetAsArray(vecs, vecs.length);
+		body.CreateFixture(fixDef);
+	}
+
+}
+
 function init() {
 
 	world = new box2d.b2World(new box2d.b2Vec2(0, 50), true);
@@ -115,7 +151,8 @@ function tick() {
 	// ..code..
 
 	i++;
-	if (i < 5) {
+	if (i < 4) {
+		newShapes();
 		newShape();
 		newBall();
 	}
