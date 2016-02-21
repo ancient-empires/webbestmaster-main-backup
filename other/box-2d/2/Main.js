@@ -7,7 +7,8 @@ var box2d = {
 	b2PolygonShape: Box2D.Collision.Shapes.b2PolygonShape,
 	b2CircleShape: Box2D.Collision.Shapes.b2CircleShape,
 	b2DebugDraw: Box2D.Dynamics.b2DebugDraw,
-	b2RevoluteJointDef: Box2D.Dynamics.Joints.b2RevoluteJointDef
+	b2RevoluteJointDef: Box2D.Dynamics.Joints.b2RevoluteJointDef,
+	b2DistanceJointDef: Box2D.Dynamics.Joints.b2DistanceJointDef
 };
 
 var SCALE = 30;
@@ -113,7 +114,8 @@ function createObjects() {
 	chassis.body = world.CreateBody(chassis.bodyDef);
 	chassis.body.CreateFixture(chassis.fixDef);
 
-	// joint bodyes
+	// joint b2RevoluteJointDef
+
 	var joint1 = new box2d.b2RevoluteJointDef();
 
 	// add MOTOR!!!
@@ -129,6 +131,21 @@ function createObjects() {
 	var joint2 = new box2d.b2RevoluteJointDef();
 	joint2.Initialize(wheel2.body, chassis.body, wheel2.body.GetWorldCenter());
 	world.CreateJoint(joint2);
+
+
+
+/*
+	// the same as b2RevoluteJointDef, but without anchor
+	var joint1 = new box2d.b2DistanceJointDef();
+
+	joint1.Initialize(wheel1.body, wheel2.body, wheel1.body.GetWorldCenter(), wheel2.body.GetWorldCenter());
+
+	joint1.frequencyHz = 15;
+	joint1.dampingRatio = 1;
+
+	world.CreateJoint(joint1);
+
+*/
 
 	// IMPULS!!!!
 	setTimeout(function () {
