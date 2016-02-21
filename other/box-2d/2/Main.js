@@ -158,6 +158,75 @@ function createObjects() {
 		);
 	}, 5e3)
 
+	//// mouse joint
+/*
+	bTest.prototype.removeBody = function(id) {
+		this.world.DestroyBody(this.bodiesMap[id]);
+	}
+
+	bTest.prototype.mouseDownAt = function(x, y) {
+		if (!this.mouseJoint) {
+			var body = this.getBodyAt(x, y);
+			if (body) {
+				var md = new b2MouseJointDef();
+				md.bodyA = this.world.GetGroundBody();
+				md.bodyB = body;
+				md.target.Set(x, y);
+				md.collideConnected = true;
+				md.maxForce = 300.0 * body.GetMass();
+				this.mouseJoint = this.world.CreateJoint(md);
+				body.SetAwake(true);
+			}
+		} else {
+			this.mouseJoint.SetTarget(new b2Vec2(x, y));
+		}
+	}
+
+	bTest.prototype.isMouseDown = function() {
+		return (this.mouseJoint != null);
+	}
+
+	bTest.prototype.mouseUp = function() {
+		this.world.DestroyJoint(this.mouseJoint);
+		this.mouseJoint = null;
+	}
+
+	bTest.prototype.getBodyAt = function(x, y) {
+		var mousePVec = new b2Vec2(x, y);
+		var aabb = new b2AABB();
+		aabb.lowerBound.Set(x - 0.001, y - 0.001);
+		aabb.upperBound.Set(x + 0.001, y + 0.001);
+
+		// Query the world for overlapping shapes.
+
+		var selectedBody = null;
+		this.world.QueryAABB(function(fixture) {
+			if(fixture.GetBody().GetType() != b2Body.b2_staticBody) {
+				if(fixture.GetShape().TestPoint(fixture.GetBody().GetTransform(), mousePVec)) {
+					selectedBody = fixture.GetBody();
+					return false;
+				}
+			}
+			return true;
+		}, aabb);
+		return selectedBody;
+	}
+*/
+
+
+/*  b2PulleyJointDef
+	bTest.prototype.addPulleyJoint = function(body1Id, body2Id, groundAnchor1, groundAnchor2, params) {
+		var body1 = this.bodiesMap[body1Id];
+		var body2 = this.bodiesMap[body2Id];
+		var ga1 = new b2Vec2(groundAnchor1.x, groundAnchor1.y);
+		var ga2 = new b2Vec2(groundAnchor2.x, groundAnchor2.y);
+		var pulleyJoint = new b2PulleyJointDef;
+		pulleyJoint.Initialize(body1, body2, ga1, ga2, body1.GetWorldCenter(), body2.GetWorldCenter(), 1.0);
+		this.world.CreateJoint(pulleyJoint);
+	}
+*/
+
+
 }
 
 function tick() {
