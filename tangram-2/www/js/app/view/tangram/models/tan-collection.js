@@ -91,6 +91,22 @@ var TanCollection = Backbone.Collection.extend({
 
 		collection.subscribe('tan-collection:align', collection.align);
 		collection.subscribe('tan-collection:saveAtoms', collection.saveAtoms);
+		collection.subscribe('tan-collection:flipLastActiveTan', collection.flipLastActiveTan);
+
+	},
+
+	flipLastActiveTan: function () {
+
+		var collection = this,
+			tan = collection.getData('lastActiveTan') || collection.models[Math.floor(Math.random() * 7)];
+
+		tan.flip();
+
+		collection.getData('rotater').connectTan({
+			tan: tan
+		});
+
+		collection.checkTangram();
 
 	},
 

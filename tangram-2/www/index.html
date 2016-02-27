@@ -99,7 +99,7 @@
 			<div class="scroll-area-content">
 				<div class="screen-back js-back">&#xf040;</div>
 				<div class="section-header-wrapper">
-					<p class="section-header">{{= it.lang.get(it.sectionHeader) }}</p>
+					<p class="section-header">{{= it.lang.getPartial(it.sectionHeader) }}</p>
 				</div>
 
 				{{ var isSections = it.isSections; }}
@@ -167,7 +167,11 @@
 		<input type="text" class="js-saved-atoms-name saved-atoms-name-input"/>
 		{{?}}
 
-		<div class="tans-wrapper js-tans-wrapper"></div>
+		<div class="tans-wrapper js-tans-wrapper">
+
+			<img class="flip-tan js-flip-tan" src="i/flip.svg" alt="">
+
+		</div>
 
 <!-- svg-version
 		<svg xmlns="http://www.w3.org/2000/svg">

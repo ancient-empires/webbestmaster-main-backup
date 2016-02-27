@@ -20,7 +20,8 @@ var TangramView = BaseView.extend({
 	events: {
 		scroll: 'stopEvent',
 		//'click .js-save-atoms': 'saveAtoms',
-		'click .js-tangram-menu-button': 'menu'
+		'click .js-tangram-menu-button': 'menu',
+		'click .js-flip-tan': 'flipTan'
 		//'click .js-back-to-section': 'backToSection'
 	},
 
@@ -73,7 +74,7 @@ var TangramView = BaseView.extend({
 			size: scale
 		}));
 
-		//view.bindEventListeners();
+		view.bindEventListeners();
 
 		tanCollection.setData('tangram-info', tangramInfo);
 		view.set('tangram-info', tangramInfo);
@@ -89,6 +90,7 @@ var TangramView = BaseView.extend({
 		view.$el.append(patternSvg);
 
 		view.set('$menuButton', view.$el.find('.js-tangram-menu-button'));
+		view.set('$flipButton', view.$el.find('.js-flip-tan'));
 
 		rotater.initialize({
 			parentView: view,
@@ -121,15 +123,31 @@ var TangramView = BaseView.extend({
 
 	},
 
-	/*
-	 bindEventListeners: function () {
+	bindEventListeners: function () {
 
-	 var view = this;
+		var view = this;
 
-	 //view.subscribe('tangram-view:drawPattern', view.drawPattern);
+		view.subscribe('flip-btn', view.setFlipBtnState);
 
-	 },
-	 */
+	},
+
+	setFlipBtnState: function (state) {
+
+		var $btn = this.get('$flipButton');
+
+		if (state) {
+			$btn.addClass('flip-btn_active');
+		} else {
+			$btn.removeClass('flip-btn_active');
+		}
+
+	},
+
+	flipTan: function () {
+
+		this.publish('tan-collection:flipLastActiveTan');
+
+	},
 
 	/*
 	 drawPattern: function (data) {

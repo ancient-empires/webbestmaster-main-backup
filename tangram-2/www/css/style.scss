@@ -264,6 +264,7 @@ body {
 
 .tan {
   position: absolute;
+  z-index: 0;
   top: 0;
   left: 0;
   background-repeat: no-repeat;
@@ -287,3 +288,57 @@ body {
   line-height: 1rem;
   padding: 1rem;
 }
+
+.flip-tan {
+  @extend .luxury-3d-button;
+  position: absolute;
+  top: 0.6rem;
+  left: 50%;
+  width: 4rem;
+  height: 1.8rem;
+  margin-left: -2rem;
+  opacity: 0.6;
+}
+
+.flip-tan:active {
+  @extend .luxury-3d-button_active;
+}
+
+.flip-btn_active {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

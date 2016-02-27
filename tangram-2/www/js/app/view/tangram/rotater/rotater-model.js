@@ -135,6 +135,8 @@ var RotaterModel = Backbone.Model.extend({
 
 		rotater.showNode();
 
+		rotater.publish('flip-btn', true);
+
 	},
 
 	setStartData: function (data) {
@@ -205,6 +207,8 @@ var RotaterModel = Backbone.Model.extend({
 		rotater.hideNode();
 
 		rotater.set('isActive', false);
+
+		rotater.publish('flip-btn', false);
 
 	},
 
