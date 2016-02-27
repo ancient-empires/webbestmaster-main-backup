@@ -10,7 +10,9 @@ import chinesePerson from './sections-new/chinese-person';
 import dancingHumans from './sections-new/dancing-humans';
 import dog from './sections-new/dog';
 import face from './sections-new/face';
-import people from './sections-new/people';
+import people_1 from './sections-new/people-1';
+import people_2 from './sections-new/people-2';
+import people_3 from './sections-new/people-3';
 import rabbit from './sections-new/rabbit';
 import rider from './sections-new/rider';
 
@@ -28,7 +30,9 @@ var tangrams = {
 		dancingHumans,
 		dog,
 		face,
-		people,
+		people_1,
+		people_2,
+		people_3,
 		rabbit,
 		rider
 	]
