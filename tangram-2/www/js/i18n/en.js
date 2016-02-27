@@ -36,8 +36,15 @@ var en = {
 	sections: 'sections',
 	tangram: 'tangram',
 
-	person: 'person',
+	angel: 'angel',
 	animal: 'animal',
+	birth: 'birth',
+	cat: 'cat',
+	'chinese person': 'chinese person',
+	'dancing humans': 'dancing humans',
+	face: 'face',
+	people: 'people',
+	rider: 'rider',
 
 	// settings
 

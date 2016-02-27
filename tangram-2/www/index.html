@@ -116,9 +116,9 @@
 					{{??}}
 
 						{{? item.tick }}
-						<div class="section-preview" data-route="sections/{{= it.id }}/{{= index }}"><div class="section-preview-tick">&#xf03a;</div>{{= item.preview.svgText }}</div>
+						<div class="section-preview" data-hash="{{= item.hash }}" data-route="sections/{{= it.id }}/{{= index }}"><div class="section-preview-tick">&#xf03a;</div>{{= item.preview.svgText }}</div>
 						{{??}}
-						<div class="section-preview" data-route="sections/{{= it.id }}/{{= index }}"><div class="section-preview-tick section-preview-no-tick">&#xf03a;</div>{{= item.preview.svgText }}</div>
+						<div class="section-preview" data-hash="{{= item.hash }}" data-route="sections/{{= it.id }}/{{= index }}"><div class="section-preview-tick section-preview-no-tick">&#xf03a;</div>{{= item.preview.svgText }}</div>
 						{{?}}
 
 					{{?}}
