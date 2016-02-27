@@ -42,8 +42,10 @@ var en = {
 	cat: 'cat',
 	'chinese person': 'chinese person',
 	'dancing humans': 'dancing humans',
+	dog: 'dog',
 	face: 'face',
 	people: 'people',
+	rabbit: 'rabbit',
 	rider: 'rider',
 
 	// settings
