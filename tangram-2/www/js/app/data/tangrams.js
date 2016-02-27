@@ -2,7 +2,8 @@
 /*global window */
 
 import angel from './sections-new/angel';
-import animal from './sections-new/animal';
+import animal_1 from './sections-new/animal-1';
+import animal_2 from './sections-new/animal-2';
 import birth from './sections-new/birth';
 import cat from './sections-new/cat';
 import chinesePerson from './sections-new/chinese-person';
@@ -19,7 +20,8 @@ var tangrams = {
 	versionCode: 1,
 	data: [
 		angel,
-		animal,
+		animal_1,
+		animal_2,
 		birth,
 		cat,
 		chinesePerson,

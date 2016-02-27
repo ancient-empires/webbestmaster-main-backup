@@ -16,7 +16,29 @@ var lang = {
 	},
 
 	get: function (key) {
-		return key ? this.attr[key] : this.attr;
+
+		return this.attr[key];
+
+	},
+
+	getPartial: function (string) {
+
+		var arr = string.split(' '),
+			i = 0,
+			len = arr.length,
+			key,
+			attr =  this.attr;
+
+		for (; i < len; i += 1) {
+
+			key = arr[i];
+
+			arr[i] = attr[key] || key;
+
+		}
+
+		return arr.join(' ');
+
 	}
 
 };
