@@ -6,7 +6,6 @@ info.set('dev-mode', false);
 
 import log from './services/log';
 
-
 import mediator from './services/mediator';
 
 // init all librares

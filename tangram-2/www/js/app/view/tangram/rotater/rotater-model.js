@@ -269,12 +269,17 @@ var RotaterModel = Backbone.Model.extend({
 
 	destroy: function () {
 
-		var rotater = this;
+		var rotater = this,
+			attr = rotater.toJSON();
 
 		rotater.unsubscribe();
 		mediator.uninstallFrom(rotater);
 
 		rotater.get('$rotater').off().remove();
+
+		_.each(attr, function (value, key) {
+			rotater.set(key, null);
+		});
 
 		return Backbone.Model.prototype.destroy.apply(rotater, arguments);
 

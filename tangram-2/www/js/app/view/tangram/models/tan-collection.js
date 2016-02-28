@@ -35,8 +35,6 @@ var TanCollection = Backbone.Collection.extend({
 
 	model: Tan,
 
-	attr: {},
-
 	setData: function (keyOrObj, value) {
 
 		var self = this,
@@ -72,6 +70,8 @@ var TanCollection = Backbone.Collection.extend({
 	initialize: function () {
 
 		var collection = this;
+
+		collection.attr = {};
 
 		collection.bindEventListeners();
 

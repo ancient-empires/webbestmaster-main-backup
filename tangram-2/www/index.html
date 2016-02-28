@@ -117,17 +117,13 @@
 
 						<div class="section-preview" data-hash="{{= item.hash }}" data-route="sections/{{= it.id }}/{{= index }}">
 							{{= item.preview.svgText }}
-
-							{{? item.stars }}
 							<div class="section-preview-star">
-								{{ for (var i=0; i < item.stars; i+=1 ) { }}&#xe900;{{ }; }}
+								{{ var stars = item.stars; }}
+								{{? stars === 0}}&#xe900;&#xe900;&#xe900;{{?}}
+								{{? stars === 1}}&#xe901;&#xe900;&#xe900;{{?}}
+								{{? stars === 2}}&#xe901;&#xe901;&#xe900;{{?}}
+								{{? stars === 3}}&#xe901;&#xe901;&#xe901;{{?}}
 							</div>
-							{{??}}
-							<div class="section-preview-star">
-								&nbsp;
-							</div>
-							{{?}}
-
 						</div>
 
 					{{?}}

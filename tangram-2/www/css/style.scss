@@ -123,9 +123,11 @@ body {
 
 .section-preview-star {
   @extend .section-preview-done-info;
-  font-size: 1.2rem;
-  line-height: 1.2rem;
+  font-size: 0.6rem;
+  line-height: 0.5rem;
   font-family: icons;
+  text-align: center;
+  padding: 0.2rem 0 0.4rem;
 }
 
 .section-preview-image {

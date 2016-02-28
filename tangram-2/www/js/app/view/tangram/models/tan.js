@@ -5,6 +5,7 @@ import Backbone from './../../../../lib/backbone';
 import mediator from './../../../../services/mediator';
 import info from './../../../../services/info';
 import device from './../../../../services/device';
+import _ from './../../../../lib/lodash';
 
 var Tan = Backbone.Model.extend({
 
@@ -891,12 +892,17 @@ var Tan = Backbone.Model.extend({
 	destroy: function () {
 
 		var tan = this,
-			node = tan.get('node');
+			node = tan.get('node'),
+			attr = tan.toJSON();
 
 		tan.unsubscribe();
 		mediator.uninstallFrom(tan);
 
 		node.parentNode.removeChild(node);
+
+		_.each(attr, function (value, key) {
+			tan.set(key, null);
+		});
 
 		return Backbone.Model.prototype.destroy.apply(tan, arguments);
 
