@@ -99,7 +99,8 @@ var TangramView = BaseView.extend({
 			size: scale
 		});
 
-		view.subscribe('tangram-is-done', view.hideMenuButton);
+		//view.subscribe('tangram-is-done', view.hideMenuButton);
+		view.subscribe('tangram-is-done', view.hideButtons);
 
 		timer = new Timer(view.$el.find('.js-timer'));
 		view.set('timer', timer);
@@ -247,8 +248,10 @@ var TangramView = BaseView.extend({
 
 	},
 
-	hideMenuButton: function () {
+	hideButtons: function () {
 		this.$el.find('.js-tangram-menu-button').addClass('tangram-menu-button_hidden');
+		this.$el.find('.js-flip-tan').addClass('flip-tan_hidden');
+
 	},
 
 	menu: function () {

@@ -296,6 +296,11 @@ body {
   height: 1.8rem;
   margin-left: -2rem;
   opacity: 0.6;
+  @include prefix(transition, opacity ease-out 0.2s);
+}
+
+.flip-tan_hidden {
+  opacity: 0;
 }
 
 .flip-tan:active {

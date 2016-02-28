@@ -278,7 +278,8 @@ info = {
 		var info = this,
 			gameDifficult = info.get('gameDifficult'),
 			doneTangramsName,
-			doneTangrams;
+			doneTangrams,
+			wasExist = false;
 
 		if (gameDifficult === 'regular') {
 			doneTangramsName = 'doneTangramsRegular';
@@ -288,7 +289,27 @@ info = {
 
 		doneTangrams = info.get(doneTangramsName);
 
-		doneTangrams.push(data);
+		doneTangrams.every(function (savedTan, index, arr) {
+
+			if ( savedTan.hash !== data.hash ) {
+				return true;
+			}
+
+			wasExist = true;
+
+			if (savedTan.time < data.time) {
+				return false;
+			}
+
+			arr[index] = data;
+
+			return false;
+
+		});
+		
+		if (!wasExist) {
+			doneTangrams.push(data);
+		}
 
 		info.set(doneTangramsName, doneTangrams);
 
