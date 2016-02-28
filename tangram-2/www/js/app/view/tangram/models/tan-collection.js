@@ -604,7 +604,7 @@ var TanCollection = Backbone.Collection.extend({
 		}
 
 		collection.setData({
-			maxPathToTan: scale / 2,
+			maxPathToTan: scale / 4,
 			maxAlignPath: maxAlignPath,
 			scale: scale
 		});

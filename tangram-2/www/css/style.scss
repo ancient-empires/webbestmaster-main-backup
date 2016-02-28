@@ -290,7 +290,7 @@ body {
 .flip-tan {
   @extend .luxury-3d-button;
   position: absolute;
-  top: 0.6rem;
+  top: 0.9rem;
   left: 50%;
   width: 4rem;
   height: 1.8rem;
@@ -309,6 +309,13 @@ body {
 
 .flip-btn_active {
   opacity: 1;
+}
+
+.flip-tan-image {
+  display: block;
+  width: auto;
+  height: 100%;
+  margin: 0 auto;
 }
 
 .timer {
