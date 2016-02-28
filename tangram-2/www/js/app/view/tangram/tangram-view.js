@@ -103,6 +103,7 @@ var TangramView = BaseView.extend({
 
 		timer = new Timer(view.$el.find('.js-timer'));
 		view.set('timer', timer);
+		tanCollection.setData('timer', timer);
 
 		view.render().then(function () {
 			timer.start();

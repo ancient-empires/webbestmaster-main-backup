@@ -180,7 +180,9 @@ var TanCollection = Backbone.Collection.extend({
 		var collection = this,
 			tangramAtoms = collection.getTangramAtoms(),
 			answerAtoms = collection.getAnswerAtoms(),
-			isDone;
+			isDone,
+			timer,
+			time;
 
 		if (collection.getData('mode') === 'constructor') {
 			return;
@@ -204,7 +206,12 @@ var TanCollection = Backbone.Collection.extend({
 
 		log('tangram is DONE');
 
+		timer = collection.getData('timer');
+		time = timer.get('time');
+
 		info.pushToDoneTangrams({
+			stars: timer.getStars(),
+			time: time,
 			hash: collection.getData('hash'),
 			figure: collection.saveFigures()
 		});
@@ -215,6 +222,7 @@ var TanCollection = Backbone.Collection.extend({
 		collection.publish('tangram-is-done');
 		collection.deActiveAll();
 		collection.setData('success-view', new TangramSuccessfulView(collection.getData('tangram-info')));
+		timer.destroy();
 
 	},
 

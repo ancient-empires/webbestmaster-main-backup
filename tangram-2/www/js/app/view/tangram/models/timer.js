@@ -7,6 +7,7 @@ import mediator from './../../../../services/mediator';
 var Timer = Backbone.Model.extend({
 
 	defaults: {
+		stars: [30e3, 60e3],
 		updatePeriod: 200,
 		visibleTime: '0:00'
 	},
@@ -44,7 +45,7 @@ var Timer = Backbone.Model.extend({
 
 		timer.set('startTime', Date.now());
 
-		intervalId = setInterval(timer.update, timer.updatePeriod);
+		intervalId = setInterval(timer.update, timer.get('updatePeriod'));
 
 		timer.set('intervalId', intervalId);
 
@@ -68,9 +69,14 @@ var Timer = Backbone.Model.extend({
 
 	destroy: function () {
 
-		var timer = this;
+		var timer = this,
+			$el;
 
 		clearInterval(timer.get('intervalId'));
+
+		timer.get('$el').remove();
+
+		timer.set('$el', null);
 
 		timer.off();
 
@@ -89,6 +95,24 @@ var Timer = Backbone.Model.extend({
 		}
 
 		return minutes + ':' + seconds;
+
+	},
+
+	getStars: function () {
+
+		var timer = this,
+			time = timer.get('time'),
+			stars = timer.get('stars');
+
+		if (time < stars[0]) {
+			return 3;
+		}
+
+		if (time < stars[1]) {
+			return 2;
+		}
+
+		return 1;
 
 	}
 
