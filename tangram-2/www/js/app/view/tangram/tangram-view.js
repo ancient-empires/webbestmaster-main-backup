@@ -4,6 +4,7 @@
 import BaseView from './../core/base';
 import tm from './../../../services/template-master';
 import TanCollection from './models/tan-collection';
+import Timer from './models/timer';
 import RotaterModel from './rotater/rotater-model';
 import device from './../../../services/device';
 import log from './../../../services/log';
@@ -56,7 +57,8 @@ var TangramView = BaseView.extend({
 			tangramInfo = {
 				id: sectionId,
 				index: Number(index)
-			};
+			},
+			timer;
 
 		view.set('tan-collection', tanCollection);
 
@@ -99,7 +101,12 @@ var TangramView = BaseView.extend({
 
 		view.subscribe('tangram-is-done', view.hideMenuButton);
 
-		view.render();
+		timer = new Timer(view.$el.find('.js-timer'));
+		view.set('timer', timer);
+
+		view.render().then(function () {
+			timer.start();
+		});
 
 		return BaseView.prototype.initialize.apply(view, arguments);
 
