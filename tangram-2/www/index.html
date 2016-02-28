@@ -146,6 +146,14 @@
 
 			<div class="one-more-tangram-check">&#xf03a;</div>
 
+			<div class="tangram-successful-view-stars">
+				{{ var stars = it.stars; }}
+				{{? stars === 0}}&#xe900;&#xe900;&#xe900;{{?}}
+				{{? stars === 1}}&#xe901;&#xe900;&#xe900;{{?}}
+				{{? stars === 2}}&#xe901;&#xe901;&#xe900;{{?}}
+				{{? stars === 3}}&#xe901;&#xe901;&#xe901;{{?}}
+			</div>
+
 			<div class="js-one-more-tangram one-more-tangram_left" data-id="{{= it.id }}" data-index="{{= it.nextIndex }}">&#xf040;</div>
 			<!--<button class="js-restart-tangram" data-name="{{= it.name }}" data-index="{{= it.index }}" >restart tangram</button>-->
 			<div class="js-one-more-tangram one-more-tangram_center" data-id="{{= it.id }}" data-index="{{= it.index }}">&#xf087;</div>

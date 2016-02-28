@@ -18,14 +18,16 @@ var TangramSuccessfulView = BaseView.extend({
 		//'click .js-restart-tangram': 'restartTangram'
 	},
 
-	initialize: function (data) {
+	initialize: function (tangramInfo, data) {
 
 		var view = this,
 			sectionInfo;
 
 		//view.extendFromObj(data);
 
-		sectionInfo = view.getSectionInfo(data);
+		sectionInfo = view.getSectionInfo(tangramInfo);
+
+		sectionInfo.stars = data.stars;
 
 		view.setElement(tm.get('tangram-successful')(sectionInfo));
 
