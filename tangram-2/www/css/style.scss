@@ -308,7 +308,13 @@ body {
   opacity: 1;
 }
 
-
+.timer {
+  position: absolute;
+  bottom: 0.7rem;
+  right: 1rem;
+  text-align: right;
+  z-index: -1;
+}
 
 
 
