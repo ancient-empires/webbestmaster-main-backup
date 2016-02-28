@@ -115,11 +115,20 @@
 
 					{{??}}
 
-						{{? item.tick }}
-						<div class="section-preview" data-hash="{{= item.hash }}" data-route="sections/{{= it.id }}/{{= index }}"><div class="section-preview-tick">&#xf03a;</div>{{= item.preview.svgText }}</div>
-						{{??}}
-						<div class="section-preview" data-hash="{{= item.hash }}" data-route="sections/{{= it.id }}/{{= index }}"><div class="section-preview-tick section-preview-no-tick">&#xf03a;</div>{{= item.preview.svgText }}</div>
-						{{?}}
+						<div class="section-preview" data-hash="{{= item.hash }}" data-route="sections/{{= it.id }}/{{= index }}">
+							{{= item.preview.svgText }}
+
+							{{? item.stars }}
+							<div class="section-preview-star">
+								{{ for (var i=0; i < item.stars; i+=1 ) { }}&#xe900;{{ }; }}
+							</div>
+							{{??}}
+							<div class="section-preview-star">
+								&nbsp;
+							</div>
+							{{?}}
+
+						</div>
 
 					{{?}}
 

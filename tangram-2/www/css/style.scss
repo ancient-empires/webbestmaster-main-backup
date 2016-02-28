@@ -121,15 +121,11 @@ body {
   @extend .luxury-3d-button_active;
 }
 
-.section-preview-tick {
+.section-preview-star {
   @extend .section-preview-done-info;
   font-size: 1.2rem;
   line-height: 1.2rem;
   font-family: icons;
-}
-
-.section-preview-no-tick {
-  opacity: 0;
 }
 
 .section-preview-image {

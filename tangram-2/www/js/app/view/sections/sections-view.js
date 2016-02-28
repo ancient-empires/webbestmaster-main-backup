@@ -115,7 +115,7 @@ var SectionsView = BaseView.extend({
 			if (doneTangramsHashs.indexOf(hash) !== -1) {
 				return {
 					hash: hash,
-					tick: true,
+					stars: view.getStarsByHash(hash),
 					//name: figure.name,
 					preview: view.createDoneTangramPreviewSection(hash)
 				};
@@ -123,6 +123,7 @@ var SectionsView = BaseView.extend({
 
 			return {
 				hash: hash,
+				stars: 0,
 				//name: figure.name,
 				preview: view.createPreviewSection(figure)
 			};
@@ -239,6 +240,17 @@ var SectionsView = BaseView.extend({
 			svgText: tempDiv.innerHTML
 		};
 
+	},
+
+	getStarsByHash: function (hash) {
+
+		var doneTangramsHashs = info.getDoneTangrams(),
+			data = _.find(doneTangramsHashs, function (data) {
+				// {hash: hash}
+				return data.hash === hash;
+			});
+
+		return data.stars;
 
 	},
 
