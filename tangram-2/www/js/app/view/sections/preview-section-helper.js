@@ -10,7 +10,6 @@ import info from './../../../services/info';
 import Queue from './../../../lib/queue';
 import sha1 from './../../../lib/sha1';
 import $ from './../../../lib/jbone';
-import db from './../../../services/db';
 
 var sectionViewProto = SectionView.prototype,
 	previewSectionHelper = {
@@ -29,7 +28,7 @@ var sectionViewProto = SectionView.prototype,
 			//$('.js-wrapper').append($progressBarWrapper);
 			//self.initializeTangramPreview();
 
-			self.checkDb();
+			//self.checkDb();
 
 			self.unsubscribe('previewSectionHelper:initialize');
 
@@ -83,6 +82,7 @@ var sectionViewProto = SectionView.prototype,
 		 },
 		 */
 
+/*
 		checkDb: function () {
 
 			var currentTangramsVersion = info.get('tangrams-version');
@@ -91,11 +91,9 @@ var sectionViewProto = SectionView.prototype,
 				return;
 			}
 
-			db.refreshPreviewTable().done(function () {
-				info.set('tangrams-version', tangrams.version);
-			});
 
 		},
+*/
 
 /*
 		initializeTangramPreview: function () {
@@ -175,6 +173,7 @@ var sectionViewProto = SectionView.prototype,
 
 		},
 
+/*
 		pushToPreviewSection: function (data) {
 
 			var self = this,
@@ -193,7 +192,9 @@ var sectionViewProto = SectionView.prototype,
 			});
 
 		},
+*/
 
+/*
 		publishData: function () {
 
 			var self = this;
@@ -201,6 +202,7 @@ var sectionViewProto = SectionView.prototype,
 			self.publish('previewSectionHelper:savedData', self.attr);
 
 		},
+*/
 
 		increaseProgressBar: function () {
 
@@ -243,8 +245,8 @@ var sectionViewProto = SectionView.prototype,
 
 mediator.installTo(previewSectionHelper);
 
-previewSectionHelper.subscribe('previewSectionHelper:pushToPreviewSection', previewSectionHelper.pushToPreviewSection);
+//previewSectionHelper.subscribe('previewSectionHelper:pushToPreviewSection', previewSectionHelper.pushToPreviewSection);
 previewSectionHelper.subscribe('previewSectionHelper:initialize', previewSectionHelper.initialize);
-previewSectionHelper.subscribe('previewSectionHelper:publishData', previewSectionHelper.publishData);
+//previewSectionHelper.subscribe('previewSectionHelper:publishData', previewSectionHelper.publishData);
 
 export default previewSectionHelper;

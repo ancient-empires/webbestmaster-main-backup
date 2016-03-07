@@ -13,8 +13,7 @@ import _ from './../../../lib/lodash';
 import $ from './../../../lib/jbone';
 import Queue from './../../../lib/queue';
 
-var tanCollectionProto = tanCollection.prototype,
-	sectionsCache = {};
+var tanCollectionProto = tanCollection.prototype;
 
 var SectionsView = BaseView.extend({
 
@@ -28,9 +27,11 @@ var SectionsView = BaseView.extend({
 			sectionId,
 			isSections = data.isSections;
 
+/*
 		view.subscribe('previewSectionHelper:savedData', view.setCachedPreviewSection);
 
 		view.publish('previewSectionHelper:publishData');
+*/
 
 		if (isSections) {
 			items = view.getPrepareSections();
@@ -251,6 +252,7 @@ var SectionsView = BaseView.extend({
 
 	},
 
+/*
 	setCachedPreviewSection: function (data) {
 		sectionsCache = data;
 	},
@@ -260,21 +262,13 @@ var SectionsView = BaseView.extend({
 		return sectionsCache[key];
 
 	},
+*/
 
 	createPreviewSection: function (item) {
 
 		var triangles = item.data,
 			key = item.hash,
-			previewSection = this.getCachedPreviewSection(key);
-
-		if (previewSection) {
-			log('createPreviewSection fromCache');
-			return {
-				svgText: previewSection
-			};
-		}
-
-		var view = this,
+			view = this,
 			svgText,
 			tempDiv = document.createElement('div'),
 			atomToTriangle = tanCollectionProto.atomToTriangle,

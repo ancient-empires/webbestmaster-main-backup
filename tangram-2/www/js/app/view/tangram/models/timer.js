@@ -7,7 +7,7 @@ import mediator from './../../../../services/mediator';
 var Timer = Backbone.Model.extend({
 
 	defaults: {
-		stars: [20e3, 45e3],
+		stars: [25e3, 45e3],
 		updatePeriod: 200,
 		visibleTime: '0:00'
 	},
