@@ -10,6 +10,8 @@ import sha1 from './../../../lib/sha1';
 import tangrams from './../../data/tangrams';
 import tanCollection from './../tangram/models/tan-collection';
 import _ from './../../../lib/lodash';
+import $ from './../../../lib/jbone';
+import Queue from './../../../lib/queue';
 
 var tanCollectionProto = tanCollection.prototype,
 	sectionsCache = {};
@@ -296,8 +298,8 @@ var SectionsView = BaseView.extend({
 			svgAttributes = {
 				x: '0px',
 				y: '0px',
-				width: size + 'px',
-				height: size + 'px',
+				width: size * 36 + 'px',
+				height: size * 36 + 'px',
 				viewBox: [0, 0, size, size].join(' '),
 				xmlns: 'http://www.w3.org/2000/svg',
 				'class': 'section-preview-image'
@@ -370,17 +372,86 @@ var SectionsView = BaseView.extend({
 
 		svgText = tempDiv.innerHTML;
 
-		view.publish('previewSectionHelper:pushToPreviewSection', {
-			key: key,
-			svgText: svgText
-		});
+		if (view && view.publish) {
+			view.publish('previewSectionHelper:pushToPreviewSection', {
+				key: key,
+				svgText: svgText
+			});
+		}
 
 		return {
 			svgText: svgText
 		};
 
+	},
+
+	savePreviews: function () {
+
+		var self = this;
+
+		tangrams.data.forEach(function (section) {
+			section.data.forEach(function (tangramData, index) {
+
+				if (index) {
+					return;
+				}
+
+				self.savePreview(tangramData);
+
+			});
+		});
+
+	},
+
+	savePreview: function (tangramData) {
+
+		var self = this;
+
+		var svgData = self.createPreviewSection(tangramData);
+
+		var svg = {
+			header: 'data:image/svg+xml',
+			data: svgData.svgText
+		};
+
+
+		var width = 96;
+		var height = 96;
+
+		// Setup canvas
+		var canvas = document.createElement('canvas');
+		canvas.width = width;
+		canvas.height = height;
+
+		// Get canvas context
+		var context = canvas.getContext('2d');
+		// Setup new image object
+		var image = new Image();
+		// Make sure that there is an event listener
+		// BEFORE attaching an image source
+		image.onload = function() {
+			context.drawImage(image, 0, 0);
+			document.body.appendChild(canvas);
+
+			var a = $('<a href="' + canvas.toDataURL() + '" download="' + tangramData.hash + '.png">');
+			a.trigger('click');
+
+		};
+		// Init the image with our SVG
+		image.src = svg.header + ',' + svg.data;
+
+
+
+
+
+
+
+
+
 	}
 
 });
+
+SectionsView.prototype.savePreviews();
 
 export default SectionsView;
