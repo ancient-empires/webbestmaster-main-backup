@@ -5,6 +5,7 @@ import $ from './../lib/jbone';
 import Queue from './../lib/queue';
 // tangram
 import tansInfo from './../app/view/tangram/models/tans-info';
+import tangrams from './../app/data/tangrams';
 
 var arrayProto = Array.prototype,
 	win = window,
@@ -280,6 +281,26 @@ var arrayProto = Array.prototype,
 		getPathBetween: function (xy0, xy1) {
 
 			return Math.sqrt( Math.pow(xy0.x - xy1.x, 2) + Math.pow(xy0.y - xy1.y, 2));
+
+		},
+
+		preLoadTangramImages: function () {
+
+			var imagesSrc = [];
+
+			tangrams.data.forEach(function (section) {
+
+				section.data.forEach(function (item) {
+					imagesSrc.push(item.hash);
+				});
+
+			});
+
+			imagesSrc = imagesSrc.map(function (hash) {
+				return 'i/item-preview/' + hash + '.png';
+			});
+
+			return this.loadImages(imagesSrc);
 
 		}
 

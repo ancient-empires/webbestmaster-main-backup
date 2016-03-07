@@ -32,7 +32,7 @@ var sectionViewProto = SectionView.prototype,
 
 			self.unsubscribe('previewSectionHelper:initialize');
 
-			util.preLoadInterfaceImages().always(function () {
+			$.when(util.preLoadInterfaceImages(), util.preLoadTangramImages()).always(function () {
 				log('All interface images has been loaded');
 			});
 
