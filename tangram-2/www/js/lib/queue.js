@@ -14,8 +14,8 @@ function Queue() {
 
 Queue.prototype = {
 
-	push: function (data) {
-		this.queue.push(data);
+	push: function (fn) {
+		this.queue.push(fn);
 	},
 
 	getNext: function () {

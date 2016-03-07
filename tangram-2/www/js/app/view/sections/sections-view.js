@@ -69,13 +69,7 @@ var SectionsView = BaseView.extend({
 
 		// img, name
 		return tangrams.data.map(function (section) {
-
-			var sectionInfo = getSectionInfo(section);
-
-			sectionInfo.preview = view.createPreviewSection(section.data[0]);
-
-			return sectionInfo;
-
+			return getSectionInfo(section);
 		});
 
 	},
@@ -96,6 +90,7 @@ var SectionsView = BaseView.extend({
 
 		return {
 			//originalName: originalName,
+			preview: section.data[0].hash,
 			name: section.name,
 			id: section.id,
 			length: sectionData.length,
@@ -127,7 +122,7 @@ var SectionsView = BaseView.extend({
 				hash: hash,
 				stars: 0,
 				//name: figure.name,
-				preview: view.createPreviewSection(figure)
+				preview: hash
 			};
 		});
 
@@ -298,8 +293,8 @@ var SectionsView = BaseView.extend({
 			svgAttributes = {
 				x: '0px',
 				y: '0px',
-				width: size * 36 + 'px',
-				height: size * 36 + 'px',
+				width: size * 60 + 'px',
+				height: size * 60 + 'px',
 				viewBox: [0, 0, size, size].join(' '),
 				xmlns: 'http://www.w3.org/2000/svg',
 				'class': 'section-preview-image'
@@ -389,21 +384,25 @@ var SectionsView = BaseView.extend({
 
 		var self = this;
 
+		var queue = new Queue();
+
 		tangrams.data.forEach(function (section) {
 			section.data.forEach(function (tangramData, index) {
-
-				if (index) {
-					return;
-				}
-
-				self.savePreview(tangramData);
-
+				queue.push(function () {
+					return self.savePreview(tangramData)
+				});
 			});
+		});
+
+		queue.run().done(function () {
+			console.log('all images are saved');
 		});
 
 	},
 
 	savePreview: function (tangramData) {
+
+		var defer = $.Deferred();
 
 		var self = this;
 
@@ -414,9 +413,8 @@ var SectionsView = BaseView.extend({
 			data: svgData.svgText
 		};
 
-
-		var width = 96;
-		var height = 96;
+		var width = 160;
+		var height = 160;
 
 		// Setup canvas
 		var canvas = document.createElement('canvas');
@@ -430,28 +428,32 @@ var SectionsView = BaseView.extend({
 		// Make sure that there is an event listener
 		// BEFORE attaching an image source
 		image.onload = function() {
+
 			context.drawImage(image, 0, 0);
-			document.body.appendChild(canvas);
+
+			//document.body.appendChild(canvas);
 
 			var a = $('<a href="' + canvas.toDataURL() + '" download="' + tangramData.hash + '.png">');
 			a.trigger('click');
+
+			image.onload = null;
+
+			defer.resolve();
 
 		};
 		// Init the image with our SVG
 		image.src = svg.header + ',' + svg.data;
 
-
-
-
-
-
-
-
+		return defer.promise();
 
 	}
 
 });
 
-SectionsView.prototype.savePreviews();
+/*
+window.addEventListener('load', function () {
+	SectionsView.prototype.savePreviews();
+}, false);
+*/
 
 export default SectionsView;
