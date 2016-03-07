@@ -11,6 +11,7 @@
 		minifyHTML = require('gulp-minify-html'),
 	//browserify = require('browserify'),
 	//babelify = require('babelify'),
+		tinypng = require('gulp-tinypng'),
 		sass = require('gulp-sass'),
 		autoprefixer = require('gulp-autoprefixer'),
 		source = require('vinyl-source-stream');
@@ -209,11 +210,10 @@
 	});
 */
 
-/*
 	// tiny-png
 	gulp.task('tiny-png', function () {
-		gulp.src(['tinypng/!**!/!*.png', 'tinypng/!**!/!*.jpg', 'tinypng/!**!/!*.jpeg'])
-			.pipe(tinypng('h0DW7VyYVXnl3awj2o7v9wXR-EavOiB5'))
+		gulp.src(['tinypng/*.png'])
+			.pipe(tinypng('h0DW7VyYVXnl3awj2o7v9wXR-EavOiB5')) // done 7 march
 			// h0DW7VyYVXnl3awj2o7v9wXR-EavOiB5 - kidmathgenius@gmail.com
 			// eSu5nMg0TSDairQWQC_Bx0h41PxKgKEp - mikhail.anisimau.play@gmail.com
 			// f8ZqkiaR5hwI9QRdc8Dwropue4kENmRp - dmitry.turovtsov@gmail.com
@@ -222,7 +222,6 @@
 			// RmSQIT1W2KC2_gZf27_KaZ7GWIzpmKJu - ae.fan.game@gmail.com
 			.pipe(gulp.dest('dist'));
 	});
-*/
 
 
 }());
