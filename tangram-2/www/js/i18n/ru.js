@@ -9,7 +9,7 @@ var ru = {
 
 	notification: {},
 
-	fullVersion: 'Full Version',
+	//fullVersion: 'Full Version',
 
 	// rate us block
 	rateUs: {

@@ -423,7 +423,7 @@ var win = window,
 			}
 
 			// coordinates check
-			if ( Math.abs(lastDown.x - preLastDown.x) > 10 || Math.abs(lastDown.y - preLastDown.y) > 10 ) {
+			if ( Math.abs(lastDown.x - preLastDown.x) > 25 || Math.abs(lastDown.y - preLastDown.y) > 25 ) {
 				return;
 			}
 

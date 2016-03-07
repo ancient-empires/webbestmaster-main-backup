@@ -11,7 +11,7 @@ var en = {
 
 	notification: {},
 
-	fullVersion: 'Full Version',
+	//fullVersion: 'Full Version',
 
 	// rate us block
 	rateUs: {

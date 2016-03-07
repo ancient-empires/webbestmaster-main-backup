@@ -277,15 +277,13 @@ body {
 
 .market-link {
   position: absolute;
-  top: 0;
-  right: 0;
-  text-decoration: underline;
-  color: #fff;
-  text-shadow: 1px 1px 0 #000;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 2.3rem;
+  height: 2.3rem;
   z-index: 1;
-  font-size: 1rem;
-  line-height: 1rem;
-  padding: 1rem;
+  background-image: url(../i/no-ads.png);
+  @include prefix(background-size, 100% 100%);
 }
 
 .flip-tan {
