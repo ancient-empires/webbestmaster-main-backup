@@ -109,7 +109,7 @@
 					{{? isSections}}
 						<div class="section-preview" data-route="sections/{{= item.id }}">
 							<div class="section-preview-done-info">{{= item.doneTangramsHashs.length }} / {{= item.length }}</div>
-							<img class="section-preview-image" src="i/item-preview/{{= item.preview }}.png" alt="">
+							<div class="section-preview-image" style="background-image: url(i/item-preview/{{= item.preview }}.png);">&nbsp;</div>
 							<p class="section-preview-name ellipsis">{{= it.lang.getPartial(item.name) }}</p>
 						</div>
 					{{??}}
@@ -117,7 +117,7 @@
 							{{? item.preview.svgText }}
 								{{= item.preview.svgText }}
 							{{??}}
-								<img class="section-preview-image" src="i/item-preview/{{= item.preview }}.png" alt="">
+								<div class="section-preview-image" style="background-image: url(i/item-preview/{{= item.preview }}.png);">&nbsp;</div>
 							{{?}}
 							<div class="section-preview-star">
 								{{ var stars = item.stars; }}

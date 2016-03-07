@@ -134,6 +134,7 @@ body {
   width: 5rem;
   height: 5rem;
   display: block;
+  @include prefix(background-size, 100% 100%);
 }
 
 .section-preview-name {
