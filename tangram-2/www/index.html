@@ -85,7 +85,9 @@
 
 		</div>
 
-		<div data-href="{{= it.info.getLinkToStore('pro') }}" class="market-link">&nbsp;</div>
+		{{? it.info.isNormal }}
+			<div data-href="{{= it.info.getLinkToStore('pro') }}" class="market-link js-external-link">&nbsp;</div>
+		{{?}}
 
 	</section>
 
