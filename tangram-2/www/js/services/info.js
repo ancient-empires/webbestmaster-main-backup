@@ -6,7 +6,7 @@ var win = window,
 	navigator = win.navigator,
 	docElem = doc.documentElement,
 	info,
-	isNormal = !true;
+	isNormal = true;
 
 info = {
 
@@ -18,8 +18,8 @@ info = {
 			pro: 'ios-url-pro'
 		},
 		android: {
-			normal: 'market://details?id=com.statlex.ancientempirestrikeback',
-			pro: 'market://details?id=com.statlex.ancientempirestrikebackup'
+			normal: 'market://details?id=com.statlex.tangram',
+			pro: 'market://details?id=com.statlex.tangrampro'
 			//normal: 'https://play.google.com/store/apps/details?id=com.statlex.ancientempirestrikeback',
 			//pro: 'https://play.google.com/store/apps/details?id=com.statlex.ancientempirestrikebackup'
 		}
