@@ -10,7 +10,8 @@ import info from './../../../services/info';
 var SettingsView = BaseView.extend({
 
 	events: {
-		'click .js-tangram-texture-preview': 'setTangramTexture'
+		'click .js-tangram-texture-preview': 'setTangramTexture',
+		'click .js-set-lang': 'setLang'
 	},
 
 	initialize: function () {
@@ -39,6 +40,17 @@ var SettingsView = BaseView.extend({
 		$node.addClass(cssActiveClass);
 
 		info.set('tangramTexture', index);
+
+	},
+
+	setLang: function (e) {
+
+		var language = e.currentTarget.getAttribute('data-lang');
+
+		info.set('language', language);
+		lang.set(language);
+
+		Backbone.history.loadUrl();
 
 	}
 

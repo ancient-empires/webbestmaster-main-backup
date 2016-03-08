@@ -7,9 +7,9 @@ var en = {
 	shortLanguageName: 'Eng',
 	appName: 'Tangram-2',
 
-	newVersionIsAvailable: 'A new version of this app is available. Load it?',
+	//newVersionIsAvailable: 'A new version of this app is available. Load it?',
 
-	notification: {},
+	//notification: {},
 
 	//fullVersion: 'Full Version',
 
@@ -27,33 +27,33 @@ var en = {
 	exit: 'exit',
 	reset: 'reset',
 
-		// title menu
+	// title menu
 	'play-regular': 'play regular',
 	'play-master': 'play master',
 	//'share': 'share',
 
-		// sections
+	// sections
 	sections: 'sections',
 	tangram: 'tangram',
 
-	angel: 'angel',
-	animal: 'animal',
-	birth: 'birth',
-	cat: 'cat',
-	'chinese person': 'chinese person',
+	angels: 'angels',
+	animals: 'animals',
+	birds: 'birds',
+	cats: 'cats',
+	'chinese persons': 'chinese persons',
 	'dancing humans': 'dancing humans',
-	dog: 'dog',
-	face: 'face',
+	dogs: 'dogs',
+	faces: 'faces',
 	people: 'people',
-	rabbit: 'rabbit',
-	rider: 'rider',
+	rabbits: 'rabbits',
+	riders: 'riders',
 
 	// settings
 
 	settings: 'settings',
 	//timer: 'timer',
 	//sound: 'sound',
-	'tangram-texture': 'tangram texture'
+	'tangram-textures': 'tangram textures'
 	//about: 'about'
 	//'e-mail': 'e-mail',
 	//'other-apps': 'other apps'

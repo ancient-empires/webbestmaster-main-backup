@@ -29,6 +29,10 @@ var lang = {
 			key,
 			attr =  this.attr;
 
+		if (attr[string]) {
+			return attr[string];
+		}
+
 		for (; i < len; i += 1) {
 
 			key = arr[i];

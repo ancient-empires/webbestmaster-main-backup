@@ -31,7 +31,7 @@ info = {
 	systemAttr: {},
 	defaultLanguage: 'en',
 	//availableLanguages: ['en'],
-	availableLanguages: ['ru', 'en'],
+	availableLanguages: ['en', 'ru'],
 
 	init: function () {
 

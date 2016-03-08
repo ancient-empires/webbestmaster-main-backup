@@ -3,8 +3,8 @@
 
 var section = {
 
-	id: 'chinese person',
-	name: 'chinese person',
+	id: 'chinese persons',
+	name: 'chinese persons',
 	data: [
 
 		// chinese person

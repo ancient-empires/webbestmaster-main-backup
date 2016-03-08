@@ -239,7 +239,7 @@
 -->
 
 				<div class="settings-section">
-					<div class="section-sub-header">{{= it.lang.get('tangram-texture') }}</div>
+					<div class="section-sub-header">{{= it.lang.get('tangram-textures') }}</div>
 
 					{{var tangramTexture = Number(it.info.get('tangramTexture')); }}
 
@@ -269,7 +269,7 @@
 
 						{{ var langSpelling = it.lang.languages[lang].languageName; }}
 
-						<div class="screen--button" data-lang="{{= lang }}">
+						<div class="screen--button js-set-lang" data-lang="{{= lang }}">
 							{{? currentLanguage === lang }}
 							<span class="screen--button--icon">&#xf03e;</span>
 							{{?}}

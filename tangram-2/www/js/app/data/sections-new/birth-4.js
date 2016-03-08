@@ -3,8 +3,8 @@
 
 var section = {
 
-	id: 'birth-4',
-	name: 'birth #4',
+	id: 'birds-4',
+	name: 'birds #4',
 	data: [
 
 		// birth
