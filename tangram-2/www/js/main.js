@@ -2,7 +2,7 @@
 /*global window */
 
 import info from './services/info';
-info.set('dev-mode', false);
+info.set('dev-mode', !false);
 
 import log from './services/log';
 
@@ -41,20 +41,18 @@ import previewSectionHelper from './app/view/sections/preview-section-helper';
 
 import appCache from './services/app-cache';
 
-new FastClick(window.document.body);
+// small init
+var win = window;
+new FastClick(win.document.body);
+Deferred.installInto($);
+win.$ = win.jQuery = win.jquery = $;
 
 (function back() {
-
-	var win = window;
 
 	if ( win.location.hash ) {
 		win.history.back();
 		return win.setTimeout(back, 50);
 	}
-
-	Deferred.installInto($);
-
-	win.$ = win.jQuery = win.jquery = $;
 
 	BaseView.prototype.initStatic();
 

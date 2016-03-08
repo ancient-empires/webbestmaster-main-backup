@@ -9,6 +9,7 @@ import $ from './../../../lib/jbone';
 import _ from './../../../lib/lodash';
 import info from './../../../services/info';
 import tangrams from './../../data/tangrams';
+import androidAds from './../../../services/android-ads';
 
 var TangramSuccessfulView = BaseView.extend({
 
@@ -96,6 +97,8 @@ var TangramSuccessfulView = BaseView.extend({
 			id: id,
 			index: index
 		});
+
+		androidAds.showAd();
 
 	}
 

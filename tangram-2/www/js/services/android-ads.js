@@ -6,7 +6,8 @@ import info from './info';
 var win = window,
 	androidAds = {
 		attr: {},
-		minShowPeriod: 2 * 60e3,
+		//minShowPeriod: 2 * 60e3,
+		minShowPeriod: 5e3,
 		set: function (key, value) {
 			this.attr[key] = value;
 			return this;
@@ -45,6 +46,17 @@ var win = window,
 
 	};
 
-	androidAds.init();
+
+if ( info.get('dev-mode') ) {
+
+	win.Android = {
+		displayInterstitial: function () {
+			console.log('--- ADS is SHOWN');
+		}
+	}
+
+}
+
+androidAds.init();
 
 export default androidAds;
