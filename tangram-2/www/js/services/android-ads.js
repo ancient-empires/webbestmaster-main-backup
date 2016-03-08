@@ -6,8 +6,7 @@ import info from './info';
 var win = window,
 	androidAds = {
 		attr: {},
-		//minShowPeriod: 2 * 60e3,
-		minShowPeriod: 5e3,
+		minShowPeriod: 4 * 60e3,
 		set: function (key, value) {
 			this.attr[key] = value;
 			return this;
@@ -26,7 +25,7 @@ var win = window,
 			}
 
 			now = Date.now();
-			lastShow = ad.get('lastShow') || 0;
+			lastShow = ad.get('lastShow');
 
 			if ( now - lastShow >= ad.minShowPeriod ) {
 				ad.set('lastShow', now);
@@ -39,6 +38,8 @@ var win = window,
 			var ad = this;
 
 			ad.showAd = ad.showAd.bind(ad);
+
+			ad.set('lastShow', Date.now());
 
 			ad.set('adsIsAvailable', (typeof Android !== 'undefined') && info.isNormal );
 
