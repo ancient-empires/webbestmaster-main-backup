@@ -6,7 +6,7 @@ var win = window,
 	navigator = win.navigator,
 	docElem = doc.documentElement,
 	info,
-	isNormal = true;
+	isNormal = !true;
 
 info = {
 
