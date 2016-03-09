@@ -1,4 +1,4 @@
-(function (gi2991) {
+(function (gi4891) {
 (function () {
 'use strict';
 /*global window */
@@ -8,7 +8,7 @@ var win = window,
 	navigator = win.navigator,
 	docElem = doc.documentElement,
 	info,
-	isNormal = true;
+	isNormal = !true;
 
 info = {
 
@@ -323,7 +323,7 @@ info = {
 
 info.init();
 
-gi2991['/www/js/services/info.js'] = info;
+gi4891['/www/js/services/info.js'] = info;
 
 
 }());
@@ -331,7 +331,7 @@ gi2991['/www/js/services/info.js'] = info;
 'use strict';
 /*global console */
 
-var info = gi2991['/www/js/services/info.js'] || window.info;
+var info = gi4891['/www/js/services/info.js'] || window.info;
 
 var log,
 	gOldOnError,
@@ -380,7 +380,7 @@ window.onerror = function (errorMsg, url, lineNumber) {
 
 };
 
-gi2991['/www/js/services/log.js'] = log;
+gi4891['/www/js/services/log.js'] = log;
 
 
 }());
@@ -388,7 +388,7 @@ gi2991['/www/js/services/log.js'] = log;
 'use strict';
 /*global window */
 
-var log = gi2991['/www/js/services/log.js'] || window.log;
+var log = gi4891['/www/js/services/log.js'] || window.log;
 
 var mediator;
 
@@ -474,7 +474,7 @@ mediator = {
 	}
 };
 
-gi2991['/www/js/services/mediator.js'] = mediator;
+gi4891['/www/js/services/mediator.js'] = mediator;
 
 }());
 (function () {
@@ -11392,7 +11392,7 @@ if (!Object.isExtensible) {
 /*global window */
 /*global */
 
-var $ = gi2991['/www/js/lib/jbone.js'] || window.$;
+var $ = gi4891['/www/js/lib/jbone.js'] || window.$;
 
 function Queue() {
 
@@ -11441,7 +11441,7 @@ Queue.prototype = {
 
 };
 
-gi2991['/www/js/lib/queue.js'] = Queue;
+gi4891['/www/js/lib/queue.js'] = Queue;
 }());
 (function () {
 /**
@@ -15894,9 +15894,9 @@ else if (typeof define === 'function' && define.amd) {
 'use strict';
 /*global window */
 
-var Backbone = gi2991['/www/js/lib/backbone.js'] || window.Backbone;
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
-var log = gi2991['/www/js/services/log.js'] || window.log;
+var Backbone = gi4891['/www/js/lib/backbone.js'] || window.Backbone;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
+var log = gi4891['/www/js/services/log.js'] || window.log;
 
 var win = window,
 	doc = win.document,
@@ -16349,13 +16349,13 @@ var win = window,
 
 device = new Device();
 
-gi2991['/www/js/services/device.js'] = device;
+gi4891['/www/js/services/device.js'] = device;
 }());
 (function () {
 'use strict';
 /*global window, Date */
 
-var info = gi2991['/www/js/services/info.js'] || window.info;
+var info = gi4891['/www/js/services/info.js'] || window.info;
 
 var win = window,
 	androidAds = {
@@ -16414,7 +16414,7 @@ if ( info.get('dev-mode') ) {
 
 androidAds.init();
 
-gi2991['/www/js/services/android-ads.js'] = androidAds;
+gi4891['/www/js/services/android-ads.js'] = androidAds;
 
 }());
 (function () {
@@ -16480,7 +16480,7 @@ var en = {
 
 };
 
-gi2991['/www/js/i18n/en.js'] = en;
+gi4891['/www/js/i18n/en.js'] = en;
 }());
 (function () {
 'use strict';
@@ -16545,15 +16545,15 @@ var ru = {
 
 };
 
-gi2991['/www/js/i18n/ru.js'] = ru;
+gi4891['/www/js/i18n/ru.js'] = ru;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var info = gi2991['/www/js/services/info.js'] || window.info;
-var en = gi2991['/www/js/i18n/en.js'] || window.en;
-var ru = gi2991['/www/js/i18n/ru.js'] || window.ru;
+var info = gi4891['/www/js/services/info.js'] || window.info;
+var en = gi4891['/www/js/i18n/en.js'] || window.en;
+var ru = gi4891['/www/js/i18n/ru.js'] || window.ru;
 
 var lang = {
 
@@ -16599,7 +16599,7 @@ var lang = {
 
 lang.set(info.get('language'));
 
-gi2991['/www/js/services/lang.js'] = lang;
+gi4891['/www/js/services/lang.js'] = lang;
 
 
 
@@ -16608,7 +16608,7 @@ gi2991['/www/js/services/lang.js'] = lang;
 'use strict';
 /*global window */
 
-var doT = gi2991['/www/js/lib/dot.js'] || window.doT;
+var doT = gi4891['/www/js/lib/dot.js'] || window.doT;
 
 var doc = window.document,
 	templateMaster = {
@@ -16645,7 +16645,7 @@ var doc = window.document,
 
 templateMaster.init();
 
-gi2991['/www/js/services/template-master.js'] = templateMaster;
+gi4891['/www/js/services/template-master.js'] = templateMaster;
 
 
 
@@ -16703,7 +16703,7 @@ var tansInfo = {
 	}
 };
 
-gi2991['/www/js/app/view/tangram/models/tans-info.js'] = tansInfo;
+gi4891['/www/js/app/view/tangram/models/tans-info.js'] = tansInfo;
 }());
 (function () {
 'use strict';
@@ -16742,7 +16742,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/angel.js'] = section;
+gi4891['/www/js/app/data/sections-new/angel.js'] = section;
 
 }());
 (function () {
@@ -16805,7 +16805,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/animal-1.js'] = section;
+gi4891['/www/js/app/data/sections-new/animal-1.js'] = section;
 
 }());
 (function () {
@@ -16876,7 +16876,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/animal-2.js'] = section;
+gi4891['/www/js/app/data/sections-new/animal-2.js'] = section;
 
 }());
 (function () {
@@ -16941,7 +16941,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/birth-1.js'] = section;
+gi4891['/www/js/app/data/sections-new/birth-1.js'] = section;
 
 }());
 (function () {
@@ -17009,7 +17009,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/birth-2.js'] = section;
+gi4891['/www/js/app/data/sections-new/birth-2.js'] = section;
 
 }());
 (function () {
@@ -17065,7 +17065,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/birth-3.js'] = section;
+gi4891['/www/js/app/data/sections-new/birth-3.js'] = section;
 
 }());
 (function () {
@@ -17124,7 +17124,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/birth-4.js'] = section;
+gi4891['/www/js/app/data/sections-new/birth-4.js'] = section;
 
 }());
 (function () {
@@ -17172,7 +17172,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/cat.js'] = section;
+gi4891['/www/js/app/data/sections-new/cat.js'] = section;
 
 }());
 (function () {
@@ -17213,7 +17213,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/chinese-person.js'] = section;
+gi4891['/www/js/app/data/sections-new/chinese-person.js'] = section;
 
 }());
 (function () {
@@ -17259,7 +17259,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/dancing-humans.js'] = section;
+gi4891['/www/js/app/data/sections-new/dancing-humans.js'] = section;
 
 }());
 (function () {
@@ -17312,7 +17312,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/dog.js'] = section;
+gi4891['/www/js/app/data/sections-new/dog.js'] = section;
 
 }());
 (function () {
@@ -17357,7 +17357,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/face.js'] = section;
+gi4891['/www/js/app/data/sections-new/face.js'] = section;
 
 }());
 (function () {
@@ -17421,7 +17421,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/people-1.js'] = section;
+gi4891['/www/js/app/data/sections-new/people-1.js'] = section;
 
 }());
 (function () {
@@ -17491,7 +17491,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/people-2.js'] = section;
+gi4891['/www/js/app/data/sections-new/people-2.js'] = section;
 
 }());
 (function () {
@@ -17564,7 +17564,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/people-3.js'] = section;
+gi4891['/www/js/app/data/sections-new/people-3.js'] = section;
 
 }());
 (function () {
@@ -17606,7 +17606,7 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/rabbit.js'] = section;
+gi4891['/www/js/app/data/sections-new/rabbit.js'] = section;
 
 }());
 (function () {
@@ -17639,30 +17639,30 @@ var section = {
 
 };
 
-gi2991['/www/js/app/data/sections-new/rider.js'] = section;
+gi4891['/www/js/app/data/sections-new/rider.js'] = section;
 
 }());
 (function () {
 'use strict';
 /*global window */
 
-var angel = gi2991['/www/js/app/data/sections-new/angel.js'] || window.angel;
-var animal_1 = gi2991['/www/js/app/data/sections-new/animal-1.js'] || window.animal_1;
-var animal_2 = gi2991['/www/js/app/data/sections-new/animal-2.js'] || window.animal_2;
-var birth_1 = gi2991['/www/js/app/data/sections-new/birth-1.js'] || window.birth_1;
-var birth_2 = gi2991['/www/js/app/data/sections-new/birth-2.js'] || window.birth_2;
-var birth_3 = gi2991['/www/js/app/data/sections-new/birth-3.js'] || window.birth_3;
-var birth_4 = gi2991['/www/js/app/data/sections-new/birth-4.js'] || window.birth_4;
-var cat = gi2991['/www/js/app/data/sections-new/cat.js'] || window.cat;
-var chinesePerson = gi2991['/www/js/app/data/sections-new/chinese-person.js'] || window.chinesePerson;
-var dancingHumans = gi2991['/www/js/app/data/sections-new/dancing-humans.js'] || window.dancingHumans;
-var dog = gi2991['/www/js/app/data/sections-new/dog.js'] || window.dog;
-var face = gi2991['/www/js/app/data/sections-new/face.js'] || window.face;
-var people_1 = gi2991['/www/js/app/data/sections-new/people-1.js'] || window.people_1;
-var people_2 = gi2991['/www/js/app/data/sections-new/people-2.js'] || window.people_2;
-var people_3 = gi2991['/www/js/app/data/sections-new/people-3.js'] || window.people_3;
-var rabbit = gi2991['/www/js/app/data/sections-new/rabbit.js'] || window.rabbit;
-var rider = gi2991['/www/js/app/data/sections-new/rider.js'] || window.rider;
+var angel = gi4891['/www/js/app/data/sections-new/angel.js'] || window.angel;
+var animal_1 = gi4891['/www/js/app/data/sections-new/animal-1.js'] || window.animal_1;
+var animal_2 = gi4891['/www/js/app/data/sections-new/animal-2.js'] || window.animal_2;
+var birth_1 = gi4891['/www/js/app/data/sections-new/birth-1.js'] || window.birth_1;
+var birth_2 = gi4891['/www/js/app/data/sections-new/birth-2.js'] || window.birth_2;
+var birth_3 = gi4891['/www/js/app/data/sections-new/birth-3.js'] || window.birth_3;
+var birth_4 = gi4891['/www/js/app/data/sections-new/birth-4.js'] || window.birth_4;
+var cat = gi4891['/www/js/app/data/sections-new/cat.js'] || window.cat;
+var chinesePerson = gi4891['/www/js/app/data/sections-new/chinese-person.js'] || window.chinesePerson;
+var dancingHumans = gi4891['/www/js/app/data/sections-new/dancing-humans.js'] || window.dancingHumans;
+var dog = gi4891['/www/js/app/data/sections-new/dog.js'] || window.dog;
+var face = gi4891['/www/js/app/data/sections-new/face.js'] || window.face;
+var people_1 = gi4891['/www/js/app/data/sections-new/people-1.js'] || window.people_1;
+var people_2 = gi4891['/www/js/app/data/sections-new/people-2.js'] || window.people_2;
+var people_3 = gi4891['/www/js/app/data/sections-new/people-3.js'] || window.people_3;
+var rabbit = gi4891['/www/js/app/data/sections-new/rabbit.js'] || window.rabbit;
+var rider = gi4891['/www/js/app/data/sections-new/rider.js'] || window.rider;
 
 var tangrams = {
 
@@ -17690,17 +17690,17 @@ var tangrams = {
 
 };
 
-gi2991['/www/js/app/data/tangrams.js'] = tangrams;
+gi4891['/www/js/app/data/tangrams.js'] = tangrams;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var $ = gi2991['/www/js/lib/jbone.js'] || window.$;
-var Queue = gi2991['/www/js/lib/queue.js'] || window.Queue;
+var $ = gi4891['/www/js/lib/jbone.js'] || window.$;
+var Queue = gi4891['/www/js/lib/queue.js'] || window.Queue;
 // tangram
-var tansInfo = gi2991['/www/js/app/view/tangram/models/tans-info.js'] || window.tansInfo;
-var tangrams = gi2991['/www/js/app/data/tangrams.js'] || window.tangrams;
+var tansInfo = gi4891['/www/js/app/view/tangram/models/tans-info.js'] || window.tansInfo;
+var tangrams = gi4891['/www/js/app/data/tangrams.js'] || window.tangrams;
 
 var arrayProto = Array.prototype,
 	win = window,
@@ -18001,7 +18001,7 @@ var arrayProto = Array.prototype,
 
 	};
 
-gi2991['/www/js/services/util.js'] = util;
+gi4891['/www/js/services/util.js'] = util;
 }());
 (function () {
 'use strict';
@@ -18044,7 +18044,7 @@ var win = window,
 
 };
 
-gi2991['/www/js/sound/player-android.js'] = androidPlayer;
+gi4891['/www/js/sound/player-android.js'] = androidPlayer;
 }());
 (function () {
 'use strict';
@@ -18101,7 +18101,7 @@ var win = window,
 
 	};
 
-gi2991['/www/js/sound/player-ios.js'] = iosPlayer;
+gi4891['/www/js/sound/player-ios.js'] = iosPlayer;
 
 
 }());
@@ -18109,7 +18109,7 @@ gi2991['/www/js/sound/player-ios.js'] = iosPlayer;
 'use strict';
 /*global window */
 
-var info = gi2991['/www/js/services/info.js'] || window.info;
+var info = gi4891['/www/js/services/info.js'] || window.info;
 
 var win = window,
 	webPlayer = {
@@ -18183,17 +18183,17 @@ var win = window,
 
 };
 
-gi2991['/www/js/sound/player-web.js'] = webPlayer;
+gi4891['/www/js/sound/player-web.js'] = webPlayer;
 
 }());
 (function () {
 'use strict';
 /*global window */
 
-var androidPlayer = gi2991['/www/js/sound/player-android.js'] || window.androidPlayer;
-var iosPlayer = gi2991['/www/js/sound/player-ios.js'] || window.iosPlayer;
-var webPlayer = gi2991['/www/js/sound/player-web.js'] || window.webPlayer;
-var info = gi2991['/www/js/services/info.js'] || window.info;
+var androidPlayer = gi4891['/www/js/sound/player-android.js'] || window.androidPlayer;
+var iosPlayer = gi4891['/www/js/sound/player-ios.js'] || window.iosPlayer;
+var webPlayer = gi4891['/www/js/sound/player-web.js'] || window.webPlayer;
+var info = gi4891['/www/js/services/info.js'] || window.info;
 
 var win = window,
 	soundMaster = {
@@ -18331,7 +18331,7 @@ var win = window,
 
 soundMaster.init();
 
-gi2991['/www/js/sound/sound-master.js'] = soundMaster;
+gi4891['/www/js/sound/sound-master.js'] = soundMaster;
 
 
 }());
@@ -18339,17 +18339,17 @@ gi2991['/www/js/sound/sound-master.js'] = soundMaster;
 'use strict';
 /*global window */
 
-var Backbone = gi2991['/www/js/lib/backbone.js'] || window.Backbone;
-var $ = gi2991['/www/js/lib/jbone.js'] || window.$;
-var _ = gi2991['/www/js/lib/lodash.js'] || window._;
-var info = gi2991['/www/js/services/info.js'] || window.info;
-//var tm = gi2991['/www/js/services/template-master.js'] || window.tm;
-var util = gi2991['/www/js/services/util.js'] || window.util;
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
-var sm = gi2991['/www/js/sound/sound-master.js'] || window.sm;
-var lang = gi2991['/www/js/services/lang.js'] || window.lang;
-var device = gi2991['/www/js/services/device.js'] || window.device;
-var log = gi2991['/www/js/services/log.js'] || window.log;
+var Backbone = gi4891['/www/js/lib/backbone.js'] || window.Backbone;
+var $ = gi4891['/www/js/lib/jbone.js'] || window.$;
+var _ = gi4891['/www/js/lib/lodash.js'] || window._;
+var info = gi4891['/www/js/services/info.js'] || window.info;
+//var tm = gi4891['/www/js/services/template-master.js'] || window.tm;
+var util = gi4891['/www/js/services/util.js'] || window.util;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
+var sm = gi4891['/www/js/sound/sound-master.js'] || window.sm;
+var lang = gi4891['/www/js/services/lang.js'] || window.lang;
+var device = gi4891['/www/js/services/device.js'] || window.device;
+var log = gi4891['/www/js/services/log.js'] || window.log;
 
 var win = window,
 	doc = win.document,
@@ -19066,7 +19066,7 @@ var win = window,
 
 	});
 
-gi2991['/www/js/app/view/core/base.js'] = BaseView;
+gi4891['/www/js/app/view/core/base.js'] = BaseView;
 }());
 (function () {
 var textureInfo = {
@@ -19086,23 +19086,23 @@ var textureInfo = {
 */
 };
 
-gi2991['/www/js/app/view/tangram/models/texture-info.js'] = textureInfo;
+gi4891['/www/js/app/view/tangram/models/texture-info.js'] = textureInfo;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi2991['/www/js/app/view/core/base.js'] || window.BaseView;
-var tm = gi2991['/www/js/services/template-master.js'] || window.tm;
-var lang = gi2991['/www/js/services/lang.js'] || window.lang;
-var log = gi2991['/www/js/services/log.js'] || window.log;
-var $ = gi2991['/www/js/lib/jbone.js'] || window.$;
-var info = gi2991['/www/js/services/info.js'] || window.info;
-var util = gi2991['/www/js/services/util.js'] || window.util;
-var Queue = gi2991['/www/js/lib/queue.js'] || window.Queue;
-var _ = gi2991['/www/js/lib/lodash.js'] || window._;
-var tansInfo = gi2991['/www/js/app/view/tangram/models/tans-info.js'] || window.tansInfo;
-var textureInfo = gi2991['/www/js/app/view/tangram/models/texture-info.js'] || window.textureInfo;
+var BaseView = gi4891['/www/js/app/view/core/base.js'] || window.BaseView;
+var tm = gi4891['/www/js/services/template-master.js'] || window.tm;
+var lang = gi4891['/www/js/services/lang.js'] || window.lang;
+var log = gi4891['/www/js/services/log.js'] || window.log;
+var $ = gi4891['/www/js/lib/jbone.js'] || window.$;
+var info = gi4891['/www/js/services/info.js'] || window.info;
+var util = gi4891['/www/js/services/util.js'] || window.util;
+var Queue = gi4891['/www/js/lib/queue.js'] || window.Queue;
+var _ = gi4891['/www/js/lib/lodash.js'] || window._;
+var tansInfo = gi4891['/www/js/app/view/tangram/models/tans-info.js'] || window.tansInfo;
+var textureInfo = gi4891['/www/js/app/view/tangram/models/texture-info.js'] || window.textureInfo;
 
 var HomeView = BaseView.extend({
 
@@ -19231,17 +19231,17 @@ var HomeView = BaseView.extend({
 
 });
 
-gi2991['/www/js/app/view/home/home-view.js'] = HomeView;
+gi4891['/www/js/app/view/home/home-view.js'] = HomeView;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var Backbone = gi2991['/www/js/lib/backbone.js'] || window.Backbone;
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
-var info = gi2991['/www/js/services/info.js'] || window.info;
-var device = gi2991['/www/js/services/device.js'] || window.device;
-var _ = gi2991['/www/js/lib/lodash.js'] || window._;
+var Backbone = gi4891['/www/js/lib/backbone.js'] || window.Backbone;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
+var info = gi4891['/www/js/services/info.js'] || window.info;
+var device = gi4891['/www/js/services/device.js'] || window.device;
+var _ = gi4891['/www/js/lib/lodash.js'] || window._;
 
 var Tan = Backbone.Model.extend({
 
@@ -20146,7 +20146,7 @@ var Tan = Backbone.Model.extend({
 
 });
 
-gi2991['/www/js/app/view/tangram/models/tan.js'] = Tan;
+gi4891['/www/js/app/view/tangram/models/tan.js'] = Tan;
 }());
 (function () {
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
@@ -20314,22 +20314,22 @@ if (typeof define == 'function' && define.amd) define([], function() { return Sh
 //
 //console.log(sha1);
 
-gi2991['/www/js/lib/sha1.js'] = Sha1;
+gi4891['/www/js/lib/sha1.js'] = Sha1;
 
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi2991['/www/js/app/view/core/base.js'] || window.BaseView;
-var tm = gi2991['/www/js/services/template-master.js'] || window.tm;
-var lang = gi2991['/www/js/services/lang.js'] || window.lang;
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
-var $ = gi2991['/www/js/lib/jbone.js'] || window.$;
-var _ = gi2991['/www/js/lib/lodash.js'] || window._;
-var info = gi2991['/www/js/services/info.js'] || window.info;
-var tangrams = gi2991['/www/js/app/data/tangrams.js'] || window.tangrams;
-var androidAds = gi2991['/www/js/services/android-ads.js'] || window.androidAds;
+var BaseView = gi4891['/www/js/app/view/core/base.js'] || window.BaseView;
+var tm = gi4891['/www/js/services/template-master.js'] || window.tm;
+var lang = gi4891['/www/js/services/lang.js'] || window.lang;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
+var $ = gi4891['/www/js/lib/jbone.js'] || window.$;
+var _ = gi4891['/www/js/lib/lodash.js'] || window._;
+var info = gi4891['/www/js/services/info.js'] || window.info;
+var tangrams = gi4891['/www/js/app/data/tangrams.js'] || window.tangrams;
+var androidAds = gi4891['/www/js/services/android-ads.js'] || window.androidAds;
 
 var TangramSuccessfulView = BaseView.extend({
 
@@ -20442,24 +20442,24 @@ var TangramSuccessfulView = BaseView.extend({
 
 });
 
-gi2991['/www/js/app/view/tangram-successful/tangram-successful-view.js'] = TangramSuccessfulView;
+gi4891['/www/js/app/view/tangram-successful/tangram-successful-view.js'] = TangramSuccessfulView;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var Backbone = gi2991['/www/js/lib/backbone.js'] || window.Backbone;
-var Tan = gi2991['/www/js/app/view/tangram/models/tan.js'] || window.Tan;
-var _ = gi2991['/www/js/lib/lodash.js'] || window._;
-var $ = gi2991['/www/js/lib/jbone.js'] || window.$;
-var device = gi2991['/www/js/services/device.js'] || window.device;
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
-var log = gi2991['/www/js/services/log.js'] || window.log;
-var sha1 = gi2991['/www/js/lib/sha1.js'] || window.sha1;
-var info = gi2991['/www/js/services/info.js'] || window.info;
-var util = gi2991['/www/js/services/util.js'] || window.util;
-var TangramSuccessfulView = gi2991['/www/js/app/view/tangram-successful/tangram-successful-view.js'] || window.TangramSuccessfulView;
-var tansInfo = gi2991['/www/js/app/view/tangram/models/tans-info.js'] || window.tansInfo;
+var Backbone = gi4891['/www/js/lib/backbone.js'] || window.Backbone;
+var Tan = gi4891['/www/js/app/view/tangram/models/tan.js'] || window.Tan;
+var _ = gi4891['/www/js/lib/lodash.js'] || window._;
+var $ = gi4891['/www/js/lib/jbone.js'] || window.$;
+var device = gi4891['/www/js/services/device.js'] || window.device;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
+var log = gi4891['/www/js/services/log.js'] || window.log;
+var sha1 = gi4891['/www/js/lib/sha1.js'] || window.sha1;
+var info = gi4891['/www/js/services/info.js'] || window.info;
+var util = gi4891['/www/js/services/util.js'] || window.util;
+var TangramSuccessfulView = gi4891['/www/js/app/view/tangram-successful/tangram-successful-view.js'] || window.TangramSuccessfulView;
+var tansInfo = gi4891['/www/js/app/view/tangram/models/tans-info.js'] || window.tansInfo;
 
 var atomInfo = {
 	sideSize: 0.25
@@ -21231,8 +21231,8 @@ var TanCollection = Backbone.Collection.extend({
 				width: width + 'px',
 				height: height + 'px',
 				viewBox: [0, 0, width, height].join(' '),
-				xmlns: 'http://www.w3.org/2000/svg',
-				'class': 'tangram-pattern'
+				xmlns: 'http://www.w3.org/2000/svg'
+				//'class': 'tangram-pattern'
 			};
 
 		if (info.get('gameDifficult') !== 'regular') {
@@ -21270,6 +21270,8 @@ var TanCollection = Backbone.Collection.extend({
 			context.drawImage(image, 0, 0);
 
 			image.onload = null;
+
+			canvas.className = 'tangram-pattern';
 
 			defer.resolve(canvas);
 
@@ -21368,14 +21370,14 @@ var TanCollection = Backbone.Collection.extend({
 
 });
 
-gi2991['/www/js/app/view/tangram/models/tan-collection.js'] = TanCollection;
+gi4891['/www/js/app/view/tangram/models/tan-collection.js'] = TanCollection;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var Backbone = gi2991['/www/js/lib/backbone.js'] || window.Backbone;
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
+var Backbone = gi4891['/www/js/lib/backbone.js'] || window.Backbone;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
 
 var Timer = Backbone.Model.extend({
 
@@ -21491,17 +21493,17 @@ var Timer = Backbone.Model.extend({
 
 });
 
-gi2991['/www/js/app/view/tangram/models/timer.js'] = Timer;
+gi4891['/www/js/app/view/tangram/models/timer.js'] = Timer;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var Backbone = gi2991['/www/js/lib/backbone.js'] || window.Backbone;
-var _ = gi2991['/www/js/lib/lodash.js'] || window._;
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
-var info = gi2991['/www/js/services/info.js'] || window.info;
-var log = gi2991['/www/js/services/log.js'] || window.log;
+var Backbone = gi4891['/www/js/lib/backbone.js'] || window.Backbone;
+var _ = gi4891['/www/js/lib/lodash.js'] || window._;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
+var info = gi4891['/www/js/services/info.js'] || window.info;
+var log = gi4891['/www/js/services/log.js'] || window.log;
 
 var RotaterModel = Backbone.Model.extend({
 
@@ -21784,24 +21786,24 @@ var RotaterModel = Backbone.Model.extend({
 });
 
 
-gi2991['/www/js/app/view/tangram/rotater/rotater-model.js'] = RotaterModel;
+gi4891['/www/js/app/view/tangram/rotater/rotater-model.js'] = RotaterModel;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi2991['/www/js/app/view/core/base.js'] || window.BaseView;
-var tm = gi2991['/www/js/services/template-master.js'] || window.tm;
-var TanCollection = gi2991['/www/js/app/view/tangram/models/tan-collection.js'] || window.TanCollection;
-var Timer = gi2991['/www/js/app/view/tangram/models/timer.js'] || window.Timer;
-var RotaterModel = gi2991['/www/js/app/view/tangram/rotater/rotater-model.js'] || window.RotaterModel;
-var device = gi2991['/www/js/services/device.js'] || window.device;
-var log = gi2991['/www/js/services/log.js'] || window.log;
-var info = gi2991['/www/js/services/info.js'] || window.info;
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
-var lang = gi2991['/www/js/services/lang.js'] || window.lang;
-var tangrams = gi2991['/www/js/app/data/tangrams.js'] || window.tangrams;
-var _ = gi2991['/www/js/lib/lodash.js'] || window._;
+var BaseView = gi4891['/www/js/app/view/core/base.js'] || window.BaseView;
+var tm = gi4891['/www/js/services/template-master.js'] || window.tm;
+var TanCollection = gi4891['/www/js/app/view/tangram/models/tan-collection.js'] || window.TanCollection;
+var Timer = gi4891['/www/js/app/view/tangram/models/timer.js'] || window.Timer;
+var RotaterModel = gi4891['/www/js/app/view/tangram/rotater/rotater-model.js'] || window.RotaterModel;
+var device = gi4891['/www/js/services/device.js'] || window.device;
+var log = gi4891['/www/js/services/log.js'] || window.log;
+var info = gi4891['/www/js/services/info.js'] || window.info;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
+var lang = gi4891['/www/js/services/lang.js'] || window.lang;
+var tangrams = gi4891['/www/js/app/data/tangrams.js'] || window.tangrams;
+var _ = gi4891['/www/js/lib/lodash.js'] || window._;
 
 var tanCollectionProto = TanCollection.prototype;
 
@@ -22119,21 +22121,21 @@ var TangramView = BaseView.extend({
 
 });
 
-gi2991['/www/js/app/view/tangram/tangram-view.js'] = TangramView;
+gi4891['/www/js/app/view/tangram/tangram-view.js'] = TangramView;
 }());
 (function () {
-var BaseView = gi2991['/www/js/app/view/core/base.js'] || window.BaseView;
-var tm = gi2991['/www/js/services/template-master.js'] || window.tm;
-var TanCollection = gi2991['/www/js/app/view/tangram/models/tan-collection.js'] || window.TanCollection;
-var RotaterModel = gi2991['/www/js/app/view/tangram/rotater/rotater-model.js'] || window.RotaterModel;
-var device = gi2991['/www/js/services/device.js'] || window.device;
-var log = gi2991['/www/js/services/log.js'] || window.log;
-var info = gi2991['/www/js/services/info.js'] || window.info;
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
-var lang = gi2991['/www/js/services/lang.js'] || window.lang;
-var tangrams = gi2991['/www/js/app/data/tangrams.js'] || window.tangrams;
-var _ = gi2991['/www/js/lib/lodash.js'] || window._;
-var TangramView = gi2991['/www/js/app/view/tangram/tangram-view.js'] || window.TangramView;
+var BaseView = gi4891['/www/js/app/view/core/base.js'] || window.BaseView;
+var tm = gi4891['/www/js/services/template-master.js'] || window.tm;
+var TanCollection = gi4891['/www/js/app/view/tangram/models/tan-collection.js'] || window.TanCollection;
+var RotaterModel = gi4891['/www/js/app/view/tangram/rotater/rotater-model.js'] || window.RotaterModel;
+var device = gi4891['/www/js/services/device.js'] || window.device;
+var log = gi4891['/www/js/services/log.js'] || window.log;
+var info = gi4891['/www/js/services/info.js'] || window.info;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
+var lang = gi4891['/www/js/services/lang.js'] || window.lang;
+var tangrams = gi4891['/www/js/app/data/tangrams.js'] || window.tangrams;
+var _ = gi4891['/www/js/lib/lodash.js'] || window._;
+var TangramView = gi4891['/www/js/app/view/tangram/tangram-view.js'] || window.TangramView;
 
 var TangramConstructorView = TangramView.extend({
 
@@ -22235,23 +22237,23 @@ var TangramConstructorView = TangramView.extend({
 
 });
 
-gi2991['/www/js/app/view/tangram/tangram-constructor-view.js'] = TangramConstructorView;
+gi4891['/www/js/app/view/tangram/tangram-constructor-view.js'] = TangramConstructorView;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi2991['/www/js/app/view/core/base.js'] || window.BaseView;
-var tm = gi2991['/www/js/services/template-master.js'] || window.tm;
-var lang = gi2991['/www/js/services/lang.js'] || window.lang;
-var info = gi2991['/www/js/services/info.js'] || window.info;
-var log = gi2991['/www/js/services/log.js'] || window.log;
-var sha1 = gi2991['/www/js/lib/sha1.js'] || window.sha1;
-var tangrams = gi2991['/www/js/app/data/tangrams.js'] || window.tangrams;
-var tanCollection = gi2991['/www/js/app/view/tangram/models/tan-collection.js'] || window.tanCollection;
-var _ = gi2991['/www/js/lib/lodash.js'] || window._;
-var $ = gi2991['/www/js/lib/jbone.js'] || window.$;
-var Queue = gi2991['/www/js/lib/queue.js'] || window.Queue;
+var BaseView = gi4891['/www/js/app/view/core/base.js'] || window.BaseView;
+var tm = gi4891['/www/js/services/template-master.js'] || window.tm;
+var lang = gi4891['/www/js/services/lang.js'] || window.lang;
+var info = gi4891['/www/js/services/info.js'] || window.info;
+var log = gi4891['/www/js/services/log.js'] || window.log;
+var sha1 = gi4891['/www/js/lib/sha1.js'] || window.sha1;
+var tangrams = gi4891['/www/js/app/data/tangrams.js'] || window.tangrams;
+var tanCollection = gi4891['/www/js/app/view/tangram/models/tan-collection.js'] || window.tanCollection;
+var _ = gi4891['/www/js/lib/lodash.js'] || window._;
+var $ = gi4891['/www/js/lib/jbone.js'] || window.$;
+var Queue = gi4891['/www/js/lib/queue.js'] || window.Queue;
 
 var tanCollectionProto = tanCollection.prototype;
 
@@ -22690,17 +22692,17 @@ window.addEventListener('load', function () {
 }, false);
 */
 
-gi2991['/www/js/app/view/sections/sections-view.js'] = SectionsView;
+gi4891['/www/js/app/view/sections/sections-view.js'] = SectionsView;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi2991['/www/js/app/view/core/base.js'] || window.BaseView;
-var tm = gi2991['/www/js/services/template-master.js'] || window.tm;
-var lang = gi2991['/www/js/services/lang.js'] || window.lang;
-var $ = gi2991['/www/js/lib/jbone.js'] || window.$;
-var info = gi2991['/www/js/services/info.js'] || window.info;
+var BaseView = gi4891['/www/js/app/view/core/base.js'] || window.BaseView;
+var tm = gi4891['/www/js/services/template-master.js'] || window.tm;
+var lang = gi4891['/www/js/services/lang.js'] || window.lang;
+var $ = gi4891['/www/js/lib/jbone.js'] || window.$;
+var info = gi4891['/www/js/services/info.js'] || window.info;
 
 var SettingsView = BaseView.extend({
 
@@ -22752,21 +22754,21 @@ var SettingsView = BaseView.extend({
 
 });
 
-gi2991['/www/js/app/view/settings/settings-view.js'] = SettingsView;
+gi4891['/www/js/app/view/settings/settings-view.js'] = SettingsView;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
-var Backbone = gi2991['/www/js/lib/backbone.js'] || window.Backbone;
-var _ = gi2991['/www/js/lib/lodash.js'] || window._;
-var BaseView = gi2991['/www/js/app/view/core/base.js'] || window.BaseView;
-var HomeView = gi2991['/www/js/app/view/home/home-view.js'] || window.HomeView;
-var TangramView = gi2991['/www/js/app/view/tangram/tangram-view.js'] || window.TangramView;
-var TangramConstructorView = gi2991['/www/js/app/view/tangram/tangram-constructor-view.js'] || window.TangramConstructorView;
-var SectionsView = gi2991['/www/js/app/view/sections/sections-view.js'] || window.SectionsView;
-var SettingsView = gi2991['/www/js/app/view/settings/settings-view.js'] || window.SettingsView;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
+var Backbone = gi4891['/www/js/lib/backbone.js'] || window.Backbone;
+var _ = gi4891['/www/js/lib/lodash.js'] || window._;
+var BaseView = gi4891['/www/js/app/view/core/base.js'] || window.BaseView;
+var HomeView = gi4891['/www/js/app/view/home/home-view.js'] || window.HomeView;
+var TangramView = gi4891['/www/js/app/view/tangram/tangram-view.js'] || window.TangramView;
+var TangramConstructorView = gi4891['/www/js/app/view/tangram/tangram-constructor-view.js'] || window.TangramConstructorView;
+var SectionsView = gi4891['/www/js/app/view/sections/sections-view.js'] || window.SectionsView;
+var SettingsView = gi4891['/www/js/app/view/settings/settings-view.js'] || window.SettingsView;
 
 var win = window,
 	router,
@@ -22908,20 +22910,20 @@ router.subscribe('tangram-view', function (data) {
 	new TangramView(data);
 });
 
-gi2991['/www/js/app/router/router.js'] = router;
+gi4891['/www/js/app/router/router.js'] = router;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi2991['/www/js/app/view/core/base.js'] || window.BaseView;
-var $ = gi2991['/www/js/lib/jbone.js'] || window.$;
-var _ = gi2991['/www/js/lib/lodash.js'] || window._;
-var lang = gi2991['/www/js/services/lang.js'] || window.lang;
-var info = gi2991['/www/js/services/info.js'] || window.info;
-var device = gi2991['/www/js/services/device.js'] || window.device;
-var tm = gi2991['/www/js/services/template-master.js'] || window.tm;
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
+var BaseView = gi4891['/www/js/app/view/core/base.js'] || window.BaseView;
+var $ = gi4891['/www/js/lib/jbone.js'] || window.$;
+var _ = gi4891['/www/js/lib/lodash.js'] || window._;
+var lang = gi4891['/www/js/services/lang.js'] || window.lang;
+var info = gi4891['/www/js/services/info.js'] || window.info;
+var device = gi4891['/www/js/services/device.js'] || window.device;
+var tm = gi4891['/www/js/services/template-master.js'] || window.tm;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
 
 var win = window,
 	HintView,
@@ -23325,19 +23327,19 @@ mediator.installTo(hintMaster);
 
 hintMaster.subscribe('showHint', hintMaster.showHint);
 
-gi2991['/www/js/app/view/core/hint.js'] = hintMaster;
+gi4891['/www/js/app/view/core/hint.js'] = hintMaster;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var BaseView = gi2991['/www/js/app/view/core/base.js'] || window.BaseView;
-var $ = gi2991['/www/js/lib/jbone.js'] || window.$;
-var _ = gi2991['/www/js/lib/lodash.js'] || window._;
-var sm = gi2991['/www/js/sound/sound-master.js'] || window.sm;
-var tm = gi2991['/www/js/services/template-master.js'] || window.tm;
-var info = gi2991['/www/js/services/info.js'] || window.info;
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
+var BaseView = gi4891['/www/js/app/view/core/base.js'] || window.BaseView;
+var $ = gi4891['/www/js/lib/jbone.js'] || window.$;
+var _ = gi4891['/www/js/lib/lodash.js'] || window._;
+var sm = gi4891['/www/js/sound/sound-master.js'] || window.sm;
+var tm = gi4891['/www/js/services/template-master.js'] || window.tm;
+var info = gi4891['/www/js/services/info.js'] || window.info;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
 
 var win = window,
 	PopupView,
@@ -23540,21 +23542,21 @@ mediator.installTo(popupMaster);
 
 popupMaster.subscribe('show-popup', popupMaster.showPopup);
 
-gi2991['/www/js/app/view/core/popup.js'] = popupMaster;
+gi4891['/www/js/app/view/core/popup.js'] = popupMaster;
 }());
 (function () {
 'use strict';
 /*global window */
 
-var tangrams = gi2991['/www/js/app/data/tangrams.js'] || window.tangrams;
-var SectionView = gi2991['/www/js/app/view/sections/sections-view.js'] || window.SectionView;
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
-var util = gi2991['/www/js/services/util.js'] || window.util;
-var log = gi2991['/www/js/services/log.js'] || window.log;
-var info = gi2991['/www/js/services/info.js'] || window.info;
-var Queue = gi2991['/www/js/lib/queue.js'] || window.Queue;
-var sha1 = gi2991['/www/js/lib/sha1.js'] || window.sha1;
-var $ = gi2991['/www/js/lib/jbone.js'] || window.$;
+var tangrams = gi4891['/www/js/app/data/tangrams.js'] || window.tangrams;
+var SectionView = gi4891['/www/js/app/view/sections/sections-view.js'] || window.SectionView;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
+var util = gi4891['/www/js/services/util.js'] || window.util;
+var log = gi4891['/www/js/services/log.js'] || window.log;
+var info = gi4891['/www/js/services/info.js'] || window.info;
+var Queue = gi4891['/www/js/lib/queue.js'] || window.Queue;
+var sha1 = gi4891['/www/js/lib/sha1.js'] || window.sha1;
+var $ = gi4891['/www/js/lib/jbone.js'] || window.$;
 
 var sectionViewProto = SectionView.prototype,
 	previewSectionHelper = {
@@ -23794,15 +23796,15 @@ mediator.installTo(previewSectionHelper);
 previewSectionHelper.subscribe('previewSectionHelper:initialize', previewSectionHelper.initialize);
 //previewSectionHelper.subscribe('previewSectionHelper:publishData', previewSectionHelper.publishData);
 
-gi2991['/www/js/app/view/sections/preview-section-helper.js'] = previewSectionHelper;
+gi4891['/www/js/app/view/sections/preview-section-helper.js'] = previewSectionHelper;
 }());
 (function () {
 'use strict';
 /*global window */
 /*global */
 
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
-var lang = gi2991['/www/js/services/lang.js'] || window.lang;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
+var lang = gi4891['/www/js/services/lang.js'] || window.lang;
 
 var win = window,
 	applicationCache = win.applicationCache,
@@ -23895,7 +23897,7 @@ win.addEventListener('load', function () {
 	appCache.initialize();
 }, false);
 
-gi2991['/www/js/services/app-cache.js'] = appCache;
+gi4891['/www/js/services/app-cache.js'] = appCache;
 
 
 }());
@@ -23903,46 +23905,46 @@ gi2991['/www/js/services/app-cache.js'] = appCache;
 'use strict';
 /*global window */
 
-var info = gi2991['/www/js/services/info.js'] || window.info;
+var info = gi4891['/www/js/services/info.js'] || window.info;
 info.set('dev-mode', false);
 
-var log = gi2991['/www/js/services/log.js'] || window.log;
+var log = gi4891['/www/js/services/log.js'] || window.log;
 
-var mediator = gi2991['/www/js/services/mediator.js'] || window.mediator;
+var mediator = gi4891['/www/js/services/mediator.js'] || window.mediator;
 
 // init all librares
-var polyfillClassList = gi2991['/www/js/lib/polyfill-class-list.js'] || window.polyfillClassList;
-var shim = gi2991['/www/js/lib/shim.js'] || window.shim;
-var shimES5 = gi2991['/www/js/lib/shim-es5.js'] || window.shimES5;
-var shamES5 = gi2991['/www/js/lib/sham-es5.js'] || window.shamES5;
-var _ = gi2991['/www/js/lib/lodash.js'] || window._;
-var $ = gi2991['/www/js/lib/jbone.js'] || window.$;
-var Deferred = gi2991['/www/js/lib/deferred.js'] || window.Deferred;
-var Backbone = gi2991['/www/js/lib/backbone.js'] || window.Backbone;
-var fastclick = gi2991['/www/js/lib/fastclick.js'] || window.fastclick;
-var doT = gi2991['/www/js/lib/dot.js'] || window.doT;
-var Queue = gi2991['/www/js/lib/queue.js'] || window.Queue;
-var Swiper = gi2991['/www/js/lib/swiper.js'] || window.Swiper;
+var polyfillClassList = gi4891['/www/js/lib/polyfill-class-list.js'] || window.polyfillClassList;
+var shim = gi4891['/www/js/lib/shim.js'] || window.shim;
+var shimES5 = gi4891['/www/js/lib/shim-es5.js'] || window.shimES5;
+var shamES5 = gi4891['/www/js/lib/sham-es5.js'] || window.shamES5;
+var _ = gi4891['/www/js/lib/lodash.js'] || window._;
+var $ = gi4891['/www/js/lib/jbone.js'] || window.$;
+var Deferred = gi4891['/www/js/lib/deferred.js'] || window.Deferred;
+var Backbone = gi4891['/www/js/lib/backbone.js'] || window.Backbone;
+var fastclick = gi4891['/www/js/lib/fastclick.js'] || window.fastclick;
+var doT = gi4891['/www/js/lib/dot.js'] || window.doT;
+var Queue = gi4891['/www/js/lib/queue.js'] || window.Queue;
+var Swiper = gi4891['/www/js/lib/swiper.js'] || window.Swiper;
 
 // init all services
-var device = gi2991['/www/js/services/device.js'] || window.device;
-var androidAds = gi2991['/www/js/services/android-ads.js'] || window.androidAds;
-var lang = gi2991['/www/js/services/lang.js'] || window.lang;
-var tm = gi2991['/www/js/services/template-master.js'] || window.tm;
-var util = gi2991['/www/js/services/util.js'] || window.util;
+var device = gi4891['/www/js/services/device.js'] || window.device;
+var androidAds = gi4891['/www/js/services/android-ads.js'] || window.androidAds;
+var lang = gi4891['/www/js/services/lang.js'] || window.lang;
+var tm = gi4891['/www/js/services/template-master.js'] || window.tm;
+var util = gi4891['/www/js/services/util.js'] || window.util;
 
 // init sound players
-var sm = gi2991['/www/js/sound/sound-master.js'] || window.sm;
+var sm = gi4891['/www/js/sound/sound-master.js'] || window.sm;
 
-var router = gi2991['/www/js/app/router/router.js'] || window.router;
+var router = gi4891['/www/js/app/router/router.js'] || window.router;
 
-var BaseView = gi2991['/www/js/app/view/core/base.js'] || window.BaseView;
-var hintMaster = gi2991['/www/js/app/view/core/hint.js'] || window.hintMaster;
-var popupMaster = gi2991['/www/js/app/view/core/popup.js'] || window.popupMaster;
+var BaseView = gi4891['/www/js/app/view/core/base.js'] || window.BaseView;
+var hintMaster = gi4891['/www/js/app/view/core/hint.js'] || window.hintMaster;
+var popupMaster = gi4891['/www/js/app/view/core/popup.js'] || window.popupMaster;
 
-var previewSectionHelper = gi2991['/www/js/app/view/sections/preview-section-helper.js'] || window.previewSectionHelper;
+var previewSectionHelper = gi4891['/www/js/app/view/sections/preview-section-helper.js'] || window.previewSectionHelper;
 
-var appCache = gi2991['/www/js/services/app-cache.js'] || window.appCache;
+var appCache = gi4891['/www/js/services/app-cache.js'] || window.appCache;
 
 // small init
 var win = window;

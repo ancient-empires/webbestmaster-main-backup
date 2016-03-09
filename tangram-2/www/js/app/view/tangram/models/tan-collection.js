@@ -784,8 +784,8 @@ var TanCollection = Backbone.Collection.extend({
 				width: width + 'px',
 				height: height + 'px',
 				viewBox: [0, 0, width, height].join(' '),
-				xmlns: 'http://www.w3.org/2000/svg',
-				'class': 'tangram-pattern'
+				xmlns: 'http://www.w3.org/2000/svg'
+				//'class': 'tangram-pattern'
 			};
 
 		if (info.get('gameDifficult') !== 'regular') {
@@ -823,6 +823,8 @@ var TanCollection = Backbone.Collection.extend({
 			context.drawImage(image, 0, 0);
 
 			image.onload = null;
+
+			canvas.className = 'tangram-pattern';
 
 			defer.resolve(canvas);
 
