@@ -20,6 +20,7 @@ import Backbone from './lib/backbone';
 import fastclick from './lib/fastclick';
 import doT from './lib/dot';
 import Queue from './lib/queue';
+import Swiper from './lib/swiper';
 
 // init all services
 import device from './services/device';

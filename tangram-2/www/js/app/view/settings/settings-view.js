@@ -24,6 +24,7 @@ var SettingsView = BaseView.extend({
 		}));
 
 		view.render();
+		view.setVerticalSwiper();
 
 		return BaseView.prototype.initialize.apply(view, arguments);
 

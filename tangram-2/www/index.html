@@ -97,8 +97,9 @@
 
 	<section class="screen">
 
-		<div class="scroll-area-container js-scroll-area-container">
-			<div class="scroll-area-content">
+		<div class="scroll-area-container js-scroll-container">
+			<div class="swiper-wrapper">
+			<div class="scroll-area-content swiper-slide">
 				<div class="screen-back js-back">&#xf040;</div>
 				<div class="section-header-wrapper">
 					<p class="section-header">{{= it.lang.getPartial(it.sectionHeader) }}</p>
@@ -134,6 +135,9 @@
 				{{~}}
 
 			</div>
+			</div>
+			<!-- Add Scroll Bar -->
+			<div class="swiper-scrollbar"></div>
 		</div>
 
 	</section>
@@ -224,8 +228,9 @@
 
 	<section class="screen">
 
-		<div class="scroll-area-container js-scroll-area-container">
-			<div class="scroll-area-content">
+		<div class="scroll-area-container js-scroll-container">
+			<div class="swiper-wrapper">
+			<div class="scroll-area-content swiper-slide">
 				<div class="screen-back js-back">&#xf040;</div>
 				<div class="section-header-wrapper">
 					<p class="section-header">{{= it.lang.get('settings') }}</p>
@@ -293,6 +298,10 @@
 -->
 
 			</div>
+			</div>
+
+			<!-- Add Scroll Bar -->
+			<div class="swiper-scrollbar"></div>
 
 		</div>
 
