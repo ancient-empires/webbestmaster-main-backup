@@ -4,6 +4,7 @@
 import Backbone from './../../../../lib/backbone';
 import Tan from './tan';
 import _ from './../../../../lib/lodash';
+import $ from './../../../../lib/jbone';
 import device from './../../../../services/device';
 import mediator from './../../../../services/mediator';
 import log from './../../../../services/log';
@@ -802,7 +803,34 @@ var TanCollection = Backbone.Collection.extend({
 			svg.appendChild(polygon);
 		});
 
-		return svg;
+		// svg to canvas
+
+		// Setup canvas
+		var canvas = document.createElement('canvas');
+		canvas.width = width;
+		canvas.height = height;
+
+		var defer = $.Deferred();
+
+		// Get canvas context
+		var context = canvas.getContext('2d');
+		// Setup new image object
+		var image = new Image();
+		// Make sure that there is an event listener
+		// BEFORE attaching an image source
+		image.onload = function() {
+
+			context.drawImage(image, 0, 0);
+
+			image.onload = null;
+
+			defer.resolve(canvas);
+
+		};
+		// Init the image with our SVG
+		image.src = 'data:image/svg+xml,' + util.getOuterHtml(svg);
+
+		return defer.promise();
 
 	},
 

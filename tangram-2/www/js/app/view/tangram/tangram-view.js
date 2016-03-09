@@ -83,13 +83,13 @@ var TangramView = BaseView.extend({
 
 		tanCollection.setScale(scale);
 		tanCollection.initPattern(pattern);
-		patternSvg = tanCollection.drawPattern();
+		tanCollection.drawPattern().then(function (canvas) {
+			view.$el.append(canvas);
+		});
 		tanCollection.createTans();
 		tanCollection.addDrawFieldTo(view.$el);
 		tanCollection.drawTans();
 		tanCollection.setData('rotater', rotater);
-
-		view.$el.append(patternSvg);
 
 		view.set('$menuButton', view.$el.find('.js-tangram-menu-button'));
 		view.set('$flipButton', view.$el.find('.js-flip-tan'));
