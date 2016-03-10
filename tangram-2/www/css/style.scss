@@ -8,6 +8,10 @@
   src: url('../font/icomoon.ttf');
 }
 
+html {
+  min-height: 100%;
+}
+
 body {
   background-image: url(../i/main-bg.jpg);
   background-repeat: no-repeat;
@@ -74,6 +78,7 @@ body {
 }
 
 .screen--button {
+  position: relative;
   width: 45%;
   margin: 0 auto 0.55rem;
   padding: 0.7rem;
@@ -325,7 +330,10 @@ body {
   z-index: -1;
 }
 
-
+.title-logo-letter {
+  display: inline-block;
+  position: relative;
+}
 
 
 

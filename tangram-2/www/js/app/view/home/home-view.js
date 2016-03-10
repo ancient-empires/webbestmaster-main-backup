@@ -33,14 +33,16 @@ var HomeView = BaseView.extend({
 
 		view.render().then(function () {
 
-			if (view.get('isHidden')) {
-				return;
-			}
+			view.animate(function () {
+				if (view.get('isHidden')) {
+					return;
+				}
 
-			view.publish('previewSectionHelper:initialize');
+				view.publish('previewSectionHelper:initialize');
 
-			//view.publish('app-cache:check-cache');
-			view.rateUsPopup();
+				//view.publish('app-cache:check-cache');
+				view.rateUsPopup();
+			});
 
 		});
 
@@ -135,6 +137,36 @@ var HomeView = BaseView.extend({
 		});
 
 		return defer.promise();
+
+	},
+
+	animate: function (fn) {
+
+		var tl = new TimelineMax();
+
+		//tl.from('.anim-btn-0', 0.7, { left: "-100px", opacity: 0, ease: Bounce.easeOut }, 0);
+		//tl.from('.anim-btn-1', 0.7, { left: "100px", opacity: 0, ease: Bounce.easeOut }, 0);
+		//tl.from('.anim-btn-2', 0.7, { top: "100px", opacity: 0, ease: Bounce.easeOut }, 0);
+
+		tl.staggerFrom('.anim-letter', 0.4, {top: "-150px", opacity: 0, ease: Back.easeOut}, 0.2);
+
+		setTimeout(function () {
+			tl.stop();
+			tl.remove();
+			fn();
+		}, 2.5e3);
+
+/*
+		var buttons = $('.screen--button'),
+			buttonStyles = buttons.map(function (button) {
+				return button.style;
+			}),
+			tl = new TimelineLite();
+
+		tl.to(buttonStyles, 2, {fontSize: 0});
+*/
+
+
 
 	}
 

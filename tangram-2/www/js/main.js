@@ -22,6 +22,8 @@ import doT from './lib/dot';
 import Queue from './lib/queue';
 import Swiper from './lib/swiper';
 
+import TweenMax from './lib/TweenMax.min';
+
 // init all services
 import device from './services/device';
 import androidAds from './services/android-ads';

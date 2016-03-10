@@ -50,14 +50,15 @@
 	<section class="screen">
 
 		<div class="screen--button-wrapper_split_first">
-			<div class="title-game-name">tangram</div>
+			<div class="title-game-name">{{~ 'tangram' :letter:index }}<span class="title-logo-letter anim-letter">{{= letter }}</span>{{~}}</div>
+			<!--<div class="title-game-name">tangram</div>-->
 			<!-- 七 巧 板 -->
 		</div>
 
 		<div class="screen--button-wrapper_split_second">
-			<div class="screen--button js-set-game-difficult" data-difficult="regular" >{{= it.lang.get('play-regular') }}</div>
-			<div class="screen--button js-set-game-difficult" data-difficult="master" >{{= it.lang.get('play-master') }}</div>
-			<div class="screen--button" data-route="settings" >{{= it.lang.get('settings') }}</div>
+			<div class="screen--button js-set-game-difficult anim-btn-0" data-difficult="regular" >{{= it.lang.get('play-regular') }}</div>
+			<div class="screen--button js-set-game-difficult anim-btn-1" data-difficult="master" >{{= it.lang.get('play-master') }}</div>
+			<div class="screen--button anim-btn-2" data-route="settings" >{{= it.lang.get('settings') }}</div>
 			<!--<div class="screen&#45;&#45;button">{{= it.lang.get('share') }}</div>-->
 
 			{{? it.info.get('dev-mode') }}
