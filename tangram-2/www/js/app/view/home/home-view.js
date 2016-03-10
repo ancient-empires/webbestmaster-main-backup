@@ -148,7 +148,7 @@ var HomeView = BaseView.extend({
 		//tl.from('.anim-btn-1', 0.7, { left: "100px", opacity: 0, ease: Bounce.easeOut }, 0);
 		//tl.from('.anim-btn-2', 0.7, { top: "100px", opacity: 0, ease: Bounce.easeOut }, 0);
 
-		tl.staggerFrom('.anim-letter', 0.4, {top: "-150px", opacity: 0, ease: Back.easeOut}, 0.2);
+		tl.staggerTo('.anim-letter', 0.4, {top: "0px", opacity: 1, ease: Back.easeOut}, 0.2);
 
 		setTimeout(function () {
 			tl.stop();
