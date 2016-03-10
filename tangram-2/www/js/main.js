@@ -8,7 +8,7 @@ import log from './services/log';
 
 import mediator from './services/mediator';
 
-// init all librares
+// init all libraries
 import polyfillClassList from './lib/polyfill-class-list';
 import shim from './lib/shim';
 import shimES5 from './lib/shim-es5';
@@ -22,7 +22,11 @@ import doT from './lib/dot';
 import Queue from './lib/queue';
 import Swiper from './lib/swiper';
 
-import TweenMax from './lib/TweenMax.min';
+// init tween libraries
+import TweenLite from './lib/tween/TweenLite.min';
+import TimelineLite from './lib/tween/TimelineLite.min';
+import EasePack from './lib/tween/EasePack.min';
+import CSSPlugin from './lib/tween/CSSPlugin.min';
 
 // init all services
 import device from './services/device';

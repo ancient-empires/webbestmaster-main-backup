@@ -5,6 +5,7 @@ import BaseView from './../core/base';
 import tm from './../../../services/template-master';
 import lang from './../../../services/lang';
 import log from './../../../services/log';
+import device from './../../../services/device';
 import $ from './../../../lib/jbone';
 import info from './../../../services/info';
 import util from './../../../services/util';
@@ -28,7 +29,8 @@ var HomeView = BaseView.extend({
 		view.setElement(tm.get('home')({
 			lang: lang,
 			info: info,
-			textureInfo: textureInfo
+			textureInfo: textureInfo,
+			device: device
 		}));
 
 		view.render().then(function () {
@@ -142,31 +144,19 @@ var HomeView = BaseView.extend({
 
 	animate: function (fn) {
 
-		var tl = new TimelineMax();
+		var tlLetter = new TimelineLite();
+		var tlBtn = new TimelineLite();
 
-		//tl.from('.anim-btn-0', 0.7, { left: "-100px", opacity: 0, ease: Bounce.easeOut }, 0);
-		//tl.from('.anim-btn-1', 0.7, { left: "100px", opacity: 0, ease: Bounce.easeOut }, 0);
-		//tl.from('.anim-btn-2', 0.7, { top: "100px", opacity: 0, ease: Bounce.easeOut }, 0);
-
-		tl.staggerTo('.anim-letter', 0.4, {top: "0px", opacity: 1, ease: Back.easeOut}, 0.2);
+		tlLetter.staggerTo('.anim-letter', 0.4, {top: "0px", rotation: 360, ease: Back.easeOut }, 0.1);
+		tlBtn.staggerTo('.anim-btn', 0.7, { left: "0px", ease: Power4.easeOut}, 0.2);
 
 		setTimeout(function () {
-			tl.stop();
-			tl.remove();
+			tlLetter.stop();
+			tlLetter.remove();
+			tlBtn.stop();
+			tlBtn.remove();
 			fn();
 		}, 2.5e3);
-
-/*
-		var buttons = $('.screen--button'),
-			buttonStyles = buttons.map(function (button) {
-				return button.style;
-			}),
-			tl = new TimelineLite();
-
-		tl.to(buttonStyles, 2, {fontSize: 0});
-*/
-
-
 
 	}
 
