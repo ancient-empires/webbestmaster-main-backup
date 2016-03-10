@@ -1,23 +1,23 @@
 'use strict';
 /*global window */
 
-import angel from './sections-new/angel';
-import animal_1 from './sections-new/animal-1';
-import animal_2 from './sections-new/animal-2';
-import birth_1 from './sections-new/birth-1';
-import birth_2 from './sections-new/birth-2';
-import birth_3 from './sections-new/birth-3';
-import birth_4 from './sections-new/birth-4';
-import cat from './sections-new/cat';
-import chinesePerson from './sections-new/chinese-person';
-import dancingHumans from './sections-new/dancing-humans';
-import dog from './sections-new/dog';
-import face from './sections-new/face';
-import people_1 from './sections-new/people-1';
-import people_2 from './sections-new/people-2';
-import people_3 from './sections-new/people-3';
-import rabbit from './sections-new/rabbit';
-import rider from './sections-new/rider';
+import angel from './sections/angel';
+import animal_1 from './sections/animal-1';
+import animal_2 from './sections/animal-2';
+import birth_1 from './sections/birth-1';
+import birth_2 from './sections/birth-2';
+import birth_3 from './sections/birth-3';
+import birth_4 from './sections/birth-4';
+import cat from './sections/cat';
+import chinesePerson from './sections/chinese-person';
+import dancingHumans from './sections/dancing-humans';
+import dog from './sections/dog';
+import face from './sections/face';
+import people_1 from './sections/people-1';
+import people_2 from './sections/people-2';
+import people_3 from './sections/people-3';
+import rabbit from './sections/rabbit';
+import rider from './sections/rider';
 
 var tangrams = {
 
