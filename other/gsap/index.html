@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>gsap</title>
+
+	<!-- mobile device -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<!-- do not call phone -->
+	<meta name="format-detection" content="telephone=no">
+
+	<!-- keywords and description -->
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenLite.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TimelineLite.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/easing/EasePack.min.js"></script>
+
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>-->
+
+</head>
+<body>
+
+<script type="text/javascript">
+
+	var obj = {
+		a: 5
+	};
+
+	var obj2 = {
+		a: 5
+	};
+
+	var obj3 = {
+		a: 5
+	};
+
+	var tl = new TimelineLite();
+
+	tl.staggerTo([obj, obj2, obj3], 2, {a: 3, delay: 1}, 1);
+	tl.to(obj, 2, {a: 6, onComplete: function () {
+		alert('END!');
+	}});
+
+	setInterval(function () {
+		console.log('--');
+		console.log(obj.a);
+		console.log(obj2.a);
+		console.log(obj3.a);
+	}, 100);
+
+//	tl.pause();
+
+</script>
+
+</body>
+</html>
