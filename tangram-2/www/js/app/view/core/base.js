@@ -241,6 +241,8 @@ var win = window,
 				isScreenAnimation = info.get('screenAnimation') === 'on',
 				deferred = $.Deferred();
 
+			view.destroyVerticalSwiper();
+
 			view.empty();
 
 			view.set('isHidden', true);
@@ -616,12 +618,12 @@ var win = window,
 
 			var view = this,
 				$el = view.$el,
-				varticalSwiper;
+				verticalSwiper;
 
 			// need for swiper
 			$el.find('.swiper-slide').css('height', 'auto');
 
-			varticalSwiper = new Swiper($el.find(view.selectors.verticalSwiper), {
+			verticalSwiper = new Swiper($el.find(view.selectors.verticalSwiper), {
 				scrollbar: '.swiper-scrollbar',
 				direction: 'vertical',
 				slidesPerView: 'auto',
@@ -629,7 +631,16 @@ var win = window,
 				freeMode: true
 			});
 
-			view.set('vertical-swiper', varticalSwiper);
+			view.set('vertical-swiper', verticalSwiper);
+
+		},
+
+		destroyVerticalSwiper: function () {
+
+			var view = this,
+				verticalSwiper = view.get('vertical-swiper');
+
+			return verticalSwiper && verticalSwiper.destroy && verticalSwiper.destroy();
 
 		},
 
