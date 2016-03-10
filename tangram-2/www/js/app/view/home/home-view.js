@@ -31,13 +31,13 @@ var HomeView = BaseView.extend({
 			textureInfo: textureInfo
 		}));
 
-		view.publish('previewSectionHelper:initialize');
-
 		view.render().then(function () {
 
 			if (view.get('isHidden')) {
 				return;
 			}
+
+			view.publish('previewSectionHelper:initialize');
 
 			//view.publish('app-cache:check-cache');
 			view.rateUsPopup();
