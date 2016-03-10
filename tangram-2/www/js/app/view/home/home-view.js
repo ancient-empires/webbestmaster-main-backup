@@ -33,20 +33,19 @@ var HomeView = BaseView.extend({
 			device: device
 		}));
 
-		view.render().then(function () {
+		view
+			.render()
+			.then(view.animate)
+			.then(function () {
 
-			view.animate(function () {
 				if (view.get('isHidden')) {
 					return;
 				}
 
 				view.publish('previewSectionHelper:initialize');
-
-				//view.publish('app-cache:check-cache');
 				view.rateUsPopup();
-			});
 
-		});
+			});
 
 		return BaseView.prototype.initialize.apply(view, arguments);
 
@@ -142,21 +141,34 @@ var HomeView = BaseView.extend({
 
 	},
 
-	animate: function (fn) {
+	animate: function () {
 
-		var tlLetter = new TimelineLite();
-		var tlBtn = new TimelineLite();
+		var defer = $.Deferred(),
+			tlLetter,
+			tlBtn;
 
-		tlLetter.staggerTo('.anim-letter', 0.4, {top: "0px", rotation: 360, ease: Back.easeOut }, 0.1);
-		tlBtn.staggerTo('.anim-btn', 0.7, { left: "0px", ease: Power4.easeOut}, 0.2);
+		if (info.get('home-animation-shown', true)) {
+			defer.resolve();
+			return defer.promise();
+		}
+
+		info.set('home-animation-shown', true, true);
+
+		tlLetter = new TimelineLite();
+		tlBtn = new TimelineLite();
+
+		tlLetter.staggerTo('.anim-letter', 0.4, {top: "0px", rotation: 360, ease: Back.easeOut }, 0.1); // 1.1
+		tlBtn.staggerTo('.anim-btn', 0.7, { left: "0px", ease: Power4.easeOut}, 0.2); // 1.3
 
 		setTimeout(function () {
 			tlLetter.stop();
 			tlLetter.remove();
 			tlBtn.stop();
 			tlBtn.remove();
-			fn();
-		}, 2.5e3);
+			defer.resolve();
+		}, 1.3e3);
+
+		return defer.promise();
 
 	}
 
