@@ -157,8 +157,8 @@ var HomeView = BaseView.extend({
 		tlLetter = new TimelineLite();
 		tlBtn = new TimelineLite();
 
-		tlLetter.staggerTo('.anim-letter', 0.4, {top: "0px", rotation: 360, ease: Back.easeOut }, 0.1); // 1.1
-		tlBtn.staggerTo('.anim-btn', 0.7, { left: "0px", ease: Power4.easeOut}, 0.2); // 1.3
+		tlLetter.staggerTo('.anim-letter', 0.4, {top: 0, rotation: 360, ease: Back.easeOut}, 0.1); // 1.1
+		tlBtn.staggerTo('.anim-btn', 0.7, {left: 0, ease: Power4.easeOut}, 0.2); // 1.3
 
 		setTimeout(function () {
 			tlLetter.stop();

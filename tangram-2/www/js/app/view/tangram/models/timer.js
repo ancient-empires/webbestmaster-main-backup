@@ -3,11 +3,12 @@
 
 import Backbone from './../../../../lib/backbone';
 import mediator from './../../../../services/mediator';
+import info from './../../../../services/info';
 
 var Timer = Backbone.Model.extend({
 
 	defaults: {
-		stars: [25e3, 45e3],
+		stars: [45e3, 90e3],
 		updatePeriod: 200,
 		visibleTime: '0:00'
 	},
@@ -101,14 +102,16 @@ var Timer = Backbone.Model.extend({
 	getStars: function () {
 
 		var timer = this,
+			difficult = info.get('gameDifficult'),
+			difficultQ = difficult === 'regular' ? 1 : 1.6,
 			time = timer.get('time'),
 			stars = timer.get('stars');
 
-		if (time < stars[0]) {
+		if (time < (stars[0] * difficultQ)) {
 			return 3;
 		}
 
-		if (time < stars[1]) {
+		if (time < (stars[1] * difficultQ)) {
 			return 2;
 		}
 
