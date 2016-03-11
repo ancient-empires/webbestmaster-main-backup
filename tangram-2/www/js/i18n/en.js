@@ -24,8 +24,10 @@ var en = {
 	// tangram
 
 	menu: 'menu',
-	exit: 'exit',
-	reset: 'reset',
+	'exit-to-section': 'exit to section',
+	'reset-tangram': 'reset tangram',
+	'prev-tangram': 'prev. tangram', // it means "previous tangram"
+	'next-tangram': 'next tangram',
 
 	// title menu
 	'play-regular': 'play regular',

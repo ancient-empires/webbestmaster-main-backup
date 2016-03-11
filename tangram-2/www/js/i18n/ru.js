@@ -24,8 +24,10 @@ var ru = {
 	// tangram
 
 	menu: 'меню',
-	exit: 'выйти',
-	reset: 'сброс',
+	'exit-to-section': 'выйти в секцию',
+	'reset-tangram': 'сброс танграма',
+	'prev-tangram': 'пред. танграм',
+	'next-tangram': 'след. танграм',
 
 	// title menu
 	'play-regular': 'обычная игра',

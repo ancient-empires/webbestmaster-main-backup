@@ -10,6 +10,7 @@ import _ from './../../../lib/lodash';
 import info from './../../../services/info';
 import tangrams from './../../data/tangrams';
 import androidAds from './../../../services/android-ads';
+import util from './../../../services/util';
 
 var TangramSuccessfulView = BaseView.extend({
 
@@ -26,7 +27,7 @@ var TangramSuccessfulView = BaseView.extend({
 
 		//view.extendFromObj(data);
 
-		sectionInfo = view.getSectionInfo(tangramInfo);
+		sectionInfo = util.getSectionInfo(tangramInfo);
 
 		sectionInfo.stars = data.stars;
 
@@ -37,40 +38,6 @@ var TangramSuccessfulView = BaseView.extend({
 		view.subscribe('route', view.hide);
 
 		return BaseView.prototype.initialize.apply(view, arguments);
-
-	},
-
-	getSectionInfo: function (data) {
-
-		var view = this,
-			id = data.id,
-			section = _.find(tangrams.data, function (data) {
-				// {name: name}
-				return data.id === id;
-			}),
-			lastIndex = section.data.length - 1,
-			nextIndex,
-			prevIndex,
-			index = data.index;
-
-		if (index === lastIndex) { // index === lastIndex
-			nextIndex = 0;
-			prevIndex = index - 1;
-		} else if (!index) { // index === 0
-			nextIndex = 1;
-			prevIndex = lastIndex;
-		} else {
-			nextIndex = index + 1;
-			prevIndex = index - 1;
-		}
-
-		return {
-			nextIndex: nextIndex,
-			prevIndex: prevIndex,
-			section: section,
-			id: data.id,
-			index: index
-		};
 
 	},
 

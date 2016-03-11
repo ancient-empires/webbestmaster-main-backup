@@ -2,6 +2,7 @@
 /*global window */
 
 import $ from './../lib/jbone';
+import _ from './../lib/lodash';
 import Queue from './../lib/queue';
 // tangram
 import tansInfo from './../app/view/tangram/models/tans-info';
@@ -301,6 +302,39 @@ var arrayProto = Array.prototype,
 			});
 
 			return this.loadImages(imagesSrc);
+
+		},
+
+		getSectionInfo: function (data) {
+
+			var id = data.id,
+				section = _.find(tangrams.data, function (data) {
+					// {name: name}
+					return data.id === id;
+				}),
+				lastIndex = section.data.length - 1,
+				nextIndex,
+				prevIndex,
+				index = data.index;
+
+			if (index === lastIndex) { // index === lastIndex
+				nextIndex = 0;
+				prevIndex = index - 1;
+			} else if (!index) { // index === 0
+				nextIndex = 1;
+				prevIndex = lastIndex;
+			} else {
+				nextIndex = index + 1;
+				prevIndex = index - 1;
+			}
+
+			return {
+				nextIndex: nextIndex,
+				prevIndex: prevIndex,
+				section: section,
+				id: data.id,
+				index: index
+			};
 
 		}
 

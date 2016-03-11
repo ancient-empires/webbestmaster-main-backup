@@ -173,7 +173,7 @@
 				{{? stars === 3}}&#xe901;&#xe901;&#xe901;{{?}}
 			</div>
 
-			<div class="js-one-more-tangram one-more-tangram_left" data-id="{{= it.id }}" data-index="{{= it.nextIndex }}">&#xf040;</div>
+			<div class="js-one-more-tangram one-more-tangram_left" data-id="{{= it.id }}" data-index="{{= it.prevIndex }}">&#xf040;</div>
 			<!--<button class="js-restart-tangram" data-name="{{= it.name }}" data-index="{{= it.index }}" >restart tangram</button>-->
 			<div class="js-one-more-tangram one-more-tangram_center" data-id="{{= it.id }}" data-index="{{= it.index }}">&#xf087;</div>
 			<div class="js-one-more-tangram one-more-tangram_right" data-id="{{= it.id }}" data-index="{{= it.nextIndex }}">&#xf03e;</div>
@@ -231,8 +231,31 @@
 
 	<h1 class="tangram-menu--header">{{= it.lang.get('menu') }}</h1>
 
-	<div class="screen--button js-reset-tangram">{{= it.lang.get('reset') }}</div>
-	<div class="screen--button js-back-to-section">{{= it.lang.get('exit') }}</div>
+	<div class="screen--button_popup js-one-more-tangram" data-id="{{= it.id }}" data-index="{{= it.index }}">{{= it.lang.get('reset-tangram') }}</div>
+	<div class="screen--button_popup js-one-more-tangram" data-id="{{= it.id }}" data-index="{{= it.prevIndex }}">{{= it.lang.get('prev-tangram') }}</div>
+	<div class="screen--button_popup js-one-more-tangram" data-id="{{= it.id }}" data-index="{{= it.nextIndex }}">{{= it.lang.get('next-tangram') }}</div>
+	<br>
+
+	{{var difficult = it.info.get('gameDifficult'); }}
+
+	{{~ ['regular', 'master'] :type }}
+	<div class="screen--button_popup js-set-game-difficult" data-difficult="{{= type }}" data-id="{{= it.id }}" data-index="{{= it.index }}">
+
+		{{? type === difficult }}
+		<span class="screen--button--icon">&#xf03e;</span>
+		{{??}}
+		<span class="screen--button--icon_inactive">&#xf03e;</span>
+		{{?}}
+
+		{{= it.lang.get('play-' + type) }}
+
+	</div>
+	{{~}}
+
+	<br>
+	<div class="screen--button_popup js-back-to-section">{{= it.lang.get('exit-to-section') }}</div>
+
+
 
 </script>
 
@@ -289,6 +312,8 @@
 						<div class="screen--button js-set-lang" data-lang="{{= lang }}">
 							{{? currentLanguage === lang }}
 							<span class="screen--button--icon">&#xf03e;</span>
+							{{??}}
+							<span class="screen--button--icon_inactive">&#xf03e;</span>
 							{{?}}
 							{{= langSpelling }}
 						</div>

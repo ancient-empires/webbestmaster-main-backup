@@ -11,8 +11,10 @@ import log from './../../../services/log';
 import info from './../../../services/info';
 import mediator from './../../../services/mediator';
 import lang from './../../../services/lang';
+import util from './../../../services/util';
 import tangrams from './../../data/tangrams';
 import _ from './../../../lib/lodash';
+import $ from './../../../lib/jbone';
 
 var tanCollectionProto = TanCollection.prototype;
 
@@ -265,7 +267,10 @@ var TangramView = BaseView.extend({
 	showMenu: function () {
 
 		var view = this,
-			tangramInfo = view.get('tangram-info');
+			data = util.getSectionInfo(view.get('tangram-info'));
+
+		data.lang = lang;
+		data.info = info;
 
 		view.set('menu-is-open', true);
 
@@ -277,17 +282,46 @@ var TangramView = BaseView.extend({
 				fn: 'hideMenu',
 				context: view
 			},
-			data: {
-				lang: lang
-			},
+			data: data,
 			extraEvents: [
 				{
-					selector: '.js-reset-tangram',
+					selector: '.js-one-more-tangram',
 					event: 'click',
-					fn: function () {
+					fn: function (e) {
 
-						view.hide();
-						mediator.publish('tangram-view', tangramInfo);
+						var $node = $(e.currentTarget),
+							index = $node.attr('data-index'),
+							id = $node.attr('data-id');
+
+						//view.hide();
+
+						mediator.publish('hide-main-view');
+
+						mediator.publish('tangram-view', {
+							id: id,
+							index: index
+						});
+
+					}
+				},
+				{
+					selector: '.js-set-game-difficult',
+					event: 'click',
+					fn: function (e) {
+
+						var $node = $(e.currentTarget),
+							difficult = $node.attr('data-difficult'),
+							index = $node.attr('data-index'),
+							id = $node.attr('data-id');
+
+						info.set('gameDifficult', difficult);
+
+						mediator.publish('hide-main-view');
+
+						mediator.publish('tangram-view', {
+							id: id,
+							index: index
+						});
 
 					}
 				},
