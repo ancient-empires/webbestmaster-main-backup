@@ -35,7 +35,7 @@ var HomeView = BaseView.extend({
 
 		view
 			.render()
-			.then(view.animate)
+			.then(view.animate.bind(view))
 			.then(function () {
 
 				if (view.get('isHidden')) {
@@ -143,7 +143,8 @@ var HomeView = BaseView.extend({
 
 	animate: function () {
 
-		var defer = $.Deferred(),
+		var view = this,
+			defer = $.Deferred(),
 			tlLetter,
 			tlBtn;
 
@@ -160,11 +161,9 @@ var HomeView = BaseView.extend({
 		tlLetter.staggerTo('.anim-letter', 0.4, {top: 0, rotation: 360, ease: Back.easeOut}, 0.1); // 1.1
 		tlBtn.staggerTo('.anim-btn', 0.7, {left: 0, ease: Power4.easeOut}, 0.2); // 1.3
 
+		view.pushAnimation(tlLetter, tlBtn);
+
 		setTimeout(function () {
-			tlLetter.stop();
-			tlLetter.remove();
-			tlBtn.stop();
-			tlBtn.remove();
 			defer.resolve();
 		}, 1.3e3);
 

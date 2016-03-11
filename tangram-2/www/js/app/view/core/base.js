@@ -135,7 +135,9 @@ var win = window,
 
 			view.selectors = $.extend({}, proto.selectors, view.selectors);
 
-			view.attr = {};
+			view.attr = {
+				animations: []
+			};
 
 			//view.setClassNames();
 
@@ -143,6 +145,23 @@ var win = window,
 
 			return Backbone.View.prototype.constructor.apply(view, arguments);
 		},
+
+		pushAnimation: function () {
+
+			return this.attr.animations.push.apply(this.attr.animations, arguments);
+
+		},
+
+		destroyAnimations: function () {
+
+			return this.attr.animations.forEach(function (animation) {
+				animation.stop();
+				animation.remove();
+			});
+
+		},
+
+
 
 /*
 		setClassNames: function () {
@@ -219,13 +238,15 @@ var win = window,
 
 			var view = this;
 
+			view.destroyAnimations();
+
+			view.empty();
+
 			// view.$el.removeData().unbind().remove().empty(); // use with jQuery
 			view.$el.remove().empty();
 
 			view.remove();
 			view.unbind();
-
-
 
 			return Backbone.View.prototype.remove.call(view);
 
@@ -242,8 +263,6 @@ var win = window,
 				deferred = $.Deferred();
 
 			view.destroyVerticalSwiper();
-
-			view.empty();
 
 			view.set('isHidden', true);
 
@@ -603,6 +622,15 @@ var win = window,
 		},
 
 		empty: function () {
+
+			var attr = this.attr,
+				key;
+
+			for (key in attr) {
+				if (attr.hasOwnProperty(key)) {
+					attr[key] = null;
+				}
+			}
 
 			this.attr = {};
 
