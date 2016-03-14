@@ -224,4 +224,19 @@
 	});
 
 
+	var server = require('gulp-server-livereload');
+
+	gulp.task('webserver', function() {
+		gulp.src('./')
+			.pipe(server({
+				livereload: true,
+				directoryListing: true,
+				open: true,
+				host: '0.0.0.0',
+				port: 8080,
+				log: 'debug'
+			}));
+	});
+
+
 }());
