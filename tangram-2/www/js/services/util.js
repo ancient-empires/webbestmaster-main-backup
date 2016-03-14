@@ -285,7 +285,6 @@ var arrayProto = Array.prototype,
 
 		},
 
-/*
 		preLoadTangramImages: function () {
 
 			var imagesSrc = [];
@@ -305,7 +304,6 @@ var arrayProto = Array.prototype,
 			return this.loadImages(imagesSrc);
 
 		},
-*/
 
 		getSectionInfo: function (data) {
 
