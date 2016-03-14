@@ -256,9 +256,10 @@ var arrayProto = Array.prototype,
 		preLoadInterfaceImages: function () {
 
 			// load interface images
-			var imagesPath = ['mover-bg.svg', 'popup-close-icon.svg', 'rotate-bg.svg', 'tangram-frame.svg'],
-				i;
+			var imagesPath = ['mover-bg.svg', 'rotate-bg.svg', 'popup-close-icon.svg', 'tangram-frame.svg'];
+				//i;
 
+/*
 			for (i = 0; i < 9; i += 1) {
 
 				// push texture for settings
@@ -270,6 +271,7 @@ var arrayProto = Array.prototype,
 				});
 
 			}
+*/
 
 			imagesPath = imagesPath.map(function (path) {
 				return 'i/' + path;
@@ -285,6 +287,7 @@ var arrayProto = Array.prototype,
 
 		},
 
+/*
 		preLoadTangramImages: function () {
 
 			var imagesSrc = [];
@@ -304,6 +307,7 @@ var arrayProto = Array.prototype,
 			return this.loadImages(imagesSrc);
 
 		},
+*/
 
 		getSectionInfo: function (data) {
 

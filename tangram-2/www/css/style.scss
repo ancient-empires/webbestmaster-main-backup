@@ -144,7 +144,7 @@ body {
   width: 5rem;
   height: 5rem;
   display: block;
-  @include prefix(background-size, 100% 100%);
+  //@include prefix(background-size, 100% 100%);
 }
 
 .section-preview-name {
@@ -340,8 +340,14 @@ body {
   position: relative;
 }
 
+.load-image {
+  opacity: 0.01;
+  @include prefix(transition, opacity 0.3s linear);
+}
 
-
+.loaded-image {
+  opacity: 1;
+}
 
 
 

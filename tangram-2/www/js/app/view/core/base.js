@@ -298,10 +298,29 @@ var win = window,
 			view.publish('hide-main-view');
 			view.subscribe('hide-main-view', view.hide);
 
+			view.bindLoadImages();
+
 			view.$wrapper.append(view.$el);
 			//view.util.setSizes();
 			//view.util.toTop();
 			return view.showAppearAnimation();
+
+		},
+
+		bindLoadImages: function () {
+
+			var view = this,
+				$images = view.$el.find('.js-load-image');
+
+			$images.one('load', view.bindLoadImage);
+
+		},
+
+		bindLoadImage: function (e) {
+
+			$(e.currentTarget)
+				.addClass('loaded-image')
+				.off();
 
 		},
 
