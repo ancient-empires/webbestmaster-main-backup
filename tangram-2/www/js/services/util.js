@@ -281,6 +281,18 @@ var arrayProto = Array.prototype,
 
 		},
 
+		preLoadTangramParts: function (index) {
+
+			var imagesPath = [];
+
+			Object.keys(tansInfo).forEach(function (key) {
+				imagesPath.push('i/tan-textures/texture-' + index + '-' + key + '.png');
+			});
+
+			return this.loadImages(imagesPath);
+
+		},
+
 		getPathBetween: function (xy0, xy1) {
 
 			return Math.sqrt( Math.pow(xy0.x - xy1.x, 2) + Math.pow(xy0.y - xy1.y, 2));

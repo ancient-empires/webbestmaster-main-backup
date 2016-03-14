@@ -38,6 +38,8 @@ var HomeView = BaseView.extend({
 			.then(view.animate.bind(view))
 			.then(function () {
 
+				util.preLoadTangramParts(info.get('tangramTexture'));
+
 				if (view.get('isHidden')) {
 					return;
 				}
