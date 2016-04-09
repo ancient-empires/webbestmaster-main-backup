@@ -455,9 +455,10 @@ var win = window,
 		checkScreen: function () {
 
 			var screenWidth = screen.width,
-				viewPortWidth = docElem.clientWidth;
+				viewPortWidth = docElem.clientWidth,
+				pixelRatio = win.devicePixelRatio || 1;
 
-			if (screenWidth === viewPortWidth) {
+			if ( Math.abs(screenWidth - viewPortWidth * pixelRatio) < 10 ) {
 				return;
 			}
 
