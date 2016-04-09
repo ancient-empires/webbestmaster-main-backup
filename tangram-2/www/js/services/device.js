@@ -450,6 +450,19 @@ var win = window,
 
 			device.publish('resize', data);
 
+		},
+
+		checkScreen: function () {
+
+			var screenWidth = screen.width,
+				viewPortWidth = docElem.clientWidth;
+
+			if (screenWidth === viewPortWidth) {
+				return;
+			}
+
+			win.location.reload();
+			
 		}
 
 	});

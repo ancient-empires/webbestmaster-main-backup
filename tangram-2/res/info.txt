@@ -14,9 +14,9 @@ tangram Android: com.statlex.tangram
 
 
 // ads money
-KidsLogicAndCriticalThinking@gmail.com - 16,37 $
+KidsLogicAndCriticalThinking@gmail.com - 16,37 $ - enable
 admob.best.ads@gmail.com - 149,84 $
 gay.fackel@gmail.com - 29,75 $
 
-
+https://play.google.com/store/apps/details?id=com.statlex.tangram
 

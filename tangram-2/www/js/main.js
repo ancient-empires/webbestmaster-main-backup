@@ -66,4 +66,8 @@ win.$ = win.jQuery = win.jquery = $;
 	Backbone.history.start();
 	win.setTimeout(androidAds.showAd, 3e3);
 
+	setTimeout(function () {
+		device.checkScreen();
+	}, 100);
+
 }());
