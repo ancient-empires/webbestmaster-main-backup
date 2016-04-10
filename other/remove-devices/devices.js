@@ -808,6 +808,14 @@ window.devices = [
     deviceName: 'oceanus'
   },
   {
+    product: 'Lenovo Mobile P780',
+    deviceName: 'P780_ROW'
+  },
+  {
+    product: 'Lenovo Mobile P780',
+    deviceName: 'P780'
+  },
+  {
     product: 'ZTE Blade V',
     deviceName: 'ZTE-Blade-V'
   },
