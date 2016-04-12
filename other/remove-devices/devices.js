@@ -807,6 +807,7 @@ window.devices = [
     product: 'Blade G LTE',
     deviceName: 'oceanus'
   },
+/*
   {
     product: 'Lenovo Mobile P780',
     deviceName: 'P780_ROW'
@@ -815,6 +816,7 @@ window.devices = [
     product: 'Lenovo Mobile P780',
     deviceName: 'P780'
   },
+*/
   {
     product: 'ZTE Blade V',
     deviceName: 'ZTE-Blade-V'
