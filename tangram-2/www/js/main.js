@@ -48,26 +48,29 @@ import previewSectionHelper from './app/view/sections/preview-section-helper';
 
 import appCache from './services/app-cache';
 
-// small init
-var win = window;
-new FastClick(win.document.body);
-Deferred.installInto($);
-win.$ = win.jQuery = win.jquery = $;
+window.addEventListener('load', function () {
 
-(function back() {
+    // small init
+    var win = window;
+    new FastClick(win.document.body);
+    Deferred.installInto($);
+    win.$ = win.jQuery = win.jquery = $;
 
-	if ( win.location.hash ) {
-		win.history.back();
-		return win.setTimeout(back, 50);
-	}
+    (function back() {
 
-	BaseView.prototype.initStatic();
+        if (win.location.hash) {
+            win.history.back();
+            return win.setTimeout(back, 50);
+        }
 
-	Backbone.history.start();
-	win.setTimeout(androidAds.showAd, 3e3);
+        tm.init();
 
-	setTimeout(function () {
-		device.checkScreen();
-	}, 100);
+        BaseView.prototype.initStatic();
 
-}());
+        Backbone.history.start();
+        win.setTimeout(androidAds.showAd, 3e3);
+
+    }());
+
+}, false);
+

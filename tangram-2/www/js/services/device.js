@@ -76,24 +76,29 @@ var win = window,
 		bindEventListeners: function () {
 
 			var device = this,
-				events = device.events,
-				body = doc.body;
+				events = device.events;
 
 			win.addEventListener('resize', function () {
 				device.onResize();
 			}, false);
 
-			body.addEventListener(events.down, function (e) {
-				device.onDown(e);
-			}, false);
+			setTimeout(function () {
 
-			body.addEventListener(events.move, function (e) {
-				device.onMove(e);
-			}, false);
+				var body = doc.body;
 
-			body.addEventListener(events.up, function (e) {
-				device.onUp(e);
-			}, false);
+				body.addEventListener(events.down, function (e) {
+					device.onDown(e);
+				}, false);
+
+				body.addEventListener(events.move, function (e) {
+					device.onMove(e);
+				}, false);
+
+				body.addEventListener(events.up, function (e) {
+					device.onUp(e);
+				}, false);
+
+			}, 100);
 
 			device.on('change:actionIsActive', function (self, actionIsActive) {
 				self.publish('deviceAction:isActive', actionIsActive, self.logMovingGetLast());
@@ -450,8 +455,9 @@ var win = window,
 
 			device.publish('resize', data);
 
-		},
+		}
 
+/*
 		checkScreen: function () {
 
 			var screenWidth = screen.width,
@@ -465,6 +471,7 @@ var win = window,
 			win.location.reload();
 			
 		}
+*/
 
 	});
 

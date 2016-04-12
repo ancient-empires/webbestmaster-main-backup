@@ -36,8 +36,6 @@ var doc = window.document,
 
 	};
 
-templateMaster.init();
-
 export default templateMaster;
 
 
