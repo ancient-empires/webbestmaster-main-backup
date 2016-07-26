@@ -22,12 +22,6 @@ import doT from './lib/dot';
 import Queue from './lib/queue';
 import Swiper from './lib/swiper';
 
-// init tween libraries
-import TweenLite from './lib/tween/TweenLite.min';
-import TimelineLite from './lib/tween/TimelineLite.min';
-import EasePack from './lib/tween/EasePack.min';
-import CSSPlugin from './lib/tween/CSSPlugin.min';
-
 // init all services
 import device from './services/device';
 import androidAds from './services/android-ads';

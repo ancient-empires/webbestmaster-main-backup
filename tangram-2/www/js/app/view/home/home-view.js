@@ -35,7 +35,7 @@ var HomeView = BaseView.extend({
 
 		view
 			.render()
-			.then(view.animate.bind(view))
+			// .then(view.animate.bind(view))
 			.then(function () {
 
 				util.preLoadTangramParts(info.get('tangramTexture'));
@@ -141,8 +141,9 @@ var HomeView = BaseView.extend({
 
 		return defer.promise();
 
-	},
+	}
 
+/*
 	animate: function () {
 
 		var view = this,
@@ -172,6 +173,7 @@ var HomeView = BaseView.extend({
 		return defer.promise();
 
 	}
+*/
 
 });
 

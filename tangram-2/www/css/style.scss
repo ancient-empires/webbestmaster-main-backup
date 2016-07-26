@@ -115,6 +115,8 @@ body {
   text-align: center;
   position: relative;
   @extend .luxury-3d-button;
+  box-shadow: none;
+  background-image: none;
 }
 
 .section-preview-done-info {
@@ -124,7 +126,7 @@ body {
   margin: -0.1rem 0 -0.4rem;
   position: relative;
   z-index: 1;
-  @extend .stroked-text;
+  //@extend .stroked-text;
 }
 
 .section-preview:active {
@@ -153,7 +155,7 @@ body {
 }
 
 .section-header {
-  @extend .luxury-3d-text;
+  //@extend .luxury-3d-text;
   text-align: center;
   font-size: 2rem;
   line-height: 3rem;
@@ -164,7 +166,7 @@ body {
   font-size: 1.5rem;
   line-height: 2rem;
   padding-bottom: 0.3rem;
-  @extend .luxury-3d-text;
+  //@extend .luxury-3d-text;
 }
 
 .section-header-wrapper {
@@ -248,7 +250,7 @@ body {
 }
 
 .screen-back {
-  @extend .luxury-3d-text;
+  //@extend .luxury-3d-text;
   font-family: icons;
   left: 0;
   top: 0;
@@ -305,7 +307,7 @@ body {
   height: 1.8rem;
   margin-left: -2rem;
   opacity: 0.6;
-  @include prefix(transition, opacity ease-out 0.2s);
+  @include prefix(transition, opacity ease-out 0.1s);
 }
 
 .flip-tan_hidden {
@@ -335,10 +337,12 @@ body {
   z-index: -1;
 }
 
+/*
 .title-logo-letter {
   display: inline-block;
   position: relative;
 }
+*/
 
 .load-image {
   opacity: 0.01;
