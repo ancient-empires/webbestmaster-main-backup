@@ -2,7 +2,8 @@
 /*global window */
 
 import info from './services/info';
-info.set('dev-mode', false);
+info.set('dev-mode', !false);
+
 
 import log from './services/log';
 
@@ -41,6 +42,7 @@ import popupMaster from './app/view/core/popup';
 import previewSectionHelper from './app/view/sections/preview-section-helper';
 
 import appCache from './services/app-cache';
+Deferred.installInto($);
 
 window.addEventListener('load', function () {
 

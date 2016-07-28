@@ -39,8 +39,7 @@ var TangramConstructorView = TangramView.extend({
 				maxY: maxY,
 				sizeX: sizeX,
 				sizeY: sizeY
-			},
-			patternSvg;
+			};
 
 		view.set('tan-collection', tanCollection);
 
@@ -61,13 +60,13 @@ var TangramConstructorView = TangramView.extend({
 		tanCollection.initPattern({
 			data: []
 		});
-		patternSvg = tanCollection.drawPattern();
+		tanCollection.drawPattern().then(function (canvas) {
+			view.$el.append(canvas);
+		});
 		tanCollection.createTans();
 		tanCollection.addDrawFieldTo(view.$el);
 		tanCollection.drawTans();
 		tanCollection.setData('rotater', rotater);
-
-		view.$el.append(patternSvg);
 
 		view.set('$menuButton', view.$el.find('.js-tangram-menu-button'));
 
