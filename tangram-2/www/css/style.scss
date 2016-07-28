@@ -307,7 +307,7 @@ body {
   height: 1.8rem;
   margin-left: -2rem;
   opacity: 0.6;
-  @include prefix(transition, opacity ease-out 0.1s);
+  //@include prefix(transition, opacity ease-out 0.1s);
 }
 
 .flip-tan_hidden {
@@ -320,6 +320,7 @@ body {
 
 .flip-btn_active {
   opacity: 1;
+  @include prefix(transform, scale(1.1));
 }
 
 .flip-tan-image {
@@ -344,14 +345,18 @@ body {
 }
 */
 
+/*
 .load-image {
   opacity: 0.01;
   @include prefix(transition, opacity 0.3s linear);
 }
+*/
 
+/*
 .loaded-image {
   opacity: 1;
 }
+*/
 
 
 
