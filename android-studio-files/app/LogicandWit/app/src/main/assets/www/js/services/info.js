@@ -115,13 +115,13 @@
 				this.set('os', 'wp', true);
 			}
 
-			if ( isAndroid ) {
-				this.set('os', 'android', true);
-			}
-
 			if ( isIOS ) {
 				this.set('os', 'ios', true);
 			}
+
+			// if ( isAndroid ) {
+			this.set('os', 'android', true);
+			// }
 
 		},
 		set: function (key, value, isSystem) {
