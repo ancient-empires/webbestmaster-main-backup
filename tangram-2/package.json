@@ -21,6 +21,7 @@
     "gulp-tinypng": "^1.0.2",
     "gulp-uglify": "^3.0.2",
     "gulp-util": "^3.0.8",
+    "sass": "^1.54.3",
     "through2": "^4.0.2",
     "vinyl-source-stream": "^2.0.0"
   }
