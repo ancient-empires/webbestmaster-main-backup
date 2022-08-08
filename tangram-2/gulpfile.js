@@ -6,6 +6,7 @@ const gulp = require('gulp');
 const minifyCss = require('gulp-minify-css');
 const minifyHTML = require('gulp-minify-html');
 const sass = require('gulp-sass');
+const server = require('gulp-server-livereload');
 const tinypng = require('gulp-tinypng');
 const uglify = require('gulp-uglify');
 
@@ -25,7 +26,20 @@ const gulpTasks = {
       gulp.watch(glob, deps);
     });
   },
-}
+
+  /** Run a web server locally. */
+  webServer() {
+    gulp.src('./')
+      .pipe(server({
+        livereload: true,
+        directoryListing: true,
+        open: true,
+        host: '0.0.0.0',
+        port: 8080,
+        log: 'debug'
+      }));
+  }
+};
 
 /*jslint white: true, nomen: true */
 (function () {
@@ -233,21 +247,6 @@ const gulpTasks = {
       // uY9x_ytUQ0sq9-bB8iTvwGnmiWVci4an - web.best.master@gmail.com
       // RmSQIT1W2KC2_gZf27_KaZ7GWIzpmKJu - ae.fan.game@gmail.com
       .pipe(gulp.dest('dist'));
-  });
-
-
-  var server = require('gulp-server-livereload');
-
-  gulp.task('webserver', function() {
-    gulp.src('./')
-      .pipe(server({
-        livereload: true,
-        directoryListing: true,
-        open: true,
-        host: '0.0.0.0',
-        port: 8080,
-        log: 'debug'
-      }));
   });
 
 
