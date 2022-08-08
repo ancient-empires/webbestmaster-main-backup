@@ -5,10 +5,36 @@ const es6Import = require('gulp-es6-import');
 const gulp = require('gulp');
 const minifyCss = require('gulp-minify-css');
 const minifyHTML = require('gulp-minify-html');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const server = require('gulp-server-livereload');
 const tinypng = require('gulp-tinypng');
 const uglify = require('gulp-uglify');
+
+const cssTasks = {
+  importCss() {
+    return gulp.src('./www/css/main.css')
+        .pipe(cssimport({}))
+        .pipe(gulp.dest('./dist/www/css'));
+  },
+
+  sass() {
+    return gulp.src('./dist/www/css/main.css')
+      .pipe(sass())
+      .pipe(clean({
+        force: true,
+      }))
+      .pipe(gulp.dest('./dist/www/css'));
+  },
+
+  minifyCss() {
+    return gulp.src('./dist/www/css/main.css')
+        .pipe(minifyCss())
+        .pipe(clean({
+          force: true,
+        })) // remove original file (imported css)
+        .pipe(gulp.dest('./dist/www/css'));
+  },
+}
 
 const jsTasks = {
   es6Import() {
@@ -59,6 +85,12 @@ const tasks = {
   }
 };
 
+module.exports.css = gulp.series(
+  cssTasks.importCss,
+  cssTasks.sass,
+  cssTasks.minifyCss
+);
+
 module.exports.js = gulp.series(
   jsTasks.es6Import,
   jsTasks.uglify,
@@ -66,8 +98,9 @@ module.exports.js = gulp.series(
 
 module.exports.default = gulp.series(
   gulp.parallel(
-    gulp.series(module.exports.js)
-  )
+    module.exports.css,
+    module.exports.js,
+  ),
 );
 
 
@@ -133,19 +166,6 @@ module.exports.default = gulp.series(
 //     return gulp.start('import-css', 'sass', /*'autoprefix', */'minify-css');
 //   });
 
-//     gulp.task('import-css', function () {
-//       return gulp.src('./www/css/main.css')
-//         .pipe(cssimport({}))
-//         .pipe(gulp.dest('./dist/www/css'));
-//     });
-
-//     gulp.task('sass', ['import-css'], function () {
-//       return gulp.src('./dist/www/css/main.css')
-//         .pipe(sass())
-//         .pipe(clean({force: true}))
-//         .pipe(gulp.dest('./dist/www/css'));
-//     });
-
 //     //gulp.task('css-base64', ['sass'/*, 'copy-i'*/], function () {
 //     //  return gulp.src('./dist/www/css/main.css')
 //     //    .pipe(cssBase64())
@@ -159,13 +179,6 @@ module.exports.default = gulp.series(
 //           browsers: ['last 4 versions'],
 //           cascade: false
 //         }))
-//         .pipe(clean({force: true})) // remove original file (imported css)
-//         .pipe(gulp.dest('./dist/www/css'));
-//     });
-
-//     gulp.task('minify-css', ['sass'], function () { // autoprefix
-//       return gulp.src('./dist/www/css/main.css')
-//         .pipe(minifyCss())
 //         .pipe(clean({force: true})) // remove original file (imported css)
 //         .pipe(gulp.dest('./dist/www/css'));
 //     });
