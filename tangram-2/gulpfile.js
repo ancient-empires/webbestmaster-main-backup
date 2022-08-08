@@ -9,6 +9,24 @@ const sass = require('gulp-sass');
 const tinypng = require('gulp-tinypng');
 const uglify = require('gulp-uglify');
 
+const gulpTasks = {
+  /** Watch source files to see if any of them change. */
+  watch() {
+    /** @type { Map<string, string[]> } */
+    const depsMap = new Map([
+      ['./www/*.html',    ['html']     ],
+      ['./www/css/**/*',  ['css']      ],
+      ['./www/js/**/*',   ['js-watch'] ],
+      ['./www/i/**/*',    ['copy-data']],
+      ['./www/font/**/*', ['copy-data']],
+    ]);
+
+    depsMap.forEach((deps, glob) => {
+      gulp.watch(glob, deps);
+    });
+  },
+}
+
 /*jslint white: true, nomen: true */
 (function () {
 
