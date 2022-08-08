@@ -9,7 +9,6 @@ const sass = require('gulp-sass');
 const server = require('gulp-server-livereload');
 const tinypng = require('gulp-tinypng');
 const uglify = require('gulp-uglify');
-const { series } = require('gulp');
 
 const jsTasks = {
   es6Import() {
