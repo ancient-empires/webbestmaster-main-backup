@@ -9,21 +9,25 @@ const sass = require('gulp-sass');
 const server = require('gulp-server-livereload');
 const tinypng = require('gulp-tinypng');
 const uglify = require('gulp-uglify');
+const { series } = require('gulp');
 
-const gulpTasks = {
-  async default() {
-    return gulp.series(gulpTasks.jsEs6Import);
-  },
-
-  /** JavaScript ES6 import */
-  async jsEs6Import() {
+const jsTasks = {
+  es6Import() {
     return gulp.src('./www/js/main.js')
         .pipe(es6Import())
         .pipe(gulp.dest('./dist/www/js/'));
   },
 
+  uglify() {
+    return gulp.src('./dist/www/js/main.js')
+      .pipe(uglify())
+      .pipe(gulp.dest('./dist/www/js'));
+  },
+};
+
+const tasks = {
   /** Watch source files to see if any of them change. */
-  async watch() {
+  watch(cb) {
     /** @type { Map<string, string[]> } */
     const depsMap = new Map([
       ['./www/*.html',    ['html']     ],
@@ -36,10 +40,12 @@ const gulpTasks = {
     depsMap.forEach((deps, glob) => {
       gulp.watch(glob, deps);
     });
+
+    cb();
   },
 
   /** Run a web server locally. */
-  async webServer() {
+  webServer(cb) {
     gulp.src('./')
       .pipe(server({
         livereload: true,
@@ -49,13 +55,21 @@ const gulpTasks = {
         port: 8080,
         log: 'debug'
       }));
+
+    cb();
   }
 };
 
-module.exports.default = gulp.series(
-  gulpTasks.default
+module.exports.js = gulp.series(
+  jsTasks.es6Import,
+  jsTasks.uglify,
 );
 
+module.exports.default = gulp.series(
+  gulp.parallel(
+    gulp.series(module.exports.js)
+  )
+);
 
 
 // /*jslint white: true, nomen: true */
@@ -159,26 +173,6 @@ module.exports.default = gulp.series(
 
 
 //   // JS
-//   gulp.task('js', function () {
-//     return gulp.start('es6-import', 'uglify-js');
-//     //return gulp.start('es6-import');
-//   });
-
-//   gulp.task('js-watch', function () {
-//     return gulp.start('es6-import');
-//   });
-
-//     gulp.task('es6-import', function () {
-//       return gulp.src('./www/js/main.js')
-//         .pipe(es6Import())
-//         .pipe(gulp.dest('./dist/www/js/'));
-//     });
-
-//     gulp.task('uglify-js', ['es6-import'], function () {
-//       return gulp.src('./dist/www/js/main.js')
-//         .pipe(uglify())
-//         .pipe(gulp.dest('./dist/www/js'));
-//     });
 
 //   // copy data
 //   gulp.task('copy-data', function () {
