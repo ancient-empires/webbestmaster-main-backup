@@ -1,22 +1,16 @@
+const autoprefixer = require('gulp-autoprefixer');
+const clean = require('gulp-rimraf');
+const cssimport = require('gulp-cssimport');
+const es6Import = require('gulp-es6-import');
+const gulp = require('gulp');
+const minifyCss = require('gulp-minify-css');
+const minifyHTML = require('gulp-minify-html');
+const sass = require('gulp-sass');
+const tinypng = require('gulp-tinypng');
+const uglify = require('gulp-uglify');
+
 /*jslint white: true, nomen: true */
 (function () {
-
-  var es6Import = require('gulp-es6-import'),
-    gulp = require('gulp'),
-    uglify = require('gulp-uglify'),
-    clean = require('gulp-rimraf'),
-    //cssBase64 = require('gulp-css-base64'),
-    cssimport = require('gulp-cssimport'),
-    minifyCss = require('gulp-minify-css'),
-    minifyHTML = require('gulp-minify-html'),
-  //browserify = require('browserify'),
-  //babelify = require('babelify'),
-    tinypng = require('gulp-tinypng'),
-    sass = require('gulp-sass'),
-    autoprefixer = require('gulp-autoprefixer'),
-    source = require('vinyl-source-stream');
-  // gulp - run 'default' task
-  // gulp <task> <othertask>.
 
   gulp.task('default', /*['clear-dist'],*/ function () {
     return gulp.start(/*'app-cache', */ 'html', 'css', 'js', 'copy-data');
