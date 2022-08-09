@@ -28,6 +28,15 @@ const cssTasks = {
         .pipe(gulp.dest('./dist/www/css'));
   },
 
+  autoPrefix() {
+    return gulp.src('./dist/www/css/main.css')
+        .pipe(autoprefixer())
+        .pipe(clean({
+          force: true, // remove original file (imported css)
+        }))
+        .pipe(gulp.dest('./dist/www/css'));
+  },
+
   minifyCss() {
     return gulp.src('./dist/www/css/main.css')
         .pipe(minifyCss())
@@ -126,6 +135,7 @@ module.exports.copy = gulp.parallel(
 module.exports.css = gulp.series(
   cssTasks.importCss,
   cssTasks.sass,
+  cssTasks.autoPrefix,
   cssTasks.minifyCss,
 );
 
@@ -200,19 +210,6 @@ module.exports.default = gulp.series(
 //     //    .pipe(clean({force: true})) // remove original file (imported css)
 //     //    .pipe(gulp.dest('./dist/www/css'));
 //     //});
-
-//     gulp.task('autoprefix', ['sass'], function () {
-//       return gulp.src('./dist/www/css/main.css')
-//         .pipe(autoprefixer({
-//           browsers: ['last 4 versions'],
-//           cascade: false
-//         }))
-//         .pipe(clean({force: true})) // remove original file (imported css)
-//         .pipe(gulp.dest('./dist/www/css'));
-//     });
-
-
-//   // JS
 
 //   /*
 //   // clean

@@ -1,4 +1,9 @@
 {
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "maintained node versions"
+  ],
   "dependencies": {
     "http-server": "^14.1.1"
   },
