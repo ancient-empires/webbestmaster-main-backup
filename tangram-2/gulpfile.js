@@ -118,15 +118,15 @@ const tasks = {
   }
 };
 
+module.exports.copy = gulp.parallel(
+  copyTasks.appCache,
+  copyTasks.staticResources,
+);
+
 module.exports.css = gulp.series(
   cssTasks.importCss,
   cssTasks.sass,
   cssTasks.minifyCss
-);
-
-module.exports.copy = gulp.parallel(
-  copyTasks.appCache,
-  copyTasks.staticResources,
 );
 
 module.exports.html = gulp.series(
