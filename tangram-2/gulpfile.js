@@ -21,11 +21,11 @@ const cssTasks = {
 
   sass() {
     return gulp.src('./dist/www/css/main.css')
-      .pipe(sass())
-      .pipe(clean({
-        force: true,
-      }))
-      .pipe(gulp.dest('./dist/www/css'));
+        .pipe(sass())
+        .pipe(clean({
+          force: true,
+        }))
+        .pipe(gulp.dest('./dist/www/css'));
   },
 
   minifyCss() {
@@ -47,8 +47,8 @@ const jsTasks = {
 
   uglify() {
     return gulp.src('./dist/www/js/main.js')
-      .pipe(uglify())
-      .pipe(gulp.dest('./dist/www/js'));
+        .pipe(uglify())
+        .pipe(gulp.dest('./dist/www/js'));
   },
 };
 
@@ -74,14 +74,14 @@ const tasks = {
   /** Run a web server locally. */
   webServer(cb) {
     gulp.src('./')
-      .pipe(server({
-        livereload: true,
-        directoryListing: true,
-        open: true,
-        host: '0.0.0.0',
-        port: 8080,
-        log: 'debug'
-      }));
+        .pipe(server({
+          livereload: true,
+          directoryListing: true,
+          open: true,
+          host: '0.0.0.0',
+          port: 8080,
+          log: 'debug'
+        }));
 
     cb();
   }
