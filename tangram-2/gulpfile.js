@@ -140,8 +140,9 @@ module.exports.js = gulp.series(
 
 module.exports.default = gulp.series(
   gulp.parallel(
-    module.exports.html,
+    module.exports.copy,
     module.exports.css,
+    module.exports.html,
     module.exports.js,
   ),
 );
