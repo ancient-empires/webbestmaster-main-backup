@@ -1,19 +1,21 @@
-const autoprefixer = require('gulp-autoprefixer');
-const clean = require('gulp-rimraf');
-const cssimport = require('gulp-cssimport');
-const es6Import = require('gulp-es6-import');
-const gulp = require('gulp');
-const minifyCss = require('gulp-minify-css');
-const minifyHTML = require('gulp-minify-html');
-const sass = require('gulp-sass')(require('sass'));
-const server = require('gulp-server-livereload');
-const tinypng = require('gulp-tinypng');
-const uglify = require('gulp-uglify');
+const {
+  autoprefixer,
+  clean,
+  cssImport,
+  es6Import,
+  gulp,
+  minifyCss,
+  minifyHTML,
+  sass,
+  server,
+  tinypng,
+  uglify,
+} = require('../common/gulp-helpers');
 
 const cssTasks = {
   importCss() {
     return gulp.src('./www/css/main.css')
-        .pipe(cssimport({}))
+        .pipe(cssImport({}))
         .pipe(gulp.dest('./dist/www/css'));
   },
 
