@@ -80,7 +80,7 @@ const copyTasks = {
     });
 
     cb();
-  }
+  },
 };
 
 const tasks = {
