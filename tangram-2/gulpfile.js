@@ -5,7 +5,7 @@ const {
   es6Import,
   gulp,
   minifyCss,
-  minifyHtml: minifyHtml,
+  minifyHtml,
   sass,
   server,
   tinypng,
@@ -35,6 +35,17 @@ const cssTasks = {
           force: true,
         })) // remove original file (imported css)
         .pipe(gulp.dest('./dist/www/css'));
+  },
+};
+
+const htmlTasks = {
+  minifyHtml() {
+    return gulp.src('./www/*.html')
+      .pipe(minifyHtml({
+        conditionals: true,
+        spare: true
+      }))
+      .pipe(gulp.dest('./dist/www/'));
   },
 };
 
@@ -93,6 +104,10 @@ module.exports.css = gulp.series(
   cssTasks.minifyCss
 );
 
+module.exports.html = gulp.series(
+  htmlTasks.minifyHtml
+);
+
 module.exports.js = gulp.series(
   jsTasks.es6Import,
   jsTasks.uglify,
@@ -100,6 +115,7 @@ module.exports.js = gulp.series(
 
 module.exports.default = gulp.series(
   gulp.parallel(
+    module.exports.html,
     module.exports.css,
     module.exports.js,
   ),
@@ -146,16 +162,6 @@ module.exports.default = gulp.series(
 //   // HTML
 //   gulp.task('app-cache', function () {
 //     return gulp.src('./www/*.mf')
-//       .pipe(gulp.dest('./dist/www/'));
-//   });
-
-//   // HTML
-//   gulp.task('html', function () {
-//     return gulp.src('./www/*.html')
-//       .pipe(minifyHTML({
-//         conditionals: true,
-//         spare: true
-//       }))
 //       .pipe(gulp.dest('./dist/www/'));
 //   });
 
