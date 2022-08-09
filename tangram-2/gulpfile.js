@@ -63,6 +63,26 @@ const jsTasks = {
   },
 };
 
+const copyTasks = {
+  /** Copy *.mf files */
+  appCache() {
+    return gulp.src('./www/*.mf')
+        .pipe(gulp.dest('./dist/www/'));
+  },
+
+  /** Copy images and fonts */
+  staticResources(cb) {
+    const staticResourcesDirs = ['i', 'font'];
+
+    staticResourcesDirs.forEach(dir => {
+      gulp.src('./www/' + dir + '/**/*')
+          .pipe(gulp.dest('./dist/www/' + dir));
+    });
+
+    cb();
+  }
+};
+
 const tasks = {
   /** Watch source files to see if any of them change. */
   watch(cb) {
@@ -102,6 +122,11 @@ module.exports.css = gulp.series(
   cssTasks.importCss,
   cssTasks.sass,
   cssTasks.minifyCss
+);
+
+module.exports.copy = gulp.parallel(
+  copyTasks.appCache,
+  copyTasks.staticResources,
 );
 
 module.exports.html = gulp.series(
@@ -159,12 +184,6 @@ module.exports.default = gulp.series(
 //     return gulp.start.apply(gulp, clearTasks);
 //   });
 
-//   // HTML
-//   gulp.task('app-cache', function () {
-//     return gulp.src('./www/*.mf')
-//       .pipe(gulp.dest('./dist/www/'));
-//   });
-
 //   // CSS
 //   // import css
 //   // images to base64
@@ -193,16 +212,6 @@ module.exports.default = gulp.series(
 
 
 //   // JS
-
-//   // copy data
-//   gulp.task('copy-data', function () {
-
-//     [ /*'images', */ 'i', 'font'].forEach(function (dir) {
-//       return gulp.src('./www/' + dir + '/**/*')
-//         .pipe(gulp.dest('./dist/www/' + dir));
-//     });
-
-//   });
 
 //   /*
 //   // clean
@@ -254,18 +263,6 @@ module.exports.default = gulp.series(
 //     });
 
 //   });
-
-//   // copy data
-//   gulp.task('copy-i', function () {
-//     return gulp.src('./www/i/!**!/!*')
-//       .pipe(gulp.dest('./dist/www/i'));
-//   });
-
-//   gulp.task('copy-font', function () {
-//     return gulp.src('./www/font/!**!/!*')
-//       .pipe(gulp.dest('./dist/www/font'));
-//   });
-// */
 
 //   // tiny-png
 //   gulp.task('tiny-png', function () {
