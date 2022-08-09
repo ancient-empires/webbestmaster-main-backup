@@ -126,11 +126,11 @@ module.exports.copy = gulp.parallel(
 module.exports.css = gulp.series(
   cssTasks.importCss,
   cssTasks.sass,
-  cssTasks.minifyCss
+  cssTasks.minifyCss,
 );
 
 module.exports.html = gulp.series(
-  htmlTasks.minifyHtml
+  htmlTasks.minifyHtml,
 );
 
 module.exports.js = gulp.series(
