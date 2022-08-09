@@ -5,7 +5,7 @@ const {
   es6Import,
   gulp,
   minifyCss,
-  minifyHTML,
+  minifyHtml: minifyHtml,
   sass,
   server,
   tinypng,
