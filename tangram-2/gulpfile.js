@@ -36,7 +36,7 @@ const cssTasks = {
         })) // remove original file (imported css)
         .pipe(gulp.dest('./dist/www/css'));
   },
-}
+};
 
 const jsTasks = {
   es6Import() {
