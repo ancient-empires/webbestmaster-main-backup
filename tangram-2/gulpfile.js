@@ -174,6 +174,7 @@ module.exports.default = gulp.series(
   ),
 );
 
+// clean dist
 module.exports.clean = gulp.series(
   cleanTasks.cleanDist
 );
