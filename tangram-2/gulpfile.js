@@ -147,10 +147,6 @@ module.exports.clean = gulp.series(
 // /*jslint white: true, nomen: true */
 // (function () {
 
-//   gulp.task('default', /*['clear-dist'],*/ function () {
-//     return gulp.start(/*'app-cache', */ 'html', 'css', 'js', 'copy-data');
-//   });
-
 //   // watch
 //   gulp.task('watch', ['html', 'css', 'js', 'copy-data'], function () {
 //     gulp.watch('./www/*.html', ['html']);
@@ -161,41 +157,6 @@ module.exports.clean = gulp.series(
 //     gulp.watch('./www/i/**/*', ['copy-data']);
 //     gulp.watch('./www/font/**/*', ['copy-data']);
 //   });
-
-//   // helper for clean
-//   var clearTasks = ['index.html', 'app-cache.mf', 'css', 'js', 'i', 'font' /*, 'images'*/].map(function (dir) {
-
-//     var taskName = 'clear-dir_' + dir;
-
-//     gulp.task(taskName, function (cd) {
-//       return gulp.src('./dist/www/' + dir, { read: false })
-//         .pipe(clean({force: true}, cd));
-//     });
-
-//     return taskName;
-
-//   });
-
-//   // clear distributive directory
-//   gulp.task('clear-dist', function () {
-//     return gulp.start.apply(gulp, clearTasks);
-//   });
-
-//   // CSS
-//   // import css
-//   // images to base64
-//   // minify css
-
-//   gulp.task('css', function () {
-//     return gulp.start('import-css', 'sass', /*'autoprefix', */'minify-css');
-//   });
-
-//     //gulp.task('css-base64', ['sass'/*, 'copy-i'*/], function () {
-//     //  return gulp.src('./dist/www/css/main.css')
-//     //    .pipe(cssBase64())
-//     //    .pipe(clean({force: true})) // remove original file (imported css)
-//     //    .pipe(gulp.dest('./dist/www/css'));
-//     //});
 
 //   /*
 //   // clean
