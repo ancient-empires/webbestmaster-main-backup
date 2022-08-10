@@ -1,6 +1,7 @@
 const {
   autoprefixer,
   clean,
+  cssBase64,
   cssImport,
   es6Import,
   gulp,
@@ -25,6 +26,13 @@ const cssTasks = {
         .pipe(clean({
           force: true,
         }))
+        .pipe(gulp.dest('./dist/www/css'));
+  },
+
+  base64() {
+    return gulp.src('./dist/www/css/main.css')
+        .pipe(cssBase64())
+        .pipe(clean({force: true})) // remove original file (imported css)
         .pipe(gulp.dest('./dist/www/css'));
   },
 
@@ -135,6 +143,7 @@ module.exports.copy = gulp.parallel(
 module.exports.css = gulp.series(
   cssTasks.importCss,
   cssTasks.sass,
+  cssTasks.base64,
   cssTasks.autoPrefix,
   cssTasks.minifyCss,
 );
@@ -148,9 +157,10 @@ module.exports.js = gulp.series(
   jsTasks.uglify,
 );
 
+// all build tasks
 module.exports.default = gulp.series(
+  module.exports.copy,
   gulp.parallel(
-    module.exports.copy,
     module.exports.css,
     module.exports.html,
     module.exports.js,
