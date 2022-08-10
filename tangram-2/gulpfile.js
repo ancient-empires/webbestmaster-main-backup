@@ -107,41 +107,6 @@ const copyTasks = {
   },
 };
 
-const tasks = {
-  /** Watch source files to see if any of them change. */
-  watch(cb) {
-    /** @type { Map<string, string[]> } */
-    const depsMap = new Map([
-      ['./www/*.html',    ['html']     ],
-      ['./www/css/**/*',  ['css']      ],
-      ['./www/js/**/*',   ['js-watch'] ],
-      ['./www/i/**/*',    ['copy-data']],
-      ['./www/font/**/*', ['copy-data']],
-    ]);
-
-    depsMap.forEach((deps, glob) => {
-      gulp.watch(glob, deps);
-    });
-
-    cb();
-  },
-
-  /** Run a web server locally. */
-  webServer(cb) {
-    gulp.src('./')
-        .pipe(server({
-          livereload: true,
-          directoryListing: true,
-          open: true,
-          host: '0.0.0.0',
-          port: 8080,
-          log: 'debug'
-        }));
-
-    cb();
-  }
-};
-
 module.exports.copy = gulp.parallel(
   copyTasks.appCache,
   copyTasks.staticResources,
