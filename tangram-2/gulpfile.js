@@ -13,6 +13,13 @@ const {
   uglify,
 } = require('../common/gulp-helpers');
 
+const cleanTasks = {
+  cleanDist() {
+    return gulp.src('./dist', { read: false })
+      .pipe(clean({ force: true }));
+  }
+}
+
 const cssTasks = {
   importCss() {
     return gulp.src('./www/css/main.css')
@@ -167,6 +174,9 @@ module.exports.default = gulp.series(
   ),
 );
 
+module.exports.clean = gulp.series(
+  cleanTasks.cleanDist
+);
 
 // /*jslint white: true, nomen: true */
 // (function () {
