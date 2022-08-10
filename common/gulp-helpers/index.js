@@ -1,6 +1,7 @@
 module.exports = {
   autoprefixer: require('gulp-autoprefixer'),
   clean: require('gulp-rimraf'),
+  cssBase64: require('gulp-css-base64'),
   cssImport: require('gulp-cssimport'),
   es6Import: require('gulp-es6-import'),
   gulp: require('gulp'),
