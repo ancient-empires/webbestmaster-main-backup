@@ -18,7 +18,27 @@ const cleanTasks = {
     return gulp.src('./dist', { read: false })
       .pipe(clean({ force: true }));
   }
-}
+};
+
+const copyTasks = {
+  /** Copy *.mf files */
+  appCache() {
+    return gulp.src('./www/*.mf')
+        .pipe(gulp.dest('./dist/www/'));
+  },
+
+  /** Copy static resources */
+  staticResources(cb) {
+    const staticResourcesDirs = ['i', 'font'];
+
+    staticResourcesDirs.forEach(dir => {
+      gulp.src('./www/' + dir + '/**/*')
+          .pipe(gulp.dest('./dist/www/' + dir));
+    });
+
+    cb();
+  },
+};
 
 const cssTasks = {
   importCss() {
@@ -84,26 +104,6 @@ const jsTasks = {
     return gulp.src('./dist/www/js/main.js')
         .pipe(uglify())
         .pipe(gulp.dest('./dist/www/js'));
-  },
-};
-
-const copyTasks = {
-  /** Copy *.mf files */
-  appCache() {
-    return gulp.src('./www/*.mf')
-        .pipe(gulp.dest('./dist/www/'));
-  },
-
-  /** Copy images and fonts */
-  staticResources(cb) {
-    const staticResourcesDirs = ['i', 'font'];
-
-    staticResourcesDirs.forEach(dir => {
-      gulp.src('./www/' + dir + '/**/*')
-          .pipe(gulp.dest('./dist/www/' + dir));
-    });
-
-    cb();
   },
 };
 
