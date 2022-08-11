@@ -5,10 +5,10 @@ const {
   cssImport,
   es6Import,
   gulp,
+  livereload,
   minifyCss,
   minifyHtml,
   sass,
-  server,
   tinypng,
   uglify,
 } = require('../common/gulp-helpers');
