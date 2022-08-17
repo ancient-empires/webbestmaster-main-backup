@@ -93,13 +93,18 @@ const basicTasks = {
      * Import CSS.
      * @param { string } srcGlob Source file / directory. (may be written as glob)
      * @param { string } destDir Destination directory.
+     * @param { boolean } cleanup Whether to clean up original files.
      * @param { ?object } options Options for importing CSS.
      */
-    importCss(srcGlob, destDir, options = {}) {
+    importCss(srcGlob, destDir, cleanup, options = {}) {
       return function importCssProcess() {
-        return gulp.src(srcGlob)
-            .pipe(cssImport(options))
-            .pipe(gulp.dest(destDir));
+        let stream = gulp.src(srcGlob).pipe(cssImport(options));
+        if (cleanup) {
+          stream = stream.pipe(clean({ force: true }));
+        }
+        stream = stream.pipe(gulp.dest(destDir));
+
+        return stream;
       };
     },
 
@@ -107,13 +112,18 @@ const basicTasks = {
      * Use SASS to process CSS stylesheets.
      * @param { string } srcGlob Source file / directory. (may be written as glob)
      * @param { string } destDir Destination directory.
+     * @param { boolean } cleanup Whether to clean up original files.
      * @param { ?object } options Options for SASS.
      */
-    sass(srcGlob, destDir, options = {}) {
+    sass(srcGlob, destDir, cleanup, options = {}) {
       return function sassProcess() {
-        return gulp.src(srcGlob).pipe(sass(options))
-            .pipe(clean({ force: true }))
-            .pipe(gulp.dest(destDir));
+        let stream = gulp.src(srcGlob).pipe(sass(options));
+        if (cleanup) {
+          stream = stream.pipe(clean({ force: true }));
+        }
+        stream = stream.pipe(gulp.dest(destDir));
+
+        return stream;
       };
     },
 
@@ -121,14 +131,18 @@ const basicTasks = {
      * Convert URLs to base64 strings that represent the actual resources.
      * @param { string } srcGlob Source file / directory. (may be written as glob)
      * @param { string } destDir Destination directory.
+     * @param { boolean } cleanup Whether to clean up original files.
      * @param { ?object } options Options for base64.
      */
-    base64(srcGlob, destDir, options = {}) {
+    base64(srcGlob, destDir, cleanup, options = {}) {
       return function base64Process() {
-        return gulp.src(srcGlob)
-            .pipe(cssBase64(options))
-            .pipe(clean({ force: true }))
-            .pipe(gulp.dest(destDir));
+        let stream = gulp.src(srcGlob).pipe(cssBase64(options));
+        if (cleanup) {
+          stream = stream.pipe(clean({ force: true }));
+        }
+        stream = stream.pipe(gulp.dest(destDir));
+
+        return stream;
       };
     },
 
@@ -136,13 +150,18 @@ const basicTasks = {
      * Automatically add vendor prefixes.
      * @param { string } srcGlob Source file / directory. (may be written as glob)
      * @param { string } destDir Destination directory.
+     * @param { boolean } cleanup Whether to clean up original files.
      * @param { ?object } options Options for autoprefixer.
      */
-    autoPrefix(srcGlob, destDir, options = {}) {
+    autoPrefix(srcGlob, destDir, cleanup, options = {}) {
       return function autoPrefixProcess() {
-        return gulp.src(srcGlob).pipe(autoprefixer(options))
-            .pipe(clean({ force: true }))
-            .pipe(gulp.dest(destDir));
+        let stream = gulp.src(srcGlob).pipe(autoprefixer(options));
+        if (cleanup) {
+          stream = stream.pipe(clean({ force: true }));
+        }
+        stream = stream.pipe(gulp.dest(destDir));
+
+        return stream;
       };
     },
 
@@ -150,13 +169,18 @@ const basicTasks = {
      * Minify CSS.
      * @param { string } srcGlob Source file / directory. (may be written as glob)
      * @param { string } destDir Destination directory.
+     * @param { boolean } cleanup Whether to clean up original files.
      * @param { ?object } options Options for minifying CSS.
      */
-    minify(srcGlob, destDir, options = {}) {
+    minify(srcGlob, destDir, cleanup, options = {}) {
       return function minifyCssProcess() {
-        return gulp.src(srcGlob).pipe(minifyCss(options))
-            .pipe(clean({ force: true }))
-            .pipe(gulp.dest(destDir));
+        let stream = gulp.src(srcGlob).pipe(minifyCss(options));
+        if (cleanup) {
+          stream = stream.pipe(clean({ force: true }));
+        }
+        stream = stream.pipe(gulp.dest(destDir));
+
+        return stream;
       };
     },
   },
@@ -218,11 +242,11 @@ const buildTasks = {
     const destMain = path.join(destDir, path.basename(srcFilenames.css));
 
     return gulp.series(
-      basicTasks.css.importCss(srcMain, destDir, options?.import),
-      basicTasks.css.sass(destMain, destDir, options?.sass),
-      basicTasks.css.base64(destMain, destDir, options?.base64),
-      basicTasks.css.autoPrefix(destMain, destDir, options?.autoPrefix),
-      basicTasks.css.minify(destMain, destDir, options?.minify),
+      basicTasks.css.importCss(srcMain, destDir, false, options?.import),
+      basicTasks.css.sass(destMain, destDir, true, options?.sass),
+      basicTasks.css.base64(destMain, destDir, true, options?.base64),
+      basicTasks.css.autoPrefix(destMain, destDir, true, options?.autoPrefix),
+      basicTasks.css.minify(destMain, destDir, true, options?.minify),
     );
   },
 
@@ -261,8 +285,8 @@ const devTasks = {
 
 module.exports.copy = buildTasks.copy;
 
-module.exports.html = buildTasks.html(srcGlobs.html, destDirs.html);
-module.exports.css = buildTasks.css(srcGlobs.css, destDirs.css);
+module.exports.html = buildTasks.html(srcFilenames.html, destDirs.html);
+module.exports.css = buildTasks.css(srcFilenames.css, destDirs.css);
 module.exports.js = buildTasks.js;
 
 // complete build
