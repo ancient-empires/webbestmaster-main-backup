@@ -21,7 +21,7 @@ const basicTasks = {
      * Copy single file or directory
      * @param { string } src   Source file / directory.
      * @param { string } dest  Destination directory.
-     * */
+     */
     single(src, dest) {
       return gulp.src(src).pipe(gulp.dest(dest));
     },
