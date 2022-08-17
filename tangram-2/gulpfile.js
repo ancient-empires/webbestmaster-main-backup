@@ -38,8 +38,7 @@ const basicTasks = {
           .map(dir => './www/' + dir);
 
       staticResourcesDirs.forEach(dir => {
-        basicTasks.copy.single(dir + '/**/*', './dist/www/' + dir);
-        cb();
+        basicTasks.copy.single(dir, './dist/www/');
       });
 
       cb();
