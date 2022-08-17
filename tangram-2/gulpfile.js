@@ -35,7 +35,7 @@ const basicTasks = {
     /** Copy static resources */
     staticResources(cb) {
       const staticResourcesDirs = ['i', 'font']
-          .map(dir => './www' + dir);
+          .map(dir => './www/' + dir);
 
       staticResourcesDirs.forEach(dir => {
         basicTasks.copy.single(dir + '/**/*', './dist/www/' + dir);
