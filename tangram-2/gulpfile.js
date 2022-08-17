@@ -15,8 +15,6 @@ const {
   uglify,
 } = require('../common/gulp-helpers');
 
-const DEV_SERVER_PORT = 3000;
-
 const basicTasks = {
   copy: {
     /**
@@ -155,19 +153,14 @@ const cleanTasks = {
 
 const devTasks = {
   watch(cb) {
-    const server = livereload({
-      start: true,
-      port: DEV_SERVER_PORT,
-    });
-
     const dist = './www/dist/';
 
     gulp.watch('./www/*.mf',
-        basicTasks.copy.single('./www/*.mf', dist).pipe(server));
+        basicTasks.copy.single('./www/*.mf', dist));
     gulp.watch('./www/i/**/*',
-        basicTasks.copy.single('./www/i/**/*', dist + 'i').pipe(server));
+        basicTasks.copy.single('./www/i/**/*', dist + 'i'));
     gulp.watch('./www/font/**/*',
-        basicTasks.copy.single('./www/font/**/*', dist + 'font').pipe(server));
+        basicTasks.copy.single('./www/font/**/*', dist + 'font'));
 
     gulp.watch('./www/*.html', buildTasks.html);
     gulp.watch('./www/css/**/*', buildTasks.css);
