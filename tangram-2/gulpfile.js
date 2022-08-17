@@ -68,7 +68,7 @@ const basicTasks = {
       return gulp.src('./dist/www/css/main.css')
           .pipe(sass())
           .pipe(clean({
-            force: true,
+            force: true, // remove original css
           }))
           .pipe(gulp.dest('./dist/www/css'));
     },
@@ -76,7 +76,9 @@ const basicTasks = {
     base64() {
       return gulp.src('./dist/www/css/main.css')
           .pipe(cssBase64())
-          .pipe(clean({force: true})) // remove original file (imported css)
+          .pipe(clean({
+            force: true, // remove original file (imported css)
+          }))
           .pipe(gulp.dest('./dist/www/css'));
     },
 
