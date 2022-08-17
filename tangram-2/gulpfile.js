@@ -15,36 +15,30 @@ const {
   uglify,
 } = require('../common/gulp-helpers');
 
-const paths = {
-  srcDirs: {
-    html: path.join(__dirname, 'www'),
-    css:  path.join(__dirname, 'www/css'),
-    js:   path.join(__dirname, 'www/js'),
-  },
-
-  destDirs: {
-    dist: path.join(__dirname, 'dist'),
-
-    html: path.join(__dirname, 'dist/www'),
-    css:  path.join(__dirname, 'dist/www/css'),
-    js:   path.join(__dirname, 'dist/www/js'),
-  },
+const srcDirs = {
+  html: path.join(__dirname, 'www'),
+  css:  path.join(__dirname, 'www/css'),
+  js:   path.join(__dirname, 'www/js'),
 };
-const srcDirs = paths.srcDirs;
-const destDirs = paths.destDirs;
 
-paths.srcFilenames = {
+const srcFilenames = {
   html: path.join(srcDirs.html, 'index.html'),
   css:  path.join(srcDirs.css,  'main.css'),
 };
-const srcFilenames = paths.srcFilenames;
 
-paths.srcGlobs = {
+const srcGlobs = {
   html: path.join(srcDirs.html, '**/*.html'),
   css:  path.join(srcDirs.css,  '**/*'),
   js:   path.join(srcDirs.js,   '**/*'),
 };
-const srcGlobs = paths.srcGlobs;
+
+const destDirs = {
+  dist: path.join(__dirname, 'dist'),
+
+  html: path.join(__dirname, 'dist/www'),
+  css:  path.join(__dirname, 'dist/www/css'),
+  js:   path.join(__dirname, 'dist/www/js'),
+};
 
 const basicTasks = {
   copy: {
