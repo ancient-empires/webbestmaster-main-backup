@@ -22,8 +22,7 @@ const srcDirs = {
 };
 
 const srcFilenames = {
-  html: path.join(srcDirs.html, 'index.html'),
-  css:  path.join(srcDirs.css,  'main.css'),
+  css:  path.join(srcDirs.css, 'main.css'),
 };
 
 const srcGlobs = {
@@ -251,7 +250,7 @@ const devTasks = {
     gulp.watch(srcGlobs.html,
         buildTasks.html(srcGlobs.html, destDirs.html));
     gulp.watch(srcGlobs.css,
-        buildTasks.css(srcGlobs.css, destDirs.css));
+        buildTasks.css(srcFilenames.css, destDirs.css));
     gulp.watch('./www/js/**/*', buildTasks.js);
 
     cb();
@@ -260,7 +259,7 @@ const devTasks = {
 
 module.exports.copy = buildTasks.copy;
 
-module.exports.html = buildTasks.html(srcFilenames.html, destDirs.html);
+module.exports.html = buildTasks.html(srcGlobs.html, destDirs.html);
 module.exports.css = buildTasks.css(srcFilenames.css, destDirs.css);
 module.exports.js = buildTasks.js;
 
