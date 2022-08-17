@@ -18,12 +18,12 @@ const {
 const basicTasks = {
   copy: {
     /**
-     * Copy single file or directory
-     * @param { string } src   Source file / directory.
-     * @param { string } dest  Destination directory.
+     * Copy single file or directory.
+     * @param { string } srcGlob  Source file / directory. (may be written as glob)
+     * @param { string } destDir  Destination directory.
      */
-    single(src, dest) {
-      return gulp.src(src).pipe(gulp.dest(dest));
+    single(srcGlob, destDir) {
+      return gulp.src(srcGlob).pipe(gulp.dest(destDir));
     },
 
     /** Copy *.mf files */
