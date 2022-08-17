@@ -34,11 +34,10 @@ const basicTasks = {
 
     /** Copy static resources */
     staticResources(cb) {
-      const staticResourcesDirs = ['i', 'font']
-          .map(dir => './www/' + dir);
+      const staticResourcesDirs = ['i', 'font'];
 
       staticResourcesDirs.forEach(dir => {
-        basicTasks.copy.single(dir, './dist/www/');
+        basicTasks.copy.single('./www/' + dir + '**/*', './dist/www/');
       });
 
       cb();
@@ -159,9 +158,9 @@ const devTasks = {
     gulp.watch('./www/*.mf',
         basicTasks.copy.single('./www/*.mf', dist));
     gulp.watch('./www/i/**/*',
-        basicTasks.copy.single('./www/i/**/*', dist + 'i'));
+        basicTasks.copy.single('./www/i/**/*', dist));
     gulp.watch('./www/font/**/*',
-        basicTasks.copy.single('./www/font/**/*', dist + 'font'));
+        basicTasks.copy.single('./www/font/**/*', dist));
 
     gulp.watch('./www/*.html', buildTasks.html);
     gulp.watch('./www/css/**/*', buildTasks.css);
