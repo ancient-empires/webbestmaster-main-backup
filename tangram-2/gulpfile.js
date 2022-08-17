@@ -15,6 +15,23 @@ const {
   uglify,
 } = require('../common/gulp-helpers');
 
+const paths = {
+  srcGlobs: {
+    html: path.join(__dirname, 'www/**/*.html'),
+    css:  path.join(__dirname, 'www/css/**/*'),
+    js:   path.join(__dirname, 'www/js/**/*')
+  },
+  destDirs: {
+    dist: path.join(__dirname, 'dist'),
+
+    html: path.join(__dirname, 'dist/www'),
+    css:  path.join(__dirname, 'dist/www/css'),
+    js:   path.join(__dirname, 'dist/www/js'),
+  },
+};
+const srcGlobs = paths.srcGlobs;
+const destDirs = paths.destDirs;
+
 const basicTasks = {
   copy: {
     /**
@@ -48,13 +65,18 @@ const basicTasks = {
   },
 
   html: {
-    minifyHtml() {
-      return gulp.src('./www/*.html')
-        .pipe(minifyHtml({
-          conditionals: true,
-          spare: true
-        }))
-        .pipe(gulp.dest('./dist/www/'));
+    /**
+     * Minify HTML.
+     * @param { string } srcGlob  Source file / directory. (may be written as glob)
+     * @param { string } destDir  Destination directory.
+     * @param { minifyHtml.Options } options options for minifying HTML.
+     */
+    minifyHtml(srcGlob, destDir, options = {}) {
+      return () => {
+        return gulp.src(srcGlob)
+            .pipe(minifyHtml(options))
+            .pipe(gulp.dest(destDir))
+      };
     },
   },
 
@@ -130,9 +152,17 @@ const buildTasks = {
     basicTasks.copy.staticResources,
   ),
 
-  html: gulp.series(
-    basicTasks.html.minifyHtml,
-  ),
+  /**
+     * Minify HTML.
+     * @param { string } srcGlob  Source file / directory. (may be written as glob)
+     * @param { string } destDir  Destination directory.
+     * @param { minifyHtml.Options } options options for minifying HTML.
+     */
+  html(srcGlob, destDir, options = {}) {
+    return gulp.series(
+      basicTasks.html.minifyHtml(srcGlob, destDir, options),
+    );
+  },
 
   css: gulp.series(
     basicTasks.css.importCss,
@@ -165,7 +195,7 @@ const devTasks = {
     gulp.watch('./www/font/**/*',
         basicTasks.copy.single('./www/font/**/*', path.join(dist, 'font')));
 
-    gulp.watch('./www/*.html', buildTasks.html);
+    gulp.watch(srcGlobs.html, buildTasks.html(srcGlobs.html, destDirs.html));
     gulp.watch('./www/css/**/*', buildTasks.css);
     gulp.watch('./www/js/**/*', buildTasks.js);
 
@@ -175,7 +205,7 @@ const devTasks = {
 
 module.exports.copy = buildTasks.copy;
 
-module.exports.html = buildTasks.html;
+module.exports.html = buildTasks.html(paths.srcGlobs.html, paths.destDirs.html);
 module.exports.css = buildTasks.css;
 module.exports.js = buildTasks.js;
 
