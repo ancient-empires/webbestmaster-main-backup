@@ -37,7 +37,7 @@ const basicTasks = {
       const staticResourcesDirs = ['i', 'font'];
 
       staticResourcesDirs.forEach(dir => {
-        basicTasks.copy.single('./www/' + dir + '**/*', './dist/www/');
+        basicTasks.copy.single('./www/' + dir + '/**/*', './dist/www/' + dir);
       });
 
       cb();
