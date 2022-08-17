@@ -1,3 +1,5 @@
+const path = require('node:path');
+
 const {
   autoprefixer,
   clean,
@@ -13,8 +15,19 @@ const {
   uglify,
 } = require('../common/gulp-helpers');
 
+const DEV_SERVER_PORT = 3000;
+
 const basicTasks = {
   copy: {
+    /**
+     * Copy single file or directory
+     * @param { string } src   Source file / directory.
+     * @param { string } dest  Destination directory.
+     * */
+    single(src, dest) {
+      return gulp.src(src).pipe(gulp.dest(dest));
+    },
+
     /** Copy *.mf files */
     appCache() {
       return gulp.src('./www/*.mf')
@@ -23,11 +36,12 @@ const basicTasks = {
 
     /** Copy static resources */
     staticResources(cb) {
-      const staticResourcesDirs = ['i', 'font'];
+      const staticResourcesDirs = ['i', 'font']
+          .map(dir => './www' + dir);
 
       staticResourcesDirs.forEach(dir => {
-        gulp.src('./www/' + dir + '/**/*')
-            .pipe(gulp.dest('./dist/www/' + dir));
+        basicTasks.copy.single(dir + '/**/*', './dist/www/' + dir);
+        cb();
       });
 
       cb();
@@ -139,6 +153,30 @@ const cleanTasks = {
   ),
 };
 
+const devTasks = {
+  watch(cb) {
+    const server = livereload({
+      start: true,
+      port: DEV_SERVER_PORT,
+    });
+
+    const dist = './www/dist/';
+
+    gulp.watch('./www/*.mf',
+        basicTasks.copy.single('./www/*.mf', dist).pipe(server));
+    gulp.watch('./www/i/**/*',
+        basicTasks.copy.single('./www/i/**/*', dist + 'i').pipe(server));
+    gulp.watch('./www/font/**/*',
+        basicTasks.copy.single('./www/font/**/*', dist + 'font').pipe(server));
+
+    gulp.watch('./www/*.html', buildTasks.html);
+    gulp.watch('./www/css/**/*', buildTasks.css);
+    gulp.watch('./www/js/**/*', buildTasks.js);
+
+    cb();
+  },
+};
+
 module.exports.copy = buildTasks.copy;
 
 module.exports.html = buildTasks.html;
@@ -157,6 +195,11 @@ module.exports.build = gulp.series(
 module.exports.default = module.exports.build;
 
 module.exports.clean = cleanTasks.clean;
+
+module.exports.watch = cb => {
+  console.info(`Watching for changes in "${path.resolve(__dirname)}"...`);
+  devTasks.watch(cb);
+};
 
 // /*jslint white: true, nomen: true */
 // (function () {
