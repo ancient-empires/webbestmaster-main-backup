@@ -78,7 +78,7 @@ const basicTasks = {
       return gulp.src('./dist/www/css/main.css')
           .pipe(cssBase64())
           .pipe(clean({
-            force: true, // remove original file (imported css)
+            force: true, // remove original css
           }))
           .pipe(gulp.dest('./dist/www/css'));
     },
@@ -87,7 +87,7 @@ const basicTasks = {
       return gulp.src('./dist/www/css/main.css')
           .pipe(autoprefixer())
           .pipe(clean({
-            force: true, // remove original file (imported css)
+            force: true, // remove original css
           }))
           .pipe(gulp.dest('./dist/www/css'));
     },
@@ -96,8 +96,8 @@ const basicTasks = {
       return gulp.src('./dist/www/css/main.css')
           .pipe(minifyCss())
           .pipe(clean({
-            force: true,
-          })) // remove original file (imported css)
+            force: true, // remove original css
+          }))
           .pipe(gulp.dest('./dist/www/css'));
     },
   },
