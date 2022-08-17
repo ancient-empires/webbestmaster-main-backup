@@ -192,6 +192,8 @@ module.exports.clean = cleanTasks.clean;
 module.exports.watch = cb => {
   console.info(`Watching for changes in "${path.resolve(__dirname)}"...`);
   devTasks.watch(cb);
+
+  cb();
 };
 
 // /*jslint white: true, nomen: true */
