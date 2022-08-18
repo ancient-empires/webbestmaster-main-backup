@@ -86,7 +86,7 @@ const basicTasks = {
       return function minifyHtmlTask() {
         return gulp.src(srcGlob)
             .pipe(minifyHtml(options))
-            .pipe(gulp.dest(destDir))
+            .pipe(gulp.dest(destDir));
       };
     },
   },
