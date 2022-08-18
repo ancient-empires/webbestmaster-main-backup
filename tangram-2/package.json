@@ -1,0 +1,11 @@
+{
+  "name": "tangram-2",
+  "private": true,
+  "scripts": {
+    "build": "npx gulp build",
+    "watch": "npx gulp watch"
+  },
+  "dependencies": {
+    "main": "file:../"
+  }
+}
