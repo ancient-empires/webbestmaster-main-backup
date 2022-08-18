@@ -1,3 +1,5 @@
+'use strict';
+
 const path = require('node:path');
 
 const {
@@ -68,7 +70,9 @@ const basicTasks = {
      * @param { string } destDir Destination directory.
      */
     single(srcGlob, destDir) {
-      return gulp.src(srcGlob).pipe(gulp.dest(destDir));
+      return function copySingle() {
+        return gulp.src(srcGlob).pipe(gulp.dest(destDir));
+      };
     },
 
     /** Copy *.mf files */
@@ -85,7 +89,7 @@ const basicTasks = {
         basicTasks.copy.single(
           path.join('./www', dir, '**/*'),
           path.join('./dist/www', dir),
-        );
+        )();
       });
 
       cb();
@@ -294,26 +298,6 @@ const cleanTasks = {
   ),
 };
 
-const devTasks = {
-  watch(cb) {
-    gulp.watch(srcGlobs.mf,
-        basicTasks.copy.single(srcGlobs.mf, destDirs.mf));
-    gulp.watch(srcGlobs.i,
-        basicTasks.copy.single(srcGlobs.i, destDirs.i));
-    gulp.watch(srcGlobs.font,
-        basicTasks.copy.single(srcGlobs.font, destDirs.font));
-
-    gulp.watch(srcGlobs.html,
-        buildTasks.html(srcGlobs.html, destDirs.html));
-    gulp.watch(srcGlobs.css,
-        buildTasks.css(srcEntryFilenames.css, destDirs.css));
-    gulp.watch(srcGlobs.js,
-        buildTasks.js(srcEntryFilenames.js, destDirs.js));
-
-    cb();
-  },
-};
-
 module.exports.copy = buildTasks.copy;
 
 module.exports.html = buildTasks.html(srcGlobs.html, destDirs.html);
@@ -332,6 +316,29 @@ module.exports.build = gulp.series(
 module.exports.default = module.exports.build;
 
 module.exports.clean = cleanTasks.clean;
+
+const devTasks = {
+  watch(cb) {
+    // first perform a complete build
+    module.exports.build(cb);
+
+    gulp.watch(srcGlobs.html,
+        buildTasks.html(srcGlobs.html, destDirs.html));
+    gulp.watch(srcGlobs.css,
+        buildTasks.css(srcEntryFilenames.css, destDirs.css));
+    gulp.watch(srcGlobs.js,
+        buildTasks.js(srcEntryFilenames.js, destDirs.js));
+
+    gulp.watch(srcGlobs.mf,
+        basicTasks.copy.single(srcGlobs.mf, destDirs.mf));
+    gulp.watch(srcGlobs.i,
+        basicTasks.copy.single(srcGlobs.i, destDirs.i));
+    gulp.watch(srcGlobs.font,
+        basicTasks.copy.single(srcGlobs.font, destDirs.font));
+
+    cb();
+  },
+};
 
 module.exports.watch = cb => {
   console.info(`Watching for changes in "${path.resolve(__dirname)}"...`);
