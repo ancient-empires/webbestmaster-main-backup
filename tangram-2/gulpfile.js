@@ -213,7 +213,7 @@ const buildTasks = {
    * } } options Options for processing CSS.
    */
   css(srcMain, destDir, options) {
-    const destMain = path.join(destDir, path.basename(srcFilenames.css));
+    const destMain = path.join(destDir, path.basename(srcMain));
 
     return gulp.series(
       basicTasks.css.importCss(srcMain, destDir, options?.import),
