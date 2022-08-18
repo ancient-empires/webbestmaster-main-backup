@@ -16,9 +16,16 @@ const {
 } = require('../common/gulp-helpers');
 
 const srcDirs = {
+  www:  path.join(__dirname, 'www'),
+
   html: path.join(__dirname, 'www'),
   css:  path.join(__dirname, 'www/css'),
   js:   path.join(__dirname, 'www/js'),
+
+  mf:   path.join(__dirname, 'www'),
+
+  i:    path.join(__dirname, 'www/i'),
+  font: path.join(__dirname, 'www/font'),
 };
 
 const srcEntryFilenames = {
@@ -31,14 +38,25 @@ const srcGlobs = {
   html: path.join(srcDirs.html, '**/*.html'),
   css:  path.join(srcDirs.css,  '**/*'),
   js:   path.join(srcDirs.js,   '**/*'),
+
+  mf:   path.join(srcDirs.mf,  '*.mf'),
+
+  i:    path.join(srcDirs.i,    '**/*'),
+  font: path.join(srcDirs.font, '**/*'),
 };
 
 const destDirs = {
   dist: path.join(__dirname, 'dist'),
+  www:  path.join(__dirname, 'dist/www'),
 
   html: path.join(__dirname, 'dist/www'),
   css:  path.join(__dirname, 'dist/www/css'),
   js:   path.join(__dirname, 'dist/www/js'),
+
+  mf:  path.join(__dirname, 'dist/www'),
+
+  i:    path.join(__dirname, 'dist/www/i'),
+  font: path.join(__dirname, 'dist/www/font'),
 };
 
 const basicTasks = {
@@ -66,7 +84,7 @@ const basicTasks = {
       staticResourcesDirs.forEach(dir => {
         basicTasks.copy.single(
           path.join('./www', dir, '**/*'),
-          path.join('./dist/www', dir)
+          path.join('./dist/www', dir),
         );
       });
 
@@ -278,14 +296,12 @@ const cleanTasks = {
 
 const devTasks = {
   watch(cb) {
-    const dist = './dist/www';
-
-    gulp.watch('./www/*.mf',
-        basicTasks.copy.single('./www/*.mf', dist));
-    gulp.watch('./www/i/**/*',
-        basicTasks.copy.single('./www/i/**/*', path.join(dist, 'i')));
-    gulp.watch('./www/font/**/*',
-        basicTasks.copy.single('./www/font/**/*', path.join(dist, 'font')));
+    gulp.watch(srcGlobs.mf,
+        basicTasks.copy.single(srcGlobs.mf, destDirs.mf));
+    gulp.watch(srcGlobs.i,
+        basicTasks.copy.single(srcGlobs.i, destDirs.i));
+    gulp.watch(srcGlobs.font,
+        basicTasks.copy.single(srcGlobs.font, destDirs.font));
 
     gulp.watch(srcGlobs.html,
         buildTasks.html(srcGlobs.html, destDirs.html));
