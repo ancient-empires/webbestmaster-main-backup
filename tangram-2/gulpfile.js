@@ -169,16 +169,32 @@ const basicTasks = {
   },
 
   js: {
-    es6Import() {
-      return gulp.src('./www/js/main.js')
-          .pipe(es6Import())
-          .pipe(gulp.dest('./dist/www/js/'));
+    /**
+     * Resolve ES6 imports.
+     * @param { string } srcGlob Source files / directories. (may be written as glob)
+     * @param { string } destDir Destination directory.
+     * @param { ?object } options Options for resolving ES6 imports.
+     */
+    es6Import(srcGlob, destDir, options = {}) {
+      return function es6ImportTask() {
+        return gulp.src(srcGlob)
+            .pipe(es6Import(options))
+            .pipe(gulp.dest(destDir));
+      }
     },
 
-    uglify() {
-      return gulp.src('./dist/www/js/main.js')
-          .pipe(uglify())
-          .pipe(gulp.dest('./dist/www/js'));
+    /**
+     * Resolve ES6 imports.
+     * @param { string } srcGlob Source files / directories. (may be written as glob)
+     * @param { string } destDir Destination directory.
+     * @param { ?object } options Options for resolving ES6 imports.
+     */
+    uglify(srcGlob, destDir, options = {}) {
+      return function uglifyTask() {
+        return gulp.src(srcGlob)
+            .pipe(uglify(options))
+            .pipe(gulp.dest(destDir));
+      }
     },
   },
 
@@ -234,10 +250,24 @@ const buildTasks = {
     );
   },
 
-  js: gulp.series(
-    basicTasks.js.es6Import,
-    basicTasks.js.uglify,
-  ),
+  /**
+   * Process JavaScript.
+   * @param { string } srcMain The JavaScript file acting as the entry
+   *   point, typically named "main.js" or "index.js".
+   * @param { string } destDir Destination directory.
+   * @param { ?{
+   *   es6: ?object,
+   *   minify: ?object,
+   * } } options Options for processing CSS.
+   */
+  js(srcMain, destDir, options = {}) {
+    const destMain = path.join(destDir, path.basename(srcMain));
+
+    return gulp.series(
+      basicTasks.js.es6Import(srcMain, destDir, options?.es6),
+      basicTasks.js.uglify(destMain, destDir, options?.minify),
+    );
+  },
 };
 
 const cleanTasks = {
@@ -261,7 +291,8 @@ const devTasks = {
         buildTasks.html(srcGlobs.html, destDirs.html));
     gulp.watch(srcGlobs.css,
         buildTasks.css(srcEntryFilenames.css, destDirs.css));
-    gulp.watch('./www/js/**/*', buildTasks.js);
+    gulp.watch(srcGlobs.js,
+        buildTasks.js(srcEntryFilenames.js, destDirs.js));
 
     cb();
   },
@@ -271,7 +302,7 @@ module.exports.copy = buildTasks.copy;
 
 module.exports.html = buildTasks.html(srcGlobs.html, destDirs.html);
 module.exports.css = buildTasks.css(srcEntryFilenames.css, destDirs.css);
-module.exports.js = buildTasks.js;
+module.exports.js = buildTasks.js(srcEntryFilenames.js, destDirs.js);
 
 // complete build
 module.exports.build = gulp.series(
