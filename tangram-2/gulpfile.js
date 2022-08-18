@@ -83,7 +83,7 @@ const basicTasks = {
      * @param { ?object } options Options for minifying HTML.
      */
     minifyHtml(srcGlob, destDir, options = {}) {
-      return function minifyHtmlProcess() {
+      return function minifyHtmlTask() {
         return gulp.src(srcGlob)
             .pipe(minifyHtml(options))
             .pipe(gulp.dest(destDir))
@@ -100,7 +100,7 @@ const basicTasks = {
      * @param { ?object } options Options for importing CSS.
      */
     importCss(srcGlob, destDir, options = {}) {
-      return function importCssProcess() {
+      return function importCssTask() {
         return gulp.src(srcGlob)
             .pipe(cssImport(options))
             .pipe(gulp.dest(destDir));
@@ -115,7 +115,7 @@ const basicTasks = {
      * @param { ?object } options Options for SASS.
      */
     sass(srcGlob, destDir, options = {}) {
-      return function sassProcess() {
+      return function sassTask() {
         return gulp.src(srcGlob)
             .pipe(sass(options))
             .pipe(gulp.dest(destDir));
@@ -130,7 +130,7 @@ const basicTasks = {
      * @param { ?object } options Options for base64.
      */
     base64(srcGlob, destDir, options = {}) {
-      return function base64Process() {
+      return function base64Task() {
         return gulp.src(srcGlob)
             .pipe(cssBase64(options))
             .pipe(gulp.dest(destDir));
@@ -145,7 +145,7 @@ const basicTasks = {
      * @param { ?object } options Options for autoprefixer.
      */
     autoPrefix(srcGlob, destDir, options = {}) {
-      return function autoPrefixProcess() {
+      return function autoPrefixTask() {
         return gulp.src(srcGlob)
             .pipe(autoprefixer(options))
             .pipe(gulp.dest(destDir));
@@ -160,7 +160,7 @@ const basicTasks = {
      * @param { ?object } options Options for minifying CSS.
      */
     minify(srcGlob, destDir, options = {}) {
-      return function minifyCssProcess() {
+      return function minifyCssTask() {
         return gulp.src(srcGlob)
             .pipe(minifyCss(options))
             .pipe(gulp.dest(destDir));
@@ -278,7 +278,7 @@ const cleanTasks = {
 
 const devTasks = {
   watch(cb) {
-    const dist = './www/dist';
+    const dist = './dist/www';
 
     gulp.watch('./www/*.mf',
         basicTasks.copy.single('./www/*.mf', dist));
