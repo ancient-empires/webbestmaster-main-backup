@@ -209,8 +209,8 @@ const buildTasks = {
 
   /**
    * Process CSS.
-   * @param { string } srcMain The CSS file served as the entry point to
-   *   process, typically named "main.css" or "index.css".
+   * @param { string } srcMainFile The entry point CSS file,
+   *   typically named "main.css" or "index.css".
    * @param { string } destDir Destination directory.
    * @param { ?{
    *   import: ?object,
@@ -220,15 +220,15 @@ const buildTasks = {
    *   minify: ?object,
    * } } options Options for processing CSS.
    */
-  css(srcMain, destDir, options) {
-    const destMain = path.join(destDir, path.basename(srcMain));
+  css(srcMainFile, destDir, options) {
+    const destMainFile = path.join(destDir, path.basename(srcMainFile));
 
     return gulp.series(
-      basicTasks.css.importCss(srcMain, destDir, options?.import),
-      basicTasks.css.sass(destMain, destDir, options?.sass),
-      basicTasks.css.base64(destMain, destDir, options?.base64),
-      basicTasks.css.autoPrefix(destMain, destDir, options?.autoPrefix),
-      basicTasks.css.minify(destMain, destDir, options?.minify),
+      basicTasks.css.importCss(srcMainFile, destDir, options?.import),
+      basicTasks.css.sass(destMainFile, destDir, options?.sass),
+      basicTasks.css.base64(destMainFile, destDir, options?.base64),
+      basicTasks.css.autoPrefix(destMainFile, destDir, options?.autoPrefix),
+      basicTasks.css.minify(destMainFile, destDir, options?.minify),
     );
   },
 
