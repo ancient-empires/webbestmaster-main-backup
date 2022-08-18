@@ -43,7 +43,8 @@ const basicTasks = {
   copy: {
     /**
      * Copy single file or directory.
-     * @param { string } srcGlob Source file / directory. (may be written as glob)
+     * @param { string } srcGlob Source files / directories.
+     *   (may be written as glob)
      * @param { string } destDir Destination directory.
      */
     single(srcGlob, destDir) {
@@ -74,7 +75,8 @@ const basicTasks = {
   html: {
     /**
      * Minify HTML.
-     * @param { string } srcGlob Source file / directory. (may be written as glob)
+     * @param { string } srcGlob Source files / directories.
+     *   (may be written as glob)
      * @param { string } destDir Destination directory.
      * @param { ?object } options Options for minifying HTML.
      */
@@ -90,7 +92,8 @@ const basicTasks = {
   css: {
     /**
      * Import CSS.
-     * @param { string } srcGlob Source file / directory. (may be written as glob)
+     * @param { string } srcGlob Source files / directories.
+     *   (may be written as glob)
      * @param { string } destDir Destination directory.
      * @param { ?object } options Options for importing CSS.
      */
@@ -104,7 +107,8 @@ const basicTasks = {
 
     /**
      * Use SASS to process CSS stylesheets.
-     * @param { string } srcGlob Source file / directory. (may be written as glob)
+     * @param { string } srcGlob Source files / directories.
+     *   (may be written as glob)
      * @param { string } destDir Destination directory.
      * @param { ?object } options Options for SASS.
      */
@@ -118,7 +122,8 @@ const basicTasks = {
 
     /**
      * Convert URLs to base64 strings that represent the actual resources.
-     * @param { string } srcGlob Source file / directory. (may be written as glob)
+     * @param { string } srcGlob Source files / directories.
+     *   (may be written as glob)
      * @param { string } destDir Destination directory.
      * @param { ?object } options Options for base64.
      */
@@ -132,7 +137,8 @@ const basicTasks = {
 
     /**
      * Automatically add vendor prefixes.
-     * @param { string } srcGlob Source file / directory. (may be written as glob)
+     * @param { string } srcGlob Source files / directories.
+     *   (may be written as glob)
      * @param { string } destDir Destination directory.
      * @param { ?object } options Options for autoprefixer.
      */
@@ -146,7 +152,8 @@ const basicTasks = {
 
     /**
      * Minify CSS.
-     * @param { string } srcGlob Source file / directory. (may be written as glob)
+     * @param { string } srcGlob Source files / directories.
+     *   (may be written as glob)
      * @param { string } destDir Destination directory.
      * @param { ?object } options Options for minifying CSS.
      */
@@ -189,7 +196,8 @@ const buildTasks = {
 
   /**
    * Process HTML.
-   * @param { string } srcGlob Source file / directory. (may be written as glob)
+   * @param { string } srcGlob Source files / directories.
+   *   (may be written as glob)
    * @param { string } destDir Destination directory.
    * @param { ?{ minify: ?object } } options Options for minifying HTML.
    */
