@@ -1,5 +1,17 @@
 # Ancient Empires 2
 
+
+### Levels
+
+1. Temple Raiders
+2. To the Rescue
+3. Path of Shadows
+4. Reinforcements
+5. Escort Duty
+6. Northbound
+7. Rendezvous
+8. Heaven's Fury
+
 ## Start game
 You must have **Google Chrome** browser installed on your computer in order to run the game. If not, download and install it from [here](https://chrome.google.com).
 
