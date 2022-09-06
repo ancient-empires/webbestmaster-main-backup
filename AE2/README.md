@@ -4,7 +4,7 @@
 
 **Ancient Empires 2** is a thrilling turn-based strategy game. In this sequel of the Ancient Empires 1 game, Galamar and Valadorn united again to fight against the army of darkness and protect the Kingdom of Thorin.
 
-### Levels
+### Levels (Companies mode)
 
 1. Temple Raiders
 2. To the Rescue
