@@ -17,7 +17,7 @@
 	<meta name="format-detection" content="telephone=no">
 
 	<!-- styles -->
-	<link rel="stylesheet" href="css/main.css"/>
+	<link rel="stylesheet" href="css/main.css" />
 
 	<!-- languages -->
 	<script src="js/i18n/en.js" type="text/javascript"></script>
@@ -204,51 +204,53 @@
 	<script src="js/app/main.js" type="text/javascript"></script>
 
 </head>
+
 <body>
 
-<div class="js-wrapper">
+	<div class="js-wrapper">
 
-	<div class="double-blocks-wrapper title-game-bg js-no-scroll">
+		<div class="double-blocks-wrapper title-game-bg js-no-scroll">
 
-		<div class="double-block-container port-padding-top js-no-scroll">
-			<div class="logo-bg h100">
-				&nbsp;
+			<div class="double-block-container port-padding-top js-no-scroll">
+				<div class="logo-bg h100">
+					&nbsp;
+				</div>
 			</div>
-		</div>
 
-		<div class="double-block-container text-align-center clear-fix table js-no-scroll">
-			<div class="table-row h100">
-				<div class="table-cell land-padding-top land-vertical-align-middle">
-					<div class="inline-block" style="width: 75%;">
-						<div style="border: 0.15rem #fff solid;">
-							<div class="js-progress-bar" style="background-color: #f0f0f0; width: 0; line-height: 0.8rem;">&nbsp;</div>
+			<div class="double-block-container text-align-center clear-fix table js-no-scroll">
+				<div class="table-row h100">
+					<div class="table-cell land-padding-top land-vertical-align-middle">
+						<div class="inline-block" style="width: 75%;">
+							<div style="border: 0.15rem #fff solid;">
+								<div class="js-progress-bar" style="background-color: #f0f0f0; width: 0; line-height: 0.8rem;">&nbsp;
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
 		</div>
 
 	</div>
 
-</div>
+	<script type="text/x-template" data-name="header">
 
-<script type="text/x-template" data-name="header">
+		<div class="main-header-wrapper clear-fix">
 
-	<div class="main-header-wrapper clear-fix">
+			<div class="main-header"><%= (obj && obj.header) || window.APP.lang.get('appName') %></div>
 
-		<div class="main-header"><%= (obj && obj.header) || window.APP.lang.get('appName') %></div>
+			<% if ( window.location.hash ) { %>
+			<div data-sound="click.mp3" class="js-back back">&lt;&lt;</div>
+			<% } else if ( window.APP.info.withAds && window.APP.info.get('isIOS', true) ) { %>
+			<a href="<%= window.APP.info.link?.ios?.pro %>" class="js-external-link no-ads">&nbsp;</a>
+			<% }; %>
 
-		<% if ( window.location.hash ) { %>
-		<div data-sound="click.mp3" class="js-back back">&lt;&lt;</div>
-		<% } else if ( window.APP.info.withAds && window.APP.info.get('isIOS', true) ) { %>
-		<a href="<%= window.APP.info.link.ios.pro %>" class="js-external-link no-ads">&nbsp;</a>
-		<% }; %>
+		</div>
 
-	</div>
+	</script>
 
-</script>
-
-<script type="text/x-template" data-name="title">
+	<script type="text/x-template" data-name="title">
 
 	<div class="double-blocks-wrapper title-game-bg js-no-scroll">
 
@@ -286,7 +288,7 @@
 </script>
 
 
-<script type="text/x-template" data-name="settings">
+	<script type="text/x-template" data-name="settings">
 
 	<div class="js-settings-wrapper settings-wrapper screen-wrapper">
 
@@ -435,7 +437,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="settingsOnOff">
+	<script type="text/x-template" data-name="settingsOnOff">
 
 		<% if (info.get(key) === 'on') { %>
 		<div class="js-change-on-off-setting setting-state on-off-enable" data-key="<%= key %>" data-value="on">[<span class="on-off">*</span>]</div>
@@ -445,7 +447,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="about">
+	<script type="text/x-template" data-name="about">
 
 	<div class="screen-wrapper">
 
@@ -467,7 +469,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="play">
+	<script type="text/x-template" data-name="play">
 
 	<div class="double-blocks-wrapper js-no-scroll">
 		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('play') }) %>
@@ -502,7 +504,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="simple-popup">
+	<script type="text/x-template" data-name="simple-popup">
 
 	<div>
 
@@ -515,7 +517,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="route-from-battle">
+	<script type="text/x-template" data-name="route-from-battle">
 
 	<div>
 
@@ -529,7 +531,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="route-from-map-editor">
+	<script type="text/x-template" data-name="route-from-map-editor">
 
 	<div>
 
@@ -543,7 +545,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="win-or-defeat">
+	<script type="text/x-template" data-name="win-or-defeat">
 
 	<div>
 
@@ -557,7 +559,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="end-turn-popup">
+	<script type="text/x-template" data-name="end-turn-popup">
 
 	<div>
 		<div class="popup-header">{{ endTurnQuestion }}</div>
@@ -569,7 +571,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="clear-map">
+	<script type="text/x-template" data-name="clear-map">
 
 	<div>
 		<div class="popup-header">{{ cleanMapNotSavedDataWillBeLost }}</div>
@@ -581,7 +583,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="end-turn-popup">
+	<script type="text/x-template" data-name="end-turn-popup">
 
 	<div>
 		<div class="popup-header">{{ endTurnQuestion }}</div>
@@ -593,7 +595,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="simple-notification">
+	<script type="text/x-template" data-name="simple-notification">
 
 	<div>
 		<div class="js-back">
@@ -608,7 +610,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="briefing">
+	<script type="text/x-template" data-name="briefing">
 
 	<div>
 		<div class="js-back briefing-content">
@@ -621,7 +623,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="map-list-popup">
+	<script type="text/x-template" data-name="map-list-popup">
 
 	<div>
 
@@ -644,7 +646,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="map-list-popup-delete">
+	<script type="text/x-template" data-name="map-list-popup-delete">
 
 	<div>
 		<div data-sound="click.mp3" class="js-back button-popup-close">&nbsp;</div>
@@ -692,7 +694,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="between-turn-notification">
+	<script type="text/x-template" data-name="between-turn-notification">
 
 	<div>
 		<div class="js-back bg-gradient-color-<%= color %> new-turn-notification">
@@ -703,7 +705,7 @@
 </script>
 
 
-<script type="text/x-template" data-name="popup-wrapper">
+	<script type="text/x-template" data-name="popup-wrapper">
 
 	<div class="js-popup-wrapper popup-wrapper">
 
@@ -730,7 +732,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="ticket-wrapper">
+	<script type="text/x-template" data-name="ticket-wrapper">
 
 	<div class="js-ticket-wrapper popup-wrapper ticket-wrapper">
 
@@ -740,7 +742,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="popup-confirm-restart-battle">
+	<script type="text/x-template" data-name="popup-confirm-restart-battle">
 
 	<div>
 		<div class="popup-header">{{ areYouSureToRestartBattle }}</div>
@@ -752,7 +754,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="popup-confirm-quit-battle">
+	<script type="text/x-template" data-name="popup-confirm-quit-battle">
 
 	<div>
 		<div class="popup-header">{{ areYouSureToQuitBattle }}</div>
@@ -764,7 +766,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="battle-menu">
+	<script type="text/x-template" data-name="battle-menu">
 
 	<div>
 
@@ -785,7 +787,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="loadGame">
+	<script type="text/x-template" data-name="loadGame">
 
 	<div class="screen-wrapper">
 
@@ -814,7 +816,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="save-game">
+	<script type="text/x-template" data-name="save-game">
 
 	<div>
 
@@ -837,7 +839,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="save-game-items">
+	<script type="text/x-template" data-name="save-game-items">
 
 	<% if ( savedGames.length ) { %>
 		<% _.each(savedGames, function(name, index){ %>
@@ -866,7 +868,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="load-game-popup">
+	<script type="text/x-template" data-name="load-game-popup">
 
 	<div class="js-load-game-popup-wrapper">
 
@@ -908,7 +910,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="skirmishSetupMap">
+	<script type="text/x-template" data-name="skirmishSetupMap">
 
 	<div class="screen-wrapper">
 
@@ -975,7 +977,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="skirmishSelectMap">
+	<script type="text/x-template" data-name="skirmishSelectMap">
 
 	<div class="screen-wrapper">
 		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('skirmish') }) %>
@@ -1006,7 +1008,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="battle">
+	<script type="text/x-template" data-name="battle">
 
 	<div class="battle-view-wrapper js-battle-view-wrapper">
 		<div class="battle-view-container">
@@ -1041,7 +1043,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="map-editor">
+	<script type="text/x-template" data-name="map-editor">
 
 	<div class="battle-view-wrapper map-editor-wrapper js-map-editor-wrapper">
 
@@ -1111,7 +1113,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="help">
+	<script type="text/x-template" data-name="help">
 
 	<div>
 
@@ -1146,7 +1148,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="map-editor-tools">
+	<script type="text/x-template" data-name="map-editor-tools">
 
 	<div>
 
@@ -1244,7 +1246,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="unit-info">
+	<script type="text/x-template" data-name="unit-info">
 
 	<div class="unit-info-wrapper">
 		<div class="unit-info-icon unit-info-icon-attack">&nbsp;</div>
@@ -1269,7 +1271,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="short-unit-info-sign">
+	<script type="text/x-template" data-name="short-unit-info-sign">
 
 	<% _.each(signs, function(sign) { %>
 		<% sign = (sign === '-') ? 'minus' : sign; %>
@@ -1282,7 +1284,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="battle-view-status-bar">
+	<script type="text/x-template" data-name="battle-view-status-bar">
 
 	<div class="status-bar-info-square-wrapper js-status-bar-info-square-wrapper">
 		<div class="status-bar-info-square-border"> &nbsp; </div>
@@ -1312,7 +1314,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="battle-view-info-square">
+	<script type="text/x-template" data-name="battle-view-info-square">
 
 	<div class="status-bar-info-square-container js-status-bar-info-square-container">
 		<div class="<%= className %> status-bar-square-info-image">
@@ -1330,7 +1332,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="unit-store">
+	<script type="text/x-template" data-name="unit-store">
 
 	<div class="js-unit-store-wrapper unit-store-wrapper">
 
@@ -1396,7 +1398,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="selectLevel">
+	<script type="text/x-template" data-name="selectLevel">
 
 	<div class="screen-wrapper">
 
@@ -1429,7 +1431,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="level-start">
+	<script type="text/x-template" data-name="level-start">
 
 	<span>
 		<% if (level === 'no-level') { %>[<span class="opacity50 level-star">*</span><span class="opacity50 level-star">*</span><span class="opacity50 level-star">*</span>]<% }; %>
@@ -1440,7 +1442,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="instructions">
+	<script type="text/x-template" data-name="instructions">
 
 	<div class="screen-wrapper">
 		<%= window.APP.templateMaster.tmplFn.header({ header: window.APP.lang.get('instructions') }) %>
@@ -1460,7 +1462,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="rate">
+	<script type="text/x-template" data-name="rate">
 
 	<div class="js-popup-wrapper popup-wrapper">
 		<div class="table popup-wrapper-table js-back">
@@ -1492,7 +1494,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="story">
+	<script type="text/x-template" data-name="story">
 
 	<div>
 
@@ -1515,7 +1517,7 @@
 
 </script>
 
-<script type="text/x-template" data-name="full-unit-info">
+	<script type="text/x-template" data-name="full-unit-info">
 
 	<div>
 
@@ -1556,7 +1558,7 @@
 
 </script>
 
-<!--
+	<!--
 
 
 
@@ -1663,7 +1665,7 @@
 
  -->
 
-<script type="text/x-template" data-name="game-speed">
+	<script type="text/x-template" data-name="game-speed">
 
 	<style type="text/css" class="js-game-speed-style">
 
@@ -1728,4 +1730,5 @@
 </script>
 
 </body>
+
 </html>
