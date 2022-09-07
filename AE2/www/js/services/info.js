@@ -10,9 +10,9 @@
 	function getPrefix() {
 
 		var data = {
-				js: '',
-				css: ''
-			},
+			js: '',
+			css: ''
+		},
 			tempStyle = doc.createElement('div').style,
 			vendors = ['t', 'webkitT', 'MozT', 'msT', 'OT'];
 
@@ -45,10 +45,6 @@
 		withAds: true,
 
 		link: {
-			ios: {
-				normal: '',
-				pro: ''
-			},
 			android: {
 				normal: 'https://play.google.com/store/apps/details?id=com.statlex.ancientempirestrikeback',
 				pro: 'https://play.google.com/store/apps/details?id=com.statlex.ancientempirestrikebackup'
@@ -114,11 +110,13 @@
 			var ua = win.navigator.userAgent,
 				isIE = /MSIE/.test(ua),
 				isAndroid = (/android/i).test(ua),
-				isIOS = /iPad|iPhone|iPod/.test(ua);
+				isIOS = /iPad|iPhone|iPod/.test(ua),
+				isWeb = !isIE && !isAndroid && !isIOS;
 
 			this.set('isIE', isIE, true);
 			this.set('isAndroid', isAndroid, true);
 			this.set('isIOS', isIOS, true);
+			this.set('isWeb', isWeb, true);
 
 			if (isIE) {
 				this.set('os', 'wp', true);
@@ -134,6 +132,9 @@
 				this.set('os', 'ios', true);
 			}
 
+			if (isWeb) {
+				this.set('os', 'web', true);
+			}
 		},
 
 		getAndroidVersion: function () {
@@ -149,10 +150,10 @@
 			var i,
 				el = doc.createElement('div'),
 				transitions = {
-					'transition':'transitionend',
-					'OTransition':'otransitionend',  // oTransitionEnd in very old Opera
-					'MozTransition':'transitionend',
-					'WebkitTransition':'webkitTransitionEnd'
+					'transition': 'transitionend',
+					'OTransition': 'otransitionend',  // oTransitionEnd in very old Opera
+					'MozTransition': 'transitionend',
+					'WebkitTransition': 'webkitTransitionEnd'
 				},
 				transitionEnd = 'transitionend';
 
@@ -170,10 +171,10 @@
 			var i,
 				el = doc.createElement('div'),
 				animations = {
-					'animation':'animationend',
-					'OAnimation':'oAnimationEnd',  // oAnimationEnd in very old Opera
-					'MozAnimation':'animationend',
-					'WebkitAnimation':'webkitAnimationEnd'
+					'animation': 'animationend',
+					'OAnimation': 'oAnimationEnd',  // oAnimationEnd in very old Opera
+					'MozAnimation': 'animationend',
+					'WebkitAnimation': 'webkitAnimationEnd'
 				},
 				animationEnd = 'animationend';
 
@@ -222,20 +223,20 @@
 		setSettings: function () {
 
 			var defaultSettings = {
-					autoSave: 'on', // auto save game after every turn
-					confirmTurn: 'off', // game turn
-					confirmMove: 'off', // move unit
-					confirmAttack: 'off', // attack unit
-					music: 'on',
-					vibrate: 'off',
-					help: 'on',
-					fightAnimation: 'off',
-					buildingSmoke: 'off',
-					unitAnimation: 'off',
-					font: 'lucida',
-					difficult: 'easy', // easy, normal, hard
-					gameSpeed: '3' // 1..5, use string type
-				},
+				autoSave: 'on', // auto save game after every turn
+				confirmTurn: 'off', // game turn
+				confirmMove: 'off', // move unit
+				confirmAttack: 'off', // attack unit
+				music: 'on',
+				vibrate: 'off',
+				help: 'on',
+				fightAnimation: 'off',
+				buildingSmoke: 'off',
+				unitAnimation: 'off',
+				font: 'lucida',
+				difficult: 'easy', // easy, normal, hard
+				gameSpeed: '3' // 1..5, use string type
+			},
 				key,
 				value;
 
@@ -259,7 +260,7 @@
 		},
 
 		getLinkToStore: function (type) { // pro or normal
-			return this.link[this.get('os', true)][type || 'normal'];
+			return this?.link?.[this.get('os', true)]?.[type || 'normal'] || '';
 			//return this.link[this.get('os', true)][type || (this.isNormal ? 'normal' : 'pro')];
 		}
 

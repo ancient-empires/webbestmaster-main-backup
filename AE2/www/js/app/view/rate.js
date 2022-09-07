@@ -21,7 +21,7 @@
 
 			var os = this.info.get('os', true),
 				level = this.info.withAds ? 'normal' : 'pro',
-				link = this.info.link[os][level];
+				link = this.info?.link?.[os]?.[level];
 
 			this.$el = $(this.tmpl.rate({ link: link }));
 
@@ -38,7 +38,7 @@
 			// if it is first time for show
 			// we set last show time to now
 			// to do not show rate us on first time
-			if ( !lastShowTime ) {
+			if (!lastShowTime) {
 				rateData.lastShowTime = now;
 				lastShowTime = now;
 				this.info.set('rate', rateData);
