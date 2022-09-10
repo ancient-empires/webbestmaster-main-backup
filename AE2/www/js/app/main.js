@@ -33,7 +33,7 @@
 		//		isLoop: false
 		//	});
 		//}, 1000);
-        //
+		//
 		//setTimeout(function () {
 		//	win.APP.soundMaster.playBgSound();
 		//}, 2000);
@@ -41,7 +41,7 @@
 	}
 
 	(function back() {
-		if ( !location.hash ) {
+		if (!location.hash) {
 			return;
 		}
 		win.history.back();
@@ -63,6 +63,10 @@
 
 		}, timeInterval);
 
+		// PWA service worker register
+		navigator.serviceWorker.register('/pwa-sw.js', {
+			scope: '/',
+		});
 	}
 
 	win.addEventListener('load', start, false);
