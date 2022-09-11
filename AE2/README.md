@@ -21,5 +21,5 @@ You must have **Google Chrome** browser installed on your computer in order to r
 After you have installed Google Chrome:
 
 1. Run `npm install` to install the dependencies on this server.
-2. Run `npm start` to start the game. The game will run at <http://localhost:8080>.
-3. Open Google Chrome, and go to <http://localhost:8080> to start the game.
+2. Run `npm start` to start the game. The game will run at <http://localhost:10002>.
+3. Open Google Chrome, and go to <http://localhost:10002> to start the game.
