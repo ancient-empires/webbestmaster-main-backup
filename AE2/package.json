@@ -1,5 +1,7 @@
 {
   "scripts": {
+    "build": "npm run build-pwa",
+    "build-pwa": "node build-pwa-sw.js",
     "start": "http-server -a localhost -p 10002 -c-1 www/"
   },
   "dependencies": {
