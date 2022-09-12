@@ -50,10 +50,16 @@ npm start
 ```
 in the terminal to start the server. You can start the game on <http://localhost:10002> in Google Chrome.
 
-If you play it for a while, allowing *all* the static files to be cached, then you can see the **Install** button on the address bar, which allows you to install the game as a PWA. This allows you to continue playing it even after you stop the HTTP server running on port 10002.
+If you play it for a while, allowing *all* the static files to be cached, then you can see the **Install** button on the address bar, which allows you to install the game as a PWA.
 
 ![Install in Google Chrome](./screenshots/AE2%20Google%20Chrome%20install.png)
 
 After installing, the game will run in a standalone window.
 
 ![Home screen in Google Chrome](./screenshots/AE2%20home%20screen%20standalone%20Google%20Chrome.png)
+
+Then you can simply stop the server on <http://localhost:10002>. After this step you will still be able to launch the game.
+
+If you open **Developer tools** in Google Chrome, you can see that all static assets are cached and loaded by the service worker. That is why you can play the full game even aft the localhost server has been stopped.
+
+![Service worker cache](./screenshots/AE2%20Google%20Chrome%20service%20worker%20cache.png)
