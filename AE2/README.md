@@ -50,7 +50,7 @@ npm start
 ```
 in the terminal to start the server. You can start the game on <http://localhost:10002> in Google Chrome.
 
-If you play it for a while, allowing *all* the static files to be cached, then you can see the **Install** button on the address bar, which allows you to install the game as a PWA. This allows you to continue playing it even after you stop the HTTP server running on port 1002.
+If you play it for a while, allowing *all* the static files to be cached, then you can see the **Install** button on the address bar, which allows you to install the game as a PWA. This allows you to continue playing it even after you stop the HTTP server running on port 10002.
 
 ![Install in Google Chrome](./screenshots/AE2%20Google%20Chrome%20install.png)
 
