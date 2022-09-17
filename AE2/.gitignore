@@ -1,0 +1,4 @@
+# PWA
+pwa-sw.js
+workbox-*.js
+*.js.map

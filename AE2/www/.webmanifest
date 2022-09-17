@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "short_name": "AE2",
+  "name": "Ancient Empires 2",
+  "description": "Ancient Empires 2",
+  "start_url": "/",
+  "display": "fullscreen",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "icons/icon-1024.png",
+      "type": "image/png",
+      "sizes": "1024x1024"
+    },
+    {
+      "src": "/icons/icon-1536.png",
+      "type": "image/png",
+      "size": "1536x1536"
+    }
+  ]
+}

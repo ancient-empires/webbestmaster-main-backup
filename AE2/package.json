@@ -1,8 +1,13 @@
 {
   "scripts": {
-    "start": "http-server -a localhost -p 8080 -c-1 www/"
+    "build": "npm run build-pwa",
+    "build-pwa": "node build-pwa-sw.js",
+    "start": "http-server -a localhost -p 10002 -c-1 www/"
   },
   "dependencies": {
     "http-server": "^14.1.1"
+  },
+  "devDependencies": {
+    "workbox-build": "^6.5.4"
   }
 }
